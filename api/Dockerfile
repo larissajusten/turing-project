@@ -9,6 +9,6 @@ RUN echo ${TZ} > /etc/timezone
     
 EXPOSE 80
 
-ADD /target/{{replace-project-name}}-api-0.0.1-SNAPSHOT.jar {{replace-project-name}}-api.jar
+ADD /target/cwi-turing-api-0.0.1-SNAPSHOT.jar cwi-turing-api.jar
 
-ENTRYPOINT ["java","-jar","{{replace-project-name}}-api.jar", "--server.port=80"]
+ENTRYPOINT ["java","-jar","cwi-turing-api.jar", "--server.port=80"]

@@ -7,17 +7,17 @@ stage('Evaluating') {
         default:        env_type = "undefined";  break;
     }
 
-    discord_webhook = "https://discordapp.com/api/webhooks/{{replace-discord-webhook}}"
+    discord_webhook = "https://discordapp.com/api/webhooks/643804276245921794/Qi-y1rVZHtDrjdHvvLXJpumhYGTpIK5GF1-NroevJVNilXp7f-hc2d-twIADfb-Ywi9v"
     env_is_defined = "$env_type" != "undefined"
     currentBuild.result = 'SUCCESS'
 }
 
 // App settings
-def app_name = "{{replace-project-name}}-app"
-def acess_port = "{{replace-api-port}}:80"
+def app_name = "cwi-turing-app"
+def acess_port = "9017:80"
 def tag = "crescer/${app_name}"
 def docker_image = "${app_name}.tar"
-def api_url = "https://{{replace-project-name}}.cwi.com.br/api"
+def api_url = "https://cwi-turing.cwi.com.br/api"
 
 try {
     node('master') {

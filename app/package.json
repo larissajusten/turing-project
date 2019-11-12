@@ -1,5 +1,5 @@
 {
-  "name": "{{replace-project-name}}-app",
+  "name": "cwi-turing-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
