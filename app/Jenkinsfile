@@ -27,7 +27,7 @@ try {
             commiter = sh(returnStdout: true, script: "git show -s --pretty=%an").trim()
         }
 
-        docker.image('node:8.12-jessie').inside('-u root') {
+        docker.image('node:8.12-jessie').inside('-v /var/lib/jenkins/.npm:/root/.npm -u root') {
 
             stage('Install') {
                 dir("app") {
@@ -75,6 +75,7 @@ try {
             stage('Deploy Service') {
                 sh "docker save $tag > $docker_image"
                 stash includes: docker_image, name: app_name
+                stash includes: '**/nginx.conf', name: 'nginx'
             }
 
             node("producao") {
@@ -91,6 +92,17 @@ try {
                             -v /crescer/nginx:/etc/nginx/conf.d:ro \
                             -p $acess_port \
                             -d $tag"""
+                }
+
+                stage('Nginx Config') {
+                    unstash 'nginx'
+
+                    dir("app") {
+                        sh "sudo cp nginx.conf /etc/nginx/sites-available/turing.cwi.com.br"
+
+                        sh """sudo ln -s /etc/nginx/sites-available/turing.cwi.com.br \
+                                         /etc/nginx/sites-enabled/turing.cwi.com.br"""
+                    }
                 }
             }
 
