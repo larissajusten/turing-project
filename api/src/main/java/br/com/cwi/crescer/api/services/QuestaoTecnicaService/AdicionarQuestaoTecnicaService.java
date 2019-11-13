@@ -1,6 +1,6 @@
 package br.com.cwi.crescer.api.services.QuestaoTecnicaService;
 
-import br.com.cwi.crescer.api.controller.requests.QuestaoTecnicaRequest;
+import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoTecnicaRequest;
 import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
