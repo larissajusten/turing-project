@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Table(name = "RESPOSTAS_MULT_ESCOLHAS_PROVAS")
 @SequenceGenerator(name = "seq", sequenceName = "SEQ_RESPOSTAS_DISSERTATIVAS", allocationSize = 1)
-public class RespostaMutiplaEscolhaProva {
+public class RespostasMutiplaEscolhaProva {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")

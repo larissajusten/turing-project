@@ -100,7 +100,7 @@ try {
                     dir("app") {
                         sh "sudo cp nginx.conf /etc/nginx/sites-available/turing.cwi.com.br"
 
-                        sh """sudo ln -s /etc/nginx/sites-available/turing.cwi.com.br \
+                        sh """sudo ln -sfn /etc/nginx/sites-available/turing.cwi.com.br \
                                          /etc/nginx/sites-enabled/turing.cwi.com.br"""
                     }
                 }
