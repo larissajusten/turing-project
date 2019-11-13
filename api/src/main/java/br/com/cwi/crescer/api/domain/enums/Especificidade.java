@@ -1,12 +1,12 @@
 package br.com.cwi.crescer.api.domain.enums;
 
 public enum Especificidade {
-    JavaScript,
-    Java,
-    Python,
+    JAVASCRIPT,
+    JAVA,
+    PYTHON,
     C,
     PHP,
-    TypeScript,
-    Ruby,
-    Swift
+    TYPESCRIPT,
+    RUBY,
+    SWIFT
 }

@@ -26,13 +26,10 @@ public class QuestaoMultiplaEscolhaController {
     private BuscarQuestoesMultiplaEscolhaService buscarQuestoesMultiplaEscolha;
 
     public void adicionarQuestaoMultiplaEscolha(@RequestBody @Valid QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
-
         adicionarQuestaoMultiplaEscolha.adicionar(questaoMultiplaEscolhaRequest);
-
     }
 
     public Page<QuestaoMultiplaEscolhaResponse> buscarQuestoesMultiplaEscolha(@PageableDefault Pageable pageable) {
-
         return buscarQuestoesMultiplaEscolha.buscarTodasQuestoes(pageable);
     }
 }
