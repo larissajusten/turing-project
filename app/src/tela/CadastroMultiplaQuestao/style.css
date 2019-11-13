@@ -1,3 +1,26 @@
+.container-tela-cadastro {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	padding: 0 100px;
+}
+
 .tela-cadastro {
 	margin-top: 10%;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+.esquerda {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+}
+
+.direita {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+	justify-content: flex-end;
 }

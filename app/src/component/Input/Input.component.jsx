@@ -6,8 +6,13 @@ export class Input extends Component {
 		return (
 			<div className="input-principal">
 				<label className="label">{this.props.label}</label>
-                <input className="input"
-                    type={this.props.type} placeholder={this.props.placeholder} />
+				<input
+					className={this.props.className}
+					type={this.props.type}
+					placeholder={this.props.placeholder}
+					name={this.props.name}
+					value={this.props.value}
+				/>
 			</div>
 		);
 	}
