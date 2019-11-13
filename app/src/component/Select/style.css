@@ -1,0 +1,26 @@
+select {
+	height: 37px;
+	width: 450px;
+	display: inline-block;
+	background-color: #232323;
+	outline: none;
+	font-size: 16px;
+	font-family: 'Open Sans Condensed';
+	border-radius: 28px;
+	margin-top: 1%;
+	padding: 0.1% 0.2%;
+	margin-top: 1%;
+	margin-bottom: 25px;
+	border-bottom: solid 1px #000000;
+	background: rgba(247, 245, 245, 0.6);
+	border: 1px solid rgba(224, 213, 213, 0.81);
+	box-sizing: border-box;
+	backdrop-filter: blur(4px);
+	border-radius: 10px;
+}
+
+.select-area {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
