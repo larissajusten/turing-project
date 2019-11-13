@@ -1,7 +1,7 @@
 package br.com.cwi.crescer.api.controller.QuestoesControllers;
 
-import br.com.cwi.crescer.api.controller.requests.BuscaQuestoesTecnicasRequest;
-import br.com.cwi.crescer.api.controller.requests.QuestaoTecnicaRequest;
+import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesTecnicasRequest;
+import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoTecnicaRequest;
 import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaResponse;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.services.QuestaoTecnicaService.AdicionarQuestaoTecnicaService;
