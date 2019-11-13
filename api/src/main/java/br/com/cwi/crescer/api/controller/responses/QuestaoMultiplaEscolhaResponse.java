@@ -1,43 +1,34 @@
-package br.com.cwi.crescer.api.controller.requests.questoes;
+package br.com.cwi.crescer.api.controller.responses;
 
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.Data;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 
-@Getter
-@AllArgsConstructor
-@Valid
-public class QuestaoMultiplaEscolhaRequest {
+@Data
+public class QuestaoMultiplaEscolhaResponse {
 
-    @NotEmpty
+    private Long id;
+
+    private LocalDate dataCriacao;
+
     private String questao;
 
-    @NonNull
-    private NivelDeDificuldade nivelDeDificuldade;
-
-    @NonNull
     private Especificidade especificidade;
 
-    @NonNull
+    private NivelDeDificuldade nivelDeDificuldade;
+
     private AlternativaMultiplaEscolha alternativaA;
 
-    @NonNull
     private AlternativaMultiplaEscolha alternativaB;
 
-    @NonNull
     private AlternativaMultiplaEscolha alternativaC;
 
-    @NonNull
     private AlternativaMultiplaEscolha alternativaD;
 
-    @NonNull
     private AlternativaMultiplaEscolha alternativaE;
 
-
+    private Long idUsuario;
 }

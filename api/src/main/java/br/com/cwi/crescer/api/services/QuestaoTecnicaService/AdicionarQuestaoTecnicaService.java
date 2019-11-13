@@ -19,7 +19,6 @@ public class AdicionarQuestaoTecnicaService {
     @Autowired
     private QuestaoTecnicaMapper mapper;
 
-
     public void adicionar(QuestaoTecnicaRequest questaoTecnicaRequest){
         QuestaoTecnica questaoTecnica = mapper.mapperToQuestao(questaoTecnicaRequest);
         questaoTecnica.setDataCriacao(LocalDate.now());

@@ -6,10 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
 @Getter
 @AllArgsConstructor
+@Valid
 public class QuestaoTecnicaRequest {
 
     @NotEmpty

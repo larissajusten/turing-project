@@ -6,10 +6,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NonNull;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
 @Data
 @AllArgsConstructor
+@Valid
 public class QuestaoDissertativaRequest {
 
     @NotEmpty
