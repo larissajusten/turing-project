@@ -14,7 +14,7 @@ public class BuscarQuestoesTecnicasService {
     @Autowired
     private QuestaoTecnicaRepository repository;
 
-    public List<QuestaoTecnica> buscar(BuscaQuestoesTecnicasRequest buscaQuestoes){
-
+    public List<QuestaoTecnica> buscar(BuscaQuestoesTecnicasRequest buscaQuestoes) {
+        return null;
     }
 }
