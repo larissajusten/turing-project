@@ -9,12 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 @Service
 public class ListarQuestoesTecnicasService {
-
-    @Autowired
-    private QuestaoTecnicaRepository repository;
 
     @Autowired
     private BuscarQuestaoTecnicaPorIdService buscarQuestaoTecnicaService;
@@ -24,14 +22,15 @@ public class ListarQuestoesTecnicasService {
 
     public List<QuestaoTecnica> buscar(BuscaQuestoesTecnicasRequest buscaQuestoes){
         List<QuestaoTecnica> lista = new ArrayList<>();
-        int quant = buscaQuestoes.getQuantidadeDeQuestoes();
-        int cont = 0;
+
         List<QuestaoTecnica> listaQueAtendeRequisitos = buscarQuestaoTecnicaPorNivelEEspecificidadeService.buscar(
                 buscaQuestoes.getEspecificidade(), buscaQuestoes.getNivelDeDificuldade());
 
-        Collections.shuffle(listaQueAtendeRequisitos);
+        Collections.shuffle(listaQueAtendeRequisitos, new Random());
 
-        while(cont <= quant){
+        int quant = buscaQuestoes.getQuantidadeDeQuestoes();
+        int cont = 0;
+        while(cont < quant){
             lista.add(listaQueAtendeRequisitos.get(cont));
             cont++;
         }

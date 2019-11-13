@@ -22,7 +22,12 @@ public class AdicionarQuestaoTecnicaService {
     public void adicionar(QuestaoTecnicaRequest questaoTecnicaRequest){
         QuestaoTecnica questaoTecnica = mapper.mapperToQuestao(questaoTecnicaRequest);
         questaoTecnica.setDataCriacao(LocalDate.now());
-        questaoTecnica.setUsuario(new Usuario(1L));
+
+        //Precisa salvar um usuário no banco para poder usar ele,
+        //dá erro porque está tentando usar um usuário que não existe
+        //Para resolver agora: é só salvar manualmente um Usuario no banco
+       questaoTecnica.setUsuario(new Usuario(1L));
+
         repository.save(questaoTecnica);
     }
 

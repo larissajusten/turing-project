@@ -16,6 +16,5 @@ public class AdicionarAlternativaMultiplaEscolhaService {
         alternativa.setId(idQuestao);
 
         repository.save(alternativa);
-
     }
 }
