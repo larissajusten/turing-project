@@ -2,7 +2,6 @@ package br.com.cwi.crescer.api.controller.requests.questoes;
 
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
-import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
@@ -25,18 +24,18 @@ public class QuestaoMultiplaEscolhaRequest {
     private Especificidade especificidade;
 
     @NonNull
-    private AlternativaMultiplaEscolha alternativaA;
+    private AlternativaQuestaoMultiplaEscolhaRequest alternativaA;
 
     @NonNull
-    private AlternativaMultiplaEscolha alternativaB;
+    private AlternativaQuestaoMultiplaEscolhaRequest alternativaB;
 
     @NonNull
-    private AlternativaMultiplaEscolha alternativaC;
+    private AlternativaQuestaoMultiplaEscolhaRequest alternativaC;
 
     @NonNull
-    private AlternativaMultiplaEscolha alternativaD;
+    private AlternativaQuestaoMultiplaEscolhaRequest alternativaD;
 
     @NonNull
-    private AlternativaMultiplaEscolha alternativaE;
+    private AlternativaQuestaoMultiplaEscolhaRequest alternativaE;
 
 }
