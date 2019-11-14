@@ -16,9 +16,9 @@ public class AdicionarNovoUsuarioService {
     @Autowired
     private ModelMapper mapper;
 
-    public void adicionar(UsuarioRequest usuarioRequest) {
+    public void adicionar(Usuario usuario) {
 
-        Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
+        //Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
 
         repository.save(usuario);
     }

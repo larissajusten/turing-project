@@ -18,7 +18,7 @@ public class UsuarioController {
     private AdicionarNovoUsuarioService adicionarNovoUsuarioService;
 
     @PostMapping
-    public void adicionarUsuario(@RequestBody UsuarioRequest usuario) {
+    public void adicionarUsuario(@RequestBody Usuario usuario) {
 
         adicionarNovoUsuarioService.adicionar(usuario);
     }

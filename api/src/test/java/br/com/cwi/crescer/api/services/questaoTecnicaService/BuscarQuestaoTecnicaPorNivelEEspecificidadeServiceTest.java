@@ -31,6 +31,7 @@ public class BuscarQuestaoTecnicaPorNivelEEspecificidadeServiceTest {
         questaoTecnica.setNivelDeDificuldade(NivelDeDificuldade.FACIL);
 
         List<QuestaoTecnica> questoesTecnicas = new ArrayList<>();
+        questoesTecnicas.add(questaoTecnica);
 
         Mockito.when(repository
                 .acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
@@ -38,7 +39,7 @@ public class BuscarQuestaoTecnicaPorNivelEEspecificidadeServiceTest {
 
         buscarQuestaoTecnicaPorNivelEEspecificidadeService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
-        Mockito.verify(repository).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+        Mockito.verify(repository, Mockito.times(2)).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
     }
 
 

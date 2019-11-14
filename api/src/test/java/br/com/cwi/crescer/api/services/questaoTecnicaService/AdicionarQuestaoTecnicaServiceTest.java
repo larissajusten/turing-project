@@ -28,31 +28,31 @@ public class AdicionarQuestaoTecnicaServiceTest {
     @Test
     public void deveChamarQuestaoTecnicaRepositorySaveQuandoAdicionarQuestaoTecnicaServiceForChamada() {
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
-//        QuestaoUnicaAlternativaRequest questaoUnicaAlternativaRequest =
-//                new QuestaoUnicaAlternativaRequest("Bla bla...",
-//                        NivelDeDificuldade.FACIL,
-//                        Especificidade.JAVASCRIPT);
-//
-//        Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
-//
-//        adicionarQuestaoTecnicaService.adicionar(questaoUnicaAlternativaRequest);
-//
-//        Mockito.verify(repository).save(questaoTecnica);
+        QuestaoUnicaAlternativaRequest questaoUnicaAlternativaRequest =
+                new QuestaoUnicaAlternativaRequest("Bla bla...",
+                        Especificidade.JAVASCRIPT,
+                        NivelDeDificuldade.FACIL);
+
+        Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
+
+        adicionarQuestaoTecnicaService.adicionar(questaoUnicaAlternativaRequest);
+
+        Mockito.verify(repository).save(questaoTecnica);
     }
 
     @Test
     public void deveChamarQuestaoTecnicaMapperQuandoAdicionarQuestaoTecnicaServiceForChamada() {
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
-//        QuestaoUnicaAlternativaRequest questaoUnicaAlternativaRequest =
-//                new QuestaoUnicaAlternativaRequest("Bla bla...",
-//                        NivelDeDificuldade.FACIL,
-//                        Especificidade.JAVASCRIPT);
-//
-//        Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
-//
-//        adicionarQuestaoTecnicaService.adicionar(questaoUnicaAlternativaRequest);
-//
-//        Mockito.verify(mapper).transformar(questaoUnicaAlternativaRequest);
+        QuestaoUnicaAlternativaRequest questaoUnicaAlternativaRequest =
+                new QuestaoUnicaAlternativaRequest("Bla bla...",
+                        Especificidade.JAVASCRIPT,
+                        NivelDeDificuldade.FACIL);
+
+        Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
+
+        adicionarQuestaoTecnicaService.adicionar(questaoUnicaAlternativaRequest);
+
+        Mockito.verify(mapper).transformar(questaoUnicaAlternativaRequest);
     }
 
 
