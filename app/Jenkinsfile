@@ -23,6 +23,7 @@ try {
     node('master') {
         
         stage('Checkout') {
+            cleanWs()
             checkout scm
             commiter = sh(returnStdout: true, script: "git show -s --pretty=%an").trim()
         }
