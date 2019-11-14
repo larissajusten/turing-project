@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
@@ -18,7 +19,7 @@ public class Usuario {
     @Id
     @JsonIgnore
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @NotEmpty
+    @NotNull
     private Long id;
 
 }
