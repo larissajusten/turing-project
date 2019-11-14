@@ -36,9 +36,4 @@ public class QuestaoMultiplaEscolhaController {
         return buscarQuestoesMultiplaEscolha.buscarTodasQuestoes(pageable);
     }
 
-    //TODO
-    ///IGUAL A DE CIMA, CONFERIR
-    public Page<QuestaoMultiplaEscolhaResponse> buscarQuestoesComFiltro(@PageableDefault Pageable pageable) {
-        return buscarQuestoesMultiplaEscolha.buscarTodasQuestoes(pageable);
-    }
 }

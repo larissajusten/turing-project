@@ -17,10 +17,12 @@ spring:
     #url: jdbc:oracle:thin:@192.168.56.106:1521/XEPDB1
 
     #larissa
-    url: jdbc:oracle:thin:@192.168.248.3:1521/XEPDB1
+    #url: jdbc:oracle:thin:@192.168.248.3:1521/XEPDB1
 
     #vanessa
     #url: jdbc:oracle:thin:@192.168.56.101:1521/XE
+    url: jdbc:oracle:thin:@192.168.64.3:1521/XEPDB1
+
     username: CWITURING
     password: CWITURING
     driver-class-name: oracle.jdbc.OracleDriver

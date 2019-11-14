@@ -15,5 +15,5 @@ public class AlternativaQuestaoMultiplaEscolhaRequest {
     private String resposta;
 
     @NotEmpty
-    private boolean respostaCorreta = false;
+    private boolean respostaCorreta;
 }
