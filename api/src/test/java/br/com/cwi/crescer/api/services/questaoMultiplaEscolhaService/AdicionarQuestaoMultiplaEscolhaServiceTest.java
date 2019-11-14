@@ -35,7 +35,7 @@ public class AdicionarQuestaoMultiplaEscolhaServiceTest {
     QuestaoMultiplaEscolhaMapper mapper;
 
     @Test
-    public void deveChamar() {
+    public void deveChamarAdicionarAlternativaMultiplaEscolhaServiceQuandoAdicionarQuestaoMultiplaEscolhaServiceForChamado() {
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
         QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest =
                 new QuestaoMultiplaEscolhaRequest("Teste!", NivelDeDificuldade.FACIL,

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class BuscarQuestaoTecnicaPorIdService {
 
     @Autowired
-    QuestaoTecnicaRepository repository;
+    private QuestaoTecnicaRepository repository;
 
     public QuestaoTecnica buscar(Long id){
         return repository.findById(id).orElseThrow(() -> new ValidacaoDeAplicacaoException("Questão técnica não foi encontrada por esse id"));

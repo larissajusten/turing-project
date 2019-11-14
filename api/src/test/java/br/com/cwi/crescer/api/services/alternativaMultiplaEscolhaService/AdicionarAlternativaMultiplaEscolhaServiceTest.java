@@ -23,6 +23,7 @@ public class AdicionarAlternativaMultiplaEscolhaServiceTest {
 
     @Mock
     AlternativaMultiplaEscolhaMapper mapper;
+
     @Test
     public void deveChamarOMetodoSaveDoAlternativaMultiplaEscolhaRepositoryQuandoAdicionarAlternativaMultiplaEscolhaForChamado() {
 
@@ -33,7 +34,7 @@ public class AdicionarAlternativaMultiplaEscolhaServiceTest {
 
         AlternativaMultiplaEscolha alternativa = new AlternativaMultiplaEscolha();
 
-        Mockito.when(mapper.transformar(alternativaRequest,questaoMultiplaEscolha)).thenReturn(alternativa);
+        Mockito.when(mapper.transformar(alternativaRequest, questaoMultiplaEscolha)).thenReturn(alternativa);
 
         adicionarAlternativaMultiplaEscolha.adicionar(alternativaRequest, questaoMultiplaEscolha);
 

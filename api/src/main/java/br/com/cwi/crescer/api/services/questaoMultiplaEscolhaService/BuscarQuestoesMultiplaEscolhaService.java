@@ -8,9 +8,11 @@ import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepositor
 import br.com.cwi.crescer.api.services.alternativaMultiplaEscolhaService.BuscarAlternativaQuestaoMultiplaEscolhaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,6 +26,7 @@ public class BuscarQuestoesMultiplaEscolhaService {
 
     @Autowired
     private QuestaoMultiplaEscolhaMapper mapper;
+
     public Page<QuestaoMultiplaEscolhaResponse> buscarTodasQuestoes(Pageable pageable) {
 
         Page<QuestaoMultiplaEscolha> questoes = repository.findAll(pageable);
@@ -33,6 +36,8 @@ public class BuscarQuestoesMultiplaEscolhaService {
             List<AlternativaMultiplaEscolha> alternativas = buscarAlternativaQuestaoMultiplaEscolha.buscar(questao.getId());
 
             return mapper.transformarParaResponse(questao, alternativas);
+
         });
+
     }
 }
