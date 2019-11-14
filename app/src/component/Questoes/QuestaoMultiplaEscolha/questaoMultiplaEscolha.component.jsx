@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { BotaoPrincipal, Input, Select, RadioButton} from '../../index'
 import './questaoMultiplaEscolha.style.css'
+import { adicionaQuestaoTecnica } from '../../../services/index'
 
 export class CadastroMultiplaQuestao extends PureComponent {
 	constructor(props){
@@ -13,7 +14,11 @@ export class CadastroMultiplaQuestao extends PureComponent {
 			alternativaC: '',
 			alternativaD: '',
 			alternativaE: '',
-			respostaCorreta: '',
+			respostaA: '',
+			respostaB: '',
+			respostaC: '',
+			respostaD: '',
+			respostaE: '',
 			especificidade: '',
 			nivel:'',
       questao: ''
@@ -32,18 +37,17 @@ export class CadastroMultiplaQuestao extends PureComponent {
 
     const questao = {
       "questao": this.state.questao,
-      "especificidade": this.state.especificidade,
 			"nivel": this.state.nivel,
-			"alternativaA": this.state.alternativaA,
-			"alternativaB": this.state.alternativaB,
-			"alternativaC": this.state.alternativaC,
-			"alternativaD": this.state.alternativaD,
-			"alternativaE": this.state.alternativaE,
-			"respostaCorreta": this.state.respostaCorreta
+			"especificidade": this.state.especificidade,
+			"alternativaA": {"resposta": this.state.alternativaA, "respostaCorreta": this.state.respostaA},
+			"alternativaB": {"resposta": this.state.alternativaB, "respostaCorreta": this.state.respostaB},
+			"alternativaC": {"resposta": this.state.alternativaC, "respostaCorreta": this.state.respostaC},
+			"alternativaD": {"resposta": this.state.alternativaD, "respostaCorreta": this.state.respostaD},
+			"alternativaE": {"resposta": this.state.alternativaE, "respostaCorreta": this.state.respostaE},
     }
     
     try {
-      //await cadastraUsuario(questao)
+      await adicionaQuestaoTecnica(questao)
     } catch (error) {
       alert(error.response.data.errors[0].defaultMessage);
     }
@@ -138,11 +142,26 @@ export class CadastroMultiplaQuestao extends PureComponent {
 						<div className="input-principal">
 							<label className="label">Resposta correta</label>
 							<div className="container-radio-buttons">
-							<RadioButton
-								name="respostaCorreta"
-								value={this.state.respostaCorreta}
-								onClick={this.handleChange}
-								/>
+								<div className="buttonRadio">
+									<input type="radio" name={this.state.respostaA} value={this.state.value} onClick={this.handleChange}/>
+									A
+								</div>
+								<div className="buttonRadio">
+									<input type="radio" name={this.state.respostaB} value={this.state.value} onClick={this.handleChange}/>
+									B
+								</div>
+								<div className="buttonRadio">
+									<input type="radio" name={this.state.respostaC} value={this.state.value} onClick={this.handleChange}/>
+									C
+								</div>
+								<div className="buttonRadio">
+									<input type="radio" name={this.state.respostaD} value={this.state.value} onClick={this.handleChange}/>
+									D
+								</div>
+								<div className="buttonRadio">
+									<input type="radio" name={this.state.respostaE} value={this.state.value} onClick={this.handleChange}/>
+									E
+								</div>
 							</div>
 						</div>
 					

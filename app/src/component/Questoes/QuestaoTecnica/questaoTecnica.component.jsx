@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Select, BotaoPrincipal } from '../../index'
 import './questaoTecnica.style.css'
+import { adicionaQuestaoTecnica } from '../../../services/index'
 
 export class CadastroTecnica extends PureComponent {
   constructor(props){
@@ -31,7 +32,7 @@ export class CadastroTecnica extends PureComponent {
     }
     
     try {
-      //await cadastraUsuario(questao)
+      await adicionaQuestaoTecnica(questao)
     } catch (error) {
       alert(error.response.data.errors[0].defaultMessage);
     }
