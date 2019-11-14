@@ -4,10 +4,10 @@ import './style.css';
 export class Select extends PureComponent {
 	render() {
 		return (
-			<select className= {`select ${this.props.questoesWidth}`} 
-							onChange={this.props.onChange} 
-							value={this.props.text} 
-							name={this.props.name} 
+			<select className= {`select ${this.props.questoesWidth}`}
+							onChange={this.props.onChange}
+							value={this.props.text}
+							name={this.props.name}
 							required>
 
 				<option className="placeholder" hidden>

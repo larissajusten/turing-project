@@ -37,7 +37,7 @@ export class CadastroDissertativa extends PureComponent {
   render() {
     return(
       <>
-      <div className="container-questao-tecnica">
+      <div className="container-questao-dissertativa">
           <div className="input-principal">
             <Select
               name="especificidade"

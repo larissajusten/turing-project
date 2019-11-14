@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import './buscarQuestao.style.css'
 import { Select, Input, BotaoPrincipal, CardQuestao } from '../../component/index'
 import { retornarEspecificidades,
-          retornarNiveisDeDificuldade, 
+          retornarNiveisDeDificuldade,
           retornaQuestoesTecnicas } from '../../services/index'
 
 export class BuscarQuestao extends PureComponent {
@@ -33,7 +33,7 @@ export class BuscarQuestao extends PureComponent {
     this.setState({
         [name]: value
     })
-  } 
+  }
 
   handleClickEnviarPesquisa = async (event) => {
     event.preventDefault()
@@ -56,7 +56,7 @@ export class BuscarQuestao extends PureComponent {
       resultados: listaDeQuestoes
     })
   }
-  
+
   renderPesquisa() {
     return (
       <>
@@ -78,7 +78,7 @@ export class BuscarQuestao extends PureComponent {
       </>
     )
   }
-  
+
   renderBuscar() {
     if(this.state.especificidades && this.state.niveis){
       return (
@@ -88,14 +88,14 @@ export class BuscarQuestao extends PureComponent {
         </div>
 
         <div className="container-inputs-buscar">
-          <div className="input-principal width-tipo ">
+          <div className="input-principal width-tipo">
             <label className="label">Tipo</label>
             <Select
               name="tipo"
               value={this.state.tipo}
               onChange={this.handleChange}
               object={this.state.tipos}
-              placeholder="Selecione o tipo" 
+              placeholder="Selecione o tipo"
               questoesWidth="width-tipo"/>
           </div>
 
@@ -106,7 +106,7 @@ export class BuscarQuestao extends PureComponent {
               value={this.state.especificidade}
               onChange={this.handleChange}
               object={this.state.especificidades}
-              placeholder="Selecione a especificidade" 
+              placeholder="Selecione a especificidade"
               questoesWidth="width-especificidade"/>
           </div>
 
@@ -117,7 +117,7 @@ export class BuscarQuestao extends PureComponent {
               value={this.state.nivel}
               onChange={this.handleChange}
               object={this.state.niveis}
-              placeholder="Selecione o nível" 
+              placeholder="Selecione o nível"
               questoesWidth="width-nivel"/>
           </div>
 
@@ -126,13 +126,13 @@ export class BuscarQuestao extends PureComponent {
             value={this.state.quantidade}
             onChange={this.handleChange}
             className="input"
-            label="Quantidade" 
-            type="number"  
-            placeholder="" />
+            label="Quantidade"
+            type="number"
+            placeholder=""/>
         </div>
 
         {
-          this.state.resultados.length 
+          this.state.resultados.length
           ?
           this.renderPesquisa()
           :
@@ -146,7 +146,7 @@ export class BuscarQuestao extends PureComponent {
       )
     }
   }
-  
+
   render() {
     return (
       <>
