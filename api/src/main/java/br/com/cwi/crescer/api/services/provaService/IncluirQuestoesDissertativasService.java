@@ -24,7 +24,7 @@ public class IncluirQuestoesDissertativasService {
     @Autowired
     private ProvaQuestaoDissertativaRepository repository;
 
-    public void incluir( Long idProva, BuscaQuestoesRequest request){
+    public ProvaQuestaoDissertativa incluir( Long idProva, BuscaQuestoesRequest request){
         List<QuestaoDissertativa> lista = listarQuestoesDissertativasFiltradas.listar(request);
         Prova prova = buscarProvaPorId.buscar(idProva);
 
@@ -35,6 +35,6 @@ public class IncluirQuestoesDissertativasService {
                 provaQuestaoDissertativa::setQuestao
         );
 
-        repository.save(provaQuestaoDissertativa);
+        return repository.save(provaQuestaoDissertativa);
     }
 }

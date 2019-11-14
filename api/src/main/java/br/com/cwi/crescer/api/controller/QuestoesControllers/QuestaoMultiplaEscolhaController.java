@@ -30,11 +30,7 @@ public class QuestaoMultiplaEscolhaController {
         return adicionarQuestaoMultiplaEscolha.adicionar(questaoMultiplaEscolhaRequest);
     }
 
-<<<<<<< HEAD
     @ResponseStatus(HttpStatus.OK)
-=======
-    @ResponseStatus(HttpStatus.CREATED)
->>>>>>> master
     @GetMapping("/buscar-todas")
     public Page<QuestaoMultiplaEscolhaResponse> buscarQuestoesMultiplaEscolha(@PageableDefault Pageable pageable) {
         return buscarQuestoesMultiplaEscolha.buscarTodasQuestoes(pageable);

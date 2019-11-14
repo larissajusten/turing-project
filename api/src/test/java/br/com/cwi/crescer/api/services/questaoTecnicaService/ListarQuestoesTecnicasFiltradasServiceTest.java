@@ -18,11 +18,11 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ListarQuestoesTecnicasServiceTest {
+public class ListarQuestoesTecnicasFiltradasServiceTest {
     @Mock
     BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
     @InjectMocks
-    ListarQuestoesTecnicasService listarQuestoesTecnicasService;
+    ListarQuestoesTecnicasFiltradasService listarQuestoesTecnicasFiltradasService;
 
 
     @Test
@@ -31,7 +31,7 @@ public class ListarQuestoesTecnicasServiceTest {
 
         when(buscarQuestoesTecnicasFiltradasService.buscar(any(), any())).thenReturn(lista);
 
-        List<QuestaoTecnica> resultado = listarQuestoesTecnicasService.buscar(new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 0));
+        List<QuestaoTecnica> resultado = listarQuestoesTecnicasFiltradasService.listar(new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 0));
         Assert.assertEquals(lista, resultado);
     }
 

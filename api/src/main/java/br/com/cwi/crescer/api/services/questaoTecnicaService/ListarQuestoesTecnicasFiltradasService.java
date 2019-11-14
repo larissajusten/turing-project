@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class ListarQuestoesTecnicasService {
+public class ListarQuestoesTecnicasFiltradasService {
 
     @Autowired
     private BuscarQuestaoTecnicaPorIdService buscarQuestaoTecnicaService;
@@ -19,7 +19,7 @@ public class ListarQuestoesTecnicasService {
     @Autowired
     private BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
 
-    public List<QuestaoTecnica> buscar(BuscaQuestoesRequest request){
+    public List<QuestaoTecnica> listar(BuscaQuestoesRequest request){
         List<QuestaoTecnica> lista = new ArrayList<>();
 
         List<QuestaoTecnica> listaQueAtendeRequisitos = buscarQuestoesTecnicasFiltradasService.buscar(
