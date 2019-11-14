@@ -2,6 +2,7 @@ package br.com.cwi.crescer.api.services.questaoTecnicaService;
 
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
+import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
 import br.com.cwi.crescer.api.repository.questao.QuestaoTecnicaRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +35,7 @@ public class BuscarQuestaoTecnicaPorIdServiceTest {
 
     }
 
-    @Test(expected = ValidacaoDeAplicacaoException.class)
+    @Test(expected = QuestaoNaoEncontradaException.class)
     public void deveDispararValidacaoExceptionQuandoBuscarQuestaoTecnicaPorIdServiceENaoAcharUsuarioForChamada() {
 
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();

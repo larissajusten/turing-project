@@ -30,8 +30,8 @@ public class AdicionarQuestaoTecnicaServiceTest {
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
         QuestaoUnicaAlternativaRequest questaoUnicaAlternativaRequest =
                 new QuestaoUnicaAlternativaRequest("Bla bla...",
-                        NivelDeDificuldade.FACIL,
-                        Especificidade.JAVASCRIPT);
+                        Especificidade.JAVASCRIPT,
+                        NivelDeDificuldade.FACIL);
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
 
@@ -45,8 +45,8 @@ public class AdicionarQuestaoTecnicaServiceTest {
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
         QuestaoUnicaAlternativaRequest questaoUnicaAlternativaRequest =
                 new QuestaoUnicaAlternativaRequest("Bla bla...",
-                        NivelDeDificuldade.FACIL,
-                        Especificidade.JAVASCRIPT);
+                        Especificidade.JAVASCRIPT,
+                        NivelDeDificuldade.FACIL);
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
 
