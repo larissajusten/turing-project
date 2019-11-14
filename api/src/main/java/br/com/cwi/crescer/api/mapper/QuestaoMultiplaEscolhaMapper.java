@@ -22,19 +22,13 @@ public class QuestaoMultiplaEscolhaMapper {
 
     public QuestaoMultiplaEscolhaResponse transformarParaResponse(QuestaoMultiplaEscolha questao, List<AlternativaMultiplaEscolha> alternativas) {
 
-        QuestaoMultiplaEscolhaResponse questaoResponse = new QuestaoMultiplaEscolhaResponse();
+        QuestaoMultiplaEscolhaResponse questaoResponse = mapper.map(questao, QuestaoMultiplaEscolhaResponse.class);
 
-        questaoResponse.setId(questao.getId());
-        questaoResponse.setQuestao(questao.getQuestao());
-        questaoResponse.setDataCriacao(questao.getDataCriacao());
-        questaoResponse.setEspecificidade(questao.getEspecificidade());
-        questaoResponse.setNivelDeDificuldade(questao.getNivelDeDificuldade());
-        questaoResponse.setIdUsuario(questao.getUsuario().getId());
         questaoResponse.setAlternativaA(alternativas.get(0));
-        questaoResponse.setAlternativaA(alternativas.get(1));
-        questaoResponse.setAlternativaA(alternativas.get(2));
-        questaoResponse.setAlternativaA(alternativas.get(3));
-        questaoResponse.setAlternativaA(alternativas.get(4));
+        questaoResponse.setAlternativaB(alternativas.get(1));
+        questaoResponse.setAlternativaC(alternativas.get(2));
+        questaoResponse.setAlternativaD(alternativas.get(3));
+        questaoResponse.setAlternativaE(alternativas.get(4));
 
         return questaoResponse;
     }
