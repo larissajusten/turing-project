@@ -1,13 +1,16 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import { Header } from './component';
+import { BrowserRouter as Switch, Route } from 'react-router-dom';
 import './App.css';
-import { CadastroMultiplaQuestao } from './tela';
+import { CadastrarQuestaoScreen } from './tela/index';
+import { Header } from './component/index'
 
 function App() {
 	return (
 		<div className="principal">
-			<CadastroMultiplaQuestao />
+			<Header/>
+			<Switch>
+				<Route path="/cadastrar-questao" component={CadastrarQuestaoScreen} exact/>
+			</Switch>
 		</div>
 	);
 }

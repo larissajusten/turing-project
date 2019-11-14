@@ -3,4 +3,5 @@
 	height: 7%;
 	position: fixed;
 	background-color: #33223f;
+	z-index: 1;
 }
