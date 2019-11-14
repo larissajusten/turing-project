@@ -6,17 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/questao-dissertativa")
 public class QuestaoDissertativaController {
 
     @Autowired
-    AdicionarQuestaoDissertativaService adicionarQuestaoDissertativaService;
+    private AdicionarQuestaoDissertativaService adicionarQuestaoDissertativaService;
 
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void adicionarQuestaoDissertativa(QuestaoUnicaAlternativaRequest request) {
+    public void adicionarQuestaoDissertativa(@RequestBody QuestaoUnicaAlternativaRequest request) {
         adicionarQuestaoDissertativaService.adicionar(request);
     }
 }

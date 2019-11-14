@@ -28,13 +28,13 @@ export class CadastroTecnica extends PureComponent {
     const questao = {
       "questao": this.state.questao,
       "especificidade": this.state.especificidade,
-      "nivel": this.state.nivel,
+      "nivelDeDificuldade": this.state.nivel
     }
     
     try {
       await adicionaQuestaoTecnica(questao)
     } catch (error) {
-      alert(error.response.data.errors[0].defaultMessage);
+      alert(error.response.data.errors[0].defaultMessage)
     }
   }
 

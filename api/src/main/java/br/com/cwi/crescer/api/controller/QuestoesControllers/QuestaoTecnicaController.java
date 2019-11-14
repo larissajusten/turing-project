@@ -23,13 +23,13 @@ public class QuestaoTecnicaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public List<QuestaoTecnica> buscarQuestoesTecnicas(BuscaQuestoesRequest request) {
+    public List<QuestaoTecnica> buscarQuestoesTecnicas(@RequestBody BuscaQuestoesRequest request) {
         return buscarQuestoesTecnicas.buscar(request);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void adicionarQuestaoTecnica(QuestaoUnicaAlternativaRequest request) {
+    public void adicionarQuestaoTecnica(@RequestBody QuestaoUnicaAlternativaRequest request) {
         adicionarQuestaoTecnica.adicionar(request);
     }
 

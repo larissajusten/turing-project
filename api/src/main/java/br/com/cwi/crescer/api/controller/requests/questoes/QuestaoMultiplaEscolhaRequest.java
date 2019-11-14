@@ -7,35 +7,37 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @AllArgsConstructor
 @Valid
 public class QuestaoMultiplaEscolhaRequest {
 
-    @NotEmpty
+    @NotBlank
     private String questao;
 
-    @NonNull
+    @NotNull
     private NivelDeDificuldade nivelDeDificuldade;
 
-    @NonNull
+    @NotNull
     private Especificidade especificidade;
 
-    @NonNull
+    @NotNull
     private AlternativaQuestaoMultiplaEscolhaRequest alternativaA;
 
-    @NonNull
+    @NotNull
     private AlternativaQuestaoMultiplaEscolhaRequest alternativaB;
 
-    @NonNull
+    @NotNull
     private AlternativaQuestaoMultiplaEscolhaRequest alternativaC;
 
-    @NonNull
+    @NotNull
     private AlternativaQuestaoMultiplaEscolhaRequest alternativaD;
 
-    @NonNull
+    @NotNull
     private AlternativaQuestaoMultiplaEscolhaRequest alternativaE;
 
 }

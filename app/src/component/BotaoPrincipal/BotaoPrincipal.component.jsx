@@ -6,7 +6,7 @@ export class BotaoPrincipal extends Component {
 		return (
 			<div >
 				<button className="botao-principal" onClick={this.props.onClick}>
-					{this.props.nome}</button>
+					<span>{this.props.nome}</span></button>
 			</div>
 		);
 	}

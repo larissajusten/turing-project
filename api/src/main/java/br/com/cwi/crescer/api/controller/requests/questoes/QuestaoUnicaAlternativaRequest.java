@@ -8,18 +8,22 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @AllArgsConstructor
 @Valid
 public class QuestaoUnicaAlternativaRequest {
+
     @NotEmpty
     private String questao;
 
-    @NonNull
+    @NotNull
+    private Especificidade especificidade;
+
+    @NotNull
     private NivelDeDificuldade nivelDeDificuldade;
 
-    @NonNull
-    private Especificidade especificidade;
 }
