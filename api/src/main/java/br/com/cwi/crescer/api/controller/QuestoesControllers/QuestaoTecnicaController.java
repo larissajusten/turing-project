@@ -26,7 +26,7 @@ public class QuestaoTecnicaController {
     private ListarTodasQuestoesTecnicasFiltradasService listarTodasQuestoesTecnicasFiltradasService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping
+    @PutMapping
     public List<QuestaoTecnica> buscarQuestoesTecnicas(@RequestBody BuscaQuestoesRequest request) {
         return buscarQuestoesTecnicas.listar(request);
     }

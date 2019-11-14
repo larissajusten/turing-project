@@ -45,14 +45,9 @@ export class CadastroMultiplaQuestao extends PureComponent {
 			"alternativaC": {"resposta": this.state.alternativaC, "respostaCorreta": this.state.resposta === 'C' ? "true" : "false"},
 			"alternativaD": {"resposta": this.state.alternativaD, "respostaCorreta": this.state.resposta === 'D' ? "true" : "false"},
 			"alternativaE": {"resposta": this.state.alternativaE, "respostaCorreta": this.state.resposta === 'E' ? "true" : "false"},
-    }
-		console.log(questao)
-		
-    try {
-      await adicionaQuestaoMultiplaEscolha(questao)
-    } catch (error) {
-      alert(error);
-    }
+		}
+
+    await adicionaQuestaoMultiplaEscolha(questao)
   }
 
   render() {
@@ -67,19 +62,19 @@ export class CadastroMultiplaQuestao extends PureComponent {
 								value={this.state.nivel}
 								onChange={this.handleChange}
 								object={this.state.niveis}
-								placeholder="Selecione o nível" />
+								placeholder="Selecione o nível"/>
 						</div>
 
 						<div className="input-principal">
 							<label className="label">Questão</label>
-							<textarea 
+							<textarea
 								className="questao"
 								name="questao"
 								value={this.state.questao}
 								onChange={this.handleChange}
 								type="textarea"
 								label="Questão"
-								placeholder="" 
+								placeholder=""
 								required/>
 						</div>
 
@@ -87,10 +82,10 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							name="alternativaA"
 							value={this.state.alternativaA}
 							onChange={this.handleChange}
-							className="input" 
-							type="text" 
-							label="Alternativa A" 
-							placeholder="" />
+							className="input"
+							type="text"
+							label="Alternativa A"
+							placeholder=""/>
 
 						<Input
 							name="alternativaB"
@@ -99,7 +94,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							className="input"
 							type="text"
 							label="Alternativa B"
-							placeholder="" />
+							placeholder=""/>
 
 					</div>
 
@@ -111,7 +106,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 								value={this.state.especificidade}
 								onChange={this.handleChange}
 								object={this.state.linguagens}
-								placeholder="Selecione a especificidade" />
+								placeholder="Selecione a especificidade"/>
 						</div>
 
 						<Input
@@ -120,8 +115,8 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							onChange={this.handleChange}
 							className="input"
 							type="text"
-							label="Alternativa C" 
-							placeholder="" />
+							label="Alternativa C"
+							placeholder=""/>
 
 						<Input
 							name="alternativaD"
@@ -130,16 +125,16 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							className="input"
 							type="text"
 							label="Alternativa D"
-							placeholder="" />
+							placeholder=""/>
 
-						<Input 
+						<Input
 							name="alternativaE"
 							value={this.state.alternativaE}
 							onChange={this.handleChange}
-							className="input" 
-							type="text" 
-							label="Alternativa E" 
-							placeholder="" />
+							className="input"
+							type="text"
+							label="Alternativa E"
+							placeholder=""/>
 
 						<div className="input-principal">
 							<label className="label">Resposta correta</label>
@@ -166,14 +161,12 @@ export class CadastroMultiplaQuestao extends PureComponent {
 								</div>
 							</div>
 						</div>
-					
 					</div>
 				</div>
 
 				<div className="botao-cadastro">
 					<BotaoPrincipal nome="Enviar" onClick={this.handleClickSalvarQuestao}/>
 				</div>
-				
 			</>
 		);
 	}
