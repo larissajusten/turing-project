@@ -7,15 +7,16 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @AllArgsConstructor
 public class BuscaQuestoesRequest {
 
-    @NonNull
+    @NotNull
     private Especificidade especificidade;
 
-    @NonNull
+    @NotNull
     private NivelDeDificuldade nivelDeDificuldade;
 
     @NotEmpty

@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import './questaoDissertativa.style.css'
 import { Select, BotaoPrincipal } from '../../index'
+import { adicionaQuestaoDissertativa } from '../../../services/index'
 
 export class CadastroDissertativa extends PureComponent {
   constructor(props){
@@ -26,14 +27,16 @@ export class CadastroDissertativa extends PureComponent {
 
     const questao = {
       "questao": this.state.questao,
-      "especificidade": this.state.especificidade,
-      "nivel": this.state.nivel,
+      "nivelDeDificuldade": this.state.nivel,
+      "especificidade": this.state.especificidade
     }
+
+    console.log(questao)
     
     try {
-      //await cadastraUsuario(questao)
+      await adicionaQuestaoDissertativa(questao)
     } catch (error) {
-      alert(error.response.data.errors[0].defaultMessage);
+      alert(error)
     }
   }
 

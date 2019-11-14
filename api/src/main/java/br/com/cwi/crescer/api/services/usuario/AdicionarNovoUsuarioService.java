@@ -1,6 +1,5 @@
 package br.com.cwi.crescer.api.services.usuario;
 
-import br.com.cwi.crescer.api.controller.requests.usuario.UsuarioRequest;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;
@@ -16,9 +15,9 @@ public class AdicionarNovoUsuarioService {
     @Autowired
     private ModelMapper mapper;
 
-    public void adicionar(Usuario usuario) {
+    public void adicionar(UsuarioRequest usuarioRequest) {
 
-        //Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
+        Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
 
         repository.save(usuario);
     }

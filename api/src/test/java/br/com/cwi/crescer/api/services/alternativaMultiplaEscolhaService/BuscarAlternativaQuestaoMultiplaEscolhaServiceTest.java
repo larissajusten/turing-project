@@ -17,12 +17,11 @@ public class BuscarAlternativaQuestaoMultiplaEscolhaServiceTest {
     @Mock
     AlternativaMultiplaEscolhaRepository repository;
 
-
     @Test
     public void deveChamarFindAllByQuestaoMultiplaEscolhaEqualsDoRepositoryQuandoBuscarAlternativaQuestaoMultiplaEscolhaServiceForChamado() {
 
         buscarAlternativaQuestaoMultiplaEscolhaService.buscar(1L);
 
-        Mockito.verify(repository).findAllByQuestaoMultiplaEscolhaEquals(1L);
+        Mockito.verify(repository).findAllByQuestaoMultiplaEscolhaIdEquals(1L);
     }
 }

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
-import { BotaoPrincipal, Input, Select, RadioButton} from '../../index'
+import { BotaoPrincipal, Input, Select} from '../../index'
 import './questaoMultiplaEscolha.style.css'
-import { adicionaQuestaoTecnica } from '../../../services/index'
+import { adicionaQuestaoMultiplaEscolha } from '../../../services/index'
 
 export class CadastroMultiplaQuestao extends PureComponent {
 	constructor(props){
@@ -19,6 +19,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 			respostaC: '',
 			respostaD: '',
 			respostaE: '',
+			resposta: '',
 			especificidade: '',
 			nivel:'',
       questao: ''
@@ -37,19 +38,20 @@ export class CadastroMultiplaQuestao extends PureComponent {
 
     const questao = {
       "questao": this.state.questao,
-			"nivel": this.state.nivel,
+			"nivelDeDificuldade": this.state.nivel,
 			"especificidade": this.state.especificidade,
-			"alternativaA": {"resposta": this.state.alternativaA, "respostaCorreta": this.state.respostaA},
-			"alternativaB": {"resposta": this.state.alternativaB, "respostaCorreta": this.state.respostaB},
-			"alternativaC": {"resposta": this.state.alternativaC, "respostaCorreta": this.state.respostaC},
-			"alternativaD": {"resposta": this.state.alternativaD, "respostaCorreta": this.state.respostaD},
-			"alternativaE": {"resposta": this.state.alternativaE, "respostaCorreta": this.state.respostaE},
+			"alternativaA": {"resposta": this.state.alternativaA, "respostaCorreta": this.state.resposta === 'A' ? "true" : "false"},
+			"alternativaB": {"resposta": this.state.alternativaB, "respostaCorreta": this.state.resposta === 'B' ? "true" : "false"},
+			"alternativaC": {"resposta": this.state.alternativaC, "respostaCorreta": this.state.resposta === 'C' ? "true" : "false"},
+			"alternativaD": {"resposta": this.state.alternativaD, "respostaCorreta": this.state.resposta === 'D' ? "true" : "false"},
+			"alternativaE": {"resposta": this.state.alternativaE, "respostaCorreta": this.state.resposta === 'E' ? "true" : "false"},
     }
-    
+		console.log(questao)
+		
     try {
-      await adicionaQuestaoTecnica(questao)
+      await adicionaQuestaoMultiplaEscolha(questao)
     } catch (error) {
-      alert(error.response.data.errors[0].defaultMessage);
+      alert(error);
     }
   }
 
@@ -143,23 +145,23 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							<label className="label">Resposta correta</label>
 							<div className="container-radio-buttons">
 								<div className="buttonRadio">
-									<input type="radio" name={this.state.respostaA} value={this.state.value} onClick={this.handleChange}/>
+									<input type="radio" name="resposta" value="A" onClick={this.handleChange}/>
 									A
 								</div>
 								<div className="buttonRadio">
-									<input type="radio" name={this.state.respostaB} value={this.state.value} onClick={this.handleChange}/>
+									<input type="radio" name="resposta" value="B" onClick={this.handleChange}/>
 									B
 								</div>
 								<div className="buttonRadio">
-									<input type="radio" name={this.state.respostaC} value={this.state.value} onClick={this.handleChange}/>
+									<input type="radio" name="resposta" value="C" onClick={this.handleChange}/>
 									C
 								</div>
 								<div className="buttonRadio">
-									<input type="radio" name={this.state.respostaD} value={this.state.value} onClick={this.handleChange}/>
+									<input type="radio" name="resposta" value="D" onClick={this.handleChange}/>
 									D
 								</div>
 								<div className="buttonRadio">
-									<input type="radio" name={this.state.respostaE} value={this.state.value} onClick={this.handleChange}/>
+									<input type="radio" name="resposta" value="E" onClick={this.handleChange}/>
 									E
 								</div>
 							</div>

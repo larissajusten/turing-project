@@ -22,8 +22,16 @@ public class QuestaoTecnicaController {
     @Autowired
     private AdicionarQuestaoTecnicaService adicionarQuestaoTecnica;
 
+<<<<<<< HEAD
     @Autowired
     private ListarTodasQuestoesTecnicasFiltradasService listarTodasQuestoesTecnicasFiltradasService;
+=======
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping
+    public List<QuestaoTecnica> buscarQuestoesTecnicas(@RequestBody BuscaQuestoesRequest request) {
+        return buscarQuestoesTecnicas.buscar(request);
+    }
+>>>>>>> master
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping

@@ -6,7 +6,6 @@ import lombok.Getter;
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 
-@Valid
 @Getter
 @AllArgsConstructor
 public class AlternativaQuestaoMultiplaEscolhaRequest {

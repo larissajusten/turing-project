@@ -13,8 +13,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
-
 @RunWith(MockitoJUnitRunner.class)
 public class AdicionarQuestaoDissertativaServiceTest {
 
@@ -28,11 +26,11 @@ public class AdicionarQuestaoDissertativaServiceTest {
     QuestaoDissertativaMapper mapper;
 
     @Test
-    public void deveChamar() {
+    public void deveChamarQuestaoDissertativaRepositoryQuandoAdicionarQuestaoDissertativaServiceForChamado() {
 
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
         QuestaoUnicaAlternativaRequest questaoUnicaAlternativaRequest =
-                new QuestaoUnicaAlternativaRequest("O que é?", NivelDeDificuldade.FACIL, Especificidade.JAVASCRIPT);
+                new QuestaoUnicaAlternativaRequest("O que é?", Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoDissertativa);
         Mockito.when(repository.save(questaoDissertativa)).thenReturn(questaoDissertativa);
