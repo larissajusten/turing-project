@@ -25,7 +25,7 @@ public class AdicionarNovoUsuarioServiceTest {
 
         Mockito.when(repository.save(usuario)).thenReturn(usuario);
 
-       // adicionarNovoUsuarioService.adicionar(usuario);
+       adicionarNovoUsuarioService.adicionar(usuario);
 
         Mockito.verify(repository).save(usuario);
     }

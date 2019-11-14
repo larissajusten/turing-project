@@ -31,9 +31,9 @@ public class ListarQuestoesTecnicasFiltradasServiceTest {
 
         List<QuestaoTecnica> lista = new ArrayList<>();
         lista.add(new QuestaoTecnica());
-        when(buscarQuestaoTecnicaPorNivelEEspecificidadeService.buscar(any(), any())).thenReturn(lista);
+        when(buscarQuestoesTecnicasFiltradasService.buscar(any(), any())).thenReturn(lista);
 
-        List<QuestaoTecnica> resultado = listarQuestoesTecnicasService.buscar(new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 1));
+        List<QuestaoTecnica> resultado = listarQuestoesTecnicasFiltradasService.listar(new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 1));
         Assert.assertEquals(lista, resultado);
     }
 
