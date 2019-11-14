@@ -37,11 +37,6 @@ public class QuestaoTecnicaController {
         adicionarQuestaoTecnica.adicionar(request);
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping
-    public List<QuestaoTecnica> buscarQuestoesTecnicasFiltradas(@RequestBody BuscaQuestoesRequest request) {
-        return buscarQuestoesTecnicas.listar(request);
-    }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
