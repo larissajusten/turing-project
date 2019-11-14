@@ -23,7 +23,7 @@ public class AdicionarQuestaoMultiplaEscolhaService {
     @Autowired
     private AdicionarAlternativaMultiplaEscolhaService adicionarAlternativaMultiplaEscolha;
 
-    public void adicionar(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
+    public QuestaoMultiplaEscolha adicionar(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
 
         QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.mapperToQuestao(questaoMultiplaEscolhaRequest);
 
@@ -43,6 +43,6 @@ public class AdicionarQuestaoMultiplaEscolhaService {
         adicionarAlternativaMultiplaEscolha
                 .adicionarAlternativa(questaoMultiplaEscolhaRequest.getAlternativaE(), questaoSalva.getId());
 
-
+        return questaoSalva;
     }
 }

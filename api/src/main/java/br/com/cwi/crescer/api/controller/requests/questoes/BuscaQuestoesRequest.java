@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter
 @AllArgsConstructor
-public class BuscaQuestoesTecnicasRequest {
+public class BuscaQuestoesRequest {
 
     @NonNull
     private Especificidade especificidade;

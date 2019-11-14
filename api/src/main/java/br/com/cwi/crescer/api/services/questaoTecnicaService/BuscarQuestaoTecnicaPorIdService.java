@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.api.services.QuestaoTecnicaService;
+package br.com.cwi.crescer.api.services.questaoTecnicaService;
 
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
