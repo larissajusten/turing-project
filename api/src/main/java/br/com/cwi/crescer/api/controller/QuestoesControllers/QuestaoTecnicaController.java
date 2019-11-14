@@ -22,7 +22,7 @@ public class QuestaoTecnicaController {
     private AdicionarQuestaoTecnicaService adicionarQuestaoTecnica;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping
+    @PutMapping
     public List<QuestaoTecnica> buscarQuestoesTecnicas(@RequestBody BuscaQuestoesRequest request) {
         return buscarQuestoesTecnicas.buscar(request);
     }

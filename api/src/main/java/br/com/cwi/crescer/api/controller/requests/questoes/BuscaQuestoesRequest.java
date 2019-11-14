@@ -19,7 +19,7 @@ public class BuscaQuestoesRequest {
     @NotNull
     private NivelDeDificuldade nivelDeDificuldade;
 
-    @NotEmpty
+    @NotNull
     private int quantidadeDeQuestoes;
 
 }
