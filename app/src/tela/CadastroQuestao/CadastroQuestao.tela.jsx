@@ -26,12 +26,12 @@ export class CadastrarQuestaoScreen extends PureComponent {
     this.setState({
         [name]: value
     })
-	} 
+	}
 
 	renderComponent() {
 		if(this.state.questao === 'Múltipla Escolha'){
 			return(
-				<CadastroMultiplaQuestao 
+				<CadastroMultiplaQuestao
 					linguagens = {this.state.especificidade}
 					niveis = {this.state.niveis}
 					/>

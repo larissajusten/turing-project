@@ -101,7 +101,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 					<div className="direita">
 
 						<div className="input-principal">
-							<Select 
+							<Select
 								name="especificidade"
 								value={this.state.especificidade}
 								onChange={this.handleChange}
