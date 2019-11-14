@@ -24,17 +24,16 @@ public class IncluirQuestoesDissertativasService {
     @Autowired
     private ProvaQuestaoDissertativaRepository repository;
 
-    public ProvaQuestaoDissertativa incluir( Long idProva, BuscaQuestoesRequest request){
+    public void incluir( Long idProva, BuscaQuestoesRequest request) {
         List<QuestaoDissertativa> lista = listarQuestoesDissertativasFiltradas.listar(request);
         Prova prova = buscarProvaPorId.buscar(idProva);
 
-        ProvaQuestaoDissertativa provaQuestaoDissertativa = new ProvaQuestaoDissertativa();
-        provaQuestaoDissertativa.setProva(prova);
+        for (QuestaoDissertativa questaoDissertativa : lista) {
+            ProvaQuestaoDissertativa provaQuestaoDissertativa = new ProvaQuestaoDissertativa();
+            provaQuestaoDissertativa.setProva(prova);
+            provaQuestaoDissertativa.setQuestao(questaoDissertativa);
+            repository.save(provaQuestaoDissertativa);
+        }
 
-        lista.forEach(
-                provaQuestaoDissertativa::setQuestao
-        );
-
-        return repository.save(provaQuestaoDissertativa);
     }
 }
