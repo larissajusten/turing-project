@@ -15,6 +15,6 @@ public class BuscarAlternativaQuestaoMultiplaEscolhaService {
 
     public List<AlternativaMultiplaEscolha> buscar(Long id) {
 
-        return repository.findAllByQuestaoMultiplaEscolhaEquals(id);
+        return repository.findAllByQuestaoMultiplaEscolhaIdEquals(id);
     }
 }

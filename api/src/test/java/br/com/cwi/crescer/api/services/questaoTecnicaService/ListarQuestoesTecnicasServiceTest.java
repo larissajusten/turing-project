@@ -14,7 +14,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ListarQuestoesTecnicasServiceTest {
@@ -33,4 +34,5 @@ public class ListarQuestoesTecnicasServiceTest {
         List<QuestaoTecnica> resultado = listarQuestoesTecnicasService.buscar(new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 0));
         Assert.assertEquals(lista, resultado);
     }
+
 }

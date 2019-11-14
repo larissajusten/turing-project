@@ -28,7 +28,7 @@ public class AdicionarQuestaoMultiplaEscolhaService {
         QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest);
 
         questaoMultiplaEscolha.setDataCriacao(LocalDate.now());
-        questaoMultiplaEscolha.setUsuario(new Usuario(2L));
+        questaoMultiplaEscolha.setUsuario(new Usuario(1L));
 
         QuestaoMultiplaEscolha questaoSalva = repository.save(questaoMultiplaEscolha);
 

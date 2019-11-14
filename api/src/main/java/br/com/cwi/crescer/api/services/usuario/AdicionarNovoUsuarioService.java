@@ -1,6 +1,5 @@
 package br.com.cwi.crescer.api.services.usuario;
 
-import br.com.cwi.crescer.api.controller.requests.usuario.UsuarioRequest;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.repository.UsuarioRepository;
 import org.modelmapper.ModelMapper;

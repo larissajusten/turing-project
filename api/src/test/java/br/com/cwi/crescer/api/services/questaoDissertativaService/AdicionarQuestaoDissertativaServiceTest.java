@@ -13,8 +13,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.junit.Assert.*;
-
 @RunWith(MockitoJUnitRunner.class)
 public class AdicionarQuestaoDissertativaServiceTest {
 
@@ -28,7 +26,7 @@ public class AdicionarQuestaoDissertativaServiceTest {
     QuestaoDissertativaMapper mapper;
 
     @Test
-    public void deveChamar() {
+    public void deveChamarQuestaoDissertativaRepositoryQuandoAdicionarQuestaoDissertativaServiceForChamado() {
 
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
         QuestaoUnicaAlternativaRequest questaoUnicaAlternativaRequest =

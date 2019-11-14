@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class QuestaoDissertativaController {
 
     @Autowired
-    AdicionarQuestaoDissertativaService adicionarQuestaoDissertativaService;
+    private AdicionarQuestaoDissertativaService adicionarQuestaoDissertativaService;
 
 
     @ResponseStatus(HttpStatus.CREATED)
