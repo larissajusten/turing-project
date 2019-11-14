@@ -1,11 +1,11 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import './buscarQuestao.style.css'
 import { Select, Input, BotaoPrincipal, CardQuestao } from '../../component/index'
 import { retornarEspecificidades,
           retornarNiveisDeDificuldade,
           retornaQuestoesTecnicas } from '../../services/index'
 
-export class BuscarQuestao extends PureComponent {
+export class BuscarQuestao extends Component {
 
   constructor(props){
     super(props)
