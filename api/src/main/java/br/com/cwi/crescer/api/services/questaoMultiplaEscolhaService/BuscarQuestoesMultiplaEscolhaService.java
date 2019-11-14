@@ -32,9 +32,7 @@ public class BuscarQuestoesMultiplaEscolhaService {
         Page<QuestaoMultiplaEscolha> questoes = repository.findAll(pageable);
 
         return questoes.map(questao -> {
-
             List<AlternativaMultiplaEscolha> alternativas = buscarAlternativaQuestaoMultiplaEscolha.buscar(questao.getId());
-
             return mapper.transformarParaResponse(questao, alternativas);
 
         });

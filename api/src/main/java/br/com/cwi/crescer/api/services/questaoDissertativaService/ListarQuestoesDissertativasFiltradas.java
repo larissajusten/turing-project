@@ -1,7 +1,7 @@
-package br.com.cwi.crescer.api.services.questaoTecnicaService;
+package br.com.cwi.crescer.api.services.questaoDissertativaService;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
-import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
+import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,18 +11,15 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class ListarQuestoesTecnicasService {
+public class ListarQuestoesDissertativasFiltradas {
 
     @Autowired
-    private BuscarQuestaoTecnicaPorIdService buscarQuestaoTecnicaService;
+    private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
 
-    @Autowired
-    private BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
+    public List<QuestaoDissertativa> listar(BuscaQuestoesRequest request){
+        List<QuestaoDissertativa> lista = new ArrayList<>();
 
-    public List<QuestaoTecnica> buscar(BuscaQuestoesRequest request){
-        List<QuestaoTecnica> lista = new ArrayList<>();
-
-        List<QuestaoTecnica> listaQueAtendeRequisitos = buscarQuestoesTecnicasFiltradasService.buscar(
+        List<QuestaoDissertativa> listaQueAtendeRequisitos = buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(
                 request.getEspecificidade(), request.getNivelDeDificuldade());
 
         Collections.shuffle(listaQueAtendeRequisitos, new Random());
@@ -33,7 +30,6 @@ public class ListarQuestoesTecnicasService {
             lista.add(listaQueAtendeRequisitos.get(cont));
             cont++;
         }
-
         return lista;
     }
 }

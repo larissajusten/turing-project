@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BuscarQuestaoTecnicaPorNivelEEspecificidadeService {
+public class BuscarQuestoesTecnicasFiltradasService {
 
     @Autowired
     QuestaoTecnicaRepository repository;
