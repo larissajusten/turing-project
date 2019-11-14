@@ -8,7 +8,6 @@
   display: flex;
   flex-direction: row;
   margin-bottom: 3%;
-  flex-direction: column;
   background-color: rgba(247, 245, 245, 0.6);
 }
 
