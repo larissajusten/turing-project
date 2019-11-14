@@ -26,12 +26,12 @@ public class QuestaoMultiplaEscolhaController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public QuestaoMultiplaEscolha adicionarQuestaoMultiplaEscolha(@RequestBody @Valid QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
+    public QuestaoMultiplaEscolha adicionarQuestaoMultiplaEscolha(@RequestBody QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
         return adicionarQuestaoMultiplaEscolha.adicionar(questaoMultiplaEscolhaRequest);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @GetMapping("buscar-todas")
+    @GetMapping("/buscar-todas")
     public Page<QuestaoMultiplaEscolhaResponse> buscarQuestoesMultiplaEscolha(@PageableDefault Pageable pageable) {
         return buscarQuestoesMultiplaEscolha.buscarTodasQuestoes(pageable);
     }

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/usuario")
@@ -19,7 +18,7 @@ public class UsuarioController {
     private AdicionarNovoUsuarioService adicionarNovoUsuarioService;
 
     @PostMapping
-    public void adicionarUsuario(@RequestBody Usuario usuario) {
+    public void adicionarUsuario(@RequestBody UsuarioRequest usuario) {
 
         adicionarNovoUsuarioService.adicionar(usuario);
     }

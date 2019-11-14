@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Table(name = "ALTERNATIVAS_MULTIPLA_ESCOLHA")
 public class AlternativaMultiplaEscolha {
 
-    @JsonIgnore
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private Long id;
@@ -28,7 +28,6 @@ public class AlternativaMultiplaEscolha {
     @Type(type = "yes_no")
     private boolean respostaCorreta = false;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_QUESTAO", referencedColumnName = "id")
     private QuestaoMultiplaEscolha questaoMultiplaEscolha;

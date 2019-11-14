@@ -32,7 +32,7 @@ public class AdicionarQuestaoDissertativaServiceTest {
 
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
         QuestaoUnicaAlternativaRequest questaoUnicaAlternativaRequest =
-                new QuestaoUnicaAlternativaRequest("O que é?", NivelDeDificuldade.FACIL, Especificidade.JAVASCRIPT);
+                new QuestaoUnicaAlternativaRequest("O que é?", Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoDissertativa);
         Mockito.when(repository.save(questaoDissertativa)).thenReturn(questaoDissertativa);
