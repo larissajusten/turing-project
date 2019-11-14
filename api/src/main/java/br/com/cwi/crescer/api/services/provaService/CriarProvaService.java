@@ -19,6 +19,6 @@ public class CriarProvaService {
     public Prova criar(ProvaRequest request) {
        Prova prova = mapper.transformar(request);
 
-        return repository.save(prova);
+       return repository.save(prova);
     }
 }

@@ -23,7 +23,7 @@ public class QuestaoTecnicaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public List<QuestaoTecnica> buscarQuestoesTecnicas(BuscaQuestoesRequest request) {
+    public List<QuestaoTecnica> buscarQuestoesTecnicasFiltradas(BuscaQuestoesRequest request) {
         return buscarQuestoesTecnicas.buscar(request);
     }
 
