@@ -23,17 +23,17 @@ public class IncluirQuestoesTecnicasService {
     @Autowired
     private ProvaQuestaoTecnicaRepository repository;
 
-    public ProvaQuestaoTecnica incluir(Long idProva, BuscaQuestoesRequest request){
+    public void incluir(Long idProva, BuscaQuestoesRequest request){
         List<QuestaoTecnica> lista = listarQuestoesTecnicasFiltradasService.listar(request);
         Prova prova = buscarProvaPorId.buscar(idProva);
 
-        ProvaQuestaoTecnica provaQuestaoTecnica = new ProvaQuestaoTecnica();
-        provaQuestaoTecnica.setProva(prova);
 
-        lista.forEach(
-                provaQuestaoTecnica::setQuestao
-        );
+        for (QuestaoTecnica questaoTecnica : lista) {
+            ProvaQuestaoTecnica provaQuestaoTecnica = new ProvaQuestaoTecnica();
+            provaQuestaoTecnica.setProva(prova);
+            provaQuestaoTecnica.setQuestao(questaoTecnica);
+            repository.save(provaQuestaoTecnica);
+        }
 
-        return repository.save(provaQuestaoTecnica);
     }
 }

@@ -33,13 +33,13 @@ public class ProvaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-dissertativa")
-    public ProvaQuestaoDissertativa incluirDissertativas(@PathVariable("id-prova") Long idProva, BuscaQuestoesRequest buscaQuestoesRequest){
-        return incluirQuestoesDissertativasService.incluir(idProva, buscaQuestoesRequest);
+    public void incluirDissertativas(@PathVariable("id-prova") Long idProva, BuscaQuestoesRequest buscaQuestoesRequest){
+        incluirQuestoesDissertativasService.incluir(idProva, buscaQuestoesRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-tecnica")
-    public ProvaQuestaoTecnica incluirTecnicas(@PathVariable("id-prova") Long idProva, BuscaQuestoesRequest buscaQuestoesRequest){
-        return incluirQuestoesTecnicasService.incluir(idProva, buscaQuestoesRequest);
+    public void incluirTecnicas(@PathVariable("id-prova") Long idProva, BuscaQuestoesRequest buscaQuestoesRequest){
+        incluirQuestoesTecnicasService.incluir(idProva, buscaQuestoesRequest);
     }
 }
