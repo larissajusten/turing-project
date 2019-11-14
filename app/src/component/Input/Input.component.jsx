@@ -12,6 +12,8 @@ export class Input extends Component {
 					placeholder={this.props.placeholder}
 					name={this.props.name}
 					value={this.props.value}
+					onChange={this.props.onChange}
+					required
 				/>
 			</div>
 		);

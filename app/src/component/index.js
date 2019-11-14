@@ -1,0 +1,8 @@
+export { Header } from './Header/Header.component.jsx'
+export { BotaoPrincipal } from './BotaoPrincipal/BotaoPrincipal.component.jsx'
+export { Input } from './Input/Input.component.jsx'
+export { Select } from './Select/select.component.jsx'
+export { RadioButton } from './RadioButton/radioButton.component.jsx'
+export { CadastroMultiplaQuestao } from './Questoes/QuestaoMultiplaEscolha/questaoMultiplaEscolha.component.jsx'
+export { CadastroDissertativa } from './Questoes/QuestaoDissertativa/questaDissertativa.component.jsx'
+export { CadastroTecnica } from './Questoes/QuestaoTecnica/questaoTecnica.component.jsx'
