@@ -18,7 +18,7 @@ import java.util.List;
 public class BuscarQuestaoTecnicaPorNivelEEspecificidadeServiceTest {
 
     @InjectMocks
-    BuscarQuestaoTecnicaPorNivelEEspecificidadeService buscarQuestaoTecnicaPorNivelEEspecificidadeService;
+    BuscarQuestoesTecnicasFiltradasService buscarQuestaoTecnicaPorNivelEEspecificidadeService;
 
     @Mock
     QuestaoTecnicaRepository repository;

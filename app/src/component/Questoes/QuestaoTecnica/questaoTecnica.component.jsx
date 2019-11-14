@@ -4,6 +4,7 @@ import './questaoTecnica.style.css'
 import { adicionaQuestaoTecnica } from '../../../services/index'
 
 export class CadastroTecnica extends PureComponent {
+
   constructor(props){
     super(props)
     this.state = {
@@ -21,7 +22,7 @@ export class CadastroTecnica extends PureComponent {
         [name]: value
     })
   }
-  
+
   handleClickSalvarQuestao = async (event) => {
     event.preventDefault()
 
@@ -30,12 +31,7 @@ export class CadastroTecnica extends PureComponent {
       "especificidade": this.state.especificidade,
       "nivelDeDificuldade": this.state.nivel
     }
-    
-    try {
-      await adicionaQuestaoTecnica(questao)
-    } catch (error) {
-      alert(error.response.data.errors[0].defaultMessage)
-    }
+    await adicionaQuestaoTecnica(questao)
   }
 
   render() {
@@ -43,12 +39,12 @@ export class CadastroTecnica extends PureComponent {
       <>
       <div className="container-questao-tecnica">
           <div className="input-principal">
-            <Select 
+            <Select
               name="especificidade"
               value={this.state.especificidade}
               onChange={this.handleChange}
               object={this.state.linguagens}
-              placeholder="Selecione a especificidade" />
+              placeholder="Selecione a especificidade"/>
             </div>
 
             <div className="input-principal">
@@ -57,22 +53,22 @@ export class CadastroTecnica extends PureComponent {
               value={this.state.nivel}
               onChange={this.handleChange}
               object={this.state.niveis}
-              placeholder="Selecione o nível" />
+              placeholder="Selecione o nível"/>
           </div>
 
           <div className="input-principal">
             <label className="label">Questão</label>
-            <textarea 
+            <textarea
 								className="questao"
 								name="questao"
 								value={this.state.questao}
 								onChange={this.handleChange}
 								type="textarea"
 								label="Questão"
-								placeholder="" 
+								placeholder=""
 								required/>
 					</div>
-      
+
           <div className="botao-cadastro">
 					  <BotaoPrincipal nome="Enviar" onClick={this.handleClickSalvarQuestao}/>
 				  </div>

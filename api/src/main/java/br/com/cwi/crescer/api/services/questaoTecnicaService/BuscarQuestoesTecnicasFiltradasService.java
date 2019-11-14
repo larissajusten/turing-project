@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BuscarQuestaoTecnicaPorNivelEEspecificidadeService {
+public class BuscarQuestoesTecnicasFiltradasService {
 
     private final static int TAMANHO_PARA_LANCAR_EXCEPTION_LISTA = 0;
 

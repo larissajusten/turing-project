@@ -21,7 +21,7 @@ export class CadastroDissertativa extends PureComponent {
         [name]: value
     })
   }
-  
+
   handleClickSalvarQuestao = async (event) => {
     event.preventDefault()
 
@@ -31,13 +31,7 @@ export class CadastroDissertativa extends PureComponent {
       "especificidade": this.state.especificidade
     }
 
-    console.log(questao)
-    
-    try {
-      await adicionaQuestaoDissertativa(questao)
-    } catch (error) {
-      alert(error)
-    }
+    await adicionaQuestaoDissertativa(questao)
   }
 
   render() {
@@ -45,7 +39,7 @@ export class CadastroDissertativa extends PureComponent {
       <>
       <div className="container-questao-tecnica">
           <div className="input-principal">
-            <Select 
+            <Select
               name="especificidade"
               value={this.state.especificidade}
               onChange={this.handleChange}
@@ -53,7 +47,7 @@ export class CadastroDissertativa extends PureComponent {
               placeholder="Selecione a especificidade" />
             </div>
 
-            <div className="input-principal">
+          <div className="input-principal">
             <Select
               name="nivel"
               value={this.state.nivel}
@@ -64,17 +58,17 @@ export class CadastroDissertativa extends PureComponent {
 
           <div className="input-principal">
             <label className="label">Questão</label>
-            <textarea 
+            <textarea
               className="questao"
               name="questao"
               value={this.state.questao}
               onChange={this.handleChange}
               type="textarea"
               label="Questão"
-              placeholder="" 
+              placeholder=""
               required/>
 					</div>
-      
+
           <div className="botao-cadastro">
 					  <BotaoPrincipal nome="Enviar" onClick={this.handleClickSalvarQuestao}/>
 				  </div>

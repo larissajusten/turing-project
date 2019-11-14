@@ -27,12 +27,40 @@ export class CadastrarQuestaoScreen extends PureComponent {
         [name]: value
     })
 	} 
-	
-	renderComponent () {
+
+	renderComponent() {
+		if(this.state.questao === 'Múltipla Escolha'){
+			return(
+				<CadastroMultiplaQuestao 
+					linguagens = {this.state.especificidade}
+					niveis = {this.state.niveis}
+					/>
+			)
+		}else if(this.state.questao === 'Dissertativa'){
+			return(
+				<CadastroDissertativa
+					linguagens = {this.state.especificidade}
+					niveis = {this.state.niveis}
+					/>
+			)
+		}else if(this.state.questao === 'Técnica'){
+			return(
+				<CadastroTecnica
+					linguagens = {this.state.especificidade}
+					niveis = {this.state.niveis}
+					/>
+			)
+		}else{
+			return(
+				<h2>Escolha qual questão deseja cadastrar</h2>
+			)
+		}
+	}
+
+	renderContainerComponent () {
 		if(this.state.especificidade && this.state.niveis){
 			return (
 				<>
-				
 					<div className="container-titulo">
 						<span className="titulo-crie">Crie sua Questao </span>
 						<Select
@@ -45,32 +73,7 @@ export class CadastrarQuestaoScreen extends PureComponent {
 							/>
 					</div>
 					{
-						this.state.questao === 'Múltipla Escolha' 
-						? 
-						<CadastroMultiplaQuestao 
-							linguagens = {this.state.especificidade}
-							niveis = {this.state.niveis}
-							/>
-						: 
-						( 
-							this.state.questao === 'Dissertativa' 
-							? 
-							<CadastroDissertativa
-								linguagens = {this.state.especificidade}
-								niveis = {this.state.niveis}
-								/> 
-							: (
-								this.state.questao === 'Técnica' 
-								? 
-								<CadastroTecnica
-								linguagens = {this.state.especificidade}
-								niveis = {this.state.niveis}
-								/> 
-								:
-								<h2>Escolha qual questão deseja cadastrar</h2>
-							)
-							
-						)
+						this.renderComponent()
 					}
 				</>
 			);
@@ -80,7 +83,7 @@ export class CadastrarQuestaoScreen extends PureComponent {
 	render() {
 		return(
 			<div className="tela-cadastro">
-					{this.renderComponent()}
+					{this.renderContainerComponent()}
 			</div>
 		)
 	}

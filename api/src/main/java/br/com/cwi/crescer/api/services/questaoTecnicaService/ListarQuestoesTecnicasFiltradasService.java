@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class ListarQuestoesTecnicasService {
+public class ListarQuestoesTecnicasFiltradasService {
 
     private final static int TAMANHO_PARA_LANCAR_EXCEPTION_LISTA = 0;
 
@@ -20,12 +20,12 @@ public class ListarQuestoesTecnicasService {
     private BuscarQuestaoTecnicaPorIdService buscarQuestaoTecnicaService;
 
     @Autowired
-    private BuscarQuestaoTecnicaPorNivelEEspecificidadeService buscarQuestaoTecnicaPorNivelEEspecificidadeService;
+    private BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
 
-    public List<QuestaoTecnica> buscar(BuscaQuestoesRequest request) {
+    public List<QuestaoTecnica> listar(BuscaQuestoesRequest request){
         List<QuestaoTecnica> lista = new ArrayList<>();
 
-        List<QuestaoTecnica> listaQueAtendeRequisitos = buscarQuestaoTecnicaPorNivelEEspecificidadeService.buscar(
+        List<QuestaoTecnica> listaQueAtendeRequisitos = buscarQuestoesTecnicasFiltradasService.buscar(
                 request.getEspecificidade(), request.getNivelDeDificuldade());
 
         if (listaQueAtendeRequisitos.size() == TAMANHO_PARA_LANCAR_EXCEPTION_LISTA) {

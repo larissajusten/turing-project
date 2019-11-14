@@ -9,6 +9,6 @@ export const adicionaQuestaoTecnica = async (questao) => {
 }
 
 export const retornaQuestoesTecnicas = async (busca) => {
-  const response = await Axios.get(`${baseUrl}/questao-tecnica`, busca)
+  const response = await Axios.put(`${baseUrl}/questao-tecnica`, busca)
   return response.data
 }

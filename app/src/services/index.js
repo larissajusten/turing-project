@@ -8,7 +8,7 @@ export { retornaQuestoesMultiplaEscolhas } from './questoes/questao-multipla-esc
 
 /* Questão Tecnica Service*/
 export { adicionaQuestaoTecnica } from './questoes/questao-tecnica.service'
-export { retornaQuestoesTecnicas } from './questoes/questao-tecnica.service' 
+export { retornaQuestoesTecnicas } from './questoes/questao-tecnica.service'
 
 /* Questão Dissertativa Service*/
 export { adicionaQuestaoDissertativa } from './questoes/questao-dissertativa.service'
