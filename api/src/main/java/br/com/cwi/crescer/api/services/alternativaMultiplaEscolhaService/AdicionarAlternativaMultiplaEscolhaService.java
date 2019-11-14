@@ -11,7 +11,7 @@ public class AdicionarAlternativaMultiplaEscolhaService {
     @Autowired
     private AlternativaMultiplaEscolhaRepository repository;
 
-    public void adicionarAlternativa(AlternativaMultiplaEscolha alternativa, Long idQuestao) {
+    public void adicionar(AlternativaMultiplaEscolha alternativa, Long idQuestao) {
 
         alternativa.setId(idQuestao);
 

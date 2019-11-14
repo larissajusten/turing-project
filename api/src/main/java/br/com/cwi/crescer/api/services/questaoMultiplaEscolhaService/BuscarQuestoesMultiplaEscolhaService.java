@@ -31,7 +31,7 @@ public class BuscarQuestoesMultiplaEscolhaService {
         return questoes.map(questao -> {
             List<AlternativaMultiplaEscolha> alternativas = buscarAlternativaQuestaoMultiplaEscolha.buscar(questao.getId());
 
-            return mapper.mapperToResponse(questao, alternativas);
+            return mapper.transformarParaResponse(questao, alternativas);
         });
     }
 }

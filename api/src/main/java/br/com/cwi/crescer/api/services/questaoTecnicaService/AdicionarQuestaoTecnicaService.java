@@ -20,7 +20,7 @@ public class AdicionarQuestaoTecnicaService {
     private QuestaoTecnicaMapper mapper;
 
     public void adicionar(QuestaoUnicaAlternativaRequest request){
-        QuestaoTecnica questaoTecnica = mapper.mapperToQuestao(request);
+        QuestaoTecnica questaoTecnica = mapper.transformar(request);
         questaoTecnica.setDataCriacao(LocalDate.now());
 
         //Precisa salvar um usuário no banco para poder usar ele,

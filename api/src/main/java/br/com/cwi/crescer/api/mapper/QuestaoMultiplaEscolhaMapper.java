@@ -16,11 +16,11 @@ public class QuestaoMultiplaEscolhaMapper {
     @Autowired
     private ModelMapper mapper;
 
-    public QuestaoMultiplaEscolha mapperToQuestao(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
+    public QuestaoMultiplaEscolha transformarParaQuestao(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
         return mapper.map(questaoMultiplaEscolhaRequest, QuestaoMultiplaEscolha.class);
     }
 
-    public QuestaoMultiplaEscolhaResponse mapperToResponse(QuestaoMultiplaEscolha questao, List<AlternativaMultiplaEscolha> alternativas) {
+    public QuestaoMultiplaEscolhaResponse transformarParaResponse(QuestaoMultiplaEscolha questao, List<AlternativaMultiplaEscolha> alternativas) {
 
         QuestaoMultiplaEscolhaResponse questaoResponse = new QuestaoMultiplaEscolhaResponse();
 
@@ -35,7 +35,6 @@ public class QuestaoMultiplaEscolhaMapper {
         questaoResponse.setAlternativaA(alternativas.get(2));
         questaoResponse.setAlternativaA(alternativas.get(3));
         questaoResponse.setAlternativaA(alternativas.get(4));
-
 
         return questaoResponse;
     }

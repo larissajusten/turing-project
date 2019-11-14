@@ -18,15 +18,12 @@ public class DominioController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/especificidades")
     public List<Especificidade> especificidades() {
-
         return Arrays.asList(Especificidade.values());
-
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/niveis-dificuldade")
     public List<NivelDeDificuldade> nivelDeDificuldades() {
-
         return Arrays.asList(NivelDeDificuldade.values());
     }
 }

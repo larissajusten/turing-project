@@ -11,7 +11,7 @@ public class QuestaoDissertativaMapper {
     @Autowired
     private ModelMapper mapper;
 
-    public QuestaoDissertativa mapperToQuestao (QuestaoUnicaAlternativaRequest request){
+    public QuestaoDissertativa transformar(QuestaoUnicaAlternativaRequest request){
         return mapper.map(request, QuestaoDissertativa.class);
     }
 }

@@ -39,5 +39,4 @@ public class QuestaoMultiplaEscolhaRequest {
     @NonNull
     private AlternativaMultiplaEscolha alternativaE;
 
-
 }
