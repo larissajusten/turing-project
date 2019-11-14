@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class ListarQuestoesTecnicasServiceTest {
     @Mock
-    BuscarQuestaoTecnicaPorNivelEEspecificidadeService buscarQuestaoTecnicaPorNivelEEspecificidadeService;
+    BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
     @InjectMocks
     ListarQuestoesTecnicasService listarQuestoesTecnicasService;
 
@@ -28,7 +28,7 @@ public class ListarQuestoesTecnicasServiceTest {
     public void deveBuscarQuestoesDeMultiplaEscolhaConformeParametros() {
         List<QuestaoTecnica> lista = new ArrayList<>();
 
-        when(buscarQuestaoTecnicaPorNivelEEspecificidadeService.buscar(any(), any())).thenReturn(lista);
+        when(buscarQuestoesTecnicasFiltradasService.buscar(any(), any())).thenReturn(lista);
 
         List<QuestaoTecnica> resultado = listarQuestoesTecnicasService.buscar(new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 0));
         Assert.assertEquals(lista, resultado);

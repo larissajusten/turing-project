@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.services.questaoTecnicaService;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
-import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,12 +17,12 @@ public class ListarQuestoesTecnicasService {
     private BuscarQuestaoTecnicaPorIdService buscarQuestaoTecnicaService;
 
     @Autowired
-    private BuscarQuestaoTecnicaPorNivelEEspecificidadeService buscarQuestaoTecnicaPorNivelEEspecificidadeService;
+    private BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
 
     public List<QuestaoTecnica> buscar(BuscaQuestoesRequest request){
         List<QuestaoTecnica> lista = new ArrayList<>();
 
-        List<QuestaoTecnica> listaQueAtendeRequisitos = buscarQuestaoTecnicaPorNivelEEspecificidadeService.buscar(
+        List<QuestaoTecnica> listaQueAtendeRequisitos = buscarQuestoesTecnicasFiltradasService.buscar(
                 request.getEspecificidade(), request.getNivelDeDificuldade());
 
         Collections.shuffle(listaQueAtendeRequisitos, new Random());
