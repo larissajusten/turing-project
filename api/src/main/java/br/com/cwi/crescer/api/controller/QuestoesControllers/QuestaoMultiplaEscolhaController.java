@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -25,11 +24,21 @@ public class QuestaoMultiplaEscolhaController {
     @Autowired
     private BuscarQuestoesMultiplaEscolhaService buscarQuestoesMultiplaEscolha;
 
-    public void adicionarQuestaoMultiplaEscolha(@RequestBody @Valid QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
-        adicionarQuestaoMultiplaEscolha.adicionar(questaoMultiplaEscolhaRequest);
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public QuestaoMultiplaEscolha adicionarQuestaoMultiplaEscolha(@RequestBody @Valid QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
+        return adicionarQuestaoMultiplaEscolha.adicionar(questaoMultiplaEscolhaRequest);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @GetMapping("buscar-todas")
     public Page<QuestaoMultiplaEscolhaResponse> buscarQuestoesMultiplaEscolha(@PageableDefault Pageable pageable) {
+        return buscarQuestoesMultiplaEscolha.buscarTodasQuestoes(pageable);
+    }
+
+    //TODO
+    ///IGUAL A DE CIMA, CONFERIR
+    public Page<QuestaoMultiplaEscolhaResponse> buscarQuestoesComFiltro(@PageableDefault Pageable pageable) {
         return buscarQuestoesMultiplaEscolha.buscarTodasQuestoes(pageable);
     }
 }

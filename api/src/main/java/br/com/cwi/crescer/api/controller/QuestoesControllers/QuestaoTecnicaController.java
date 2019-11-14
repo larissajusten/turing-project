@@ -1,10 +1,10 @@
 package br.com.cwi.crescer.api.controller.QuestoesControllers;
 
-import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesTecnicasRequest;
-import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoTecnicaRequest;
+import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
+import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
-import br.com.cwi.crescer.api.services.QuestaoTecnicaService.AdicionarQuestaoTecnicaService;
-import br.com.cwi.crescer.api.services.QuestaoTecnicaService.ListarQuestoesTecnicasService;
+import br.com.cwi.crescer.api.services.questaoTecnicaService.AdicionarQuestaoTecnicaService;
+import br.com.cwi.crescer.api.services.questaoTecnicaService.ListarQuestoesTecnicasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -23,14 +23,14 @@ public class QuestaoTecnicaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public List<QuestaoTecnica> buscarQuestoesTecnicas(BuscaQuestoesTecnicasRequest buscaQuestoes) {
-        return buscarQuestoesTecnicas.buscar(buscaQuestoes);
+    public List<QuestaoTecnica> buscarQuestoesTecnicas(BuscaQuestoesRequest request) {
+        return buscarQuestoesTecnicas.buscar(request);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void adicionarQuestaoTecnica(QuestaoTecnicaRequest questaoTecnica) {
-        adicionarQuestaoTecnica.adicionar(questaoTecnica);
+    public void adicionarQuestaoTecnica(QuestaoUnicaAlternativaRequest request) {
+        adicionarQuestaoTecnica.adicionar(request);
     }
 
 }

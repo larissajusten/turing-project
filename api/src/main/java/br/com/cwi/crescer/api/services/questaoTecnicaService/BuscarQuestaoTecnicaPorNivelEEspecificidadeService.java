@@ -1,9 +1,8 @@
-package br.com.cwi.crescer.api.services.QuestaoTecnicaService;
+package br.com.cwi.crescer.api.services.questaoTecnicaService;
 
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
-import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
 import br.com.cwi.crescer.api.repository.questao.QuestaoTecnicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
