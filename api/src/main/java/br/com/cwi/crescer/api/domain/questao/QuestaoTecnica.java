@@ -38,5 +38,4 @@ public class QuestaoTecnica {
     @ManyToOne
     @JoinColumn(name = "ID_CRIADOR", referencedColumnName = "id")
     private Usuario usuario;
-
 }

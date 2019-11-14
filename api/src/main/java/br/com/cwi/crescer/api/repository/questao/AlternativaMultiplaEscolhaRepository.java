@@ -7,6 +7,5 @@ import java.util.List;
 
 public interface AlternativaMultiplaEscolhaRepository extends JpaRepository<AlternativaMultiplaEscolha, Long> {
 
-
     List<AlternativaMultiplaEscolha> findAllByQuestaoMultiplaEscolhaEquals(Long id);
 }

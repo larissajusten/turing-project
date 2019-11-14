@@ -12,7 +12,7 @@ public class QuestaoTecnicaMapper {
     @Autowired
     private ModelMapper mapper;
 
-    public QuestaoTecnica mapperToQuestao (QuestaoUnicaAlternativaRequest request){
+    public QuestaoTecnica transformar(QuestaoUnicaAlternativaRequest request){
         return mapper.map(request, QuestaoTecnica.class);
     }
 }

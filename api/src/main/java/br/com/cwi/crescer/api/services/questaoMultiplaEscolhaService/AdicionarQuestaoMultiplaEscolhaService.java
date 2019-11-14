@@ -25,7 +25,7 @@ public class AdicionarQuestaoMultiplaEscolhaService {
 
     public QuestaoMultiplaEscolha adicionar(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
 
-        QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.mapperToQuestao(questaoMultiplaEscolhaRequest);
+        QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest);
 
         questaoMultiplaEscolha.setDataCriacao(LocalDate.now());
         questaoMultiplaEscolha.setUsuario(new Usuario(1L));
@@ -33,15 +33,15 @@ public class AdicionarQuestaoMultiplaEscolhaService {
         QuestaoMultiplaEscolha questaoSalva = repository.save(questaoMultiplaEscolha);
 
         adicionarAlternativaMultiplaEscolha
-                .adicionarAlternativa(questaoMultiplaEscolhaRequest.getAlternativaA(), questaoSalva.getId());
+                .adicionar(questaoMultiplaEscolhaRequest.getAlternativaA(), questaoSalva.getId());
         adicionarAlternativaMultiplaEscolha
-                .adicionarAlternativa(questaoMultiplaEscolhaRequest.getAlternativaB(), questaoSalva.getId());
+                .adicionar(questaoMultiplaEscolhaRequest.getAlternativaB(), questaoSalva.getId());
         adicionarAlternativaMultiplaEscolha
-                .adicionarAlternativa(questaoMultiplaEscolhaRequest.getAlternativaC(), questaoSalva.getId());
+                .adicionar(questaoMultiplaEscolhaRequest.getAlternativaC(), questaoSalva.getId());
         adicionarAlternativaMultiplaEscolha
-                .adicionarAlternativa(questaoMultiplaEscolhaRequest.getAlternativaD(), questaoSalva.getId());
+                .adicionar(questaoMultiplaEscolhaRequest.getAlternativaD(), questaoSalva.getId());
         adicionarAlternativaMultiplaEscolha
-                .adicionarAlternativa(questaoMultiplaEscolhaRequest.getAlternativaE(), questaoSalva.getId());
+                .adicionar(questaoMultiplaEscolhaRequest.getAlternativaE(), questaoSalva.getId());
 
         return questaoSalva;
     }
