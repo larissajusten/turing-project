@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import './CadastroQuestao.style.css';
 import { CadastroMultiplaQuestao, CadastroDissertativa, CadastroTecnica, Select } from '../../component/index'
 import { retornarEspecificidades, retornarNiveisDeDificuldade } from '../../services/index'
 
-export class CadastrarQuestaoScreen extends PureComponent {
+export class CadastrarQuestaoScreen extends Component {
 	constructor(props){
 		super(props)
 		this.state = {

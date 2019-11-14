@@ -3,7 +3,7 @@ select {
 	width: 450px;
 	display: inline-block;
 	outline: none;
-	font-size: 16px;
+	font-size: 1em;
 	font-family: 'Open Sans Condensed', sans-serif;
 	margin-top: 1%;
 	margin-bottom: 25px;
