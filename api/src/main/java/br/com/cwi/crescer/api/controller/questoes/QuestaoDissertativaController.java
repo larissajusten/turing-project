@@ -4,10 +4,8 @@ import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.services.questaodissertativa.AdicionarQuestaoDissertativaService;
-import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
-import br.com.cwi.crescer.api.services.questaodissertativa.ListarTodasQuestoesDissertativasFiltradasService;
 import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorEspecificidadeENivelService;
-import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradas;
+import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,7 @@ public class QuestaoDissertativaController {
     private AdicionarQuestaoDissertativaService adicionarQuestaoDissertativaService;
 
     @Autowired
-    private ListarQuestoesDissertativasFiltradas listarQuestoesDissertativasFiltradas;
+    private ListarQuestoesDissertativasFiltradasService listarQuestoesDissertativasFiltradas;
 
     @Autowired
     private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
