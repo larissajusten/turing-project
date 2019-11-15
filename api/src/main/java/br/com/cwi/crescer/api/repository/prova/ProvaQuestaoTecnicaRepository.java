@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.api.repository;
+package br.com.cwi.crescer.api.repository.prova;
 
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoTecnica;
 import org.springframework.data.jpa.repository.JpaRepository;
