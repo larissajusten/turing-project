@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { QuestaoUnica } from '../../index'
-import './questaoTecnica.style.css'
+import './QuestaoTecnica.style.css'
 import { adicionaQuestaoTecnica } from '../../../services/index'
 
 export class CadastroTecnica extends PureComponent {

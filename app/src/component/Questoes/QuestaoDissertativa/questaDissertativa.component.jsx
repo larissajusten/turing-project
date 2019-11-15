@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import './questaoDissertativa.style.css'
+import './QuestaoDissertativa.style.css'
 import { QuestaoUnica } from '../../index'
 import { adicionaQuestaoDissertativa } from '../../../services/index'
 
