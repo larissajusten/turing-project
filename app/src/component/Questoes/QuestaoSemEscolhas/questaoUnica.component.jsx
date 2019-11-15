@@ -47,7 +47,7 @@ export class QuestaoUnica extends PureComponent {
               required/>
           </div>
 
-          <div className="botao-cadastro">
+          <div className="container-botao">
             <BotaoPrincipal nome="Enviar" onClick={this.props.handleClickSalvarQuestao}/>
           </div>
       </div>

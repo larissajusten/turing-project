@@ -14,7 +14,7 @@ export class Header extends Component {
 					<Link to="/">Home</Link>
 					<Link to={"/cadastrar-questao"}>Cadastrar</Link>
 					<Link to={"/buscar-questao"}>Buscar</Link>
-					<Link to="/">Prova</Link>
+					<Link to={"/cadastrar-prova"}>Prova</Link>
 				</Menu>
 			</div>
 		)

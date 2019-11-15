@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import './buscarQuestao.style.css'
-import { Select, Input, BotaoPrincipal, CardQuestao } from '../../component/index'
+import { BotaoPrincipal, CardQuestao, EscolherQuestao } from '../../component/index'
 import { retornarEspecificidades,
           retornarNiveisDeDificuldade,
-          retornaQuestoesTecnicas } from '../../services/index'
+          retornarQuestoesTecnicasFiltradas,
+          retornarQuestoesDissertativasFiltradas,
+          retornarQuestoesMultiplasEscolhasFiltradas } from '../../services/index'
 
 export class BuscarQuestao extends Component {
 
@@ -16,7 +18,6 @@ export class BuscarQuestao extends Component {
       tipo: '',
       especificidade: '',
       nivel:'',
-      quantidade: '',
       resultados: []
     }
   }
@@ -40,18 +41,19 @@ export class BuscarQuestao extends Component {
 
     const busca = {
       "especificidade": this.state.especificidade,
-      "nivelDeDificuldade": this.state.nivel,
-      "quantidadeDeQuestoes": this.state.quantidade
+      "nivelDeDificuldade": this.state.nivel
     }
 
-    let listaDeQuestoes = await retornaQuestoesTecnicas(busca)
-      /*if(this.state.tipo === this.state.tipos[0]){
-        await enviarBusca(busca)
-      }else if(this.state.tipo === this.state.tipos[1]){
-        await retornaQuestoesTecnicas(busca)
-      }else if(this.state.tipo === this.state.tipos[2]){
-        await enviarBusca(busca)
-      }*/
+    let listaDeQuestoes = ''
+    
+    if(this.state.tipo === this.state.tipos[0]){
+      listaDeQuestoes  = await retornarQuestoesDissertativasFiltradas(busca)
+    }else if(this.state.tipo === this.state.tipos[1]){
+      listaDeQuestoes = retornarQuestoesMultiplasEscolhasFiltradas(busca)
+    }else if(this.state.tipo === this.state.tipos[2]){
+      listaDeQuestoes  = await retornarQuestoesTecnicasFiltradas(busca)
+    }
+
     this.setState({
       resultados: listaDeQuestoes
     })
@@ -86,51 +88,17 @@ export class BuscarQuestao extends Component {
         <div className="container-titulo">
           <span className="titulo-crie">Busque a questão que deseja</span>
         </div>
-
-        <div className="container-inputs-buscar">
-          <div className="input-principal width-tipo">
-            <label className="label">Tipo</label>
-            <Select
-              name="tipo"
-              value={this.state.tipo}
-              onChange={this.handleChange}
-              object={this.state.tipos}
-              placeholder="Selecione o tipo"
-              questoesWidth="width-tipo"/>
-          </div>
-
-          <div className="input-principal width-especificidade">
-            <label className="label">Especificidade</label>
-            <Select
-              name="especificidade"
-              value={this.state.especificidade}
-              onChange={this.handleChange}
-              object={this.state.especificidades}
-              placeholder="Selecione a especificidade"
-              questoesWidth="width-especificidade"/>
-          </div>
-
-          <div className="input-principal width-nivel">
-            <label className="label">Nivel</label>
-            <Select
-              name="nivel"
-              value={this.state.nivel}
-              onChange={this.handleChange}
-              object={this.state.niveis}
-              placeholder="Selecione o nível"
-              questoesWidth="width-nivel"/>
-          </div>
-
-          <Input
-            name="quantidade"
-            value={this.state.quantidade}
-            onChange={this.handleChange}
-            className="input"
-            label="Quantidade"
-            type="number"
-            placeholder=""/>
+        <div className="container-inputs">
+          <EscolherQuestao 
+            tipo = {this.state.tipo}
+            especificidade = {this.state.especificidade}
+            nivel = {this.state.nivel}
+            tipos = {this.state.tipos}
+            especificidades = {this.state.especificidades}
+            niveis = {this.state.niveis}
+            handleChange = {this.handleChange}/>
         </div>
-
+        
         {
           this.state.resultados.length
           ?
@@ -139,7 +107,7 @@ export class BuscarQuestao extends Component {
           null
         }
 
-        <div className="botao-cadastro">
+        <div className="container-botao">
 					<BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarPesquisa}/>
 				</div>
         </>
