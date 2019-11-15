@@ -6,6 +6,8 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.services.questaodissertativa.AdicionarQuestaoDissertativaService;
 import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
 import br.com.cwi.crescer.api.services.questaodissertativa.ListarTodasQuestoesDissertativasFiltradasService;
+import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorEspecificidadeENivelService;
+import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,10 +22,10 @@ public class QuestaoDissertativaController {
     private AdicionarQuestaoDissertativaService adicionarQuestaoDissertativaService;
 
     @Autowired
-    private ListarQuestoesDissertativasFiltradasService listarQuestoesDissertativasFiltradas;
+    private ListarQuestoesDissertativasFiltradas listarQuestoesDissertativasFiltradas;
 
     @Autowired
-    private ListarTodasQuestoesDissertativasFiltradasService listarTodasQuestoesDissertativasFiltradasService;
+    private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -40,6 +42,6 @@ public class QuestaoDissertativaController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
     public List<QuestaoDissertativa> listarTodasQuestoesDissertativas(@RequestBody BuscaQuestoesRequest request) {
-        return listarTodasQuestoesDissertativasFiltradasService.listar(request);
+        return buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
     }
 }
