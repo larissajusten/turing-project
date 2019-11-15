@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { QuestaoUnica } from '../../index'
-import './QuestaoTecnica.style.css'
 import { adicionaQuestaoTecnica } from '../../../services/index'
 
 export class CadastroTecnica extends PureComponent {
@@ -37,13 +36,13 @@ export class CadastroTecnica extends PureComponent {
   render() {
     return(
       <>
-      <QuestaoUnica 
+      <QuestaoUnica
         linguagens = {this.state.linguagens}
         niveis = {this.state.niveis}
         especificidade = {this.state.especificidade}
         nivel = {this.state.nivel}
         questao = {this.state.questao}
-        handleChange = {this.handleChange} 
+        handleChange = {this.handleChange}
         handleClickSalvarQuestao = {this.handleClickSalvarQuestao}/>
       </>
     )

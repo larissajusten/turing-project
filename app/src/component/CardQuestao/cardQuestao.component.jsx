@@ -1,10 +1,9 @@
 import React, { PureComponent } from 'react'
-import './CardQuestao.style.css'
+import './cardQuestao.style.css'
 
 export class CardQuestao extends PureComponent {
 
   render() {
-
     return (
         <div className="container-card">
 
