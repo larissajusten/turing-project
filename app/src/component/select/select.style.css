@@ -1,0 +1,23 @@
+select {
+	height: 37px;
+	width: 450px;
+	display: inline-block;
+	outline: none;
+	font-size: 1em;
+	font-family: 'Open Sans Condensed', sans-serif;
+	margin-top: 1%;
+	margin-bottom: 25px;
+	padding: 0.1% 0.2%;
+	border: 1px solid rgba(224, 213, 213, 0.81);
+	background-color: rgba(247, 245, 245, 0.6);
+	box-sizing: border-box;
+	backdrop-filter: blur(4px);
+	border-radius: 10px;
+	cursor: auto;
+}
+
+.select-area {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
