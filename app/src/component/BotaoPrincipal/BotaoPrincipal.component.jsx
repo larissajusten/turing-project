@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './BotaoPrincipal.style.css';
+import './botaoPrincipal.style.css';
 
 export class BotaoPrincipal extends Component {
 	render() {

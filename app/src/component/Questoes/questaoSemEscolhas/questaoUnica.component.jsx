@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Select, BotaoPrincipal } from '../../index'
+import './questaoUnica.style.css'
 
 export class QuestaoUnica extends PureComponent {
 
@@ -14,7 +15,7 @@ export class QuestaoUnica extends PureComponent {
   render() {
     return(
       <>
-      <div className="container-questao-dissertativa">
+      <div className="container-questao">
           <div className="input-principal">
             <Select
               name="especificidade"

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CadastroProva.style.css'
+import './cadastroProva.style.css'
 
 export class CadastroProvaScreen extends Component {
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './BuscarQuestao.style.css'
+import './buscarQuestao.style.css'
 import { Select, Input, BotaoPrincipal, CardQuestao } from '../../component/index'
 import { retornarEspecificidades,
           retornarNiveisDeDificuldade,

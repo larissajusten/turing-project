@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import './Select.style.css';
+import './select.style.css';
 
 export class Select extends PureComponent {
 	render() {

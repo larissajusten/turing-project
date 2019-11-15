@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { slide as Menu } from 'react-burger-menu'
 import { Link } from 'react-router-dom';
-import './Header.style.css';
+import './header.style.css';
 
 export class Header extends Component {
 

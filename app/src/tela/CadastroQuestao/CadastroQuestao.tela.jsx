@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './CadastroQuestao.style.css';
+import './cadastroQuestao.style.css';
 import { CadastroMultiplaQuestao, CadastroDissertativa, CadastroTecnica, Select } from '../../component/index'
 import { retornarEspecificidades, retornarNiveisDeDificuldade } from '../../services/index'
 
