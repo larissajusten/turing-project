@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { QuestaoUnica } from '../../index'
-import { adicionaQuestaoDissertativa } from '../../../services/index'
+import { adicionarQuestaoDissertativa } from '../../../services/index'
 
 export class CadastroDissertativa extends PureComponent {
 
@@ -31,7 +31,7 @@ export class CadastroDissertativa extends PureComponent {
       "especificidade": this.state.especificidade
     }
 
-    await adicionaQuestaoDissertativa(questao)
+    await adicionarQuestaoDissertativa(questao)
   }
 
   render() {

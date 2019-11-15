@@ -1,0 +1,8 @@
+.container-questoes {
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    padding: 0 200px;
+}

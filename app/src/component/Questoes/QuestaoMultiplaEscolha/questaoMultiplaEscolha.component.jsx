@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { BotaoPrincipal, Input, Select} from '../../index'
-import { adicionaQuestaoMultiplaEscolha } from '../../../services/index'
+import { adicionarQuestaoMultiplaEscolha } from '../../../services/index'
 import './questaoMultiplaEscolha.style.css'
 
 export class CadastroMultiplaQuestao extends PureComponent {
@@ -47,7 +47,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 			"alternativaE": {"resposta": this.state.alternativaE, "respostaCorreta": this.state.resposta === 'E' ? "true" : "false"},
 		}
 
-    await adicionaQuestaoMultiplaEscolha(questao)
+    await adicionarQuestaoMultiplaEscolha(questao)
   }
 
   render() {
@@ -82,7 +82,6 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							name="alternativaA"
 							value={this.state.alternativaA}
 							onChange={this.handleChange}
-							className="input"
 							type="text"
 							label="Alternativa A"
 							placeholder=""/>
@@ -91,7 +90,6 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							name="alternativaB"
 							value={this.state.alternativaB}
 							onChange={this.handleChange}
-							className="input"
 							type="text"
 							label="Alternativa B"
 							placeholder=""/>
@@ -113,7 +111,6 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							name="alternativaC"
 							value={this.state.alternativaC}
 							onChange={this.handleChange}
-							className="input"
 							type="text"
 							label="Alternativa C"
 							placeholder=""/>
@@ -122,7 +119,6 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							name="alternativaD"
 							value={this.state.alternativaD}
 							onChange={this.handleChange}
-							className="input"
 							type="text"
 							label="Alternativa D"
 							placeholder=""/>
@@ -131,7 +127,6 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							name="alternativaE"
 							value={this.state.alternativaE}
 							onChange={this.handleChange}
-							className="input"
 							type="text"
 							label="Alternativa E"
 							placeholder=""/>
@@ -164,7 +159,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 					</div>
 				</div>
 
-				<div className="botao-cadastro">
+				<div className="container-botao">
 					<BotaoPrincipal nome="Enviar" onClick={this.handleClickSalvarQuestao}/>
 				</div>
 			</>
