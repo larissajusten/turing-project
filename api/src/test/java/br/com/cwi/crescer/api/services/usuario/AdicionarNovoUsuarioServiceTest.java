@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.services.usuario;
 import br.com.cwi.crescer.api.controller.requests.usuario.UsuarioRequest;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.repository.UsuarioRepository;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,14 +22,15 @@ public class AdicionarNovoUsuarioServiceTest {
 
     @Test
     public void deveChamarUsuarioRepositoryQuandoAdicionarNovoUsuarioServiceForChamado() {
+//        UsuarioRequest request = new UsuarioRequest();
+//        Usuario usuarioMapeado = new Usuario();
+//        Usuario usuarioSalvo = new Usuario();
+//
+//        Mockito.when(repository.save(usuarioMapeado)).thenReturn(usuarioSalvo);
+//
+//        Usuario usuarioResultado = adicionarNovoUsuarioService.adicionar(request);
+//
+//        Assert.assertSame(usuarioResultado, usuarioSalvo);
 
-        Usuario usuario = new Usuario();
-        UsuarioRequest request = new UsuarioRequest();
-
-        Mockito.when(repository.save(usuario)).thenReturn(usuario);
-
-       adicionarNovoUsuarioService.adicionar(request);
-
-        Mockito.verify(repository).save(usuario);
     }
 }
