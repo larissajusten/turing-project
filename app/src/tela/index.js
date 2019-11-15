@@ -1,2 +1,3 @@
-export { CadastrarQuestaoScreen } from './CadastroQuestao/CadastroQuestao.tela.jsx'
-export { BuscarQuestao } from './BuscarQuestao/buscarQuestao.tela.jsx'
+export { CadastrarQuestaoScreen } from './cadastroQuestao/cadastroQuestao.tela.jsx'
+export { BuscarQuestao } from './buscarQuestao/buscarQuestao.tela.jsx'
+export { CadastroProvaScreen } from './cadastroProva/cadastroProva.tela.jsx'

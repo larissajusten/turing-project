@@ -1,0 +1,29 @@
+* {
+	box-sizing: border-box;
+}
+
+.tela-cadastro {
+	padding-top: 4%;
+	padding-bottom: 3%;
+	padding-right: 100px;
+	padding-left: 100px;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	z-index: -1;
+	overflow: hidden;
+}
+
+.container-titulo {
+	margin: 30px 0;
+}
+
+.titulo-crie {
+	font-weight: 300;
+	font-size: 1.5em;
+	line-height: 33px;
+}
+
+.width-questoes {
+	width: 150px;
+}

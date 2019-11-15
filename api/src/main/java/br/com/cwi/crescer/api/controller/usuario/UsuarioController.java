@@ -4,10 +4,8 @@ import br.com.cwi.crescer.api.controller.requests.usuario.UsuarioRequest;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.services.usuario.AdicionarNovoUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -17,9 +15,10 @@ public class UsuarioController {
     @Autowired
     private AdicionarNovoUsuarioService adicionarNovoUsuarioService;
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void adicionarUsuario(@RequestBody Usuario usuario) {
+    public Usuario adicionarUsuario(@RequestBody UsuarioRequest usuario) {
 
-        adicionarNovoUsuarioService.adicionar(usuario);
+        return adicionarNovoUsuarioService.adicionar(usuario);
     }
 }

@@ -1,6 +1,5 @@
 package br.com.cwi.crescer.api.domain.questao;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

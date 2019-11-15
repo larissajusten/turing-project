@@ -16,11 +16,11 @@ public class AdicionarNovoUsuarioService {
     @Autowired
     private ModelMapper mapper;
 
-    public void adicionar(Usuario usuario) {
+    public Usuario adicionar(UsuarioRequest request) {
 
-        //Usuario usuario = mapper.map(usuarioRequest, Usuario.class);
+        Usuario usuario = mapper.map(request, Usuario.class);
 
-        repository.save(usuario);
+        return repository.save(usuario);
     }
 
 }

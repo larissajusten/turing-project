@@ -2,6 +2,12 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--orange-color: #f8b03f;
+	--bg-blue-color: #33223f;
+	--font-color: white;
+}
+
 body {
 	margin: 0 auto;
 	font-family: 'Open Sans Condensed', sans-serif;
@@ -9,6 +15,6 @@ body {
 
 .principal {
 	text-align: center;
-	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
+	position: relative;
 }
