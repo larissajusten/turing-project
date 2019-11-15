@@ -1,8 +1,6 @@
 package br.com.cwi.crescer.api.controller.provaquestao;
 
 
-import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoDissertativa;
 import br.com.cwi.crescer.api.services.provaquestao.ListarQuestoesDissertativasDaProvaService;
 import lombok.AllArgsConstructor;
