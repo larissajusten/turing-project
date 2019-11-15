@@ -77,6 +77,8 @@ export class CadastrarQuestaoScreen extends Component {
 					}
 				</>
 			);
+		}else{
+			return <h3>Não há especificidade ou niveis no banco para você poder cadastrar uma questão</h3>
 		}
 	}
 

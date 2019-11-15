@@ -144,7 +144,9 @@ export class BuscarQuestao extends Component {
 				</div>
         </>
       )
-    }
+    }else{
+			return <h3>Não há especificidade ou niveis no banco para você poder buscar uma questão</h3>
+		}
   }
 
   render() {

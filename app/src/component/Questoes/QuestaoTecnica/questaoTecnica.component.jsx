@@ -37,13 +37,13 @@ export class CadastroTecnica extends PureComponent {
   render() {
     return(
       <>
-      <QuestaoUnica 
+      <QuestaoUnica
         linguagens = {this.state.linguagens}
         niveis = {this.state.niveis}
         especificidade = {this.state.especificidade}
         nivel = {this.state.nivel}
         questao = {this.state.questao}
-        handleChange = {this.handleChange} 
+        handleChange = {this.handleChange}
         handleClickSalvarQuestao = {this.handleClickSalvarQuestao}/>
       </>
     )

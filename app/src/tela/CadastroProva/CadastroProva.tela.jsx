@@ -3,11 +3,7 @@ import './CadastroProva.style.css'
 
 export class CadastroProvaScreen extends Component {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            email
-        }
+    render() {
+        return <h1>Oi</h1>
     }
-
 }
