@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import './cardQuestao.style.css'
+import './CardQuestao.style.css'
 
 export class CardQuestao extends PureComponent {
 
