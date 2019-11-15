@@ -3,7 +3,6 @@ package br.com.cwi.crescer.api.repository.questao;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
-import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -2,9 +2,7 @@ package br.com.cwi.crescer.api.services.questaomultiplaescolha;
 
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
-import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
-import br.com.cwi.crescer.api.repository.questao.QuestaoDissertativaRepository;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
