@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { BotaoPrincipal, Input, Select} from '../../index'
-import './questaoMultiplaEscolha.style.css'
+import './QuestaoMultiplaEscolha.style.css'
 import { adicionaQuestaoMultiplaEscolha } from '../../../services/index'
 
 export class CadastroMultiplaQuestao extends PureComponent {

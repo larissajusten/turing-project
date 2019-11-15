@@ -1,8 +1,6 @@
 import Axios from 'axios'
 import { baseUrl } from '../baseUrl'
 
-const token = localStorage.getItem("accessToken")
-
 export const adicionaQuestaoMultiplaEscolha = async (questao) => {
   const response = await Axios.post(`${baseUrl}/questao-multipla-escolha`, questao)
   return response.data
