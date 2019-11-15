@@ -7,3 +7,4 @@ export { CadastroMultiplaQuestao } from './Questoes/QuestaoMultiplaEscolha/quest
 export { CadastroDissertativa } from './Questoes/QuestaoDissertativa/questaDissertativa.component.jsx'
 export { CadastroTecnica } from './Questoes/QuestaoTecnica/questaoTecnica.component.jsx'
 export { CardQuestao } from './CardQuestao/CardQuestao.component.jsx'
+export { QuestaoUnica } from './Questoes/FormQuestaoUnica/FormQuestaoUnica.component.jsx'

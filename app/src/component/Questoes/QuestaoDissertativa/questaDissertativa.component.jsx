@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import './questaoDissertativa.style.css'
-import { Select, BotaoPrincipal } from '../../index'
+import { QuestaoUnica } from '../../index'
 import { adicionaQuestaoDissertativa } from '../../../services/index'
 
 export class CadastroDissertativa extends PureComponent {
+
   constructor(props){
     super(props)
     this.state = {
@@ -37,42 +38,14 @@ export class CadastroDissertativa extends PureComponent {
   render() {
     return(
       <>
-      <div className="container-questao-dissertativa">
-          <div className="input-principal">
-            <Select
-              name="especificidade"
-              value={this.state.especificidade}
-              onChange={this.handleChange}
-              object={this.state.linguagens}
-              placeholder="Selecione a especificidade" />
-            </div>
-
-          <div className="input-principal">
-            <Select
-              name="nivel"
-              value={this.state.nivel}
-              onChange={this.handleChange}
-              object={this.state.niveis}
-              placeholder="Selecione o nível" />
-          </div>
-
-          <div className="input-principal">
-            <label className="label">Questão</label>
-            <textarea
-              className="questao"
-              name="questao"
-              value={this.state.questao}
-              onChange={this.handleChange}
-              type="textarea"
-              label="Questão"
-              placeholder=""
-              required/>
-					</div>
-
-          <div className="botao-cadastro">
-					  <BotaoPrincipal nome="Enviar" onClick={this.handleClickSalvarQuestao}/>
-				  </div>
-      </div>
+      <QuestaoUnica 
+        linguagens = {this.state.linguagens}
+        niveis = {this.state.niveis}
+        especificidade = {this.state.especificidade}
+        nivel = {this.state.nivel}
+        questao = {this.state.questao}
+        handleChange = {this.handleChange} 
+        handleClickSalvarQuestao = {this.handleClickSalvarQuestao}/>
       </>
     )
   }
