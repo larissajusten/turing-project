@@ -1,8 +1,6 @@
 package br.com.cwi.crescer.api.services.provaquestao;
 
-import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoTecnica;
-import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoDissertativaRepository;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoTecnicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

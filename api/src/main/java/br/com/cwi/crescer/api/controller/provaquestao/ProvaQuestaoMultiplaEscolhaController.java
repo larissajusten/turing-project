@@ -2,9 +2,7 @@ package br.com.cwi.crescer.api.controller.provaquestao;
 
 
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoMultiplaEscolha;
-import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoTecnica;
 import br.com.cwi.crescer.api.services.provaquestao.ListarQuestoesMultiplaEscolhaDaProvaService;
-import br.com.cwi.crescer.api.services.provaquestao.ListarQuestoesTecnicasDaProvaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
