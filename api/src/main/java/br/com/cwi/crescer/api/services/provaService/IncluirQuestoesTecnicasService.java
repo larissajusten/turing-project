@@ -27,7 +27,6 @@ public class IncluirQuestoesTecnicasService {
         List<QuestaoTecnica> lista = listarQuestoesTecnicasFiltradasService.listar(request);
         Prova prova = buscarProvaPorId.buscar(idProva);
 
-
         for (QuestaoTecnica questaoTecnica : lista) {
             ProvaQuestaoTecnica provaQuestaoTecnica = new ProvaQuestaoTecnica();
             provaQuestaoTecnica.setProva(prova);

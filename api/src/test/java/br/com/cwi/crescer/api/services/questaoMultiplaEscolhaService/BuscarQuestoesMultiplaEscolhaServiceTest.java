@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.services.questaoMultiplaEscolhaService;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
+import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativaMultiplaEscolhaService.BuscarAlternativaQuestaoMultiplaEscolhaService;
@@ -112,6 +113,28 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
         buscarQuestoesMultiplaEscolhaService.buscarTodasQuestoes(page);
 
         Mockito.verify(buscarAlternativaQuestaoMultiplaEscolhaService).buscar(questao.getId());
+
+    }
+
+    @Test(expected = QuestaoNaoEncontradaException.class)
+    public void deveLancarUmaExceptionQuandoBuscarQuestoesMultiplaEscolhaForChamadaEVoltarVazia() {
+
+        PageRequest page = PageRequest.of(1, 10);
+
+        QuestaoMultiplaEscolha questao = new QuestaoMultiplaEscolha();
+        QuestaoMultiplaEscolhaResponse questaoResponse = new QuestaoMultiplaEscolhaResponse();
+        List<QuestaoMultiplaEscolha> questoesMultiplaEscolha = new ArrayList<>();
+
+        AlternativaMultiplaEscolha alternativa = new AlternativaMultiplaEscolha();
+
+        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<QuestaoMultiplaEscolha>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
+
+        List<AlternativaMultiplaEscolha> alternativas = new ArrayList<>();
+        alternativas.add(alternativa);
+
+        Mockito.when(repository.findAll(page)).thenReturn(questoes);
+        buscarQuestoesMultiplaEscolhaService.buscarTodasQuestoes(page);
+
 
     }
 

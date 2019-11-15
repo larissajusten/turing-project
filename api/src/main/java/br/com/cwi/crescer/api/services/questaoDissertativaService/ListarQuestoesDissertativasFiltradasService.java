@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-public class ListarQuestoesDissertativasFiltradas {
+public class ListarQuestoesDissertativasFiltradasService {
 
     @Autowired
     private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
@@ -26,10 +26,12 @@ public class ListarQuestoesDissertativasFiltradas {
 
         int quant = request.getQuantidadeDeQuestoes();
         int cont = 0;
+
         while(cont < quant){
             lista.add(listaQueAtendeRequisitos.get(cont));
             cont++;
         }
+
         return lista;
     }
 }

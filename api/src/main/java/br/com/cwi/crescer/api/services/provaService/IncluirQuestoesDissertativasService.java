@@ -5,8 +5,7 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.questaoProva.ProvaQuestaoDissertativa;
 import br.com.cwi.crescer.api.repository.ProvaQuestaoDissertativaRepository;
-import br.com.cwi.crescer.api.services.questaoDissertativaService.BuscarQuestaoDissertativaPorEspecificidadeENivelService;
-import br.com.cwi.crescer.api.services.questaoDissertativaService.ListarQuestoesDissertativasFiltradas;
+import br.com.cwi.crescer.api.services.questaoDissertativaService.ListarQuestoesDissertativasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ import java.util.List;
 public class IncluirQuestoesDissertativasService {
 
     @Autowired
-    private ListarQuestoesDissertativasFiltradas listarQuestoesDissertativasFiltradas;
+    private ListarQuestoesDissertativasFiltradasService listarQuestoesDissertativasFiltradas;
 
     @Autowired
     private BuscarProvaPorIdService buscarProvaPorId;

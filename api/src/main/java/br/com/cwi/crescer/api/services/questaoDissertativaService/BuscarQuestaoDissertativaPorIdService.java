@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class BuscarQuestaoDissertativaPorIdService {
 
     @Autowired
-    QuestaoDissertativaRepository repository;
+    private QuestaoDissertativaRepository repository;
 
     public QuestaoDissertativa buscar(Long id) {
 

@@ -4,7 +4,7 @@ import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.services.questaoDissertativaService.AdicionarQuestaoDissertativaService;
-import br.com.cwi.crescer.api.services.questaoDissertativaService.ListarQuestoesDissertativasFiltradas;
+import br.com.cwi.crescer.api.services.questaoDissertativaService.ListarQuestoesDissertativasFiltradasService;
 import br.com.cwi.crescer.api.services.questaoDissertativaService.ListarTodasQuestoesDissertativasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,10 +20,10 @@ public class QuestaoDissertativaController {
     private AdicionarQuestaoDissertativaService adicionarQuestaoDissertativaService;
 
     @Autowired
-    ListarQuestoesDissertativasFiltradas listarQuestoesDissertativasFiltradas;
+    private ListarQuestoesDissertativasFiltradasService listarQuestoesDissertativasFiltradas;
 
     @Autowired
-    ListarTodasQuestoesDissertativasFiltradasService listarTodasQuestoesDissertativasFiltradasService;
+    private ListarTodasQuestoesDissertativasFiltradasService listarTodasQuestoesDissertativasFiltradasService;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping

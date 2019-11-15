@@ -11,6 +11,7 @@ import java.util.List;
 
 @Service
 public class ListarTodasQuestoesDissertativasFiltradasService {
+
     @Autowired
     private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
 
