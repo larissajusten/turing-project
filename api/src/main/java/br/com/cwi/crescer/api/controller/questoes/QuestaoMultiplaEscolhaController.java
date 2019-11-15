@@ -7,6 +7,7 @@ import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaQuestaoMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.AdicionarQuestaoMultiplaEscolhaService;
+import br.com.cwi.crescer.api.services.questaomultiplaescolha.BuscarQuestoesMultiplaEscolhaFiltradasService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.ListarQuestoesMultiplaEscolhaFiltradasService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.BuscarQuestoesMultiplaEscolhaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class QuestaoMultiplaEscolhaController {
     private BuscarAlternativaQuestaoMultiplaEscolhaService buscarAlternativaQuestaoMultiplaEscolhaService;
 
     @Autowired
+    private BuscarQuestoesMultiplaEscolhaFiltradasService buscarQuestoesMultiplaEscolhaFiltradasService;
+
+    @Autowired
     private ListarQuestoesMultiplaEscolhaFiltradasService listarQuestoesMultiplaEscolhaFiltradasService;
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -51,6 +55,12 @@ public class QuestaoMultiplaEscolhaController {
     @PutMapping("/buscar-questoes-filtrado")
     public List<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@RequestBody BuscaQuestoesRequest request) {
         return listarQuestoesMultiplaEscolhaFiltradasService.listar(request);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/buscar-todas-filtrado")
+    public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@RequestBody BuscaQuestoesRequest request) {
+        return buscarQuestoesMultiplaEscolhaFiltradasService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
     }
 
     @ResponseStatus(HttpStatus.OK)

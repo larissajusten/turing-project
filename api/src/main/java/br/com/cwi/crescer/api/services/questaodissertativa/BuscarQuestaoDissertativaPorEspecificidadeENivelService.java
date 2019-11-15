@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class BuscarQuestaoDissertativaPorEspecificidadeENivelService {
     @Autowired
-    QuestaoDissertativaRepository repository;
+    private QuestaoDissertativaRepository repository;
 
     public List<QuestaoDissertativa> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade){
         return repository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade);
