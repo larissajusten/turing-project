@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class BuscarQuestoesMultiplaEscolhaService {
 
-    private final static int TAMANHO_PARA_LANCAR_EXCEPTION_LISTA = 0;
+    private static final int TAMANHO_PARA_LANCAR_EXCEPTION_LISTA = 0;
 
     @Autowired
     private QuestaoMultiplaEscolhaRepository repository;

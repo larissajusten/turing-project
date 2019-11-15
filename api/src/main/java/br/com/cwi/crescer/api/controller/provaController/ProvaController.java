@@ -2,8 +2,6 @@ package br.com.cwi.crescer.api.controller.provaController;
 
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
-import br.com.cwi.crescer.api.domain.questaoProva.ProvaQuestaoDissertativa;
-import br.com.cwi.crescer.api.domain.questaoProva.ProvaQuestaoTecnica;
 import br.com.cwi.crescer.api.services.provaService.CriarProvaService;
 import br.com.cwi.crescer.api.services.provaService.IncluirQuestoesDissertativasService;
 import br.com.cwi.crescer.api.services.provaService.IncluirQuestoesTecnicasService;
