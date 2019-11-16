@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.domain.resposta;
 
+import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
@@ -24,9 +25,10 @@ public class RespostasDissertativaProva {
 
     private String resposta;
 
-    @Column(name = "CORRETA")
-    @Type(type = "yes_no")
-    private boolean correta;
+    private String comentario;
+
+    @Column(precision = 2, scale = 10, name = "nota", columnDefinition = "NUMBER (2, 10)")
+    private double nota;
 
     @ManyToOne
     @JoinColumn(name = "ID_QUESTAO", referencedColumnName = "id")
