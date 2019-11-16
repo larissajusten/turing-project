@@ -2,13 +2,16 @@ package br.com.cwi.crescer.api.controller.responses;
 
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
-import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
-public class QuestaoMultiplaEscolhaResponse {
+@NoArgsConstructor
+@AllArgsConstructor
+public class QuestaoTecnicaResponse {
 
     private Long id;
 
@@ -19,16 +22,6 @@ public class QuestaoMultiplaEscolhaResponse {
     private Especificidade especificidade;
 
     private NivelDeDificuldade nivelDeDificuldade;
-
-    private AlternativaMultiplaEscolhaResponse alternativaA;
-
-    private AlternativaMultiplaEscolhaResponse alternativaB;
-
-    private AlternativaMultiplaEscolhaResponse alternativaC;
-
-    private AlternativaMultiplaEscolhaResponse alternativaD;
-
-    private AlternativaMultiplaEscolhaResponse alternativaE;
 
     private Long idUsuario;
 }

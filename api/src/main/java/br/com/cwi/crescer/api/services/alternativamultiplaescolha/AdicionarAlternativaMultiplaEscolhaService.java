@@ -1,6 +1,6 @@
 package br.com.cwi.crescer.api.services.alternativamultiplaescolha;
 
-import br.com.cwi.crescer.api.controller.requests.questoes.AlternativaQuestaoMultiplaEscolhaRequest;
+import br.com.cwi.crescer.api.controller.requests.questoes.AlternativaMultiplaEscolhaRequest;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.mapper.AlternativaMultiplaEscolhaMapper;
@@ -17,7 +17,7 @@ public class AdicionarAlternativaMultiplaEscolhaService {
     @Autowired
     private AlternativaMultiplaEscolhaMapper mapper;
 
-    public void adicionar(AlternativaQuestaoMultiplaEscolhaRequest alternativarRequest, QuestaoMultiplaEscolha questao) {
+    public void adicionar(AlternativaMultiplaEscolhaRequest alternativarRequest, QuestaoMultiplaEscolha questao) {
 
         AlternativaMultiplaEscolha alternativa = mapper.transformar(alternativarRequest, questao);
 

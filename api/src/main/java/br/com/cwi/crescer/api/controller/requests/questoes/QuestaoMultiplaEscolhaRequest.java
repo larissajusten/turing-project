@@ -24,18 +24,18 @@ public class QuestaoMultiplaEscolhaRequest {
     private Especificidade especificidade;
 
     @NotNull
-    private AlternativaQuestaoMultiplaEscolhaRequest alternativaA;
+    private AlternativaMultiplaEscolhaRequest alternativaA;
 
     @NotNull
-    private AlternativaQuestaoMultiplaEscolhaRequest alternativaB;
+    private AlternativaMultiplaEscolhaRequest alternativaB;
 
     @NotNull
-    private AlternativaQuestaoMultiplaEscolhaRequest alternativaC;
+    private AlternativaMultiplaEscolhaRequest alternativaC;
 
     @NotNull
-    private AlternativaQuestaoMultiplaEscolhaRequest alternativaD;
+    private AlternativaMultiplaEscolhaRequest alternativaD;
 
     @NotNull
-    private AlternativaQuestaoMultiplaEscolhaRequest alternativaE;
+    private AlternativaMultiplaEscolhaRequest alternativaE;
 
 }

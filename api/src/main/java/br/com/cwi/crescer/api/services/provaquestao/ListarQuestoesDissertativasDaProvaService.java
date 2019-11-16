@@ -11,7 +11,7 @@ import java.util.List;
 public class ListarQuestoesDissertativasDaProvaService {
 
     @Autowired
-    ProvaQuestaoDissertativaRepository repository;
+    private ProvaQuestaoDissertativaRepository repository;
 
     public List<ProvaQuestaoDissertativa> listar(Long idProva){
         return repository.findAllByProvaIdEquals(idProva);

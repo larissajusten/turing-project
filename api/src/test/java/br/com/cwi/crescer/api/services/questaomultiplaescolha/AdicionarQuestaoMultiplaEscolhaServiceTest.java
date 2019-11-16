@@ -1,6 +1,6 @@
 package br.com.cwi.crescer.api.services.questaomultiplaescolha;
 
-import br.com.cwi.crescer.api.controller.requests.questoes.AlternativaQuestaoMultiplaEscolhaRequest;
+import br.com.cwi.crescer.api.controller.requests.questoes.AlternativaMultiplaEscolhaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoMultiplaEscolhaRequest;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
@@ -40,11 +40,11 @@ public class AdicionarQuestaoMultiplaEscolhaServiceTest {
         QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest =
                 new QuestaoMultiplaEscolhaRequest("Teste!", NivelDeDificuldade.FACIL,
                         Especificidade.JAVASCRIPT
-                        , new AlternativaQuestaoMultiplaEscolhaRequest("Y", true)
-                        , new AlternativaQuestaoMultiplaEscolhaRequest("Y", true)
-                        , new AlternativaQuestaoMultiplaEscolhaRequest("Y", true)
-                        , new AlternativaQuestaoMultiplaEscolhaRequest("Y", true)
-                        , new AlternativaQuestaoMultiplaEscolhaRequest("Y", true));
+                        , new AlternativaMultiplaEscolhaRequest("Y", true)
+                        , new AlternativaMultiplaEscolhaRequest("Y", true)
+                        , new AlternativaMultiplaEscolhaRequest("Y", true)
+                        , new AlternativaMultiplaEscolhaRequest("Y", true)
+                        , new AlternativaMultiplaEscolhaRequest("Y", true));
 
         Mockito.when(repository.save(questaoMultiplaEscolha)).thenReturn(questaoMultiplaEscolha);
         Mockito.when(mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest)).thenReturn(questaoMultiplaEscolha);
