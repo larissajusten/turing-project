@@ -18,8 +18,8 @@ public class CriarProvaService {
 
     public Long criar(ProvaRequest request) {
        Prova prova = mapper.transformar(request);
-       repository.save(prova);
+       Prova provaSalva = repository.save(prova);
 
-       return prova.getId();
+       return provaSalva.getId();
     }
 }
