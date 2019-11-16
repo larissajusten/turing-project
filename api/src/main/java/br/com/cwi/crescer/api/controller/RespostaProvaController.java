@@ -1,7 +1,7 @@
 package br.com.cwi.crescer.api.controller;
 
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
-import br.com.cwi.crescer.api.domain.resposta.RespostasMutiplaEscolhaProva;
+import br.com.cwi.crescer.api.domain.resposta.RespostasMultiplaEscolhaProva;
 import br.com.cwi.crescer.api.domain.resposta.RespostasTecnicaProva;
 import br.com.cwi.crescer.api.services.respostaprova.ResponderQuestaoDissertativaService;
 import br.com.cwi.crescer.api.services.respostaprova.ResponderQuestaoMultiplaEscolhaService;
@@ -38,10 +38,11 @@ public class RespostaProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/{id-questao}/responder-multipla-escolha")
-    public RespostasMutiplaEscolhaProva responderQuestaoMultiplaEscolha(@PathVariable("id-prova") Long idProva, @PathVariable("id-questao") Long idQuestao,
-                                                                        @RequestBody String resposta){
-        return responderQuestaoMultiplaEscolhaService.responder(idProva, idQuestao, resposta);
+    @PutMapping("/{id-prova}/{id-questao}/{id-alternativa}/responder-multipla-escolha")
+    public RespostasMultiplaEscolhaProva responderQuestaoMultiplaEscolha(@PathVariable("id-prova") Long idProva,
+                                                                         @PathVariable("id-questao") Long idQuestao,
+                                                                         @PathVariable("id-alternativa") Long idAlternativa){
+        return responderQuestaoMultiplaEscolhaService.responder(idProva, idQuestao, idAlternativa);
     }
 
 }
