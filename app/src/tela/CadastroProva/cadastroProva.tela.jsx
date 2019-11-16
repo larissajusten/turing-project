@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input, BotaoPrincipal, AdicionarQuestao } from '../../component/index'
-import { adicionarProva, retornarEspecificidades, retornarNiveisDeDificuldade } from '../../services/index'
+import { adicionarProva } from '../../services/index'
 import './cadastroProva.style.css'
 
 export class CadastrarProvaScreen extends Component {
@@ -8,23 +8,12 @@ export class CadastrarProvaScreen extends Component {
     constructor(props){
         super(props)
         this.state = {
-          tipos: [ 'Dissertativa', 'Múltipla Escolha', 'Técnica'],
-          especificidades: [],
-          niveis: [],
           email: '',
-          duracao: '',
-          tempoParaIniciarProva:'',
-          idProva: '',
-          deveRenderizarEscolhaDeQuestoes: false
+          duracao: 0,
+          tempoParaIniciarProva: 0,
+          idProva: ''
         }
         this.quantidadeParaAdicionar = 1
-    }
-
-    async componentDidMount() {
-		this.setState({
-			especificidades: await retornarEspecificidades(),
-			niveis: await retornarNiveisDeDificuldade()
-		})
     }
     
     handleChange = (event) => {
@@ -46,21 +35,8 @@ export class CadastrarProvaScreen extends Component {
         const idProvaSalva = await adicionarProva(prova)
 
         this.setState({
-            deveRenderizarEscolhaDeQuestoes: true,
             idProva: idProvaSalva
         })
-    }
-
-    renderComponentEscolherQuestao() {
-        return(
-            <>
-            <AdicionarQuestao
-            idProva = {this.state.idProva}
-            tipos = {this.state.tipos}
-            especificidades = {this.state.especificidades}
-            niveis = {this.state.niveis}/>
-            </>
-        )
     }
 
     renderEscolhaDeQuestoes() {
@@ -70,7 +46,8 @@ export class CadastrarProvaScreen extends Component {
                 <span className="titulo-crie">Adicione questões a sua prova</span>
             </div>
 
-            {this.renderComponentEscolherQuestao()}
+            <AdicionarQuestao
+                idProva = {this.state.idProva}/>
             </>
         )
     }
@@ -95,7 +72,7 @@ export class CadastrarProvaScreen extends Component {
                 name="duracao"
                 value={this.state.duracao}
                 onChange={this.handleChange}
-                type="time"
+                type="number"
                 label="Tempo de duração da prova"
                 placeholder=""/>
 
@@ -103,7 +80,7 @@ export class CadastrarProvaScreen extends Component {
                 name="tempoParaIniciarProva"
                 value={this.state.tempoParaIniciarProva}
                 onChange={this.handleChange}
-                type="time"
+                type="number"
                 label="Tempo para iniciar a prova"
                 placeholder=""/>
         </div>
@@ -118,13 +95,8 @@ export class CadastrarProvaScreen extends Component {
     render() {
         return (
             <div className="tela-cadastro">
-                {
-                    this.state.deveRenderizarEscolhaDeQuestoes
-                    ?
-                    this.renderEscolhaDeQuestoes()
-                    :
-                    this.renderInputsProva()
-                }
+                {this.renderInputsProva()}
+                {this.renderEscolhaDeQuestoes()}
             </div>
         )
     }

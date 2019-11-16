@@ -1,20 +1,34 @@
 import React, { Component } from 'react';
 import { Input, BotaoAdicionar, EscolherQuestao } from '../index'
-import { incluirDissertativas, incluirMultiplaEscolha, incluirTecnicas } from '../../services/index'
+import { incluirDissertativas, incluirMultiplaEscolha, incluirTecnicas, retornarEspecificidades, retornarNiveisDeDificuldade } from '../../services/index'
 
 export class AdicionarQuestao extends Component {
 
   constructor(props){
     super(props)
     this.state = {
-      tipos: props.tipos,
-      especificidades: props.especificidades,
-      niveis: props.niveis,
+      tipos: [ 'Dissertativa', 'Múltipla Escolha', 'Técnica' ],
+      especificidades: [],
+      niveis: [],
       tipo: '',
       especificidade: '',
       nivel: '',
       quantidade: ''
     }
+  }
+
+  async componentDidMount() {
+		this.setState({
+			especificidades: await retornarEspecificidades(),
+			niveis: await retornarNiveisDeDificuldade()
+		})
+  }
+
+  handleChange = (event) => {
+    const { name, value } = event.target
+    this.setState({
+        [name]: value
+    })
   }
 
   handleClickEnviarQuestao = async(event) => {
@@ -27,7 +41,12 @@ export class AdicionarQuestao extends Component {
     }
 
     if(this.state.tipo === this.state.tipos[0]){
-      await incluirDissertativas(this.props.idProva, questao)
+      try{
+        await incluirDissertativas(this.props.idProva, questao)
+      }
+      catch (error){
+        console.log(error.response)
+      }
     }else if(this.state.tipo === this.state.tipos[1]){
       await incluirMultiplaEscolha(this.props.idProva, questao)
     }else if(this.state.tipo === this.state.tipos[2]){

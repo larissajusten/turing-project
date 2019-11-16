@@ -30,7 +30,7 @@ public class ProvaController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void criarProva(ProvaRequest request) {
+    public void criarProva(@RequestBody ProvaRequest request) {
         criarProvaService.criar(request);
     }
 
