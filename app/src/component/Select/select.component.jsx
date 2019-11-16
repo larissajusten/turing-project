@@ -5,7 +5,7 @@ export class Select extends PureComponent {
 	render() {
 		return (
 			<select className= {`select ${this.props.questoesWidth}`}
-							onChange={this.props.selectCadastro ? () => this.props.onChange(this.props.id) : this.props.onChange}
+							onChange={this.props.selectCadastro ? (event) => this.props.onChange(event, this.props.id) : this.props.onChange}
 							value={this.props.text}
 							name={this.props.name}
 							required>

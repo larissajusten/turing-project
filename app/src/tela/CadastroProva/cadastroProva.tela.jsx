@@ -46,7 +46,7 @@ export class CadastrarProvaScreen extends Component {
     handleChangeArray = (event, id) => {
         const { name, value } = event.target
 
-        const array = this.state.arrayStates.slice();
+        const array = [...this.state.arrayStates]
         array[id][name] = value;
 
         this.setState({
@@ -102,24 +102,26 @@ export class CadastrarProvaScreen extends Component {
             "nivelDeDificuldade": this.state.arrayStates[id].nivel,
             "quantidadeDeQuestoes": this.state.arrayStates[id].quantidade
         }
+
+        console.log(questao)
     
-        if(this.props.tipo === this.state.tipos[0]){
+        if(this.state.arrayStates[id].tipo === this.state.tipos[0]){
           try{
-            await incluirDissertativas(this.props.idProva, questao)
+            await incluirDissertativas(this.state.idProva, questao)
           }
           catch (error){
             alert(error.response.data.message)
           }
-        }else if(this.props.tipo === this.state.tipos[1]){
+        }else if(this.state.arrayStates[id].tipo === this.state.tipos[1]){
           try{
-            await incluirMultiplaEscolha(this.props.idProva, questao)
+            await incluirMultiplaEscolha(this.state.idProva, questao)
           }
           catch (error){
             alert(error.response.data.message)
           }
-        }else if(this.props.tipo === this.state.tipos[2]){
+        }else if(this.state.arrayStates[id].tipo === this.state.tipos[2]){
           try{
-            await await incluirTecnicas(this.props.idProva, questao)
+            await await incluirTecnicas(this.state.idProva, questao)
           }
           catch (error){
             alert(error.response.data.message)
@@ -156,7 +158,7 @@ export class CadastrarProvaScreen extends Component {
                 }
 
                 <div className="container-botao">
-                    <BotaoAdicionar nome="+" onClick={this.handleClickAdicionarQuestao} />
+                    <BotaoAdicionar nome="+" adicionar={true} onClick={this.handleClickAdicionarQuestao} />
                     <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarProva} />
                     <BotaoPrincipal nome="Voltar" onClick={this.handleClickVoltarProva} />
                 </div>

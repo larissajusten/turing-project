@@ -12,7 +12,7 @@ export class Input extends Component {
 					placeholder={this.props.placeholder}
 					name={this.props.name}
 					value={this.props.value}
-					onChange={this.props.cadastro ? () => this.props.onChange(this.props.id) : this.props.onChange}
+					onChange={this.props.cadastro ? (event) => this.props.onChange(event, this.props.id) : this.props.onChange}
 					required
 				/>
 			</div>
