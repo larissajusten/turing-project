@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Input, BotaoAdicionar, EscolherQuestao } from '../index'
-import { incluirDissertativas, incluirMultiplaEscolha, incluirTecnicas, retornarEspecificidades, retornarNiveisDeDificuldade } from '../../services/index'
+import { incluirDissertativas, 
+        incluirMultiplaEscolha, 
+        incluirTecnicas, 
+        retornarEspecificidades, 
+        retornarNiveisDeDificuldade } from '../../services/index'
 
 export class AdicionarQuestao extends Component {
 
@@ -45,12 +49,22 @@ export class AdicionarQuestao extends Component {
         await incluirDissertativas(this.props.idProva, questao)
       }
       catch (error){
-        console.log(error.response)
+        alert(error.response.data.message)
       }
     }else if(this.state.tipo === this.state.tipos[1]){
-      await incluirMultiplaEscolha(this.props.idProva, questao)
+      try{
+        await incluirMultiplaEscolha(this.props.idProva, questao)
+      }
+      catch (error){
+        alert(error.response.data.message)
+      }
     }else if(this.state.tipo === this.state.tipos[2]){
-      await incluirTecnicas(this.props.idProva, questao)
+      try{
+        await await incluirTecnicas(this.props.idProva, questao)
+      }
+      catch (error){
+        alert(error.response.data.message)
+      }
     }
 
     this.setState({
@@ -62,6 +76,7 @@ export class AdicionarQuestao extends Component {
   }
 
   render() {
+    console.log(this.props.idProva)
     return(
       <div className="container-inputs-prova">
       <EscolherQuestao 

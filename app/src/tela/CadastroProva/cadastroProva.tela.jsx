@@ -11,9 +11,9 @@ export class CadastrarProvaScreen extends Component {
           email: '',
           duracao: 0,
           tempoParaIniciarProva: 0,
-          idProva: ''
+          idProva: '',
+          deveRenderizarQuestoes: false
         }
-        this.quantidadeParaAdicionar = 1
     }
     
     handleChange = (event) => {
@@ -35,10 +35,17 @@ export class CadastrarProvaScreen extends Component {
         const idProvaSalva = await adicionarProva(prova)
 
         this.setState({
-            idProva: idProvaSalva
+            idProva: idProvaSalva,
+            deveRenderizarQuestoes: true
         })
     }
 
+    handleClickVoltarProva = (event) => {
+        event.preventDefault()
+        this.setState({
+            deveRenderizarQuestoes: false
+        })
+    }
     renderEscolhaDeQuestoes() {
         return(
             <>
@@ -48,6 +55,9 @@ export class CadastrarProvaScreen extends Component {
 
             <AdicionarQuestao
                 idProva = {this.state.idProva}/>
+            <div className="container-botao">
+                <BotaoPrincipal nome="Voltar" onClick={this.handleClickVoltarProva}/>
+            </div>
             </>
         )
     }
@@ -86,7 +96,7 @@ export class CadastrarProvaScreen extends Component {
         </div>
 
         <div className="container-botao">
-            <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarProva}/>
+            <BotaoPrincipal nome="Adicionar questões" onClick={this.handleClickEnviarProva}/>
         </div>
         </>
         )
@@ -95,8 +105,13 @@ export class CadastrarProvaScreen extends Component {
     render() {
         return (
             <div className="tela-cadastro">
-                {this.renderInputsProva()}
-                {this.renderEscolhaDeQuestoes()}
+                {
+                    this.state.deveRenderizarQuestoes
+                    ?
+                    this.renderEscolhaDeQuestoes()
+                    :
+                    this.renderInputsProva()
+                }
             </div>
         )
     }
