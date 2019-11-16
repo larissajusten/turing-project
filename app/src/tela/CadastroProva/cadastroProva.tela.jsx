@@ -213,7 +213,7 @@ export class CadastrarProvaScreen extends Component {
         }
 
         return (
-            <div className="tela-cadastro">
+            <div className="container-tela">
                 {
                     this.state.deveRenderizarQuestoes
                         ?

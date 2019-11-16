@@ -120,7 +120,7 @@ export class BuscarQuestaoScreen extends Component {
   render() {
     return (
       <>
-      <div className="tela-cadastro">
+      <div className="container-tela">
         {this.renderBuscar()}
       </div>
       </>
