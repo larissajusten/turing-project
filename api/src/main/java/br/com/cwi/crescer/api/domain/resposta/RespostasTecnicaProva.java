@@ -24,9 +24,10 @@ public class RespostasTecnicaProva {
 
     private String resposta;
 
-    @Column(name = "CORRETA")
-    @Type(type = "yes_no")
-    private boolean correta;
+    private String comentario;
+
+    @Column(precision = 2, scale = 10, name = "nota", columnDefinition = "NUMBER (2, 10)")
+    private double nota;
 
     @ManyToOne
     @JoinColumn(name = "ID_QUESTAO", referencedColumnName = "id")

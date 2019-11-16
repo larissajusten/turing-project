@@ -22,6 +22,7 @@ public class QuestaoDissertativaController {
     @Autowired
     private ListarQuestoesDissertativasFiltradasService listarQuestoesDissertativasFiltradas;
 
+
     @Autowired
     private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
 
@@ -42,4 +43,5 @@ public class QuestaoDissertativaController {
     public List<QuestaoDissertativa> listarTodasQuestoesDissertativas(@RequestBody BuscaQuestoesRequest request) {
         return buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
     }
+
 }
