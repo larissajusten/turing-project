@@ -25,8 +25,8 @@ public class ListarQuestoesTecnicasFiltradasService {
     public List<QuestaoTecnica> listar(BuscaQuestoesRequest request){
         List<QuestaoTecnica> lista = new ArrayList<>();
 
-        List<QuestaoTecnica> listaQueAtendeRequisitos = buscarQuestoesTecnicasFiltradasService.buscar(
-                request.getEspecificidade(), request.getNivelDeDificuldade());
+        List<QuestaoTecnica> listaQueAtendeRequisitos = buscarQuestoesTecnicasFiltradasService
+                .buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
 
         if (listaQueAtendeRequisitos.size() == TAMANHO_PARA_LANCAR_EXCEPTION_LISTA) {
             throw new QuestaoNaoEncontradaException("Nenhuma questão com essa especificidade e nivel de dificuldade foi encontrada.");

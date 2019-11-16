@@ -31,7 +31,7 @@ public class ProvaController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Long criarProvaERetornarID(ProvaRequest request) {
+    public Long criarProvaERetornarID(@RequestBody ProvaRequest request) {
         return criarProvaService.criar(request);
     }
 

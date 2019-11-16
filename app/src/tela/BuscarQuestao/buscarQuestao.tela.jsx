@@ -7,7 +7,7 @@ import { retornarEspecificidades,
           retornarQuestoesDissertativasFiltradas,
           retornarQuestoesMultiplasEscolhasFiltradas } from '../../services/index'
 
-export class BuscarQuestao extends Component {
+export class BuscarQuestaoScreen extends Component {
 
   constructor(props){
     super(props)
