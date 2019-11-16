@@ -7,7 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Getter
 @AllArgsConstructor
-public class AlternativaQuestaoMultiplaEscolhaRequest {
+public class AlternativaMultiplaEscolhaRequest {
 
     @NotEmpty
     private String resposta;

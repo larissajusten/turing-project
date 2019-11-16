@@ -1,9 +1,11 @@
 package br.com.cwi.crescer.api.services.questaomultiplaescolha;
 
+import br.com.cwi.crescer.api.controller.responses.AlternativaMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
+import br.com.cwi.crescer.api.mapper.AlternativaMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaQuestaoMultiplaEscolhaService;
@@ -35,6 +37,9 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
     @Mock
     QuestaoMultiplaEscolhaRepository repository;
 
+    @Mock
+    AlternativaMultiplaEscolhaMapper mapperAlternativa;
+
     @Test
     public void deveChamarRepositoryQuandoBuscarQuestoesMultiplaEscolhaForChamada() {
 
@@ -46,15 +51,17 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
         questoesMultiplaEscolha.add(questao);
 
         AlternativaMultiplaEscolha alternativa = new AlternativaMultiplaEscolha();
-
+        AlternativaMultiplaEscolhaResponse alternativaResponse = new AlternativaMultiplaEscolhaResponse();
         Page<QuestaoMultiplaEscolha> questoes = new PageImpl<QuestaoMultiplaEscolha>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
 
         List<AlternativaMultiplaEscolha> alternativas = new ArrayList<>();
+        List<AlternativaMultiplaEscolhaResponse> alternativasResponse = new ArrayList<>();
+
         alternativas.add(alternativa);
 
         Mockito.when(repository.findAll(page)).thenReturn(questoes);
         Mockito.when(buscarAlternativaQuestaoMultiplaEscolhaService.buscar(questao.getId())).thenReturn(alternativas);
-        Mockito.when(mapper.transformarParaResponse(questao, alternativas)).thenReturn(questaoResponse);
+        Mockito.when(mapperAlternativa.transformarEmResponse(alternativa)).thenReturn(alternativaResponse);
 
         buscarQuestoesMultiplaEscolhaService.buscarTodasQuestoes(page);
 
@@ -73,19 +80,19 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
         questoesMultiplaEscolha.add(questao);
 
         AlternativaMultiplaEscolha alternativa = new AlternativaMultiplaEscolha();
+        AlternativaMultiplaEscolhaResponse alternativaResponse = new AlternativaMultiplaEscolhaResponse();
 
         Page<QuestaoMultiplaEscolha> questoes = new PageImpl<QuestaoMultiplaEscolha>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
 
         List<AlternativaMultiplaEscolha> alternativas = new ArrayList<>();
-        alternativas.add(alternativa);
+        List<AlternativaMultiplaEscolhaResponse> alternativasResponse = new ArrayList<>();
 
         Mockito.when(repository.findAll(page)).thenReturn(questoes);
         Mockito.when(buscarAlternativaQuestaoMultiplaEscolhaService.buscar(questao.getId())).thenReturn(alternativas);
-        Mockito.when(mapper.transformarParaResponse(questao, alternativas)).thenReturn(questaoResponse);
 
         buscarQuestoesMultiplaEscolhaService.buscarTodasQuestoes(page);
 
-        Mockito.verify(mapper).transformarParaResponse(questao, alternativas);
+        Mockito.verify(mapper).transformarParaResponse(questao, alternativasResponse);
 
     }
 
@@ -100,16 +107,18 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
         questoesMultiplaEscolha.add(questao);
 
         AlternativaMultiplaEscolha alternativa = new AlternativaMultiplaEscolha();
+        AlternativaMultiplaEscolhaResponse alternativaResponse = new AlternativaMultiplaEscolhaResponse();
 
         Page<QuestaoMultiplaEscolha> questoes = new PageImpl<QuestaoMultiplaEscolha>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
 
         List<AlternativaMultiplaEscolha> alternativas = new ArrayList<>();
+        List<AlternativaMultiplaEscolhaResponse> alternativasResponse = new ArrayList<>();
+
         alternativas.add(alternativa);
 
         Mockito.when(repository.findAll(page)).thenReturn(questoes);
+        Mockito.when(mapperAlternativa.transformarEmResponse(alternativa)).thenReturn(alternativaResponse);
         Mockito.when(buscarAlternativaQuestaoMultiplaEscolhaService.buscar(questao.getId())).thenReturn(alternativas);
-        Mockito.when(mapper.transformarParaResponse(questao, alternativas)).thenReturn(questaoResponse);
-
         buscarQuestoesMultiplaEscolhaService.buscarTodasQuestoes(page);
 
         Mockito.verify(buscarAlternativaQuestaoMultiplaEscolhaService).buscar(questao.getId());

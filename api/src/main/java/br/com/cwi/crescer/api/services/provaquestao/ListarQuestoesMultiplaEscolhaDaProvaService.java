@@ -11,7 +11,7 @@ import java.util.List;
 public class ListarQuestoesMultiplaEscolhaDaProvaService {
 
     @Autowired
-    ProvaQuestaoMultiplaEscolhaRepository repository;
+    private ProvaQuestaoMultiplaEscolhaRepository repository;
 
     public List<ProvaQuestaoMultiplaEscolha> listar(Long idProva){
         return repository.findAllByProvaIdEquals(idProva);

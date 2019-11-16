@@ -1,6 +1,6 @@
 package br.com.cwi.crescer.api.services.alternativamultiplaescolha;
 
-import br.com.cwi.crescer.api.controller.requests.questoes.AlternativaQuestaoMultiplaEscolhaRequest;
+import br.com.cwi.crescer.api.controller.requests.questoes.AlternativaMultiplaEscolhaRequest;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.mapper.AlternativaMultiplaEscolhaMapper;
@@ -27,8 +27,8 @@ public class AdicionarAlternativaMultiplaEscolhaServiceTest {
     @Test
     public void deveChamarOMetodoSaveDoAlternativaMultiplaEscolhaRepositoryQuandoAdicionarAlternativaMultiplaEscolhaForChamado() {
 
-        AlternativaQuestaoMultiplaEscolhaRequest alternativaRequest =
-                new AlternativaQuestaoMultiplaEscolhaRequest("teste", true);
+        AlternativaMultiplaEscolhaRequest alternativaRequest =
+                new AlternativaMultiplaEscolhaRequest("teste", true);
 
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
 

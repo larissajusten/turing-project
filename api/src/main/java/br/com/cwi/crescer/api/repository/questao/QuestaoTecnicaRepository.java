@@ -15,5 +15,9 @@ public interface QuestaoTecnicaRepository extends JpaRepository<QuestaoTecnica, 
             " AND q.nivelDeDificuldade = :nivelDeDificuldade")
     List<QuestaoTecnica> acharPorNivelEEspecificidade(@Param("especificidade")Especificidade especificidade,
                                                       @Param("nivelDeDificuldade")NivelDeDificuldade nivelDeDificuldade);
+
+
+
+
 }
 

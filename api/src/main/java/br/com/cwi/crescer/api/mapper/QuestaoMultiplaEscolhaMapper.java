@@ -1,6 +1,7 @@
 package br.com.cwi.crescer.api.mapper;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoMultiplaEscolhaRequest;
+import br.com.cwi.crescer.api.controller.responses.AlternativaMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
@@ -20,7 +21,7 @@ public class QuestaoMultiplaEscolhaMapper {
         return mapper.map(questaoMultiplaEscolhaRequest, QuestaoMultiplaEscolha.class);
     }
 
-    public QuestaoMultiplaEscolhaResponse transformarParaResponse(QuestaoMultiplaEscolha questao, List<AlternativaMultiplaEscolha> alternativas) {
+    public QuestaoMultiplaEscolhaResponse transformarParaResponse(QuestaoMultiplaEscolha questao, List<AlternativaMultiplaEscolhaResponse> alternativas) {
 
         QuestaoMultiplaEscolhaResponse questaoResponse = mapper.map(questao, QuestaoMultiplaEscolhaResponse.class);
 
