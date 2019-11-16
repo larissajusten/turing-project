@@ -1,9 +1,7 @@
-package br.com.cwi.crescer.api.services.provaservice;
+package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.controller.responses.AlternativaMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
-import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
-import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.mapper.AlternativaMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoMultiplaEscolhaRepository;

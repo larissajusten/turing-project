@@ -1,9 +1,7 @@
-package br.com.cwi.crescer.api.services.provaservice;
+package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaResponse;
-import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoTecnicaRepository;
-import br.com.cwi.crescer.api.services.questaotecnica.BuscarQuestaoTecnicaPorIdService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
