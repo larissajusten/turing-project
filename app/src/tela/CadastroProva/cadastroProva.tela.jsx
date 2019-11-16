@@ -121,7 +121,7 @@ export class CadastrarProvaScreen extends Component {
           }
         }else if(this.state.arrayStates[id].tipo === this.state.tipos[2]){
           try{
-            await await incluirTecnicas(this.state.idProva, questao)
+            await incluirTecnicas(this.state.idProva, questao)
           }
           catch (error){
             alert(error.response.data.message)
