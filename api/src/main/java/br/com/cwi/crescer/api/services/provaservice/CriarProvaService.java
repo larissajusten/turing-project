@@ -16,9 +16,10 @@ public class CriarProvaService {
     @Autowired
     private ProvaRepository repository;
 
-    public Prova criar(ProvaRequest request) {
+    public Long criar(ProvaRequest request) {
        Prova prova = mapper.transformar(request);
+       repository.save(prova);
 
-       return repository.save(prova);
+       return prova.getId();
     }
 }
