@@ -17,3 +17,6 @@ export { retornarQuestoesDissertativasFiltradas } from './questoes/questao-disse
 
 /* Prova */
 export { adicionarProva } from './prova/prova.service'
+export { incluirDissertativas } from './prova/prova.service'
+export { incluirTecnicas } from './prova/prova.service'
+export { incluirMultiplaEscolha } from './prova/prova.service'
