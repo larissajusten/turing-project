@@ -13,11 +13,7 @@ export class AdicionarQuestao extends Component {
     this.state = {
       tipos: [ 'Dissertativa', 'Múltipla Escolha', 'Técnica' ],
       especificidades: [],
-      niveis: [],
-      tipo: '',
-      especificidade: '',
-      nivel: '',
-      quantidade: ''
+      niveis: []
     }
   }
 
@@ -28,37 +24,30 @@ export class AdicionarQuestao extends Component {
 		})
   }
 
-  handleChange = (event) => {
-    const { name, value } = event.target
-    this.setState({
-        [name]: value
-    })
-  }
-
   handleClickEnviarQuestao = async(event) => {
     event.preventDefault()
 
     const questao = {
-        "especificidade": this.state.especificidade,
-        "nivelDeDificuldade": this.state.nivel,
-        "quantidadeDeQuestoes": this.state.quantidade
+        "especificidade": this.props.especificidade,
+        "nivelDeDificuldade": this.props.nivel,
+        "quantidadeDeQuestoes": this.props.quantidade
     }
 
-    if(this.state.tipo === this.state.tipos[0]){
+    if(this.props.tipo === this.state.tipos[0]){
       try{
         await incluirDissertativas(this.props.idProva, questao)
       }
       catch (error){
         alert(error.response.data.message)
       }
-    }else if(this.state.tipo === this.state.tipos[1]){
+    }else if(this.props.tipo === this.state.tipos[1]){
       try{
         await incluirMultiplaEscolha(this.props.idProva, questao)
       }
       catch (error){
         alert(error.response.data.message)
       }
-    }else if(this.state.tipo === this.state.tipos[2]){
+    }else if(this.props.tipo === this.state.tipos[2]){
       try{
         await await incluirTecnicas(this.props.idProva, questao)
       }
@@ -66,13 +55,6 @@ export class AdicionarQuestao extends Component {
         alert(error.response.data.message)
       }
     }
-
-    this.setState({
-      tipo: '',
-      especificidade: '',
-      nivel: '',
-      quantidade: ''
-    })
   }
 
   render() {
@@ -80,24 +62,27 @@ export class AdicionarQuestao extends Component {
     return(
       <div className="container-inputs-prova">
       <EscolherQuestao 
-          tipo = {this.state.tipo}
-          especificidade = {this.state.especificidade}
-          nivel = {this.state.nivel}
+          tipo = {this.props.tipo}
+          especificidade = {this.props.especificidade}
+          nivel = {this.props.nivel}
           tipos = {this.state.tipos}
           especificidades = {this.state.especificidades}
           niveis = {this.state.niveis}
-          handleChange = {this.handleChange}/>
+          handleChange = {this.props.handleChange}/>
           
       <Input
           name="quantidade"
-          value={this.state.quantidade}
-          onChange={this.handleChange}
+          value={this.props.quantidade}
+          onChange={this.props.handleChange}
           className="input-quantidade"
           type="number"
           label="Quantidade de questões"
           placeholder=""/>
+      
+      <div className="container-botao-adicionar">
+        <BotaoAdicionar Adicionar nome="+" onClick={this.handleClickEnviarQuestao}/>
+      </div>
 
-      <BotaoAdicionar nome="+" onClick={this.handleClickEnviarQuestao}/>
       </div>
     )
   }
