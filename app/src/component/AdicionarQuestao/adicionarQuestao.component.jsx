@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { Input, BotaoAdicionar, EscolherQuestao } from '../index'
-import { incluirDissertativas, 
-        incluirMultiplaEscolha, 
-        incluirTecnicas, 
-        retornarEspecificidades, 
+import { retornarEspecificidades, 
         retornarNiveisDeDificuldade } from '../../services/index'
 
 export class AdicionarQuestao extends Component {
@@ -24,39 +21,6 @@ export class AdicionarQuestao extends Component {
 		})
   }
 
-  handleClickEnviarQuestao = async(event) => {
-    event.preventDefault()
-
-    const questao = {
-        "especificidade": this.props.especificidade,
-        "nivelDeDificuldade": this.props.nivel,
-        "quantidadeDeQuestoes": this.props.quantidade
-    }
-
-    if(this.props.tipo === this.state.tipos[0]){
-      try{
-        await incluirDissertativas(this.props.idProva, questao)
-      }
-      catch (error){
-        alert(error.response.data.message)
-      }
-    }else if(this.props.tipo === this.state.tipos[1]){
-      try{
-        await incluirMultiplaEscolha(this.props.idProva, questao)
-      }
-      catch (error){
-        alert(error.response.data.message)
-      }
-    }else if(this.props.tipo === this.state.tipos[2]){
-      try{
-        await await incluirTecnicas(this.props.idProva, questao)
-      }
-      catch (error){
-        alert(error.response.data.message)
-      }
-    }
-  }
-
   render() {
     console.log(this.props.idProva)
     return(
@@ -72,7 +36,6 @@ export class AdicionarQuestao extends Component {
           
       <Input
           name="quantidade"
-          value={this.props.quantidade}
           onChange={this.props.handleChange}
           className="input-quantidade"
           type="number"
@@ -80,7 +43,7 @@ export class AdicionarQuestao extends Component {
           placeholder=""/>
       
       <div className="container-botao-adicionar">
-        <BotaoAdicionar Adicionar nome="+" onClick={this.handleClickEnviarQuestao}/>
+        <BotaoAdicionar id={this.props.id} nome="+" onClick={this.props.onClick}/>
       </div>
 
       </div>

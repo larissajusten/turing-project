@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { Input, BotaoPrincipal, AdicionarQuestao, BotaoAdicionar } from '../../component/index'
-import { adicionarProva } from '../../services/index'
+import { adicionarProva, 
+        incluirDissertativas, 
+        incluirMultiplaEscolha, 
+        incluirTecnicas, 
+        retornarEspecificidades, 
+        retornarNiveisDeDificuldade } from '../../services/index'
 import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
 
@@ -17,9 +22,20 @@ export class CadastrarProvaScreen extends Component {
             idProva: '',
             deveRenderizarQuestoes: false,
             deveRedirecionarParaVisualizarProva: false,
-            arrayStates: [objeto]
+            arrayStates: [objeto],
+            tipos: [ 'Dissertativa', 'Múltipla Escolha', 'Técnica' ],
+            especificidades: [],
+            niveis: []
         }
     }
+          
+    async componentDidMount() {
+        this.setState({
+            especificidades: await retornarEspecificidades(),
+            niveis: await retornarNiveisDeDificuldade()
+        })
+    }
+        
 
     handleChange = (event) => {
         const { name, value } = event.target
@@ -28,9 +44,8 @@ export class CadastrarProvaScreen extends Component {
         })
     }
 
-    handleClickAdicionarQuestao = (event) => {
-        event.preventDefault()
-        
+    handleClickAdicionarQuestao = (e) => {
+        e.preventDefault()
         this.setState({
             arrayStates: [...this.state.arrayStates, objeto]
         })
@@ -45,7 +60,7 @@ export class CadastrarProvaScreen extends Component {
             "tempoParaInicioProva": this.state.tempoParaIniciarProva
         }
 
-        const idProvaSalva = 1 //await adicionarProva(prova)
+        const idProvaSalva = await adicionarProva(prova)
 
         this.setState({
             idProva: idProvaSalva,
@@ -70,16 +85,50 @@ export class CadastrarProvaScreen extends Component {
         })
     }
 
+    handleClickEnviarQuestao = async(id) => {
+    
+        const questao = {
+            "especificidade": this.state.arrayStates[id].especificidade,
+            "nivelDeDificuldade": this.state.arrayStates[id].nivel,
+            "quantidadeDeQuestoes": this.state.arrayStates[id].quantidade
+        }
+    
+        if(this.props.tipo === this.state.tipos[0]){
+          try{
+            await incluirDissertativas(this.props.idProva, questao)
+          }
+          catch (error){
+            alert(error.response.data.message)
+          }
+        }else if(this.props.tipo === this.state.tipos[1]){
+          try{
+            await incluirMultiplaEscolha(this.props.idProva, questao)
+          }
+          catch (error){
+            alert(error.response.data.message)
+          }
+        }else if(this.props.tipo === this.state.tipos[2]){
+          try{
+            await await incluirTecnicas(this.props.idProva, questao)
+          }
+          catch (error){
+            alert(error.response.data.message)
+          }
+        }
+    }
+
     renderArrayQuestoes() {
         return (
             this.state.arrayStates.map((item, key) => {
                 return <AdicionarQuestao
-                        key ={key}
+                        key={key}
+                        id={key}
                         tipo={item.tipo}
                         especificidade={item.especificidade}
                         nivel={item.nivel}
                         quantidade={item.quantidade}
-                        onChange={this.handleChange}
+                        handleChange={this.handleChange}
+                        onClick={this.handleClickEnviarQuestao}
                         idProva={this.state.idProva} />
             })
         )
@@ -146,6 +195,7 @@ export class CadastrarProvaScreen extends Component {
     }
 
     render() {
+
         if (this.state.deveRedirecionarParaVisualizarProva) {
             return <Redirect to="/visualizar-prova" />
         }

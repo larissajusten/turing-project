@@ -5,7 +5,7 @@ export class BotaoAdicionar extends Component {
 	render() {
 		return (
 			<>
-				<button className="botao-adicionar" onClick={this.props.onClick}>
+				<button className="botao-adicionar" onClick={() => this.props.onClick(this.props.id)}>
 					<span>{this.props.nome}</span></button>
 			</>
 		);
