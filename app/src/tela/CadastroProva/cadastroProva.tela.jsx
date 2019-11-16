@@ -37,13 +37,13 @@ export class CadastrarProvaScreen extends Component {
     handleClickEnviarProva = async (event) => {
         event.preventDefault()
 
-        const questao = {
+        const prova = {
             "email": this.state.email,
-            "duracao": this.state.duracao,
-            "tempoParaIniciarProva": this.state.tempoParaIniciarProva
+            "tempoDeDuracaoDaProva": this.state.duracao,
+            "tempoParaInicioProva": this.state.tempoParaIniciarProva
         }
 
-        const idProvaSalva = await adicionarProva(questao)
+        const idProvaSalva = await adicionarProva(prova)
 
         this.setState({
             deveRenderizarEscolhaDeQuestoes: true,

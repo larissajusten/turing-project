@@ -23,7 +23,7 @@ export class AdicionarQuestao extends Component {
     const questao = {
         "especificidade": this.state.especificidade,
         "nivelDeDificuldade": this.state.nivel,
-        "quantidade": this.state.quantidade
+        "quantidadeDeQuestoes": this.state.quantidade
     }
 
     if(this.state.tipo === this.state.tipos[0]){
