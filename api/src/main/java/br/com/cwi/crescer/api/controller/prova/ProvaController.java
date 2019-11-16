@@ -57,4 +57,5 @@ public class ProvaController {
     public ProvaResponse buscarProva(@PathVariable("id-prova") Long idProva) {
         return buscarProvaComQuestoesService.buscar(idProva);
     }
+
 }
