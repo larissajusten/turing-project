@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, BotaoPrincipal, EscolherQuestao} from '../../component/index'
+import { Input, BotaoPrincipal, AdicionarQuestao } from '../../component/index'
 import { adicionarProva, retornarEspecificidades, retornarNiveisDeDificuldade } from '../../services/index'
 import './cadastroProva.style.css'
 
@@ -14,8 +14,10 @@ export class CadastrarProvaScreen extends Component {
           email: '',
           duracao: '',
           tempoParaIniciarProva:'',
-          deveRenderizarEscolhaQuestoes: false
+          idProva: '',
+          deveRenderizarEscolhaDeQuestoes: false
         }
+        this.quantidadeParaAdicionar = 1
     }
 
     async componentDidMount() {
@@ -23,7 +25,14 @@ export class CadastrarProvaScreen extends Component {
 			especificidades: await retornarEspecificidades(),
 			niveis: await retornarNiveisDeDificuldade()
 		})
-	}
+    }
+    
+    handleChange = (event) => {
+        const { name, value } = event.target
+        this.setState({
+            [name]: value
+        })
+    }
 
     handleClickEnviarProva = async (event) => {
         event.preventDefault()
@@ -34,41 +43,35 @@ export class CadastrarProvaScreen extends Component {
             "tempoParaIniciarProva": this.state.tempoParaIniciarProva
         }
 
-        //await adicionarProva(questao)
+        const idProvaSalva = await adicionarProva(questao)
 
         this.setState({
-            deveRenderizarEscolhaQuestoes: true
+            deveRenderizarEscolhaDeQuestoes: true,
+            idProva: idProvaSalva
         })
     }
 
-    handleChange = (event) => {
-        const { name, value } = event.target
-        this.setState({
-            [name]: value
-        })
-    }
-
-    renderEscolhaQuestoes() {
+    renderComponentEscolherQuestao() {
         return(
-            <div className="container-inputs-prova">
-            <EscolherQuestao 
-                tipo = {this.state.tipo}
-                especificidade = {this.state.especificidade}
-                nivel = {this.state.nivel}
-                tipos = {this.state.tipos}
-                especificidades = {this.state.especificidades}
-                niveis = {this.state.niveis}
-                handleChange = {this.handleChange}/>
-                
-            <Input
-                name="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-                className="input-quantidade"
-                type="text"
-                label="Digite o email do candidato"
-                placeholder=""/>
+            <>
+            <AdicionarQuestao
+            idProva = {this.state.idProva}
+            tipos = {this.state.tipos}
+            especificidades = {this.state.especificidades}
+            niveis = {this.state.niveis}/>
+            </>
+        )
+    }
+
+    renderEscolhaDeQuestoes() {
+        return(
+            <>
+            <div className="container-titulo">
+                <span className="titulo-crie">Adicione questões a sua prova</span>
             </div>
+
+            {this.renderComponentEscolherQuestao()}
+            </>
         )
     }
 
@@ -104,6 +107,10 @@ export class CadastrarProvaScreen extends Component {
                 label="Tempo para iniciar a prova"
                 placeholder=""/>
         </div>
+
+        <div className="container-botao">
+            <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarProva}/>
+        </div>
         </>
         )
     }
@@ -112,16 +119,12 @@ export class CadastrarProvaScreen extends Component {
         return (
             <div className="tela-cadastro">
                 {
-                    this.state.deveRenderizarEscolhaQuestoes
+                    this.state.deveRenderizarEscolhaDeQuestoes
                     ?
-                    this.renderEscolhaQuestoes()
+                    this.renderEscolhaDeQuestoes()
                     :
                     this.renderInputsProva()
                 }
-
-                <div className="container-botao">
-					<BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarProva}/>
-				</div>
             </div>
         )
     }
