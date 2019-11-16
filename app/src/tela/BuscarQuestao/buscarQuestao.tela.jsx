@@ -49,7 +49,7 @@ export class BuscarQuestao extends Component {
     if(this.state.tipo === this.state.tipos[0]){
       listaDeQuestoes  = await retornarQuestoesDissertativasFiltradas(busca)
     }else if(this.state.tipo === this.state.tipos[1]){
-      listaDeQuestoes = retornarQuestoesMultiplasEscolhasFiltradas(busca)
+      listaDeQuestoes = await retornarQuestoesMultiplasEscolhasFiltradas(busca)
     }else if(this.state.tipo === this.state.tipos[2]){
       listaDeQuestoes  = await retornarQuestoesTecnicasFiltradas(busca)
     }
