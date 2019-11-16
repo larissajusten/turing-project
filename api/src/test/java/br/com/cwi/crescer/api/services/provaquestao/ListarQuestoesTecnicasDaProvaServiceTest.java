@@ -24,7 +24,7 @@ public class ListarQuestoesTecnicasDaProvaServiceTest {
 
 
     @Test
-    public void deveChamar() {
+    public void deveChamarProvaQuestaoTecnicaRepositoryQuandoListarQuestoesTecnicasDaProvaServiceForChamado() {
         Prova prova = new Prova();
         List<ProvaQuestaoTecnica> provaQuestaoMultiplaEscolhas = new ArrayList<>();
 

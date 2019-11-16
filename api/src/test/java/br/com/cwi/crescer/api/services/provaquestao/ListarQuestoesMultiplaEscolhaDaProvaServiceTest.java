@@ -23,7 +23,7 @@ public class ListarQuestoesMultiplaEscolhaDaProvaServiceTest {
     ProvaQuestaoMultiplaEscolhaRepository repository;
 
     @Test
-    public void deveChamar() {
+    public void deveChamarProvaQuestaoMultiplaEscolhaRepositoryQuandoListarQuestoesMultiplaEscolhaDaProvaServiceForChamado() {
 
         Prova prova = new Prova();
         List<ProvaQuestaoMultiplaEscolha> provaQuestaoMultiplaEscolhas = new ArrayList<>();

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class BuscarProvaComQuestoesService {
 
-
     @Autowired
     private BuscarProvaPorIdService buscarProvaPorIdService;
 
@@ -24,9 +23,7 @@ public class BuscarProvaComQuestoesService {
     public ProvaResponse buscar(Long idProva) {
 
         Prova prova = buscarProvaPorIdService.buscar(idProva);
-
         ProvaResponse provaResponse = new ProvaResponse();
-
         provaResponse.setId(prova.getId());
         provaResponse.setDataCriacao(prova.getDataCriacao());
         provaResponse.setIdCriador(prova.getCriador().getId());
@@ -36,8 +33,6 @@ public class BuscarProvaComQuestoesService {
         provaResponse.setQuestoesTecnicas(buscarQuestoesTecnicasDeUmaProvaPorIdService.buscar(idProva));
         provaResponse.setQuestoesDissertativas(buscarQuestoesDissertativasDeUmaProvaPorIdService.buscar(idProva));
         provaResponse.setQuestoesDeMultiplaEscolha(buscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService.buscar(idProva));
-
         return provaResponse;
     }
-
 }

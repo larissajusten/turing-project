@@ -2,8 +2,6 @@ package br.com.cwi.crescer.api.services.provaservice;
 
 import br.com.cwi.crescer.api.controller.responses.AlternativaMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
-import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
-import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.mapper.AlternativaMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoMultiplaEscolhaRepository;
@@ -18,7 +16,7 @@ import java.util.List;
 public class BuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService {
 
     @Autowired
-    ProvaQuestaoMultiplaEscolhaRepository repository;
+    private ProvaQuestaoMultiplaEscolhaRepository repository;
 
     @Autowired
     private BuscarAlternativaQuestaoMultiplaEscolhaService buscarAlternativaQuestaoMultiplaEscolhaService;
@@ -36,18 +34,12 @@ public class BuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService {
         repository.findAllByProvaIdEquals(idProva)
                 .forEach(item -> {
                     List<AlternativaMultiplaEscolhaResponse> alternativas = new ArrayList<>();
-
-
                             buscarAlternativaQuestaoMultiplaEscolhaService.buscar(item.getQuestao().getId())
                             .forEach(alternativaMultiplaEscolha -> {
                                 alternativas.add(mapperAlternativaMultiplaEscolha.transformarEmResponse(alternativaMultiplaEscolha));
                             });
-
                     questoes.add(mapperQuestaoMultiplaEscolha.transformarParaResponse(item.getQuestao(),alternativas));
-
                 });
-
         return questoes;
     }
-
 }
