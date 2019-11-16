@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 
@@ -22,6 +23,10 @@ public class RespostasTecnicaProva {
     private Long id;
 
     private String resposta;
+
+    @Column(name = "CORRETA")
+    @Type(type = "yes_no")
+    private boolean correta;
 
     @ManyToOne
     @JoinColumn(name = "ID_QUESTAO", referencedColumnName = "id")
