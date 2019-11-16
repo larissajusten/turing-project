@@ -35,12 +35,22 @@ export class CadastrarProvaScreen extends Component {
             niveis: await retornarNiveisDeDificuldade()
         })
     }
-        
-
+    
     handleChange = (event) => {
         const { name, value } = event.target
         this.setState({
             [name]: value
+        })
+    }
+
+    handleChangeArray = (event, id) => {
+        const { name, value } = event.target
+
+        const array = this.state.arrayStates.slice();
+        array[id][name] = value;
+
+        this.setState({
+            arrayStates: array
         })
     }
 
@@ -127,7 +137,7 @@ export class CadastrarProvaScreen extends Component {
                         especificidade={item.especificidade}
                         nivel={item.nivel}
                         quantidade={item.quantidade}
-                        handleChange={this.handleChange}
+                        handleChange={this.handleChangeArray}
                         onClick={this.handleClickEnviarQuestao}
                         idProva={this.state.idProva} />
             })

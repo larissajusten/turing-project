@@ -32,10 +32,14 @@ export class AdicionarQuestao extends Component {
           tipos = {this.state.tipos}
           especificidades = {this.state.especificidades}
           niveis = {this.state.niveis}
+          id={this.props.id}
+          cadastro = {true}
           handleChange = {this.props.handleChange}/>
           
       <Input
           name="quantidade"
+          id={this.props.id}
+          cadastro = {true}
           onChange={this.props.handleChange}
           className="input-quantidade"
           type="number"
