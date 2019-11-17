@@ -60,6 +60,7 @@ public class ProvaController {
         return buscarProvaComQuestoesService.buscar(idProva);
     }
 
+
     @GetMapping("/{id-prova}/duracao")
     public int retornaDuracaoDaProva(@PathVariable("id-prova") Long idProva) {
         return buscarDuracaoDaProvaService.buscar(idProva);

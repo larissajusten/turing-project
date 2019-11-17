@@ -20,6 +20,9 @@ public class BuscarProvaComQuestoesService {
     @Autowired
     private BuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService buscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService;
 
+    @Autowired
+    private VerificarSeProvaEstaDentroDoPrazoParaIniciarService verificarSeProvaEstaDentroDoPrazoParaIniciarService;
+
     public ProvaResponse buscar(Long idProva) {
 
         Prova prova = buscarProvaPorIdService.buscar(idProva);
@@ -30,6 +33,7 @@ public class BuscarProvaComQuestoesService {
         provaResponse.setStatus(prova.getStatus());
         provaResponse.setTempoDeDuracaoDaProva(prova.getTempoDeDuracaoDaProva());
         provaResponse.setTempoParaInicioProva(prova.getTempoParaInicioProva());
+        provaResponse.setPodeIniciar(verificarSeProvaEstaDentroDoPrazoParaIniciarService.verificar(prova));
         provaResponse.setQuestoesTecnicas(buscarQuestoesTecnicasDeUmaProvaPorIdService.buscar(idProva));
         provaResponse.setQuestoesDissertativas(buscarQuestoesDissertativasDeUmaProvaPorIdService.buscar(idProva));
         provaResponse.setQuestoesDeMultiplaEscolha(buscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService.buscar(idProva));
