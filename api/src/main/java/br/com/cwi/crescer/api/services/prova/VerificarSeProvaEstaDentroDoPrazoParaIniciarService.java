@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.services.prova;
 
+import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,10 @@ public class VerificarSeProvaEstaDentroDoPrazoParaIniciarService {
         LocalDateTime agora = LocalDateTime.now();
         LocalDateTime criacao = prova.getDataCriacao();
         int horasParaIniciar = prova.getTempoParaInicioProva();
+
+        if (Duration.between(agora, criacao).toHours() > horasParaIniciar){
+            prova.setStatus(StatusProva.FORA_DO_PRAZO_PARA_REALIZAR_PROVA);
+        }
 
         return Duration.between(agora, criacao).toHours() <= horasParaIniciar;
     }
