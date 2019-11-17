@@ -58,7 +58,7 @@ public class QuestaoMultiplaEscolhaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/buscar-todas-filtrado")
+    @PutMapping("/todas-questoes-filtradas")
     public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@RequestBody BuscaQuestoesRequest request) {
         return buscarQuestoesMultiplaEscolhaFiltradasService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
     }

@@ -47,7 +47,7 @@ export class AdicionarQuestao extends Component {
           placeholder=""/>
       
       <div className="container-botao-adicionar">
-        <BotaoAdicionar id={this.props.id} nome="+" onClick={this.props.onClick}/>
+        <BotaoAdicionar className="botao-adicionar" id={this.props.id} nome="+" onClick={this.props.onClick}/>
       </div>
 
       </div>
