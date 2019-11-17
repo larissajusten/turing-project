@@ -1,30 +1,39 @@
 import React, { Component } from 'react';
-import { Input, BotaoPrincipal, AdicionarQuestao } from '../../component/index'
-import { adicionarProva, retornarEspecificidades, retornarNiveisDeDificuldade } from '../../services/index'
+import { Input, BotaoPrincipal, AdicionarQuestao, BotaoAdicionar } from '../../component/index'
+import { adicionarProva, 
+        incluirDissertativas, 
+        incluirMultiplaEscolha, 
+        incluirTecnicas, 
+        retornarEspecificidades, 
+        retornarNiveisDeDificuldade } from '../../services/index'
+import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
+
+const objeto = { tipo: '', especificidade: '', nivel: '', quantidade: '' }
 
 export class CadastrarProvaScreen extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
-          tipos: [ 'Dissertativa', 'Múltipla Escolha', 'Técnica'],
-          especificidades: [],
-          niveis: [],
-          email: '',
-          duracao: '',
-          tempoParaIniciarProva:'',
-          idProva: '',
-          deveRenderizarEscolhaDeQuestoes: false
+            email: '',
+            duracao: 0,
+            tempoParaIniciarProva: 0,
+            idProva: '',
+            deveRenderizarQuestoes: false,
+            deveRedirecionarParaVisualizarProva: false,
+            arrayStates: [objeto],
+            tipos: [ 'Dissertativa', 'Múltipla Escolha', 'Técnica' ],
+            especificidades: [],
+            niveis: []
         }
-        this.quantidadeParaAdicionar = 1
     }
-
+          
     async componentDidMount() {
-		this.setState({
-			especificidades: await retornarEspecificidades(),
-			niveis: await retornarNiveisDeDificuldade()
-		})
+        this.setState({
+            especificidades: await retornarEspecificidades(),
+            niveis: await retornarNiveisDeDificuldade()
+        })
     }
     
     handleChange = (event) => {
@@ -34,96 +43,183 @@ export class CadastrarProvaScreen extends Component {
         })
     }
 
-    handleClickEnviarProva = async (event) => {
-        event.preventDefault()
+    handleChangeArray = (event, id) => {
+        const { name, value } = event.target
 
-        const questao = {
-            "email": this.state.email,
-            "duracao": this.state.duracao,
-            "tempoParaIniciarProva": this.state.tempoParaIniciarProva
-        }
-
-        const idProvaSalva = await adicionarProva(questao)
+        const array = [...this.state.arrayStates]
+        array[id][name] = value;
 
         this.setState({
-            deveRenderizarEscolhaDeQuestoes: true,
-            idProva: idProvaSalva
+            arrayStates: array
         })
     }
 
-    renderComponentEscolherQuestao() {
-        return(
-            <>
-            <AdicionarQuestao
-            idProva = {this.state.idProva}
-            tipos = {this.state.tipos}
-            especificidades = {this.state.especificidades}
-            niveis = {this.state.niveis}/>
-            </>
+    handleClickAdicionarQuestao = (e) => {
+        e.preventDefault()
+        this.setState({
+            arrayStates: [...this.state.arrayStates, objeto]
+        })
+    }
+
+    handleClickEnviarBaseProva = async (event) => {
+        event.preventDefault()
+
+        const prova = {
+            "email": this.state.email,
+            "tempoDeDuracaoDaProva": this.state.duracao,
+            "tempoParaInicioProva": this.state.tempoParaIniciarProva
+        }
+
+        const idProvaSalva = await adicionarProva(prova)
+
+        this.setState({
+            idProva: idProvaSalva,
+            deveRenderizarQuestoes: true
+        })
+    }
+
+    handleClickVoltarProva = (event) => {
+        event.preventDefault()
+        this.setState({
+            deveRenderizarQuestoes: false
+        })
+    }
+
+    handleClickEnviarProva = (event) => {
+        event.preventDefault()
+
+        localStorage.setItem('idProva', this.state.idProva)
+
+        this.setState({
+            deveRedirecionarParaVisualizarProva: true
+        })
+    }
+
+    handleClickEnviarQuestao = async(id) => {
+    
+        const questao = {
+            "especificidade": this.state.arrayStates[id].especificidade,
+            "nivelDeDificuldade": this.state.arrayStates[id].nivel,
+            "quantidadeDeQuestoes": this.state.arrayStates[id].quantidade
+        }
+
+        console.log(questao)
+    
+        if(this.state.arrayStates[id].tipo === this.state.tipos[0]){
+          try{
+            await incluirDissertativas(this.state.idProva, questao)
+          }
+          catch (error){
+            alert(error.response.data.message)
+          }
+        }else if(this.state.arrayStates[id].tipo === this.state.tipos[1]){
+          try{
+            await incluirMultiplaEscolha(this.state.idProva, questao)
+          }
+          catch (error){
+            alert(error.response.data.message)
+          }
+        }else if(this.state.arrayStates[id].tipo === this.state.tipos[2]){
+          try{
+            await incluirTecnicas(this.state.idProva, questao)
+          }
+          catch (error){
+            alert(error.response.data.message)
+          }
+        }
+    }
+
+    renderArrayQuestoes() {
+        return (
+            this.state.arrayStates.map((item, key) => {
+                return <AdicionarQuestao
+                        key={key}
+                        id={key}
+                        tipo={item.tipo}
+                        especificidade={item.especificidade}
+                        nivel={item.nivel}
+                        quantidade={item.quantidade}
+                        handleChange={this.handleChangeArray}
+                        onClick={this.handleClickEnviarQuestao}
+                        idProva={this.state.idProva} />
+            })
         )
     }
 
     renderEscolhaDeQuestoes() {
-        return(
+        return (
             <>
-            <div className="container-titulo">
-                <span className="titulo-crie">Adicione questões a sua prova</span>
-            </div>
+                <div className="container-titulo">
+                    <span className="titulo-crie">Adicione questões a sua prova</span>
+                </div>
 
-            {this.renderComponentEscolherQuestao()}
+                {
+                    this.renderArrayQuestoes()
+                }
+
+                <div className="container-botao">
+                    <BotaoAdicionar nome="+" adicionar={true} onClick={this.handleClickAdicionarQuestao} />
+                    <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarProva} />
+                    <BotaoPrincipal nome="Voltar" onClick={this.handleClickVoltarProva} />
+                </div>
             </>
         )
     }
 
-    renderInputsProva(){
-        return(
-        <>
-        <div className="container-titulo">
-            <span className="titulo-crie">Crie sua prova</span>
-        </div>
+    renderInputsProva() {
+        return (
+            <>
+                <div className="container-titulo">
+                    <span className="titulo-crie">Crie sua prova</span>
+                </div>
 
-        <div className="container-questao">
-            <Input
-                name="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-                type="text"
-                label="Digite o email do candidato"
-                placeholder=""/>
+                <div className="container-questao">
+                    <Input
+                        name="email"
+                        value={this.state.email}
+                        onChange={this.handleChange}
+                        type="text"
+                        label="Digite o email do candidato"
+                        placeholder="" />
 
-            <Input
-                name="duracao"
-                value={this.state.duracao}
-                onChange={this.handleChange}
-                type="time"
-                label="Tempo de duração da prova"
-                placeholder=""/>
+                    <Input
+                        name="duracao"
+                        value={this.state.duracao}
+                        onChange={this.handleChange}
+                        type="number"
+                        label="Tempo de duração da prova"
+                        placeholder="" />
 
-            <Input
-                name="tempoParaIniciarProva"
-                value={this.state.tempoParaIniciarProva}
-                onChange={this.handleChange}
-                type="time"
-                label="Tempo para iniciar a prova"
-                placeholder=""/>
-        </div>
+                    <Input
+                        name="tempoParaIniciarProva"
+                        value={this.state.tempoParaIniciarProva}
+                        onChange={this.handleChange}
+                        type="number"
+                        label="Tempo para iniciar a prova"
+                        placeholder="" />
+                </div>
 
-        <div className="container-botao">
-            <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarProva}/>
-        </div>
-        </>
+                <div className="container-botao">
+                    <BotaoPrincipal nome="Adicionar questões" onClick={this.handleClickEnviarBaseProva} />
+                </div>
+            </>
         )
     }
 
     render() {
+
+        if (this.state.deveRedirecionarParaVisualizarProva) {
+            return <Redirect to="/visualizar-prova" />
+        }
+
         return (
             <div className="tela-cadastro">
                 {
-                    this.state.deveRenderizarEscolhaDeQuestoes
-                    ?
-                    this.renderEscolhaDeQuestoes()
-                    :
-                    this.renderInputsProva()
+                    this.state.deveRenderizarQuestoes
+                        ?
+                        this.renderEscolhaDeQuestoes()
+                        :
+                        this.renderInputsProva()
                 }
             </div>
         )

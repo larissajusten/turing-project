@@ -1,10 +1,11 @@
-package br.com.cwi.crescer.api.services.provaservice;
+package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaResponse;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoTecnica;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoTecnicaRepository;
+import br.com.cwi.crescer.api.services.prova.BuscarQuestoesTecnicasDeUmaProvaPorIdService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

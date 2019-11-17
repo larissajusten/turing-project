@@ -12,6 +12,8 @@ export class EscolherQuestao extends Component {
           <Select
             name="tipo"
             value={this.props.tipo}
+            id={this.props.id}
+            selectCadastro={this.props.cadastro ? true : false}
             onChange={this.props.handleChange}
             object={this.props.tipos}
             placeholder="Selecione o tipo"
@@ -23,6 +25,8 @@ export class EscolherQuestao extends Component {
         <Select
           name="especificidade"
           value={this.props.especificidade}
+          id={this.props.id}
+          selectCadastro={this.props.cadastro ? true : false}
           onChange={this.props.handleChange}
           object={this.props.especificidades}
           placeholder="Selecione a especificidade"
@@ -34,6 +38,8 @@ export class EscolherQuestao extends Component {
         <Select
           name="nivel"
           value={this.props.nivel}
+          id={this.props.id}
+          selectCadastro={this.props.cadastro ? true : false}
           onChange={this.props.handleChange}
           object={this.props.niveis}
           placeholder="Selecione o nível"

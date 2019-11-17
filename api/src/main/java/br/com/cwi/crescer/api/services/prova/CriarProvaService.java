@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.api.services.provaservice;
+package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.domain.prova.Prova;
@@ -16,9 +16,10 @@ public class CriarProvaService {
     @Autowired
     private ProvaRepository repository;
 
-    public Prova criar(ProvaRequest request) {
+    public Long criar(ProvaRequest request) {
        Prova prova = mapper.transformar(request);
+       Prova provaSalva = repository.save(prova);
 
-       return repository.save(prova);
+       return provaSalva.getId();
     }
 }

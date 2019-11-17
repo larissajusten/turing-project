@@ -1,14 +1,12 @@
 package br.com.cwi.crescer.api.controller.requests.prova;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-@Valid
-@Getter
+@Data
 @AllArgsConstructor
 public class ProvaRequest {
 

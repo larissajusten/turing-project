@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.api.services.provaservice;
+package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.exception.prova.ProvaNaoEncontradaException;

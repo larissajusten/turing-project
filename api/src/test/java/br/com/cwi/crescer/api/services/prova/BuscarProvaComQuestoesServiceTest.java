@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.api.services.provaservice;
+package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoDissertativaResponse;

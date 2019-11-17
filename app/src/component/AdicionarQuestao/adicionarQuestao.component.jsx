@@ -1,69 +1,55 @@
 import React, { Component } from 'react';
 import { Input, BotaoAdicionar, EscolherQuestao } from '../index'
-import { incluirDissertativas, incluirMultiplaEscolha, incluirTecnicas } from '../../services/index'
+import { retornarEspecificidades, 
+        retornarNiveisDeDificuldade } from '../../services/index'
 
 export class AdicionarQuestao extends Component {
 
   constructor(props){
     super(props)
     this.state = {
-      tipos: props.tipos,
-      especificidades: props.especificidades,
-      niveis: props.niveis,
-      tipo: '',
-      especificidade: '',
-      nivel: '',
-      quantidade: ''
+      tipos: [ 'Dissertativa', 'Múltipla Escolha', 'Técnica' ],
+      especificidades: [],
+      niveis: []
     }
   }
 
-  handleClickEnviarQuestao = async(event) => {
-    event.preventDefault()
-
-    const questao = {
-        "especificidade": this.state.especificidade,
-        "nivelDeDificuldade": this.state.nivel,
-        "quantidade": this.state.quantidade
-    }
-
-    if(this.state.tipo === this.state.tipos[0]){
-      await incluirDissertativas(this.props.idProva, questao)
-    }else if(this.state.tipo === this.state.tipos[1]){
-      await incluirMultiplaEscolha(this.props.idProva, questao)
-    }else if(this.state.tipo === this.state.tipos[2]){
-      await incluirTecnicas(this.props.idProva, questao)
-    }
-
-    this.setState({
-      tipo: '',
-      especificidade: '',
-      nivel: '',
-      quantidade: ''
-    })
+  async componentDidMount() {
+		this.setState({
+			especificidades: await retornarEspecificidades(),
+			niveis: await retornarNiveisDeDificuldade()
+		})
   }
 
   render() {
+    console.log(this.props.idProva)
     return(
       <div className="container-inputs-prova">
       <EscolherQuestao 
-          tipo = {this.state.tipo}
-          especificidade = {this.state.especificidade}
-          nivel = {this.state.nivel}
+          tipo = {this.props.tipo}
+          especificidade = {this.props.especificidade}
+          nivel = {this.props.nivel}
           tipos = {this.state.tipos}
           especificidades = {this.state.especificidades}
           niveis = {this.state.niveis}
-          handleChange = {this.handleChange}/>
+          id={this.props.id}
+          cadastro = {true}
+          handleChange = {this.props.handleChange}/>
           
       <Input
           name="quantidade"
-          value={this.state.quantidade}
-          onChange={this.handleChange}
+          id={this.props.id}
+          cadastro = {true}
+          onChange={this.props.handleChange}
           className="input-quantidade"
           type="number"
           label="Quantidade de questões"
           placeholder=""/>
+      
+      <div className="container-botao-adicionar">
+        <BotaoAdicionar id={this.props.id} nome="+" onClick={this.props.onClick}/>
+      </div>
 
-      <BotaoAdicionar nome="+" onClick={this.handleClickEnviarQuestao}/>
       </div>
     )
   }
