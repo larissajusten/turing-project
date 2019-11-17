@@ -26,6 +26,8 @@ public class ProvaResponse {
 
     private int tempoParaInicioProva;
 
+    private boolean podeIniciar;
+
     private StatusProva status;
 
     private List<QuestaoMultiplaEscolhaResponse> questoesDeMultiplaEscolha;
