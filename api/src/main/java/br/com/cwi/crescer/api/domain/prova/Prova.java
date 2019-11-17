@@ -25,6 +25,9 @@ public class Prova {
     @Column(name = "DATA_CRIACAO")
     private LocalDateTime dataCriacao;
 
+    @Column(name = "DATA_INICIO")
+    private LocalDateTime dataInicio;
+
     private String email;
 
     @Column(name = "DURACAO")
