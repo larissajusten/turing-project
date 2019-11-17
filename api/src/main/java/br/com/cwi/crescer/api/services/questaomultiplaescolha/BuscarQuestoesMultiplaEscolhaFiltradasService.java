@@ -11,8 +11,9 @@ import java.util.List;
 
 @Service
 public class BuscarQuestoesMultiplaEscolhaFiltradasService {
+
     @Autowired
-    QuestaoMultiplaEscolhaRepository repository;
+    private QuestaoMultiplaEscolhaRepository repository;
 
     public List<QuestaoMultiplaEscolha> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade){
         return repository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade);

@@ -1,7 +1,7 @@
 package br.com.cwi.crescer.api.services.provaquestao;
 
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
+import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoDissertativa;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoDissertativaRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoDissertativa;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class ListarQuestoesDissertativasDaProvaServiceTest {
     ProvaQuestaoDissertativaRepository repository;
 
     @Test
-    public void deveChamar() {
+    public void deveChamarProvaQuestaoDissertativaRepositoryQuandoListarQuestoesDissertativasDaProvaServiceForChamado() {
 
         Prova prova = new Prova();
 
