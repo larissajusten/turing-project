@@ -41,6 +41,15 @@ public class ProvaController {
     @Autowired
     private ConsultarStatusDaProvaService consultarStatusDaProvaService;
 
+    @Autowired
+    private ExcluirQuestaoDissertativaService excluirQuestaoDissertativaService;
+
+    @Autowired
+    private ExcluirQuestaoMultiplaEscolhaService excluirQuestaoMultiplaEscolhaService;
+
+    @Autowired
+    private ExcluirQuestaoTecnicaService excluirQuestaoTecnicaService;
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Long criarProvaERetornarID(@RequestBody ProvaRequest request) {
@@ -54,15 +63,33 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id-questao-prova}/excluir-dissertativa")
+    public void excluirDissertativa(@PathVariable("id-questao-prova") Long idQuestaoProva){
+        excluirQuestaoDissertativaService.excluir(idQuestaoProva);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-tecnica")
     public void incluirTecnicas(@PathVariable("id-prova") Long idProva, @RequestBody BuscaQuestoesRequest buscaQuestoesRequest){
         incluirQuestoesTecnicasService.incluir(idProva, buscaQuestoesRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id-questao-prova}/excluir-tecnica")
+    public void excluirTecnicaProva(@PathVariable("id-questao-prova") Long idQuestaoProva) {
+        excluirQuestaoTecnicaService.excluir(idQuestaoProva);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-multipla-escolha")
     public void incluirMultiplasEscolhas(@PathVariable("id-prova") Long idProva, @RequestBody BuscaQuestoesRequest buscaQuestoesRequest){
         incluirQuestoesMultiplaEscolhaService.incluir(idProva, buscaQuestoesRequest);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/{id-questao-prova}/excluir-multipla-escolha")
+    public void excluirMultiplaEscolha(@PathVariable("id-questao-prova") Long idQuestaoProva){
+        excluirQuestaoMultiplaEscolhaService.excluir(idQuestaoProva);
     }
 
     @ResponseStatus(HttpStatus.OK)

@@ -26,7 +26,7 @@ spring:
     #password: CWITURING
 
     #CWI
-    #url: jdbc:oracle:thin:@10.99.220.139:1521/XEPDB1
-    #username: CRECWITURING
-    #password: CRECWITURING
+    url: jdbc:oracle:thin:@10.99.220.139:1521/XEPDB1
+    username: CRECWITURING
+    password: CRECWITURING
     driver-class-name: oracle.jdbc.OracleDriver
