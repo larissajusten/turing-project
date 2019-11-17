@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './visualizarProva.style.css'
+import { renderQuestaoUnica } from '../../component/index'
 
 export class VisualizarProvaScreen extends Component {
 
@@ -13,8 +14,8 @@ export class VisualizarProvaScreen extends Component {
   render(){
     console.log(this.state.idProva)
     return(
-      <div className="tela-cadastro">
-        <h1>Oi</h1>
+      <div className="container-tela">
+        <renderQuestaoUnica />
       </div>
     )
   }
