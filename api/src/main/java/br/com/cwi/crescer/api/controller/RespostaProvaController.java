@@ -30,6 +30,7 @@ public class RespostaProvaController {
     @Autowired
     private CorrigirQuestaoTecnicaService corrigirQuestaoTecnicaService;
 
+    //@RolesAllowed("Usuario")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/{id-questao}/responder-dissertativa")
     public RespostasDissertativaProva responderQuestaoDissertativa(@PathVariable("id-prova") Long idProva, @PathVariable("id-questao") Long idQuestao,
@@ -37,6 +38,7 @@ public class RespostaProvaController {
         return responderQuestaoDissertativaService.responder(idProva, idQuestao, resposta);
     }
 
+    //@RolesAllowed("Usuario")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/{id-questao}/responder-tecnica")
     public RespostasTecnicaProva responderQuestaoTecnica(@PathVariable("id-prova") Long idProva, @PathVariable("id-questao") Long idQuestao,
@@ -44,6 +46,7 @@ public class RespostaProvaController {
         return responderQuestaoTecnicaService.responder(idProva, idQuestao, resposta);
     }
 
+    //@RolesAllowed("Usuario")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/{id-questao}/{id-alternativa}/responder-multipla-escolha")
     public RespostasMultiplaEscolhaProva responderQuestaoMultiplaEscolha(@PathVariable("id-prova") Long idProva,
@@ -52,6 +55,7 @@ public class RespostaProvaController {
         return responderQuestaoMultiplaEscolhaService.responder(idProva, idQuestao, idAlternativa);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-resposta}/corrigir-dissertativa")
     public void corrigirQuestaoDissertativa(@PathVariable("id-resposta") Long idResposta,
@@ -59,6 +63,7 @@ public class RespostaProvaController {
         corrigirQuestaoDissertativaService.corrigir(idResposta, correcao);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-resposta}/corrigir-tecnica")
     public void corrigirQuestaoTecnica(@PathVariable("id-resposta") Long idResposta,

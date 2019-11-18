@@ -27,19 +27,21 @@ public class QuestaoTecnicaController {
     @Autowired
     private BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
     public List<QuestaoTecnica> buscarQuestoesTecnicas(@Valid @RequestBody BuscaQuestoesRequest request) {
         return buscarQuestoesTecnicas.listar(request);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void adicionarQuestaoTecnica(@Valid @RequestBody QuestaoUnicaAlternativaRequest request) {
         adicionarQuestaoTecnica.adicionar(request);
     }
 
-
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
     public List<QuestaoTecnica> buscarTodasQuestoesTecnicasFiltradas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {

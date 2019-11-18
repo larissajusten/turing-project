@@ -27,18 +27,21 @@ public class QuestaoDissertativaController {
     @Autowired
     private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void adicionarQuestaoDissertativa(@Valid @RequestBody QuestaoUnicaAlternativaRequest request) {
         adicionarQuestaoDissertativaService.adicionar(request);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
     public List<QuestaoDissertativa> listarQuestoesDissertativasFiltradas(@Valid @RequestBody BuscaQuestoesRequest request) {
         return listarQuestoesDissertativasFiltradas.listar(request);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
     public List<QuestaoDissertativa> listarTodasQuestoesDissertativas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {

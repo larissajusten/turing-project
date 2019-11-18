@@ -41,30 +41,35 @@ public class QuestaoMultiplaEscolhaController {
     @Autowired
     private BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService;
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public QuestaoMultiplaEscolha adicionarQuestaoMultiplaEscolha(@Valid @RequestBody QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
         return adicionarQuestaoMultiplaEscolha.adicionar(questaoMultiplaEscolhaRequest);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/buscar-todas")
     public Page<QuestaoMultiplaEscolhaResponse> buscarQuestoesMultiplaEscolha(@PageableDefault Pageable pageable) {
         return buscarQuestoesMultiplaEscolha.buscarTodasQuestoes(pageable);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/buscar-questoes-filtrado")
     public List<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@Valid @RequestBody BuscaQuestoesRequest request) {
         return listarQuestoesMultiplaEscolhaFiltradasService.listar(request);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
     public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
         return buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService.buscarQuestoes(request.getEspecificidade(), request.getNivelDeDificuldade());
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-questao}/buscar-alternativas")
     public List<AlternativaMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PathVariable("id-questao") Long idQuestao) {

@@ -17,6 +17,7 @@ public class UsuarioController {
     @Autowired
     private AdicionarNovoUsuarioService adicionarNovoUsuarioService;
 
+    //@RolesAllowed("Usuario")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Usuario adicionarUsuario(@Valid @RequestBody UsuarioRequest usuario) {
