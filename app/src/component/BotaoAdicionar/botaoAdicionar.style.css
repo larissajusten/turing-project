@@ -16,12 +16,6 @@
 	margin: 5px;
 }
 
-.botao-adicionar:hover, .botao-remover:hover {
-  cursor: pointer;
-  display: inline-block;
-  box-shadow: 0px 2px 10px rgba(0, 29, 105, 0.14);
-}
-
 .botao-remover {
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: large;
@@ -37,4 +31,10 @@
 	position: absolute;
 	right: 0;
 	bottom: 20%;
+}
+
+.botao-adicionar:hover, .botao-remover:hover {
+  cursor: pointer;
+  display: inline-block;
+  box-shadow: 0px 2px 10px rgba(0, 29, 105, 0.14);
 }

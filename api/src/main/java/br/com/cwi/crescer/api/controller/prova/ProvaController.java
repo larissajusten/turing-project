@@ -65,9 +65,10 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/{id-questao-prova}/excluir-dissertativa")
-    public void excluirDissertativa(@PathVariable("id-questao-prova") Long idQuestaoProva) {
-        excluirQuestaoDissertativaService.excluir(idQuestaoProva);
+    @DeleteMapping("/{id-prova}/excluir-dissertativa/{id-questao-prova}")
+    public void excluirDissertativa(@PathVariable("id-prova") Long idProva,
+                                    @PathVariable("id-questao-prova") Long idQuestaoProva) {
+        excluirQuestaoDissertativaService.excluir(idQuestaoProva, idProva);
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -77,9 +78,10 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/{id-questao-prova}/excluir-tecnica")
-    public void excluirTecnicaProva(@PathVariable("id-questao-prova") Long idQuestaoProva) {
-        excluirQuestaoTecnicaService.excluir(idQuestaoProva);
+    @DeleteMapping("/{id-prova}/excluir-tecnica/{id-questao-prova}")
+    public void excluirTecnicaProva(@PathVariable("id-prova") Long idProva,
+                                    @PathVariable("id-questao-prova") Long idQuestaoProva) {
+        excluirQuestaoTecnicaService.excluir(idQuestaoProva, idProva);
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -89,9 +91,10 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/{id-questao-prova}/excluir-multipla-escolha")
-    public void excluirMultiplaEscolha(@PathVariable("id-questao-prova") Long idQuestaoProva) {
-        excluirQuestaoMultiplaEscolhaService.excluir(idQuestaoProva);
+    @DeleteMapping("/{id-prova}/excluir-multipla-escolha/{id-questao-prova}")
+    public void excluirMultiplaEscolha(@PathVariable("id-prova") Long idProva,
+                                       @PathVariable("id-questao-prova") Long idQuestaoProva) {
+        excluirQuestaoMultiplaEscolhaService.excluir(idQuestaoProva, idProva);
     }
 
     @ResponseStatus(HttpStatus.OK)

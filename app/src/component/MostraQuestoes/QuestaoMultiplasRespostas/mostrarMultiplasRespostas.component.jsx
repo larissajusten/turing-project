@@ -5,7 +5,7 @@ import { BotaoAdicionar, Alternativa } from '../../index'
 export class MostrarMultiplasRespostas extends Component {
 
   render() {
-    return(
+    return (
       <div className="container-questao-multipla">
 
         <div className="primeira-div">
@@ -21,22 +21,22 @@ export class MostrarMultiplasRespostas extends Component {
             <label className="especificacao-nome">Resposta correta</label>
           </div>
 
-          <BotaoAdicionar className="botao-remover" nome="-" adicionar={false} onClick={this.props.onClick} id={this.props.id}/>
+          <BotaoAdicionar className="botao-remover" nome="-" adicionar={false} onClick={this.props.onClick} id={this.props.id} />
         </div>
-        
+
         <div className="container-alternativas">
           <div className="coluna">
             <Alternativa
               nome="Alternativa A"
-              resposta={this.props.alternativaA}/>
+              resposta={this.props.alternativaA} />
 
             <Alternativa
               nome="Alternativa B"
-              resposta={this.props.alternativaB}/>
+              resposta={this.props.alternativaB} />
 
             <Alternativa
               nome="Alternativa C"
-              resposta={this.props.alternativaC}/>
+              resposta={this.props.alternativaC} />
           </div>
 
           <div className="coluna">
@@ -51,14 +51,14 @@ export class MostrarMultiplasRespostas extends Component {
                 <div className="especificacao mult">{this.props.especificidade}</div>
               </div>
             </div>
-            
+
             <Alternativa
               nome="Alternativa D"
-              resposta={this.props.alternativaD}/>
+              resposta={this.props.alternativaD} />
 
             <Alternativa
               nome="Alternativa E"
-              resposta={this.props.alternativaE}/>
+              resposta={this.props.alternativaE} />
           </div>
         </div>
       </div>

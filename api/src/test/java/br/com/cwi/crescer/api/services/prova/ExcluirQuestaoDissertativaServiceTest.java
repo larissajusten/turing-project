@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.services.prova;
 
+import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoDissertativaRepository;
 import org.junit.Test;
@@ -22,8 +23,9 @@ public class ExcluirQuestaoDissertativaServiceTest {
     public void deveChamarProvaQuestaoDissertativaRepositoryQuandoExcluirQuestaoDissertativaServiceForChamado() {
 
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
+        Prova prova = new Prova();
 
-        excluirQuestaoDissertativaService.excluir(questaoDissertativa.getId());
+        excluirQuestaoDissertativaService.excluir(questaoDissertativa.getId(), prova.getId());
 
         Mockito.verify(repository).deleteById(questaoDissertativa.getId());
 

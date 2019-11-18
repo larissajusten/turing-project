@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { Input, BotaoPrincipal, AdicionarQuestao, BotaoAdicionar } from '../../component/index'
-import {
-  adicionarProva,
-  incluirDissertativas,
-  incluirMultiplaEscolha,
-  incluirTecnicas,
-  retornarEspecificidades,
-  retornarNiveisDeDificuldade
-} from '../../services/index'
+import { adicionarProva,
+        incluirDissertativas,
+        incluirMultiplaEscolha,
+        incluirTecnicas,
+        retornarEspecificidades,
+        retornarNiveisDeDificuldade } from '../../services/index'
 import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
 
