@@ -3,7 +3,6 @@ package br.com.cwi.crescer.api.controller.provaquestao;
 
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoDissertativa;
 import br.com.cwi.crescer.api.services.provaquestao.ListarQuestoesDissertativasDaProvaService;
-import br.com.cwi.crescer.api.services.respostaprova.CorrigirQuestaoDissertativaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

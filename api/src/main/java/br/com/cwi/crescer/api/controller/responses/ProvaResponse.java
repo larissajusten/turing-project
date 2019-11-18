@@ -1,9 +1,6 @@
 package br.com.cwi.crescer.api.controller.responses;
 
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
-import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
-import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
-import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
