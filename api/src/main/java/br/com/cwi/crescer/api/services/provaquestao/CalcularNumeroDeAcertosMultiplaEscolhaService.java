@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.repository.questao.AlternativaMultiplaEscolhaRepos
 import br.com.cwi.crescer.api.repository.resposta.RespostaMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaQuestaoMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.RetornarAlternativaCertaService;
+import br.com.cwi.crescer.api.services.provaquestao.ListarQuestoesMultiplaEscolhaDaProvaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
