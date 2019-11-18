@@ -37,7 +37,6 @@ export class CadastroTecnica extends PureComponent {
 
     try{
 			await adicionarQuestaoTecnica(questao)
-
       store.addNotification({
         title: 'Sucesso',
         message: 'Questão adicionada com sucesso',
@@ -49,19 +48,20 @@ export class CadastroTecnica extends PureComponent {
           duration: 3000
         }
 			})
-
     }
     catch(error){
-      store.addNotification({
-        title: 'Falha',
-        message: `${error.response.data.message}`,
-        type: 'danger',
-        container: 'top-right',
-        animationIn: ["animated", "fadeIn"],
-        animationOut: ["animated", "fadeOut"],
-        dismiss: {
-          duration: 3000
-        }
+      error.response.data.errors.map( message => {
+        return store.addNotification({
+          title: 'Falha',
+          message: `${message.defaultMessage}`,
+          type: 'danger',
+          container: 'top-right',
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 3000
+          }
+        })
       })
     }
   }

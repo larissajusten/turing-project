@@ -50,19 +50,21 @@ export class CadastroDissertativa extends PureComponent {
       })
     }
     catch(error){
-      console.log(error.response)
-      store.addNotification({
-        title: 'Falha',
-        message: `${error.response.data.message}`,
-        type: 'danger',
-        container: 'top-right',
-        animationIn: ["animated", "fadeIn"],
-        animationOut: ["animated", "fadeOut"],
-        dismiss: {
-          duration: 3000
-        }
+      error.response.data.errors.map( message => {
+        return store.addNotification({
+          title: 'Falha',
+          message: `${message.defaultMessage}`,
+          type: 'danger',
+          container: 'top-right',
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 3000
+          }
+        })
       })
     }
+
   }
 
   render() {

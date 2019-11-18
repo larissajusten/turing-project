@@ -68,16 +68,18 @@ export class CadastroMultiplaQuestao extends PureComponent {
 
     }
     catch(error){
-      store.addNotification({
-        title: 'Falha',
-        message: `${error.response.data.message}`,
-        type: 'danger',
-        container: 'top-right',
-        animationIn: ["animated", "fadeIn"],
-        animationOut: ["animated", "fadeOut"],
-        dismiss: {
-          duration: 3000
-        }
+      error.response.data.errors.map( message => {
+        return store.addNotification({
+          title: 'Falha',
+          message: `${message.defaultMessage}`,
+          type: 'danger',
+          container: 'top-right',
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 3000
+          }
+        })
       })
     }
   }
