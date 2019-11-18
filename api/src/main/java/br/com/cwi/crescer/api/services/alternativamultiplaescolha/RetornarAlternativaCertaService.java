@@ -10,7 +10,7 @@ public class RetornarAlternativaCertaService {
     @Autowired
     private AlternativaMultiplaEscolhaRepository repository;
 
-    public boolean retornar(Long idAlternativa){
+    public boolean retornar(Long idAlternativa) {
         return repository.isAlternativaCerta(idAlternativa);
     }
 }

@@ -13,7 +13,7 @@ public class ListarTodasQuestoesDissertativasFiltradasService {
     @Autowired
     private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
 
-    public List<QuestaoDissertativa> listar(BuscaQuestoesRequest request){
+    public List<QuestaoDissertativa> listar(BuscaQuestoesRequest request) {
         return buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(
                 request.getEspecificidade(), request.getNivelDeDificuldade());
     }

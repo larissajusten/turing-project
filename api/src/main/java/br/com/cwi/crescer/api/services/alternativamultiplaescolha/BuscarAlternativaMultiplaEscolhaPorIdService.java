@@ -12,7 +12,7 @@ public class BuscarAlternativaMultiplaEscolhaPorIdService {
     @Autowired
     private AlternativaMultiplaEscolhaRepository repository;
 
-    public AlternativaMultiplaEscolha buscar(Long id){
+    public AlternativaMultiplaEscolha buscar(Long id) {
         return repository.findById(id).orElseThrow(() -> new ValidacaoDeAplicacaoException("Alternativa não encontrada"));
     }
 }

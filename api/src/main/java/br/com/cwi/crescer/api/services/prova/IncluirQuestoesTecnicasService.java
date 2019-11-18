@@ -23,7 +23,7 @@ public class IncluirQuestoesTecnicasService {
     @Autowired
     private ProvaQuestaoTecnicaRepository repository;
 
-    public void incluir(Long idProva, BuscaQuestoesRequest request){
+    public void incluir(Long idProva, BuscaQuestoesRequest request) {
         List<QuestaoTecnica> lista = listarQuestoesTecnicasFiltradasService.listar(request);
         Prova prova = buscarProvaPorId.buscar(idProva);
 

@@ -13,9 +13,9 @@ export class CadastroTecnica extends PureComponent {
     this.state = {
       linguagens: props.linguagens,
       niveis: props.niveis,
-      especificidade: '',
-      nivel:'',
-      questao: ''
+      especificidade: null,
+      nivel: null,
+      questao: null
     }
   }
 
@@ -50,10 +50,24 @@ export class CadastroTecnica extends PureComponent {
 			})
     }
     catch(error){
-      error.response.data.errors.map( message => {
-        return store.addNotification({
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return store.addNotification({
+            title: 'Falha',
+            message: `${message.defaultMessage}`,
+            type: 'danger',
+            container: 'top-right',
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 3000
+            }
+          })
+        })
+      }else {
+        store.addNotification({
           title: 'Falha',
-          message: `${message.defaultMessage}`,
+          message: `${error.response.data.message}`,
           type: 'danger',
           container: 'top-right',
           animationIn: ["animated", "fadeIn"],
@@ -62,7 +76,7 @@ export class CadastroTecnica extends PureComponent {
             duration: 3000
           }
         })
-      })
+      }
     }
   }
 

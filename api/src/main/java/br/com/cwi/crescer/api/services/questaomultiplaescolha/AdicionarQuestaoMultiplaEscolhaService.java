@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.AdicionarAlternativaMultiplaEscolhaService;
+import br.com.cwi.crescer.api.validator.UnicaAlternativaCorretaValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,11 @@ public class AdicionarQuestaoMultiplaEscolhaService {
     @Autowired
     private AdicionarAlternativaMultiplaEscolhaService adicionarAlternativaMultiplaEscolha;
 
+    @Autowired
+    private UnicaAlternativaCorretaValidator unicaAlternativaCorretaValidator;
+
     public QuestaoMultiplaEscolha adicionar(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
+        unicaAlternativaCorretaValidator.validar(questaoMultiplaEscolhaRequest);
 
         QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest);
 

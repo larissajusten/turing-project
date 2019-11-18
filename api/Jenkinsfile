@@ -41,7 +41,7 @@ try {
                     dir ("api") {
                         if(env_is_defined) {
                             withCredentials([string(credentialsId: 'sonar-token', variable: 'TOKEN')]) {
-                                sh "mvn -B -U clean verify sonar:sonar -fn \
+                                sh "mvn -B -U clean org.jacoco:jacoco-maven-plugin:prepare-agent verify sonar:sonar \
                                         -Dsonar.login=${TOKEN} \
                                         -Dsonar.host.url='http://10.99.220.130:9000'"
                             }

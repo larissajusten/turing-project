@@ -4,88 +4,88 @@ import { CadastroMultiplaQuestao, CadastroDissertativa, CadastroTecnica, Select 
 import { retornarEspecificidades, retornarNiveisDeDificuldade } from '../../services/index'
 
 export class CadastrarQuestaoScreen extends Component {
-	constructor(props){
+	constructor(props) {
 		super(props)
 		this.state = {
-			questoes: [ 'Dissertativa', 'Múltipla Escolha', 'Técnica'],
-			especificidade: [],
+			questoes: ['Dissertativa', 'Múltipla Escolha', 'Técnica'],
+			especificidades: [],
 			niveis: [],
-			questao: ''
+			questao: null
 		}
 	}
 
 	async componentDidMount() {
 		this.setState({
-			especificidade: await retornarEspecificidades(),
+			especificidades: await retornarEspecificidades(),
 			niveis: await retornarNiveisDeDificuldade()
 		})
 	}
 
 	handleChange = (event) => {
-    const { name, value } = event.target
-    this.setState({
-        [name]: value
-    })
+		const { name, value } = event.target
+		this.setState({
+			[name]: value
+		})
 	}
 
 	renderComponent() {
-		if(this.state.questao === 'Múltipla Escolha'){
-			return(
+		if (this.state.questao === 'Múltipla Escolha') {
+			return (
 				<CadastroMultiplaQuestao
-					linguagens = {this.state.especificidade}
-					niveis = {this.state.niveis}
-					/>
+					linguagens={this.state.especificidades}
+					niveis={this.state.niveis}
+				/>
 			)
-		}else if(this.state.questao === 'Dissertativa'){
-			return(
+		} else if (this.state.questao === 'Dissertativa') {
+			return (
 				<CadastroDissertativa
-					linguagens = {this.state.especificidade}
-					niveis = {this.state.niveis}
-					/>
+					linguagens={this.state.especificidades}
+					niveis={this.state.niveis}
+				/>
 			)
-		}else if(this.state.questao === 'Técnica'){
-			return(
+		} else if (this.state.questao === 'Técnica') {
+			return (
 				<CadastroTecnica
-					linguagens = {this.state.especificidade}
-					niveis = {this.state.niveis}
-					/>
+					linguagens={this.state.especificidades}
+					niveis={this.state.niveis}
+				/>
 			)
-		}else{
-			return(
+		} else {
+			return (
 				<h2>Escolha qual questão deseja cadastrar</h2>
 			)
 		}
 	}
 
-	renderContainerComponent () {
-		if(this.state.especificidade && this.state.niveis){
+	renderContainerComponent() {
+		if (this.state.especificidades && this.state.niveis) {
 			return (
 				<>
 					<div className="container-titulo">
 						<span className="titulo-crie">Crie sua Questao </span>
 						<Select
-							questoesWidth = "width-questoes"
-							placeholder = "Selecione"
+							questoesWidth="width-questoes"
+							placeholder="Selecione"
 							name="questao"
 							value={this.state.questao}
 							onChange={this.handleChange}
 							object={this.state.questoes}
-							/>
+						/>
 					</div>
 					{
 						this.renderComponent()
 					}
 				</>
 			);
-		}else{
-			return <h3>Não há especificidade ou niveis no banco para você poder cadastrar uma questão</h3>
+		} else {
+			return <h3>Não há especificidades ou niveis no banco para você poder cadastrar uma questão</h3>
 		}
 	}
 
 	render() {
-		return(
+		return (
 			<div className="container-tela">
-					{this.renderContainerComponent()}
+				{this.renderContainerComponent()}
 			</div>
 		)
 	}

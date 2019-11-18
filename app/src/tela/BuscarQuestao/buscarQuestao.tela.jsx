@@ -1,38 +1,44 @@
 import React, { Component } from 'react';
 import './buscarQuestao.style.css'
 import { BotaoPrincipal, CardQuestao, EscolherQuestao } from '../../component/index'
-import { retornarEspecificidades,
-          retornarNiveisDeDificuldade,
-          retornarQuestoesTecnicasFiltradas,
-          retornarQuestoesDissertativasFiltradas,
-          retornarQuestoesMultiplasEscolhasFiltradas } from '../../services/index'
+import {
+  retornarEspecificidades,
+  retornarNiveisDeDificuldade,
+  retornarQuestoesTecnicasFiltradas,
+  retornarQuestoesDissertativasFiltradas,
+  retornarQuestoesMultiplasEscolhasFiltradas
+} from '../../services/index'
+
+import { store } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+import 'animate.css'
 
 export class BuscarQuestaoScreen extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
-      tipos: [ 'Dissertativa', 'Múltipla Escolha', 'Técnica'],
-			especificidades: [],
-			niveis: [],
-      tipo: '',
-      especificidade: '',
-      nivel:'',
+      tipos: ['Dissertativa', 'Múltipla Escolha', 'Técnica'],
+      especificidades: [],
+      niveis: [],
+      tipo: null,
+      especificidade: null,
+      nivel: null,
       resultados: []
     }
   }
 
   async componentDidMount() {
-		this.setState({
-			especificidades: await retornarEspecificidades(),
-			niveis: await retornarNiveisDeDificuldade()
-		})
-	}
+    this.setState({
+      especificidades: await retornarEspecificidades(),
+      niveis: await retornarNiveisDeDificuldade()
+    })
+  }
 
   handleChange = (event) => {
     const { name, value } = event.target
     this.setState({
-        [name]: value
+      [name]: value
     })
   }
 
@@ -45,76 +51,219 @@ export class BuscarQuestaoScreen extends Component {
     }
 
     let listaDeQuestoes = ''
-    
-    if(this.state.tipo === this.state.tipos[0]){
-      listaDeQuestoes  = await retornarQuestoesDissertativasFiltradas(busca)
-    }else if(this.state.tipo === this.state.tipos[1]){
-      listaDeQuestoes = await retornarQuestoesMultiplasEscolhasFiltradas(busca)
-    }else if(this.state.tipo === this.state.tipos[2]){
-      listaDeQuestoes  = await retornarQuestoesTecnicasFiltradas(busca)
-    }
 
-    this.setState({
-      resultados: listaDeQuestoes
-    })
+    if (this.state.tipo === this.state.tipos[0]) {
+      try {
+        listaDeQuestoes = await retornarQuestoesDissertativasFiltradas(busca)
+        store.addNotification({
+          title: 'Sucesso',
+          message: 'Busca bem sucedida',
+          type: 'success',
+          container: 'top-right',
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 3000
+          }
+        })
+        this.setState({
+          resultados: listaDeQuestoes
+        })
+      }
+      catch (error) {
+        if (error.response.data.errors) {
+          error.response.data.errors.map(message => {
+            return store.addNotification({
+              title: 'Falha',
+              message: `${message.defaultMessage}`,
+              type: 'danger',
+              container: 'top-right',
+              animationIn: ["animated", "fadeIn"],
+              animationOut: ["animated", "fadeOut"],
+              dismiss: {
+                duration: 3000
+              }
+            })
+          })
+        } else {
+          store.addNotification({
+            title: 'Falha',
+            message: `${error.response.data.message}`,
+            type: 'danger',
+            container: 'top-right',
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 3000
+            }
+          })
+        }
+      }
+    } else if (this.state.tipo === this.state.tipos[1]) {
+      try {
+        listaDeQuestoes = await retornarQuestoesMultiplasEscolhasFiltradas(busca)
+        store.addNotification({
+          title: 'Sucesso',
+          message: 'Busca bem sucedida',
+          type: 'success',
+          container: 'top-right',
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 3000
+          }
+        })
+        this.setState({
+          resultados: listaDeQuestoes
+        })
+      }
+      catch (error) {
+        if (error.response.data.errors) {
+          error.response.data.errors.map(message => {
+            return store.addNotification({
+              title: 'Falha',
+              message: `${message.defaultMessage}`,
+              type: 'danger',
+              container: 'top-right',
+              animationIn: ["animated", "fadeIn"],
+              animationOut: ["animated", "fadeOut"],
+              dismiss: {
+                duration: 3000
+              }
+            })
+          })
+        } else {
+          store.addNotification({
+            title: 'Falha',
+            message: `${error.response.data.message}`,
+            type: 'danger',
+            container: 'top-right',
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 3000
+            }
+          })
+        }
+      }
+    } else if (this.state.tipo === this.state.tipos[2]) {
+      try {
+        listaDeQuestoes = await retornarQuestoesTecnicasFiltradas(busca)
+        store.addNotification({
+          title: 'Sucesso',
+          message: 'Busca bem sucedida',
+          type: 'success',
+          container: 'top-right',
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 3000
+          }
+        })
+        this.setState({
+          resultados: listaDeQuestoes
+        })
+      }
+      catch (error) {
+        if (error.response.data.errors) {
+          error.response.data.errors.map(message => {
+            return store.addNotification({
+              title: 'Falha',
+              message: `${message.defaultMessage}`,
+              type: 'danger',
+              container: 'top-right',
+              animationIn: ["animated", "fadeIn"],
+              animationOut: ["animated", "fadeOut"],
+              dismiss: {
+                duration: 3000
+              }
+            })
+          })
+        } else {
+          store.addNotification({
+            title: 'Falha',
+            message: `${error.response.data.message}`,
+            type: 'danger',
+            container: 'top-right',
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 3000
+            }
+          })
+        }
+      }
+    } else {
+      store.addNotification({
+        title: 'Falha',
+        message: 'Tipo de questão é nulo',
+        type: 'danger',
+        container: 'top-right',
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 3000
+        }
+      })
+    }
   }
 
   renderPesquisa() {
     return (
       <>
-      <div className="container-questoes">
-        {
-          this.state.resultados.map((item, key) => {
-            return (
-              <CardQuestao
-                key = {key}
-                questao = {item.questao}
-                data = {item.dataCriacao}
-                especificidade = {item.especificidade}
-                nivel = {item.nivelDeDificuldade}
-              />
-            )
-          })
-        }
-      </div>
+        <div className="container-questoes">
+          {
+            this.state.resultados.map((item, key) => {
+              return (
+                <CardQuestao
+                  key={key}
+                  questao={item.questao}
+                  data={item.dataCriacao}
+                  especificidade={item.especificidade}
+                  nivel={item.nivelDeDificuldade}
+                />
+              )
+            })
+          }
+        </div>
       </>
     )
   }
 
   renderBuscar() {
-    if(this.state.especificidades && this.state.niveis){
+    if (this.state.especificidades && this.state.niveis) {
       return (
         <>
-        <div className="container-titulo">
-          <span className="titulo-crie">Busque a questão que deseja</span>
-        </div>
-        <div className="container-inputs">
-          <EscolherQuestao 
-            tipo = {this.state.tipo}
-            especificidade = {this.state.especificidade}
-            nivel = {this.state.nivel}
-            tipos = {this.state.tipos}
-            especificidades = {this.state.especificidades}
-            niveis = {this.state.niveis}
-            handleChange = {this.handleChange}/>
-        </div>
-        
-        {
-          this.state.resultados.length
-          ?
-          this.renderPesquisa()
-          :
-          null
-        }
+          <div className="container-titulo">
+            <span className="titulo-crie">Busque a questão que deseja</span>
+          </div>
+          <div className="container-inputs">
+            <EscolherQuestao
+              tipo={this.state.tipo}
+              especificidade={this.state.especificidade}
+              nivel={this.state.nivel}
+              tipos={this.state.tipos}
+              especificidades={this.state.especificidades}
+              niveis={this.state.niveis}
+              handleChange={this.handleChange} />
+          </div>
 
-        <div className="container-botao">
-					<BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarPesquisa}/>
-				</div>
+          {
+            this.state.resultados.length
+              ?
+              this.renderPesquisa()
+              :
+              null
+          }
+
+          <div className="container-botao">
+            <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarPesquisa} />
+          </div>
         </>
       )
-    }else{
-			return <h3>Não há especificidade ou niveis no banco para você poder buscar uma questão</h3>
-		}
+    } else {
+      return <h3>Não há especificidade ou niveis no banco para você poder buscar uma questão</h3>
+    }
   }
 
   render() {

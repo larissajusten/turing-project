@@ -19,7 +19,7 @@ public class AdicionarQuestaoDissertativaService {
     @Autowired
     private QuestaoDissertativaRepository repository;
 
-    public QuestaoDissertativa adicionar(QuestaoUnicaAlternativaRequest request){
+    public QuestaoDissertativa adicionar(QuestaoUnicaAlternativaRequest request) {
         QuestaoDissertativa questaoDissertativa = mapper.transformar(request);
 
         questaoDissertativa.setDataCriacao(LocalDate.now());

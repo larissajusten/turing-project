@@ -33,14 +33,14 @@ public class RespostaProvaController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/{id-questao}/responder-dissertativa")
     public RespostasDissertativaProva responderQuestaoDissertativa(@PathVariable("id-prova") Long idProva, @PathVariable("id-questao") Long idQuestao,
-                                                                   @Valid @RequestBody String resposta){
+                                                                   @Valid @RequestBody String resposta) {
         return responderQuestaoDissertativaService.responder(idProva, idQuestao, resposta);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/{id-questao}/responder-tecnica")
     public RespostasTecnicaProva responderQuestaoTecnica(@PathVariable("id-prova") Long idProva, @PathVariable("id-questao") Long idQuestao,
-                                                         @Valid @RequestBody String resposta){
+                                                         @Valid @RequestBody String resposta) {
         return responderQuestaoTecnicaService.responder(idProva, idQuestao, resposta);
     }
 
@@ -48,7 +48,7 @@ public class RespostaProvaController {
     @PutMapping("/{id-prova}/{id-questao}/{id-alternativa}/responder-multipla-escolha")
     public RespostasMultiplaEscolhaProva responderQuestaoMultiplaEscolha(@PathVariable("id-prova") Long idProva,
                                                                          @PathVariable("id-questao") Long idQuestao,
-                                                                         @PathVariable("id-alternativa") Long idAlternativa){
+                                                                         @PathVariable("id-alternativa") Long idAlternativa) {
         return responderQuestaoMultiplaEscolhaService.responder(idProva, idQuestao, idAlternativa);
     }
 

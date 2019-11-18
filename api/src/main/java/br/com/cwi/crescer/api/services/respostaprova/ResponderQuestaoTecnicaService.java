@@ -22,7 +22,7 @@ public class ResponderQuestaoTecnicaService {
     @Autowired
     private BuscarQuestaoTecnicaPorIdService buscarQuestaoTecnicaPorIdService;
 
-    public RespostasTecnicaProva responder(Long idProva, Long idQuestao, String resposta){
+    public RespostasTecnicaProva responder(Long idProva, Long idQuestao, String resposta) {
         RespostasTecnicaProva respostasTecnicaProva = new RespostasTecnicaProva();
         respostasTecnicaProva.setResposta(resposta);
 

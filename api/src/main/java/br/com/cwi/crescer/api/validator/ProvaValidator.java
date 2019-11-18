@@ -14,9 +14,10 @@ public class ProvaValidator {
 
     public void verificarSeEmailDoCandidatoTemProvaEmAbertoNoSistema(String email) {
 
-        if(provaRepository.existsByEmailEqualsAndStatusEquals(email, StatusProva.ATIVA)){
+        if (provaRepository.existsByEmailEqualsAndStatusEquals(email, StatusProva.ATIVA)) {
             throw new UsuariojaTemProvaEmVigorException("Usuário já possui uma prova ativa.");
-        };
+        }
+        ;
 
     }
 }

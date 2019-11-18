@@ -67,7 +67,7 @@ public class QuestaoMultiplaEscolhaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-questao}/buscar-alternativas")
-    public List<AlternativaMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PathVariable ("id-questao") Long idQuestao) {
+    public List<AlternativaMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PathVariable("id-questao") Long idQuestao) {
         return buscarAlternativaQuestaoMultiplaEscolhaService.buscar(idQuestao);
     }
 
