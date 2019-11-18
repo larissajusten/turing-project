@@ -5,7 +5,9 @@ import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Getter
 @AllArgsConstructor
@@ -17,7 +19,8 @@ public class BuscaQuestoesRequest {
     @NotNull(message = "O nivel de dificuldade não pode ser vazio")
     private NivelDeDificuldade nivelDeDificuldade;
 
-    @NotNull(message = "A quantidade de questões não pode ser vazia")
+    @Positive
+    @Min(value = 0,  message = "A quantidade de questões não pode ser vazia")
     private int quantidadeDeQuestoes;
 
 }
