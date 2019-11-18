@@ -16,19 +16,8 @@ import java.util.List;
 public class CalcularNumeroDeAcertosMultiplaEscolhaService {
 
     @Autowired
-    private ListarQuestoesMultiplaEscolhaDaProvaService listarQuestoesMultiplaEscolhaDaProvaService;
-
-    @Autowired
-    private BuscarAlternativaQuestaoMultiplaEscolhaService buscarAlternativaQuestaoMultiplaEscolhaService;
-
-    @Autowired
-    private RetornarAlternativaCertaService retornarAlternativaCertaService;
-
-    @Autowired
     private RespostaMultiplaEscolhaRepository repository;
 
-    @Autowired
-    private AlternativaMultiplaEscolhaRepository alternativaMultiplaEscolhaRepository;
 
     public int calcular(Long idProva) {
         int corretas = 0;

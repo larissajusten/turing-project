@@ -7,10 +7,7 @@ import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaRespons
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaQuestaoMultiplaEscolhaService;
-import br.com.cwi.crescer.api.services.questaomultiplaescolha.AdicionarQuestaoMultiplaEscolhaService;
-import br.com.cwi.crescer.api.services.questaomultiplaescolha.BuscarQuestoesMultiplaEscolhaFiltradasService;
-import br.com.cwi.crescer.api.services.questaomultiplaescolha.ListarQuestoesMultiplaEscolhaFiltradasService;
-import br.com.cwi.crescer.api.services.questaomultiplaescolha.BuscarQuestoesMultiplaEscolhaService;
+import br.com.cwi.crescer.api.services.questaomultiplaescolha.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,6 +38,9 @@ public class QuestaoMultiplaEscolhaController {
     @Autowired
     private ListarQuestoesMultiplaEscolhaFiltradasService listarQuestoesMultiplaEscolhaFiltradasService;
 
+    @Autowired
+    private BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService;
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public QuestaoMultiplaEscolha adicionarQuestaoMultiplaEscolha(@Valid @RequestBody QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
@@ -62,7 +62,7 @@ public class QuestaoMultiplaEscolhaController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
     public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
-        return buscarQuestoesMultiplaEscolhaFiltradasService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
+        return buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService.buscarQuestoes(request.getEspecificidade(), request.getNivelDeDificuldade());
     }
 
     @ResponseStatus(HttpStatus.OK)
