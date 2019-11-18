@@ -8,21 +8,21 @@ import 'animate.css'
 
 export class CadastroDissertativa extends PureComponent {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       linguagens: props.linguagens,
       niveis: props.niveis,
-      especificidade: '',
-      nivel:'',
-      questao: ''
+      especificidade: null,
+      nivel: null,
+      questao: null
     }
   }
 
   handleChange = (event) => {
     const { name, value } = event.target
     this.setState({
-        [name]: value
+      [name]: value
     })
   }
 
@@ -35,7 +35,7 @@ export class CadastroDissertativa extends PureComponent {
       "especificidade": this.state.especificidade
     }
 
-    try{
+    try {
       await adicionarQuestaoDissertativa(questao)
       store.addNotification({
         title: 'Sucesso',
@@ -49,11 +49,25 @@ export class CadastroDissertativa extends PureComponent {
         }
       })
     }
-    catch(error){
-      error.response.data.errors.map( message => {
-        return store.addNotification({
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return store.addNotification({
+            title: 'Falha',
+            message: `${message.defaultMessage}`,
+            type: 'danger',
+            container: 'top-right',
+            animationIn: ["animated", "fadeIn"],
+            animationOut: ["animated", "fadeOut"],
+            dismiss: {
+              duration: 3000
+            }
+          })
+        })
+      } else {
+        store.addNotification({
           title: 'Falha',
-          message: `${message.defaultMessage}`,
+          message: `${error.response.data.message}`,
           type: 'danger',
           container: 'top-right',
           animationIn: ["animated", "fadeIn"],
@@ -62,22 +76,21 @@ export class CadastroDissertativa extends PureComponent {
             duration: 3000
           }
         })
-      })
+      }
     }
-
   }
 
   render() {
-    return(
+    return (
       <>
-      <QuestaoUnica
-        linguagens = {this.state.linguagens}
-        niveis = {this.state.niveis}
-        especificidade = {this.state.especificidade}
-        nivel = {this.state.nivel}
-        questao = {this.state.questao}
-        handleChange = {this.handleChange}
-        handleClickSalvarQuestao = {this.handleClickSalvarQuestao}/>
+        <QuestaoUnica
+          linguagens={this.state.linguagens}
+          niveis={this.state.niveis}
+          especificidade={this.state.especificidade}
+          nivel={this.state.nivel}
+          questao={this.state.questao}
+          handleChange={this.handleChange}
+          handleClickSalvarQuestao={this.handleClickSalvarQuestao} />
       </>
     )
   }

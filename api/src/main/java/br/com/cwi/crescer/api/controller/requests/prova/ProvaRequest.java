@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 @Data
 @AllArgsConstructor
@@ -14,10 +15,12 @@ public class ProvaRequest {
     @NotEmpty (message = "O email do candidato não pode ser vazio")
     private String email;
 
-    @Min(value = 0, message = "O tempo para iniciar a prova não pode ser vazio")
+    @Positive
+    @Min(value = 0, message = "O tempo de duração da prova não pode ser vazio")
     private int tempoDeDuracaoDaProva;
 
-    @Min(value = 0, message = "O tempo para iniciar a prova não pode ser vazio")
+    @Positive
+    @Min(value = 0,  message = "Tempo de inicio da prova deve ser maior que 0")
     private int tempoParaInicioProva;
 
 }
