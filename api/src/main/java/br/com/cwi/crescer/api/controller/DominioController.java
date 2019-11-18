@@ -15,12 +15,14 @@ import java.util.List;
 @RequestMapping("/dominio")
 public class DominioController {
 
+    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/especificidades")
     public List<Especificidade> especificidades() {
         return Arrays.asList(Especificidade.values());
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/niveis-dificuldade")
     public List<NivelDeDificuldade> nivelDeDificuldades() {

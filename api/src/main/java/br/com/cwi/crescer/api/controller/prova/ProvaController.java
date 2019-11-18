@@ -52,18 +52,21 @@ public class ProvaController {
     @Autowired
     private ExcluirQuestaoTecnicaService excluirQuestaoTecnicaService;
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Long criarProvaERetornarID(@Valid @RequestBody ProvaRequest request) {
         return criarProvaService.criar(request);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-dissertativa")
     public void incluirDissertativas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         incluirQuestoesDissertativasService.incluir(idProva, buscaQuestoesRequest);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id-prova}/excluir-dissertativa/{id-questao-prova}")
     public void excluirDissertativa(@PathVariable("id-prova") Long idProva,
@@ -71,12 +74,14 @@ public class ProvaController {
         excluirQuestaoDissertativaService.excluir(idQuestaoProva, idProva);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-tecnica")
     public void incluirTecnicas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         incluirQuestoesTecnicasService.incluir(idProva, buscaQuestoesRequest);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id-prova}/excluir-tecnica/{id-questao-prova}")
     public void excluirTecnicaProva(@PathVariable("id-prova") Long idProva,
@@ -84,12 +89,14 @@ public class ProvaController {
         excluirQuestaoTecnicaService.excluir(idQuestaoProva, idProva);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-multipla-escolha")
     public void incluirMultiplasEscolhas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         incluirQuestoesMultiplaEscolhaService.incluir(idProva, buscaQuestoesRequest);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id-prova}/excluir-multipla-escolha/{id-questao-prova}")
     public void excluirMultiplaEscolha(@PathVariable("id-prova") Long idProva,
@@ -97,30 +104,35 @@ public class ProvaController {
         excluirQuestaoMultiplaEscolhaService.excluir(idQuestaoProva, idProva);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/buscar-prova")
     public ProvaResponse buscarProva(@PathVariable("id-prova") Long idProva) {
         return buscarProvaComQuestoesService.buscar(idProva);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/duracao")
     public int retornaDuracaoDaProva(@PathVariable("id-prova") Long idProva) {
         return buscarDuracaoDaProvaService.buscar(idProva);
     }
 
+    //@RolesAllowed("Usuario")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/iniciar-prova")
     public void iniciarTempoDaProva(@PathVariable("id-prova") Long idProva) {
         iniciarTempoDaProvaService.iniciar(idProva);
     }
 
+    //@RolesAllowed("Usuario")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/finalizar-prova")
     public StatusProva finalizarTempoDaProva(@PathVariable("id-prova") Long idProva) {
         return finalizarTempoDaProvaService.finalizar(idProva);
     }
 
+    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/consultar-status-prova")
     public StatusProva consultarStatusDaProva(@PathVariable("id-prova") Long idProva) {
