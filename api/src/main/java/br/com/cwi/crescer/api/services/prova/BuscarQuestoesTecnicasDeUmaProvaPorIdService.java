@@ -23,11 +23,11 @@ public class BuscarQuestoesTecnicasDeUmaProvaPorIdService {
 
         List<QuestaoTecnicaResponse> listaDeQuestoesTecnicasDaProva = new ArrayList<>();
 
-                repository
+        repository
                 .findAllByProvaIdEquals(idProva)
-                .forEach(item -> {
-                    listaDeQuestoesTecnicasDaProva.add(mapper.map(item.getQuestao(), QuestaoTecnicaResponse.class));
-                });
+                .forEach(item ->
+                        listaDeQuestoesTecnicasDaProva.add(mapper.map(item.getQuestao(), QuestaoTecnicaResponse.class))
+                );
 
         return listaDeQuestoesTecnicasDaProva;
     }

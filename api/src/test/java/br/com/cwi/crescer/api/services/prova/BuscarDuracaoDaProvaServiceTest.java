@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

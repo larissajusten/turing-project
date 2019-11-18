@@ -45,9 +45,8 @@ public class BuscarQuestoesMultiplaEscolhaService {
             List<AlternativaMultiplaEscolhaResponse> alternativasResponse = new ArrayList<>();
 
             buscarAlternativaQuestaoMultiplaEscolha.buscar(questao.getId())
-                    .forEach(item -> {
-                        alternativasResponse.add(alternativaMapper.transformarEmResponse(item));
-                    });
+                    .forEach(item -> alternativasResponse.add(alternativaMapper.transformarEmResponse(item))
+                    );
 
             return mapper.transformarParaResponse(questao, alternativasResponse);
         });

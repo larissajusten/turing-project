@@ -18,12 +18,12 @@ public class BuscarQuestoesTecnicasFiltradasService {
     @Autowired
     private QuestaoTecnicaRepository repository;
 
-    public List<QuestaoTecnica> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade){
+    public List<QuestaoTecnica> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade) {
 
-        if(repository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade).size() == TAMANHO_PARA_LANCAR_EXCEPTION_LISTA) {
+        if (repository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade).size() == TAMANHO_PARA_LANCAR_EXCEPTION_LISTA) {
             throw new QuestaoNaoEncontradaException("Nenhuma questão com essa especificidade e nivel de dificuldade foi encontrada.");
         }
 
-        return repository.acharPorNivelEEspecificidade(especificidade,nivelDeDificuldade);
+        return repository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade);
     }
 }

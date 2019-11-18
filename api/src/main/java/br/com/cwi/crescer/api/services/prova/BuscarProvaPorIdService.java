@@ -12,7 +12,7 @@ public class BuscarProvaPorIdService {
     @Autowired
     private ProvaRepository repository;
 
-    public Prova buscar(Long id){
+    public Prova buscar(Long id) {
         return repository.findById(id).orElseThrow(() -> new ProvaNaoEncontradaException("Prova não foi encontrada"));
     }
 }

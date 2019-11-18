@@ -14,7 +14,7 @@ public class BuscarQuestaoDissertativaPorEspecificidadeENivelService {
     @Autowired
     private QuestaoDissertativaRepository repository;
 
-    public List<QuestaoDissertativa> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade){
+    public List<QuestaoDissertativa> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade) {
         return repository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade);
     }
 }

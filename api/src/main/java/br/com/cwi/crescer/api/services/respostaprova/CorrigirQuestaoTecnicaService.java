@@ -2,7 +2,6 @@ package br.com.cwi.crescer.api.services.respostaprova;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
 import br.com.cwi.crescer.api.domain.resposta.RespostasTecnicaProva;
-import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
 import br.com.cwi.crescer.api.repository.resposta.RespostasTecnicaRepository;
 import br.com.cwi.crescer.api.validator.NotaValidator;
 import org.springframework.beans.factory.annotation.Autowired;

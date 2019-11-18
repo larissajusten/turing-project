@@ -13,7 +13,7 @@ public class ListarQuestoesMultiplaEscolhaDaProvaService {
     @Autowired
     private ProvaQuestaoMultiplaEscolhaRepository repository;
 
-    public List<ProvaQuestaoMultiplaEscolha> listar(Long idProva){
+    public List<ProvaQuestaoMultiplaEscolha> listar(Long idProva) {
         return repository.findAllByProvaIdEquals(idProva);
     }
 }

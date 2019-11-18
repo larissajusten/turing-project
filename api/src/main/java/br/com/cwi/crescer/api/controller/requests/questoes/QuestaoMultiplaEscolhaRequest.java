@@ -13,13 +13,13 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class QuestaoMultiplaEscolhaRequest {
 
-    @NotBlank(message = "Questão deve estar preenchido" )
+    @NotBlank(message = "Questão deve estar preenchido")
     private String questao;
 
-    @NotNull(message = "Nível de dificuldade não pode ser nulo" )
+    @NotNull(message = "Nível de dificuldade não pode ser nulo")
     private NivelDeDificuldade nivelDeDificuldade;
 
-    @NotNull(message = "Especificidade não pode ser nula" )
+    @NotNull(message = "Especificidade não pode ser nula")
     private Especificidade especificidade;
 
     @Valid

@@ -37,6 +37,7 @@ public class BuscarProvaComQuestoesService {
         provaResponse.setQuestoesTecnicas(buscarQuestoesTecnicasDeUmaProvaPorIdService.buscar(idProva));
         provaResponse.setQuestoesDissertativas(buscarQuestoesDissertativasDeUmaProvaPorIdService.buscar(idProva));
         provaResponse.setQuestoesDeMultiplaEscolha(buscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService.buscar(idProva));
+
         return provaResponse;
     }
 }

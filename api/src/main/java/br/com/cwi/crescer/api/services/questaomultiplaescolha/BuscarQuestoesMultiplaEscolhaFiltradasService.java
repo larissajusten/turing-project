@@ -15,7 +15,7 @@ public class BuscarQuestoesMultiplaEscolhaFiltradasService {
     @Autowired
     private QuestaoMultiplaEscolhaRepository repository;
 
-    public List<QuestaoMultiplaEscolha> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade){
+    public List<QuestaoMultiplaEscolha> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade) {
         return repository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade);
     }
 }

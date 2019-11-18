@@ -22,7 +22,7 @@ public class ListarQuestoesTecnicasFiltradasService {
     @Autowired
     private BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
 
-    public List<QuestaoTecnica> listar(BuscaQuestoesRequest request){
+    public List<QuestaoTecnica> listar(BuscaQuestoesRequest request) {
         List<QuestaoTecnica> lista = new ArrayList<>();
 
         List<QuestaoTecnica> listaQueAtendeRequisitos = buscarQuestoesTecnicasFiltradasService

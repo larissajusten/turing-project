@@ -16,7 +16,7 @@ public class ProvaMapper {
     @Autowired
     private ModelMapper mapper;
 
-    public Prova transformar(ProvaRequest request){
+    public Prova transformar(ProvaRequest request) {
         Prova prova = mapper.map(request, Prova.class);
 
         prova.setDataCriacao(LocalDateTime.now());
