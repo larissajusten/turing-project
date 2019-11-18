@@ -34,6 +34,9 @@ public class BuscarProvaComQuestoesServiceTest {
     @Mock
     BuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService buscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService;
 
+    @Mock
+    VerificarSeProvaEstaDentroDoPrazoParaIniciarService verificarSeProvaEstaDentroDoPrazoParaIniciarService;
+
     @Test
     public void deveChamarBuscarProvaPorIdServiceQuandoBuscarProvaComQuestoesServiceForChamado() {
 
@@ -48,6 +51,7 @@ public class BuscarProvaComQuestoesServiceTest {
         Mockito.when(buscarQuestoesTecnicasDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesTecnicas);
         Mockito.when(buscarQuestoesDissertativasDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesDissertativas);
         Mockito.when(buscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesMultiplaEscolha);
+        Mockito.when(verificarSeProvaEstaDentroDoPrazoParaIniciarService.verificar(prova)).thenReturn(true);
 
         buscarProvaComQuestoesService.buscar(prova.getId());
 
@@ -68,6 +72,7 @@ public class BuscarProvaComQuestoesServiceTest {
         Mockito.when(buscarQuestoesTecnicasDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesTecnicas);
         Mockito.when(buscarQuestoesDissertativasDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesDissertativas);
         Mockito.when(buscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesMultiplaEscolha);
+        Mockito.when(verificarSeProvaEstaDentroDoPrazoParaIniciarService.verificar(prova)).thenReturn(true);
 
         buscarProvaComQuestoesService.buscar(prova.getId());
 
@@ -88,6 +93,7 @@ public class BuscarProvaComQuestoesServiceTest {
         Mockito.when(buscarQuestoesTecnicasDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesTecnicas);
         Mockito.when(buscarQuestoesDissertativasDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesDissertativas);
         Mockito.when(buscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesMultiplaEscolha);
+        Mockito.when(verificarSeProvaEstaDentroDoPrazoParaIniciarService.verificar(prova)).thenReturn(true);
 
         buscarProvaComQuestoesService.buscar(prova.getId());
 
@@ -108,6 +114,7 @@ public class BuscarProvaComQuestoesServiceTest {
         Mockito.when(buscarQuestoesTecnicasDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesTecnicas);
         Mockito.when(buscarQuestoesDissertativasDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesDissertativas);
         Mockito.when(buscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService.buscar(prova.getId())).thenReturn(questoesMultiplaEscolha);
+        Mockito.when(verificarSeProvaEstaDentroDoPrazoParaIniciarService.verificar(prova)).thenReturn(true);
 
         buscarProvaComQuestoesService.buscar(prova.getId());
 

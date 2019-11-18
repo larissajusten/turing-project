@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class RetornarAlternativaCertaService {
 
     @Autowired
-    AlternativaMultiplaEscolhaRepository repository;
+    private AlternativaMultiplaEscolhaRepository repository;
 
     public boolean retornar(Long idAlternativa){
         return repository.isAlternativaCerta(idAlternativa);

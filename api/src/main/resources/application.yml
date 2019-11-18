@@ -21,6 +21,8 @@ spring:
 
     #vanessa
     #url: jdbc:oracle:thin:@192.168.56.101:1521/XE
+    #url: jdbc:oracle:thin:@192.168.64.3:1521/XEPDB1
+
 
     #username: CWITURING
     #password: CWITURING

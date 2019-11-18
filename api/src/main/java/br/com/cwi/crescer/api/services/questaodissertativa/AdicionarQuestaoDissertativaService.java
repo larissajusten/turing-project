@@ -23,7 +23,7 @@ public class AdicionarQuestaoDissertativaService {
         QuestaoDissertativa questaoDissertativa = mapper.transformar(request);
 
         questaoDissertativa.setDataCriacao(LocalDate.now());
-        questaoDissertativa.setUsuario(new Usuario(1L));
+        questaoDissertativa.setUsuario(new Usuario(1L, "a"));
 
         return repository.save(questaoDissertativa);
     }

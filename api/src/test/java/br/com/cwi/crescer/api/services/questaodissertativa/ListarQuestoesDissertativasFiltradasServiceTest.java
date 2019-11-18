@@ -4,6 +4,7 @@ import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
+import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -66,6 +67,24 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
 
         Mockito.verify(buscarQuestaoDissertativaPorEspecificidadeENivelService).buscar(buscaQuestoesRequest.getEspecificidade(),
                 buscaQuestoesRequest.getNivelDeDificuldade());
+    }
+
+    @Test(expected = QuestaoNaoEncontradaException.class)
+    public void deveLancarUmaExceptionQuandoListarQuestoesDissertativasFiltradasServiceForChamadaENaoEncontrarNenhumaQuestao() {
+
+        BuscaQuestoesRequest buscaQuestoesRequest =
+                new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 1);
+
+        List<QuestaoDissertativa> lista = new ArrayList<>();
+        List<QuestaoDissertativa> listaQueAtendeRequisitos = new ArrayList<>();
+
+
+        Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
+                .buscar(buscaQuestoesRequest.getEspecificidade(),
+                        buscaQuestoesRequest.getNivelDeDificuldade()))
+                .thenReturn(listaQueAtendeRequisitos);
+
+        listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest);
     }
 
 

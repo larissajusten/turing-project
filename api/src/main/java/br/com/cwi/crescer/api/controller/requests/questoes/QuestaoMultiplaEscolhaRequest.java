@@ -14,28 +14,28 @@ import javax.validation.constraints.NotNull;
 @Valid
 public class QuestaoMultiplaEscolhaRequest {
 
-    @NotBlank (message = "A questão não pode ser vazia")
+    @NotBlank(message = "Questão deve estar preenchido" )
     private String questao;
 
-    @NotNull (message = "O nivel de dificuldade não pode ser vazio")
+    @NotNull(message = "Nível de dificuldade não pode ser nulo" )
     private NivelDeDificuldade nivelDeDificuldade;
 
-    @NotNull (message = "A especificidade não pode ser vazia")
+    @NotNull(message = "Especificidade não pode ser nula" )
     private Especificidade especificidade;
 
-    @NotNull (message = "A alternativa A não pode ser vazia")
+    @NotNull(message = "Alternativa A não pode ser nula" )
     private AlternativaMultiplaEscolhaRequest alternativaA;
 
-    @NotNull (message = "A alternativa B não pode ser vazia")
+    @NotNull(message = "Alternativa B não pode ser nula" )
     private AlternativaMultiplaEscolhaRequest alternativaB;
 
-    @NotNull (message = "A alternativa C não pode ser vazia")
+    @NotNull(message = "Alternativa C não pode ser nula" )
     private AlternativaMultiplaEscolhaRequest alternativaC;
 
-    @NotNull (message = "A alternativa D não pode ser vazia")
+    @NotNull(message = "Alternativa D não pode ser nula" )
     private AlternativaMultiplaEscolhaRequest alternativaD;
 
-    @NotNull (message = "A alternativa E não pode ser vazia")
+    @NotNull(message = "Alternativa E não pode ser nula" )
     private AlternativaMultiplaEscolhaRequest alternativaE;
 
 }

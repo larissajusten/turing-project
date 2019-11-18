@@ -1,13 +1,11 @@
 package br.com.cwi.crescer.api.domain.resposta;
 
-import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 

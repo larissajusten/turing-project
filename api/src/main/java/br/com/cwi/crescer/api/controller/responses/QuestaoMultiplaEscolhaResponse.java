@@ -2,7 +2,6 @@ package br.com.cwi.crescer.api.controller.responses;
 
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
-import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import lombok.Data;
 
 import java.time.LocalDate;

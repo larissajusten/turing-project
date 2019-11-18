@@ -11,14 +11,13 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class QuestaoUnicaAlternativaRequest {
 
-
-    @NotEmpty(message = "A questao não pode ser vazia")
+    @NotEmpty(message = "Questão não pode estar vazio" )
     private String questao;
 
-    @NotNull (message = "A especificidade não pode ser vazia")
+    @NotNull(message = "Especificidade não pode ser nula" )
     private Especificidade especificidade;
 
-    @NotNull (message = "O nivel de dificuldade não pode ser vazio")
+    @NotNull(message = "Nível de dificuldade não pode ser nula" )
     private NivelDeDificuldade nivelDeDificuldade;
 
 }

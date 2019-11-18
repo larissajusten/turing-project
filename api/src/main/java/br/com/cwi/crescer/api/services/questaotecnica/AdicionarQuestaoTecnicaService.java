@@ -26,7 +26,7 @@ public class AdicionarQuestaoTecnicaService {
         //Precisa salvar um usuário no banco para poder usar ele,
         //dá erro porque está tentando usar um usuário que não existe
         //Para resolver agora: é só salvar manualmente um Usuario no banco
-       questaoTecnica.setUsuario(new Usuario(1L));
+       questaoTecnica.setUsuario(new Usuario(1L, "a"));
 
         repository.save(questaoTecnica);
     }
