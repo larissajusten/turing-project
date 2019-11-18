@@ -27,7 +27,7 @@ public class QuestaoDissertativaController {
     @Autowired
     private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+    //@RolesAllowed("Administrator")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void adicionarQuestaoDissertativa(@Valid @RequestBody QuestaoUnicaAlternativaRequest request) {

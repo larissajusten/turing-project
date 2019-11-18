@@ -34,7 +34,7 @@ public class QuestaoTecnicaController {
         return buscarQuestoesTecnicas.listar(request);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+    //@RolesAllowed("Administrator")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void adicionarQuestaoTecnica(@Valid @RequestBody QuestaoUnicaAlternativaRequest request) {
