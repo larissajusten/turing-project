@@ -16,6 +16,7 @@ public class ProvaRequest {
     @NotNull (message = "O tempo de duração da prova não pode ser vazio")
     private int tempoDeDuracaoDaProva;
 
+    @NotEmpty
     @NotNull (message = "O tempo para iniciar a prova não pode ser vazio")
     private int tempoParaInicioProva;
 

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,20 +29,20 @@ public class QuestaoTecnicaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
-    public List<QuestaoTecnica> buscarQuestoesTecnicas(@RequestBody BuscaQuestoesRequest request) {
+    public List<QuestaoTecnica> buscarQuestoesTecnicas(@Valid @RequestBody BuscaQuestoesRequest request) {
         return buscarQuestoesTecnicas.listar(request);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void adicionarQuestaoTecnica(@RequestBody QuestaoUnicaAlternativaRequest request) {
+    public void adicionarQuestaoTecnica(@Valid @RequestBody QuestaoUnicaAlternativaRequest request) {
         adicionarQuestaoTecnica.adicionar(request);
     }
 
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
-    public List<QuestaoTecnica> buscarTodasQuestoesTecnicasFiltradas(@RequestBody BuscaQuestoesBaseRequest request) {
+    public List<QuestaoTecnica> buscarTodasQuestoesTecnicasFiltradas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
         return buscarQuestoesTecnicasFiltradasService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
     }
 

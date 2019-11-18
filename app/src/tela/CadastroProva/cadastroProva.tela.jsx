@@ -9,6 +9,10 @@ import { adicionarProva,
 import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
 
+import { store } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+import 'animate.css'
+
 const objeto = { tipo: '', especificidade: '', nivel: '', quantidade: '' }
 
 export class CadastrarProvaScreen extends Component {
@@ -70,12 +74,42 @@ export class CadastrarProvaScreen extends Component {
             "tempoParaInicioProva": this.state.tempoParaIniciarProva
         }
 
-        const idProvaSalva = await adicionarProva(prova)
+          try{
+            let idProvaSalva = await adicionarProva(prova)
 
-        this.setState({
-            idProva: idProvaSalva,
-            deveRenderizarQuestoes: true
-        })
+            this.setState({
+                idProva: idProvaSalva,
+                deveRenderizarQuestoes: true
+            })
+
+            store.addNotification({
+              title: 'Sucesso',
+              message: 'Questão adicionada com sucesso',
+              type: 'success',
+              container: 'top-right',
+              animationIn: ["animated", "fadeIn"],
+              animationOut: ["animated", "fadeOut"],
+              dismiss: {
+                duration: 3000
+              }
+            })
+          }
+          catch(error){
+            console.log(error)
+            error.response.data.errors.map( message => {
+              return store.addNotification({
+                title: 'Falha',
+                message: `${message.defaultMessage}`,
+                type: 'danger',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                duration: 3000
+                }
+              })
+            })
+          }
     }
 
     handleClickVoltarProva = (event) => {
@@ -108,23 +142,92 @@ export class CadastrarProvaScreen extends Component {
         if(this.state.arrayStates[id].tipo === this.state.tipos[0]){
           try{
             await incluirDissertativas(this.state.idProva, questao)
+            store.addNotification({
+                title: 'Sucesso',
+                message: 'Questão adicionada com sucesso',
+                type: 'success',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 3000
+                }
+            })
           }
-          catch (error){
-            alert(error.response.data.message)
+          catch(error){
+            error.response.data.errors.map( message => {
+              return store.addNotification({
+                title: 'Falha',
+                message: `${message.defaultMessage}`,
+                type: 'danger',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                duration: 3000
+                }
+              })
+            })
           }
         }else if(this.state.arrayStates[id].tipo === this.state.tipos[1]){
           try{
             await incluirMultiplaEscolha(this.state.idProva, questao)
+            store.addNotification({
+                title: 'Sucesso',
+                message: 'Questão adicionada com sucesso',
+                type: 'success',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 3000
+                }
+            })
           }
-          catch (error){
-            alert(error.response.data.message)
+          catch(error){
+            error.response.data.errors.map( message => {
+              return store.addNotification({
+                title: 'Falha',
+                message: `${message.defaultMessage}`,
+                type: 'danger',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                duration: 3000
+                }
+              })
+            })
           }
         }else if(this.state.arrayStates[id].tipo === this.state.tipos[2]){
           try{
             await incluirTecnicas(this.state.idProva, questao)
+            store.addNotification({
+                title: 'Sucesso',
+                message: 'Questão adicionada com sucesso',
+                type: 'success',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 3000
+                }
+            })
           }
-          catch (error){
-            alert(error.response.data.message)
+          catch(error){
+            error.response.data.errors.map( message => {
+              return store.addNotification({
+                title: 'Falha',
+                message: `${message.defaultMessage}`,
+                type: 'danger',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                duration: 3000
+                }
+              })
+            })
           }
         }
     }

@@ -36,13 +36,13 @@ public class QuestaoDissertativaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
-    public List<QuestaoDissertativa> listarQuestoesDissertativasFiltradas(@RequestBody  BuscaQuestoesRequest request) {
+    public List<QuestaoDissertativa> listarQuestoesDissertativasFiltradas(@Valid @RequestBody  BuscaQuestoesRequest request) {
         return listarQuestoesDissertativasFiltradas.listar(request);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
-    public List<QuestaoDissertativa> listarTodasQuestoesDissertativas(@RequestBody BuscaQuestoesBaseRequest request) {
+    public List<QuestaoDissertativa> listarTodasQuestoesDissertativas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
         return buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
     }
 

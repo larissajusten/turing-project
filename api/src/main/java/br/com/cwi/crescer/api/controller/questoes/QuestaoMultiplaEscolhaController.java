@@ -18,6 +18,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -42,7 +43,7 @@ public class QuestaoMultiplaEscolhaController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public QuestaoMultiplaEscolha adicionarQuestaoMultiplaEscolha(@RequestBody QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
+    public QuestaoMultiplaEscolha adicionarQuestaoMultiplaEscolha(@Valid @RequestBody QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
         return adicionarQuestaoMultiplaEscolha.adicionar(questaoMultiplaEscolhaRequest);
     }
 
@@ -54,13 +55,13 @@ public class QuestaoMultiplaEscolhaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/buscar-questoes-filtrado")
-    public List<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@RequestBody BuscaQuestoesRequest request) {
+    public List<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@Valid @RequestBody BuscaQuestoesRequest request) {
         return listarQuestoesMultiplaEscolhaFiltradasService.listar(request);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
-    public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@RequestBody BuscaQuestoesBaseRequest request) {
+    public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
         return buscarQuestoesMultiplaEscolhaFiltradasService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
     }
 
