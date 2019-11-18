@@ -11,9 +11,9 @@ import java.util.List;
 public class ListarTodasQuestoesTecnicasFiltradasService {
 
     @Autowired
-   private BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
+    private BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
 
-    public List<QuestaoTecnica> buscar(BuscaQuestoesRequest request){
+    public List<QuestaoTecnica> buscar(BuscaQuestoesRequest request) {
         return buscarQuestoesTecnicasFiltradasService.buscar(
                 request.getEspecificidade(), request.getNivelDeDificuldade());
     }

@@ -2,7 +2,6 @@ package br.com.cwi.crescer.api.services.respostaprova;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
-import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
 import br.com.cwi.crescer.api.repository.resposta.RespostasDissertativaRepository;
 import br.com.cwi.crescer.api.validator.NotaValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,8 @@ public class CorrigirQuestaoDissertativaService {
     @Autowired
     private NotaValidator notaValidator;
 
-    public void corrigir(Long idResposta, CorrecaoProvaRequest correcao){
-        RespostasDissertativaProva resposta =  buscarRespostaDissertativaPorIDService.buscar(idResposta);
+    public void corrigir(Long idResposta, CorrecaoProvaRequest correcao) {
+        RespostasDissertativaProva resposta = buscarRespostaDissertativaPorIDService.buscar(idResposta);
 
         notaValidator.verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
 

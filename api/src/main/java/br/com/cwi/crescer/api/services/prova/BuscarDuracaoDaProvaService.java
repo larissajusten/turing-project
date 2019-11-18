@@ -10,7 +10,7 @@ public class BuscarDuracaoDaProvaService {
     @Autowired
     private BuscarProvaPorIdService buscarProvaPorIdService;
 
-    public int buscar(Long id){
+    public int buscar(Long id) {
         Prova prova = buscarProvaPorIdService.buscar(id);
 
         return prova.getTempoDeDuracaoDaProva();

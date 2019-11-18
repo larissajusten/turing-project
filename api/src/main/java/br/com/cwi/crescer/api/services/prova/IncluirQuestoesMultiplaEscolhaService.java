@@ -23,7 +23,7 @@ public class IncluirQuestoesMultiplaEscolhaService {
     @Autowired
     private ProvaQuestaoMultiplaEscolhaRepository repository;
 
-    public void incluir( Long idProva, BuscaQuestoesRequest request) {
+    public void incluir(Long idProva, BuscaQuestoesRequest request) {
         List<QuestaoMultiplaEscolha> lista = listarQuestoesMultiplaEscolhaFiltradasService.listar(request);
         Prova prova = buscarProvaPorId.buscar(idProva);
 

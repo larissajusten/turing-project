@@ -11,9 +11,9 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class BuscaQuestoesBaseRequest {
 
-    @NotNull (message = "A especificidade não pode ser vazia")
+    @NotNull(message = "A especificidade não pode ser vazia")
     private Especificidade especificidade;
 
-    @NotNull (message = "O nivel de dificuldade não pode ser vazio")
+    @NotNull(message = "O nivel de dificuldade não pode ser vazio")
     private NivelDeDificuldade nivelDeDificuldade;
 }

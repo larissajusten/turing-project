@@ -60,19 +60,19 @@ public class ProvaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-dissertativa")
-    public void incluirDissertativas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest){
+    public void incluirDissertativas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         incluirQuestoesDissertativasService.incluir(idProva, buscaQuestoesRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id-questao-prova}/excluir-dissertativa")
-    public void excluirDissertativa(@PathVariable("id-questao-prova") Long idQuestaoProva){
+    public void excluirDissertativa(@PathVariable("id-questao-prova") Long idQuestaoProva) {
         excluirQuestaoDissertativaService.excluir(idQuestaoProva);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-tecnica")
-    public void incluirTecnicas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest){
+    public void incluirTecnicas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         incluirQuestoesTecnicasService.incluir(idProva, buscaQuestoesRequest);
     }
 
@@ -84,13 +84,13 @@ public class ProvaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-multipla-escolha")
-    public void incluirMultiplasEscolhas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest){
+    public void incluirMultiplasEscolhas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         incluirQuestoesMultiplaEscolhaService.incluir(idProva, buscaQuestoesRequest);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id-questao-prova}/excluir-multipla-escolha")
-    public void excluirMultiplaEscolha(@PathVariable("id-questao-prova") Long idQuestaoProva){
+    public void excluirMultiplaEscolha(@PathVariable("id-questao-prova") Long idQuestaoProva) {
         excluirQuestaoMultiplaEscolhaService.excluir(idQuestaoProva);
     }
 
@@ -120,7 +120,7 @@ public class ProvaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/consultar-status-prova")
-        public StatusProva consultarStatusDaProva(@PathVariable("id-prova") Long idProva) {
-            return consultarStatusDaProvaService.consultar(idProva);
-        }
+    public StatusProva consultarStatusDaProva(@PathVariable("id-prova") Long idProva) {
+        return consultarStatusDaProvaService.consultar(idProva);
+    }
 }

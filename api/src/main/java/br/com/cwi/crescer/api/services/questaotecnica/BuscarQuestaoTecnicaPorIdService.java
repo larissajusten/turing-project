@@ -12,7 +12,7 @@ public class BuscarQuestaoTecnicaPorIdService {
     @Autowired
     private QuestaoTecnicaRepository repository;
 
-    public QuestaoTecnica buscar(Long id){
+    public QuestaoTecnica buscar(Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new QuestaoNaoEncontradaException("Questão técnica não foi encontrada por esse id"));
     }

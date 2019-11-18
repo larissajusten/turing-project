@@ -33,7 +33,7 @@ public class ListarQuestoesMultiplaEscolhaFiltradasService {
 
         int quant = request.getQuantidadeDeQuestoes();
         int cont = 0;
-        while(cont < quant){
+        while (cont < quant) {
             lista.add(listaQueAtendeRequisitos.get(cont));
             cont++;
         }

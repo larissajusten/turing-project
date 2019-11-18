@@ -13,7 +13,7 @@ public class ListarQuestoesTecnicasDaProvaService {
     @Autowired
     private ProvaQuestaoTecnicaRepository repository;
 
-    public List<ProvaQuestaoTecnica> listar(Long idProva){
+    public List<ProvaQuestaoTecnica> listar(Long idProva) {
         return repository.findAllByProvaIdEquals(idProva);
     }
 }

@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.time.LocalDate;
@@ -14,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import static org.junit.Assert.*;
+
 @RunWith(MockitoJUnitRunner.class)
 public class VerificarSeProvaEstaDentroDoPrazoParaIniciarServiceTest {
 
@@ -36,7 +36,7 @@ public class VerificarSeProvaEstaDentroDoPrazoParaIniciarServiceTest {
     public void deveRetornarFalseQuandoAProvaEstiverNoPrazoParaSerFeita() {
 
         Prova prova = new Prova();
-        prova.setDataCriacao(LocalDateTime.of(LocalDate.of(1988,10,10), LocalTime.now()));
+        prova.setDataCriacao(LocalDateTime.of(LocalDate.of(1988, 10, 10), LocalTime.now()));
         prova.setTempoParaInicioProva(10);
 
         Assert.assertFalse(verificarSeProvaEstaDentroDoPrazoParaIniciarService.verificar(prova));
@@ -47,7 +47,7 @@ public class VerificarSeProvaEstaDentroDoPrazoParaIniciarServiceTest {
     public void deveAlterarOStatusDaProvaParaForaDoPrazoParaRealizacaoDaProvaQuandoAProvaEstiverNoPrazoParaSerFeitaEORetornoForFalse() {
 
         Prova prova = new Prova();
-        prova.setDataCriacao(LocalDateTime.of(LocalDate.of(1988,10,10), LocalTime.now()));
+        prova.setDataCriacao(LocalDateTime.of(LocalDate.of(1988, 10, 10), LocalTime.now()));
         prova.setTempoParaInicioProva(10);
 
         verificarSeProvaEstaDentroDoPrazoParaIniciarService.verificar(prova);

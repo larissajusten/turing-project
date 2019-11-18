@@ -23,9 +23,9 @@ public class BuscarQuestoesDissertativasDeUmaProvaPorIdService {
         List<QuestaoDissertativaResponse> questoesDissertativasDaProva = new ArrayList<>();
 
         repository.findAllByProvaIdEquals(idProva)
-                .forEach(item -> {
-                    questoesDissertativasDaProva.add(mapper.map(item.getQuestao(), QuestaoDissertativaResponse.class));
-                });
+                .forEach(item ->
+                        questoesDissertativasDaProva.add(mapper.map(item.getQuestao(), QuestaoDissertativaResponse.class))
+                );
 
         return questoesDissertativasDaProva;
     }

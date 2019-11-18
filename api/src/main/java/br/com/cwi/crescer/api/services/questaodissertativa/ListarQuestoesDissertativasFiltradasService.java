@@ -19,7 +19,7 @@ public class ListarQuestoesDissertativasFiltradasService {
     @Autowired
     private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
 
-    public List<QuestaoDissertativa> listar(BuscaQuestoesRequest request){
+    public List<QuestaoDissertativa> listar(BuscaQuestoesRequest request) {
         List<QuestaoDissertativa> lista = new ArrayList<>();
 
         List<QuestaoDissertativa> listaQueAtendeRequisitos = buscarQuestaoDissertativaPorEspecificidadeENivelService
@@ -35,7 +35,7 @@ public class ListarQuestoesDissertativasFiltradasService {
         int quant = request.getQuantidadeDeQuestoes();
         int cont = 0;
 
-        while(cont < quant){
+        while (cont < quant) {
             lista.add(listaQueAtendeRequisitos.get(cont));
             cont++;
         }
