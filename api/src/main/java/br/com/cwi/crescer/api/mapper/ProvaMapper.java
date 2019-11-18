@@ -21,7 +21,7 @@ public class ProvaMapper {
 
         prova.setDataCriacao(LocalDateTime.now());
         prova.setEmail(request.getEmail());
-        prova.setCriador(new Usuario(1L));
+        prova.setCriador(new Usuario(1L, "a"));
         prova.setStatus(StatusProva.ATIVA);
 
         return prova;
