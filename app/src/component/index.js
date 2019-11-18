@@ -14,3 +14,4 @@ export { AdicionarQuestao } from './AdicionarQuestaoProva/adicionarQuestao.compo
 export { MostrarQuestaoUnica } from './MostraQuestoes/QuestaoUnicaResposta/mostrarQuestaoUnica.component.jsx'
 export { MostrarMultiplasRespostas } from './MostraQuestoes/QuestaoMultiplasRespostas/mostrarMultiplasRespostas.component.jsx'
 export { Alternativa } from './Alternativa/alternativa.component.jsx'
+export { Notificacao } from './Notificacao/notification.component.js'

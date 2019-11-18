@@ -17,6 +17,13 @@ export class VisualizarProvaScreen extends Component {
     }
   }
 
+  componentWillMount() {
+    let idProvaStorage = localStorage.getItem('idProva')
+    this.setState({
+      idProva: idProvaStorage
+    })
+  }
+
   async componentDidMount() {
     this.setState({
       prova: await retornaProva(this.state.idProva)
