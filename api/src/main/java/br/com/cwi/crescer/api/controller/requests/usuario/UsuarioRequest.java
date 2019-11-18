@@ -13,6 +13,6 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class UsuarioRequest {
 
-    @NotNull
+    @NotNull(message = "ID não pode ser nulo" )
     private Long id;
 }

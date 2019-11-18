@@ -9,9 +9,9 @@ import javax.validation.constraints.NotEmpty;
 @AllArgsConstructor
 public class AlternativaMultiplaEscolhaRequest {
 
-    @NotEmpty
+    @NotEmpty(message = "Resposta não pode estar vazia")
     private String resposta;
 
-    @NotEmpty
+    @NotEmpty(message = "Resposta correta não pode estar vazia" )
     private boolean respostaCorreta;
 }
