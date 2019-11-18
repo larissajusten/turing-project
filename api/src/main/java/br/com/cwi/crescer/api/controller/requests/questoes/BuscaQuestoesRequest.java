@@ -11,13 +11,13 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class BuscaQuestoesRequest {
 
-    @NotNull
+    @NotNull (message = "A especificidade não pode ser vazia")
     private Especificidade especificidade;
 
-    @NotNull
+    @NotNull (message = "O nivel de dificuldade não pode ser vazio")
     private NivelDeDificuldade nivelDeDificuldade;
 
-    @NotNull
+    @NotNull (message = "A quantidade de questões não pode ser vazia")
     private int quantidadeDeQuestoes;
 
 }

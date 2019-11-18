@@ -2,6 +2,10 @@ import React, { PureComponent } from 'react';
 import { QuestaoUnica } from '../../index'
 import { adicionarQuestaoDissertativa } from '../../../services/index'
 
+import { store } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+import 'animate.css'
+
 export class CadastroDissertativa extends PureComponent {
 
   constructor(props){
@@ -31,7 +35,34 @@ export class CadastroDissertativa extends PureComponent {
       "especificidade": this.state.especificidade
     }
 
-    await adicionarQuestaoDissertativa(questao)
+    try{
+      await adicionarQuestaoDissertativa(questao)
+      store.addNotification({
+        title: 'Sucesso',
+        message: 'Questão adicionada com sucesso',
+        type: 'success',
+        container: 'top-right',
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 3000
+        }
+      })
+    }
+    catch(error){
+      console.log(error.response)
+      store.addNotification({
+        title: 'Falha',
+        message: `${error.response.data.message}`,
+        type: 'danger',
+        container: 'top-right',
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 3000
+        }
+      })
+    }
   }
 
   render() {

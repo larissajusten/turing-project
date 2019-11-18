@@ -10,10 +10,10 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class CorrecaoProvaRequest {
 
-    @NotNull
+    @NotNull (message = "A nota não pode ser vazia")
     private double nota;
 
-    @NotEmpty
+    @NotEmpty (message = "O comentario não pode ser vazio")
     private String comentario;
 
 }

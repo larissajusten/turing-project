@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.controller.questoes;
 
+import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesBaseRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoMultiplaEscolhaRequest;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
@@ -58,8 +59,8 @@ public class QuestaoMultiplaEscolhaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/buscar-todas-filtrado")
-    public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@RequestBody BuscaQuestoesRequest request) {
+    @PutMapping("/todas-questoes-filtradas")
+    public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@RequestBody BuscaQuestoesBaseRequest request) {
         return buscarQuestoesMultiplaEscolhaFiltradasService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
     }
 

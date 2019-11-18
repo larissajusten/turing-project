@@ -42,6 +42,7 @@ export class AdicionarQuestao extends Component {
           cadastro = {true}
           onChange={this.props.handleChange}
           className="input-quantidade"
+          maxNum="30"
           type="number"
           label="Quantidade de questões"
           placeholder=""/>

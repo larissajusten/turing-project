@@ -178,6 +178,7 @@ export class CadastrarProvaScreen extends Component {
                         name="email"
                         value={this.state.email}
                         onChange={this.handleChange}
+                        maxTam="50"
                         type="text"
                         label="Digite o email do candidato"
                         placeholder="" />
@@ -186,16 +187,18 @@ export class CadastrarProvaScreen extends Component {
                         name="duracao"
                         value={this.state.duracao}
                         onChange={this.handleChange}
+                        maxNum="10"
                         type="number"
-                        label="Tempo de duração da prova"
+                        label="Tempo de duração da prova (horas)"
                         placeholder="" />
 
                     <Input
                         name="tempoParaIniciarProva"
                         value={this.state.tempoParaIniciarProva}
                         onChange={this.handleChange}
+                        maxNum="8760"
                         type="number"
-                        label="Tempo para iniciar a prova"
+                        label="Tempo para iniciar a prova (horas)"
                         placeholder="" />
                 </div>
 

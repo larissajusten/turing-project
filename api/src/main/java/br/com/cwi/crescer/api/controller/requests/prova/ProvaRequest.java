@@ -10,13 +10,13 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class ProvaRequest {
 
-    @NotEmpty
+    @NotEmpty (message = "O email do candidato não pode ser vazio")
     private String email;
 
-    @NotNull
+    @NotNull (message = "O tempo de duração da prova não pode ser vazio")
     private int tempoDeDuracaoDaProva;
 
-    @NotNull
+    @NotNull (message = "O tempo para iniciar a prova não pode ser vazio")
     private int tempoParaInicioProva;
 
 }

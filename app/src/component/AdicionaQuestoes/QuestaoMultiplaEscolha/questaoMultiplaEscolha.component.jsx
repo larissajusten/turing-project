@@ -3,6 +3,10 @@ import { BotaoPrincipal, Input, Select} from '../../index'
 import { adicionarQuestaoMultiplaEscolha } from '../../../services/index'
 import './questaoMultiplaEscolha.style.css'
 
+import { store } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+import 'animate.css'
+
 export class CadastroMultiplaQuestao extends PureComponent {
 	constructor(props){
 		super(props)
@@ -47,7 +51,35 @@ export class CadastroMultiplaQuestao extends PureComponent {
 			"alternativaE": {"resposta": this.state.alternativaE, "respostaCorreta": this.state.resposta === 'E' ? "true" : "false"},
 		}
 
-    await adicionarQuestaoMultiplaEscolha(questao)
+		try{
+			await adicionarQuestaoMultiplaEscolha(questao)
+
+      store.addNotification({
+        title: 'Sucesso',
+        message: 'Questão adicionada com sucesso',
+        type: 'success',
+        container: 'top-right',
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 3000
+        }
+			})
+
+    }
+    catch(error){
+      store.addNotification({
+        title: 'Falha',
+        message: `${error.response.data.message}`,
+        type: 'danger',
+        container: 'top-right',
+        animationIn: ["animated", "fadeIn"],
+        animationOut: ["animated", "fadeOut"],
+        dismiss: {
+          duration: 3000
+        }
+      })
+    }
   }
 
   render() {
@@ -72,6 +104,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 								name="questao"
 								value={this.state.questao}
 								onChange={this.handleChange}
+								maxLength="500"
 								type="textarea"
 								label="Questão"
 								placeholder=""
@@ -82,6 +115,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							name="alternativaA"
 							value={this.state.alternativaA}
 							onChange={this.handleChange}
+							maxTam="300"
 							type="text"
 							label="Alternativa A"
 							placeholder=""/>
@@ -90,6 +124,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							name="alternativaB"
 							value={this.state.alternativaB}
 							onChange={this.handleChange}
+							maxTam="300"
 							type="text"
 							label="Alternativa B"
 							placeholder=""/>
@@ -111,6 +146,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							name="alternativaC"
 							value={this.state.alternativaC}
 							onChange={this.handleChange}
+							maxTam="300"
 							type="text"
 							label="Alternativa C"
 							placeholder=""/>
@@ -119,6 +155,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							name="alternativaD"
 							value={this.state.alternativaD}
 							onChange={this.handleChange}
+							maxTam="300"
 							type="text"
 							label="Alternativa D"
 							placeholder=""/>
@@ -127,6 +164,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 							name="alternativaE"
 							value={this.state.alternativaE}
 							onChange={this.handleChange}
+							maxTam="300"
 							type="text"
 							label="Alternativa E"
 							placeholder=""/>
