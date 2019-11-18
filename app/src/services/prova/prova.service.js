@@ -20,3 +20,8 @@ export const incluirMultiplaEscolha = async (idProva, questao) => {
   const response = await Axios.put(`${baseUrl}/prova/${idProva}/incluir-multipla-escolha`, questao)
   return response.data
 }
+
+export const retornaProva = async (idProva) => {
+  const response = await Axios.get(`${baseUrl}/prova/${idProva}/buscar-prova`)
+  return response.data
+}

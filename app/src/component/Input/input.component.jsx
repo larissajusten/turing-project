@@ -11,6 +11,10 @@ export class Input extends Component {
 					type={this.props.type ? this.props.type : 'text'}
 					placeholder={this.props.placeholder}
 					name={this.props.name}
+					minLength={this.props.minTam}
+					maxLength={this.props.maxTam}
+					min={this.props.minNum}
+					max={this.props.maxNum}
 					value={this.props.value}
 					onChange={this.props.cadastro ? (event) => this.props.onChange(event, this.props.id) : this.props.onChange}
 					required

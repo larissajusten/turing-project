@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("/prova")
@@ -52,13 +54,13 @@ public class ProvaController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public Long criarProvaERetornarID(@RequestBody ProvaRequest request) {
+    public Long criarProvaERetornarID(@Valid @RequestBody ProvaRequest request) {
         return criarProvaService.criar(request);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-dissertativa")
-    public void incluirDissertativas(@PathVariable("id-prova") Long idProva, @RequestBody BuscaQuestoesRequest buscaQuestoesRequest){
+    public void incluirDissertativas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest){
         incluirQuestoesDissertativasService.incluir(idProva, buscaQuestoesRequest);
     }
 
@@ -70,7 +72,7 @@ public class ProvaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-tecnica")
-    public void incluirTecnicas(@PathVariable("id-prova") Long idProva, @RequestBody BuscaQuestoesRequest buscaQuestoesRequest){
+    public void incluirTecnicas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest){
         incluirQuestoesTecnicasService.incluir(idProva, buscaQuestoesRequest);
     }
 
@@ -82,7 +84,7 @@ public class ProvaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-multipla-escolha")
-    public void incluirMultiplasEscolhas(@PathVariable("id-prova") Long idProva, @RequestBody BuscaQuestoesRequest buscaQuestoesRequest){
+    public void incluirMultiplasEscolhas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest){
         incluirQuestoesMultiplaEscolhaService.incluir(idProva, buscaQuestoesRequest);
     }
 

@@ -41,6 +41,7 @@ export class QuestaoUnica extends PureComponent {
               name="questao"
               value={this.props.questao}
               onChange={this.props.handleChange}
+							maxLength="500"
               type="textarea"
               label="Questão"
               placeholder=""

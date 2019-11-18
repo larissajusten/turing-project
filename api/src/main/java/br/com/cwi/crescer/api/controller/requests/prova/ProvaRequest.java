@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.controller.requests.prova;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -10,13 +11,13 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class ProvaRequest {
 
-    @NotEmpty(message = "E-mail não pode estar vazio" )
+    @NotEmpty (message = "O email do candidato não pode ser vazio")
     private String email;
 
-    @NotNull(message = "Tempo de duração da prova não pode ser nulo" )
+    @Min(value = 0, message = "O tempo para iniciar a prova não pode ser vazio")
     private int tempoDeDuracaoDaProva;
 
-    @NotNull(message = "Tempo de início para a prova não pode ser nulo" )
+    @Min(value = 0, message = "O tempo para iniciar a prova não pode ser vazio")
     private int tempoParaInicioProva;
 
 }

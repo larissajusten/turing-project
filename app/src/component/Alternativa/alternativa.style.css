@@ -1,0 +1,23 @@
+.container-alternativa {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 50px;
+  width: 100%;
+}
+
+.alternativa-resposta {
+  background: rgba(247, 245, 245, 0.6);
+  border: 1px solid rgba(249, 243, 243, 0.92);
+  box-sizing: border-box;
+  backdrop-filter: blur(4px);
+  border-radius: 10px;
+  padding: 10px;
+  height: 40px;
+  width: 100%;
+  text-align: start;
+}
+
+.alternativa {
+  padding-left: 10px;
+}

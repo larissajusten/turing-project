@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.controller.questoes;
 
+import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesBaseRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoMultiplaEscolhaRequest;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
@@ -17,6 +18,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -41,7 +43,7 @@ public class QuestaoMultiplaEscolhaController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public QuestaoMultiplaEscolha adicionarQuestaoMultiplaEscolha(@RequestBody QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
+    public QuestaoMultiplaEscolha adicionarQuestaoMultiplaEscolha(@Valid @RequestBody QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
         return adicionarQuestaoMultiplaEscolha.adicionar(questaoMultiplaEscolhaRequest);
     }
 
@@ -53,13 +55,13 @@ public class QuestaoMultiplaEscolhaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/buscar-questoes-filtrado")
-    public List<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@RequestBody BuscaQuestoesRequest request) {
+    public List<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@Valid @RequestBody BuscaQuestoesRequest request) {
         return listarQuestoesMultiplaEscolhaFiltradasService.listar(request);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/buscar-todas-filtrado")
-    public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@RequestBody BuscaQuestoesRequest request) {
+    @PutMapping("/todas-questoes-filtradas")
+    public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
         return buscarQuestoesMultiplaEscolhaFiltradasService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
     }
 

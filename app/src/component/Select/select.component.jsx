@@ -16,7 +16,7 @@ export class Select extends PureComponent {
 
 				{
 					this.props.object.map((item, key) => {
-						return <option key={key}>{item}</option>;
+						return <option key={key} selected>{item}</option>;
 					})
 				}
 			</select>

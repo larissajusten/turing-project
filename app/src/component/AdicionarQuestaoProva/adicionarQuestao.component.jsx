@@ -42,12 +42,13 @@ export class AdicionarQuestao extends Component {
           cadastro = {true}
           onChange={this.props.handleChange}
           className="input-quantidade"
+          maxNum="30"
           type="number"
           label="Quantidade de questões"
           placeholder=""/>
       
       <div className="container-botao-adicionar">
-        <BotaoAdicionar id={this.props.id} nome="+" onClick={this.props.onClick}/>
+        <BotaoAdicionar className="botao-adicionar" id={this.props.id} nome="+" onClick={this.props.onClick}/>
       </div>
 
       </div>

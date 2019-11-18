@@ -9,6 +9,10 @@ import { adicionarProva,
 import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
 
+import { store } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+import 'animate.css'
+
 const objeto = { tipo: '', especificidade: '', nivel: '', quantidade: '' }
 
 export class CadastrarProvaScreen extends Component {
@@ -28,14 +32,14 @@ export class CadastrarProvaScreen extends Component {
             niveis: []
         }
     }
-          
+       
     async componentDidMount() {
         this.setState({
             especificidades: await retornarEspecificidades(),
             niveis: await retornarNiveisDeDificuldade()
         })
     }
-    
+
     handleChange = (event) => {
         const { name, value } = event.target
         this.setState({
@@ -70,12 +74,42 @@ export class CadastrarProvaScreen extends Component {
             "tempoParaInicioProva": this.state.tempoParaIniciarProva
         }
 
-        const idProvaSalva = await adicionarProva(prova)
+          try{
+            let idProvaSalva = await adicionarProva(prova)
 
-        this.setState({
-            idProva: idProvaSalva,
-            deveRenderizarQuestoes: true
-        })
+            this.setState({
+                idProva: idProvaSalva,
+                deveRenderizarQuestoes: true
+            })
+
+            store.addNotification({
+              title: 'Sucesso',
+              message: 'Questão adicionada com sucesso',
+              type: 'success',
+              container: 'top-right',
+              animationIn: ["animated", "fadeIn"],
+              animationOut: ["animated", "fadeOut"],
+              dismiss: {
+                duration: 3000
+              }
+            })
+          }
+          catch(error){
+            console.log(error)
+            error.response.data.errors.map( message => {
+              return store.addNotification({
+                title: 'Falha',
+                message: `${message.defaultMessage}`,
+                type: 'danger',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                duration: 3000
+                }
+              })
+            })
+          }
     }
 
     handleClickVoltarProva = (event) => {
@@ -108,23 +142,92 @@ export class CadastrarProvaScreen extends Component {
         if(this.state.arrayStates[id].tipo === this.state.tipos[0]){
           try{
             await incluirDissertativas(this.state.idProva, questao)
+            store.addNotification({
+                title: 'Sucesso',
+                message: 'Questão adicionada com sucesso',
+                type: 'success',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 3000
+                }
+            })
           }
-          catch (error){
-            alert(error.response.data.message)
+          catch(error){
+            error.response.data.errors.map( message => {
+              return store.addNotification({
+                title: 'Falha',
+                message: `${message.defaultMessage}`,
+                type: 'danger',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                duration: 3000
+                }
+              })
+            })
           }
         }else if(this.state.arrayStates[id].tipo === this.state.tipos[1]){
           try{
             await incluirMultiplaEscolha(this.state.idProva, questao)
+            store.addNotification({
+                title: 'Sucesso',
+                message: 'Questão adicionada com sucesso',
+                type: 'success',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 3000
+                }
+            })
           }
-          catch (error){
-            alert(error.response.data.message)
+          catch(error){
+            error.response.data.errors.map( message => {
+              return store.addNotification({
+                title: 'Falha',
+                message: `${message.defaultMessage}`,
+                type: 'danger',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                duration: 3000
+                }
+              })
+            })
           }
         }else if(this.state.arrayStates[id].tipo === this.state.tipos[2]){
           try{
             await incluirTecnicas(this.state.idProva, questao)
+            store.addNotification({
+                title: 'Sucesso',
+                message: 'Questão adicionada com sucesso',
+                type: 'success',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                  duration: 3000
+                }
+            })
           }
-          catch (error){
-            alert(error.response.data.message)
+          catch(error){
+            error.response.data.errors.map( message => {
+              return store.addNotification({
+                title: 'Falha',
+                message: `${message.defaultMessage}`,
+                type: 'danger',
+                container: 'top-right',
+                animationIn: ["animated", "fadeIn"],
+                animationOut: ["animated", "fadeOut"],
+                dismiss: {
+                duration: 3000
+                }
+              })
+            })
           }
         }
     }
@@ -158,7 +261,7 @@ export class CadastrarProvaScreen extends Component {
                 }
 
                 <div className="container-botao">
-                    <BotaoAdicionar nome="+" adicionar={true} onClick={this.handleClickAdicionarQuestao} />
+                    <BotaoAdicionar className="botao-adicionar" nome="+" adicionar={true} onClick={this.handleClickAdicionarQuestao} />
                     <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarProva} />
                     <BotaoPrincipal nome="Voltar" onClick={this.handleClickVoltarProva} />
                 </div>
@@ -178,6 +281,7 @@ export class CadastrarProvaScreen extends Component {
                         name="email"
                         value={this.state.email}
                         onChange={this.handleChange}
+                        maxTam="50"
                         type="text"
                         label="Digite o email do candidato"
                         placeholder="" />
@@ -186,16 +290,18 @@ export class CadastrarProvaScreen extends Component {
                         name="duracao"
                         value={this.state.duracao}
                         onChange={this.handleChange}
+                        maxNum="10"
                         type="number"
-                        label="Tempo de duração da prova"
+                        label="Tempo de duração da prova (horas)"
                         placeholder="" />
 
                     <Input
                         name="tempoParaIniciarProva"
                         value={this.state.tempoParaIniciarProva}
                         onChange={this.handleChange}
+                        maxNum="8760"
                         type="number"
-                        label="Tempo para iniciar a prova"
+                        label="Tempo para iniciar a prova (horas)"
                         placeholder="" />
                 </div>
 

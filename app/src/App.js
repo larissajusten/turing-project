@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import ReactNotifications from 'react-notifications-component'
 import './App.css';
 import { CadastrarQuestaoScreen, BuscarQuestaoScreen, CadastrarProvaScreen, VisualizarProvaScreen } from './tela/index';
 import { Header, Footer } from './component/index'
-import {  } from './tela/VisualizarProva/visualizarProva.tela';
 
 function App() {
 	return (
 		<div className="principal">
+			<ReactNotifications />
 			<BrowserRouter>
 				<Header/>
 				<Switch>

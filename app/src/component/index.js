@@ -11,4 +11,6 @@ export { CadastroTecnica } from './AdicionaQuestoes/QuestaoTecnica/questaoTecnic
 export { CadastroMultiplaQuestao } from './AdicionaQuestoes/QuestaoMultiplaEscolha/questaoMultiplaEscolha.component.jsx'
 export { EscolherQuestao } from './EscolherQuestao/escolherQuestao.component.jsx'
 export { AdicionarQuestao } from './AdicionarQuestaoProva/adicionarQuestao.component.jsx'
-export { renderQuestaoUnica } from './MostraQuestoes/QuestaoUnicaResposta/renderQuestaoUnica.component.jsx'
+export { MostrarQuestaoUnica } from './MostraQuestoes/QuestaoUnicaResposta/mostrarQuestaoUnica.component.jsx'
+export { MostrarMultiplasRespostas } from './MostraQuestoes/QuestaoMultiplasRespostas/mostrarMultiplasRespostas.component.jsx'
+export { Alternativa } from './Alternativa/alternativa.component.jsx'

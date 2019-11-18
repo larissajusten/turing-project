@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/resposta")
 public class RespostaProvaController {
@@ -31,14 +33,14 @@ public class RespostaProvaController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/{id-questao}/responder-dissertativa")
     public RespostasDissertativaProva responderQuestaoDissertativa(@PathVariable("id-prova") Long idProva, @PathVariable("id-questao") Long idQuestao,
-                                                                   @RequestBody String resposta){
+                                                                   @Valid @RequestBody String resposta){
         return responderQuestaoDissertativaService.responder(idProva, idQuestao, resposta);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/{id-questao}/responder-tecnica")
     public RespostasTecnicaProva responderQuestaoTecnica(@PathVariable("id-prova") Long idProva, @PathVariable("id-questao") Long idQuestao,
-                                                         @RequestBody String resposta){
+                                                         @Valid @RequestBody String resposta){
         return responderQuestaoTecnicaService.responder(idProva, idQuestao, resposta);
     }
 
@@ -53,14 +55,14 @@ public class RespostaProvaController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-resposta}/corrigir-dissertativa")
     public void corrigirQuestaoDissertativa(@PathVariable("id-resposta") Long idResposta,
-                                            @RequestBody CorrecaoProvaRequest correcao) {
+                                            @Valid @RequestBody CorrecaoProvaRequest correcao) {
         corrigirQuestaoDissertativaService.corrigir(idResposta, correcao);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-resposta}/corrigir-tecnica")
     public void corrigirQuestaoTecnica(@PathVariable("id-resposta") Long idResposta,
-                                            @RequestBody CorrecaoProvaRequest correcao) {
+                                       @Valid @RequestBody CorrecaoProvaRequest correcao) {
         corrigirQuestaoTecnicaService.corrigir(idResposta, correcao);
     }
 
