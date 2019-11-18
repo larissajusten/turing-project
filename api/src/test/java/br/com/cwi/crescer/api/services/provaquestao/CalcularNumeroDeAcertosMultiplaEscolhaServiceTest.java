@@ -4,6 +4,7 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoMultiplaEscolha;
+import br.com.cwi.crescer.api.domain.resposta.RespostasMultiplaEscolhaProva;
 import br.com.cwi.crescer.api.repository.resposta.RespostaMultiplaEscolhaRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,60 +32,40 @@ public class CalcularNumeroDeAcertosMultiplaEscolhaServiceTest {
 
 
     @Test
-    public void deveChamarListarQuestoesMultiplaEscolhaDaProvaServiceQuandoCalcularNumeroDeAcertosMultiplaEscolhaServiceForChamado() {
-
-        Prova prova = new Prova();
-        List<ProvaQuestaoMultiplaEscolha> provaQuestaoMultiplaEscolhas = new ArrayList<>();
-        AlternativaMultiplaEscolha alternativaEscolhida = new AlternativaMultiplaEscolha();
-        ProvaQuestaoMultiplaEscolha provaQuestaoMultiplaEscolha = new ProvaQuestaoMultiplaEscolha();
-
-        Mockito.when(listarQuestoesMultiplaEscolhaDaProvaService
-                .listar(prova.getId())).thenReturn(provaQuestaoMultiplaEscolhas);
-
-        calcularNumeroDeAcertosMultiplaEscolhaService.calcular(prova.getId());
-
-        Mockito.verify(listarQuestoesMultiplaEscolhaDaProvaService).listar(prova.getId());
-    }
-
-    @Test
     public void deveChamarRespostaMultiplaEscolhaRepositoryQuandoCalcularNumeroDeAcertosMultiplaEscolhaServiceForChamado() {
 
         Prova prova = new Prova();
         List<ProvaQuestaoMultiplaEscolha> provaQuestaoMultiplaEscolhas = new ArrayList<>();
-        ProvaQuestaoMultiplaEscolha provaQuestaoMultiplaEscolha = new ProvaQuestaoMultiplaEscolha();
-        provaQuestaoMultiplaEscolhas.add(provaQuestaoMultiplaEscolha);
         AlternativaMultiplaEscolha alternativaEscolhida = new AlternativaMultiplaEscolha();
+        ProvaQuestaoMultiplaEscolha provaQuestaoMultiplaEscolha = new ProvaQuestaoMultiplaEscolha();
+        List<RespostasMultiplaEscolhaProva> listaRespostas = new ArrayList<>();
+        alternativaEscolhida.setRespostaCorreta(true);
 
 
-        Mockito.when(listarQuestoesMultiplaEscolhaDaProvaService
-                .listar(prova.getId())).thenReturn(provaQuestaoMultiplaEscolhas);
-
-        Mockito.when(repository.buscarAlternativaEscolhida(provaQuestaoMultiplaEscolha.getId()))
-                .thenReturn(Optional.of(alternativaEscolhida));
+        Mockito.when(repository.findAllByProvaIdEquals(prova.getId())).thenReturn(listaRespostas);
 
         calcularNumeroDeAcertosMultiplaEscolhaService.calcular(prova.getId());
 
-        Mockito.verify(repository).buscarAlternativaEscolhida(provaQuestaoMultiplaEscolha.getId());
-
+        Mockito.verify(repository).findAllByProvaIdEquals(prova.getId());
     }
 
     @Test
     public void deveRetornarUmInteiroQuandoCalcularNumeroDeAcertosMultiplaEscolhaServiceForChamado() {
 
         Prova prova = new Prova();
-        List<ProvaQuestaoMultiplaEscolha> provaQuestaoMultiplaEscolhas = new ArrayList<>();
-        ProvaQuestaoMultiplaEscolha provaQuestaoMultiplaEscolha = new ProvaQuestaoMultiplaEscolha();
-        provaQuestaoMultiplaEscolhas.add(provaQuestaoMultiplaEscolha);
         AlternativaMultiplaEscolha alternativaEscolhida = new AlternativaMultiplaEscolha();
+        List<RespostasMultiplaEscolhaProva> listaRespostas = new ArrayList<>();
+        RespostasMultiplaEscolhaProva respostasMultiplaEscolhaProva = new RespostasMultiplaEscolhaProva();
+        respostasMultiplaEscolhaProva.setAlternativaMultiplaEscolha(alternativaEscolhida);
         alternativaEscolhida.setRespostaCorreta(true);
+        listaRespostas.add(respostasMultiplaEscolhaProva);
 
-        Mockito.when(listarQuestoesMultiplaEscolhaDaProvaService
-                .listar(prova.getId())).thenReturn(provaQuestaoMultiplaEscolhas);
 
-        Mockito.when(repository.buscarAlternativaEscolhida(provaQuestaoMultiplaEscolha.getId()))
-                .thenReturn(Optional.of(alternativaEscolhida));
+        Mockito.when(repository.findAllByProvaIdEquals(prova.getId())).thenReturn(listaRespostas);
 
         calcularNumeroDeAcertosMultiplaEscolhaService.calcular(prova.getId());
+
+        Mockito.verify(repository).findAllByProvaIdEquals(prova.getId());
 
         Assert.assertEquals(calcularNumeroDeAcertosMultiplaEscolhaService.calcular(prova.getId()), 1);
 
