@@ -28,6 +28,7 @@ public class AdicionarQuestaoMultiplaEscolhaService {
     private UnicaAlternativaCorretaValidator unicaAlternativaCorretaValidator;
 
     public QuestaoMultiplaEscolha adicionar(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
+
         unicaAlternativaCorretaValidator.validar(questaoMultiplaEscolhaRequest);
 
         QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest);

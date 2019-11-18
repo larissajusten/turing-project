@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.validator;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoMultiplaEscolhaRequest;
-import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.exception.questoes.MultiplaEscolhaException;
 import org.springframework.stereotype.Component;
 

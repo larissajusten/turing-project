@@ -9,6 +9,7 @@ import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.AlternativaMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.AdicionarAlternativaMultiplaEscolhaService;
+import br.com.cwi.crescer.api.validator.UnicaAlternativaCorretaValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -34,6 +35,9 @@ public class AdicionarQuestaoMultiplaEscolhaServiceTest {
     @Mock
     QuestaoMultiplaEscolhaMapper mapper;
 
+    @Mock
+    UnicaAlternativaCorretaValidator unicaAlternativaCorretaValidator;
+
     @Test
     public void deveChamarAdicionarAlternativaMultiplaEscolhaServiceQuandoAdicionarQuestaoMultiplaEscolhaServiceForChamado() {
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
@@ -46,6 +50,7 @@ public class AdicionarQuestaoMultiplaEscolhaServiceTest {
                         , new AlternativaMultiplaEscolhaRequest("Y", true)
                         , new AlternativaMultiplaEscolhaRequest("Y", true));
 
+        Mockito.doNothing().when(unicaAlternativaCorretaValidator).validar(questaoMultiplaEscolhaRequest);
         Mockito.when(repository.save(questaoMultiplaEscolha)).thenReturn(questaoMultiplaEscolha);
         Mockito.when(mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest)).thenReturn(questaoMultiplaEscolha);
         adicionarQuestaoMultiplaEscolhaService.adicionar(questaoMultiplaEscolhaRequest);
