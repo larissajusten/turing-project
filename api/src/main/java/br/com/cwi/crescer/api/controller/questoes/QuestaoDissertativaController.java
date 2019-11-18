@@ -9,7 +9,6 @@ import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDisserta
 import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,7 +35,7 @@ public class QuestaoDissertativaController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
-    public List<QuestaoDissertativa> listarQuestoesDissertativasFiltradas(@Valid @RequestBody  BuscaQuestoesRequest request) {
+    public List<QuestaoDissertativa> listarQuestoesDissertativasFiltradas(@Valid @RequestBody BuscaQuestoesRequest request) {
         return listarQuestoesDissertativasFiltradas.listar(request);
     }
 

@@ -12,7 +12,7 @@ public class BuscarRespostaDissertativaPorIDService {
     @Autowired
     private RespostasDissertativaRepository repository;
 
-    public RespostasDissertativaProva buscar(Long id){
+    public RespostasDissertativaProva buscar(Long id) {
         return repository.findById(id).orElseThrow(() -> new
                 RespostaNaoEncontradaException("Resposta dissertativa não encontrada por esse ID"));
     }

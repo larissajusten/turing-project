@@ -20,7 +20,7 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService {
 
     public List<QuestaoMultiplaEscolha> buscarQuestoes(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade) {
 
-        if(multiplaEscolhaRepository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade).size() == TAMANHO_PARA_LANCAR_EXCEPTION_LISTA) {
+        if (multiplaEscolhaRepository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade).size() == TAMANHO_PARA_LANCAR_EXCEPTION_LISTA) {
             throw new QuestaoNaoEncontradaException("Nenhuma questão com essa especificidade e nivel de dificuldade foi encontrada.");
         }
         return multiplaEscolhaRepository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade);

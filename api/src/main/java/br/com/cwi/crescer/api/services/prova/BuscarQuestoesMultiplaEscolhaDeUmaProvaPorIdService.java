@@ -34,11 +34,11 @@ public class BuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService {
         repository.findAllByProvaIdEquals(idProva)
                 .forEach(item -> {
                     List<AlternativaMultiplaEscolhaResponse> alternativas = new ArrayList<>();
-                            buscarAlternativaQuestaoMultiplaEscolhaService.buscar(item.getQuestao().getId())
-                            .forEach(alternativaMultiplaEscolha -> {
-                                alternativas.add(mapperAlternativaMultiplaEscolha.transformarEmResponse(alternativaMultiplaEscolha));
-                            });
-                    questoes.add(mapperQuestaoMultiplaEscolha.transformarParaResponse(item.getQuestao(),alternativas));
+                    buscarAlternativaQuestaoMultiplaEscolhaService.buscar(item.getQuestao().getId())
+                            .forEach(alternativaMultiplaEscolha ->
+                                    alternativas.add(mapperAlternativaMultiplaEscolha.transformarEmResponse(alternativaMultiplaEscolha))
+                            );
+                    questoes.add(mapperQuestaoMultiplaEscolha.transformarParaResponse(item.getQuestao(), alternativas));
                 });
         return questoes;
     }

@@ -13,7 +13,7 @@ public class ListarQuestoesDissertativasDaProvaService {
     @Autowired
     private ProvaQuestaoDissertativaRepository repository;
 
-    public List<ProvaQuestaoDissertativa> listar(Long idProva){
+    public List<ProvaQuestaoDissertativa> listar(Long idProva) {
         return repository.findAllByProvaIdEquals(idProva);
     }
 }

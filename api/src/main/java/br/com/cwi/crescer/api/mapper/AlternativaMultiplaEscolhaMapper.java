@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 public class AlternativaMultiplaEscolhaMapper {
 
     public AlternativaMultiplaEscolha transformar(AlternativaMultiplaEscolhaRequest alternativaRequest, QuestaoMultiplaEscolha questao) {
-
         AlternativaMultiplaEscolha alternativaMultiplaEscolha = new AlternativaMultiplaEscolha();
 
         alternativaMultiplaEscolha.setResposta(alternativaRequest.getResposta());
@@ -21,16 +20,12 @@ public class AlternativaMultiplaEscolhaMapper {
     }
 
     public AlternativaMultiplaEscolhaResponse transformarEmResponse(AlternativaMultiplaEscolha alternativa) {
-
         AlternativaMultiplaEscolhaResponse alternativaResponse = new AlternativaMultiplaEscolhaResponse();
 
         alternativaResponse.setIdQuestao(alternativa.getQuestaoMultiplaEscolha().getId());
         alternativaResponse.setResposta(alternativa.getResposta());
         alternativaResponse.setRespostaCorreta(alternativa.isRespostaCorreta());
 
-        return  alternativaResponse;
-
-
+        return alternativaResponse;
     }
-
 }

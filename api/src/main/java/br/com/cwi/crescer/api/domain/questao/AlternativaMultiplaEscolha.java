@@ -16,7 +16,6 @@ import javax.persistence.*;
 @Table(name = "ALTERNATIVAS_MULTIPLA_ESCOLHA")
 public class AlternativaMultiplaEscolha {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private Long id;

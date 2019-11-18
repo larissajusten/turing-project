@@ -2,7 +2,6 @@ package br.com.cwi.crescer.api.services.provaquestao;
 
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
-import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.repository.resposta.RespostaMultiplaEscolhaRepository;
 import org.junit.Assert;

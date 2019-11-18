@@ -27,7 +27,7 @@ public class ResponderQuestaoMultiplaEscolhaService {
     @Autowired
     private BuscarAlternativaMultiplaEscolhaPorIdService buscarAlternativaMultiplaEscolhaPorIdService;
 
-    public RespostasMultiplaEscolhaProva responder(Long idProva, Long idQuestao, Long idAlternativa){
+    public RespostasMultiplaEscolhaProva responder(Long idProva, Long idQuestao, Long idAlternativa) {
         RespostasMultiplaEscolhaProva respostasMultiplaEscolhaProva = new RespostasMultiplaEscolhaProva();
 
         AlternativaMultiplaEscolha alternativaMultiplaEscolha = buscarAlternativaMultiplaEscolhaPorIdService.buscar(idAlternativa);

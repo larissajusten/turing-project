@@ -18,11 +18,11 @@ public class FinalizarTempoDaProvaService {
     @Autowired
     private ProvaRepository repository;
 
-    public StatusProva finalizar(Long idProva){
+    public StatusProva finalizar(Long idProva) {
         Prova prova = buscarProvaPorIdService.buscar(idProva);
         LocalDateTime agora = LocalDateTime.now();
 
-        if(Duration.between(prova.getDataInicio(), agora).toMinutes() > prova.getTempoDeDuracaoDaProva() ){
+        if (Duration.between(prova.getDataInicio(), agora).toMinutes() > prova.getTempoDeDuracaoDaProva()) {
             prova.setStatus(StatusProva.FORA_DO_PRAZO_DE_DURACAO);
         } else {
             prova.setStatus(StatusProva.AGUARDANDO_CORRECAO);

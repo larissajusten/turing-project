@@ -10,7 +10,7 @@ public class ExcluirQuestaoMultiplaEscolhaService {
     @Autowired
     private ProvaQuestaoMultiplaEscolhaRepository repository;
 
-    public void excluir( Long idQuestaoProva) {
+    public void excluir(Long idQuestaoProva) {
         repository.deleteById(idQuestaoProva);
     }
 }
