@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.services.prova;
 
+import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoMultiplaEscolhaRepository;
 import org.junit.Test;
@@ -21,8 +22,9 @@ public class ExcluirQuestaoMultiplaEscolhaServiceTest {
     @Test
     public void deveChamarProvaQuestaoMultiplaEscolhaRepositoryQuandoExcluirQuestaoMultiplaEscolhaServiceForChamado() {
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
+        Prova prova = new Prova();
 
-        excluirQuestaoMultiplaEscolhaService.excluir(questaoMultiplaEscolha.getId());
+        excluirQuestaoMultiplaEscolhaService.excluir(questaoMultiplaEscolha.getId(), prova.getId());
 
         Mockito.verify(repository).deleteById(questaoMultiplaEscolha.getId());
     }

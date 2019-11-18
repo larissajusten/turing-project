@@ -17,7 +17,14 @@ export { retornarQuestoesDissertativasFiltradas } from './questoes/questao-disse
 
 /* Prova */
 export { adicionarProva } from './prova/prova.service'
+export { retornaProva } from './prova/prova.service'
+
+/* Prova */ //incluir questão
 export { incluirDissertativas } from './prova/prova.service'
 export { incluirTecnicas } from './prova/prova.service'
 export { incluirMultiplaEscolha } from './prova/prova.service'
-export{ retornaProva } from './prova/prova.service'
+
+/* Prova */ //excluir questão
+export { removerQuestaoDissertativa } from './prova/prova.service'
+export { removerQuestaoTecnica } from './prova/prova.service'
+export { removerQuestaoMultiplaEscolha } from './prova/prova.service'

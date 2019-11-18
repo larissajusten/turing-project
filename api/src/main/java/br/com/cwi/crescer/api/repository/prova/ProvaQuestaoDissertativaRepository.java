@@ -6,5 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ProvaQuestaoDissertativaRepository extends JpaRepository<ProvaQuestaoDissertativa, Long> {
+
     List<ProvaQuestaoDissertativa> findAllByProvaIdEquals(Long id);
+
+    void deleteByQuestaoIdAndProvaId(Long idQuestao, Long idPRova);
 }

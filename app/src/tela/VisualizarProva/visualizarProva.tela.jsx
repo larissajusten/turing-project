@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import './visualizarProva.style.css'
 import { MostrarQuestaoUnica, MostrarMultiplasRespostas } from '../../component/index'
-import { retornaProva } from '../../services/index'
+import { retornaProva,
+          removerQuestaoDissertativa,
+          removerQuestaoTecnica,
+          removerQuestaoMultiplaEscolha } from '../../services/index'
 
 export class VisualizarProvaScreen extends Component {
 
@@ -20,12 +23,47 @@ export class VisualizarProvaScreen extends Component {
     })
   }
 
+  removerQuestaoDissertativa = async (idDaQuestao) => {
+    await removerQuestaoDissertativa(this.state.idProva, idDaQuestao)
+    this.setState({
+      prova: await retornaProva(this.state.idProva)
+    })
+  }
+
+  removerQuestaoTecnica = async (idDaQuestao) => {
+    await removerQuestaoTecnica(this.state.idProva, idDaQuestao)
+    this.setState({
+      prova: await retornaProva(this.state.idProva)
+    })
+  }
+
+  removerQuestaoMultiplaEscolha = async (idDaQuestao) => {
+    await removerQuestaoMultiplaEscolha(this.state.idProva, idDaQuestao)
+    this.setState({
+      prova: await retornaProva(this.state.idProva)
+    })
+  }
+
+  verificaAlternativa(item) {
+    if (item.alternativaA.respostaCorreta === "Alternativa A"){
+      return "Alternativa A"
+    }else if (item.alternativaB.respostaCorreta === "Alternativa B"){
+      return "Alternativa B"
+    }else if (item.alternativaC.respostaCorreta === "Alternativa C"){
+      return "Alternativa C"
+    }else if (item.alternativaD.respostaCorreta === "Alternativa D"){
+      return "Alternativa D"
+    }else{
+      return "Alternativa E"
+    }
+  }
+
   renderMultiplasEscolhas() {
     return (
       this.state.prova.questoesDeMultiplaEscolha.map((item, key) => {
         return <MostrarMultiplasRespostas
           key={key}
-          id={key}
+          id={item.id}
           questao={item.questao}
           nivel={item.nivelDeDificuldade}
           especificidade={item.especificidade}
@@ -34,14 +72,7 @@ export class VisualizarProvaScreen extends Component {
           alternativaC={item.alternativaC.resposta}
           alternativaD={item.alternativaD.resposta}
           alternativaE={item.alternativaE.resposta}
-          respostaCorreta=
-          {item.alternativaA.respostaCorreta ? "Alternativa A" :
-            (item.alternativaB.respostaCorreta ? "Alternativa B" :
-              (item.alternativaC.respostaCorreta ? "Alternativa C" :
-                (item.alternativaD.respostaCorreta ? "Alternativa D" : "Alternativa E")
-              )
-            )
-          }
+          respostaCorreta={this.verificaAlternativa(item)}
           onClick={this.removerQuestaoMultiplaEscolha} />
       })
     )
@@ -52,7 +83,7 @@ export class VisualizarProvaScreen extends Component {
       this.state.prova.questoesTecnicas.map((item, key) => {
         return <MostrarQuestaoUnica
           key={key}
-          id={key}
+          id={item.id}
           questaoNome="Questão técnica"
           questao={item.questao}
           nivel={item.nivelDeDificuldade}
@@ -63,11 +94,12 @@ export class VisualizarProvaScreen extends Component {
   }
 
   renderQuestoesDissertativas() {
+    console.log(this.state.prova.questoesDissertativas)
     return (
       this.state.prova.questoesDissertativas.map((item, key) => {
         return <MostrarQuestaoUnica
           key={key}
-          id={key}
+          id={item.id}
           questaoNome="Questão dissertativa"
           questao={item.questao}
           nivel={item.nivelDeDificuldade}
@@ -78,7 +110,11 @@ export class VisualizarProvaScreen extends Component {
   }
 
   render() {
-    if (this.state.prova) {
+    console.log(this.state.prova)
+    if (this.state.prova
+      && this.state.prova.questoesDissertativas.length
+      && this.state.prova.questoesDeMultiplaEscolha.length
+      && this.state.prova.questoesTecnicas.length){
       return (
         <div className="container-tela">
           <div className="container-titulo">
@@ -90,7 +126,18 @@ export class VisualizarProvaScreen extends Component {
           {this.renderMultiplasEscolhas()}
         </div>
       )
-    } else {
+    } else if (this.state.prova
+              && !this.state.prova.questoesDissertativas.length
+              && !this.state.prova.questoesDeMultiplaEscolha.length
+              && !this.state.prova.questoesTecnicas.length){
+        return (
+          <div className="container-tela">
+            <div className="container-titulo">
+              <span className="titulo-crie">Não há questões para visualizar</span>
+            </div>
+          </div>
+        )
+    }else{
       return (
         <div className="container-tela">
           <div className="container-titulo">

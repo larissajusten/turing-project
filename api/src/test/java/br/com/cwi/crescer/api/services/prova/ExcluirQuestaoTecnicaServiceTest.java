@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.services.prova;
 
+import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoTecnicaRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,8 +23,9 @@ public class ExcluirQuestaoTecnicaServiceTest {
     public void deveChamarProvaQuestaoTecnicaRepositoryQuandoExcluirQuestaoTecnicaServiceForChamado () {
 
         ProvaQuestaoTecnica provaQuestaoTecnica = new ProvaQuestaoTecnica();
+        Prova prova = new Prova();
 
-        excluirQuestaoTecnicaService.excluir(provaQuestaoTecnica.getId());
+        excluirQuestaoTecnicaService.excluir(provaQuestaoTecnica.getId(), prova.getId());
 
         Mockito.verify(repository).deleteById(provaQuestaoTecnica.getId());
     }

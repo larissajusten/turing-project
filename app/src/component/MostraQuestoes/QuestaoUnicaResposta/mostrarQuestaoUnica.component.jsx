@@ -5,11 +5,11 @@ import { BotaoAdicionar } from '../../index'
 export class MostrarQuestaoUnica extends Component {
 
   render() {
-    return(
+    return (
       <div className="container-questao-unica">
 
         <div className="container-pergunta-questao">
-        <label className="label">{this.props.questaoNome}</label>
+          <label className="label">{this.props.questaoNome}</label>
           <div className="questao">
             {this.props.questao}
           </div>
@@ -27,7 +27,7 @@ export class MostrarQuestaoUnica extends Component {
           </div>
         </div>
 
-        <BotaoAdicionar className="botao-remover" nome="-" adicionar={false} onClick={this.props.onClick} id={this.props.id}/>
+        <BotaoAdicionar className="botao-remover" nome="-" adicionar={false} onClick={this.props.onClick} id={this.props.id} />
 
       </div>
     )

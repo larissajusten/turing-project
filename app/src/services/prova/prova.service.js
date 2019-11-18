@@ -25,3 +25,18 @@ export const retornaProva = async (idProva) => {
   const response = await Axios.get(`${baseUrl}/prova/${idProva}/buscar-prova`)
   return response.data
 }
+
+export const removerQuestaoDissertativa = async (idProva, idQuestao) => {
+  const response = await Axios.delete(`${baseUrl}/prova/${idProva}/excluir-dissertativa/${idQuestao}`)
+  return response.data
+}
+
+export const removerQuestaoTecnica = async (idProva, idQuestao) => {
+  const response = await Axios.delete(`${baseUrl}/prova/${idProva}/excluir-tecnica/${idQuestao}`)
+  return response.data
+}
+
+export const removerQuestaoMultiplaEscolha = async (idProva, idQuestao) => {
+  const response = await Axios.delete(`${baseUrl}/prova/${idProva}/excluir-multipla-escolha/${idQuestao}`)
+  return response.data
+}
