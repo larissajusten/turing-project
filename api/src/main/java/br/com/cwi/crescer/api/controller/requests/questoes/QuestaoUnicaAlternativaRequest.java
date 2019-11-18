@@ -14,13 +14,13 @@ import javax.validation.constraints.NotNull;
 @Valid
 public class QuestaoUnicaAlternativaRequest {
 
-    @NotEmpty
+    @NotEmpty(message = "Questão não pode estar vazio" )
     private String questao;
 
-    @NotNull
+    @NotNull(message = "Especificidade não pode ser nula" )
     private Especificidade especificidade;
 
-    @NotNull
+    @NotNull(message = "Nível de dificuldade não pode ser nula" )
     private NivelDeDificuldade nivelDeDificuldade;
 
 }
