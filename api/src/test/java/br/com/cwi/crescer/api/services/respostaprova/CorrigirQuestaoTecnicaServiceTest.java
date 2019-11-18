@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.services.respostaprova;
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
 import br.com.cwi.crescer.api.domain.resposta.RespostasTecnicaProva;
 import br.com.cwi.crescer.api.repository.resposta.RespostasTecnicaRepository;
+import br.com.cwi.crescer.api.validator.NotaValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,17 +22,23 @@ public class CorrigirQuestaoTecnicaServiceTest {
     @Mock
     RespostasTecnicaRepository repository;
 
+    @Mock
+    NotaValidator notaValidator;
+
+    @Mock
+    BuscarRespostaTecnicaPorIDService buscarRespostaTecnicaPorIDService;
+
     @Test
-    public void deveChamarRespostasTecnicaRepositoryFindByIdQuandoCorrigirQuestaoTecnicaServiceForChamado() {
+    public void deveChamarBuscarRespostaTecnicaPorIDServiceQuandoCorrigirQuestaoTecnicaServiceForChamado() {
 
         RespostasTecnicaProva resposta = new RespostasTecnicaProva();
         CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(10, "Muito bom");
 
-        Mockito.when(repository.findById(resposta.getId())).thenReturn(Optional.of(resposta));
-
+        Mockito.when(buscarRespostaTecnicaPorIDService.buscar(resposta.getId())).thenReturn(resposta);
+        Mockito.doNothing().when(notaValidator).verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
         corrigirQuestaoTecnicaService.corrigir(resposta.getId(), correcao);
 
-        Mockito.verify(repository).findById(resposta.getId());
+        Mockito.verify(buscarRespostaTecnicaPorIDService).buscar(resposta.getId());
     }
 
     @Test
@@ -40,8 +47,8 @@ public class CorrigirQuestaoTecnicaServiceTest {
         RespostasTecnicaProva resposta = new RespostasTecnicaProva();
         CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(10, "Muito bom");
 
-        Mockito.when(repository.findById(resposta.getId())).thenReturn(Optional.of(resposta));
-
+        Mockito.when(buscarRespostaTecnicaPorIDService.buscar(resposta.getId())).thenReturn(resposta);
+        Mockito.doNothing().when(notaValidator).verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
         corrigirQuestaoTecnicaService.corrigir(resposta.getId(), correcao);
 
         Mockito.verify(repository).save(resposta);

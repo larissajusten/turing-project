@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.services.respostaprova;
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
 import br.com.cwi.crescer.api.repository.resposta.RespostasDissertativaRepository;
+import br.com.cwi.crescer.api.validator.NotaValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -21,17 +22,29 @@ public class CorrigirQuestaoDissertativaServiceTest {
     @Mock
     RespostasDissertativaRepository repository;
 
+    @Mock
+    NotaValidator notaValidator;
+
+    @Mock
+    BuscarRespostaDissertativaPorIDService buscarRespostaDissertativaPorIDService;
+
+
     @Test
-    public void deveChamarRespostasDissertativaRepositoryMetodoFindByIdQuandoCorrigirQuestaoDissertativaServiceForChamado() {
+    public void deveChamarBuscarRespostaDissertativaPorIDServiceQuandoCorrigirQuestaoDissertativaServiceForChamado() {
         CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(10, "Muito bom");
         RespostasDissertativaProva resposta = new RespostasDissertativaProva();
+        resposta.setNota(correcao.getNota());
+        resposta.setComentario(correcao.getComentario());
 
-        Mockito.when(repository.findById(resposta.getId())).thenReturn(Optional.of(resposta));
+        Mockito.when(buscarRespostaDissertativaPorIDService.buscar(resposta.getId())).thenReturn(resposta);
         Mockito.when(repository.save(resposta)).thenReturn(resposta);
+        Mockito.doNothing().when(notaValidator).verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
+
 
         corrigirQuestaoDissertativaService.corrigir(resposta.getId(), correcao);
 
-        Mockito.verify(repository).findById(resposta.getId());
+        Mockito.verify(buscarRespostaDissertativaPorIDService).buscar(resposta.getId());
+
     }
 
     @Test
@@ -39,8 +52,9 @@ public class CorrigirQuestaoDissertativaServiceTest {
         CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(10, "Muito bom");
         RespostasDissertativaProva resposta = new RespostasDissertativaProva();
 
-        Mockito.when(repository.findById(resposta.getId())).thenReturn(Optional.of(resposta));
+        Mockito.when(buscarRespostaDissertativaPorIDService.buscar(resposta.getId())).thenReturn(resposta);
         Mockito.when(repository.save(resposta)).thenReturn(resposta);
+        Mockito.doNothing().when(notaValidator).verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
 
         corrigirQuestaoDissertativaService.corrigir(resposta.getId(), correcao);
 
