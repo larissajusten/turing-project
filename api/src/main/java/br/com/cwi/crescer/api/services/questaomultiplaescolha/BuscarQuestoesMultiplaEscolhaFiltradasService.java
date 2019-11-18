@@ -16,6 +16,6 @@ public class BuscarQuestoesMultiplaEscolhaFiltradasService {
     private QuestaoMultiplaEscolhaRepository repository;
 
     public List<QuestaoMultiplaEscolha> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade) {
-        return repository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade);
+        return repository.findAllByNivelDeDificuldadeAndEspecificidade(nivelDeDificuldade, especificidade);
     }
 }

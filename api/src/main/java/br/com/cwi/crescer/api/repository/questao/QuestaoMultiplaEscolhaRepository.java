@@ -19,4 +19,6 @@ public interface QuestaoMultiplaEscolhaRepository extends JpaRepository<QuestaoM
             " AND q.nivelDeDificuldade = :nivelDeDificuldade")
     List<QuestaoMultiplaEscolha> acharPorNivelEEspecificidade(@Param("especificidade") Especificidade especificidade,
                                                       @Param("nivelDeDificuldade") NivelDeDificuldade nivelDeDificuldade);
+
+    List<QuestaoMultiplaEscolha> findAllByNivelDeDificuldadeAndEspecificidade(NivelDeDificuldade nivelDeDificuldade,Especificidade especificidade);
 }

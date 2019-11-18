@@ -25,6 +25,7 @@ public class ListarQuestoesMultiplaEscolhaFiltradasService {
         List<QuestaoMultiplaEscolha> listaQueAtendeRequisitos = buscarQuestoesMultiplaEscolhaFiltradasService
                 .buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
 
+        //TODO colocar isso em uma validacao e colocar excessao caso o cara peça mais do que tem no banco
         if (listaQueAtendeRequisitos.size() == TAMANHO_PARA_LANCAR_EXCEPTION_LISTA) {
             throw new QuestaoNaoEncontradaException("Nenhuma questão com essa especificidade e nivel de dificuldade foi encontrada.");
         }

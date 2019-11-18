@@ -1,9 +1,10 @@
 package br.com.cwi.crescer.api.controller.prova;
 
-import br.com.cwi.crescer.api.services.provaquestao.CalcularNotaMediaDissertativaService;
-import br.com.cwi.crescer.api.services.provaquestao.CalcularNotaMediaTecnicaService;
+import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaDissertativaService;
+import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaTecnicaService;
 import br.com.cwi.crescer.api.services.provaquestao.VerificarNumeroTotalDeQuestoesMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.provaquestao.CalcularNumeroDeAcertosMultiplaEscolhaService;
+import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaGeralTecnicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,9 @@ public class ResultadosProvaController {
 
     @Autowired
     private CalcularNotaMediaTecnicaService calcularNotaMediaTecnicaService;
+
+    @Autowired
+    private CalcularNotaMediaGeralTecnicaService calcularNotaMediaGeralTecnicaService;
 
     //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
     @GetMapping("/{id-prova}/acertos-multipla-escolha")
@@ -46,5 +50,11 @@ public class ResultadosProvaController {
     @GetMapping("/{id-prova}/media-tecnica")
     public double mediaDeNotaDasQuestoesTecnicas(@PathVariable("id-prova") Long idProva) {
         return calcularNotaMediaTecnicaService.calcular(idProva);
+    }
+
+    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
+    @GetMapping("{id-questao}/media-tecnica")
+    public double mediaDeNotaDasQuestoesTecnicasGeral(@PathVariable("id-questao") Long idQuestao) {
+        return calcularNotaMediaGeralTecnicaService.calcular(idQuestao);
     }
 }
