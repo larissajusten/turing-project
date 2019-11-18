@@ -21,4 +21,7 @@ public class Usuario {
     @NotNull
     private Long id;
 
+    @Transient
+    private String email;
+
 }

@@ -4,6 +4,7 @@ import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
+import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -53,5 +54,18 @@ public class ListarQuestoesMultiplaEscolhaFiltradasServiceTest {
         listarQuestoesMultiplaEscolhaFiltradasService.listar(buscaQuestoesRequest);
 
         Assert.assertEquals(listarQuestoesMultiplaEscolhaFiltradasService.listar(buscaQuestoesRequest), lista);
+    }
+
+    @Test(expected = QuestaoNaoEncontradaException.class)
+    public void deveLancarUmaExceptionQuandoListarQuestoesMultiplaEscolhaFiltradasServiceForChamadoENaoRetornarNenhumaQuestao() {
+        BuscaQuestoesRequest buscaQuestoesRequest =
+                new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 1);
+        List<QuestaoMultiplaEscolha> lista = new ArrayList<>();
+
+
+        Mockito.when(buscarQuestoesMultiplaEscolhaFiltradasService.buscar(
+                buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade())).thenReturn(lista);
+
+        listarQuestoesMultiplaEscolhaFiltradasService.listar(buscaQuestoesRequest);
     }
 }

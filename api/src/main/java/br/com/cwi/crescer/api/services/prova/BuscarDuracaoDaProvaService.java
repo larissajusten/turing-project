@@ -9,9 +9,6 @@ import org.springframework.stereotype.Service;
 public class BuscarDuracaoDaProvaService {
 
     @Autowired
-    private ProvaRepository repository;
-
-    @Autowired
     private BuscarProvaPorIdService buscarProvaPorIdService;
 
     public int buscar(Long id){

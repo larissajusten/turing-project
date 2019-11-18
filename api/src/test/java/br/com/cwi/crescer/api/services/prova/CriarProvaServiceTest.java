@@ -4,6 +4,7 @@ import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.mapper.ProvaMapper;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
+import br.com.cwi.crescer.api.validator.ProvaValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -23,6 +24,8 @@ public class CriarProvaServiceTest {
     @Mock
     ProvaRepository repository;
 
+    @Mock
+    ProvaValidator provaValidator;
 
     @Test
     public void deveChamarProvaRepositoryQuandoCriarProvaServiceForChamado() {
@@ -33,7 +36,7 @@ public class CriarProvaServiceTest {
 
         Mockito.when(mapper.transformar(provaRequest)).thenReturn(prova);
         Mockito.when(repository.save(prova)).thenReturn(prova);
-
+        Mockito.doNothing().when(provaValidator).verificarSeEmailDoCandidatoTemProvaEmAbertoNoSistema(provaRequest.getEmail());
         criarProvaService.criar(provaRequest);
 
         Mockito.verify(repository).save(prova);
@@ -48,6 +51,7 @@ public class CriarProvaServiceTest {
 
         Mockito.when(mapper.transformar(provaRequest)).thenReturn(prova);
         Mockito.when(repository.save(prova)).thenReturn(prova);
+        Mockito.doNothing().when(provaValidator).verificarSeEmailDoCandidatoTemProvaEmAbertoNoSistema(provaRequest.getEmail());
 
         criarProvaService.criar(provaRequest);
 
