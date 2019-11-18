@@ -28,14 +28,14 @@ export class CadastrarProvaScreen extends Component {
             niveis: []
         }
     }
-          
+       
     async componentDidMount() {
         this.setState({
             especificidades: await retornarEspecificidades(),
             niveis: await retornarNiveisDeDificuldade()
         })
     }
-    
+
     handleChange = (event) => {
         const { name, value } = event.target
         this.setState({
@@ -158,7 +158,7 @@ export class CadastrarProvaScreen extends Component {
                 }
 
                 <div className="container-botao">
-                    <BotaoAdicionar nome="+" adicionar={true} onClick={this.handleClickAdicionarQuestao} />
+                    <BotaoAdicionar className="botao-adicionar" nome="+" adicionar={true} onClick={this.handleClickAdicionarQuestao} />
                     <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarProva} />
                     <BotaoPrincipal nome="Voltar" onClick={this.handleClickVoltarProva} />
                 </div>

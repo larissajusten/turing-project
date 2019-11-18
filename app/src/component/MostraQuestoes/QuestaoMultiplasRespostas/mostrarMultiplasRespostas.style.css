@@ -1,0 +1,52 @@
+.container-questao-multipla {
+  width: 70%;
+  height: 338px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+
+.primeira-div {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  height: 30%;
+}
+
+.mult-questao {
+  height: 100%;
+}
+
+.container-alternativas {
+  display: flex;
+  justify-content: space-between;
+  height: 70%;
+}
+
+.coluna {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 48%;
+}
+
+.container-especificacoes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.container-especificacao-mult {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  align-items: flex-start;
+}
+
+.mult {
+  width: 100%;
+  text-align: start;
+}
