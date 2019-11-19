@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './mostrarMultiplasRespostas.style.css'
-import { BotaoAdicionar, Alternativa } from '../../index'
+import { BotaoAdicionar, BlocoVisualizar } from '../../index'
 
 export class MostrarMultiplasRespostas extends Component {
 
@@ -26,17 +26,20 @@ export class MostrarMultiplasRespostas extends Component {
 
         <div className="container-alternativas">
           <div className="coluna">
-            <Alternativa
+            <BlocoVisualizar
+              classe="mult"
               nome="Alternativa A"
-              resposta={this.props.alternativaA} />
+              conteudo={this.props.alternativaA} />
 
-            <Alternativa
+            <BlocoVisualizar
+              classe="mult"
               nome="Alternativa B"
-              resposta={this.props.alternativaB} />
+              resposconteudota={this.props.alternativaB} />
 
-            <Alternativa
+            <BlocoVisualizar
+              classe="mult"
               nome="Alternativa C"
-              resposta={this.props.alternativaC} />
+              conteudo={this.props.alternativaC} />
           </div>
 
           <div className="coluna">
@@ -52,13 +55,15 @@ export class MostrarMultiplasRespostas extends Component {
               </div>
             </div>
 
-            <Alternativa
+            <BlocoVisualizar
+              classe="mult"
               nome="Alternativa D"
-              resposta={this.props.alternativaD} />
+              conteudo={this.props.alternativaD} />
 
-            <Alternativa
+            <BlocoVisualizar
+              classe="mult"
               nome="Alternativa E"
-              resposta={this.props.alternativaE} />
+              conteudo={this.props.alternativaE} />
           </div>
         </div>
       </div>

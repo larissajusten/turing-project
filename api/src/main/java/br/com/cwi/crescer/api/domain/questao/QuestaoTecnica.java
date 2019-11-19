@@ -28,6 +28,10 @@ public class QuestaoTecnica {
 
     private String questao;
 
+    private String testeBase;
+
+    private String respostaBase;
+
     @Enumerated(EnumType.STRING)
     private Especificidade especificidade;
 

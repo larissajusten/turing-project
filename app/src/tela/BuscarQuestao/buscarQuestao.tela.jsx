@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import './buscarQuestao.style.css'
-import { BotaoPrincipal, CardQuestao, EscolherQuestao } from '../../component/index'
-import {
-  retornarEspecificidades,
-  retornarNiveisDeDificuldade,
-  retornarQuestoesTecnicasFiltradas,
-  retornarQuestoesDissertativasFiltradas,
-  retornarQuestoesMultiplasEscolhasFiltradas
-} from '../../services/index'
-
-import { store } from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
-import 'animate.css'
+import { BotaoPrincipal, CardQuestao, EscolherQuestao, Notificacao } from '../../component/index'
+import { retornarEspecificidades,
+        retornarNiveisDeDificuldade,
+        retornarQuestoesTecnicasFiltradas,
+        retornarQuestoesDissertativasFiltradas,
+        retornarQuestoesMultiplasEscolhasFiltradas } from '../../services/index'
 
 export class BuscarQuestaoScreen extends Component {
 
@@ -55,17 +49,7 @@ export class BuscarQuestaoScreen extends Component {
     if (this.state.tipo === this.state.tipos[0]) {
       try {
         listaDeQuestoes = await retornarQuestoesDissertativasFiltradas(busca)
-        store.addNotification({
-          title: 'Sucesso',
-          message: 'Busca bem sucedida',
-          type: 'success',
-          container: 'top-right',
-          animationIn: ["animated", "fadeIn"],
-          animationOut: ["animated", "fadeOut"],
-          dismiss: {
-            duration: 3000
-          }
-        })
+        Notificacao('Sucesso', 'Busca bem sucedida', 'success')
         this.setState({
           resultados: listaDeQuestoes
         })
@@ -73,46 +57,16 @@ export class BuscarQuestaoScreen extends Component {
       catch (error) {
         if (error.response.data.errors) {
           error.response.data.errors.map(message => {
-            return store.addNotification({
-              title: 'Falha',
-              message: `${message.defaultMessage}`,
-              type: 'danger',
-              container: 'top-right',
-              animationIn: ["animated", "fadeIn"],
-              animationOut: ["animated", "fadeOut"],
-              dismiss: {
-                duration: 3000
-              }
-            })
+            return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
           })
         } else {
-          store.addNotification({
-            title: 'Falha',
-            message: `${error.response.data.message}`,
-            type: 'danger',
-            container: 'top-right',
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-              duration: 3000
-            }
-          })
+          Notificacao('Falha', `${error.response.data.message}`, 'danger')
         }
       }
     } else if (this.state.tipo === this.state.tipos[1]) {
       try {
         listaDeQuestoes = await retornarQuestoesMultiplasEscolhasFiltradas(busca)
-        store.addNotification({
-          title: 'Sucesso',
-          message: 'Busca bem sucedida',
-          type: 'success',
-          container: 'top-right',
-          animationIn: ["animated", "fadeIn"],
-          animationOut: ["animated", "fadeOut"],
-          dismiss: {
-            duration: 3000
-          }
-        })
+        Notificacao('Sucesso', 'Busca bem sucedida', 'success')
         this.setState({
           resultados: listaDeQuestoes
         })
@@ -120,46 +74,16 @@ export class BuscarQuestaoScreen extends Component {
       catch (error) {
         if (error.response.data.errors) {
           error.response.data.errors.map(message => {
-            return store.addNotification({
-              title: 'Falha',
-              message: `${message.defaultMessage}`,
-              type: 'danger',
-              container: 'top-right',
-              animationIn: ["animated", "fadeIn"],
-              animationOut: ["animated", "fadeOut"],
-              dismiss: {
-                duration: 3000
-              }
-            })
+            return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
           })
         } else {
-          store.addNotification({
-            title: 'Falha',
-            message: `${error.response.data.message}`,
-            type: 'danger',
-            container: 'top-right',
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-              duration: 3000
-            }
-          })
+          Notificacao('Falha', `${error.response.data.message}`, 'danger')
         }
       }
     } else if (this.state.tipo === this.state.tipos[2]) {
       try {
         listaDeQuestoes = await retornarQuestoesTecnicasFiltradas(busca)
-        store.addNotification({
-          title: 'Sucesso',
-          message: 'Busca bem sucedida',
-          type: 'success',
-          container: 'top-right',
-          animationIn: ["animated", "fadeIn"],
-          animationOut: ["animated", "fadeOut"],
-          dismiss: {
-            duration: 3000
-          }
-        })
+        Notificacao('Sucesso', 'Busca bem sucedida', 'success')
         this.setState({
           resultados: listaDeQuestoes
         })
@@ -167,44 +91,14 @@ export class BuscarQuestaoScreen extends Component {
       catch (error) {
         if (error.response.data.errors) {
           error.response.data.errors.map(message => {
-            return store.addNotification({
-              title: 'Falha',
-              message: `${message.defaultMessage}`,
-              type: 'danger',
-              container: 'top-right',
-              animationIn: ["animated", "fadeIn"],
-              animationOut: ["animated", "fadeOut"],
-              dismiss: {
-                duration: 3000
-              }
-            })
+            return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
           })
         } else {
-          store.addNotification({
-            title: 'Falha',
-            message: `${error.response.data.message}`,
-            type: 'danger',
-            container: 'top-right',
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-              duration: 3000
-            }
-          })
+          Notificacao('Falha', `${error.response.data.message}`, 'danger')
         }
       }
     } else {
-      store.addNotification({
-        title: 'Falha',
-        message: 'Tipo de questão é nulo',
-        type: 'danger',
-        container: 'top-right',
-        animationIn: ["animated", "fadeIn"],
-        animationOut: ["animated", "fadeOut"],
-        dismiss: {
-          duration: 3000
-        }
-      })
+      Notificacao('Falha', 'Tipo de questão é nulo', 'warning')
     }
   }
 

@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.services.questaotecnica;
 
+import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoTecnicaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
@@ -28,10 +29,12 @@ public class AdicionarQuestaoTecnicaServiceTest {
     @Test
     public void deveChamarQuestaoTecnicaRepositorySaveQuandoAdicionarQuestaoTecnicaServiceForChamada() {
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
-        QuestaoUnicaAlternativaRequest questaoUnicaAlternativaRequest =
-                new QuestaoUnicaAlternativaRequest("Bla bla...",
+        QuestaoTecnicaRequest questaoUnicaAlternativaRequest =
+                new QuestaoTecnicaRequest("Bla bla...",
                         Especificidade.JAVASCRIPT,
-                        NivelDeDificuldade.FACIL);
+                        NivelDeDificuldade.FACIL,
+                        "ushdasiudha",
+                        "hsauidhsaiud");
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
 
@@ -43,10 +46,12 @@ public class AdicionarQuestaoTecnicaServiceTest {
     @Test
     public void deveChamarQuestaoTecnicaMapperQuandoAdicionarQuestaoTecnicaServiceForChamada() {
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
-        QuestaoUnicaAlternativaRequest questaoUnicaAlternativaRequest =
-                new QuestaoUnicaAlternativaRequest("Bla bla...",
+        QuestaoTecnicaRequest questaoUnicaAlternativaRequest =
+                new QuestaoTecnicaRequest("Bla bla...",
                         Especificidade.JAVASCRIPT,
-                        NivelDeDificuldade.FACIL);
+                        NivelDeDificuldade.FACIL,
+                        "ushdasiudha",
+                        "hsauidhsaiud");
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
 

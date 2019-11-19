@@ -2,3 +2,4 @@ export { CadastrarQuestaoScreen } from './CadastroQuestao/cadastroQuestao.tela.j
 export { BuscarQuestaoScreen } from './BuscarQuestao/buscarQuestao.tela.jsx'
 export { CadastrarProvaScreen } from './CadastroProva/cadastroProva.tela.jsx'
 export { VisualizarProvaScreen } from './VisualizarProva/visualizarProva.tela.jsx'
+export { ResolverProvaScreen } from './ResolverProva/resolverProva.tela.jsx'

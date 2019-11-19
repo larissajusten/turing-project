@@ -1,13 +1,10 @@
 import React, { PureComponent } from 'react';
-import { BotaoPrincipal, Input, Select} from '../../index'
+import { BotaoPrincipal, Input, Select, Notificacao } from '../../index'
 import { adicionarQuestaoMultiplaEscolha } from '../../../services/index'
 import './questaoMultiplaEscolha.style.css'
 
-import { store } from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
-import 'animate.css'
-
 export class CadastroMultiplaQuestao extends PureComponent {
+
 	constructor(props){
 		super(props)
 		this.state = {
@@ -53,47 +50,15 @@ export class CadastroMultiplaQuestao extends PureComponent {
 
 		try{
 			await adicionarQuestaoMultiplaEscolha(questao)
-
-      store.addNotification({
-        title: 'Sucesso',
-        message: 'Questão adicionada com sucesso',
-        type: 'success',
-        container: 'top-right',
-        animationIn: ["animated", "fadeIn"],
-        animationOut: ["animated", "fadeOut"],
-        dismiss: {
-          duration: 3000
-        }
-			})
-
+			Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
     }
     catch(error){
       if (error.response.data.errors) {
         error.response.data.errors.map(message => {
-          return store.addNotification({
-            title: 'Falha',
-            message: `${message.defaultMessage}`,
-            type: 'danger',
-            container: 'top-right',
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-              duration: 3000
-            }
-          })
+					return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
         })
       } else {
-        store.addNotification({
-          title: 'Falha',
-          message: `${error.response.data.message}`,
-          type: 'danger',
-          container: 'top-right',
-          animationIn: ["animated", "fadeIn"],
-          animationOut: ["animated", "fadeOut"],
-          dismiss: {
-            duration: 3000
-          }
-        })
+				Notificacao('Falha', `${error.response.data.message}`, 'danger')
       }
     }
   }

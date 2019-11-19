@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.mapper;
 
+import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoTecnicaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import org.modelmapper.ModelMapper;
@@ -12,7 +13,7 @@ public class QuestaoTecnicaMapper {
     @Autowired
     private ModelMapper mapper;
 
-    public QuestaoTecnica transformar(QuestaoUnicaAlternativaRequest request) {
+    public QuestaoTecnica transformar(QuestaoTecnicaRequest request) {
         return mapper.map(request, QuestaoTecnica.class);
     }
 }
