@@ -25,7 +25,6 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeServiceTest {
     @Mock
     QuestaoMultiplaEscolhaRepository repository;
 
-
     @Test
     public void deveChamarQuestaoMultiplaEscolhaRepositoryDuasVezesQuandoBuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeServiceForChamada() {
 
@@ -38,26 +37,11 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeServiceTest {
         buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService
                 .buscarQuestoes(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
-        Mockito.verify(repository, Mockito.times(2)).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
+        Mockito.verify(repository, Mockito.times(1)).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL);
 
     }
 
-
-    @Test(expected = QuestaoNaoEncontradaException.class)
-    public void deveChamar() {
-
-        List<QuestaoMultiplaEscolha> listaDeQuestoes = new ArrayList<>();
-
-
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
-                NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
-
-        buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService
-                .buscarQuestoes(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
-
-
-    }
 
     @Test
     public void deveRetornarUmaListaComAsQuestoesQuandoBuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeServiceForChamada() {

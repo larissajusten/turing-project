@@ -22,8 +22,6 @@ public class BuscarQuestoesTecnicasFiltradasService {
 
     public List<QuestaoTecnica> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade) {
 
-
-
         return repository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade);
     }
 }

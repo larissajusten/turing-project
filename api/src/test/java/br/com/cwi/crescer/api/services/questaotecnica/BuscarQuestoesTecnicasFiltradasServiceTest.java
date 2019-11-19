@@ -25,8 +25,8 @@ public class BuscarQuestoesTecnicasFiltradasServiceTest {
     @Mock
     QuestaoTecnicaRepository repository;
 
-    @Test(expected = QuestaoNaoEncontradaException.class)
-    public void deveChamar() {
+    @Test
+    public void deveChamarQuestaoTecnicaRepositoryQuandoBuscarQuestoesTecnicasFiltradasServiceForChamado() {
 
         List<QuestaoTecnica> listaDeQuestoes = new ArrayList<>();
 
@@ -35,6 +35,9 @@ public class BuscarQuestoesTecnicasFiltradasServiceTest {
                 .thenReturn(listaDeQuestoes);
 
         buscarQuestoesTecnicasFiltradasService.buscar(Especificidade.JAVASCRIPT,
+                NivelDeDificuldade.FACIL);
+
+        Mockito.verify(repository).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL);
     }
 }

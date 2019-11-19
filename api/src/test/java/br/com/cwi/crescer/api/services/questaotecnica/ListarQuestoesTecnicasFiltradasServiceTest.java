@@ -5,11 +5,13 @@ import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
+import br.com.cwi.crescer.api.validator.QuestaoValidator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -20,32 +22,44 @@ import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ListarQuestoesTecnicasFiltradasServiceTest {
-    @Mock
-    BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
+
     @InjectMocks
     ListarQuestoesTecnicasFiltradasService listarQuestoesTecnicasFiltradasService;
 
+    @Mock
+    BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
+    @Mock
+    QuestaoValidator validator;
 
     @Test
     public void deveBuscarQuestoesDeMultiplaEscolhaConformeParametros() {
 
-        List<QuestaoTecnica> lista = new ArrayList<>();
-        lista.add(new QuestaoTecnica());
-        when(buscarQuestoesTecnicasFiltradasService.buscar(any(), any())).thenReturn(lista);
+        BuscaQuestoesRequest buscaQuestoesRequest =
+                new BuscaQuestoesRequest(Especificidade.JAVA, NivelDeDificuldade.DIFICIL, 1);
 
-        List<QuestaoTecnica> resultado = listarQuestoesTecnicasFiltradasService.listar(new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 1));
-        Assert.assertEquals(lista, resultado);
+        List<QuestaoTecnica> lista = new ArrayList<>();
+        List<QuestaoTecnica> listaQueAtendeRequisitos = new ArrayList<>();
+        listaQueAtendeRequisitos.add(new QuestaoTecnica());
+        Mockito.when(buscarQuestoesTecnicasFiltradasService.buscar(buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade())).thenReturn(listaQueAtendeRequisitos);
+
+        listarQuestoesTecnicasFiltradasService.listar(buscaQuestoesRequest);
+
+        Assert.assertEquals(listarQuestoesTecnicasFiltradasService.listar(buscaQuestoesRequest), listaQueAtendeRequisitos);
     }
 
-    @Test(expected = QuestaoNaoEncontradaException.class)
-    public void deveLancarQuestaoNaoEncontradaQuandoAListaTiverSizeZero() {
+    @Test
+    public void deveChamarQuestaoValidatorQuandoListarQuestoesTecnicasFiltradasServiceForChamado() {
 
-        List<QuestaoTecnica> lista = new ArrayList<>();
+        BuscaQuestoesRequest buscaQuestoesRequest =
+                new BuscaQuestoesRequest(Especificidade.JAVA, NivelDeDificuldade.DIFICIL, 1);
 
-        when(buscarQuestoesTecnicasFiltradasService.buscar(any(), any())).thenReturn(lista);
+        List<QuestaoTecnica> listaQueAtendeRequisitos = new ArrayList<>();
+        listaQueAtendeRequisitos.add(new QuestaoTecnica());
+        Mockito.when(buscarQuestoesTecnicasFiltradasService.buscar(buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade())).thenReturn(listaQueAtendeRequisitos);
 
-        List<QuestaoTecnica> resultado = listarQuestoesTecnicasFiltradasService.listar(new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 0));
-        Assert.assertEquals(lista, resultado);
+        listarQuestoesTecnicasFiltradasService.listar(buscaQuestoesRequest);
+
+        Mockito.verify(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
     }
 
 }
