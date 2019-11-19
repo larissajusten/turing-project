@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.services.questaotecnica;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
+import br.com.cwi.crescer.api.validator.QuestaoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +15,11 @@ import java.util.Random;
 @Service
 public class ListarQuestoesTecnicasFiltradasService {
 
-    private static final int TAMANHO_PARA_LANCAR_EXCEPTION_LISTA = 0;
-
     @Autowired
     private BuscarQuestaoTecnicaPorIdService buscarQuestaoTecnicaService;
+
+    @Autowired
+    private QuestaoValidator validator;
 
     @Autowired
     private BuscarQuestoesTecnicasFiltradasService buscarQuestoesTecnicasFiltradasService;
@@ -28,9 +30,7 @@ public class ListarQuestoesTecnicasFiltradasService {
         List<QuestaoTecnica> listaQueAtendeRequisitos = buscarQuestoesTecnicasFiltradasService
                 .buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
 
-        if (listaQueAtendeRequisitos.size() == TAMANHO_PARA_LANCAR_EXCEPTION_LISTA) {
-            throw new QuestaoNaoEncontradaException("Nenhuma questão com essa especificidade e nivel de dificuldade foi encontrada.");
-        }
+        validator.validar(listaQueAtendeRequisitos.size(), request.getQuantidadeDeQuestoes());
 
         Collections.shuffle(listaQueAtendeRequisitos, new Random());
 

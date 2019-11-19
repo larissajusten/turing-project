@@ -30,7 +30,6 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
     @Test
     public void deveRetornarUmaListaComOTamanhoDoNumeroDeQuestoesQueForamSolicitadasQuandoListarQuestoesDissertativasFiltradasServiceForChamada() {
 
-
         BuscaQuestoesRequest buscaQuestoesRequest =
                 new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 1);
 

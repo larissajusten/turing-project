@@ -13,7 +13,6 @@ public class BuscarQuestaoDissertativaPorIdService {
     private QuestaoDissertativaRepository repository;
 
     public QuestaoDissertativa buscar(Long id) {
-
         return repository.findById(id)
                 .orElseThrow(() -> new QuestaoNaoEncontradaException("Questão dissertativa não encontrada."));
 
