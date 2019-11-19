@@ -16,6 +16,21 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+		<sonar.language>java</sonar.language>
+		<sonar.coverage.exclusions>
+			src/main/java/br/com/cwi/crescer/api/config/**/*.java,
+			src/main/java/br/com/cwi/crescer/api/controller/**/*.java,
+			src/main/java/br/com/cwi/crescer/api/domain/**/*.java,
+			src/main/java/br/com/cwi/crescer/api/exception/**/*.java,
+			src/main/java/br/com/cwi/crescer/api/mapper/**/*.java,
+			src/main/java/br/com/cwi/crescer/api/repository/**/*.java,
+			src/main/java/br/com/cwi/crescer/api/*Application*.java
+		</sonar.coverage.exclusions>  		
 	</properties>
 
 	<dependencies>
