@@ -1,10 +1,6 @@
 import React, { PureComponent } from 'react';
-import { QuestaoUnica } from '../../index'
+import { QuestaoUnica, Notificacao } from '../../index'
 import { adicionarQuestaoTecnica } from '../../../services/index'
-
-import { store } from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
-import 'animate.css'
 
 export class CadastroTecnica extends PureComponent {
 
@@ -36,46 +32,16 @@ export class CadastroTecnica extends PureComponent {
     }
 
     try{
-			await adicionarQuestaoTecnica(questao)
-      store.addNotification({
-        title: 'Sucesso',
-        message: 'Questão adicionada com sucesso',
-        type: 'success',
-        container: 'top-right',
-        animationIn: ["animated", "fadeIn"],
-        animationOut: ["animated", "fadeOut"],
-        dismiss: {
-          duration: 3000
-        }
-			})
+      await adicionarQuestaoTecnica(questao)
+      Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
     }
     catch(error){
       if (error.response.data.errors) {
         error.response.data.errors.map(message => {
-          return store.addNotification({
-            title: 'Falha',
-            message: `${message.defaultMessage}`,
-            type: 'danger',
-            container: 'top-right',
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-              duration: 3000
-            }
-          })
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
         })
       }else {
-        store.addNotification({
-          title: 'Falha',
-          message: `${error.response.data.message}`,
-          type: 'danger',
-          container: 'top-right',
-          animationIn: ["animated", "fadeIn"],
-          animationOut: ["animated", "fadeOut"],
-          dismiss: {
-            duration: 3000
-          }
-        })
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
       }
     }
   }

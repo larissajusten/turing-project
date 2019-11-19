@@ -13,4 +13,5 @@ export { EscolherQuestao } from './EscolherQuestao/escolherQuestao.component.jsx
 export { AdicionarQuestao } from './AdicionarQuestaoProva/adicionarQuestao.component.jsx'
 export { MostrarQuestaoUnica } from './MostraQuestoes/QuestaoUnicaResposta/mostrarQuestaoUnica.component.jsx'
 export { MostrarMultiplasRespostas } from './MostraQuestoes/QuestaoMultiplasRespostas/mostrarMultiplasRespostas.component.jsx'
-export { Alternativa } from './Alternativa/alternativa.component.jsx'
+export { BlocoVisualizar } from './BlocoVisualizar/blocoVisualizar.component.jsx'
+export { Notificacao } from './Notificacao/notification.component.js'

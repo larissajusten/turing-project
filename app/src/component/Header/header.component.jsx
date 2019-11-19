@@ -12,9 +12,11 @@ export class Header extends Component {
 				<span className="menu-header" onClick={this.handleClickShowMenu}>MENU</span>
 				<Menu width={'250px'}>
 					<Link to="/">Home</Link>
-					<Link to={"/cadastrar-questao"}>Cadastrar</Link>
-					<Link to={"/buscar-questao"}>Buscar</Link>
-					<Link to={"/cadastrar-prova"}>Prova</Link>
+					<Link to={"/cadastrar-questao"}>Cadastrar questão</Link>
+					<Link to={"/buscar-questao"}>Visualizar questões</Link>
+					<Link to={"/cadastrar-prova"}>Cadastrar prova</Link>
+					<Link to={"/visualizar-prova"}>Visualizar prova</Link>
+					<Link to={"/resolver-prova"}>Resolver prova</Link>
 				</Menu>
 			</div>
 		)

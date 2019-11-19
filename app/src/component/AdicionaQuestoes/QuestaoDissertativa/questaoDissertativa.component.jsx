@@ -1,10 +1,7 @@
 import React, { PureComponent } from 'react';
 import { QuestaoUnica } from '../../index'
 import { adicionarQuestaoDissertativa } from '../../../services/index'
-
-import { store } from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
-import 'animate.css'
+import { Notificacao } from '../../index'
 
 export class CadastroDissertativa extends PureComponent {
 
@@ -37,45 +34,15 @@ export class CadastroDissertativa extends PureComponent {
 
     try {
       await adicionarQuestaoDissertativa(questao)
-      store.addNotification({
-        title: 'Sucesso',
-        message: 'Questão adicionada com sucesso',
-        type: 'success',
-        container: 'top-right',
-        animationIn: ["animated", "fadeIn"],
-        animationOut: ["animated", "fadeOut"],
-        dismiss: {
-          duration: 3000
-        }
-      })
+      Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
     }
     catch (error) {
       if (error.response.data.errors) {
         error.response.data.errors.map(message => {
-          return store.addNotification({
-            title: 'Falha',
-            message: `${message.defaultMessage}`,
-            type: 'danger',
-            container: 'top-right',
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-              duration: 3000
-            }
-          })
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
         })
       } else {
-        store.addNotification({
-          title: 'Falha',
-          message: `${error.response.data.message}`,
-          type: 'danger',
-          container: 'top-right',
-          animationIn: ["animated", "fadeIn"],
-          animationOut: ["animated", "fadeOut"],
-          dismiss: {
-            duration: 3000
-          }
-        })
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
       }
     }
   }
