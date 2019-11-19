@@ -27,7 +27,7 @@ public class ExcluirQuestaoDissertativaServiceTest {
 
         excluirQuestaoDissertativaService.excluir(questaoDissertativa.getId(), prova.getId());
 
-        Mockito.verify(repository).deleteById(questaoDissertativa.getId());
+        Mockito.verify(repository).deleteByQuestaoIdAndProvaId(questaoDissertativa.getId(), prova.getId());
 
     }
 }

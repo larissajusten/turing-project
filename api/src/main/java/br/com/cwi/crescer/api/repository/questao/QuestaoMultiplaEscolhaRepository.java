@@ -17,7 +17,7 @@ public interface QuestaoMultiplaEscolhaRepository extends JpaRepository<QuestaoM
 
     @Query("SELECT q FROM QuestaoMultiplaEscolha q WHERE q.especificidade = :especificidade" +
             " AND q.nivelDeDificuldade = :nivelDeDificuldade")
-    List<QuestaoMultiplaEscolha> acharListaMultiplaEscolhaFiltrada(@Param("especificidade") Especificidade especificidade,
+    List<QuestaoMultiplaEscolha> acharPorNivelEEspecificidade(@Param("especificidade") Especificidade especificidade,
                                                       @Param("nivelDeDificuldade") NivelDeDificuldade nivelDeDificuldade);
 
 }

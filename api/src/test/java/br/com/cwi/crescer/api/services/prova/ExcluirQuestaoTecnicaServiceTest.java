@@ -27,7 +27,7 @@ public class ExcluirQuestaoTecnicaServiceTest {
 
         excluirQuestaoTecnicaService.excluir(provaQuestaoTecnica.getId(), prova.getId());
 
-        Mockito.verify(repository).deleteById(provaQuestaoTecnica.getId());
+        Mockito.verify(repository).deleteByQuestaoIdAndProvaId(provaQuestaoTecnica.getId(), prova.getId());
     }
 
 
