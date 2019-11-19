@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './visualizarProva.style.css'
-import { MostrarQuestaoUnica, MostrarMultiplasRespostas } from '../../component/index'
+import { MostrarQuestaoUnica, MostrarMultiplasRespostas, BlocoVisualizar } from '../../component/index'
 import { retornaProva,
           removerQuestaoDissertativa,
           removerQuestaoTecnica,
@@ -66,84 +66,90 @@ export class VisualizarProvaScreen extends Component {
   }
 
   renderMultiplasEscolhas() {
-    return (
-      this.state.prova.questoesDeMultiplaEscolha.map((item, key) => {
-        return <MostrarMultiplasRespostas
-          key={key}
-          id={item.id}
-          questao={item.questao}
-          nivel={item.nivelDeDificuldade}
-          especificidade={item.especificidade}
-          alternativaA={item.alternativaA.resposta}
-          alternativaB={item.alternativaB.resposta}
-          alternativaC={item.alternativaC.resposta}
-          alternativaD={item.alternativaD.resposta}
-          alternativaE={item.alternativaE.resposta}
-          respostaCorreta={this.verificaAlternativa(item)}
-          onClick={this.removerQuestaoMultiplaEscolha} />
-      })
-    )
+    if(this.state.prova.questoesDeMultiplaEscolha){
+      return (
+        this.state.prova.questoesDeMultiplaEscolha.map((item, key) => {
+          return <MostrarMultiplasRespostas
+            key={key}
+            id={item.id}
+            questao={item.questao}
+            nivel={item.nivelDeDificuldade}
+            especificidade={item.especificidade}
+            alternativaA={item.alternativaA.resposta}
+            alternativaB={item.alternativaB.resposta}
+            alternativaC={item.alternativaC.resposta}
+            alternativaD={item.alternativaD.resposta}
+            alternativaE={item.alternativaE.resposta}
+            respostaCorreta={this.verificaAlternativa(item)}
+            onClick={this.removerQuestaoMultiplaEscolha} />
+        })
+      )
+    }else{
+      return null
+    }
   }
 
   renderQuestoesTecnicas() {
-    return (
-      this.state.prova.questoesTecnicas.map((item, key) => {
-        return <MostrarQuestaoUnica
-          key={key}
-          id={item.id}
-          questaoNome="Questão técnica"
-          questao={item.questao}
-          nivel={item.nivelDeDificuldade}
-          especificidade={item.especificidade}
-          onClick={this.removerQuestaoTecnica} />
-      })
-    )
+    if(this.state.prova.questoesTecnicas){
+      return (
+        this.state.prova.questoesTecnicas.map((item, key) => {
+          return <MostrarQuestaoUnica
+            key={key}
+            id={item.id}
+            questaoNome="Questão técnica"
+            questao={item.questao}
+            nivel={item.nivelDeDificuldade}
+            especificidade={item.especificidade}
+            onClick={this.removerQuestaoTecnica} />
+        })
+      )
+    }else{
+      return null
+    }
   }
 
   renderQuestoesDissertativas() {
-    console.log(this.state.prova.questoesDissertativas)
-    return (
-      this.state.prova.questoesDissertativas.map((item, key) => {
-        return <MostrarQuestaoUnica
-          key={key}
-          id={item.id}
-          questaoNome="Questão dissertativa"
-          questao={item.questao}
-          nivel={item.nivelDeDificuldade}
-          especificidade={item.especificidade}
-          onClick={this.removerQuestaoDissertativa} />
-      })
-    )
+    if(this.state.prova.questoesDissertativas){
+      return (
+        this.state.prova.questoesDissertativas.map((item, key) => {
+          return <MostrarQuestaoUnica
+            key={key}
+            id={item.id}
+            questaoNome="Questão dissertativa"
+            questao={item.questao}
+            nivel={item.nivelDeDificuldade}
+            especificidade={item.especificidade}
+            onClick={this.removerQuestaoDissertativa} />
+        })
+      )
+    }else{
+      return null
+    }
   }
 
   render() {
-    console.log(this.state.prova)
-    if (this.state.prova
-      && this.state.prova.questoesDissertativas.length
-      && this.state.prova.questoesDeMultiplaEscolha.length
-      && this.state.prova.questoesTecnicas.length){
+    if (this.state.prova){
       return (
         <div className="container-tela">
           <div className="container-titulo">
             <span className="titulo-crie">Essa é a prova que você criou</span>
           </div>
 
+          <BlocoVisualizar
+            classe="blocoVisualizar-email"
+            nome="Email do candidato"
+            conteudo={this.state.prova.email}/>
+
+          <BlocoVisualizar
+            classe="blocoVisualizar-tempo"
+            nome="Email do candidato"
+            conteudo={this.state.prova.email}/>
+
           {this.renderQuestoesDissertativas()}
           {this.renderQuestoesTecnicas()}
           {this.renderMultiplasEscolhas()}
         </div>
       )
-    } else if (this.state.prova
-              && !this.state.prova.questoesDissertativas.length
-              && !this.state.prova.questoesDeMultiplaEscolha.length
-              && !this.state.prova.questoesTecnicas.length){
-        return (
-          <div className="container-tela">
-            <div className="container-titulo">
-              <span className="titulo-crie">Não há questões para visualizar</span>
-            </div>
-          </div>
-        )
     }else{
       return (
         <div className="container-tela">
