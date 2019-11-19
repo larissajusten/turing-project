@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoTecnicaRepository;
+import br.com.cwi.crescer.api.services.questaotecnica.AcrescentarQuantiaDeVezesUsadaQuestaoTecnica;
 import br.com.cwi.crescer.api.services.questaotecnica.ListarQuestoesTecnicasFiltradasService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,6 +33,9 @@ public class IncluirQuestoesTecnicasServiceTest {
 
     @Mock
     ProvaQuestaoTecnicaRepository repository;
+
+    @Mock
+    AcrescentarQuantiaDeVezesUsadaQuestaoTecnica acrescentarQuantiaDeVezesUsadaQuestaoTecnica;
 
     @Test
     public void deveChamarListarQuestoesTecnicasFiltradasServiceQuandoIncluirQuestoesTecnicasServiceForChamado() {
@@ -98,4 +102,29 @@ public class IncluirQuestoesTecnicasServiceTest {
         Mockito.verify(repository).save(provaQuestaoTecnica);
 
     }
+
+    @Test
+    public void deveChamarAcrescentarQuantiaDeVezesUsadaQuestaoTecnicaQuandoIncluirQuestoesTecnicasServiceForChamado() {
+        BuscaQuestoesRequest buscaQuestoesRequest =
+                new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 1);
+        List<QuestaoTecnica> lista = new ArrayList<>();
+        QuestaoTecnica questao = new QuestaoTecnica();
+        lista.add(questao);
+        Prova prova = new Prova();
+        ProvaQuestaoTecnica provaQuestaoTecnica = new ProvaQuestaoTecnica();
+        provaQuestaoTecnica.setProva(prova);
+        provaQuestaoTecnica.setQuestao(questao);
+
+        Mockito.when(listarQuestoesTecnicasFiltradasService.listar(buscaQuestoesRequest)).thenReturn(lista);
+        Mockito.when(buscarProvaPorId.buscar(prova.getId())).thenReturn(prova);
+        Mockito.when(repository.save(provaQuestaoTecnica)).thenReturn(provaQuestaoTecnica);
+
+        incluirQuestoesTecnicasService.incluir(prova.getId(), buscaQuestoesRequest);
+
+        Mockito.verify(acrescentarQuantiaDeVezesUsadaQuestaoTecnica).addVezesQuestaoTecnica(lista);
+
+    }
+
+
+
 }

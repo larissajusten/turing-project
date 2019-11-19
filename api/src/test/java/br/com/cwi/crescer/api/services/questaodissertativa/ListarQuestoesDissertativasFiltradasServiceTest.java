@@ -46,7 +46,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
         Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
         listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest);
 
-        Assert.assertEquals(listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest).size(), VALOR_ESPERADO_DE_RETORNO_DO_SIZE_DA_LISTA_DE_FILTRADAS);
+        Assert.assertEquals(VALOR_ESPERADO_DE_RETORNO_DO_SIZE_DA_LISTA_DE_FILTRADAS,listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest).size());
     }
 
     @Test

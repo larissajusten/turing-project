@@ -18,29 +18,6 @@ public class UnicaAlternativaCorretaValidatorTest {
     @InjectMocks
     UnicaAlternativaCorretaValidator unicaAlternativaCorretaValidator;
 
-    @Test
-    public void devePassarPeloMetodoSemLancarExceptionQuandoTiverUmaUnicaOpcaoCorreta() {
-
-        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaA = new AlternativaMultiplaEscolhaRequest("A", true);
-        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaB = new AlternativaMultiplaEscolhaRequest("B", false);
-        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaC = new AlternativaMultiplaEscolhaRequest("C", false);
-        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaD = new AlternativaMultiplaEscolhaRequest("D", false);
-        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaE = new AlternativaMultiplaEscolhaRequest("E", false);
-
-        QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest = new QuestaoMultiplaEscolhaRequest(
-                "Teste",
-                NivelDeDificuldade.DIFICIL,
-                Especificidade.JAVA,
-                alternativaMultiplaEscolhaA,
-                alternativaMultiplaEscolhaB,
-                alternativaMultiplaEscolhaC,
-                alternativaMultiplaEscolhaD,
-                alternativaMultiplaEscolhaE
-        );
-
-        unicaAlternativaCorretaValidator.validar(questaoMultiplaEscolhaRequest);
-    }
-
     @Test(expected = MultiplaEscolhaException.class)
     public void deveLancarExceptionQuandoNaoHouverUmaAlternativaCorreta() {
 

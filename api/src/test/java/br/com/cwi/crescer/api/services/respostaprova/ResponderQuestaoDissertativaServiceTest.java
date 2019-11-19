@@ -66,7 +66,8 @@ public class ResponderQuestaoDissertativaServiceTest {
     @Test
     public void deveChamarRespostasDissertativaRepositoryQuandoResponderQuestaoDissertativaServiceForChamado() {
 
-        Usuario usuario = new Usuario(1L, null);
+        Usuario usuario = new Usuario();
+        usuario.setId(1L);
         Prova prova = new Prova();
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
         RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
@@ -87,7 +88,8 @@ public class ResponderQuestaoDissertativaServiceTest {
     @Test
     public void deveRetornarRespostasDissertativaProvaQuandoResponderQuestaoDissertativaServiceForChamado() {
 
-        Usuario usuario = new Usuario(1L, null);
+        Usuario usuario = new Usuario();
+        usuario.setId(1L);
         Prova prova = new Prova();
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
         RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();

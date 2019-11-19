@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,7 +29,9 @@ public class Prova {
     @Column(name = "DATA_INICIO")
     private LocalDateTime dataInicio;
 
-    private String email;
+    @NotEmpty
+    @Column(name = "EMAIL_CANDIDATO")
+    private String emailCandidato;
 
     @Column(name = "DURACAO")
     private int tempoDeDuracaoDaProva;
@@ -38,6 +41,10 @@ public class Prova {
 
     @Enumerated(EnumType.STRING)
     private StatusProva status;
+
+    @NotEmpty
+    @Column(name = "NOME_CANDIDATO")
+    private String nomeCandidato;
 
     @ManyToOne
     @JoinColumn(name = "ID_CRIADOR", referencedColumnName = "id")

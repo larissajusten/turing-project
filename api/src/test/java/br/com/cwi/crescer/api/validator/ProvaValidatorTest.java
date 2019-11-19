@@ -24,18 +24,18 @@ public class ProvaValidatorTest {
     @Test
     public void deveChamarProvaRepositoryQuandoProvaValidatorMetodoVerificarSeEmailDoCandidatoTemProvaEmAbertoNoSistemaForChamado() {
 
-        Mockito.when(provaRepository.existsByEmailEqualsAndStatusEquals("email@aqui.com", StatusProva.ATIVA))
+        Mockito.when(provaRepository.existsByEmailCandidatoEqualsAndStatusEquals("email@aqui.com", StatusProva.ATIVA))
                 .thenReturn(false);
 
         provaValidator.verificarSeEmailDoCandidatoTemProvaEmAbertoNoSistema("email@aqui.com");
 
-        Mockito.verify(provaRepository).existsByEmailEqualsAndStatusEquals("email@aqui.com", StatusProva.ATIVA);
+        Mockito.verify(provaRepository).existsByEmailCandidatoEqualsAndStatusEquals("email@aqui.com", StatusProva.ATIVA);
     }
 
     @Test(expected = UsuariojaTemProvaEmVigorException.class)
     public void deveDispararUmaExceptionQuandoProvaValidatorMetodoVerificarSeEmailDoCandidatoTemProvaEmAbertoNoSistemaForChamadoEAcharUmaProva() {
 
-        Mockito.when(provaRepository.existsByEmailEqualsAndStatusEquals("email@aqui.com", StatusProva.ATIVA))
+        Mockito.when(provaRepository.existsByEmailCandidatoEqualsAndStatusEquals("email@aqui.com", StatusProva.ATIVA))
                 .thenReturn(true);
 
         provaValidator.verificarSeEmailDoCandidatoTemProvaEmAbertoNoSistema("email@aqui.com");

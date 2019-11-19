@@ -7,7 +7,9 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoMultiplaEscolhaRepository;
+import br.com.cwi.crescer.api.services.questaomultiplaescolha.AcrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.ListarQuestoesMultiplaEscolhaFiltradasService;
+import br.com.cwi.crescer.api.services.questaotecnica.AcrescentarQuantiaDeVezesUsadaQuestaoTecnica;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -32,6 +34,9 @@ public class IncluirQuestoesMultiplaEscolhaServiceTest {
 
     @Mock
     BuscarProvaPorIdService buscarProvaPorId;
+
+    @Mock
+    AcrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService acrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService;
 
     @Test
     public void deveChamarListarQuestoesMultiplaEscolhaFiltradasServiceQuandoIncluirQuestoesMultiplaEscolhaService() {
@@ -95,5 +100,29 @@ public class IncluirQuestoesMultiplaEscolhaServiceTest {
         incluirQuestoesMultiplaEscolhaService.incluir(prova.getId(), buscaQuestoesRequest);
 
         Mockito.verify(repository).save(provaQuestaoMultiplaEscolha);
+    }
+
+    @Test
+    public void deveChamarAcrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaServiceQuandoIncluirQuestoesMultiplaEscolhaService() {
+
+        BuscaQuestoesRequest buscaQuestoesRequest =
+                new BuscaQuestoesRequest(Especificidade.JAVASCRIPT,
+                        NivelDeDificuldade.FACIL, 1);
+
+        Prova prova = new Prova();
+        ProvaQuestaoMultiplaEscolha provaQuestaoMultiplaEscolha = new ProvaQuestaoMultiplaEscolha();
+        List<QuestaoMultiplaEscolha> lista = new ArrayList<>();
+        QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
+        lista.add(questaoMultiplaEscolha);
+        provaQuestaoMultiplaEscolha.setProva(prova);
+        provaQuestaoMultiplaEscolha.setQuestao(questaoMultiplaEscolha);
+        Mockito.when(listarQuestoesMultiplaEscolhaFiltradasService.listar(buscaQuestoesRequest))
+                .thenReturn(lista);
+        Mockito.when(buscarProvaPorId.buscar(prova.getId())).thenReturn(prova);
+        Mockito.when(repository.save(provaQuestaoMultiplaEscolha)).thenReturn(provaQuestaoMultiplaEscolha);
+
+        incluirQuestoesMultiplaEscolhaService.incluir(prova.getId(), buscaQuestoesRequest);
+
+        Mockito.verify(acrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService).addVezesQuestaoMultiplaEscolha(lista);
     }
 }

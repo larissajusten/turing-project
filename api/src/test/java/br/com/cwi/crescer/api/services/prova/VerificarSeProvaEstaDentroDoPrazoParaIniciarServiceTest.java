@@ -52,7 +52,7 @@ public class VerificarSeProvaEstaDentroDoPrazoParaIniciarServiceTest {
 
         verificarSeProvaEstaDentroDoPrazoParaIniciarService.verificar(prova);
 
-        Assert.assertEquals(prova.getStatus(), StatusProva.FORA_DO_PRAZO_PARA_REALIZAR_PROVA);
+        Assert.assertEquals(StatusProva.FORA_DO_PRAZO_PARA_REALIZAR_PROVA, prova.getStatus());
 
 
     }

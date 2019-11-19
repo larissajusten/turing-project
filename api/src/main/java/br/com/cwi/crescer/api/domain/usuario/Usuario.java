@@ -1,11 +1,13 @@
 package br.com.cwi.crescer.api.domain.usuario;
 
+import br.com.cwi.crescer.api.domain.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -21,7 +23,13 @@ public class Usuario {
     @NotNull
     private Long id;
 
-    @Transient
+    @NotEmpty
+    private String senha;
+
+    @NotEmpty
     private String email;
 
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Perfil perfil;
 }

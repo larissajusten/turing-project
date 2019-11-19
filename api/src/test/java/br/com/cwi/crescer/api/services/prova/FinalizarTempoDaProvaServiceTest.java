@@ -65,7 +65,7 @@ public class FinalizarTempoDaProvaServiceTest {
 
         finalizarTempoDaProvaService.finalizar(prova.getId());
 
-        Assert.assertEquals(finalizarTempoDaProvaService.finalizar(prova.getId()), StatusProva.FORA_DO_PRAZO_DE_DURACAO);
+        Assert.assertEquals(StatusProva.FORA_DO_PRAZO_DE_DURACAO, finalizarTempoDaProvaService.finalizar(prova.getId()));
 
     }
 
