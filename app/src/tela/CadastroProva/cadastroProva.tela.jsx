@@ -9,6 +9,7 @@ import { adicionarProva,
 import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
 
+const mensagemSucessoNotificacao = 'Questões adicionadas com sucesso'
 const objeto = { tipo: null, especificidade: null, nivel: null, quantidade: null }
 
 export class CadastrarProvaScreen extends Component {
@@ -117,7 +118,7 @@ export class CadastrarProvaScreen extends Component {
     if (this.state.arrayStates[id].tipo === this.state.tipos[0]) {
       try {
         await incluirDissertativas(this.state.idProva, questao)
-        Notificacao('Sucesso', 'Questões adicionadas com sucesso', 'success')
+        Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
       }
       catch (error) {
         if (error.response.data.errors) {
@@ -131,7 +132,7 @@ export class CadastrarProvaScreen extends Component {
     } else if (this.state.arrayStates[id].tipo === this.state.tipos[1]) {
       try {
         await incluirMultiplaEscolha(this.state.idProva, questao)
-        Notificacao('Sucesso', 'Questões adicionadas com sucesso', 'success')
+        Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
       }
       catch (error) {
         if (error.response.data.errors) {
@@ -145,7 +146,7 @@ export class CadastrarProvaScreen extends Component {
     } else if (this.state.arrayStates[id].tipo === this.state.tipos[2]) {
       try {
         await incluirTecnicas(this.state.idProva, questao)
-        Notificacao('Sucesso', 'Questões adicionadas com sucesso', 'success')
+        Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
       }
       catch (error) {
         if (error.response.data.errors) {
