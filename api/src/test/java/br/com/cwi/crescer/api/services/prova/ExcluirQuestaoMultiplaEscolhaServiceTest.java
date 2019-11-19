@@ -26,6 +26,6 @@ public class ExcluirQuestaoMultiplaEscolhaServiceTest {
 
         excluirQuestaoMultiplaEscolhaService.excluir(questaoMultiplaEscolha.getId(), prova.getId());
 
-        Mockito.verify(repository).deleteById(questaoMultiplaEscolha.getId());
+        Mockito.verify(repository).deleteByQuestaoIdAndProvaId(questaoMultiplaEscolha.getId(), prova.getId());
     }
 }
