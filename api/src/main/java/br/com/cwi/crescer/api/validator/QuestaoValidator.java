@@ -1,10 +1,7 @@
 package br.com.cwi.crescer.api.validator;
 
-import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 public class QuestaoValidator {

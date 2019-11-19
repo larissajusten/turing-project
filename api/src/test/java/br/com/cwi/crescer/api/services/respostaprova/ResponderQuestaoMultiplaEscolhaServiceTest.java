@@ -109,7 +109,8 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         respostasMultiplaEscolhaProva.setProva(prova);
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
         respostasMultiplaEscolhaProva.setQuestaoMultiplaEscolha(questaoMultiplaEscolha);
-        Usuario usuario = new Usuario(1L, null);
+        Usuario usuario = new Usuario();
+        usuario.setId(1L);
         respostasMultiplaEscolhaProva.setUsuario(usuario);
         Mockito.when(buscarAlternativaMultiplaEscolhaPorIdService.buscar(alternativaMultiplaEscolha.getId())).thenReturn(alternativaMultiplaEscolha);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
@@ -130,7 +131,8 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         respostasMultiplaEscolhaProva.setProva(prova);
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
         respostasMultiplaEscolhaProva.setQuestaoMultiplaEscolha(questaoMultiplaEscolha);
-        Usuario usuario = new Usuario(1L, null);
+        Usuario usuario = new Usuario();
+        usuario.setId(1L);
         respostasMultiplaEscolhaProva.setUsuario(usuario);
         Mockito.when(buscarAlternativaMultiplaEscolhaPorIdService.buscar(alternativaMultiplaEscolha.getId())).thenReturn(alternativaMultiplaEscolha);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
@@ -139,7 +141,8 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
 
         responderQuestaoMultiplaEscolhaService.responder(prova.getId(), questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
 
-        Assert.assertEquals(responderQuestaoMultiplaEscolhaService.responder(prova.getId(), questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId()), respostasMultiplaEscolhaProva);
+        Assert.assertEquals(responderQuestaoMultiplaEscolhaService.responder(prova.getId(),
+                questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId()), respostasMultiplaEscolhaProva);
     }
 
 

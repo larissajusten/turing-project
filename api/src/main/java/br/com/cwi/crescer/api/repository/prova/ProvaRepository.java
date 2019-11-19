@@ -8,6 +8,6 @@ public interface ProvaRepository extends JpaRepository<Prova, Long> {
 
     Prova findAllByCriadorIdEquals(Long id);
 
-    boolean existsByEmailEqualsAndStatusEquals(String email, StatusProva ativa);
+    boolean existsByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva ativa);
 }
 

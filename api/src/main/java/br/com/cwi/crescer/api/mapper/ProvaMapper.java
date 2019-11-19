@@ -20,8 +20,8 @@ public class ProvaMapper {
         Prova prova = mapper.map(request, Prova.class);
 
         prova.setDataCriacao(LocalDateTime.now());
-        prova.setEmail(request.getEmail());
-        prova.setCriador(new Usuario(1L, "a"));
+        prova.setEmailCandidato(request.getEmail());
+        prova.setCriador(new Usuario());
         prova.setStatus(StatusProva.ATIVA);
 
         return prova;

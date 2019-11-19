@@ -19,10 +19,4 @@ public class NotaValidatorTest {
 
     }
 
-    @Test
-    public void devePassarPeloMetodoSemLancarExceptionQuandoNotaForInferiorANotaMinimaOuSuperiorANotaMaxima() {
-
-        notaValidator.verificarSeNotaEMaiorQue0EMenorQueDez(1);
-
-    }
 }

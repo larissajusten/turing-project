@@ -65,7 +65,7 @@ public class CalcularNumeroDeAcertosMultiplaEscolhaServiceTest {
 
         Mockito.verify(repository).findAllByProvaIdEquals(prova.getId());
 
-        Assert.assertEquals(calcularNumeroDeAcertosMultiplaEscolhaService.calcular(prova.getId()), 1);
+        Assert.assertEquals(1, calcularNumeroDeAcertosMultiplaEscolhaService.calcular(prova.getId()));
 
     }
 }

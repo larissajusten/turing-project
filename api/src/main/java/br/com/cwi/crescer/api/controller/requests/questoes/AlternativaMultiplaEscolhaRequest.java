@@ -3,7 +3,6 @@ package br.com.cwi.crescer.api.controller.requests.questoes;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import javax.validation.Constraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 

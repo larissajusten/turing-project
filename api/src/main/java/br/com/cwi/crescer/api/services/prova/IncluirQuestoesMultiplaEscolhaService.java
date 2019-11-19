@@ -5,6 +5,7 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoMultiplaEscolhaRepository;
+import br.com.cwi.crescer.api.services.questaomultiplaescolha.AcrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.ListarQuestoesMultiplaEscolhaFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,11 @@ public class IncluirQuestoesMultiplaEscolhaService {
     @Autowired
     private ProvaQuestaoMultiplaEscolhaRepository repository;
 
+    @Autowired
+    private AcrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService acrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService;
     public void incluir(Long idProva, BuscaQuestoesRequest request) {
         List<QuestaoMultiplaEscolha> lista = listarQuestoesMultiplaEscolhaFiltradasService.listar(request);
+        acrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService.addVezesQuestaoMultiplaEscolha(lista);
         Prova prova = buscarProvaPorId.buscar(idProva);
 
         for (QuestaoMultiplaEscolha questaoMultiplaEscolha : lista) {
