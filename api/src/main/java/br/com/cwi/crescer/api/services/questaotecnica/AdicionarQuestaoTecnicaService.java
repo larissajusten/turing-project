@@ -24,7 +24,7 @@ public class AdicionarQuestaoTecnicaService {
         QuestaoTecnica questaoTecnica = mapper.transformar(request);
         questaoTecnica.setDataCriacao(LocalDate.now());
 
-        questaoTecnica.setUsuario(new Usuario(1L, "a"));
+        questaoTecnica.setUsuario(new Usuario());
 
         repository.save(questaoTecnica);
     }
