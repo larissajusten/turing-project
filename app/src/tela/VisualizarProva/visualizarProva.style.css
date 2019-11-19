@@ -3,6 +3,20 @@
 }
 
 .blocoVisualizar-tempo {
-  width: 50%;
+  width: 48%;
 }
 
+.container-infos {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 70%;
+}
+
+.container-infos-tempos {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './visualizarProva.style.css'
-import { MostrarQuestaoUnica, MostrarMultiplasRespostas, BlocoVisualizar } from '../../component/index'
+import { MostrarQuestaoUnica, MostrarMultiplasRespostas, BlocoVisualizar, Notificacao } from '../../component/index'
 import { retornaProva,
           removerQuestaoDissertativa,
           removerQuestaoTecnica,
@@ -32,6 +32,7 @@ export class VisualizarProvaScreen extends Component {
 
   removerQuestaoDissertativa = async (idDaQuestao) => {
     await removerQuestaoDissertativa(this.state.idProva, idDaQuestao)
+    Notificacao('Sucesso', 'Questão removida com sucesso', 'success')
     this.setState({
       prova: await retornaProva(this.state.idProva)
     })
@@ -39,6 +40,7 @@ export class VisualizarProvaScreen extends Component {
 
   removerQuestaoTecnica = async (idDaQuestao) => {
     await removerQuestaoTecnica(this.state.idProva, idDaQuestao)
+    Notificacao('Sucesso', 'Questão removida com sucesso', 'success')
     this.setState({
       prova: await retornaProva(this.state.idProva)
     })
@@ -46,6 +48,7 @@ export class VisualizarProvaScreen extends Component {
 
   removerQuestaoMultiplaEscolha = async (idDaQuestao) => {
     await removerQuestaoMultiplaEscolha(this.state.idProva, idDaQuestao)
+    Notificacao('Sucesso', 'Questão removida com sucesso', 'success')
     this.setState({
       prova: await retornaProva(this.state.idProva)
     })
@@ -135,15 +138,24 @@ export class VisualizarProvaScreen extends Component {
             <span className="titulo-crie">Essa é a prova que você criou</span>
           </div>
 
-          <BlocoVisualizar
-            classe="blocoVisualizar-email"
-            nome="Email do candidato"
-            conteudo={this.state.prova.email}/>
+          <div className="container-infos">
+            <BlocoVisualizar
+              classe="blocoVisualizar-email"
+              nome="Email do candidato"
+              conteudo={this.state.prova.email}/>
 
-          <BlocoVisualizar
-            classe="blocoVisualizar-tempo"
-            nome="Email do candidato"
-            conteudo={this.state.prova.email}/>
+            <div className="container-infos-tempos">
+              <BlocoVisualizar
+                classe="blocoVisualizar-tempo"
+                nome="Tempo de duração (minutos)"
+                conteudo={this.state.prova.tempoDeDuracaoDaProva}/>
+
+              <BlocoVisualizar
+                classe="blocoVisualizar-tempo"
+                nome="Tempo para inicio (horas)"
+                conteudo={this.state.prova.tempoParaInicioProva}/>
+            </div>
+          </div>
 
           {this.renderQuestoesDissertativas()}
           {this.renderQuestoesTecnicas()}
