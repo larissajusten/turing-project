@@ -8,6 +8,7 @@ import br.com.cwi.crescer.api.mapper.AlternativaMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaQuestaoMultiplaEscolhaService;
+import br.com.cwi.crescer.api.validator.QuestaoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,8 +19,6 @@ import java.util.List;
 
 @Service
 public class BuscarQuestoesMultiplaEscolhaService {
-
-    private static final int TAMANHO_PARA_LANCAR_EXCEPTION_LISTA = 0;
 
     @Autowired
     private QuestaoMultiplaEscolhaRepository repository;
@@ -33,13 +32,14 @@ public class BuscarQuestoesMultiplaEscolhaService {
     @Autowired
     private AlternativaMultiplaEscolhaMapper alternativaMapper;
 
+    @Autowired
+    private QuestaoValidator validator;
+
     public Page<QuestaoMultiplaEscolhaResponse> buscarTodasQuestoes(Pageable pageable) {
 
         Page<QuestaoMultiplaEscolha> questoes = repository.findAll(pageable);
 
-        if (questoes.getContent().size() == TAMANHO_PARA_LANCAR_EXCEPTION_LISTA) {
-            throw new QuestaoNaoEncontradaException("Nenhuma questão com essa especificidade e nivel de dificuldade foi encontrada.");
-        }
+        validator.validar(questoes.getSize(), pageable.getPageSize());
 
         return questoes.map(questao -> {
             List<AlternativaMultiplaEscolhaResponse> alternativasResponse = new ArrayList<>();

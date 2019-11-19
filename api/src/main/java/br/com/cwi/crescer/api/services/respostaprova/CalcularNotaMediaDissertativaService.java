@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.api.services.provaquestao;
+package br.com.cwi.crescer.api.services.respostaprova;
 
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;

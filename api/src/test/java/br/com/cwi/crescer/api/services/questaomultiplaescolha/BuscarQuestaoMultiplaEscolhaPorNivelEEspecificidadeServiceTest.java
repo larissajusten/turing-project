@@ -32,13 +32,13 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeServiceTest {
         List<QuestaoMultiplaEscolha> listaDeQuestoes = new ArrayList<>();
         listaDeQuestoes.add(new QuestaoMultiplaEscolha());
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
+        Mockito.when(repository.acharListaMultiplaEscolhaFiltrada(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
 
         buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService
                 .buscarQuestoes(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
-        Mockito.verify(repository, Mockito.times(2)).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
+        Mockito.verify(repository, Mockito.times(2)).acharListaMultiplaEscolhaFiltrada(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL);
 
     }
@@ -50,7 +50,7 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeServiceTest {
         List<QuestaoMultiplaEscolha> listaDeQuestoes = new ArrayList<>();
 
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
+        Mockito.when(repository.acharListaMultiplaEscolhaFiltrada(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
 
         buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService
@@ -65,7 +65,7 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeServiceTest {
         List<QuestaoMultiplaEscolha> listaDeQuestoes = new ArrayList<>();
         listaDeQuestoes.add(new QuestaoMultiplaEscolha());
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
+        Mockito.when(repository.acharListaMultiplaEscolhaFiltrada(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
 
         buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService
