@@ -2,6 +2,7 @@ package br.com.cwi.crescer.api.controller.questoes;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesBaseRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
+import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoTecnicaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.services.questaotecnica.AdicionarQuestaoTecnicaService;
@@ -37,7 +38,7 @@ public class QuestaoTecnicaController {
     //@RolesAllowed("Administrator")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public void adicionarQuestaoTecnica(@Valid @RequestBody QuestaoUnicaAlternativaRequest request) {
+    public void adicionarQuestaoTecnica(@Valid @RequestBody QuestaoTecnicaRequest request) {
         adicionarQuestaoTecnica.adicionar(request);
     }
 

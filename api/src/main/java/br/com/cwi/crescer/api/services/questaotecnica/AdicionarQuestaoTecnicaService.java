@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.services.questaotecnica;
 
+import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoTecnicaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
@@ -19,13 +20,10 @@ public class AdicionarQuestaoTecnicaService {
     @Autowired
     private QuestaoTecnicaMapper mapper;
 
-    public void adicionar(QuestaoUnicaAlternativaRequest request) {
+    public void adicionar(QuestaoTecnicaRequest request) {
         QuestaoTecnica questaoTecnica = mapper.transformar(request);
         questaoTecnica.setDataCriacao(LocalDate.now());
 
-        //Precisa salvar um usuário no banco para poder usar ele,
-        //dá erro porque está tentando usar um usuário que não existe
-        //Para resolver agora: é só salvar manualmente um Usuario no banco
         questaoTecnica.setUsuario(new Usuario(1L, "a"));
 
         repository.save(questaoTecnica);
