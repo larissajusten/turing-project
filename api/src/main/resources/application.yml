@@ -12,6 +12,23 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: tcc.turing@gmail.com
+    password: tcc12345turing
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          ssl:
+            enable: false
+    test-connection: true
+
   datasource:
     #antonio
     #url: jdbc:oracle:thin:@192.168.56.106:1521/XEPDB1
