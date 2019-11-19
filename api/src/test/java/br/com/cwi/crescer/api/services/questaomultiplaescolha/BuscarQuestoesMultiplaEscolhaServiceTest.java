@@ -9,6 +9,8 @@ import br.com.cwi.crescer.api.mapper.AlternativaMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaQuestaoMultiplaEscolhaService;
+import br.com.cwi.crescer.api.validator.QuestaoValidator;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -39,6 +41,9 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
 
     @Mock
     AlternativaMultiplaEscolhaMapper mapperAlternativa;
+
+    @Mock
+    QuestaoValidator validator;
 
     @Test
     public void deveChamarRepositoryQuandoBuscarQuestoesMultiplaEscolhaForChamada() {
@@ -119,14 +124,15 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
         Mockito.when(repository.findAll(page)).thenReturn(questoes);
         Mockito.when(mapperAlternativa.transformarEmResponse(alternativa)).thenReturn(alternativaResponse);
         Mockito.when(buscarAlternativaQuestaoMultiplaEscolhaService.buscar(questao.getId())).thenReturn(alternativas);
+
         buscarQuestoesMultiplaEscolhaService.buscarTodasQuestoes(page);
 
         Mockito.verify(buscarAlternativaQuestaoMultiplaEscolhaService).buscar(questao.getId());
 
     }
 
-    @Test(expected = QuestaoNaoEncontradaException.class)
-    public void deveLancarUmaExceptionQuandoBuscarQuestoesMultiplaEscolhaForChamadaEVoltarVazia() {
+    @Test
+    public void deveChamarQuestaoValidatorQuandoBuscarQuestoesMultiplaEscolhaForChamadaEVoltarVazia() {
 
         PageRequest page = PageRequest.of(1, 10);
 
@@ -142,9 +148,33 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
         alternativas.add(alternativa);
 
         Mockito.when(repository.findAll(page)).thenReturn(questoes);
+
         buscarQuestoesMultiplaEscolhaService.buscarTodasQuestoes(page);
 
+        Mockito.verify(validator).validar(questoes.getSize(), page.getPageSize());
+    }
 
+    @Test
+    public void deveRetornarUmaPageDeQuestaoMultiplaEscolhaQuandoBuscarQuestoesMultiplaEscolhaForChamadaEVoltarVazia() {
+
+        PageRequest page = PageRequest.of(1, 10);
+
+        QuestaoMultiplaEscolha questao = new QuestaoMultiplaEscolha();
+        QuestaoMultiplaEscolhaResponse questaoResponse = new QuestaoMultiplaEscolhaResponse();
+        List<QuestaoMultiplaEscolha> questoesMultiplaEscolha = new ArrayList<>();
+
+        AlternativaMultiplaEscolha alternativa = new AlternativaMultiplaEscolha();
+
+        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<QuestaoMultiplaEscolha>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
+
+        List<AlternativaMultiplaEscolha> alternativas = new ArrayList<>();
+        alternativas.add(alternativa);
+
+        Mockito.when(repository.findAll(page)).thenReturn(questoes);
+
+        buscarQuestoesMultiplaEscolhaService.buscarTodasQuestoes(page);
+
+        Assert.assertEquals(buscarQuestoesMultiplaEscolhaService.buscarTodasQuestoes(page), questoes);
     }
 
 
