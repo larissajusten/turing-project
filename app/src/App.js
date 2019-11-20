@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import ReactNotifications from 'react-notifications-component'
 import './App.css';
-import { CadastrarQuestaoScreen, 
-				BuscarQuestaoScreen, 
-				CadastrarProvaScreen, 
-				VisualizarProvaScreen, 
-				ResolverProvaScreen} from './tela/index';
+import { CadastrarQuestaoScreen,
+				BuscarQuestaoScreen,
+				CadastrarProvaScreen,
+				VisualizarProvaScreen,
+				ResolverProvaScreen } from './tela/index';
 import { Header, Footer } from './component/index'
 
 function App() {

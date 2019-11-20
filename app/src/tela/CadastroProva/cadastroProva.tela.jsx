@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, BotaoPrincipal, AdicionarQuestao, BotaoAdicionar, Notificacao } from '../../component/index'
+import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, BotaoAdicionar, Notificacao } from '../../component/index'
 import { adicionarProva,
         incluirDissertativas,
         incluirMultiplaEscolha,
@@ -9,6 +9,7 @@ import { adicionarProva,
 import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
 
+const mensagemSucessoNotificacao = 'Questões adicionadas com sucesso'
 const objeto = { tipo: null, especificidade: null, nivel: null, quantidade: null }
 
 export class CadastrarProvaScreen extends Component {
@@ -106,6 +107,54 @@ export class CadastrarProvaScreen extends Component {
     })
   }
 
+  enviarQuestaoDissertativa = async (questao) => {
+    try {
+      await incluirDissertativas(this.state.idProva, questao)
+      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'danger')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
+  enviarQuestaoMultiplaEscolha = async (questao) => {
+    try {
+      await incluirMultiplaEscolha(this.state.idProva, questao)
+      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'danger')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
+  enviarQuestaoTecnica = async (questao) => {
+    try {
+      await incluirTecnicas(this.state.idProva, questao)
+      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
   handleClickEnviarQuestao = async (id) => {
 
     const questao = {
@@ -115,47 +164,11 @@ export class CadastrarProvaScreen extends Component {
     }
 
     if (this.state.arrayStates[id].tipo === this.state.tipos[0]) {
-      try {
-        await incluirDissertativas(this.state.idProva, questao)
-        Notificacao('Sucesso', 'Questões adicionadas com sucesso', 'success')
-      }
-      catch (error) {
-        if (error.response.data.errors) {
-          error.response.data.errors.map(message => {
-            return Notificacao('Falha', `${message.defaultMessage}`, 'danger')
-          })
-        } else {
-          Notificacao('Falha', `${error.response.data.message}`, 'danger')
-        }
-      }
+      this.enviarQuestaoDissertativa(questao)
     } else if (this.state.arrayStates[id].tipo === this.state.tipos[1]) {
-      try {
-        await incluirMultiplaEscolha(this.state.idProva, questao)
-        Notificacao('Sucesso', 'Questões adicionadas com sucesso', 'success')
-      }
-      catch (error) {
-        if (error.response.data.errors) {
-          error.response.data.errors.map(message => {
-            return Notificacao('Falha', `${message.defaultMessage}`, 'danger')
-          })
-        } else {
-          Notificacao('Falha', `${error.response.data.message}`, 'danger')
-        }
-      }
+      this.enviarQuestaoMultiplaEscolha(questao)
     } else if (this.state.arrayStates[id].tipo === this.state.tipos[2]) {
-      try {
-        await incluirTecnicas(this.state.idProva, questao)
-        Notificacao('Sucesso', 'Questões adicionadas com sucesso', 'success')
-      }
-      catch (error) {
-        if (error.response.data.errors) {
-          error.response.data.errors.map(message => {
-            return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-          })
-        } else {
-          Notificacao('Falha', `${error.response.data.message}`, 'danger')
-        }
-      }
+      this.enviarQuestaoTecnica(questao)
     } else {
       Notificacao('Falha', 'Tipo de questão não selecionado', 'warning')
     }
@@ -164,7 +177,7 @@ export class CadastrarProvaScreen extends Component {
   renderArrayQuestoes() {
     return (
       this.state.arrayStates.map((item, key) => {
-        return <AdicionarQuestao
+        return <AdicionarQuestaoNaProva
           key={key}
           id={key}
           tipo={item.tipo}

@@ -1,16 +1,16 @@
 import React, { PureComponent } from 'react';
-import { Select, BotaoPrincipal } from '../../index'
+import { Select, BotaoPrincipal, Textarea } from '../../index'
 import './questaoUnica.style.css'
 
 export class QuestaoUnica extends PureComponent {
 
-    constructor(props){
-      super(props)
-      this.state = {
-        linguagens: props.linguagens,
-        niveis: props.niveis,
-      }
+  constructor(props){
+    super(props)
+    this.state = {
+      linguagens: props.linguagens,
+      niveis: props.niveis,
     }
+  }
 
   render() {
     return(
@@ -35,18 +35,26 @@ export class QuestaoUnica extends PureComponent {
           </div>
 
           <div className="input-principal">
-            <label className="label">Questão</label>
-            <textarea
-              className="questao"
+            <Textarea
+              label="Questão"
               name="questao"
               value={this.props.questao}
               onChange={this.props.handleChange}
-							maxLength="500"
-              type="textarea"
-              label="Questão"
-              placeholder=""
-              required/>
+              maxLength="500"/>
           </div>
+
+          {
+            this.props.questaoTipoTecnica &&
+            <div className="input-principal">
+              <Textarea
+                name="resposta"
+                value={this.props.resposta}
+                label="Resposta"
+                maxLength="500"
+                comIndex={false}
+                handleChange={this.props.handleChange}/>
+            </div>
+          }
 
           <div className="container-botao">
             <BotaoPrincipal nome="Enviar" onClick={this.props.handleClickSalvarQuestao}/>

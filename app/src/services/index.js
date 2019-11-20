@@ -9,7 +9,6 @@ export { retornarQuestoesMultiplasEscolhasFiltradas } from './questoes/questao-m
 /* Questão Tecnica Service*/
 export { adicionarQuestaoTecnica } from './questoes/questao-tecnica.service'
 export { retornarQuestoesTecnicasFiltradas } from './questoes/questao-tecnica.service'
-export { retornarQuestoesTecnicasRandomicasFiltradas } from './questoes/questao-tecnica.service'
 
 /* Questão Dissertativa Service*/
 export { adicionarQuestaoDissertativa } from './questoes/questao-dissertativa.service'
@@ -18,6 +17,7 @@ export { retornarQuestoesDissertativasFiltradas } from './questoes/questao-disse
 /* Prova */
 export { adicionarProva } from './prova/prova.service'
 export { retornaProva } from './prova/prova.service'
+export { inserirDataDeInicioDaProva } from './prova/prova.service'
 
 /* Prova */ //incluir questão
 export { incluirDissertativas } from './prova/prova.service'

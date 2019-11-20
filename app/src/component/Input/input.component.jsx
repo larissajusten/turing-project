@@ -4,7 +4,7 @@ import './input.style.css';
 export class Input extends Component {
 	render() {
 		return (
-			<div className={`input-principal ${this.props.className}`}>
+			<div className={`input-principal ${this.props.classNameDiv}`}>
 				<label className="label">{this.props.label}</label>
 				<input
 					className= {`input ${this.props.className}`}

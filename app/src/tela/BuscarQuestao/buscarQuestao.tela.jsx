@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import './buscarQuestao.style.css'
-import { BotaoPrincipal, CardQuestao, EscolherQuestao, Notificacao } from '../../component/index'
+import { BotaoPrincipal, CardBuscarQuestao, BuscarQuestao, Notificacao } from '../../component/index'
 import { retornarEspecificidades,
         retornarNiveisDeDificuldade,
         retornarQuestoesTecnicasFiltradas,
         retornarQuestoesDissertativasFiltradas,
         retornarQuestoesMultiplasEscolhasFiltradas } from '../../services/index'
 
+const mensagemSucessoNotificacao = 'Busca bem sucedida'
 export class BuscarQuestaoScreen extends Component {
 
   constructor(props) {
@@ -49,7 +50,7 @@ export class BuscarQuestaoScreen extends Component {
     if (this.state.tipo === this.state.tipos[0]) {
       try {
         listaDeQuestoes = await retornarQuestoesDissertativasFiltradas(busca)
-        Notificacao('Sucesso', 'Busca bem sucedida', 'success')
+        Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
         this.setState({
           resultados: listaDeQuestoes
         })
@@ -66,7 +67,7 @@ export class BuscarQuestaoScreen extends Component {
     } else if (this.state.tipo === this.state.tipos[1]) {
       try {
         listaDeQuestoes = await retornarQuestoesMultiplasEscolhasFiltradas(busca)
-        Notificacao('Sucesso', 'Busca bem sucedida', 'success')
+        Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
         this.setState({
           resultados: listaDeQuestoes
         })
@@ -83,7 +84,7 @@ export class BuscarQuestaoScreen extends Component {
     } else if (this.state.tipo === this.state.tipos[2]) {
       try {
         listaDeQuestoes = await retornarQuestoesTecnicasFiltradas(busca)
-        Notificacao('Sucesso', 'Busca bem sucedida', 'success')
+        Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
         this.setState({
           resultados: listaDeQuestoes
         })
@@ -109,7 +110,7 @@ export class BuscarQuestaoScreen extends Component {
           {
             this.state.resultados.map((item, key) => {
               return (
-                <CardQuestao
+                <CardBuscarQuestao
                   key={key}
                   questao={item.questao}
                   data={item.dataCriacao}
@@ -132,7 +133,7 @@ export class BuscarQuestaoScreen extends Component {
             <span className="titulo-crie">Busque a questão que deseja</span>
           </div>
           <div className="container-inputs">
-            <EscolherQuestao
+            <BuscarQuestao
               tipo={this.state.tipo}
               especificidade={this.state.especificidade}
               nivel={this.state.nivel}

@@ -6,6 +6,8 @@ import { retornaProva,
           removerQuestaoTecnica,
           removerQuestaoMultiplaEscolha } from '../../services/index'
 
+const mensagemSucessoNotificacao = 'Questão removida com sucesso'
+
 export class VisualizarProvaScreen extends Component {
 
   constructor(props) {
@@ -32,7 +34,7 @@ export class VisualizarProvaScreen extends Component {
 
   removerQuestaoDissertativa = async (idDaQuestao) => {
     await removerQuestaoDissertativa(this.state.idProva, idDaQuestao)
-    Notificacao('Sucesso', 'Questão removida com sucesso', 'success')
+    Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     this.setState({
       prova: await retornaProva(this.state.idProva)
     })
@@ -40,7 +42,7 @@ export class VisualizarProvaScreen extends Component {
 
   removerQuestaoTecnica = async (idDaQuestao) => {
     await removerQuestaoTecnica(this.state.idProva, idDaQuestao)
-    Notificacao('Sucesso', 'Questão removida com sucesso', 'success')
+    Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     this.setState({
       prova: await retornaProva(this.state.idProva)
     })
@@ -48,7 +50,7 @@ export class VisualizarProvaScreen extends Component {
 
   removerQuestaoMultiplaEscolha = async (idDaQuestao) => {
     await removerQuestaoMultiplaEscolha(this.state.idProva, idDaQuestao)
-    Notificacao('Sucesso', 'Questão removida com sucesso', 'success')
+    Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     this.setState({
       prova: await retornaProva(this.state.idProva)
     })

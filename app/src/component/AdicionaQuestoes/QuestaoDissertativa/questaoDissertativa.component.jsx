@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
-import { QuestaoUnica } from '../../index'
+import { QuestaoUnica, Notificacao } from '../../index'
 import { adicionarQuestaoDissertativa } from '../../../services/index'
-import { Notificacao } from '../../index'
 
 export class CadastroDissertativa extends PureComponent {
 
