@@ -56,16 +56,16 @@ public class FinalizarTempoDaProvaServiceTest {
     }
 
     @Test
-    public void deveSetarStatusProvaForaDoPrazoDeDuracaoQuandoFinalizarTempoDaProvaServiceForChamado() {
+    public void deveSetarStatusProvaAguardandoCorrecaoQuandoFinalizarTempoDaProvaServiceForChamado() {
         Prova prova = new Prova();
-        prova.setDataInicio(LocalDateTime.of(LocalDate.of(1988,10,10), LocalDateTime.now().toLocalTime()));
+        prova.setDataInicio(LocalDateTime.of(LocalDate.of(1988, 10, 10), LocalDateTime.now().toLocalTime()));
         prova.setTempoDeDuracaoDaProva(1);
 
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
 
         finalizarTempoDaProvaService.finalizar(prova.getId());
 
-        Assert.assertEquals(StatusProva.FORA_DO_PRAZO_DE_DURACAO, finalizarTempoDaProvaService.finalizar(prova.getId()));
+        Assert.assertEquals(StatusProva.AGUARDANDO_CORRECAO, finalizarTempoDaProvaService.finalizar(prova.getId()));
 
     }
 
