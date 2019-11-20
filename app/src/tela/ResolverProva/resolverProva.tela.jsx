@@ -13,7 +13,7 @@ export class ResolverProvaScreen extends Component {
     this.state = {
       modalIniciarProva: true,
       modalFinalizarProva: false,
-      count: null,
+      count: 0,
       idProva: 60,
       prova: null,
       arrayRespostas: [objetoRespostaQuestao]
@@ -25,7 +25,7 @@ export class ResolverProvaScreen extends Component {
       prova: await retornaProva(this.state.idProva)
     }, () => {
       this.setState({
-        count: this.state.prova.duracao
+        count: 5000000//this.state.prova.duracao
       })
     })
   }
