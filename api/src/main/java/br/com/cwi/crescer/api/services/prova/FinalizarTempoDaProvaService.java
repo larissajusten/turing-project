@@ -6,9 +6,6 @@ import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-
 @Service
 public class FinalizarTempoDaProvaService {
 
@@ -20,13 +17,8 @@ public class FinalizarTempoDaProvaService {
 
     public StatusProva finalizar(Long idProva) {
         Prova prova = buscarProvaPorIdService.buscar(idProva);
-        LocalDateTime agora = LocalDateTime.now();
 
-        if (Duration.between(prova.getDataInicio(), agora).toMinutes() > prova.getTempoDeDuracaoDaProva()) {
-            prova.setStatus(StatusProva.FORA_DO_PRAZO_DE_DURACAO);
-        } else {
-            prova.setStatus(StatusProva.AGUARDANDO_CORRECAO);
-        }
+        prova.setStatus(StatusProva.AGUARDANDO_CORRECAO);
 
         repository.save(prova);
 
