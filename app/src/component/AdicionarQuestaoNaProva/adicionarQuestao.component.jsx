@@ -31,13 +31,13 @@ export class AdicionarQuestaoNaProva extends Component {
           tipos={this.state.tipos}
           especificidades={this.state.especificidades}
           niveis={this.state.niveis}
-          id={this.props.id}
+          index={this.props.index}
           cadastro={true}
           handleChange={this.props.handleChange} />
 
         <Input
           name="quantidade"
-          id={this.props.id}
+          index={this.props.index}
           cadastro={true}
           onChange={this.props.handleChange}
           className="input-quantidade"
