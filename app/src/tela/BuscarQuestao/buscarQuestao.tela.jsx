@@ -37,6 +37,63 @@ export class BuscarQuestaoScreen extends Component {
     })
   }
 
+  retornarQuestoesDissertativasFiltradas = async (listaDeQuestoes, busca) => {
+    try {
+      listaDeQuestoes = await retornarQuestoesDissertativasFiltradas(busca)
+      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+      this.setState({
+        resultados: listaDeQuestoes
+      })
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
+  retornarQuestoesMultiplasEscolhasFiltradas = async (listaDeQuestoes, busca) => {
+    try {
+      listaDeQuestoes = await retornarQuestoesMultiplasEscolhasFiltradas(busca)
+      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+      this.setState({
+        resultados: listaDeQuestoes
+      })
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
+  retornarQuestoesTecnicasFiltradas = async (listaDeQuestoes, busca) => {
+    try {
+      listaDeQuestoes = await retornarQuestoesTecnicasFiltradas(busca)
+      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+      this.setState({
+        resultados: listaDeQuestoes
+      })
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
   handleClickEnviarPesquisa = async (event) => {
     event.preventDefault()
 
@@ -48,56 +105,11 @@ export class BuscarQuestaoScreen extends Component {
     let listaDeQuestoes = ''
 
     if (this.state.tipo === this.state.tipos[0]) {
-      try {
-        listaDeQuestoes = await retornarQuestoesDissertativasFiltradas(busca)
-        Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
-        this.setState({
-          resultados: listaDeQuestoes
-        })
-      }
-      catch (error) {
-        if (error.response.data.errors) {
-          error.response.data.errors.map(message => {
-            return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-          })
-        } else {
-          Notificacao('Falha', `${error.response.data.message}`, 'danger')
-        }
-      }
+      this.retornarQuestoesDissertativasFiltradas(listaDeQuestoes, busca)
     } else if (this.state.tipo === this.state.tipos[1]) {
-      try {
-        listaDeQuestoes = await retornarQuestoesMultiplasEscolhasFiltradas(busca)
-        Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
-        this.setState({
-          resultados: listaDeQuestoes
-        })
-      }
-      catch (error) {
-        if (error.response.data.errors) {
-          error.response.data.errors.map(message => {
-            return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-          })
-        } else {
-          Notificacao('Falha', `${error.response.data.message}`, 'danger')
-        }
-      }
+      this.retornarQuestoesMultiplasEscolhasFiltradas(listaDeQuestoes, busca)
     } else if (this.state.tipo === this.state.tipos[2]) {
-      try {
-        listaDeQuestoes = await retornarQuestoesTecnicasFiltradas(busca)
-        Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
-        this.setState({
-          resultados: listaDeQuestoes
-        })
-      }
-      catch (error) {
-        if (error.response.data.errors) {
-          error.response.data.errors.map(message => {
-            return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-          })
-        } else {
-          Notificacao('Falha', `${error.response.data.message}`, 'danger')
-        }
-      }
+      this.retornarQuestoesTecnicasFiltradas(listaDeQuestoes, busca)
     } else {
       Notificacao('Falha', 'Tipo de questão é nulo', 'warning')
     }

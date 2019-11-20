@@ -92,20 +92,24 @@ export class ResolverProvaScreen extends Component {
     }, 1000 )
   }
 
+  renderQuestaoUnicaResposta(item, key) {
+    return <RespondeQuestaoUnicaResposta
+            key={key}
+            index={key}
+            idQuestao={item.id}
+            questao={item.questao}
+            resposta={this.state.resposta}
+            handleChange={this.handleChangeArrayRespostas}
+            />
+  }
+
   renderQuestoesDissertativas() {
     return (
       <>
       {
         this.state.prova.questoesDissertativas &&
         this.state.prova.questoesDissertativas.map((item, key) => {
-          return <RespondeQuestaoUnicaResposta
-                  key={key}
-                  index={key}
-                  idQuestao={item.id}
-                  questao={item.questao}
-                  resposta={this.state.resposta}
-                  handleChange={this.handleChangeArrayRespostas}
-                  />
+          return <>{this.renderQuestaoUnicaResposta(item, key)}</>
         })
       }
       </>
@@ -118,14 +122,7 @@ export class ResolverProvaScreen extends Component {
       {
         this.state.prova.questoesTecnicas &&
         this.state.prova.questoesTecnicas.map((item, key) => {
-          return <RespondeQuestaoUnicaResposta
-                  key={key}
-                  index={key}
-                  idQuestao={item.id}
-                  questao={item.questao}
-                  resposta={this.state.resposta}
-                  handleChange={this.handleChangeArrayRespostas}
-                  />
+          return <>{this.renderQuestaoUnicaResposta(item, key)}</>
         })
       }
       </>
@@ -178,7 +175,7 @@ export class ResolverProvaScreen extends Component {
         <ProvaModal
           titulo="Clique em iniciar para realizar sua prova"
           nomeBotao="Começar"
-          onClick={this.handleClickIniciarProva}/> 
+          onClick={this.handleClickIniciarProva}/>
       }
       </>
     )
