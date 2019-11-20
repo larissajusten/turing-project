@@ -41,6 +41,8 @@ public class QuestaoMultiplaEscolhaController {
     @Autowired
     private BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService;
 
+    @Autowired
+    private BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadePaginadoService buscarPaginado;
     //@RolesAllowed("Administrator")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -61,19 +63,20 @@ public class QuestaoMultiplaEscolhaController {
     public Page<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesRequest request) {
         return listarQuestoesMultiplaEscolhaFiltradasService.listarPaginado(request, pageable);
     }
-//
-//    //@RolesAllowed("Administrator", "Entrevistador")
-//    @ResponseStatus(HttpStatus.OK)
-//    @PutMapping("/todas-questoes-filtradas")
-//    public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
-//        return buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService.buscarQuestoes(request.getEspecificidade(), request.getNivelDeDificuldade());
-//    }
+
 
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id-questao}/buscar-alternativas")
-    public List<AlternativaMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PathVariable("id-questao") Long idQuestao) {
-        return buscarAlternativaQuestaoMultiplaEscolhaService.buscar(idQuestao);
+    @PutMapping("/todas-questoes-filtradas")
+    public Page<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesBaseRequest request) {
+        return buscarPaginado.buscarQuestoes(pageable, request.getEspecificidade(), request.getNivelDeDificuldade());
     }
+
+//    //@RolesAllowed("Administrator", "Entrevistador")
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping("/{id-questao}/buscar-alternativas")
+//    public List<AlternativaMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PathVariable("id-questao") Long idQuestao) {
+//        return buscarAlternativaQuestaoMultiplaEscolhaService.buscar(idQuestao);
+//    }
 
 }

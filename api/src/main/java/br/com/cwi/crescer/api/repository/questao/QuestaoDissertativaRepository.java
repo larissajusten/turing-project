@@ -15,8 +15,8 @@ public interface QuestaoDissertativaRepository extends JpaRepository<QuestaoDiss
 
     @Query("SELECT q FROM QuestaoDissertativa q WHERE q.especificidade = :especificidade" +
             " AND q.nivelDeDificuldade = :nivelDeDificuldade")
-    Page<QuestaoDissertativa> acharPorNivelEEspecificidadePaginado(@Param("especificidade") Especificidade especificidade,
-                                                           @Param("nivelDeDificuldade") NivelDeDificuldade nivelDeDificuldade, Pageable pageable);
+    Page<QuestaoDissertativa> acharPorNivelEEspecificidadePaginado(Pageable pageable, @Param("especificidade") Especificidade especificidade,
+                                                           @Param("nivelDeDificuldade") NivelDeDificuldade nivelDeDificuldade);
 
     @Query("SELECT q FROM QuestaoDissertativa q WHERE q.especificidade = :especificidade" +
             " AND q.nivelDeDificuldade = :nivelDeDificuldade")

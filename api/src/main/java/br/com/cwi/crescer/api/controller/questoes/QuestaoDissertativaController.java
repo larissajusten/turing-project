@@ -5,6 +5,7 @@ import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.services.questaodissertativa.AdicionarQuestaoDissertativaService;
+import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorEspecificidadeENivelPaginadasService;
 import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorEspecificidadeENivelService;
 import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class QuestaoDissertativaController {
     @Autowired
     private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
 
+    @Autowired
+    private BuscarQuestaoDissertativaPorEspecificidadeENivelPaginadasService buscarPaginado;
+
     //@RolesAllowed("Administrator")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -40,15 +44,15 @@ public class QuestaoDissertativaController {
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
-    public Page<QuestaoDissertativa> listarQuestoesDissertativasFiltradas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesRequest request) {
-        return listarQuestoesDissertativasFiltradas.listarPaginado(pageable, request);
+    public List<QuestaoDissertativa> listarQuestoesDissertativasFiltradas(@Valid @RequestBody BuscaQuestoesRequest request) {
+        return listarQuestoesDissertativasFiltradas.listar(request);
     }
 
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
     public Page<QuestaoDissertativa> listarTodasQuestoesDissertativas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesBaseRequest request) {
-        return buscarQuestaoDissertativaPorEspecificidadeENivelService.buscarPaginado(request.getEspecificidade(), request.getNivelDeDificuldade(), pageable);
+        return buscarPaginado.buscar(request.getEspecificidade(), request.getNivelDeDificuldade(), pageable);
     }
 
 }

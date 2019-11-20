@@ -17,7 +17,7 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService {
 
     public List<QuestaoMultiplaEscolha> buscarQuestoes(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade){
 
-        return multiplaEscolhaRepository.acharPorNivelEEspecificidade(especificidade, nivelDeDificuldade);
+        return multiplaEscolhaRepository.acharPorNivelEEspecificidadeListado(especificidade, nivelDeDificuldade);
     }
 
 }

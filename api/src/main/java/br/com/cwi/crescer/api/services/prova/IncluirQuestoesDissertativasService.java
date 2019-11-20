@@ -29,7 +29,7 @@ public class IncluirQuestoesDissertativasService {
     private AcrescentarQuantiaDeVezesUsadaQuestaoDissertativaService acrescentarUmaVezEmVezesUsada;
 
     public void incluir(Long idProva, BuscaQuestoesRequest request) {
-        List<QuestaoDissertativa> lista = listarQuestoesDissertativasFiltradas.listarSemPaginar(request);
+        List<QuestaoDissertativa> lista = listarQuestoesDissertativasFiltradas.listar(request);
 
         acrescentarUmaVezEmVezesUsada.addVezesQuestaoDissertativa(lista);
         Prova prova = buscarProvaPorId.buscar(idProva);

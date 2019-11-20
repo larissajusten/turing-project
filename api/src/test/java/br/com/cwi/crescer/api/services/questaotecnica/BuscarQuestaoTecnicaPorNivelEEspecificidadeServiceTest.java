@@ -34,12 +34,12 @@ public class BuscarQuestaoTecnicaPorNivelEEspecificidadeServiceTest {
         questoesTecnicas.add(questaoTecnica);
 
         Mockito.when(repository
-                .acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
+                .acharPorNivelEEspecificidadeLista(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
                 .thenReturn(questoesTecnicas);
 
         buscarQuestaoTecnicaPorNivelEEspecificidadeService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
-        Mockito.verify(repository, Mockito.times(1)).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+        Mockito.verify(repository, Mockito.times(1)).acharPorNivelEEspecificidadeLista(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
     }
 
 

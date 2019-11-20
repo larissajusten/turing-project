@@ -5,6 +5,7 @@ import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
+import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoDissertativa;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoDissertativaRepository;
 import br.com.cwi.crescer.api.services.questaodissertativa.AcrescentarQuantiaDeVezesUsadaQuestaoDissertativaService;
 import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
@@ -14,7 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoDissertativa;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,12 +48,12 @@ public class IncluirQuestoesDissertativasServiceTest {
 
         ProvaQuestaoDissertativa provaQuestaoDissertativa = new ProvaQuestaoDissertativa();
 
-        Mockito.when(listarQuestoesDissertativasFiltradas.listarSemPaginar(buscaQuestoesRequest)).thenReturn(lista);
+        Mockito.when(listarQuestoesDissertativasFiltradas.listar(buscaQuestoesRequest)).thenReturn(lista);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
 
         incluirQuestoesDissertativasService.incluir(prova.getId(), buscaQuestoesRequest);
 
-        Mockito.verify(listarQuestoesDissertativasFiltradas).listarSemPaginar(buscaQuestoesRequest);
+        Mockito.verify(listarQuestoesDissertativasFiltradas).listar(buscaQuestoesRequest);
 
     }
 
@@ -67,7 +68,7 @@ public class IncluirQuestoesDissertativasServiceTest {
 
         ProvaQuestaoDissertativa provaQuestaoDissertativa = new ProvaQuestaoDissertativa();
 
-        Mockito.when(listarQuestoesDissertativasFiltradas.listarSemPaginar(buscaQuestoesRequest)).thenReturn(lista);
+        Mockito.when(listarQuestoesDissertativasFiltradas.listar(buscaQuestoesRequest)).thenReturn(lista);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
 
         incluirQuestoesDissertativasService.incluir(prova.getId(), buscaQuestoesRequest);
@@ -92,7 +93,7 @@ public class IncluirQuestoesDissertativasServiceTest {
         provaQuestaoDissertativa.setProva(prova);
         provaQuestaoDissertativa.setQuestao(questao);
 
-        Mockito.when(listarQuestoesDissertativasFiltradas.listarSemPaginar(buscaQuestoesRequest)).thenReturn(lista);
+        Mockito.when(listarQuestoesDissertativasFiltradas.listar(buscaQuestoesRequest)).thenReturn(lista);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(provaQuestaoDissertativaRepository.save(provaQuestaoDissertativa)).thenReturn(provaQuestaoDissertativa);
 
@@ -118,7 +119,7 @@ public class IncluirQuestoesDissertativasServiceTest {
         provaQuestaoDissertativa.setProva(prova);
         provaQuestaoDissertativa.setQuestao(questao);
 
-        Mockito.when(listarQuestoesDissertativasFiltradas.listarSemPaginar(buscaQuestoesRequest)).thenReturn(lista);
+        Mockito.when(listarQuestoesDissertativasFiltradas.listar(buscaQuestoesRequest)).thenReturn(lista);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(provaQuestaoDissertativaRepository.save(provaQuestaoDissertativa)).thenReturn(provaQuestaoDissertativa);
 

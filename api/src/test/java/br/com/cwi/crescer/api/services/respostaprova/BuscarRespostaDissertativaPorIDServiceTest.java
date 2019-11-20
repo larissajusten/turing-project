@@ -11,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
