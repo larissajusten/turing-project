@@ -33,11 +33,11 @@ public class BuscarQuestaoDissertativaPorEspecificidadeENivelServiceTest {
         questaoDissertativa.setNivelDeDificuldade(NivelDeDificuldade.FACIL);
         listaDeQuestoes.add(questaoDissertativa);
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
+        Mockito.when(repository.acharPorNivelEEspecificidadeLista(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
 
-        buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+        buscarQuestaoDissertativaPorEspecificidadeENivelService.buscarListado(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
-        Mockito.verify(repository).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+        Mockito.verify(repository).acharPorNivelEEspecificidadeLista(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
     }
 
     @Test
@@ -49,12 +49,12 @@ public class BuscarQuestaoDissertativaPorEspecificidadeENivelServiceTest {
         questaoDissertativa.setNivelDeDificuldade(NivelDeDificuldade.FACIL);
         listaDeQuestoes.add(questaoDissertativa);
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
+        Mockito.when(repository.acharPorNivelEEspecificidadeLista(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
 
-        buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+        buscarQuestaoDissertativaPorEspecificidadeENivelService.buscarListado(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
         Assert.assertEquals(buscarQuestaoDissertativaPorEspecificidadeENivelService
-                .buscar(Especificidade.JAVASCRIPT,
+                .buscarListado(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL).size(), listaDeQuestoes.size());
 
     }

@@ -8,6 +8,7 @@ import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoDissertativaRepositor
 import br.com.cwi.crescer.api.services.questaodissertativa.AcrescentarQuantiaDeVezesUsadaQuestaoDissertativaService;
 import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,7 +29,7 @@ public class IncluirQuestoesDissertativasService {
     private AcrescentarQuantiaDeVezesUsadaQuestaoDissertativaService acrescentarUmaVezEmVezesUsada;
 
     public void incluir(Long idProva, BuscaQuestoesRequest request) {
-        List<QuestaoDissertativa> lista = listarQuestoesDissertativasFiltradas.listar(request);
+        List<QuestaoDissertativa> lista = listarQuestoesDissertativasFiltradas.listarSemPaginar(request);
 
         acrescentarUmaVezEmVezesUsada.addVezesQuestaoDissertativa(lista);
         Prova prova = buscarProvaPorId.buscar(idProva);

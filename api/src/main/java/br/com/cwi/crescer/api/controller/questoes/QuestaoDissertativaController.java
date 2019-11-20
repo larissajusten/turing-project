@@ -8,6 +8,9 @@ import br.com.cwi.crescer.api.services.questaodissertativa.AdicionarQuestaoDisse
 import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorEspecificidadeENivelService;
 import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,15 +40,15 @@ public class QuestaoDissertativaController {
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
-    public List<QuestaoDissertativa> listarQuestoesDissertativasFiltradas(@Valid @RequestBody BuscaQuestoesRequest request) {
-        return listarQuestoesDissertativasFiltradas.listar(request);
+    public Page<QuestaoDissertativa> listarQuestoesDissertativasFiltradas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesRequest request) {
+        return listarQuestoesDissertativasFiltradas.listarPaginado(pageable, request);
     }
 
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
-    public List<QuestaoDissertativa> listarTodasQuestoesDissertativas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
-        return buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
+    public Page<QuestaoDissertativa> listarTodasQuestoesDissertativas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesBaseRequest request) {
+        return buscarQuestaoDissertativaPorEspecificidadeENivelService.buscarPaginado(request.getEspecificidade(), request.getNivelDeDificuldade(), pageable);
     }
 
 }

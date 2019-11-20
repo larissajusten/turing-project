@@ -47,12 +47,12 @@ public class IncluirQuestoesDissertativasServiceTest {
 
         ProvaQuestaoDissertativa provaQuestaoDissertativa = new ProvaQuestaoDissertativa();
 
-        Mockito.when(listarQuestoesDissertativasFiltradas.listar(buscaQuestoesRequest)).thenReturn(lista);
+        Mockito.when(listarQuestoesDissertativasFiltradas.listarSemPaginar(buscaQuestoesRequest)).thenReturn(lista);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
 
         incluirQuestoesDissertativasService.incluir(prova.getId(), buscaQuestoesRequest);
 
-        Mockito.verify(listarQuestoesDissertativasFiltradas).listar(buscaQuestoesRequest);
+        Mockito.verify(listarQuestoesDissertativasFiltradas).listarSemPaginar(buscaQuestoesRequest);
 
     }
 
@@ -67,7 +67,7 @@ public class IncluirQuestoesDissertativasServiceTest {
 
         ProvaQuestaoDissertativa provaQuestaoDissertativa = new ProvaQuestaoDissertativa();
 
-        Mockito.when(listarQuestoesDissertativasFiltradas.listar(buscaQuestoesRequest)).thenReturn(lista);
+        Mockito.when(listarQuestoesDissertativasFiltradas.listarSemPaginar(buscaQuestoesRequest)).thenReturn(lista);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
 
         incluirQuestoesDissertativasService.incluir(prova.getId(), buscaQuestoesRequest);
@@ -92,7 +92,7 @@ public class IncluirQuestoesDissertativasServiceTest {
         provaQuestaoDissertativa.setProva(prova);
         provaQuestaoDissertativa.setQuestao(questao);
 
-        Mockito.when(listarQuestoesDissertativasFiltradas.listar(buscaQuestoesRequest)).thenReturn(lista);
+        Mockito.when(listarQuestoesDissertativasFiltradas.listarSemPaginar(buscaQuestoesRequest)).thenReturn(lista);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(provaQuestaoDissertativaRepository.save(provaQuestaoDissertativa)).thenReturn(provaQuestaoDissertativa);
 
@@ -118,7 +118,7 @@ public class IncluirQuestoesDissertativasServiceTest {
         provaQuestaoDissertativa.setProva(prova);
         provaQuestaoDissertativa.setQuestao(questao);
 
-        Mockito.when(listarQuestoesDissertativasFiltradas.listar(buscaQuestoesRequest)).thenReturn(lista);
+        Mockito.when(listarQuestoesDissertativasFiltradas.listarSemPaginar(buscaQuestoesRequest)).thenReturn(lista);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(provaQuestaoDissertativaRepository.save(provaQuestaoDissertativa)).thenReturn(provaQuestaoDissertativa);
 

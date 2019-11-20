@@ -58,16 +58,16 @@ public class QuestaoMultiplaEscolhaController {
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/buscar-questoes-filtrado")
-    public List<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@Valid @RequestBody BuscaQuestoesRequest request) {
-        return listarQuestoesMultiplaEscolhaFiltradasService.listar(request);
+    public Page<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesRequest request) {
+        return listarQuestoesMultiplaEscolhaFiltradasService.listarPaginado(request, pageable);
     }
-
-    //@RolesAllowed("Administrator", "Entrevistador")
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/todas-questoes-filtradas")
-    public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
-        return buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService.buscarQuestoes(request.getEspecificidade(), request.getNivelDeDificuldade());
-    }
+//
+//    //@RolesAllowed("Administrator", "Entrevistador")
+//    @ResponseStatus(HttpStatus.OK)
+//    @PutMapping("/todas-questoes-filtradas")
+//    public List<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
+//        return buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService.buscarQuestoes(request.getEspecificidade(), request.getNivelDeDificuldade());
+//    }
 
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
