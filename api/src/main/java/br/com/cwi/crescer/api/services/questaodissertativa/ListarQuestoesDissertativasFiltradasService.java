@@ -37,7 +37,6 @@ public class ListarQuestoesDissertativasFiltradasService {
             lista.add(listaQueAtendeRequisitos.get(cont));
             cont++;
         }
-
         return lista;
     }
 }
