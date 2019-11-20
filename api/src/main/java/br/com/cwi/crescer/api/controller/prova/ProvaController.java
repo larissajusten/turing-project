@@ -2,10 +2,15 @@ package br.com.cwi.crescer.api.controller.prova;
 
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
+import br.com.cwi.crescer.api.controller.responses.ProvaParaCorrecaoResponse;
 import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
+import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.services.prova.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +56,9 @@ public class ProvaController {
 
     @Autowired
     private ExcluirQuestaoTecnicaService excluirQuestaoTecnicaService;
+
+    @Autowired
+    private BuscarProvasParaCorrecaoService buscarProvasParaCorrecaoService;
 
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.CREATED)
@@ -138,4 +146,13 @@ public class ProvaController {
     public StatusProva consultarStatusDaProva(@PathVariable("id-prova") Long idProva) {
         return consultarStatusDaProvaService.consultar(idProva);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/para-correcao")
+    public Page<ProvaParaCorrecaoResponse> buscarProvasParaCorrcao(@PageableDefault Pageable pageable) {
+
+        return buscarProvasParaCorrecaoService.buscar(pageable);
+    }
+
+
 }
