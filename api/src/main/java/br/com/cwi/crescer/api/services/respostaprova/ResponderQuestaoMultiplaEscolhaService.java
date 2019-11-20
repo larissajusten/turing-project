@@ -9,6 +9,7 @@ import br.com.cwi.crescer.api.repository.resposta.RespostaMultiplaEscolhaReposit
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaMultiplaEscolhaPorIdService;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.BuscarQuestaoMultiplaEscolhaPorIdService;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,20 +28,22 @@ public class ResponderQuestaoMultiplaEscolhaService {
     @Autowired
     private BuscarAlternativaMultiplaEscolhaPorIdService buscarAlternativaMultiplaEscolhaPorIdService;
 
-    public RespostasMultiplaEscolhaProva responder(Long idProva, Long idQuestao, Long idAlternativa) {
+    @Autowired
+    private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
+
+    public RespostasMultiplaEscolhaProva responder(Prova prova, Long idQuestao, Long idAlternativa) {
         RespostasMultiplaEscolhaProva respostasMultiplaEscolhaProva = new RespostasMultiplaEscolhaProva();
 
         AlternativaMultiplaEscolha alternativaMultiplaEscolha = buscarAlternativaMultiplaEscolhaPorIdService.buscar(idAlternativa);
         respostasMultiplaEscolhaProva.setAlternativaMultiplaEscolha(alternativaMultiplaEscolha);
 
-        Prova prova = buscarProvaPorIdService.buscar(idProva);
         respostasMultiplaEscolhaProva.setProva(prova);
 
         QuestaoMultiplaEscolha questaoMultiplaEscolha = buscarQuestaoMultiplaEscolhaPorIdService.buscar(idQuestao);
         respostasMultiplaEscolhaProva.setQuestaoMultiplaEscolha(questaoMultiplaEscolha);
 
-        Usuario usuario = new Usuario();
-        usuario.setId(1L);
+        //TODO mudar quando tiver usuário
+        Usuario usuario = buscarUsuarioPorIdService.buscar(1L);
         respostasMultiplaEscolhaProva.setUsuario(usuario);
 
         return repository.save(respostasMultiplaEscolhaProva);

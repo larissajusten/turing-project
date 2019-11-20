@@ -46,7 +46,7 @@ public class ResponderQuestaoTecnicaServiceTest {
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(buscarQuestaoTecnicaPorIdService.buscar(questaoTecnica.getId())).thenReturn(questaoTecnica);
 
-        responderQuestaoTecnicaService.responder(prova.getId(), questaoTecnica.getId(), resposta);
+        responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta);
 
         Mockito.verify(buscarProvaPorIdService).buscar(prova.getId());
 
@@ -68,7 +68,7 @@ public class ResponderQuestaoTecnicaServiceTest {
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(buscarQuestaoTecnicaPorIdService.buscar(questaoTecnica.getId())).thenReturn(questaoTecnica);
 
-        responderQuestaoTecnicaService.responder(prova.getId(), questaoTecnica.getId(), resposta);
+        responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta);
 
         Mockito.verify(buscarQuestaoTecnicaPorIdService).buscar(questaoTecnica.getId());
 
@@ -90,7 +90,7 @@ public class ResponderQuestaoTecnicaServiceTest {
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(buscarQuestaoTecnicaPorIdService.buscar(questaoTecnica.getId())).thenReturn(questaoTecnica);
 
-        responderQuestaoTecnicaService.responder(prova.getId(), questaoTecnica.getId(), resposta);
+        responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta);
 
         Mockito.verify(repository).save(respostasTecnicaProva);
 
@@ -112,9 +112,9 @@ public class ResponderQuestaoTecnicaServiceTest {
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(buscarQuestaoTecnicaPorIdService.buscar(questaoTecnica.getId())).thenReturn(questaoTecnica);
         Mockito.when(repository.save(respostasTecnicaProva)).thenReturn(respostasTecnicaProva);
-        responderQuestaoTecnicaService.responder(prova.getId(), questaoTecnica.getId(), resposta);
+        responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta);
 
-        Assert.assertEquals(responderQuestaoTecnicaService.responder(prova.getId(), questaoTecnica.getId(), resposta), respostasTecnicaProva);
+        Assert.assertEquals(responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta), respostasTecnicaProva);
 
     }
 }
