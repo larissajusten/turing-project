@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Input, BotaoAdicionar, EscolherQuestao } from '../index'
+import { Input, BotaoAdicionar, BuscarQuestao } from '../index'
 import {retornarEspecificidades,
         retornarNiveisDeDificuldade} from '../../services/index'
 
-export class AdicionarQuestao extends Component {
+export class AdicionarQuestaoNaProva extends Component {
 
   constructor(props) {
     super(props)
@@ -24,20 +24,20 @@ export class AdicionarQuestao extends Component {
   render() {
     return (
       <div className="container-inputs-prova">
-        <EscolherQuestao
+        <BuscarQuestao
           tipo={this.props.tipo}
           especificidade={this.props.especificidade}
           nivel={this.props.nivel}
           tipos={this.state.tipos}
           especificidades={this.state.especificidades}
           niveis={this.state.niveis}
-          id={this.props.id}
+          index={this.props.index}
           cadastro={true}
           handleChange={this.props.handleChange} />
 
         <Input
           name="quantidade"
-          id={this.props.id}
+          index={this.props.index}
           cadastro={true}
           onChange={this.props.handleChange}
           className="input-quantidade"

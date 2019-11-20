@@ -1,12 +1,12 @@
 package br.com.cwi.crescer.api.services.provaquestao;
 
 import br.com.cwi.crescer.api.domain.prova.Prova;
+import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoMultiplaEscolhaRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoMultiplaEscolha;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 

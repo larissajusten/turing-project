@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.services.questaotecnica;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoTecnicaRequest;
-import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;

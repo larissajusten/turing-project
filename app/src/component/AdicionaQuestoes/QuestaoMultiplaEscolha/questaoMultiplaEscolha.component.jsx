@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { BotaoPrincipal, Input, Select, Notificacao } from '../../index'
+import { BotaoPrincipal, Input, Select, Notificacao, Textarea } from '../../index'
 import { adicionarQuestaoMultiplaEscolha } from '../../../services/index'
 import './questaoMultiplaEscolha.style.css'
 
@@ -79,18 +79,13 @@ export class CadastroMultiplaQuestao extends PureComponent {
 						</div>
 
 						<div className="input-principal">
-							<label className="label">Questão</label>
-							<textarea
-								className="questao"
-								name="questao"
-								value={this.state.questao}
-								onChange={this.handleChange}
-								maxLength="500"
-								type="textarea"
+							<Textarea
 								label="Questão"
-								placeholder=""
-								required/>
-						</div>
+								name="questao"
+								value={this.props.questao}
+								onChange={this.props.handleChange}
+								maxLength="500"/>
+          	</div>
 
 						<Input
 							name="alternativaA"

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, BotaoPrincipal, AdicionarQuestao, BotaoAdicionar, Notificacao } from '../../component/index'
+import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, BotaoAdicionar, Notificacao } from '../../component/index'
 import { adicionarProva,
         incluirDissertativas,
         incluirMultiplaEscolha,
@@ -9,6 +9,7 @@ import { adicionarProva,
 import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
 
+const mensagemSucessoNotificacao = 'Questões adicionadas com sucesso'
 const objeto = { tipo: null, especificidade: null, nivel: null, quantidade: null }
 
 export class CadastrarProvaScreen extends Component {
@@ -16,16 +17,17 @@ export class CadastrarProvaScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: null,
-      duracao: 0,
+      tipos: ['Dissertativa', 'Múltipla Escolha', 'Técnica'],
+      especificidades: [],
+      niveis: [],
+      nomeDoCandidato: null,
+      emailDoCandidato: null,
+      duracaoDaProva: 0,
       tempoParaIniciarProva: 0,
       idProva: null,
       deveRenderizarQuestoes: false,
       deveRedirecionarParaVisualizarProva: false,
-      arrayStates: [objeto],
-      tipos: ['Dissertativa', 'Múltipla Escolha', 'Técnica'],
-      especificidades: [],
-      niveis: []
+      arrayStates: [objeto]
     }
   }
 
@@ -65,8 +67,9 @@ export class CadastrarProvaScreen extends Component {
     event.preventDefault()
 
     const prova = {
-      "email": this.state.email,
-      "tempoDeDuracaoDaProva": this.state.duracao,
+      "nome": this.state.nomeDoCandidato,
+      "email": this.state.emailDoCandidato,
+      "tempoDeDuracaoDaProva": this.state.duracaoDaProva,
       "tempoParaInicioProva": this.state.tempoParaIniciarProva
     }
 
@@ -106,6 +109,54 @@ export class CadastrarProvaScreen extends Component {
     })
   }
 
+  enviarQuestaoDissertativa = async (questao) => {
+    try {
+      await incluirDissertativas(this.state.idProva, questao)
+      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'danger')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
+  enviarQuestaoMultiplaEscolha = async (questao) => {
+    try {
+      await incluirMultiplaEscolha(this.state.idProva, questao)
+      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'danger')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
+  enviarQuestaoTecnica = async (questao) => {
+    try {
+      await incluirTecnicas(this.state.idProva, questao)
+      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
   handleClickEnviarQuestao = async (id) => {
 
     const questao = {
@@ -115,47 +166,11 @@ export class CadastrarProvaScreen extends Component {
     }
 
     if (this.state.arrayStates[id].tipo === this.state.tipos[0]) {
-      try {
-        await incluirDissertativas(this.state.idProva, questao)
-        Notificacao('Sucesso', 'Questões adicionadas com sucesso', 'success')
-      }
-      catch (error) {
-        if (error.response.data.errors) {
-          error.response.data.errors.map(message => {
-            return Notificacao('Falha', `${message.defaultMessage}`, 'danger')
-          })
-        } else {
-          Notificacao('Falha', `${error.response.data.message}`, 'danger')
-        }
-      }
+      this.enviarQuestaoDissertativa(questao)
     } else if (this.state.arrayStates[id].tipo === this.state.tipos[1]) {
-      try {
-        await incluirMultiplaEscolha(this.state.idProva, questao)
-        Notificacao('Sucesso', 'Questões adicionadas com sucesso', 'success')
-      }
-      catch (error) {
-        if (error.response.data.errors) {
-          error.response.data.errors.map(message => {
-            return Notificacao('Falha', `${message.defaultMessage}`, 'danger')
-          })
-        } else {
-          Notificacao('Falha', `${error.response.data.message}`, 'danger')
-        }
-      }
+      this.enviarQuestaoMultiplaEscolha(questao)
     } else if (this.state.arrayStates[id].tipo === this.state.tipos[2]) {
-      try {
-        await incluirTecnicas(this.state.idProva, questao)
-        Notificacao('Sucesso', 'Questões adicionadas com sucesso', 'success')
-      }
-      catch (error) {
-        if (error.response.data.errors) {
-          error.response.data.errors.map(message => {
-            return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-          })
-        } else {
-          Notificacao('Falha', `${error.response.data.message}`, 'danger')
-        }
-      }
+      this.enviarQuestaoTecnica(questao)
     } else {
       Notificacao('Falha', 'Tipo de questão não selecionado', 'warning')
     }
@@ -164,16 +179,16 @@ export class CadastrarProvaScreen extends Component {
   renderArrayQuestoes() {
     return (
       this.state.arrayStates.map((item, key) => {
-        return <AdicionarQuestao
-          key={key}
-          id={key}
-          tipo={item.tipo}
-          especificidade={item.especificidade}
-          nivel={item.nivel}
-          quantidade={item.quantidade}
-          handleChange={this.handleChangeArray}
-          onClick={this.handleClickEnviarQuestao}
-          idProva={this.state.idProva} />
+        return <AdicionarQuestaoNaProva
+                key={key}
+                index={key}
+                tipo={item.tipo}
+                especificidade={item.especificidade}
+                nivel={item.nivel}
+                quantidade={item.quantidade}
+                handleChange={this.handleChangeArray}
+                onClick={this.handleClickEnviarQuestao}
+                idProva={this.state.idProva} />
       })
     )
   }
@@ -207,8 +222,17 @@ export class CadastrarProvaScreen extends Component {
 
         <div className="container-questao">
           <Input
+            name="nome"
+            value={this.state.nomeDoCandidato}
+            onChange={this.handleChange}
+            maxTam="50"
+            type="text"
+            label="Digite o nome do candidato"
+            placeholder="" />
+
+          <Input
             name="email"
-            value={this.state.email}
+            value={this.state.emailDoCandidato}
             onChange={this.handleChange}
             maxTam="50"
             type="text"
@@ -217,7 +241,7 @@ export class CadastrarProvaScreen extends Component {
 
           <Input
             name="duracao"
-            value={this.state.duracao}
+            value={this.state.duracaoDaProva}
             onChange={this.handleChange}
             maxNum="10"
             type="number"

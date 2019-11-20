@@ -4,7 +4,7 @@ import './input.style.css';
 export class Input extends Component {
 	render() {
 		return (
-			<div className={`input-principal ${this.props.className}`}>
+			<div className={`input-principal ${this.props.classNameDiv}`}>
 				<label className="label">{this.props.label}</label>
 				<input
 					className= {`input ${this.props.className}`}
@@ -16,7 +16,7 @@ export class Input extends Component {
 					min={this.props.minNum}
 					max={this.props.maxNum}
 					value={this.props.value}
-					onChange={this.props.cadastro ? (event) => this.props.onChange(event, this.props.id) : this.props.onChange}
+					onChange={this.props.cadastro ? (event) => this.props.onChange(event, this.props.index) : this.props.onChange}
 					required
 				/>
 			</div>

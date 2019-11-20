@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './escolherQuestao.style.css'
+import './buscarQuestao.style.css'
 import { Select } from '../index'
 
-export class EscolherQuestao extends Component {
+export class BuscarQuestao extends Component {
 
   render() {
     return(
@@ -12,7 +12,7 @@ export class EscolherQuestao extends Component {
           <Select
             name="tipo"
             value={this.props.tipo}
-            id={this.props.id}
+            index={this.props.index}
             selectCadastro={this.props.cadastro ? true : false}
             onChange={this.props.handleChange}
             object={this.props.tipos}
@@ -25,7 +25,7 @@ export class EscolherQuestao extends Component {
         <Select
           name="especificidade"
           value={this.props.especificidade}
-          id={this.props.id}
+          index={this.props.index}
           selectCadastro={this.props.cadastro ? true : false}
           onChange={this.props.handleChange}
           object={this.props.especificidades}
@@ -38,7 +38,7 @@ export class EscolherQuestao extends Component {
         <Select
           name="nivel"
           value={this.props.nivel}
-          id={this.props.id}
+          index={this.props.index}
           selectCadastro={this.props.cadastro ? true : false}
           onChange={this.props.handleChange}
           object={this.props.niveis}

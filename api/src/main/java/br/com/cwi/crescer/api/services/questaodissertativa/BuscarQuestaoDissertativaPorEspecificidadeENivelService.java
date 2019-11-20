@@ -21,4 +21,8 @@ public class BuscarQuestaoDissertativaPorEspecificidadeENivelService {
         Pageable quantos = PageRequest.of(0, quantidade);
         return repository.findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(especificidade, nivelDeDificuldade, quantos);
     }
+    
+    public List<QuestaoDissertativa> buscarListado(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade) {
+        return repository.acharPorNivelEEspecificidadeLista(especificidade, nivelDeDificuldade);
+    }
 }

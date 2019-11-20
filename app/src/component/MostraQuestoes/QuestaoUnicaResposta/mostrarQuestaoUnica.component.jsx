@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
 import './mostrarQuestaoUnica.style.css'
-import { BotaoAdicionar } from '../../index'
+import { BotaoAdicionar, BlocoQuestao } from '../../index'
 
 export class MostrarQuestaoUnica extends Component {
-
   render() {
     return (
       <div className="container-questao-unica">
 
-        <div className="container-pergunta-questao">
-          <label className="label">{this.props.questaoNome}</label>
-          <div className="questao">
-            {this.props.questao}
-          </div>
-        </div>
+        <BlocoQuestao
+          questaoNome={this.props.questaoNome}
+          questao={this.props.questao}/>
 
         <div>
           <div className="container-especificacao">

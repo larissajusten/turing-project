@@ -11,7 +11,8 @@ export class CadastroTecnica extends PureComponent {
       niveis: props.niveis,
       especificidade: null,
       nivel: null,
-      questao: null
+      questao: null,
+      resposta: null
     }
   }
 
@@ -50,11 +51,13 @@ export class CadastroTecnica extends PureComponent {
     return(
       <>
       <QuestaoUnica
+        questaoTipoTecnica={true}
         linguagens = {this.state.linguagens}
         niveis = {this.state.niveis}
         especificidade = {this.state.especificidade}
         nivel = {this.state.nivel}
         questao = {this.state.questao}
+        resposta = {this.state.resposta}
         handleChange = {this.handleChange}
         handleClickSalvarQuestao = {this.handleClickSalvarQuestao}/>
       </>

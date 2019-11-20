@@ -40,3 +40,8 @@ export const removerQuestaoMultiplaEscolha = async (idProva, idQuestao) => {
   const response = await Axios.delete(`${baseUrl}/prova/${idProva}/excluir-multipla-escolha/${idQuestao}`)
   return response.data
 }
+
+export const inserirDataDeInicioDaProva = async (idProva) => {
+  const response = await Axios.put(`${baseUrl}/prova/${idProva}/iniciar-prova`)
+  return response.data
+}

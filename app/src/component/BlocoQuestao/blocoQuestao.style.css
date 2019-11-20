@@ -1,0 +1,7 @@
+.container-pergunta {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 10px;
+  text-align: start;
+}

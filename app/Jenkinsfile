@@ -108,7 +108,7 @@ try {
             }
 
             stage('Send Notification') {
-                discordSend description: 'O build da nova versão do app ta na mão!', footer: 'Tomara que funcione', link: env.RUN_DISPLAY_URL, successful: true, title: JOB_NAME, webhookURL: discord_webhook
+                discordSend description: 'O build da nova versão do app ta na mão!', footer: 'BIRL QUE NÃO VAI DAR O QUE', link: env.RUN_DISPLAY_URL, successful: true, title: JOB_NAME, webhookURL: discord_webhook
             }
         }
     }

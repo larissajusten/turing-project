@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import './cardQuestao.style.css'
 
-export class CardQuestao extends PureComponent {
+export class CardBuscarQuestao extends PureComponent {
 
   render() {
     return (
