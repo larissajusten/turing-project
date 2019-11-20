@@ -27,7 +27,10 @@ public class BuscarProvaComQuestoesService {
 
         Prova prova = buscarProvaPorIdService.buscar(idProva);
         ProvaResponse provaResponse = new ProvaResponse();
+
         provaResponse.setId(prova.getId());
+        provaResponse.setEmailCandidato(prova.getEmailCandidato());
+        provaResponse.setNomeCandidato(prova.getNomeCandidato());
         provaResponse.setDataCriacao(prova.getDataCriacao());
         provaResponse.setIdCriador(prova.getCriador().getId());
         provaResponse.setStatus(prova.getStatus());
