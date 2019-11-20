@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './textarea.style.css'
 
 export class Textarea extends Component {
   render() {

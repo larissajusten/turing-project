@@ -4,7 +4,7 @@ import './blocoVisualizar.style.css'
 export class BlocoVisualizar extends Component {
   render() {
     return(
-      <div 
+      <div
         className={`bloco-container ${this.props.classe}`}
         onClick=
           { this.props.comId ?

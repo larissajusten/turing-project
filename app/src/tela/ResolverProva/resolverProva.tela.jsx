@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './resolverProva.style.css';
 import { retornaProva, inserirDataDeInicioDaProva } from '../../services/index'
 import { ProvaModal,
-        RespondeQuestaoUnicaResposta, 
+        RespondeQuestaoUnicaResposta,
         RespondeQuestaoMultiplasRespostas } from '../../component/index'
 
 const objetoRespostaQuestao = { resposta: null, idQuestao: null }
@@ -82,7 +82,7 @@ export class ResolverProvaScreen extends Component {
             count: this.state.count - 1
         })
         if(this.state.count < 0){
-          this.setState({ 
+          this.setState({
             modalFinalizarProva: true,
             count: 0
           })
@@ -192,12 +192,12 @@ export class ResolverProvaScreen extends Component {
         <ProvaModal
           titulo="Sua prova terminou"
           nomeBotao="Finalizar"
-          onClick={this.handleClickFinalizarProva}/> 
+          onClick={this.handleClickFinalizarProva}/>
       }
       </>
     )
   }
-  
+
   render() {
     return(
       <>

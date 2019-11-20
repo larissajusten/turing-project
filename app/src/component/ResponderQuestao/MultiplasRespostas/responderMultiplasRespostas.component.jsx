@@ -10,7 +10,7 @@ export class RespondeQuestaoMultiplasRespostas extends Component {
           questaoNome="Questão"
           questao={this.props.questao}/>
 
-        <BlocoVisualizar 
+        <BlocoVisualizar
           nome="A"
           conteudo={this.props.conteudoAlternativaA}
           comId={true}
@@ -20,7 +20,7 @@ export class RespondeQuestaoMultiplasRespostas extends Component {
           onClick={this.props.onClick}
           classeConteudo="selecionar-alternativa"/>
 
-        <BlocoVisualizar 
+        <BlocoVisualizar
           nome="B"
           conteudo={this.props.conteudoAlternativaB}
           comId={true}
@@ -30,7 +30,7 @@ export class RespondeQuestaoMultiplasRespostas extends Component {
           onClick={this.props.onClick}
           classeConteudo="selecionar-alternativa"/>
 
-        <BlocoVisualizar 
+        <BlocoVisualizar
           nome="C"
           conteudo={this.props.conteudoAlternativaC}
           comId={true}
@@ -40,7 +40,7 @@ export class RespondeQuestaoMultiplasRespostas extends Component {
           onClick={this.props.onClick}
           classeConteudo="selecionar-alternativa"/>
 
-        <BlocoVisualizar 
+        <BlocoVisualizar
           nome="D"
           conteudo={this.props.conteudoAlternativaD}
           comId={true}
@@ -50,7 +50,7 @@ export class RespondeQuestaoMultiplasRespostas extends Component {
           onClick={this.props.onClick}
           classeConteudo="selecionar-alternativa"/>
 
-        <BlocoVisualizar 
+        <BlocoVisualizar
           nome="E"
           conteudo={this.props.conteudoAlternativaE}
           comId={true}
