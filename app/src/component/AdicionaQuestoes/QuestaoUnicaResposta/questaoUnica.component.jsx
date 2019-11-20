@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Select, BotaoPrincipal } from '../../index'
+import { Select, BotaoPrincipal, Textarea } from '../../index'
 import './questaoUnica.style.css'
 
 export class QuestaoUnica extends PureComponent {
@@ -35,17 +35,12 @@ export class QuestaoUnica extends PureComponent {
           </div>
 
           <div className="input-principal">
-            <label className="label">Questão</label>
-            <textarea
-              className="questao"
+            <Textarea
+              label="Questão"
               name="questao"
               value={this.props.questao}
               onChange={this.props.handleChange}
-							maxLength="500"
-              type="textarea"
-              label="Questão"
-              placeholder=""
-              required/>
+              maxLength="500"/>
           </div>
 
           <div className="container-botao">

@@ -3,7 +3,6 @@ import './mostrarQuestaoUnica.style.css'
 import { BotaoAdicionar, BlocoQuestao } from '../../index'
 
 export class MostrarQuestaoUnica extends Component {
-
   render() {
     return (
       <div className="container-questao-unica">

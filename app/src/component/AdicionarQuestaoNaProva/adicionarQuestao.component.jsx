@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Input, BotaoAdicionar, EscolherQuestao } from '../index'
+import { Input, BotaoAdicionar, BuscarQuestao } from '../index'
 import {retornarEspecificidades,
         retornarNiveisDeDificuldade} from '../../services/index'
 
-export class AdicionarQuestao extends Component {
+export class AdicionarQuestaoNaProva extends Component {
 
   constructor(props) {
     super(props)
@@ -24,7 +24,7 @@ export class AdicionarQuestao extends Component {
   render() {
     return (
       <div className="container-inputs-prova">
-        <EscolherQuestao
+        <BuscarQuestao
           tipo={this.props.tipo}
           especificidade={this.props.especificidade}
           nivel={this.props.nivel}

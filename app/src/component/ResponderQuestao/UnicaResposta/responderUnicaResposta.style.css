@@ -1,0 +1,17 @@
+.container-questoes-resposta{
+  width: 60%;
+}
+
+.unica-resposta-input {
+  width: 100%;
+  padding: 0;
+}
+
+.altura-input {
+	background: rgba(247, 245, 245, 0.6);
+	border: 1px solid rgba(249, 243, 243, 0.92);
+	box-sizing: border-box;
+	backdrop-filter: blur(4px);
+	border-radius: 10px;
+	padding: 10px;
+}

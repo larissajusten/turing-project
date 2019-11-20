@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import './escolherQuestao.style.css'
+import './buscarQuestao.style.css'
 import { Select } from '../index'
 
-export class EscolherQuestao extends Component {
+export class BuscarQuestao extends Component {
 
   render() {
     return(

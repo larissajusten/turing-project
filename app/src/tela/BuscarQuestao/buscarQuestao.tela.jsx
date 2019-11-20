@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './buscarQuestao.style.css'
-import { BotaoPrincipal, CardBuscarQuestao, EscolherQuestao, Notificacao } from '../../component/index'
+import { BotaoPrincipal, CardBuscarQuestao, BuscarQuestao, Notificacao } from '../../component/index'
 import { retornarEspecificidades,
         retornarNiveisDeDificuldade,
         retornarQuestoesTecnicasFiltradas,
@@ -133,7 +133,7 @@ export class BuscarQuestaoScreen extends Component {
             <span className="titulo-crie">Busque a questão que deseja</span>
           </div>
           <div className="container-inputs">
-            <EscolherQuestao
+            <BuscarQuestao
               tipo={this.state.tipo}
               especificidade={this.state.especificidade}
               nivel={this.state.nivel}
