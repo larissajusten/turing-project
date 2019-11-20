@@ -5,8 +5,10 @@ import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternati
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
+import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoTecnicaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoTecnicaRepository;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -26,6 +28,9 @@ public class AdicionarQuestaoTecnicaServiceTest {
     @Mock
     QuestaoTecnicaMapper mapper;
 
+    @Mock
+    BuscarUsuarioPorIdService buscarUsuarioPorIdService;
+
     @Test
     public void deveChamarQuestaoTecnicaRepositorySaveQuandoAdicionarQuestaoTecnicaServiceForChamada() {
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
@@ -37,6 +42,9 @@ public class AdicionarQuestaoTecnicaServiceTest {
                         "hsauidhsaiud");
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
+
+        Usuario usuario = new Usuario();
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
 
         adicionarQuestaoTecnicaService.adicionar(questaoUnicaAlternativaRequest);
 
@@ -54,6 +62,8 @@ public class AdicionarQuestaoTecnicaServiceTest {
                         "hsauidhsaiud");
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
+        Usuario usuario = new Usuario();
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
 
         adicionarQuestaoTecnicaService.adicionar(questaoUnicaAlternativaRequest);
 

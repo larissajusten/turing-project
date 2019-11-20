@@ -14,6 +14,9 @@ public class ProvaRequest {
     @NotEmpty(message = "O email do candidato não pode ser vazio")
     private String email;
 
+    @NotEmpty(message = "Deve ter o nome completo do candidato")
+    private String nomeCandidato;
+
     @Positive
     @Min(value = 0, message = "O tempo de duração da prova não pode ser vazio")
     private int tempoDeDuracaoDaProva;

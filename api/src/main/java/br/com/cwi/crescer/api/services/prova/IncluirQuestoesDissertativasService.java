@@ -27,7 +27,7 @@ public class IncluirQuestoesDissertativasService {
     @Autowired
     private AcrescentarQuantiaDeVezesUsadaQuestaoDissertativaService acrescentarUmaVezEmVezesUsada;
 
-    public void incluir(Long idProva, BuscaQuestoesRequest request) {
+    public List<QuestaoDissertativa> incluir(Long idProva, BuscaQuestoesRequest request) {
         List<QuestaoDissertativa> lista = listarQuestoesDissertativasFiltradas.listar(request);
 
         acrescentarUmaVezEmVezesUsada.addVezesQuestaoDissertativa(lista);
@@ -40,5 +40,6 @@ public class IncluirQuestoesDissertativasService {
             repository.save(provaQuestaoDissertativa);
         }
 
+        return lista;
     }
 }

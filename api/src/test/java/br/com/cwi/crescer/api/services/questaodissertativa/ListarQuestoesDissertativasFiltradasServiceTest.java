@@ -5,6 +5,7 @@ import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
+import br.com.cwi.crescer.api.repository.questao.QuestaoDissertativaRepository;
 import br.com.cwi.crescer.api.validator.QuestaoValidator;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,6 +14,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +34,9 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
 
     @Mock
     QuestaoValidator validator;
+
+    @Mock
+    QuestaoDissertativaRepository repository;
     @Test
     public void deveRetornarUmaListaComOTamanhoDoNumeroDeQuestoesQueForamSolicitadasQuandoListarQuestoesDissertativasFiltradasServiceForChamada() {
 
@@ -41,12 +48,12 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
 
         Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
                 .buscar(buscaQuestoesRequest.getEspecificidade(),
-                        buscaQuestoesRequest.getNivelDeDificuldade()))
+                        buscaQuestoesRequest.getNivelDeDificuldade(),1))
                 .thenReturn(listaQueAtendeRequisitos);
         Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
         listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest);
 
-        Assert.assertEquals(VALOR_ESPERADO_DE_RETORNO_DO_SIZE_DA_LISTA_DE_FILTRADAS,listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest).size());
+     Assert.assertEquals(VALOR_ESPERADO_DE_RETORNO_DO_SIZE_DA_LISTA_DE_FILTRADAS,listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest).size());
     }
 
     @Test
@@ -60,14 +67,14 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
 
         Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
                 .buscar(buscaQuestoesRequest.getEspecificidade(),
-                        buscaQuestoesRequest.getNivelDeDificuldade()))
+                        buscaQuestoesRequest.getNivelDeDificuldade(), 1))
                 .thenReturn(listaQueAtendeRequisitos);
         Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
 
         listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest);
 
         Mockito.verify(buscarQuestaoDissertativaPorEspecificidadeENivelService).buscar(buscaQuestoesRequest.getEspecificidade(),
-                buscaQuestoesRequest.getNivelDeDificuldade());
+        buscaQuestoesRequest.getNivelDeDificuldade(),1);
     }
 
     @Test
@@ -80,7 +87,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
         listaQueAtendeRequisitos.add(new QuestaoDissertativa());
         Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
                 .buscar(buscaQuestoesRequest.getEspecificidade(),
-                        buscaQuestoesRequest.getNivelDeDificuldade()))
+                        buscaQuestoesRequest.getNivelDeDificuldade(), 1))
                 .thenReturn(listaQueAtendeRequisitos);
         Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
 
@@ -96,16 +103,22 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
                 new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 1);
 
         List<QuestaoDissertativa> listaQueAtendeRequisitos = new ArrayList<>();
-        listaQueAtendeRequisitos.add(new QuestaoDissertativa());
+        QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
+        listaQueAtendeRequisitos.add(questaoDissertativa);
+
+        PageRequest page = PageRequest.of(0, 1);
+
         Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
                 .buscar(buscaQuestoesRequest.getEspecificidade(),
-                        buscaQuestoesRequest.getNivelDeDificuldade()))
+                        buscaQuestoesRequest.getNivelDeDificuldade(),1))
                 .thenReturn(listaQueAtendeRequisitos);
-        Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
+
+        Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(),
+                buscaQuestoesRequest.getQuantidadeDeQuestoes());
 
         listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest);
 
-        Assert.assertEquals(listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest), listaQueAtendeRequisitos);
+       Assert.assertEquals(listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest), listaQueAtendeRequisitos);
     }
 
 

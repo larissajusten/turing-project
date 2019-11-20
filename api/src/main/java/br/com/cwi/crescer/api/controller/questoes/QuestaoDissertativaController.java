@@ -41,11 +41,11 @@ public class QuestaoDissertativaController {
         return listarQuestoesDissertativasFiltradas.listar(request);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/todas-questoes-filtradas")
-    public List<QuestaoDissertativa> listarTodasQuestoesDissertativas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
-        return buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
-    }
+//    //@RolesAllowed("Administrator", "Entrevistador")
+//    @ResponseStatus(HttpStatus.OK)
+//    @PutMapping("/todas-questoes-filtradas")
+//    public List<QuestaoDissertativa> listarTodasQuestoesDissertativas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
+//        return buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
+//    }
 
 }

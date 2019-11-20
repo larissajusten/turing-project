@@ -15,9 +15,6 @@ public interface QuestaoMultiplaEscolhaRepository extends JpaRepository<QuestaoM
 
     Page<QuestaoMultiplaEscolha> findAll(Pageable pageable);
 
-    @Query("SELECT q FROM QuestaoMultiplaEscolha q WHERE q.especificidade = :especificidade" +
-            " AND q.nivelDeDificuldade = :nivelDeDificuldade")
-    List<QuestaoMultiplaEscolha> acharPorNivelEEspecificidade(@Param("especificidade") Especificidade especificidade,
-                                                      @Param("nivelDeDificuldade") NivelDeDificuldade nivelDeDificuldade);
+    List<QuestaoMultiplaEscolha> findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade, Pageable page);
 
 }

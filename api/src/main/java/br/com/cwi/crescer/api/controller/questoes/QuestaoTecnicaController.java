@@ -42,11 +42,11 @@ public class QuestaoTecnicaController {
         adicionarQuestaoTecnica.adicionar(request);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/todas-questoes-filtradas")
-    public List<QuestaoTecnica> buscarTodasQuestoesTecnicasFiltradas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
-        return buscarQuestoesTecnicasFiltradasService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
-    }
+//    //@RolesAllowed("Administrator", "Entrevistador")
+//    @ResponseStatus(HttpStatus.OK)
+//    @PutMapping("/todas-questoes-filtradas")
+//    public List<QuestaoTecnica> buscarTodasQuestoesTecnicasFiltradas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
+//        return buscarQuestoesTecnicasFiltradasService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
+//    }
 
 }

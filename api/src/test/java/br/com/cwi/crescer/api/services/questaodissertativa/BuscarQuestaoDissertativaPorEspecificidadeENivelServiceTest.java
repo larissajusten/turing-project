@@ -11,6 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,11 +35,13 @@ public class BuscarQuestaoDissertativaPorEspecificidadeENivelServiceTest {
         questaoDissertativa.setNivelDeDificuldade(NivelDeDificuldade.FACIL);
         listaDeQuestoes.add(questaoDissertativa);
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
+        Pageable quantos = PageRequest.of(0, 10);
+        Mockito.when(repository
+                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos)).thenReturn(listaDeQuestoes);
 
-        buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+        buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 10);
 
-        Mockito.verify(repository).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+        Mockito.verify(repository).findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos);
     }
 
     @Test
@@ -49,13 +53,15 @@ public class BuscarQuestaoDissertativaPorEspecificidadeENivelServiceTest {
         questaoDissertativa.setNivelDeDificuldade(NivelDeDificuldade.FACIL);
         listaDeQuestoes.add(questaoDissertativa);
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
+        Pageable quantos = PageRequest.of(0, 10);
+        Mockito.when(repository
+                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos)).thenReturn(listaDeQuestoes);
 
-        buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+        buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 10);
 
         Assert.assertEquals(buscarQuestaoDissertativaPorEspecificidadeENivelService
                 .buscar(Especificidade.JAVASCRIPT,
-                NivelDeDificuldade.FACIL).size(), listaDeQuestoes.size());
+                NivelDeDificuldade.FACIL, 10).size(), listaDeQuestoes.size());
 
     }
 }
