@@ -3,9 +3,7 @@ package br.com.cwi.crescer.api.services.questaotecnica;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
-import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
 import br.com.cwi.crescer.api.repository.questao.QuestaoTecnicaRepository;
-import br.com.cwi.crescer.api.services.questaotecnica.BuscarQuestoesTecnicasFiltradasService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -30,14 +28,14 @@ public class BuscarQuestoesTecnicasFiltradasServiceTest {
 
         List<QuestaoTecnica> listaDeQuestoes = new ArrayList<>();
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
+        Mockito.when(repository.acharPorNivelEEspecificidadeLista(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL))
                 .thenReturn(listaDeQuestoes);
 
         buscarQuestoesTecnicasFiltradasService.buscar(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL);
 
-        Mockito.verify(repository).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
+        Mockito.verify(repository).acharPorNivelEEspecificidadeLista(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL);
     }
 }

@@ -3,7 +3,6 @@ package br.com.cwi.crescer.api.services.questaomultiplaescolha;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
-import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -31,13 +30,13 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeServiceTest {
         List<QuestaoMultiplaEscolha> listaDeQuestoes = new ArrayList<>();
         listaDeQuestoes.add(new QuestaoMultiplaEscolha());
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
+        Mockito.when(repository.acharPorNivelEEspecificidadeListado(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
 
         buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService
                 .buscarQuestoes(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
-        Mockito.verify(repository, Mockito.times(1)).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
+        Mockito.verify(repository, Mockito.times(1)).acharPorNivelEEspecificidadeListado(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL);
 
     }
@@ -49,7 +48,7 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeServiceTest {
         List<QuestaoMultiplaEscolha> listaDeQuestoes = new ArrayList<>();
         listaDeQuestoes.add(new QuestaoMultiplaEscolha());
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT,
+        Mockito.when(repository.acharPorNivelEEspecificidadeListado(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL)).thenReturn(listaDeQuestoes);
 
         buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService

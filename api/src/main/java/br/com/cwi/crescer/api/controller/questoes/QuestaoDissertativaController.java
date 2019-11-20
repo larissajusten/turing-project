@@ -5,9 +5,13 @@ import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.services.questaodissertativa.AdicionarQuestaoDissertativaService;
+import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorEspecificidadeENivelPaginadasService;
 import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorEspecificidadeENivelService;
 import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +31,9 @@ public class QuestaoDissertativaController {
     @Autowired
     private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
 
+    @Autowired
+    private BuscarQuestaoDissertativaPorEspecificidadeENivelPaginadasService buscarPaginado;
+
     //@RolesAllowed("Administrator")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -44,8 +51,8 @@ public class QuestaoDissertativaController {
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/todas-questoes-filtradas")
-    public List<QuestaoDissertativa> listarTodasQuestoesDissertativas(@Valid @RequestBody BuscaQuestoesBaseRequest request) {
-        return buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
+    public Page<QuestaoDissertativa> listarTodasQuestoesDissertativas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesBaseRequest request) {
+        return buscarPaginado.buscar(request.getEspecificidade(), request.getNivelDeDificuldade(), pageable);
     }
 
 }

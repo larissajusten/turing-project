@@ -9,7 +9,6 @@ import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.AcrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.ListarQuestoesMultiplaEscolhaFiltradasService;
-import br.com.cwi.crescer.api.services.questaotecnica.AcrescentarQuantiaDeVezesUsadaQuestaoTecnica;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

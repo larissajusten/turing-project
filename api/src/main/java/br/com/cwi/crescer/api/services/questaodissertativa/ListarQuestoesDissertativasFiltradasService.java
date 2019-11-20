@@ -24,7 +24,7 @@ public class ListarQuestoesDissertativasFiltradasService {
         List<QuestaoDissertativa> lista = new ArrayList<>();
 
         List<QuestaoDissertativa> listaQueAtendeRequisitos = buscarQuestaoDissertativaPorEspecificidadeENivelService
-                .buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
+                .buscarListado(request.getEspecificidade(), request.getNivelDeDificuldade());
 
         validator.validar(listaQueAtendeRequisitos.size(), request.getQuantidadeDeQuestoes());
 

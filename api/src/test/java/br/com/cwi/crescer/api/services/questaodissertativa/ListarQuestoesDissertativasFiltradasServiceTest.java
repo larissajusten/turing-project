@@ -4,7 +4,6 @@ import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
-import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
 import br.com.cwi.crescer.api.validator.QuestaoValidator;
 import org.junit.Assert;
 import org.junit.Test;
@@ -40,7 +39,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
         listaQueAtendeRequisitos.add(new QuestaoDissertativa());
 
         Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
-                .buscar(buscaQuestoesRequest.getEspecificidade(),
+                .buscarListado(buscaQuestoesRequest.getEspecificidade(),
                         buscaQuestoesRequest.getNivelDeDificuldade()))
                 .thenReturn(listaQueAtendeRequisitos);
         Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
@@ -59,14 +58,14 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
         listaQueAtendeRequisitos.add(new QuestaoDissertativa());
 
         Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
-                .buscar(buscaQuestoesRequest.getEspecificidade(),
+                .buscarListado(buscaQuestoesRequest.getEspecificidade(),
                         buscaQuestoesRequest.getNivelDeDificuldade()))
                 .thenReturn(listaQueAtendeRequisitos);
         Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
 
         listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest);
 
-        Mockito.verify(buscarQuestaoDissertativaPorEspecificidadeENivelService).buscar(buscaQuestoesRequest.getEspecificidade(),
+        Mockito.verify(buscarQuestaoDissertativaPorEspecificidadeENivelService).buscarListado(buscaQuestoesRequest.getEspecificidade(),
                 buscaQuestoesRequest.getNivelDeDificuldade());
     }
 
@@ -79,7 +78,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
         List<QuestaoDissertativa> listaQueAtendeRequisitos = new ArrayList<>();
         listaQueAtendeRequisitos.add(new QuestaoDissertativa());
         Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
-                .buscar(buscaQuestoesRequest.getEspecificidade(),
+                .buscarListado(buscaQuestoesRequest.getEspecificidade(),
                         buscaQuestoesRequest.getNivelDeDificuldade()))
                 .thenReturn(listaQueAtendeRequisitos);
         Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
@@ -98,7 +97,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
         List<QuestaoDissertativa> listaQueAtendeRequisitos = new ArrayList<>();
         listaQueAtendeRequisitos.add(new QuestaoDissertativa());
         Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
-                .buscar(buscaQuestoesRequest.getEspecificidade(),
+                .buscarListado(buscaQuestoesRequest.getEspecificidade(),
                         buscaQuestoesRequest.getNivelDeDificuldade()))
                 .thenReturn(listaQueAtendeRequisitos);
         Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());

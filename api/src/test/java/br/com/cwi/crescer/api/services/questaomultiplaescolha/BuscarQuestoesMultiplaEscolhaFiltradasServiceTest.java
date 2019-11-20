@@ -29,12 +29,12 @@ public class BuscarQuestoesMultiplaEscolhaFiltradasServiceTest {
 
         List<QuestaoMultiplaEscolha> questaoMultiplaEscolhas = new ArrayList<>();
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
+        Mockito.when(repository.acharPorNivelEEspecificidadeListado(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
                 .thenReturn(questaoMultiplaEscolhas);
 
         buscarQuestoesMultiplaEscolhaFiltradasService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
-        Mockito.verify(repository).acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+        Mockito.verify(repository).acharPorNivelEEspecificidadeListado(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class BuscarQuestoesMultiplaEscolhaFiltradasServiceTest {
 
         List<QuestaoMultiplaEscolha> questaoMultiplaEscolhas = new ArrayList<>();
 
-        Mockito.when(repository.acharPorNivelEEspecificidade(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
+        Mockito.when(repository.acharPorNivelEEspecificidadeListado(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
                 .thenReturn(questaoMultiplaEscolhas);
 
         buscarQuestoesMultiplaEscolhaFiltradasService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);

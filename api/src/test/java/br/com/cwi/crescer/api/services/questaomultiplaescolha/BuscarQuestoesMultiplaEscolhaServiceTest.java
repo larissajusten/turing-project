@@ -4,7 +4,6 @@ import br.com.cwi.crescer.api.controller.responses.AlternativaMultiplaEscolhaRes
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
-import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
 import br.com.cwi.crescer.api.mapper.AlternativaMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
