@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoTecnicaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoTecnicaRepository;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,16 @@ public class AdicionarQuestaoTecnicaService {
     @Autowired
     private QuestaoTecnicaMapper mapper;
 
+    @Autowired
+    private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
+
     public void adicionar(QuestaoTecnicaRequest request) {
         QuestaoTecnica questaoTecnica = mapper.transformar(request);
         questaoTecnica.setDataCriacao(LocalDate.now());
 
-        questaoTecnica.setUsuario(new Usuario());
+        //TODO mudar quando tiver o usuário real
+        Usuario usuario = buscarUsuarioPorIdService.buscar(1L);
+        questaoTecnica.setUsuario(usuario);
 
         repository.save(questaoTecnica);
     }

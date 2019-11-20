@@ -31,7 +31,7 @@ public class CriarProvaServiceTest {
     public void deveChamarProvaRepositoryQuandoCriarProvaServiceForChamado() {
 
         ProvaRequest provaRequest =
-                new ProvaRequest("teste@mail.com", 1, 5);
+                new ProvaRequest("teste@mail.com", "Vanessa", 1, 5);
         Prova prova = new Prova();
 
         Mockito.when(mapper.transformar(provaRequest)).thenReturn(prova);
@@ -46,7 +46,7 @@ public class CriarProvaServiceTest {
     @Test
     public void deveChamarProvaMapperQuandoCriarProvaServiceForChamado() {
         ProvaRequest provaRequest =
-                new ProvaRequest("teste@mail.com", 1, 5);
+                new ProvaRequest("teste@mail.com", "Vanessa", 1, 5);
         Prova prova = new Prova();
 
         Mockito.when(mapper.transformar(provaRequest)).thenReturn(prova);

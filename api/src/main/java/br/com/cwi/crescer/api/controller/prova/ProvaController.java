@@ -5,6 +5,7 @@ import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.responses.ProvaParaCorrecaoResponse;
 import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
+import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.services.prova.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @RestController
@@ -70,8 +72,8 @@ public class ProvaController {
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-dissertativa")
-    public void incluirDissertativas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
-        incluirQuestoesDissertativasService.incluir(idProva, buscaQuestoesRequest);
+    public List<QuestaoDissertativa> incluirDissertativas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
+        return incluirQuestoesDissertativasService.incluir(idProva, buscaQuestoesRequest);
     }
 
     //@RolesAllowed("Administrator", "Entrevistador")

@@ -4,8 +4,10 @@ import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternati
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
+import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoDissertativaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoDissertativaRepository;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -25,6 +27,9 @@ public class AdicionarQuestaoDissertativaServiceTest {
     @Mock
     QuestaoDissertativaMapper mapper;
 
+    @Mock
+    BuscarUsuarioPorIdService buscarUsuarioPorIdService;
+
     @Test
     public void deveChamarQuestaoDissertativaRepositoryQuandoAdicionarQuestaoDissertativaServiceForChamado() {
 
@@ -35,9 +40,12 @@ public class AdicionarQuestaoDissertativaServiceTest {
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoDissertativa);
         Mockito.when(repository.save(questaoDissertativa)).thenReturn(questaoDissertativa);
 
+        Usuario usuario = new Usuario();
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+
         adicionarQuestaoDissertativaService.adicionar(questaoUnicaAlternativaRequest);
 
-        Mockito.verify(repository).save(questaoDissertativa);
+       Mockito.verify(repository).save(questaoDissertativa);
 
     }
 }

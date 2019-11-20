@@ -21,13 +21,16 @@ public class ListarQuestoesMultiplaEscolhaFiltradasService {
     private QuestaoValidator validator;
 
     @Autowired
-    private BuscarQuestoesMultiplaEscolhaFiltradasService buscarQuestoesMultiplaEscolhaFiltradasService;
+    private BuscarQuestoesMultiplaEscolhaFiltradasService BuscarQuestoesMultiplaEscolhaFiltradasService;
+
+    @Autowired
+    private BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService buscarQuestaoMultiplaEscolha;
 
     public List<QuestaoMultiplaEscolha> listar(BuscaQuestoesRequest request) {
         List<QuestaoMultiplaEscolha> lista = new ArrayList<>();
 
-        List<QuestaoMultiplaEscolha> listaQueAtendeRequisitos = buscarQuestoesMultiplaEscolhaFiltradasService
-                .buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
+        List<QuestaoMultiplaEscolha> listaQueAtendeRequisitos = buscarQuestaoMultiplaEscolha
+                .buscar(request.getEspecificidade(), request.getNivelDeDificuldade(), request.getQuantidadeDeQuestoes());
 
         validator.validar(listaQueAtendeRequisitos.size(), request.getQuantidadeDeQuestoes());
 
@@ -45,7 +48,7 @@ public class ListarQuestoesMultiplaEscolhaFiltradasService {
     public Page<QuestaoMultiplaEscolha> listarPaginado(BuscaQuestoesRequest request, Pageable pageable) {
         Page<QuestaoMultiplaEscolha> lista = new PageImpl<>(Collections.emptyList());
 
-        List<QuestaoMultiplaEscolha> listaQueAtendeRequisitos = buscarQuestoesMultiplaEscolhaFiltradasService
+        List<QuestaoMultiplaEscolha> listaQueAtendeRequisitos = BuscarQuestoesMultiplaEscolhaFiltradasService
                 .buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
 
         validator.validar(listaQueAtendeRequisitos.size(), request.getQuantidadeDeQuestoes());
