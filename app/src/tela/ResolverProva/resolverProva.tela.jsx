@@ -14,7 +14,7 @@ export class ResolverProvaScreen extends Component {
       modalIniciarProva: true,
       modalFinalizarProva: false,
       count: 0,
-      idProva: 60,
+      idProva: localStorage.getItem('idProva'),
       prova: null,
       arrayRespostas: [objetoRespostaQuestao]
     }

@@ -17,16 +17,17 @@ export class CadastrarProvaScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      email: null,
-      duracao: 0,
+      tipos: ['Dissertativa', 'Múltipla Escolha', 'Técnica'],
+      especificidades: [],
+      niveis: [],
+      nomeDoCandidato: null,
+      emailDoCandidato: null,
+      duracaoDaProva: 0,
       tempoParaIniciarProva: 0,
       idProva: null,
       deveRenderizarQuestoes: false,
       deveRedirecionarParaVisualizarProva: false,
-      arrayStates: [objeto],
-      tipos: ['Dissertativa', 'Múltipla Escolha', 'Técnica'],
-      especificidades: [],
-      niveis: []
+      arrayStates: [objeto]
     }
   }
 
@@ -66,8 +67,9 @@ export class CadastrarProvaScreen extends Component {
     event.preventDefault()
 
     const prova = {
-      "email": this.state.email,
-      "tempoDeDuracaoDaProva": this.state.duracao,
+      "nome": this.state.nomeDoCandidato,
+      "email": this.state.emailDoCandidato,
+      "tempoDeDuracaoDaProva": this.state.duracaoDaProva,
       "tempoParaInicioProva": this.state.tempoParaIniciarProva
     }
 
@@ -178,15 +180,15 @@ export class CadastrarProvaScreen extends Component {
     return (
       this.state.arrayStates.map((item, key) => {
         return <AdicionarQuestaoNaProva
-          key={key}
-          id={key}
-          tipo={item.tipo}
-          especificidade={item.especificidade}
-          nivel={item.nivel}
-          quantidade={item.quantidade}
-          handleChange={this.handleChangeArray}
-          onClick={this.handleClickEnviarQuestao}
-          idProva={this.state.idProva} />
+                key={key}
+                index={key}
+                tipo={item.tipo}
+                especificidade={item.especificidade}
+                nivel={item.nivel}
+                quantidade={item.quantidade}
+                handleChange={this.handleChangeArray}
+                onClick={this.handleClickEnviarQuestao}
+                idProva={this.state.idProva} />
       })
     )
   }
@@ -220,8 +222,17 @@ export class CadastrarProvaScreen extends Component {
 
         <div className="container-questao">
           <Input
+            name="nome"
+            value={this.state.nomeDoCandidato}
+            onChange={this.handleChange}
+            maxTam="50"
+            type="text"
+            label="Digite o nome do candidato"
+            placeholder="" />
+
+          <Input
             name="email"
-            value={this.state.email}
+            value={this.state.emailDoCandidato}
             onChange={this.handleChange}
             maxTam="50"
             type="text"
@@ -230,7 +241,7 @@ export class CadastrarProvaScreen extends Component {
 
           <Input
             name="duracao"
-            value={this.state.duracao}
+            value={this.state.duracaoDaProva}
             onChange={this.handleChange}
             maxNum="10"
             type="number"
