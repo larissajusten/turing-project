@@ -7,6 +7,7 @@ import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.repository.resposta.RespostasTecnicaRepository;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
 import br.com.cwi.crescer.api.services.questaotecnica.BuscarQuestaoTecnicaPorIdService;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,27 +31,8 @@ public class ResponderQuestaoTecnicaServiceTest {
     @Mock
     BuscarQuestaoTecnicaPorIdService buscarQuestaoTecnicaPorIdService;
 
-    @Test
-    public void deveChamarBuscarProvaPorIdServiceQuandoResponderQuestaoTecnicaServiceForChamado() {
-        String resposta = "resposta";
-        RespostasTecnicaProva respostasTecnicaProva = new RespostasTecnicaProva();
-        respostasTecnicaProva.setResposta(resposta);
-        Prova prova = new Prova();
-        respostasTecnicaProva.setProva(prova);
-        QuestaoTecnica questaoTecnica = new QuestaoTecnica();
-        respostasTecnicaProva.setQuestaoTecnica(questaoTecnica);
-        Usuario usuario = new Usuario();
-        usuario.setId(1L);
-        respostasTecnicaProva.setUsuario(usuario);
-
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
-        Mockito.when(buscarQuestaoTecnicaPorIdService.buscar(questaoTecnica.getId())).thenReturn(questaoTecnica);
-
-        responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta);
-
-        Mockito.verify(buscarProvaPorIdService).buscar(prova.getId());
-
-    }
+    @Mock
+    private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
 
     @Test
     public void deveChamarBuscarQuestaoTecnicaPorIdServiceQuandoResponderQuestaoTecnicaServiceForChamado() {
@@ -61,11 +43,12 @@ public class ResponderQuestaoTecnicaServiceTest {
         respostasTecnicaProva.setProva(prova);
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
         respostasTecnicaProva.setQuestaoTecnica(questaoTecnica);
+
         Usuario usuario = new Usuario();
-        usuario.setId(1L);
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
         respostasTecnicaProva.setUsuario(usuario);
 
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+
         Mockito.when(buscarQuestaoTecnicaPorIdService.buscar(questaoTecnica.getId())).thenReturn(questaoTecnica);
 
         responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta);
@@ -83,15 +66,17 @@ public class ResponderQuestaoTecnicaServiceTest {
         respostasTecnicaProva.setProva(prova);
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
         respostasTecnicaProva.setQuestaoTecnica(questaoTecnica);
+
         Usuario usuario = new Usuario();
-        usuario.setId(1L);
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
         respostasTecnicaProva.setUsuario(usuario);
 
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+
         Mockito.when(buscarQuestaoTecnicaPorIdService.buscar(questaoTecnica.getId())).thenReturn(questaoTecnica);
 
         responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta);
 
+        buscarQuestaoTecnicaPorIdService.buscar(null);
         Mockito.verify(repository).save(respostasTecnicaProva);
 
     }
@@ -105,11 +90,13 @@ public class ResponderQuestaoTecnicaServiceTest {
         respostasTecnicaProva.setProva(prova);
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
         respostasTecnicaProva.setQuestaoTecnica(questaoTecnica);
+
         Usuario usuario = new Usuario();
-        usuario.setId(1L);
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+
         respostasTecnicaProva.setUsuario(usuario);
 
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+       
         Mockito.when(buscarQuestaoTecnicaPorIdService.buscar(questaoTecnica.getId())).thenReturn(questaoTecnica);
         Mockito.when(repository.save(respostasTecnicaProva)).thenReturn(respostasTecnicaProva);
         responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta);
