@@ -30,6 +30,12 @@ export class ResolverProvaScreen extends Component {
     })
   }
 
+  adicionaObj = () => {
+    this.setState({
+      arrayRespostas: [...this.state.arrayRespostas, objetoRespostaQuestao]
+    })
+  }
+
   handleChangeArrayRespostas = (event, index, idQuestao) => {
     const { name, value } = event.target
 
@@ -40,11 +46,7 @@ export class ResolverProvaScreen extends Component {
 
     this.setState({
       arrayRespostas: array
-    }, () => {
-      this.setState({
-        arrayRespostas: [...this.state.arrayRespostas, objetoRespostaQuestao]
-      })
-    })
+    }, () => { this.adicionaObj() })
   }
 
   handleClickAdicionarAlternativa = (event, index, idQuestao, idAlternativa) => {
@@ -56,11 +58,7 @@ export class ResolverProvaScreen extends Component {
 
     this.setState({
       arrayRespostas: array
-    }, () => {
-      this.setState({
-        arrayRespostas: [...this.state.arrayRespostas, objetoRespostaQuestao]
-      })
-    })
+    }, () => { this.adicionaObj() })
   }
 
   handleClickIniciarProva = async(event) => {
