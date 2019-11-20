@@ -13,6 +13,7 @@ export { BotaoAdicionar } from './BotaoAdicionar/botaoAdicionar.component.jsx'
 export { BlocoVisualizar } from './BlocoVisualizar/blocoVisualizar.component.jsx'
 export { BlocoQuestao } from './BlocoQuestao/blocoQuestao.component.jsx'
 export { CardBuscarQuestao } from './CardQuestao/cardQuestao.component.jsx'
+export { CardProva } from './CardProva/cardProva.component.jsx'
 
 /* Blocos para renderizar varias vezes as questões */
 export { MostrarQuestaoUnica } from './MostraQuestoes/QuestaoUnicaResposta/mostrarQuestaoUnica.component.jsx'
