@@ -23,11 +23,14 @@ public class ListarQuestoesMultiplaEscolhaFiltradasService {
     @Autowired
     private BuscarQuestoesMultiplaEscolhaFiltradasService buscarQuestoesMultiplaEscolhaFiltradasService;
 
+    @Autowired
+    private BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService buscarQuestaoMultiplaEscolha;
+
     public List<QuestaoMultiplaEscolha> listar(BuscaQuestoesRequest request) {
         List<QuestaoMultiplaEscolha> lista = new ArrayList<>();
 
-        List<QuestaoMultiplaEscolha> listaQueAtendeRequisitos = buscarQuestoesMultiplaEscolhaFiltradasService
-                .buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
+        List<QuestaoMultiplaEscolha> listaQueAtendeRequisitos = buscarQuestaoMultiplaEscolha
+                .buscar(request.getEspecificidade(), request.getNivelDeDificuldade(), request.getQuantidadeDeQuestoes());
 
         validator.validar(listaQueAtendeRequisitos.size(), request.getQuantidadeDeQuestoes());
 

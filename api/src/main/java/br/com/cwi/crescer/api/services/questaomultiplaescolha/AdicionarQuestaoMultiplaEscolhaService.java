@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.AdicionarAlternativaMultiplaEscolhaService;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import br.com.cwi.crescer.api.validator.UnicaAlternativaCorretaValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class AdicionarQuestaoMultiplaEscolhaService {
     private AdicionarAlternativaMultiplaEscolhaService adicionarAlternativaMultiplaEscolha;
 
     @Autowired
+    private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
+
+    @Autowired
     private UnicaAlternativaCorretaValidator unicaAlternativaCorretaValidator;
 
     public QuestaoMultiplaEscolha adicionar(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
@@ -34,7 +38,10 @@ public class AdicionarQuestaoMultiplaEscolhaService {
         QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest);
 
         questaoMultiplaEscolha.setDataCriacao(LocalDate.now());
-        questaoMultiplaEscolha.setUsuario(new Usuario());
+
+        //TODO mudar quando tiver o usuário real
+        Usuario usuario = buscarUsuarioPorIdService.buscar(1L);
+        questaoMultiplaEscolha.setUsuario(usuario);
 
         QuestaoMultiplaEscolha questaoSalva = repository.save(questaoMultiplaEscolha);
 

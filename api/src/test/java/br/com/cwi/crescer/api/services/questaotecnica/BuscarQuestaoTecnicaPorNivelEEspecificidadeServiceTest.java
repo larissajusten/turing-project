@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,13 +35,14 @@ public class BuscarQuestaoTecnicaPorNivelEEspecificidadeServiceTest {
         List<QuestaoTecnica> questoesTecnicas = new ArrayList<>();
         questoesTecnicas.add(questaoTecnica);
 
+        Pageable quantos = PageRequest.of(0, 10);
         Mockito.when(repository
-                .acharPorNivelEEspecificidadeLista(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
+                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos))
                 .thenReturn(questoesTecnicas);
 
-        buscarQuestaoTecnicaPorNivelEEspecificidadeService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+        buscarQuestaoTecnicaPorNivelEEspecificidadeService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 10);
 
-        Mockito.verify(repository, Mockito.times(1)).acharPorNivelEEspecificidadeLista(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+        Mockito.verify(repository, Mockito.times(1)).findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos);
     }
 
 

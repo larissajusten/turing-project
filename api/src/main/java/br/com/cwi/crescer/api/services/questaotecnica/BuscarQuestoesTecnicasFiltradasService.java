@@ -6,7 +6,7 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.repository.questao.QuestaoTecnicaRepository;
 import br.com.cwi.crescer.api.validator.QuestaoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +21,8 @@ public class BuscarQuestoesTecnicasFiltradasService {
     @Autowired
     private QuestaoValidator validator;
 
-    public List<QuestaoTecnica> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade) {
-
-        return repository.acharPorNivelEEspecificidadeLista(especificidade, nivelDeDificuldade);
+    public List<QuestaoTecnica> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade, int quantidade) {
+        Pageable quantos = PageRequest.of(0, quantidade);
+        return repository.findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(especificidade, nivelDeDificuldade, quantos);
     }
 }

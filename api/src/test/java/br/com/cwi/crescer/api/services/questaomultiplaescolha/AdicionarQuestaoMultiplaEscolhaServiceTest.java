@@ -5,10 +5,12 @@ import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoMultiplaEscolh
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
+import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.AlternativaMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.AdicionarAlternativaMultiplaEscolhaService;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import br.com.cwi.crescer.api.validator.UnicaAlternativaCorretaValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,6 +40,9 @@ public class AdicionarQuestaoMultiplaEscolhaServiceTest {
     @Mock
     UnicaAlternativaCorretaValidator unicaAlternativaCorretaValidator;
 
+    @Mock
+    BuscarUsuarioPorIdService buscarUsuarioPorIdService;
+
     @Test
     public void deveChamarAdicionarAlternativaMultiplaEscolhaServiceQuandoAdicionarQuestaoMultiplaEscolhaServiceForChamado() {
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
@@ -53,6 +58,10 @@ public class AdicionarQuestaoMultiplaEscolhaServiceTest {
         Mockito.doNothing().when(unicaAlternativaCorretaValidator).validar(questaoMultiplaEscolhaRequest);
         Mockito.when(repository.save(questaoMultiplaEscolha)).thenReturn(questaoMultiplaEscolha);
         Mockito.when(mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest)).thenReturn(questaoMultiplaEscolha);
+
+        Usuario usuario = new Usuario();
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+
         adicionarQuestaoMultiplaEscolhaService.adicionar(questaoMultiplaEscolhaRequest);
 
         Mockito.verify(adicionarAlternativaMultiplaEscolhaService)

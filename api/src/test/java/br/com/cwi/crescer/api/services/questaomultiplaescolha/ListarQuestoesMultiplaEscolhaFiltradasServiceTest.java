@@ -23,7 +23,7 @@ public class ListarQuestoesMultiplaEscolhaFiltradasServiceTest {
     ListarQuestoesMultiplaEscolhaFiltradasService listarQuestoesMultiplaEscolhaFiltradasService;
 
     @Mock
-    BuscarQuestoesMultiplaEscolhaFiltradasService buscarQuestoesMultiplaEscolhaFiltradasService;
+    BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService;
 
     @Mock
     QuestaoValidator validator;
@@ -35,13 +35,13 @@ public class ListarQuestoesMultiplaEscolhaFiltradasServiceTest {
         List<QuestaoMultiplaEscolha> lista = new ArrayList<>();
         lista.add(new QuestaoMultiplaEscolha());
 
-        Mockito.when(buscarQuestoesMultiplaEscolhaFiltradasService.buscar(
-                buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade())).thenReturn(lista);
+        Mockito.when(buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService.buscar(
+                buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade(), buscaQuestoesRequest.getQuantidadeDeQuestoes())).thenReturn(lista);
 
         listarQuestoesMultiplaEscolhaFiltradasService.listar(buscaQuestoesRequest);
 
-        Mockito.verify(buscarQuestoesMultiplaEscolhaFiltradasService).buscar(
-                buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade());
+        Mockito.verify(buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService).buscar(
+                buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
     }
 
     @Test
@@ -51,8 +51,8 @@ public class ListarQuestoesMultiplaEscolhaFiltradasServiceTest {
         List<QuestaoMultiplaEscolha> lista = new ArrayList<>();
         lista.add(new QuestaoMultiplaEscolha());
 
-        Mockito.when(buscarQuestoesMultiplaEscolhaFiltradasService.buscar(
-                buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade())).thenReturn(lista);
+        Mockito.when(buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService.buscar(
+                buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade(), buscaQuestoesRequest.getQuantidadeDeQuestoes())).thenReturn(lista);
 
         listarQuestoesMultiplaEscolhaFiltradasService.listar(buscaQuestoesRequest);
 

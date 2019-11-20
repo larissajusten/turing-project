@@ -6,10 +6,7 @@ import br.com.cwi.crescer.api.validator.QuestaoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 @Service
 public class ListarQuestoesDissertativasFiltradasService {
@@ -21,22 +18,12 @@ public class ListarQuestoesDissertativasFiltradasService {
     private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
 
     public List<QuestaoDissertativa> listar(BuscaQuestoesRequest request) {
-        List<QuestaoDissertativa> lista = new ArrayList<>();
 
         List<QuestaoDissertativa> listaQueAtendeRequisitos = buscarQuestaoDissertativaPorEspecificidadeENivelService
-                .buscarListado(request.getEspecificidade(), request.getNivelDeDificuldade());
+                .buscar(request.getEspecificidade(), request.getNivelDeDificuldade(), request.getQuantidadeDeQuestoes());
 
         validator.validar(listaQueAtendeRequisitos.size(), request.getQuantidadeDeQuestoes());
 
-        Collections.shuffle(listaQueAtendeRequisitos, new Random());
-
-        int quant = request.getQuantidadeDeQuestoes();
-        int cont = 0;
-
-        while (cont < quant) {
-            lista.add(listaQueAtendeRequisitos.get(cont));
-            cont++;
-        }
-        return lista;
+        return listaQueAtendeRequisitos;
     }
 }
