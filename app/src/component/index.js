@@ -20,6 +20,7 @@ export { MostrarMultiplasRespostas } from './MostraQuestoes/QuestaoMultiplasResp
 
 /* Blocos para responder as questões */
 export { RespondeQuestaoUnicaResposta } from './ResponderQuestao/UnicaResposta/responderUnicaResposta.component.jsx'
+export { RespondeQuestaoMultiplasRespostas } from './ResponderQuestao/MultiplasRespostas/responderMultiplasRespostas.component.jsx'
 
 /* Cadastro de questões */
 export { QuestaoUnica } from './AdicionaQuestoes/QuestaoUnicaResposta/questaoUnica.component.jsx'
@@ -32,4 +33,4 @@ export { BuscarQuestao } from './BuscarQuestao/buscarQuestao.component.jsx'
 export { AdicionarQuestaoNaProva } from './AdicionarQuestaoNaProva/adicionarQuestao.component.jsx'
 
 /* Modal */
-export { IniciarProvaModal } from './IniciarProvaModal/iniciarProvaModal.component.jsx'
+export { ProvaModal } from './ModalProva/provaModal.component.jsx'

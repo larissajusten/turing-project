@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import './resolverProva.style.css';
 import { retornaProva, inserirDataDeInicioDaProva } from '../../services/index'
-import { IniciarProvaModal, RespondeQuestaoUnicaResposta } from '../../component/index'
+import { ProvaModal,
+        RespondeQuestaoUnicaResposta, 
+        RespondeQuestaoMultiplasRespostas } from '../../component/index'
 
 const objetoRespostaQuestao = { resposta: null, idQuestao: null }
 
@@ -10,11 +12,11 @@ export class ResolverProvaScreen extends Component {
     super(props)
     this.state = {
       modalIniciarProva: true,
+      modalFinalizarProva: false,
       count: null,
       idProva: 60,
       prova: null,
-      arrayRespostasDissertativas: [objetoRespostaQuestao],
-      arrayRespostasTecnicas: []
+      arrayRespostas: [objetoRespostaQuestao]
     }
   }
 
@@ -28,57 +30,37 @@ export class ResolverProvaScreen extends Component {
     })
   }
 
-  handleChange = (event) => {
-    const { name, value } = event.target
-    this.setState({
-      [name]: value
-    })
-  }
-
-  handleChangeArrayDissertativas = (event, id) => {
+  handleChangeArrayRespostas = (event, index, idQuestao) => {
     const { name, value } = event.target
 
-    const array = [...this.state.arrayRespostasDissertativas]
+    const array = [...this.state.arrayRespostas]
 
-    array[id][name] = value;
-    array[id].idQuestao = id;
+    array[index][name] = value;
+    array[index].idQuestao = idQuestao;
 
     this.setState({
-      arrayRespostasDissertativas: array
+      arrayRespostas: array
     }, () => {
       this.setState({
-        arrayRespostasDissertativas: [...this.state.arrayRespostasDissertativas, objetoRespostaQuestao]
+        arrayRespostas: [...this.state.arrayRespostas, objetoRespostaQuestao]
       })
     })
   }
 
-  handleChangeArrayTecnicas = (event, id) => {
-    const { name, value } = event.target
+  handleClickAdicionarAlternativa = (event, index, idQuestao, idAlternativa) => {
+    event.preventDefault()
+    const array = [...this.state.arrayRespostas]
 
-    const array = [...this.state.arrayRespostasDissertativas]
-
-    array[id][name] = value;
-    array[id].idQuestao = id;
+    array[index].resposta = idAlternativa;
+    array[index].idQuestao = idQuestao;
 
     this.setState({
-      arrayRespostasDissertativas: array
+      arrayRespostas: array
+    }, () => {
+      this.setState({
+        arrayRespostas: [...this.state.arrayRespostas, objetoRespostaQuestao]
+      })
     })
-  }
-
-  contador = () => {
-    this.interval = setInterval(() => {
-        this.setState({
-            count: this.state.count - 1
-        })
-        if(this.state.count < 0){
-          this.setState({ 
-            modalFim: true,
-            count: 0,
-            terminoPorTempo: true
-          })
-          clearInterval(this.interval)
-        }
-    }, 1000 )
   }
 
   handleClickIniciarProva = async(event) => {
@@ -90,60 +72,138 @@ export class ResolverProvaScreen extends Component {
     await inserirDataDeInicioDaProva(this.state.idProva)
   }
 
+  handleClickFinalizarProva = () => {
+    return null
+  }
+
+  contador = async () => {
+    this.interval = setInterval(() => {
+        this.setState({
+            count: this.state.count - 1
+        })
+        if(this.state.count < 0){
+          this.setState({ 
+            modalFinalizarProva: true,
+            count: 0
+          })
+          clearInterval(this.interval)
+          //await enviarRespostasDaProva(this.state.idProva, this.state.arrayRespostas)
+        }
+    }, 1000 )
+  }
+
   renderQuestoesDissertativas() {
-    if(this.state.prova.questoesDissertativas){
-      return (
+    return (
+      <>
+      {
+        this.state.prova.questoesDissertativas &&
         this.state.prova.questoesDissertativas.map((item, key) => {
           return <RespondeQuestaoUnicaResposta
                   key={key}
-                  id={key}
+                  index={key}
+                  idQuestao={item.id}
                   questao={item.questao}
                   resposta={this.state.resposta}
-                  handleChange={this.handleChangeArrayDissertativas}
+                  handleChange={this.handleChangeArrayRespostas}
                   />
         })
-      )
-    }else{
-      return null
-    }
+      }
+      </>
+    )
   }
 
   renderQuestoesTecnicas() {
-    if(this.state.prova.questoesTecnicas){
-      return (
+    return (
+      <>
+      {
+        this.state.prova.questoesTecnicas &&
         this.state.prova.questoesTecnicas.map((item, key) => {
           return <RespondeQuestaoUnicaResposta
-            key={key}
-            id={item.id}
-            questao={item.questao}
-            resposta={this.state.resposta}
-            handleChange={this.handleChange}
-            />
+                  key={key}
+                  index={key}
+                  idQuestao={item.id}
+                  questao={item.questao}
+                  resposta={this.state.resposta}
+                  handleChange={this.handleChangeArrayRespostas}
+                  />
         })
-      )
-    }else{
-      return null
-    }
+      }
+      </>
+    )
+  }
+
+  renderMultiplasEscolhas() {
+    return (
+      <>
+      {
+        this.state.prova.questoesDeMultiplaEscolha &&
+        this.state.prova.questoesDeMultiplaEscolha.map((item, key) => {
+          return <RespondeQuestaoMultiplasRespostas
+                  key={key}
+                  index={key}
+                  idQuestao={item.id}
+                  questao={item.questao}
+                  onClick={this.handleClickAdicionarAlternativa}/>
+        })
+      }
+      </>
+    )
   }
 
   renderProva() {
     return(
-      <div className="container-tela">
-        <div className="container-titulo">
-          <span className="titulo-crie">Boa prova</span>
-        </div>
+      <>
+      {
+        this.state.prova &&
+        <div className="container-tela">
+          <div className="container-titulo">
+            <span className="titulo-crie">Boa prova</span>
+            <span> {this.state.count} </span>
+          </div>
 
-        {this.renderQuestoesDissertativas()}
-        {this.renderQuestoesTecnicas()}
-        {this.renderMultiplasEscolhas()}
-      </div>
+          {this.renderQuestoesDissertativas()}
+          {this.renderQuestoesTecnicas()}
+          {this.renderMultiplasEscolhas()}
+        </div>
+      }
+      </>
+    )
+  }
+
+  renderModalIniciar(){
+    return(
+      <>
+      {
+        this.state.modalIniciarProva &&
+        <ProvaModal
+          titulo="Clique em iniciar para realizar sua prova"
+          nomeBotao="Começar"
+          onClick={this.handleClickIniciarProva}/> 
+      }
+      </>
+    )
+  }
+
+  renderModalFinalizar(){
+    return(
+      <>
+      {
+        this.state.modalFinalizarProva &&
+        <ProvaModal
+          titulo="Sua prova terminou"
+          nomeBotao="Finalizar"
+          onClick={this.handleClickFinalizarProva}/> 
+      }
+      </>
     )
   }
   
   render() {
     return(
       <>
-      { this.state.modalIniciarProva ? <IniciarProvaModal onClick={this.handleClickIniciarProva}/> : this.renderProva() }
+      {this.renderModalIniciar()}
+      {this.renderProva()}
+      {this.renderModalFinalizar()}
       </>
     )
   }

@@ -17,8 +17,9 @@ export class RespondeQuestaoUnicaResposta extends Component {
             value={this.props.resposta}
             label="Resposta"
             maxLength="500"
-            comId={true}
-            id={this.props.id}
+            comIndex={true}
+            idQuestao={this.props.idQuestao}
+            index={this.props.index}
             handleChange={this.props.handleChange}/>
         </div>
 

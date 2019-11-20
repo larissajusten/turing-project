@@ -10,7 +10,7 @@ export class Textarea extends Component {
           className={`questao ${this.props.classe}`}
           name={this.props.name}
           value={this.props.value}
-          onChange={this.props.comId ? (event) => this.props.handleChange(event, this.props.id) : this.props.handleChange}
+          onChange={this.props.comIndex ? (event) => this.props.handleChange(event, this.props.index, this.props.idQuestao) : this.props.handleChange}
           maxLength={this.props.maxLength}
           type="textarea"
           label={this.props.labeltextarea}
