@@ -16,44 +16,10 @@ import javax.validation.Valid;
 public class RespostaProvaController {
 
     @Autowired
-    private ResponderQuestaoDissertativaService responderQuestaoDissertativaService;
-
-    @Autowired
-    private ResponderQuestaoTecnicaService responderQuestaoTecnicaService;
-
-    @Autowired
-    private ResponderQuestaoMultiplaEscolhaService responderQuestaoMultiplaEscolhaService;
-
-    @Autowired
     private CorrigirQuestaoDissertativaService corrigirQuestaoDissertativaService;
 
     @Autowired
     private CorrigirQuestaoTecnicaService corrigirQuestaoTecnicaService;
-
-    //@RolesAllowed("Usuario")
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/{id-questao}/responder-dissertativa")
-    public RespostasDissertativaProva responderQuestaoDissertativa(@PathVariable("id-prova") Long idProva, @PathVariable("id-questao") Long idQuestao,
-                                                                   @Valid @RequestBody String resposta) {
-        return responderQuestaoDissertativaService.responder(idProva, idQuestao, resposta);
-    }
-
-    //@RolesAllowed("Usuario")
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/{id-questao}/responder-tecnica")
-    public RespostasTecnicaProva responderQuestaoTecnica(@PathVariable("id-prova") Long idProva, @PathVariable("id-questao") Long idQuestao,
-                                                         @Valid @RequestBody String resposta) {
-        return responderQuestaoTecnicaService.responder(idProva, idQuestao, resposta);
-    }
-
-    //@RolesAllowed("Usuario")
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/{id-questao}/{id-alternativa}/responder-multipla-escolha")
-    public RespostasMultiplaEscolhaProva responderQuestaoMultiplaEscolha(@PathVariable("id-prova") Long idProva,
-                                                                         @PathVariable("id-questao") Long idQuestao,
-                                                                         @PathVariable("id-alternativa") Long idAlternativa) {
-        return responderQuestaoMultiplaEscolhaService.responder(idProva, idQuestao, idAlternativa);
-    }
 
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)

@@ -40,7 +40,7 @@ public class ResponderQuestaoDissertativaServiceTest {
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(buscarQuestaoDissertativaPorIdService.buscar(questaoDissertativa.getId())).thenReturn(questaoDissertativa);
 
-        responderQuestaoDissertativaService.responder(prova.getId(), questaoDissertativa.getId(), "Resposta");
+        responderQuestaoDissertativaService.responder(prova, questaoDissertativa.getId(), "Resposta");
 
         Mockito.verify(buscarProvaPorIdService).buscar(prova.getId());
 
@@ -56,7 +56,7 @@ public class ResponderQuestaoDissertativaServiceTest {
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(buscarQuestaoDissertativaPorIdService.buscar(questaoDissertativa.getId())).thenReturn(questaoDissertativa);
 
-        responderQuestaoDissertativaService.responder(prova.getId(), questaoDissertativa.getId(), "Resposta");
+        responderQuestaoDissertativaService.responder(prova, questaoDissertativa.getId(), "Resposta");
 
         Mockito.verify(buscarQuestaoDissertativaPorIdService).buscar(questaoDissertativa.getId());
 
@@ -78,7 +78,7 @@ public class ResponderQuestaoDissertativaServiceTest {
         Mockito.when(buscarQuestaoDissertativaPorIdService.buscar(questaoDissertativa.getId())).thenReturn(questaoDissertativa);
         Mockito.when(repository.save(respostasDissertativaProva)).thenReturn(respostasDissertativaProva);
 
-        responderQuestaoDissertativaService.responder(prova.getId(), questaoDissertativa.getId(), null);
+        responderQuestaoDissertativaService.responder(prova, questaoDissertativa.getId(), null);
 
         Mockito.verify(repository).save(respostasDissertativaProva);
 
@@ -100,9 +100,9 @@ public class ResponderQuestaoDissertativaServiceTest {
         Mockito.when(buscarQuestaoDissertativaPorIdService.buscar(questaoDissertativa.getId())).thenReturn(questaoDissertativa);
         Mockito.when(repository.save(respostasDissertativaProva)).thenReturn(respostasDissertativaProva);
 
-        responderQuestaoDissertativaService.responder(prova.getId(), questaoDissertativa.getId(), null);
+        responderQuestaoDissertativaService.responder(prova, questaoDissertativa.getId(), null);
 
-        Assert.assertEquals(responderQuestaoDissertativaService.responder(prova.getId(),
+        Assert.assertEquals(responderQuestaoDissertativaService.responder(prova,
                 questaoDissertativa.getId(),
                 null),
                 respostasDissertativaProva);

@@ -3,10 +3,10 @@ package br.com.cwi.crescer.api.controller.prova;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.responses.ProvaParaCorrecaoResponse;
+import br.com.cwi.crescer.api.controller.requests.prova.ProvaRespondidaRequest;
 import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
-import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.services.prova.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -45,7 +45,7 @@ public class ProvaController {
     private IniciarTempoDaProvaService iniciarTempoDaProvaService;
 
     @Autowired
-    private FinalizarTempoDaProvaService finalizarTempoDaProvaService;
+    private FinalizarProvaService finalizarProvaService;
 
     @Autowired
     private ConsultarStatusDaProvaService consultarStatusDaProvaService;
@@ -138,8 +138,9 @@ public class ProvaController {
     //@RolesAllowed("Usuario")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/finalizar-prova")
-    public StatusProva finalizarTempoDaProva(@PathVariable("id-prova") Long idProva) {
-        return finalizarTempoDaProvaService.finalizar(idProva);
+    public StatusProva finalizarProva(@PathVariable("id-prova") Long idProva,
+                                             @RequestBody List<ProvaRespondidaRequest> provaRespondida) {
+        return finalizarProvaService.finalizar(idProva, provaRespondida);
     }
 
     //@RolesAllowed("Administrator", "Entrevistador", "Usuario")

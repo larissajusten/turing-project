@@ -7,6 +7,7 @@ import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.repository.resposta.RespostasTecnicaRepository;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
 import br.com.cwi.crescer.api.services.questaotecnica.BuscarQuestaoTecnicaPorIdService;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,18 +23,20 @@ public class ResponderQuestaoTecnicaService {
     @Autowired
     private BuscarQuestaoTecnicaPorIdService buscarQuestaoTecnicaPorIdService;
 
-    public RespostasTecnicaProva responder(Long idProva, Long idQuestao, String resposta) {
+    @Autowired
+    private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
+
+    public RespostasTecnicaProva responder(Prova prova, Long idQuestao, String resposta) {
         RespostasTecnicaProva respostasTecnicaProva = new RespostasTecnicaProva();
         respostasTecnicaProva.setResposta(resposta);
 
-        Prova prova = buscarProvaPorIdService.buscar(idProva);
         respostasTecnicaProva.setProva(prova);
 
         QuestaoTecnica questaoTecnica = buscarQuestaoTecnicaPorIdService.buscar(idQuestao);
         respostasTecnicaProva.setQuestaoTecnica(questaoTecnica);
 
-        Usuario usuario = new Usuario();
-        usuario.setId(1L);
+        //TODO mudar quando tiver usuário
+        Usuario usuario = buscarUsuarioPorIdService.buscar(1L);
         respostasTecnicaProva.setUsuario(usuario);
 
         return repository.save(respostasTecnicaProva);

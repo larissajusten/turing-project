@@ -52,7 +52,7 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(buscarQuestaoMultiplaEscolhaPorIdService.buscar(questaoMultiplaEscolha.getId())).thenReturn(questaoMultiplaEscolha);
 
-        responderQuestaoMultiplaEscolhaService.responder(prova.getId(), questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
+        responderQuestaoMultiplaEscolhaService.responder(prova, questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
 
         Mockito.verify(buscarAlternativaMultiplaEscolhaPorIdService).buscar(alternativaMultiplaEscolha.getId());
     }
@@ -73,7 +73,7 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(buscarQuestaoMultiplaEscolhaPorIdService.buscar(questaoMultiplaEscolha.getId())).thenReturn(questaoMultiplaEscolha);
 
-        responderQuestaoMultiplaEscolhaService.responder(prova.getId(), questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
+        responderQuestaoMultiplaEscolhaService.responder(prova, questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
 
         Mockito.verify(buscarProvaPorIdService).buscar(prova.getId());
     }
@@ -94,7 +94,7 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(buscarQuestaoMultiplaEscolhaPorIdService.buscar(questaoMultiplaEscolha.getId())).thenReturn(questaoMultiplaEscolha);
 
-        responderQuestaoMultiplaEscolhaService.responder(prova.getId(), questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
+        responderQuestaoMultiplaEscolhaService.responder(prova, questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
 
         Mockito.verify(buscarQuestaoMultiplaEscolhaPorIdService).buscar(questaoMultiplaEscolha.getId());
     }
@@ -116,7 +116,7 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(buscarQuestaoMultiplaEscolhaPorIdService.buscar(questaoMultiplaEscolha.getId())).thenReturn(questaoMultiplaEscolha);
 
-        responderQuestaoMultiplaEscolhaService.responder(prova.getId(), questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
+        responderQuestaoMultiplaEscolhaService.responder(prova, questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
 
         Mockito.verify(repository).save(respostasMultiplaEscolhaProva);
     }
@@ -139,9 +139,9 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         Mockito.when(buscarQuestaoMultiplaEscolhaPorIdService.buscar(questaoMultiplaEscolha.getId())).thenReturn(questaoMultiplaEscolha);
         Mockito.when(repository.save(respostasMultiplaEscolhaProva)).thenReturn(respostasMultiplaEscolhaProva);
 
-        responderQuestaoMultiplaEscolhaService.responder(prova.getId(), questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
+        responderQuestaoMultiplaEscolhaService.responder(prova, questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
 
-        Assert.assertEquals(responderQuestaoMultiplaEscolhaService.responder(prova.getId(),
+        Assert.assertEquals(responderQuestaoMultiplaEscolhaService.responder(prova,
                 questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId()), respostasMultiplaEscolhaProva);
     }
 
