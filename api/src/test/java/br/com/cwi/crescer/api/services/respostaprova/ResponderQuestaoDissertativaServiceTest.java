@@ -7,6 +7,7 @@ import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.repository.resposta.RespostasDissertativaRepository;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
 import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorIdService;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,21 +31,9 @@ public class ResponderQuestaoDissertativaServiceTest {
     @Mock
     BuscarQuestaoDissertativaPorIdService buscarQuestaoDissertativaPorIdService;
 
-    @Test
-    public void deveChamarBuscarProvaPorIdServiceQuandoResponderQuestaoDissertativaServiceForChamado() {
+    @Mock
+    private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
 
-        QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
-        Prova prova = new Prova();
-        RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
-
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
-        Mockito.when(buscarQuestaoDissertativaPorIdService.buscar(questaoDissertativa.getId())).thenReturn(questaoDissertativa);
-
-        responderQuestaoDissertativaService.responder(prova, questaoDissertativa.getId(), "Resposta");
-
-        Mockito.verify(buscarProvaPorIdService).buscar(prova.getId());
-
-    }
 
     @Test
     public void deveChamarBuscarQuestaoDissertativaPorIdServiceQuandoResponderQuestaoDissertativaServiceForChamado() {
@@ -53,7 +42,11 @@ public class ResponderQuestaoDissertativaServiceTest {
         Prova prova = new Prova();
         RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
 
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+
+        Usuario usuario = new Usuario();
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+
+
         Mockito.when(buscarQuestaoDissertativaPorIdService.buscar(questaoDissertativa.getId())).thenReturn(questaoDissertativa);
 
         responderQuestaoDissertativaService.responder(prova, questaoDissertativa.getId(), "Resposta");
@@ -66,15 +59,17 @@ public class ResponderQuestaoDissertativaServiceTest {
     @Test
     public void deveChamarRespostasDissertativaRepositoryQuandoResponderQuestaoDissertativaServiceForChamado() {
 
-        Usuario usuario = new Usuario();
-        usuario.setId(1L);
         Prova prova = new Prova();
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
         RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
+
+        Usuario usuario = new Usuario();
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+
         respostasDissertativaProva.setQuestaoDissertativa(questaoDissertativa);
         respostasDissertativaProva.setUsuario(usuario);
         respostasDissertativaProva.setProva(prova);
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+
         Mockito.when(buscarQuestaoDissertativaPorIdService.buscar(questaoDissertativa.getId())).thenReturn(questaoDissertativa);
         Mockito.when(repository.save(respostasDissertativaProva)).thenReturn(respostasDissertativaProva);
 
@@ -88,15 +83,18 @@ public class ResponderQuestaoDissertativaServiceTest {
     @Test
     public void deveRetornarRespostasDissertativaProvaQuandoResponderQuestaoDissertativaServiceForChamado() {
 
+
         Usuario usuario = new Usuario();
-        usuario.setId(1L);
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+
         Prova prova = new Prova();
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
         RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
         respostasDissertativaProva.setQuestaoDissertativa(questaoDissertativa);
         respostasDissertativaProva.setUsuario(usuario);
         respostasDissertativaProva.setProva(prova);
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+
+
         Mockito.when(buscarQuestaoDissertativaPorIdService.buscar(questaoDissertativa.getId())).thenReturn(questaoDissertativa);
         Mockito.when(repository.save(respostasDissertativaProva)).thenReturn(respostasDissertativaProva);
 

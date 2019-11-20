@@ -9,6 +9,7 @@ import br.com.cwi.crescer.api.repository.resposta.RespostaMultiplaEscolhaReposit
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaMultiplaEscolhaPorIdService;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.BuscarQuestaoMultiplaEscolhaPorIdService;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,8 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
     @Mock
     BuscarAlternativaMultiplaEscolhaPorIdService buscarAlternativaMultiplaEscolhaPorIdService;
 
+    @Mock
+    private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
 
     @Test
     public void deveChamarBuscarAlternativaMultiplaEscolhaPorIdServiceQuandoResponderQuestaoMultiplaEscolhaServiceForChamado() {
@@ -46,10 +49,13 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         respostasMultiplaEscolhaProva.setProva(prova);
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
         respostasMultiplaEscolhaProva.setQuestaoMultiplaEscolha(questaoMultiplaEscolha);
+
         Usuario usuario = new Usuario();
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+
         respostasMultiplaEscolhaProva.setUsuario(usuario);
         Mockito.when(buscarAlternativaMultiplaEscolhaPorIdService.buscar(alternativaMultiplaEscolha.getId())).thenReturn(alternativaMultiplaEscolha);
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+
         Mockito.when(buscarQuestaoMultiplaEscolhaPorIdService.buscar(questaoMultiplaEscolha.getId())).thenReturn(questaoMultiplaEscolha);
 
         responderQuestaoMultiplaEscolhaService.responder(prova, questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
@@ -57,26 +63,6 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         Mockito.verify(buscarAlternativaMultiplaEscolhaPorIdService).buscar(alternativaMultiplaEscolha.getId());
     }
 
-    @Test
-    public void deveChamarBuscarProvaPorIdServiceQuandoResponderQuestaoMultiplaEscolhaServiceForChamado() {
-
-        RespostasMultiplaEscolhaProva respostasMultiplaEscolhaProva = new RespostasMultiplaEscolhaProva();
-        AlternativaMultiplaEscolha alternativaMultiplaEscolha = new AlternativaMultiplaEscolha();
-        respostasMultiplaEscolhaProva.setAlternativaMultiplaEscolha(alternativaMultiplaEscolha);
-        Prova prova = new Prova();
-        respostasMultiplaEscolhaProva.setProva(prova);
-        QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
-        respostasMultiplaEscolhaProva.setQuestaoMultiplaEscolha(questaoMultiplaEscolha);
-        Usuario usuario = new Usuario();
-        respostasMultiplaEscolhaProva.setUsuario(usuario);
-        Mockito.when(buscarAlternativaMultiplaEscolhaPorIdService.buscar(alternativaMultiplaEscolha.getId())).thenReturn(alternativaMultiplaEscolha);
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
-        Mockito.when(buscarQuestaoMultiplaEscolhaPorIdService.buscar(questaoMultiplaEscolha.getId())).thenReturn(questaoMultiplaEscolha);
-
-        responderQuestaoMultiplaEscolhaService.responder(prova, questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
-
-        Mockito.verify(buscarProvaPorIdService).buscar(prova.getId());
-    }
 
     @Test
     public void deveChamarBuscarQuestaoMultiplaEscolhaPorIdServiceQuandoResponderQuestaoMultiplaEscolhaServiceForChamado() {
@@ -88,10 +74,13 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         respostasMultiplaEscolhaProva.setProva(prova);
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
         respostasMultiplaEscolhaProva.setQuestaoMultiplaEscolha(questaoMultiplaEscolha);
+
         Usuario usuario = new Usuario();
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+
         respostasMultiplaEscolhaProva.setUsuario(usuario);
         Mockito.when(buscarAlternativaMultiplaEscolhaPorIdService.buscar(alternativaMultiplaEscolha.getId())).thenReturn(alternativaMultiplaEscolha);
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+
         Mockito.when(buscarQuestaoMultiplaEscolhaPorIdService.buscar(questaoMultiplaEscolha.getId())).thenReturn(questaoMultiplaEscolha);
 
         responderQuestaoMultiplaEscolhaService.responder(prova, questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
@@ -109,11 +98,13 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         respostasMultiplaEscolhaProva.setProva(prova);
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
         respostasMultiplaEscolhaProva.setQuestaoMultiplaEscolha(questaoMultiplaEscolha);
+
         Usuario usuario = new Usuario();
-        usuario.setId(1L);
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+
         respostasMultiplaEscolhaProva.setUsuario(usuario);
         Mockito.when(buscarAlternativaMultiplaEscolhaPorIdService.buscar(alternativaMultiplaEscolha.getId())).thenReturn(alternativaMultiplaEscolha);
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+
         Mockito.when(buscarQuestaoMultiplaEscolhaPorIdService.buscar(questaoMultiplaEscolha.getId())).thenReturn(questaoMultiplaEscolha);
 
         responderQuestaoMultiplaEscolhaService.responder(prova, questaoMultiplaEscolha.getId(), alternativaMultiplaEscolha.getId());
@@ -131,11 +122,13 @@ public class ResponderQuestaoMultiplaEscolhaServiceTest {
         respostasMultiplaEscolhaProva.setProva(prova);
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
         respostasMultiplaEscolhaProva.setQuestaoMultiplaEscolha(questaoMultiplaEscolha);
+
         Usuario usuario = new Usuario();
-        usuario.setId(1L);
+        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+
         respostasMultiplaEscolhaProva.setUsuario(usuario);
         Mockito.when(buscarAlternativaMultiplaEscolhaPorIdService.buscar(alternativaMultiplaEscolha.getId())).thenReturn(alternativaMultiplaEscolha);
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+
         Mockito.when(buscarQuestaoMultiplaEscolhaPorIdService.buscar(questaoMultiplaEscolha.getId())).thenReturn(questaoMultiplaEscolha);
         Mockito.when(repository.save(respostasMultiplaEscolhaProva)).thenReturn(respostasMultiplaEscolhaProva);
 
