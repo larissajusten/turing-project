@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './buscarQuestao.style.css'
+import Paginator from 'react-js-paginator';
 import { BotaoPrincipal, CardBuscarQuestao, BuscarQuestao, Notificacao } from '../../component/index'
 import { retornarEspecificidades,
         retornarNiveisDeDificuldade,
@@ -19,8 +20,13 @@ export class BuscarQuestaoScreen extends Component {
       tipo: null,
       especificidade: null,
       nivel: null,
-      resultados: []
+      busca: '',
+      questoes: null,
+      totalPaginas: null,
+      per_page: null,
+      current_page: 0
     }
+    this.busca = {}
   }
 
   async componentDidMount() {
@@ -37,12 +43,39 @@ export class BuscarQuestaoScreen extends Component {
     })
   }
 
-  retornarQuestoesDissertativasFiltradas = async (listaDeQuestoes, busca) => {
+  retornarQuestoesDissertativasFiltradas = async (especificidade, nivelDeDificuldade) => {
     try {
-      listaDeQuestoes = await retornarQuestoesDissertativasFiltradas(busca)
+      let dadosDaResponse = await retornarQuestoesDissertativasFiltradas(this.state.current_page, especificidade, nivelDeDificuldade)
+      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+      console.log(dadosDaResponse[0])
+      this.setState({
+        questoes: dadosDaResponse[0],
+        totalPaginas: dadosDaResponse[1],
+        per_page: dadosDaResponse[2],
+        current_page: dadosDaResponse[3],
+      })
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        console.log(error.response.data.message)
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
+  retornarQuestoesMultiplasEscolhasFiltradas = async (especificidade, nivelDeDificuldade) => {
+    try {
+      let dadosDaResponse = await retornarQuestoesMultiplasEscolhasFiltradas(this.state.current_page, especificidade, nivelDeDificuldade)
       Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
       this.setState({
-        resultados: listaDeQuestoes
+        questoes: dadosDaResponse[0],
+        totalPaginas: dadosDaResponse[1],
+        per_page: dadosDaResponse[2],
+        current_page: dadosDaResponse[3],
       })
     }
     catch (error) {
@@ -56,31 +89,15 @@ export class BuscarQuestaoScreen extends Component {
     }
   }
 
-  retornarQuestoesMultiplasEscolhasFiltradas = async (listaDeQuestoes, busca) => {
+  retornarQuestoesTecnicasFiltradas = async (especificidade, nivelDeDificuldade) => {
     try {
-      listaDeQuestoes = await retornarQuestoesMultiplasEscolhasFiltradas(busca)
+      let dadosDaResponse = await retornarQuestoesTecnicasFiltradas(this.state.current_page,  especificidade, nivelDeDificuldade)
       Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
       this.setState({
-        resultados: listaDeQuestoes
-      })
-    }
-    catch (error) {
-      if (error.response.data.errors) {
-        error.response.data.errors.map(message => {
-          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-        })
-      } else {
-        Notificacao('Falha', `${error.response.data.message}`, 'danger')
-      }
-    }
-  }
-
-  retornarQuestoesTecnicasFiltradas = async (listaDeQuestoes, busca) => {
-    try {
-      listaDeQuestoes = await retornarQuestoesTecnicasFiltradas(busca)
-      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
-      this.setState({
-        resultados: listaDeQuestoes
+        questoes: dadosDaResponse[0],
+        totalPaginas: dadosDaResponse[1],
+        per_page: dadosDaResponse[2],
+        current_page: dadosDaResponse[3],
       })
     }
     catch (error) {
@@ -97,22 +114,30 @@ export class BuscarQuestaoScreen extends Component {
   handleClickEnviarPesquisa = async (event) => {
     event.preventDefault()
 
-    const busca = {
-      "especificidade": this.state.especificidade,
-      "nivelDeDificuldade": this.state.nivel
-    }
-
-    let listaDeQuestoes = ''
+    const { especificidade, nivel: nivelDeDificuldade } = this.state
 
     if (this.state.tipo === this.state.tipos[0]) {
-      this.retornarQuestoesDissertativasFiltradas(listaDeQuestoes, busca)
+      this.retornarQuestoesDissertativasFiltradas(especificidade, nivelDeDificuldade)
     } else if (this.state.tipo === this.state.tipos[1]) {
-      this.retornarQuestoesMultiplasEscolhasFiltradas(listaDeQuestoes, busca)
+      this.retornarQuestoesMultiplasEscolhasFiltradas(especificidade, nivelDeDificuldade)
     } else if (this.state.tipo === this.state.tipos[2]) {
-      this.retornarQuestoesTecnicasFiltradas(listaDeQuestoes, busca)
+      this.retornarQuestoesTecnicasFiltradas(especificidade, nivelDeDificuldade)
     } else {
       Notificacao('Falha', 'Tipo de questão é nulo', 'warning')
     }
+  }
+
+  makeHttpRequestWithPage = async pageNumber => {
+    const { especificidade, nivel: nivelDeDificuldade } = this.state
+
+    const dadosDaResponse = await retornarQuestoesTecnicasFiltradas(pageNumber, especificidade, nivelDeDificuldade)
+
+    this.setState({
+      questoes: dadosDaResponse[0],
+      total: dadosDaResponse[1],
+      per_page: dadosDaResponse[2],
+      current_page: dadosDaResponse[3],
+    })
   }
 
   renderPesquisa() {
@@ -120,7 +145,7 @@ export class BuscarQuestaoScreen extends Component {
       <>
         <div className="container-questoes">
           {
-            this.state.resultados.map((item, key) => {
+            this.state.questoes.map((item, key) => {
               return (
                 <CardBuscarQuestao
                   key={key}
@@ -156,12 +181,15 @@ export class BuscarQuestaoScreen extends Component {
           </div>
 
           {
-            this.state.resultados.length
-              ?
+            this.state.questoes &&
               this.renderPesquisa()
-              :
-              null
           }
+
+          <Paginator
+            pageSize={10}
+            totalElements={64}
+            onPageChangeCallback={this.makeHttpRequestWithPage(this.state.current_page+1)}
+          />
 
           <div className="container-botao">
             <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarPesquisa} />

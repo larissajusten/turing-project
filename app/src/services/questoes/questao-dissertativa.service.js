@@ -6,7 +6,9 @@ export const adicionarQuestaoDissertativa = async (questao) => {
   return response.data
 }
 
-export const retornarQuestoesDissertativasFiltradas = async (busca) => {
-  const response = await Axios.put(`${baseUrl}/questao-dissertativa/todas-questoes-filtradas`, busca)
-  return response.data
+export const retornarQuestoesDissertativasFiltradas = async (paginaAtual, especificidade, nivel) => {
+  const response = await Axios.get(`${baseUrl}/questao-dissertativa/todas-questoes-filtradas/${especificidade}/${nivel}?page=${paginaAtual}`)
+  console.log(response)
+  const dados = [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
+  return dados
 }
