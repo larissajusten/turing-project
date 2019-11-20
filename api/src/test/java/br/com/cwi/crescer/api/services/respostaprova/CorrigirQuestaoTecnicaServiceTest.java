@@ -1,6 +1,7 @@
 package br.com.cwi.crescer.api.services.respostaprova;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
+import br.com.cwi.crescer.api.domain.enums.TipoDeQuestao;
 import br.com.cwi.crescer.api.domain.resposta.RespostasTecnicaProva;
 import br.com.cwi.crescer.api.repository.resposta.RespostasTecnicaRepository;
 import br.com.cwi.crescer.api.validator.NotaValidator;
@@ -30,7 +31,7 @@ public class CorrigirQuestaoTecnicaServiceTest {
     public void deveChamarBuscarRespostaTecnicaPorIDServiceQuandoCorrigirQuestaoTecnicaServiceForChamado() {
 
         RespostasTecnicaProva resposta = new RespostasTecnicaProva();
-        CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(10, "Muito bom");
+        CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(1L, 1L, TipoDeQuestao.TECNICA, 10, "oi");
 
         Mockito.when(buscarRespostaTecnicaPorIDService.buscar(resposta.getId())).thenReturn(resposta);
         Mockito.doNothing().when(notaValidator).verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
@@ -43,7 +44,7 @@ public class CorrigirQuestaoTecnicaServiceTest {
     public void deveChamarRespostasTecnicaRepositorySaveQuandoCorrigirQuestaoTecnicaServiceForChamado() {
 
         RespostasTecnicaProva resposta = new RespostasTecnicaProva();
-        CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(10, "Muito bom");
+        CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(1L, 1L, TipoDeQuestao.TECNICA, 10, "oi");
 
         Mockito.when(buscarRespostaTecnicaPorIDService.buscar(resposta.getId())).thenReturn(resposta);
         Mockito.doNothing().when(notaValidator).verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());

@@ -1,6 +1,7 @@
 package br.com.cwi.crescer.api.services.respostaprova;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
+import br.com.cwi.crescer.api.domain.enums.TipoDeQuestao;
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
 import br.com.cwi.crescer.api.repository.resposta.RespostasDissertativaRepository;
 import br.com.cwi.crescer.api.validator.NotaValidator;
@@ -29,7 +30,7 @@ public class CorrigirQuestaoDissertativaServiceTest {
 
     @Test
     public void deveChamarBuscarRespostaDissertativaPorIDServiceQuandoCorrigirQuestaoDissertativaServiceForChamado() {
-        CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(10, "Muito bom");
+        CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(1L, 1L, TipoDeQuestao.TECNICA, 10, "oi");
         RespostasDissertativaProva resposta = new RespostasDissertativaProva();
         resposta.setNota(correcao.getNota());
         resposta.setComentario(correcao.getComentario());
@@ -47,7 +48,7 @@ public class CorrigirQuestaoDissertativaServiceTest {
 
     @Test
     public void deveChamarRespostasDissertativaRepositoryMetodoSaveQuandoCorrigirQuestaoDissertativaServiceForChamado() {
-        CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(10, "Muito bom");
+        CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(1L, 1L, TipoDeQuestao.TECNICA, 10, "oi");
         RespostasDissertativaProva resposta = new RespostasDissertativaProva();
 
         Mockito.when(buscarRespostaDissertativaPorIDService.buscar(resposta.getId())).thenReturn(resposta);
