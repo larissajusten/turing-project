@@ -25,6 +25,10 @@ public class ProvaResponse {
 
     private boolean podeIniciar;
 
+    private String nomeCandidato;
+
+    private String emailCandidato;
+
     private StatusProva status;
 
     private List<QuestaoMultiplaEscolhaResponse> questoesDeMultiplaEscolha;
