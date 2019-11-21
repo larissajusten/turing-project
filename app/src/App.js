@@ -7,8 +7,9 @@ import { CadastrarQuestaoScreen,
 				CadastrarProvaScreen,
 				VisualizarProvaScreen,
 				ResolverProvaScreen,
-				BuscarProvaCorrecaoScreen,
-				CorrigirProvaScreen } from './tela/index';
+				BuscarProvaParaCorrigirScreen,
+				CorrigirProvaScreen,
+				BuscarProvaJaCorrigidaScreen } from './tela/index';
 import { Header, Footer } from './component/index'
 
 function App() {
@@ -25,8 +26,9 @@ function App() {
 					<Route path="/cadastrar-prova" component={CadastrarProvaScreen}/>
 					<Route path="/visualizar-prova" component={VisualizarProvaScreen}/>
 					<Route path="/resolver-prova" component={ResolverProvaScreen}/>
-					<Route path="/buscar-provas" component={BuscarProvaCorrecaoScreen}/>
+					<Route path="/buscar-provas" component={BuscarProvaParaCorrigirScreen}/>
 					<Route path="/corrigir-prova" component={CorrigirProvaScreen}/>
+					<Route path="/provas-corrigidas" component={BuscarProvaJaCorrigidaScreen}/>
 				</Switch>
 
 				<Footer/>
