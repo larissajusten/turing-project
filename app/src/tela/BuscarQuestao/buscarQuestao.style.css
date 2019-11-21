@@ -1,8 +1,23 @@
 .container-questoes {
     height: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    padding: 0 200px;
+}
+
+.width-card-questao{
+    width: 500px;
+    height: 50%;
+    padding: 0.5% 2%;
+    margin-bottom: 15px;
+}
+
+.container-cards-questoes{
+    height: 560px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

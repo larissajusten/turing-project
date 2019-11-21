@@ -58,6 +58,5 @@ export const retornaProvasParaCorrecao = async (paginaAtual) => {
 
 export const retornaProvasCorrigidas = async (paginaAtual) => {
   const response = await Axios.get(`${baseUrl}/prova/provas-corrigidas?page=${paginaAtual}`)
-  console.log(response)
   return [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
 }

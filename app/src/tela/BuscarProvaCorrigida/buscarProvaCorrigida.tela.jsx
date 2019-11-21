@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { retornaProvasCorrigidas } from '../../services/index'
+import { Paginacao, CardProva, Input, BotaoPrincipal } from '../../component/index'
+import './buscarProvaCorrigida.style.css'
 
 export class BuscarProvaJaCorrigidaScreen extends Component {
   constructor(props){
     super(props)
     this.state = {
+      pesquisa: '',
       provas: null,
       totalPaginas: null,
       per_page: null,
@@ -13,8 +16,15 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
     }
   }
 
-  async componentDidMount(){
-    let dadosDaResponse = await retornaProvasCorrigidas(this.state.current_page)
+  handleChange = (event) => {
+    const { name, value } = event.target
+    this.setState({
+      [name]: value
+    })
+  }
+
+  handleClickEnviarPesquisa = async () => {
+    let dadosDaResponse = "get com o filtro"//await retornaProvasCorrigidas(this.state.current_page)
     this.setState({
       provas: dadosDaResponse[0],
       totalPaginas: dadosDaResponse[1],
@@ -50,11 +60,75 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
     })
   }
 
+  renderCardsProvas(){
+    return(
+      <>
+      {
+        this.state.provas.map((item, key) => {
+          return <CardProva
+                  key={key}
+                  id={item.id}
+                  informacaoUm={item.nomeCandidato}
+                  informacaoDois={item.emailCandidato}
+                  informacaoTres={item.tempoDeDuracaoDaProva}
+                  onClick={this.onClickCorrigirProva}/>
+        })
+      }
+      </>
+    )
+  }
+
+  renderProvas(){
+    return(
+      <>
+        <div className="container-titulo">
+          <span className="titulo-crie">Provas corrigidas</span>
+        </div>
+        <div className="container-cards">
+          {this.renderCardsProvas()}
+        </div>
+        <Paginacao
+          totalPaginas={this.state.totalPaginas}
+          paginaAtual={this.state.current_page}
+          onClickVoltar={this.buscaPagina}
+          onClickProxima={this.buscaPagina}/>
+      </>
+    )
+  }
+
+  renderPesquisar(){
+    return(
+      <>
+      <div className="container-titulo">
+        <span className="titulo-crie">Busque o candidato</span>
+      </div>
+      
+      <Input
+        name="pesquisa"
+        value={this.state.pesquisa}
+        onChange={this.handleChange}
+        classNameDiv="div-input-busca-usuario"
+        maxTam="300"
+        type="text"
+        label=""
+        placeholder="Digite o nome ou email do candidato"/>
+      
+      {
+        this.state.provas ? 
+          this.renderProvas()
+        :
+        <div className="container-botao">
+          <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarPesquisa} />
+        </div>
+      }
+      </>
+    )
+  }
+
   render(){
-    console.log(this.state.provas)
     return(
       <div className="container-tela">
-        <h1>Oi</h1>
+        {this.renderPesquisar()}
       </div>
     )
   }

@@ -17,9 +17,9 @@ export class BuscarQuestaoScreen extends Component {
       tipos: [],
       especificidades: [],
       niveis: [],
-      tipo: null,
-      especificidade: null,
-      nivel: null,
+      tipo: '',
+      especificidade: '',
+      nivel: '',
       busca: '',
       questoes: null,
       totalPaginas: null,
@@ -150,11 +150,13 @@ export class BuscarQuestaoScreen extends Component {
     return (
       <>
         <div className="container-questoes">
+          <div className="container-cards-questoes">
           {
             this.state.questoes.map((item, key) => {
               return (
                 <CardBuscarQuestao
                   key={key}
+                  widthcardquestao="width-card-questao"
                   questao={item.questao}
                   data={item.dataCriacao}
                   especificidade={item.especificidade}
@@ -163,9 +165,10 @@ export class BuscarQuestaoScreen extends Component {
               )
             })
           }
+          </div>
 
           <Paginacao
-            totalPaginas={this.totalPaginas}
+            totalPaginas={this.state.totalPaginas}
             paginaAtual={this.state.current_page}
             onClickVoltar={this.buscaPagina}
             onClickProxima={this.buscaPagina}/>
