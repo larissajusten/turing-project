@@ -42,7 +42,7 @@ public class CorrigirProvaService {
 
         prova.setStatus(StatusProva.CORRIGIDA);
         repository.save(prova);
-        
+
         return prova.getStatus();
     }
 }
