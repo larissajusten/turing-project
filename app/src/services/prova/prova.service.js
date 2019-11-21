@@ -61,3 +61,13 @@ export const retornaProvasCorrigidas = async (paginaAtual) => {
   console.log(response)
   return [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
 }
+
+export const corrigirProva = async (idProva, body) => {
+  const response = await Axios.put(`${baseUrl}/prova/${idProva}-corrigir`, body)
+  return response.data
+}
+
+export const retornarProvaComRespostas = async (idProva) => {
+  const response = await Axios.get(`${baseUrl}/prova/${idProva}-respostas`)
+  return response.data
+}

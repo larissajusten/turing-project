@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { corrigirProva } from '../../services/prova/prova.service'
+import { retornarProvaComRespostas } from '../../services/prova/prova.service'
 
 const objetoCorrecaoProva = { idQuestao: null, idResposta: null, nota: 0, comentario: '' }
 
@@ -7,7 +7,7 @@ export class CorrigirProvaScreen extends Component {
   constructor(props){
     super(props)
     this.state = {
-      idProva: 74,
+      idProva: 73,
       prova: null,
       arrayRespostas: [objetoCorrecaoProva]
     }
@@ -25,7 +25,7 @@ export class CorrigirProvaScreen extends Component {
 
   componentDidMount = async () => {
     this.setState({
-      prova: await corrigirProva(this.state.idProva, this.state.arrayRespostas)
+      prova: await retornarProvaComRespostas(this.state.idProva)
     })
   }
 
