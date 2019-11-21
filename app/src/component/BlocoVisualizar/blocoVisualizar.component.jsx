@@ -8,7 +8,7 @@ export class BlocoVisualizar extends Component {
         className={`bloco-container ${this.props.classe}`}
         onClick=
           { this.props.comId ?
-            (event) => this.props.onClick(event, this.props.index, this.props.idQuestao, this.props.idAlternativa )
+            (event) => this.props.onClick(event, this.props.index, this.props.idQuestao, this.props.idAlternativa, this.props.tipo )
           :
             this.props.onClick
           }>

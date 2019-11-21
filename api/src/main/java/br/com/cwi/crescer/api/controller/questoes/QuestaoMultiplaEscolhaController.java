@@ -4,6 +4,9 @@ import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesBaseRequ
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoMultiplaEscolhaRequest;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
+import br.com.cwi.crescer.api.domain.enums.Especificidade;
+import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
+import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaQuestaoMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.*;
@@ -65,9 +68,11 @@ public class QuestaoMultiplaEscolhaController {
 
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/todas-questoes-filtradas")
-    public Page<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesBaseRequest request) {
-        return buscarPaginado.buscarQuestoes(pageable, request.getEspecificidade(), request.getNivelDeDificuldade());
+    @GetMapping("/todas-questoes-filtradas/{especificidade}/{nivel}")
+    public Page<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@PageableDefault Pageable pageable,
+                                                                              @PathVariable("especificidade") Especificidade especificidade,
+                                                                              @PathVariable("nivel") NivelDeDificuldade nivelDeDificuldade) {
+        return buscarPaginado.buscarQuestoes(pageable, especificidade, nivelDeDificuldade);
     }
 
 //    //@RolesAllowed("Administrator", "Entrevistador")

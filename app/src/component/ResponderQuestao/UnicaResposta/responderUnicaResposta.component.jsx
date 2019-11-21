@@ -18,6 +18,7 @@ export class RespondeQuestaoUnicaResposta extends Component {
             label="Resposta"
             maxLength="500"
             comIndex={true}
+            tipo={this.props.tipo}
             idQuestao={this.props.idQuestao}
             index={this.props.index}
             handleChange={this.props.handleChange}/>

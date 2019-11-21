@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-export class Textarea extends Component {
+export class Textarea extends PureComponent {
   render() {
     return(
       <>
@@ -9,8 +9,8 @@ export class Textarea extends Component {
           className={`questao ${this.props.classe}`}
           name={this.props.name}
           value={this.props.value}
-          onChange={this.props.comIndex ? (event) => this.props.handleChange(event, this.props.index, this.props.idQuestao) : this.props.handleChange}
-          maxLength={this.props.maxLength}
+          onChange={this.props.comIndex ? (event) => this.props.handleChange(event, this.props.index, this.props.idQuestao, this.props.tipo) : this.props.onChange}
+          maxLength="500"
           type="textarea"
           label={this.props.labeltextarea}
           placeholder={this.props.placeholder}

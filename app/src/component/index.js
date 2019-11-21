@@ -4,6 +4,7 @@ export { Input } from './Input/input.component.jsx'
 export { Select } from './Select/select.component.jsx'
 export { Textarea } from './Textarea/textarea.component.jsx'
 export { Notificacao } from './Notificacao/notification.component.js'
+export { Paginacao } from './Paginacao/paginacao.component.jsx'
 
 /* Botões */
 export { BotaoPrincipal } from './BotaoPrincipal/botaoPrincipal.component.jsx'
