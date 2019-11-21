@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
 import br.com.cwi.crescer.api.services.respostaprova.CorrigirQuestaoDissertativaService;
 import br.com.cwi.crescer.api.services.respostaprova.CorrigirQuestaoTecnicaService;
+import br.com.cwi.crescer.api.validator.CorrecaoValidator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -15,6 +16,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CorrigirProvaServiceTest {
@@ -32,6 +35,9 @@ public class CorrigirProvaServiceTest {
     CorrigirQuestaoTecnicaService corrigirQuestaoTecnicaService;
 
     @Mock
+    CorrecaoValidator validator;
+
+    @Mock
     ProvaRepository repository;
 
     @Test
@@ -46,7 +52,8 @@ public class CorrigirProvaServiceTest {
         List<CorrecaoProvaRequest> correcaoProvaRequests = new ArrayList<>();
         correcaoProvaRequests.add(correcaoProvaRequest);
 
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+        when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+        Mockito.doNothing().when(validator).validar(prova.getId());
 
         corrigirProvaService.corrigir(prova.getId(),correcaoProvaRequests);
 
@@ -67,7 +74,8 @@ public class CorrigirProvaServiceTest {
         List<CorrecaoProvaRequest> correcaoProvaRequests = new ArrayList<>();
         correcaoProvaRequests.add(correcaoProvaRequest);
 
-        Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+        when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
+        Mockito.doNothing().when(validator).validar(prova.getId());
 
         corrigirProvaService.corrigir(prova.getId(),correcaoProvaRequests);
 
