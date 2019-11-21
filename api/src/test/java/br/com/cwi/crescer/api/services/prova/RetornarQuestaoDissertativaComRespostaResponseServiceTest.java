@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.services.prova;
 import br.com.cwi.crescer.api.controller.responses.QuestaoDissertativaComRespostaResponse;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
+import br.com.cwi.crescer.api.mapper.QuestaoComRespostaMapper;
 import br.com.cwi.crescer.api.repository.resposta.RespostasDissertativaRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -24,6 +25,9 @@ public class RetornarQuestaoDissertativaComRespostaResponseServiceTest {
     @Mock
     RespostasDissertativaRepository respostasDissertativaRepository;
 
+    @Mock
+    QuestaoComRespostaMapper mapper;
+
     @Test
     public void deveChamarRespostasDissertativaRepositoryQuandoRetornarQuestaoDissertativaComRespostaResponseService() {
 
@@ -43,15 +47,14 @@ public class RetornarQuestaoDissertativaComRespostaResponseServiceTest {
     @Test
     public void deveRetornarUmaListaDeQuestaoDissertativaComRespostaResponseQuandoRetornarQuestaoDissertativaComRespostaResponseService() {
 
-
-        QuestaoDissertativaComRespostaResponse questaoDissertativaComRespostaResponse =
-                new QuestaoDissertativaComRespostaResponse();
         QuestaoDissertativaComRespostaResponse questaoDissertativa = new QuestaoDissertativaComRespostaResponse();
 
         List<QuestaoDissertativaComRespostaResponse> questoesDissertativa = new ArrayList<>();
 
         Prova prova = new Prova();
+
         List<RespostasDissertativaProva> respostasDissertativaProva = new ArrayList<>();
+        RespostasDissertativaProva respostaDissertativaProva = new RespostasDissertativaProva();
 
         Mockito.when(respostasDissertativaRepository.findAllByProvaIdEquals(prova.getId())).thenReturn(respostasDissertativaProva);
 
@@ -59,6 +62,4 @@ public class RetornarQuestaoDissertativaComRespostaResponseServiceTest {
 
         Assert.assertEquals(questoesDissertativa, retornarQuestaoDissertativaComRespostaResponseService.buscar(prova));
     }
-
-
 }
