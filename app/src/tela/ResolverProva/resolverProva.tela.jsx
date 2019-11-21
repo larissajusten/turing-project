@@ -5,7 +5,7 @@ import { ProvaModal,
         RespondeQuestaoUnicaResposta,
         RespondeQuestaoMultiplasRespostas } from '../../component/index'
 
-const objetoRespostaQuestao = { resposta: null, idQuestao: null }
+const objetoRespostaQuestao = { resposta: null, idQuestao: null, tipo: null }
 
 export class ResolverProvaScreen extends Component {
   constructor(props){
@@ -36,25 +36,27 @@ export class ResolverProvaScreen extends Component {
     })
   }
 
-  handleChangeArrayRespostas = (event, index, idQuestao) => {
+  handleChangeArrayRespostas = (event, index, idQuestao, tipo) => {
     const { name, value } = event.target
 
     const array = [...this.state.arrayRespostas]
 
     array[index][name] = value;
     array[index].idQuestao = idQuestao;
+    array[index].tipo = tipo;
 
     this.setState({
       arrayRespostas: array
     }, () => { this.adicionaObj() })
   }
 
-  handleClickAdicionarAlternativa = (event, index, idQuestao, idAlternativa) => {
+  handleClickAdicionarAlternativa = (event, index, idQuestao, idAlternativa, tipo) => {
     event.preventDefault()
     const array = [...this.state.arrayRespostas]
 
     array[index].resposta = idAlternativa;
     array[index].idQuestao = idQuestao;
+    array[index].tipo = tipo;
 
     this.setState({
       arrayRespostas: array
@@ -90,10 +92,11 @@ export class ResolverProvaScreen extends Component {
     }, 1000 )
   }
 
-  renderQuestaoUnicaResposta(item, key) {
+  renderQuestaoUnicaResposta(item, key, tipo) {
     return <RespondeQuestaoUnicaResposta
             key={key}
             index={key}
+            tipo={tipo}
             idQuestao={item.id}
             questao={item.questao}
             resposta={this.state.resposta}
@@ -102,12 +105,13 @@ export class ResolverProvaScreen extends Component {
   }
 
   renderQuestoesDissertativas() {
+    const tipo = "DISSERTATIVA"
     return (
       <>
       {
         this.state.prova.questoesDissertativas &&
         this.state.prova.questoesDissertativas.map((item, key) => {
-          return <>{this.renderQuestaoUnicaResposta(item, key)}</>
+          return <>{this.renderQuestaoUnicaResposta(item, key, tipo)}</>
         })
       }
       </>
@@ -115,12 +119,13 @@ export class ResolverProvaScreen extends Component {
   }
 
   renderQuestoesTecnicas() {
+    const tipo = "TECNICA"
     return (
       <>
       {
         this.state.prova.questoesTecnicas &&
         this.state.prova.questoesTecnicas.map((item, key) => {
-          return <>{this.renderQuestaoUnicaResposta(item, key)}</>
+          return <>{this.renderQuestaoUnicaResposta(item, key, tipo)}</>
         })
       }
       </>
@@ -128,6 +133,7 @@ export class ResolverProvaScreen extends Component {
   }
 
   renderMultiplasEscolhas() {
+    const tipo = "MULTIPLA"
     return (
       <>
       {
@@ -136,6 +142,7 @@ export class ResolverProvaScreen extends Component {
           return <RespondeQuestaoMultiplasRespostas
                   key={key}
                   index={key}
+                  tipo={tipo}
                   idQuestao={item.id}
                   questao={item.questao}
                   onClick={this.handleClickAdicionarAlternativa}/>

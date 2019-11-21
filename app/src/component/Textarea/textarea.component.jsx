@@ -9,7 +9,7 @@ export class Textarea extends PureComponent {
           className={`questao ${this.props.classe}`}
           name={this.props.name}
           value={this.props.value}
-          onChange={this.props.comIndex ? (event) => this.props.handleChange(event, this.props.index, this.props.idQuestao) : this.props.onChange}
+          onChange={this.props.comIndex ? (event) => this.props.handleChange(event, this.props.index, this.props.idQuestao, this.props.tipo) : this.props.onChange}
           maxLength="500"
           type="textarea"
           label={this.props.labeltextarea}
