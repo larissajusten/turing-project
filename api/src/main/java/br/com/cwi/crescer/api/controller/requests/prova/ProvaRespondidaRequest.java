@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.controller.requests.prova;
 
+import br.com.cwi.crescer.api.domain.enums.TipoDeQuestao;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProvaRespondidaRequest {
-    private int tipo;
+    private TipoDeQuestao tipoDeQuestao;
     private Long idQuestao;
     private String resposta;
 }

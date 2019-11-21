@@ -2,6 +2,7 @@ package br.com.cwi.crescer.api.controller.prova;
 
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
+import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
 import br.com.cwi.crescer.api.controller.responses.ProvaParaCorrecaoResponse;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRespondidaRequest;
 import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
@@ -61,6 +62,8 @@ public class ProvaController {
 
     @Autowired
     private BuscarProvasParaCorrecaoService buscarProvasParaCorrecaoService;
+
+    @Autowired CorrigirProvaService corrigirProvaService;
 
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.CREATED)
@@ -157,5 +160,10 @@ public class ProvaController {
         return buscarProvasParaCorrecaoService.buscar(pageable);
     }
 
-
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("{id-prova}-corrigir")
+    public StatusProva corrigirProva(@PathVariable("id-prova") Long idProva, @RequestBody
+                                     List<CorrecaoProvaRequest> listaDeCorrecoes){
+        return corrigirProvaService.corrigir(idProva, listaDeCorrecoes);
+    }
 }

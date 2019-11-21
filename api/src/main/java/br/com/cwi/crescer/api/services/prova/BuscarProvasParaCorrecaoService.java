@@ -19,7 +19,6 @@ public class BuscarProvasParaCorrecaoService {
     private ModelMapper mapper;
 
     public Page<ProvaParaCorrecaoResponse> buscar(Pageable pageable) {
-
         return provaRepository.findAllByStatusEquals(pageable, StatusProva.AGUARDANDO_CORRECAO)
                 .map(prova -> mapper.map(prova, ProvaParaCorrecaoResponse.class));
     }

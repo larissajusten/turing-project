@@ -2,6 +2,7 @@ package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRespondidaRequest;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
+import br.com.cwi.crescer.api.domain.enums.TipoDeQuestao;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.services.respostaprova.ResponderQuestaoDissertativaService;
 import br.com.cwi.crescer.api.services.respostaprova.ResponderQuestaoMultiplaEscolhaService;
@@ -33,12 +34,12 @@ public class FinalizarProvaService {
         Prova prova = buscarProvaPorIdService.buscar(idProva);
 
         for (ProvaRespondidaRequest resposta : request) {
-            if (resposta.getTipo() == 0) {
+            if (resposta.getTipoDeQuestao().equals(TipoDeQuestao.DISSERTATIVA)) {
                 responderQuestaoDissertativaService.responder(prova, resposta.getIdQuestao(), resposta.getResposta());
-            } else if (resposta.getTipo() == 1) {
+            } else if (resposta.getTipoDeQuestao().equals(TipoDeQuestao.MULTIPLA)) {
                 Long idAlternativa = Long.valueOf(resposta.getResposta());
                 responderQuestaoMultiplaEscolhaService.responder(prova, resposta.getIdQuestao(), idAlternativa);
-            } else if (resposta.getTipo() == 2) {
+            } else if (resposta.getTipoDeQuestao().equals(TipoDeQuestao.TECNICA)) {
                 responderQuestaoTecnicaService.responder(prova, resposta.getIdQuestao(), resposta.getResposta());
             }
         }
