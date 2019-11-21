@@ -14,6 +14,7 @@ export class RespondeQuestaoMultiplasRespostas extends Component {
           nome="A"
           conteudo={this.props.conteudoAlternativaA}
           comId={true}
+          tipo={this.props.tipo}
           idQuestao={this.props.idQuestao}
           idAlternativa={this.props.idAlternativa}
           index={this.props.index}
@@ -24,6 +25,7 @@ export class RespondeQuestaoMultiplasRespostas extends Component {
           nome="B"
           conteudo={this.props.conteudoAlternativaB}
           comId={true}
+          tipo={this.props.tipo}
           idQuestao={this.props.idQuestao}
           idAlternativa={this.props.idAlternativa}
           index={this.props.index}
@@ -34,6 +36,7 @@ export class RespondeQuestaoMultiplasRespostas extends Component {
           nome="C"
           conteudo={this.props.conteudoAlternativaC}
           comId={true}
+          tipo={this.props.tipo}
           idQuestao={this.props.idQuestao}
           idAlternativa={this.props.idAlternativa}
           index={this.props.index}
@@ -44,6 +47,7 @@ export class RespondeQuestaoMultiplasRespostas extends Component {
           nome="D"
           conteudo={this.props.conteudoAlternativaD}
           comId={true}
+          tipo={this.props.tipo}
           idQuestao={this.props.idQuestao}
           idAlternativa={this.props.idAlternativa}
           index={this.props.index}
@@ -54,6 +58,7 @@ export class RespondeQuestaoMultiplasRespostas extends Component {
           nome="E"
           conteudo={this.props.conteudoAlternativaE}
           comId={true}
+          tipo={this.props.tipo}
           idQuestao={this.props.idQuestao}
           idAlternativa={this.props.idAlternativa}
           index={this.props.index}
