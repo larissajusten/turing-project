@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.controller.prova;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
+import br.com.cwi.crescer.api.controller.responses.ProvaCorrigidaResponse;
 import br.com.cwi.crescer.api.controller.responses.ProvaParaCorrecaoResponse;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRespondidaRequest;
 import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
@@ -63,7 +64,11 @@ public class ProvaController {
     @Autowired
     private BuscarProvasParaCorrecaoService buscarProvasParaCorrecaoService;
 
-    @Autowired CorrigirProvaService corrigirProvaService;
+    @Autowired
+    private CorrigirProvaService corrigirProvaService;
+
+    @Autowired
+    private BuscarProvasCorrigidasComNotaService buscarProvasCorrigidasComNotaService;
 
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.CREATED)
@@ -164,5 +169,11 @@ public class ProvaController {
     public StatusProva corrigirProva(@PathVariable("id-prova") Long idProva, @RequestBody
                                      List<CorrecaoProvaRequest> listaDeCorrecoes){
         return corrigirProvaService.corrigir(idProva, listaDeCorrecoes);
+    }
+
+    @GetMapping("provas-com-nota")
+    public Page<ProvaCorrigidaResponse> provaCompletaComRespostas(@PageableDefault Pageable pageable) {
+
+        return buscarProvasCorrigidasComNotaService.buscar(pageable);
     }
 }

@@ -1,6 +1,5 @@
 package br.com.cwi.crescer.api.controller.questoes;
 
-import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesBaseRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoMultiplaEscolhaRequest;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
@@ -18,7 +17,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 
 @RestController
