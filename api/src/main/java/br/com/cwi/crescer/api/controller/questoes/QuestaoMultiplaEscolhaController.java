@@ -32,8 +32,8 @@ public class QuestaoMultiplaEscolhaController {
     @Autowired
     private BuscarAlternativaQuestaoMultiplaEscolhaService buscarAlternativaQuestaoMultiplaEscolhaService;
 
-    @Autowired
-    private BuscarQuestoesMultiplaEscolhaFiltradasService buscarQuestoesMultiplaEscolhaFiltradasService;
+//    @Autowired
+//    private BuscarQuestoesMultiplaEscolhaFiltradasService buscarQuestoesMultiplaEscolhaFiltradasService;
 
     @Autowired
     private ListarQuestoesMultiplaEscolhaFiltradasService listarQuestoesMultiplaEscolhaFiltradasService;
@@ -74,11 +74,11 @@ public class QuestaoMultiplaEscolhaController {
         return buscarPaginado.buscarQuestoes(pageable, especificidade, nivelDeDificuldade);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id-questao}/buscar-alternativas")
-    public List<AlternativaMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PathVariable("id-questao") Long idQuestao) {
-        return buscarAlternativaQuestaoMultiplaEscolhaService.buscar(idQuestao);
-    }
+//    //@RolesAllowed("Administrator", "Entrevistador")
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping("/{id-questao}/buscar-alternativas")
+//    public List<AlternativaMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PathVariable("id-questao") Long idQuestao) {
+//        return buscarAlternativaQuestaoMultiplaEscolhaService.buscar(idQuestao);
+//    }
 
 }
