@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.controller.prova;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
+import br.com.cwi.crescer.api.controller.responses.ProvaComRespostasResponse;
 import br.com.cwi.crescer.api.controller.responses.ProvaCorrigidaResponse;
 import br.com.cwi.crescer.api.controller.responses.ProvaParaCorrecaoResponse;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRespondidaRequest;
@@ -180,4 +181,11 @@ public class ProvaController {
     public Page<ProvaCorrigidaResponse> provaCompletaComRespostas(@PageableDefault Pageable pageable) {
         return buscarProvasCorrigidasComNotaService.buscar(pageable);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/{id-prova}-respostas")
+    public ProvaComRespostasResponse provaComRespostas(@PathVariable("id-prova") Long idProva) {
+        return buscarProvaComRespostasDoUsuario.buscar(idProva);
+    }
+
 }
