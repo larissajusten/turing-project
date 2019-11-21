@@ -53,6 +53,11 @@ export const enviarRespostasDaProva = async (idProva, respostas) => {
 
 export const retornaProvasParaCorrecao = async (paginaAtual) => {
   const response = await Axios.get(`${baseUrl}/prova/para-correcao?page=${paginaAtual}`)
-  //console.log(response)
+  return [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
+}
+
+export const retornaProvasCorrigidas = async (paginaAtual) => {
+  const response = await Axios.get(`${baseUrl}/prova/provas-corrigidas?page=${paginaAtual}`)
+  console.log(response)
   return [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
 }

@@ -4,7 +4,7 @@ import { CardProva, Paginacao } from '../../component/index'
 import { retornaProvasParaCorrecao } from '../../services/index'
 import './buscarProvaCorrigir.style.css'
 
-export class BuscarProvaCorrecaoScreen extends Component{
+export class BuscarProvaParaCorrigirScreen extends Component{
   constructor(props){
     super(props)
     this.state = {
@@ -31,7 +31,7 @@ export class BuscarProvaCorrecaoScreen extends Component{
   buscarProvas = async () => {
     setTimeout(
       async () => {
-        let dadosDaResponse = await retornaProvasParaCorrecao(this.state.current_page)
+        let dadosDaResponse = await retornaProvasParaCorrecao(0)
         this.setState({
           provas: dadosDaResponse[0],
           totalPaginas: dadosDaResponse[1],
@@ -51,20 +51,14 @@ export class BuscarProvaCorrecaoScreen extends Component{
   }
 
   buscaPagina = async pageNumber => {
-    if(this.state.totalPaginas >= pageNumber){
-      let dadosDaResponse = await retornaProvasParaCorrecao(pageNumber)
+    let dadosDaResponse = await retornaProvasParaCorrecao(pageNumber)
 
-      this.setState({
-        questoes: dadosDaResponse[0],
-        total: dadosDaResponse[1],
-        per_page: dadosDaResponse[2],
-        current_page: dadosDaResponse[3],
-      })
-    }else{
-      this.setState({
-        current_page: pageNumber
-      })
-    }
+    this.setState({
+      questoes: dadosDaResponse[0],
+      total: dadosDaResponse[1],
+      per_page: dadosDaResponse[2],
+      current_page: dadosDaResponse[3],
+    })
   }
 
   renderCardsProvas(){

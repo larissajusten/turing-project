@@ -171,9 +171,9 @@ public class ProvaController {
         return corrigirProvaService.corrigir(idProva, listaDeCorrecoes);
     }
 
-    @GetMapping("provas-com-nota")
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/provas-corrigidas")
     public Page<ProvaCorrigidaResponse> provaCompletaComRespostas(@PageableDefault Pageable pageable) {
-
         return buscarProvasCorrigidasComNotaService.buscar(pageable);
     }
 }
