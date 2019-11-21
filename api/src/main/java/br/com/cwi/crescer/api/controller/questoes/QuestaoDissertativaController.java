@@ -52,7 +52,7 @@ public class QuestaoDissertativaController {
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/todas-questoes-filtradas/{especificidade}/{nivel}")
-    public Page<QuestaoDissertativa> listarTodasQuestoesDissertativas(@PageableDefault Pageable pageable,
+    public Page<QuestaoDissertativa> listarTodasQuestoesDissertativas(@PageableDefault(size=5) Pageable pageable,
                                                                       @PathVariable("especificidade") Especificidade especificidade,
                                                                       @PathVariable("nivel") NivelDeDificuldade nivelDeDificuldade) {
         return buscarPaginado.buscar(especificidade, nivelDeDificuldade, pageable);

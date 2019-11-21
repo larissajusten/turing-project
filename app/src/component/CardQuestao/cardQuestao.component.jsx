@@ -5,7 +5,7 @@ export class CardBuscarQuestao extends PureComponent {
 
   render() {
     return (
-        <div className="container-card">
+        <div className={`container-card ${this.props.widthcardquestao}`}>
 
             <div className="content-postagem">
                 <div className="publicada">
