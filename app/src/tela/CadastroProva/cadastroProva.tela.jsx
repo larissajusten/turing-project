@@ -220,7 +220,7 @@ export class CadastrarProvaScreen extends Component {
           <span className="titulo-crie">Crie sua prova</span>
         </div>
 
-        <div className="container-questao">
+        <div className="container-questao prova">
           <Input
             name="nome"
             value={this.state.nomeDoCandidato}

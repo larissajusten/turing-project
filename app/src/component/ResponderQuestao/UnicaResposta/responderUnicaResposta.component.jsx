@@ -1,29 +1,26 @@
 import React, { Component } from 'react';
-import { BlocoQuestao, Textarea} from '../../index'
+import { BlocoQuestao, Textarea } from '../../index'
 import './responderUnicaResposta.style.css'
 
 export class RespondeQuestaoUnicaResposta extends Component {
   render() {
     return (
       <div className="container-questoes-resposta">
-
         <BlocoQuestao
           questaoNome="Questão"
           questao={this.props.questao}/>
 
         <div className="container-pergunta">
           <Textarea
+            label="Resposta"
             name="resposta"
             value={this.props.resposta}
-            label="Resposta"
-            maxLength="500"
+            handleChange={this.props.handleChange}
             comIndex={true}
-            tipo={this.props.tipo}
-            idQuestao={this.props.idQuestao}
             index={this.props.index}
-            handleChange={this.props.handleChange}/>
+            tipo={this.props.tipo}
+            idQuestao={this.props.idQuestao}/>
         </div>
-
       </div>
     )
   }
