@@ -24,9 +24,6 @@ public class Usuario {
     private Long id;
 
     @NotEmpty
-    private String senha;
-
-    @NotEmpty
     private String email;
 
     @NotNull
