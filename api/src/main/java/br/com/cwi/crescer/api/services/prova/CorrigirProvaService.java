@@ -4,6 +4,7 @@ import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.enums.TipoDeQuestao;
 import br.com.cwi.crescer.api.domain.prova.Prova;
+import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
 import br.com.cwi.crescer.api.services.respostaprova.CorrigirQuestaoDissertativaService;
 import br.com.cwi.crescer.api.services.respostaprova.CorrigirQuestaoTecnicaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class CorrigirProvaService {
     @Autowired
     private CorrigirQuestaoTecnicaService corrigirQuestaoTecnicaService;
 
+    @Autowired
+    private ProvaRepository repository;
+
 
     public StatusProva corrigir(Long idProva,
                                 List<CorrecaoProvaRequest> listaDeCorrecoes){
@@ -37,7 +41,8 @@ public class CorrigirProvaService {
         }
 
         prova.setStatus(StatusProva.CORRIGIDA);
-
+        repository.save(prova);
+        
         return prova.getStatus();
     }
 }
