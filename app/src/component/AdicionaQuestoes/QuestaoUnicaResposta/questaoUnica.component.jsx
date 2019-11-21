@@ -16,6 +16,8 @@ export class QuestaoUnica extends PureComponent {
     return(
       <>
       <div className="container-questao">
+
+        <div className="container-select">
           <div className="input-principal">
             <Select
               name="especificidade"
@@ -33,36 +35,35 @@ export class QuestaoUnica extends PureComponent {
               object={this.state.niveis}
               placeholder="Selecione o nível"/>
           </div>
+        </div>
 
           <div className="input-principal">
             <Textarea
               label="Questão"
               name="questao"
               value={this.props.questao}
-              onChange={this.props.handleChange}/>
+              handleChange={this.props.handleChange}/>
           </div>
 
           {
-            this.props.questaoTipoTecnica ?
+            this.props.questaoTipoTecnica &&
             <>
             <div className="input-principal">
               <Textarea
                 label="Resposta base"
                 name="respostaBase"
-                value={this.props.respostaBase}
-                onChange={this.props.handleChange}/>
+                value={this.props.resposta}
+                handleChange={this.props.handleChange}/>
             </div>
-            
+
             <div className="input-principal">
               <Textarea
                 label="Testes base"
                 name="testeBase"
-                value={this.props.testeBase}
+                value={this.props.testes}
                 onChange={this.props.handleChange}/>
             </div>
             </>
-            :
-            null
           }
 
           <div className="container-botao">

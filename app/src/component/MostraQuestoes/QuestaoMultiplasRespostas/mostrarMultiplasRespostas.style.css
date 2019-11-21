@@ -1,13 +1,3 @@
-.container-questao-multipla {
-  width: 70%;
-  height: 338px;
-  display: flex;
-  flex-direction: column;
-  align-self: center;
-  margin-bottom: 10px;
-  padding-top: 10px;
-}
-
 .primeira-div {
   display: flex;
   align-items: flex-end;

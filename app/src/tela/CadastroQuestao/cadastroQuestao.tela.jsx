@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import './cadastroQuestao.style.css';
 import { CadastroMultiplaQuestao, CadastroDissertativa, CadastroTecnica, Select } from '../../component/index'
-import { retornarEspecificidades, retornarNiveisDeDificuldade } from '../../services/index'
+import { retornarEspecificidades, retornarNiveisDeDificuldade, retornarTipoDeQuestao } from '../../services/index'
 
 export class CadastrarQuestaoScreen extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			questoes: ['Dissertativa', 'Múltipla Escolha', 'Técnica'],
+			questoes: [],
 			especificidades: [],
-			niveis: []
+			niveis: [],
+			questao: ''
 		}
 	}
 
 	async componentDidMount() {
 		this.setState({
+			questoes: await retornarTipoDeQuestao(),
 			especificidades: await retornarEspecificidades(),
 			niveis: await retornarNiveisDeDificuldade()
 		})
@@ -28,21 +30,21 @@ export class CadastrarQuestaoScreen extends Component {
 	}
 
 	renderComponent() {
-		if (this.state.questao === 'Múltipla Escolha') {
-			return (
-				<CadastroMultiplaQuestao
-					linguagens={this.state.especificidades}
-					niveis={this.state.niveis}
-				/>
-			)
-		} else if (this.state.questao === 'Dissertativa') {
+		if (this.state.questao === this.state.questoes[0]) {
 			return (
 				<CadastroDissertativa
 					linguagens={this.state.especificidades}
 					niveis={this.state.niveis}
 				/>
 			)
-		} else if (this.state.questao === 'Técnica') {
+		} else if (this.state.questao === this.state.questoes[1]) {
+			return (
+				<CadastroMultiplaQuestao
+					linguagens={this.state.especificidades}
+					niveis={this.state.niveis}
+				/>
+			)
+		} else if (this.state.questao === this.state.questoes[2]) {
 			return (
 				<CadastroTecnica
 					linguagens={this.state.especificidades}

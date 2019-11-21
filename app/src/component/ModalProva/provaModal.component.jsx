@@ -10,7 +10,10 @@ export class ProvaModal extends Component {
         <div className="container-titulo">
           <span className="titulo-crie">{this.props.titulo}</span>
         </div>
-        <BotaoPrincipal nome={this.props.nomeBotao} onClick={this.props.onClick}/>
+        {
+          this.props.comBotao && 
+          <BotaoPrincipal nome={this.props.nomeBotao} onClick={this.props.onClick}/>
+        }
       </div>
       </>
     )

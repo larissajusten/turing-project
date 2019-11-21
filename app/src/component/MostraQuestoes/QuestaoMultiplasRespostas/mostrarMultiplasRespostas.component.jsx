@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './mostrarMultiplasRespostas.style.css'
-import { BotaoAdicionar, BlocoVisualizar } from '../../index'
+import { BotaoAdicionar, BlocoVisualizar, BlocoQuestao } from '../../index'
 
 export class MostrarMultiplasRespostas extends Component {
 
@@ -9,12 +9,11 @@ export class MostrarMultiplasRespostas extends Component {
       <div className="container-questao-multipla">
 
         <div className="primeira-div">
-          <div className="container-pergunta-questao mult-questao">
-            <label className="label">Questão de múltipla escolha</label>
-            <div className="questao">
-              {this.props.questao}
-            </div>
-          </div>
+
+          <BlocoQuestao
+            widthpergunta={"width-questao"}
+            questaoNome={this.props.questaoNome}
+            questao={this.props.questao}/>
 
           <div className="container-especificacao">
             <div className="especificacao">{this.props.respostaCorreta}</div>

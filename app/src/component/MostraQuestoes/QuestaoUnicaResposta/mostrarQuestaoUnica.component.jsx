@@ -8,6 +8,7 @@ export class MostrarQuestaoUnica extends Component {
       <div className="container-questao-unica">
 
         <BlocoQuestao
+          widthpergunta={"width-questao"}
           questaoNome={this.props.questaoNome}
           questao={this.props.questao}/>
 

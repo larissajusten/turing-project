@@ -17,6 +17,7 @@ export class Header extends Component {
 					<Link to={"/cadastrar-prova"}>Cadastrar prova</Link>
 					<Link to={"/visualizar-prova"}>Visualizar prova</Link>
 					<Link to={"/resolver-prova"}>Resolver prova</Link>
+					<Link to={"/buscar-provas"}>Busca para correção</Link>
 					<Link to={"/corrigir-prova"}>Corrigir prova</Link>
 				</Menu>
 			</div>

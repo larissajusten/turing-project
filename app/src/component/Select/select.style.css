@@ -1,6 +1,6 @@
 select {
 	height: 37px;
-	width: 450px;
+	width: 100%;
 	display: inline-block;
 	outline: none;
 	font-size: 1em;

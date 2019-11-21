@@ -1,6 +1,7 @@
 /* Dominio Service */
 export { retornarEspecificidades } from './dominio/dominio.service'
 export { retornarNiveisDeDificuldade } from './dominio/dominio.service'
+export { retornarTipoDeQuestao } from './dominio/dominio.service'
 
 /* Questão Multipla Escolha Service*/
 export { adicionarQuestaoMultiplaEscolha } from './questoes/questao-multipla-escolha.service'
@@ -17,7 +18,9 @@ export { retornarQuestoesDissertativasFiltradas } from './questoes/questao-disse
 /* Prova */
 export { adicionarProva } from './prova/prova.service'
 export { retornaProva } from './prova/prova.service'
-export { inserirDataDeInicioDaProva } from './prova/prova.service'
+export { iniciarProva } from './prova/prova.service'
+export { enviarRespostasDaProva } from './prova/prova.service'
+export { retornaProvasParaCorrecao } from './prova/prova.service'
 
 /* Prova */ //incluir questão
 export { incluirDissertativas } from './prova/prova.service'

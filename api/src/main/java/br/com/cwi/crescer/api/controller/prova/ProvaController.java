@@ -142,7 +142,7 @@ public class ProvaController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/finalizar-prova")
     public StatusProva finalizarProva(@PathVariable("id-prova") Long idProva,
-                                             @RequestBody List<ProvaRespondidaRequest> provaRespondida) {
+                                             @Valid @RequestBody List<ProvaRespondidaRequest> provaRespondida) {
         return finalizarProvaService.finalizar(idProva, provaRespondida);
     }
 
@@ -156,7 +156,6 @@ public class ProvaController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/para-correcao")
     public Page<ProvaParaCorrecaoResponse> buscarProvasParaCorrcao(@PageableDefault Pageable pageable) {
-
         return buscarProvasParaCorrecaoService.buscar(pageable);
     }
 

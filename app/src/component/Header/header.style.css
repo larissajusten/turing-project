@@ -1,6 +1,6 @@
 .header {
 	width: 100%;
-	height: 7%;
+  height: 40px;
 	position: fixed;
 	background-color: var(--bg-blue-color);
 	z-index: 1;

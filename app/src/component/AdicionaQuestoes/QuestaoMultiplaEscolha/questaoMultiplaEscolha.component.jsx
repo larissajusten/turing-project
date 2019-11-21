@@ -66,111 +66,110 @@ export class CadastroMultiplaQuestao extends PureComponent {
   render() {
 		return (
 			<>
-				<div className="container-questao-multipla-escolha">
-					<div className="esquerda">
+				<div className="container-questao">
 
-						<div className="input-principal">
-							<Select
-								name="nivel"
-								value={this.state.nivel}
-								onChange={this.handleChange}
-								object={this.state.niveis}
-								placeholder="Selecione o nível"/>
-						</div>
+        <div className="container-select">
+          <div className="input-principal">
+            <Select
+							questoesWidth="width-select"
+              name="especificidade"
+              value={this.state.especificidade}
+              onChange={this.handleChange}
+              object={this.state.linguagens}
+              placeholder="Selecione a especificidade"/>
+            </div>
 
-						<div className="input-principal">
-							<Textarea
-								label="Questão"
-								name="questao"
-								value={this.props.questao}
-								onChange={this.props.handleChange}
-								maxLength="500"/>
-          	</div>
+          <div className="input-principal">
+            <Select
+							questoesWidth="width-select"
+              name="nivel"
+              value={this.state.nivel}
+              onChange={this.handleChange}
+              object={this.state.niveis}
+              placeholder="Selecione o nível"/>
+          </div>
+        </div>
 
-						<Input
-							name="alternativaA"
-							value={this.state.alternativaA}
-							onChange={this.handleChange}
-							maxTam="300"
-							type="text"
-							label="Alternativa A"
-							placeholder=""/>
-
-						<Input
-							name="alternativaB"
-							value={this.state.alternativaB}
-							onChange={this.handleChange}
-							maxTam="300"
-							type="text"
-							label="Alternativa B"
-							placeholder=""/>
-
+					<div className="input-principal">
+						<Textarea
+							label="Questão"
+							name="questao"
+							value={this.state.questao}
+							handleChange={this.handleChange}
+							maxLength="500"/>
 					</div>
 
-					<div className="direita">
+					<Input
+						name="alternativaA"
+						value={this.state.alternativaA}
+						onChange={this.handleChange}
+						maxTam="300"
+						type="text"
+						label="Alternativa A"
+						placeholder=""/>
 
-						<div className="input-principal">
-							<Select
-								name="especificidade"
-								value={this.state.especificidade}
-								onChange={this.handleChange}
-								object={this.state.linguagens}
-								placeholder="Selecione a especificidade"/>
-						</div>
+					<Input
+						name="alternativaB"
+						value={this.state.alternativaB}
+						onChange={this.handleChange}
+						maxTam="300"
+						type="text"
+						label="Alternativa B"
+						placeholder=""/>
 
-						<Input
-							name="alternativaC"
-							value={this.state.alternativaC}
-							onChange={this.handleChange}
-							maxTam="300"
-							type="text"
-							label="Alternativa C"
-							placeholder=""/>
+					<Input
+						name="alternativaC"
+						value={this.state.alternativaC}
+						onChange={this.handleChange}
+						maxTam="300"
+						type="text"
+						label="Alternativa C"
+						placeholder=""/>
 
-						<Input
-							name="alternativaD"
-							value={this.state.alternativaD}
-							onChange={this.handleChange}
-							maxTam="300"
-							type="text"
-							label="Alternativa D"
-							placeholder=""/>
+					<Input
+						name="alternativaD"
+						value={this.state.alternativaD}
+						onChange={this.handleChange}
+						maxTam="300"
+						type="text"
+						label="Alternativa D"
+						placeholder=""/>
 
-						<Input
-							name="alternativaE"
-							value={this.state.alternativaE}
-							onChange={this.handleChange}
-							maxTam="300"
-							type="text"
-							label="Alternativa E"
-							placeholder=""/>
+					<Input
+						name="alternativaE"
+						value={this.state.alternativaE}
+						onChange={this.handleChange}
+						maxTam="300"
+						type="text"
+						label="Alternativa E"
+						placeholder=""/>
 
-						<div className="input-principal">
-							<label className="label">Resposta correta</label>
-							<div className="container-radio-buttons">
-								<div className="buttonRadio">
-									<input type="radio" name="resposta" value="A" onClick={this.handleChange}/>
-									A
-								</div>
-								<div className="buttonRadio">
-									<input type="radio" name="resposta" value="B" onClick={this.handleChange}/>
-									B
-								</div>
-								<div className="buttonRadio">
-									<input type="radio" name="resposta" value="C" onClick={this.handleChange}/>
-									C
-								</div>
-								<div className="buttonRadio">
-									<input type="radio" name="resposta" value="D" onClick={this.handleChange}/>
-									D
-								</div>
-								<div className="buttonRadio">
-									<input type="radio" name="resposta" value="E" onClick={this.handleChange}/>
-									E
-								</div>
+					<div className="input-principal">
+						<label className="label">Resposta correta</label>
+						<div className="container-radio-buttons">
+							<div className="buttonRadio">
+								<input type="radio" name="resposta" value="A" onClick={this.handleChange}/>
+								A
+							</div>
+							<div className="buttonRadio">
+								<input type="radio" name="resposta" value="B" onClick={this.handleChange}/>
+								B
+							</div>
+							<div className="buttonRadio">
+								<input type="radio" name="resposta" value="C" onClick={this.handleChange}/>
+								C
+							</div>
+							<div className="buttonRadio">
+								<input type="radio" name="resposta" value="D" onClick={this.handleChange}/>
+								D
+							</div>
+							<div className="buttonRadio">
+								<input type="radio" name="resposta" value="E" onClick={this.handleChange}/>
+								E
 							</div>
 						</div>
 					</div>
+
 				</div>
 
 				<div className="container-botao">
