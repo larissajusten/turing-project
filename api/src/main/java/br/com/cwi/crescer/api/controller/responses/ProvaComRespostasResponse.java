@@ -16,7 +16,5 @@ public class ProvaComRespostasResponse {
 
     private List<QuestaoDissertativaParaCorrecaoResponse> questoesDissertativas;
 
-    private List<QuestaoMultiplaEscolhaParaCorrecaoResponse> questoesMultiplaEscolha;
-
     private List<QuestaoTecnicaParaCorrecaoResponse> questoesTecnicas;
 }
