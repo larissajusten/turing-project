@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.controller.prova;
 
+import br.com.cwi.crescer.api.controller.responses.ProvaCorrigidaResponse;
 import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaDissertativaService;
 import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaGeralDissertativaService;
 import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaTecnicaService;
@@ -7,6 +8,7 @@ import br.com.cwi.crescer.api.services.provaquestao.VerificarNumeroTotalDeQuesto
 import br.com.cwi.crescer.api.services.provaquestao.CalcularNumeroDeAcertosMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaGeralTecnicaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -67,4 +69,5 @@ public class ResultadosProvaController {
     public double mediaDeNotaDasQuestoesDissertativasGeral(@PathVariable("id-questao") Long idQuestao) {
         return calcularNotaMediaGeralDissertativaService.calcular(idQuestao);
     }
+
 }

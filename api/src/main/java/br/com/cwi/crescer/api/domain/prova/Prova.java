@@ -42,6 +42,9 @@ public class Prova {
     @Enumerated(EnumType.STRING)
     private StatusProva status;
 
+    @Column(precision = 2, scale = 10, name = "nota", columnDefinition = "NUMBER (2, 10)")
+    private double nota;
+
     @NotEmpty
     @Column(name = "NOME_CANDIDATO")
     private String nomeCandidato;
