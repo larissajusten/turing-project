@@ -12,7 +12,8 @@ export class CadastroTecnica extends PureComponent {
       especificidade: null,
       nivel: null,
       questao: null,
-      resposta: null
+      respostaBase: null,
+      testeBase: null
     }
   }
 
@@ -29,7 +30,9 @@ export class CadastroTecnica extends PureComponent {
     const questao = {
       "questao": this.state.questao,
       "especificidade": this.state.especificidade,
-      "nivelDeDificuldade": this.state.nivel
+      "nivelDeDificuldade": this.state.nivel,
+      "testeBase": this.state.testeBase,
+      "respostaBase": this.state.respostaBase
     }
 
     try{
@@ -57,7 +60,8 @@ export class CadastroTecnica extends PureComponent {
         especificidade = {this.state.especificidade}
         nivel = {this.state.nivel}
         questao = {this.state.questao}
-        resposta = {this.state.resposta}
+        resposta = {this.state.respostaBase}
+        testeBase = {this.state.testeBase}
         handleChange = {this.handleChange}
         handleClickSalvarQuestao = {this.handleClickSalvarQuestao}/>
       </>

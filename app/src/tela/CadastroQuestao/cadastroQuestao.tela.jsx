@@ -9,8 +9,7 @@ export class CadastrarQuestaoScreen extends Component {
 		this.state = {
 			questoes: ['Dissertativa', 'Múltipla Escolha', 'Técnica'],
 			especificidades: [],
-			niveis: [],
-			questao: null
+			niveis: []
 		}
 	}
 

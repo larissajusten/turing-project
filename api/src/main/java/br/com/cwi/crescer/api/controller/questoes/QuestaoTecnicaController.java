@@ -3,6 +3,8 @@ package br.com.cwi.crescer.api.controller.questoes;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesBaseRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoTecnicaRequest;
+import br.com.cwi.crescer.api.domain.enums.Especificidade;
+import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.services.questaotecnica.AdicionarQuestaoTecnicaService;
 import br.com.cwi.crescer.api.services.questaotecnica.BuscarQuestoesTecnicasFiltradasPaginadoService;
@@ -49,9 +51,11 @@ public class QuestaoTecnicaController {
 
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/todas-questoes-filtradas")
-    public Page<QuestaoTecnica> buscarTodasQuestoesTecnicasFiltradas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesBaseRequest request) {
-        return buscarPaginado.buscar(pageable, request.getEspecificidade(), request.getNivelDeDificuldade());
+    @PutMapping("/todas-questoes-filtradas/{especificidade}/{nivel}")
+    public Page<QuestaoTecnica> buscarTodasQuestoesTecnicasFiltradas(@PageableDefault Pageable pageable,
+                                                                     @PathVariable("especificidade") Especificidade especificidade,
+                                                                     @PathVariable("nivel") NivelDeDificuldade nivelDeDificuldade) {
+        return buscarPaginado.buscar(pageable, especificidade, nivelDeDificuldade);
     }
 
 }

@@ -39,21 +39,30 @@ export class QuestaoUnica extends PureComponent {
               label="Questão"
               name="questao"
               value={this.props.questao}
-              onChange={this.props.handleChange}
-              maxLength="500"/>
+              onChange={this.props.handleChange}/>
           </div>
 
           {
-            this.props.questaoTipoTecnica &&
+            this.props.questaoTipoTecnica ?
+            <>
             <div className="input-principal">
               <Textarea
-                name="resposta"
-                value={this.props.resposta}
-                label="Resposta"
-                maxLength="500"
-                comIndex={false}
-                handleChange={this.props.handleChange}/>
+                label="Resposta base"
+                name="respostaBase"
+                value={this.props.respostaBase}
+                onChange={this.props.handleChange}/>
             </div>
+            
+            <div className="input-principal">
+              <Textarea
+                label="Testes base"
+                name="testeBase"
+                value={this.props.testeBase}
+                onChange={this.props.handleChange}/>
+            </div>
+            </>
+            :
+            null
           }
 
           <div className="container-botao">

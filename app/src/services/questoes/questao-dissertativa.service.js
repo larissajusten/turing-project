@@ -8,7 +8,6 @@ export const adicionarQuestaoDissertativa = async (questao) => {
 
 export const retornarQuestoesDissertativasFiltradas = async (paginaAtual, especificidade, nivel) => {
   const response = await Axios.get(`${baseUrl}/questao-dissertativa/todas-questoes-filtradas/${especificidade}/${nivel}?page=${paginaAtual}`)
-  console.log(response)
   const dados = [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
   return dados
 }

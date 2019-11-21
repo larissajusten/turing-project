@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './buscarQuestao.style.css'
-import Paginator from 'react-js-paginator';
-import { BotaoPrincipal, CardBuscarQuestao, BuscarQuestao, Notificacao } from '../../component/index'
+import { BotaoPrincipal, CardBuscarQuestao, BuscarQuestao, Notificacao, Paginacao } from '../../component/index'
 import { retornarEspecificidades,
         retornarNiveisDeDificuldade,
         retornarQuestoesTecnicasFiltradas,
@@ -47,7 +46,6 @@ export class BuscarQuestaoScreen extends Component {
     try {
       let dadosDaResponse = await retornarQuestoesDissertativasFiltradas(this.state.current_page, especificidade, nivelDeDificuldade)
       Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
-      console.log(dadosDaResponse[0])
       this.setState({
         questoes: dadosDaResponse[0],
         totalPaginas: dadosDaResponse[1],
@@ -61,7 +59,6 @@ export class BuscarQuestaoScreen extends Component {
           return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
         })
       } else {
-        console.log(error.response.data.message)
         Notificacao('Falha', `${error.response.data.message}`, 'danger')
       }
     }
@@ -127,10 +124,17 @@ export class BuscarQuestaoScreen extends Component {
     }
   }
 
-  makeHttpRequestWithPage = async pageNumber => {
+  buscaPagina = async pageNumber => {
     const { especificidade, nivel: nivelDeDificuldade } = this.state
+    let dadosDaResponse
 
-    const dadosDaResponse = await retornarQuestoesTecnicasFiltradas(pageNumber, especificidade, nivelDeDificuldade)
+    if (this.state.tipo === this.state.tipos[0]) {
+      dadosDaResponse = await retornarQuestoesDissertativasFiltradas(pageNumber, especificidade, nivelDeDificuldade)
+    } else if (this.state.tipo === this.state.tipos[1]) {
+      dadosDaResponse = await retornarQuestoesMultiplasEscolhasFiltradas(pageNumber, especificidade, nivelDeDificuldade)
+    } else {
+      dadosDaResponse = await retornarQuestoesTecnicasFiltradas(pageNumber, especificidade, nivelDeDificuldade)
+    }
 
     this.setState({
       questoes: dadosDaResponse[0],
@@ -157,6 +161,11 @@ export class BuscarQuestaoScreen extends Component {
               )
             })
           }
+
+          <Paginacao
+            paginaAtual={this.state.current_page}
+            onClickVoltar={this.buscaPagina}
+            onClickProxima={this.buscaPagina}/>
         </div>
       </>
     )
@@ -184,12 +193,6 @@ export class BuscarQuestaoScreen extends Component {
             this.state.questoes &&
               this.renderPesquisa()
           }
-
-          <Paginator
-            pageSize={10}
-            totalElements={64}
-            onPageChangeCallback={this.makeHttpRequestWithPage(this.state.current_page+1)}
-          />
 
           <div className="container-botao">
             <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarPesquisa} />
