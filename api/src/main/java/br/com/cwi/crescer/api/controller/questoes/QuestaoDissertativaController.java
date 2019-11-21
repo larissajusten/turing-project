@@ -1,6 +1,5 @@
 package br.com.cwi.crescer.api.controller.questoes;
 
-import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesBaseRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;

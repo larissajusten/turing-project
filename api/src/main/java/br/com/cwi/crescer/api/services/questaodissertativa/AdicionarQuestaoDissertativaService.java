@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.services.questaodissertativa;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternativaRequest;
-import br.com.cwi.crescer.api.domain.enums.Perfil;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoDissertativaMapper;

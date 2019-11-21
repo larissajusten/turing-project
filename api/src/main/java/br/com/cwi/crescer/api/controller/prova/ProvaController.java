@@ -155,7 +155,7 @@ public class ProvaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/para-correcao")
-    public Page<ProvaParaCorrecaoResponse> buscarProvasParaCorrcao(@PageableDefault Pageable pageable) {
+    public Page<ProvaParaCorrecaoResponse> buscarProvasParaCorrecao(@PageableDefault Pageable pageable) {
 
         return buscarProvasParaCorrecaoService.buscar(pageable);
     }
