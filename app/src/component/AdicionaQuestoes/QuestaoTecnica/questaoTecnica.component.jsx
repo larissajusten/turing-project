@@ -61,7 +61,7 @@ export class CadastroTecnica extends PureComponent {
         nivel = {this.state.nivel}
         questao = {this.state.questao}
         resposta = {this.state.respostaBase}
-        testeBase = {this.state.testeBase}
+        testes = {this.state.testeBase}
         handleChange = {this.handleChange}
         handleClickSalvarQuestao = {this.handleClickSalvarQuestao}/>
       </>

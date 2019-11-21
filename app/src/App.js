@@ -7,7 +7,7 @@ import { CadastrarQuestaoScreen,
 				CadastrarProvaScreen,
 				VisualizarProvaScreen,
 				ResolverProvaScreen,
-				BuscarProvaCorrecaoScreen, 
+				BuscarProvaCorrecaoScreen,
 				CorrigirProvaScreen } from './tela/index';
 import { Header, Footer } from './component/index'
 

@@ -2,6 +2,7 @@ package br.com.cwi.crescer.api.controller;
 
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
+import br.com.cwi.crescer.api.domain.enums.TipoDeQuestao;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,5 +28,12 @@ public class DominioController {
     @GetMapping("/niveis-dificuldade")
     public List<NivelDeDificuldade> nivelDeDificuldades() {
         return Arrays.asList(NivelDeDificuldade.values());
+    }
+
+    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/tipo-de-questao")
+    public List<TipoDeQuestao> tipoDeQuestao() {
+        return Arrays.asList(TipoDeQuestao.values());
     }
 }

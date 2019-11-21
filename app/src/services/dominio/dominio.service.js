@@ -10,3 +10,8 @@ export const retornarNiveisDeDificuldade = async () => {
   const response = await Axios.get(`${baseUrl}/dominio/niveis-dificuldade`)
   return response.data
 }
+
+export const retornarTipoDeQuestao = async () => {
+  const response = await Axios.get(`${baseUrl}/dominio/tipo-de-questao`)
+  return response.data
+}

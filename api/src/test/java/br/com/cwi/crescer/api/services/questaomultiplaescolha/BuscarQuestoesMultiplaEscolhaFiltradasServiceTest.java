@@ -11,8 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,7 @@ import java.util.List;
 public class BuscarQuestoesMultiplaEscolhaFiltradasServiceTest {
 
     @InjectMocks
-    BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService;
+    BuscarQuestoesMultiplaEscolhaFiltradasService buscarQuestoesMultiplaEscolhaFiltradasService;
 
     @Mock
     QuestaoMultiplaEscolhaRepository repository;
@@ -30,31 +28,29 @@ public class BuscarQuestoesMultiplaEscolhaFiltradasServiceTest {
     public void deveChamarQuestaoMultiplaEscolhaRepositoryQuestaoBuscarQuestoesMultiplaEscolhaFiltradasService() {
 
         List<QuestaoMultiplaEscolha> questaoMultiplaEscolhas = new ArrayList<>();
-        Pageable quantos = PageRequest.of(0, 10);
         Mockito.when(repository
-                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos))
+                .acharPorNivelEEspecificidadeListado(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
                 .thenReturn(questaoMultiplaEscolhas);
 
-        buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 10);
+        buscarQuestoesMultiplaEscolhaFiltradasService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
         Mockito.verify(repository)
-                                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos);
-   }
+                .acharPorNivelEEspecificidadeListado(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
+    }
 
     @Test
     public void deveRetornarUmaListaDeQuestaoMultiplaEscolhaQuestaoQuandoBuscarQuestoesMultiplaEscolhaFiltradasService() {
 
         List<QuestaoMultiplaEscolha> questaoMultiplaEscolhas = new ArrayList<>();
-        Pageable quantos = PageRequest.of(0, 10);
 
         Mockito.when(repository
-                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos))
+                .acharPorNivelEEspecificidadeListado(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
                 .thenReturn(questaoMultiplaEscolhas);
 
-        buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 10);
+        buscarQuestoesMultiplaEscolhaFiltradasService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
-        Assert.assertEquals( buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService
-                .buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 10), questaoMultiplaEscolhas);
+        Assert.assertEquals(buscarQuestoesMultiplaEscolhaFiltradasService
+                .buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL), questaoMultiplaEscolhas);
     }
 
 

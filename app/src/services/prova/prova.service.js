@@ -41,12 +41,18 @@ export const removerQuestaoMultiplaEscolha = async (idProva, idQuestao) => {
   return response.data
 }
 
-export const inserirDataDeInicioDaProva = async (idProva) => {
+export const iniciarProva = async (idProva) => {
   const response = await Axios.put(`${baseUrl}/prova/${idProva}/iniciar-prova`)
   return response.data
 }
 
-export const corrigirProva = async (idProva, body) => {
-  const response = await Axios.put(`${baseUrl}/prova/${idProva}-corrigir`, body)
+export const enviarRespostasDaProva = async (idProva, respostas) => {
+  const response = await Axios.put(`${baseUrl}/prova/${idProva}/finalizar-prova`, respostas)
   return response.data
+}
+
+export const retornaProvasParaCorrecao = async (paginaAtual) => {
+  const response = await Axios.get(`${baseUrl}/prova/para-correcao?page=${paginaAtual}`)
+  //console.log(response)
+  return [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
 }

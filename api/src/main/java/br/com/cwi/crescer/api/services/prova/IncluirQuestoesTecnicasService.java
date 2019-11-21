@@ -5,7 +5,7 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoTecnica;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoTecnicaRepository;
-import br.com.cwi.crescer.api.services.questaotecnica.AcrescentarQuantiaDeVezesUsadaQuestaoTecnica;
+import br.com.cwi.crescer.api.services.questaotecnica.AcrescentarQuantiaDeVezesUsadaQuestaoTecnicaService;
 import br.com.cwi.crescer.api.services.questaotecnica.ListarQuestoesTecnicasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,12 +25,12 @@ public class IncluirQuestoesTecnicasService {
     private ProvaQuestaoTecnicaRepository repository;
 
     @Autowired
-    private AcrescentarQuantiaDeVezesUsadaQuestaoTecnica acrescentarQuantiaDeVezesUsadaQuestaoTecnica;
+    private AcrescentarQuantiaDeVezesUsadaQuestaoTecnicaService acrescentarQuantiaDeVezesUsadaQuestaoTecnicaService;
 
     public void incluir(Long idProva, BuscaQuestoesRequest request) {
         List<QuestaoTecnica> lista = listarQuestoesTecnicasFiltradasService.listar(request);
 
-        acrescentarQuantiaDeVezesUsadaQuestaoTecnica.addVezesQuestaoTecnica(lista);
+        acrescentarQuantiaDeVezesUsadaQuestaoTecnicaService.addVezesQuestaoTecnica(lista);
 
         Prova prova = buscarProvaPorId.buscar(idProva);
 

@@ -77,6 +77,7 @@ export class VisualizarProvaScreen extends Component {
           return <MostrarMultiplasRespostas
             key={key}
             id={item.id}
+            questaoNome="Questão técnica"
             questao={item.questao}
             nivel={item.nivelDeDificuldade}
             especificidade={item.especificidade}
@@ -143,8 +144,13 @@ export class VisualizarProvaScreen extends Component {
           <div className="container-infos">
             <BlocoVisualizar
               classe="blocoVisualizar-email"
+              nome="Nome do candidato"
+              conteudo={this.state.prova.nomeCandidato}/>
+
+            <BlocoVisualizar
+              classe="blocoVisualizar-email"
               nome="Email do candidato"
-              conteudo={this.state.prova.email}/>
+              conteudo={this.state.prova.emailCandidato}/>
 
             <div className="container-infos-tempos">
               <BlocoVisualizar

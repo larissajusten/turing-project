@@ -46,8 +46,7 @@ public class ListarQuestoesMultiplaEscolhaFiltradasService {
     }
 
     public Page<QuestaoMultiplaEscolha> listarPaginado(BuscaQuestoesRequest request, Pageable pageable) {
-        Page<QuestaoMultiplaEscolha> lista = new PageImpl<>(Collections.emptyList());
-
+        List<QuestaoMultiplaEscolha> listaFinal = new ArrayList<>();
         List<QuestaoMultiplaEscolha> listaQueAtendeRequisitos = buscarQuestoesMultiplaEscolhaFiltradasService
                 .buscar(request.getEspecificidade(), request.getNivelDeDificuldade());
 
@@ -58,9 +57,12 @@ public class ListarQuestoesMultiplaEscolhaFiltradasService {
         int quant = request.getQuantidadeDeQuestoes();
         int cont = 0;
         while (cont < quant) {
-            lista.getContent().add(listaQueAtendeRequisitos.get(cont));
+            listaFinal.add(listaQueAtendeRequisitos.get(cont));
             cont++;
         }
+
+        Page<QuestaoMultiplaEscolha> lista = new PageImpl<>(listaFinal, pageable, listaFinal.size());
+
         return lista;
     }
 }

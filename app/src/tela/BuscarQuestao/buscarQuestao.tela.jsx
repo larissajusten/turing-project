@@ -5,7 +5,8 @@ import { retornarEspecificidades,
         retornarNiveisDeDificuldade,
         retornarQuestoesTecnicasFiltradas,
         retornarQuestoesDissertativasFiltradas,
-        retornarQuestoesMultiplasEscolhasFiltradas } from '../../services/index'
+        retornarQuestoesMultiplasEscolhasFiltradas,
+        retornarTipoDeQuestao} from '../../services/index'
 
 const mensagemSucessoNotificacao = 'Busca bem sucedida'
 export class BuscarQuestaoScreen extends Component {
@@ -13,7 +14,7 @@ export class BuscarQuestaoScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tipos: ['Dissertativa', 'Múltipla Escolha', 'Técnica'],
+      tipos: [],
       especificidades: [],
       niveis: [],
       tipo: null,
@@ -30,6 +31,7 @@ export class BuscarQuestaoScreen extends Component {
 
   async componentDidMount() {
     this.setState({
+      tipos: await retornarTipoDeQuestao(),
       especificidades: await retornarEspecificidades(),
       niveis: await retornarNiveisDeDificuldade()
     })
@@ -163,6 +165,7 @@ export class BuscarQuestaoScreen extends Component {
           }
 
           <Paginacao
+            totalPaginas={this.totalPaginas}
             paginaAtual={this.state.current_page}
             onClickVoltar={this.buscaPagina}
             onClickProxima={this.buscaPagina}/>
