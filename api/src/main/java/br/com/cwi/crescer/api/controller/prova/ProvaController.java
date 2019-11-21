@@ -70,6 +70,9 @@ public class ProvaController {
     @Autowired
     private BuscarProvasCorrigidasComNotaService buscarProvasCorrigidasComNotaService;
 
+    @Autowired
+    private BuscarProvaComRespostasDoUsuarioService buscarProvaComRespostasDoUsuario;
+
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -164,8 +167,9 @@ public class ProvaController {
         return buscarProvasParaCorrecaoService.buscar(pageable);
     }
 
+
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("{id-prova}-corrigir")
+    @PutMapping("/{id-prova}-corrigir")
     public StatusProva corrigirProva(@PathVariable("id-prova") Long idProva, @RequestBody
                                      List<CorrecaoProvaRequest> listaDeCorrecoes){
         return corrigirProvaService.corrigir(idProva, listaDeCorrecoes);
