@@ -45,3 +45,8 @@ export const inserirDataDeInicioDaProva = async (idProva) => {
   const response = await Axios.put(`${baseUrl}/prova/${idProva}/iniciar-prova`)
   return response.data
 }
+
+export const corrigirProva = async (idProva, body) => {
+  const response = await Axios.put(`${baseUrl}/prova/${idProva}-corrigir`, body)
+  return response.data
+}

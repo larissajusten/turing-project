@@ -3,11 +3,19 @@ server:
   servlet:
     context-path: "/cwi-turing"
 
+#security:
+#  oauth2:
+#    resource:
+#      user-info-uri: https://auth-homolog.cwi.com.br/connect/userinfo
+##      jwt:
+##        key-set-uri: https://auth-homolog.cwi.com.br/.well-known/openid-configuration/jwks
+
+
 spring:
   jpa:
     database-platform: org.hibernate.dialect.Oracle10gDialect
-    hibernate:
-      ddl-auto: validate
+    #    hibernate:
+    #      ddl-auto: validate
     show-sql: true
     properties:
       hibernate:
@@ -30,22 +38,8 @@ spring:
     test-connection: true
 
   datasource:
-    #antonio
-    #url: jdbc:oracle:thin:@192.168.56.106:1521/XEPDB1
-
-    #larissa
-    #url: jdbc:oracle:thin:@192.168.248.3:1521/XEPDB1
-
-    #vanessa
-    #url: jdbc:oracle:thin:@192.168.56.101:1521/XE
-    #url: jdbc:oracle:thin:@192.168.64.3:1521/XEPDB1
-
-
-    #username: CWITURING
-    #password: CWITURING
-
-    #CWI
     url: jdbc:oracle:thin:@10.99.220.139:1521/XEPDB1
     username: CRECWITURING
     password: CRECWITURING
+
     driver-class-name: oracle.jdbc.OracleDriver
