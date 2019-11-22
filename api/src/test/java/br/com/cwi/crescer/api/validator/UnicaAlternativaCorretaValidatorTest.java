@@ -44,9 +44,9 @@ public class UnicaAlternativaCorretaValidatorTest {
 
         AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaA = new AlternativaMultiplaEscolhaRequest("A", true);
         AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaB = new AlternativaMultiplaEscolhaRequest("B", true);
-        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaC = new AlternativaMultiplaEscolhaRequest("C", false);
-        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaD = new AlternativaMultiplaEscolhaRequest("D", false);
-        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaE = new AlternativaMultiplaEscolhaRequest("E", false);
+        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaC = new AlternativaMultiplaEscolhaRequest("C", true);
+        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaD = new AlternativaMultiplaEscolhaRequest("D", true);
+        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaE = new AlternativaMultiplaEscolhaRequest("E", true);
 
         QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest = new QuestaoMultiplaEscolhaRequest(
                 "Teste",
