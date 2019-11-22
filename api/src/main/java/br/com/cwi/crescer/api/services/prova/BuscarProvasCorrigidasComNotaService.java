@@ -34,7 +34,7 @@ public class BuscarProvasCorrigidasComNotaService {
 
     public List<ProvaCorrigidaResponse> buscar(String nomeOuEmail) {
 
-        List<Prova> provas = repository.findPorNomeUsuarioCorrigida(nomeOuEmail, StatusProva.CORRIGIDA);
+        List<Prova> provas = repository.findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals(nomeOuEmail, nomeOuEmail, StatusProva.CORRIGIDA);
         List<ProvaCorrigidaResponse> listaDasProvas = new ArrayList<>();
 
         validator.validar(provas);
