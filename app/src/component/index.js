@@ -10,7 +10,7 @@ export { Paginacao } from './Paginacao/paginacao.component.jsx'
 export { BotaoPrincipal } from './BotaoPrincipal/botaoPrincipal.component.jsx'
 export { BotaoAdicionar } from './BotaoAdicionar/botaoAdicionar.component.jsx'
 
-/* Blocos */
+/* Blocos uteis */
 export { BlocoVisualizar } from './BlocoVisualizar/blocoVisualizar.component.jsx'
 export { BlocoQuestao } from './BlocoQuestao/blocoQuestao.component.jsx'
 export { CardBuscarQuestao } from './CardQuestao/cardQuestao.component.jsx'
@@ -23,6 +23,9 @@ export { MostrarMultiplasRespostas } from './MostraQuestoes/QuestaoMultiplasResp
 /* Blocos para responder as questões */
 export { RespondeQuestaoUnicaResposta } from './ResponderQuestao/UnicaResposta/responderUnicaResposta.component.jsx'
 export { RespondeQuestaoMultiplasRespostas } from './ResponderQuestao/MultiplasRespostas/responderMultiplasRespostas.component.jsx'
+
+/* Blocos para adicionar comentario e nota*/
+export { CorrigirUnicaResposta } from './CorrigirQuestao/UnicaResposta/corrigirUnicaResposta.component.jsx'
 
 /* Cadastro de questões */
 export { QuestaoUnica } from './AdicionaQuestoes/QuestaoUnicaResposta/questaoUnica.component.jsx'

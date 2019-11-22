@@ -1,52 +1,71 @@
 import React, { Component } from 'react'
-import { retornarProvaComRespostas, corrigirProva } from '../../services/prova/prova.service'
-import { retornarTipoDeQuestao } from '../../services/index'
-import { RespondeQuestaoUnicaResposta, BotaoPrincipal, BlocoQuestao, Textarea, Input } from '../../component/index'
+import { retornarTipoDeQuestao, retornarProvaComRespostas, corrigirProva} from '../../services/index'
+import { CorrigirUnicaResposta, BotaoPrincipal, Notificacao } from '../../component/index'
 import './corrigirProva.style.css'
 
-const objetoCorrecaoProva = {}
-const correcao =  { idQuestao: null, idResposta: null, nota: 0, comentario: '' }
-
+const objetoCorrecaoProva =  { idQuestao: '', idResposta: '', nota: '', comentario: '' }
 export class CorrigirProvaScreen extends Component {
   constructor(props){
     super(props)
     this.state = {
-      idProva: 73, //localStorage.getItem('idProva'),
+      idProva: 73,//localStorage.getItem('idProvaParaCorrigir'),
       prova: null,
       tiposDeQuestoes: [],
-      arrayRespostas: [objetoCorrecaoProva], 
-      listaDeCorrecoes: [correcao]
+      arrayCorrecoes: [objetoCorrecaoProva]
     }
+    this.lengthDissertativas = 0
+    this.lengthTecnicas = 0
   }
 
   componentDidMount = async () => {
     this.setState({
-      prova: await retornarProvaComRespostas(this.state.idProva),
-      tiposDeQuestoes: await retornarTipoDeQuestao()
+      tiposDeQuestoes: await retornarTipoDeQuestao(),
+      prova: await retornarProvaComRespostas(this.state.idProva)
     }, () => {
-      const quantidadeObjetos = (
-                                  this.state.prova.questoesDissertativas.length +
-                                  this.state.prova.questoesTecnicas.length)
+      const quantidadeDeObjetos = (this.state.prova.questoesDissertativas.length + this.state.prova.questoesTecnicas.length)
 
-      const newArray = [...new Array(quantidadeObjetos)]
-      const arrayRespostas = newArray.map(() => ({ ...objetoCorrecaoProva }))
+      const newArray = [...new Array(quantidadeDeObjetos)]
+      const arrayCorrecoes = newArray.map(() => ({ ...objetoCorrecaoProva }))
 
       this.setState({
-        arrayRespostas
+        arrayCorrecoes
       })
 
       this.lengthDissertativas = this.state.prova.questoesDissertativas.length
       this.lengthTecnicas = this.state.prova.questoesTecnicas.length
-    })
-      
+    }) 
   }
 
-  handleChange = (event) => {
+  handleClickResponderQuestoesUnicaResposta = (event, index, idQuestao, tipo) => {
     const { name, value } = event.target
+
+    const array = this.state.arrayCorrecoes
+
+    array[index][name] = value;
+    array[index].idQuestao = idQuestao;
+    array[index].tipo = tipo;
+
     this.setState({
-        [name]: value
+      arrayCorrecoes: array
     })
-	}
+  }
+
+  handleClickEnviarCorrecao = async(event) => {
+    event.preventDefault()
+    try{
+      await corrigirProva(this.state.idProva, this.state.arrayCorrecoes)
+      Notificacao('Sucesso', 'Prova salva', 'success')
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'danger')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
 
   renderQuestoesTecnicas() {
     return (
@@ -54,24 +73,16 @@ export class CorrigirProvaScreen extends Component {
       {
         this.state.prova.questoesTecnicas &&
         this.state.prova.questoesTecnicas.map((item, key) => {
-          return (
-          <>
-          <h3>Questão</h3>
-          <BlocoQuestao
-                    index={key}
-                    tipo={this.state.tiposDeQuestoes}
+          return <CorrigirUnicaResposta
+                    key={key}
+                    index={key+this.lengthDissertativas}
                     idQuestao={item.id}
+                    tipo={this.state.tiposDeQuestoes[2]}
                     questao={item.questao}
-          />
-          <h3>Resposta</h3> 
-            <BlocoQuestao
-                    index={key}
-                    tipo={this.state.tiposDeQuestoes}
-                    idQuestao={item.id}
-                    questao={item.resposta}
-            />
-          </>
-          )
+                    resposta={item.resposta}
+                    comentario={this.state.arrayCorrecoes[key+this.lengthDissertativas].comentario}
+                    nota={this.state.arrayCorrecoes[key+this.lengthDissertativas].nota}
+                    handleChange={this.handleClickResponderQuestoesUnicaResposta}/>
         })
       }
       </>
@@ -84,40 +95,16 @@ export class CorrigirProvaScreen extends Component {
       {
         this.state.prova.questoesDissertativas &&
         this.state.prova.questoesDissertativas.map((item, key) => {
-          return(
-            <>
-            <h3>Questão</h3> 
-            <BlocoQuestao
-                    key={key}
-                    index={key}
-                    tipo={this.state.tiposDeQuestoes}
-                    idQuestao={item.id}
-                    questao={item.questao}
-                    />
-          <h3>Resposta</h3> 
-            <BlocoQuestao
-                    key={key}
-                    index={key}
-                    tipo={this.state.tiposDeQuestoes}
-                    idQuestao={item.id}
-                    questao={item.resposta}
-            />
-          
-          <div className="comentario-nota">
-            <Input 
-            label="Nota"
-            step=".01"
-            //value={this.state.listaDeCorrecoes[key].nota}
-            />
-          <Textarea
-							label="Comentário"
-							name="comentario"
-							//value={this.state.listaDeCorrecoes[key].comentario}
-							handleChange={this.handleChange}
-							maxLength="500"/>
-          </div>  
-        </>
-        )
+          return <CorrigirUnicaResposta
+                  key={key}
+                  index={key}
+                  idQuestao={item.idQuestao}
+                  tipo={this.state.tiposDeQuestoes[0]}
+                  questao={item.questao}
+                  resposta={item.resposta}
+                  comentario={this.state.arrayCorrecoes[key].comentario}
+                  nota={this.state.arrayCorrecoes[key].nota}
+                  handleChange={this.handleClickResponderQuestoesUnicaResposta}/>
         })
       }
       </>
@@ -125,11 +112,12 @@ export class CorrigirProvaScreen extends Component {
   }
 
   renderProva() {
+    console.log(this.state.arrayCorrecoes.length)
     return(
       <>
       {
-        this.state.prova &&
-        <div className="container-tela">
+        this.state.prova && this.state.arrayCorrecoes.length > 1 &&
+          <>
           <div className="container-titulo">
             <span className="titulo-crie">Correção da prova de {this.state.prova.nomeCandidato}</span>
           </div>
@@ -140,28 +128,18 @@ export class CorrigirProvaScreen extends Component {
           <div className="container-botao">
             <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarCorrecao} />
           </div>
-        </div>
+          </>
       }
       </>
     )
   }
-  
-  handleClickEnviarCorrecao = async(event) => {
-    event.preventDefault()
-    console.log(this.state.arrayRespostas)
-    this.setState({
-      statusProva: await corrigirProva(this.state.idProva, this.state.arrayRespostas)
-    })
-  }
-  
-  render() { 
+
+  render() {
     return (
       <div className="container-tela">
         {this.renderProva()}
       </div>
     )
-    }
-
-
   }
+}
 
