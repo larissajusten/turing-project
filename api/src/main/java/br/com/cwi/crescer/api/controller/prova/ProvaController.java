@@ -177,9 +177,9 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/provas-corrigidas")
-    public Page<ProvaCorrigidaResponse> provaCompletaComRespostas(@PageableDefault Pageable pageable) {
-        return buscarProvasCorrigidasComNotaService.buscar(pageable);
+    @GetMapping("/{nome-ou-email}/provas-corrigidas")
+    public List<ProvaCorrigidaResponse> provaCompletaComRespostas(@PathVariable("nome-ou-email") String nomeOuEmail) {
+        return buscarProvasCorrigidasComNotaService.buscar(nomeOuEmail);
     }
 
     @ResponseStatus(HttpStatus.OK)
