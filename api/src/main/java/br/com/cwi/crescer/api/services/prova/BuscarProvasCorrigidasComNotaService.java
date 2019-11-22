@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaComResp
 import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaComRespostaResponse;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
+import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -32,6 +33,10 @@ public class BuscarProvasCorrigidasComNotaService {
     public Page<ProvaCorrigidaResponse> buscar(Pageable pageable) {
 
         Page<Prova> provas = provaRepository.findAllByStatusEquals(pageable, StatusProva.CORRIGIDA);
+
+        if(provas.isEmpty()) {
+            throw new ValidacaoDeAplicacaoException("Nenhuma prova corrigida foi encontrada");
+        }
 
         Page<ProvaCorrigidaResponse> provaCorrigidaResponse = provas.map(prova -> {
 

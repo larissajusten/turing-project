@@ -38,5 +38,6 @@ public class BuscarQuestoesTecnicasFiltradasServiceTest {
         buscarQuestoesTecnicasFiltradasService.buscar(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL, 10);
 
+        Mockito.verify(repository).findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos);
     }
 }
