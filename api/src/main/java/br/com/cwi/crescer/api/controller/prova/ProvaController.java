@@ -177,8 +177,8 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{nome-ou-email}/provas-corrigidas")
-    public List<ProvaCorrigidaResponse> provaCompletaComRespostas(@PathVariable("nome-ou-email") String nomeOuEmail) {
+    @GetMapping("/provas-corrigidas")
+    public List<ProvaCorrigidaResponse> provaCompletaComRespostas(@RequestParam("pesquisa") String nomeOuEmail) {
         return buscarProvasCorrigidasComNotaService.buscar(nomeOuEmail);
     }
 

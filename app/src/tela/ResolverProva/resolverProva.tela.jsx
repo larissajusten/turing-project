@@ -6,7 +6,7 @@ import { ProvaModal,
         RespondeQuestaoMultiplasRespostas,
         BotaoPrincipal } from '../../component/index'
 
-const objetoResposta = { idQuestao: null, tipo: null, resposta: null }
+const objetoResposta = { idQuestao: '', tipo: '', resposta: '' }
 
 export class ResolverProvaScreen extends Component {
   constructor(props){
@@ -55,8 +55,9 @@ export class ResolverProvaScreen extends Component {
       this.setState({
         count: this.state.count - 1
       })
-      if(this.state.count < 0){
+      if(this.state.count <= 0){
         this.setState({
+          iniciarProva: false,
           modalFinalizarProva: true,
           count: 0,
         })
@@ -116,6 +117,7 @@ export class ResolverProvaScreen extends Component {
     event.preventDefault()
     this.setState({
       iniciarProva: false,
+      renderProva: false,
       modalFinalizarProva: true,
       statusProva: await enviarRespostasDaProva(this.state.idProva, this.state.arrayRespostas)
     })
@@ -187,7 +189,7 @@ export class ResolverProvaScreen extends Component {
         this.state.prova &&
         <div className="container-tela">
           <div className="container-titulo">
-            <span className="titulo-crie">Boa prova</span>
+            <span className="titulo-crie">Boa prova {this.state.prova.nomeCandidato}</span>
             <span> {this.state.count} </span>
           </div>
 

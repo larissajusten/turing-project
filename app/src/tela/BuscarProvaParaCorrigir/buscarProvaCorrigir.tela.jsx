@@ -16,17 +16,17 @@ export class BuscarProvaParaCorrigirScreen extends Component{
     }
   }
 
-  async componentDidMount() {
-    let dadosDaResponse = await retornaProvasParaCorrecao(this.state.current_page)
-    this.setState({
-      provas: dadosDaResponse[0],
-      totalPaginas: dadosDaResponse[1],
-      per_page: dadosDaResponse[2],
-      current_page: dadosDaResponse[3]
-    }, () => {
-      this.buscarProvas()
-    })
-  }
+  // async componentDidMount() {
+  //   let dadosDaResponse = await retornaProvasParaCorrecao(this.state.current_page)
+  //   this.setState({
+  //     provas: dadosDaResponse[0],
+  //     totalPaginas: dadosDaResponse[1],
+  //     per_page: dadosDaResponse[2],
+  //     current_page: dadosDaResponse[3]
+  //   }, () => {
+  //     this.buscarProvas()
+  //   })
+  // }
 
   buscarProvas = async () => {
     setTimeout(
