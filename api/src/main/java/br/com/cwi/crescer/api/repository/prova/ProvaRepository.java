@@ -13,10 +13,7 @@ public interface ProvaRepository extends JpaRepository<Prova, Long> {
 
     Prova findAllByCriadorIdEquals(Long id);
 
-    @Query("Select p from Prova p where p.status = ?2 " +
-            "AND LOWER(p.nomeCandidato) LIKE LOWER(concat ('%',?1, '%')) " +
-            "OR LOWER(p.emailCandidato) LIKE  LOWER(concat ('%',?1, '%'))")
-    List<Prova> findPorNomeUsuarioCorrigida(String nomeOuEmail, StatusProva statusProva);
+    List<Prova> findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals(String email, String nome, StatusProva statusProva);
 
     boolean existsByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva ativa);
 
