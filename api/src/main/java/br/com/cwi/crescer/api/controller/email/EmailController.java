@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.RolesAllowed;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @RestController
 @RequestMapping("/email")
+@RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
 public class EmailController {
 
     @Autowired

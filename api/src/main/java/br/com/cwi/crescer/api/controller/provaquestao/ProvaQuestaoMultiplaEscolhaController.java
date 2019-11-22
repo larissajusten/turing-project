@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -16,7 +17,7 @@ public class ProvaQuestaoMultiplaEscolhaController {
     @Autowired
     private ListarQuestoesMultiplaEscolhaDaProvaService listarQuestoesMultiplaEscolhaDaProvaService;
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}")
     public List<ProvaQuestaoMultiplaEscolha> listarQuestoesMultiplaEscolhaDaProva(@PathVariable("id-prova") Long idProva) {

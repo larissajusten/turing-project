@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.security.RolesAllowed;
+
 
 @RestController
 @RequestMapping("/resultadoprova")
@@ -35,37 +37,37 @@ public class ResultadosProvaController {
     @Autowired
     private CalcularNotaMediaGeralDissertativaService calcularNotaMediaGeralDissertativaService;
 
-    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @GetMapping("/{id-prova}/numero-acertos-multipla-escolha")
     public int numeroDeAcertosDasQuestoesMultiplaEscolha(@PathVariable("id-prova") Long idProva) {
         return calcularNumeroDeAcertosMultiplaEscolhaService.calcular(idProva);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @GetMapping("/{id-prova}/numero-total-de-multipla-escolha")
     public int numeroTotalDeQuestoesMultiplaEscolhaDeUmaProva(@PathVariable("id-prova") Long idProva) {
         return verificarNumeroTotalDeQuestoesMultiplaEscolhaService.verificar(idProva);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @GetMapping("/{id-prova}/media-do-candidato-dissertativa")
     public double mediaDeNotaDasQuestoesDissertativa(@PathVariable("id-prova") Long idProva) {
         return calcularNotaMediaDissertativaService.calcular(idProva);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @GetMapping("/{id-prova}/media-do-candidato-tecnica")
     public double mediaDeNotaDasQuestoesTecnicas(@PathVariable("id-prova") Long idProva) {
         return calcularNotaMediaTecnicaService.calcular(idProva);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @GetMapping("{id-questao}/media-geral-tecnica")
     public double mediaDeNotaDasQuestoesTecnicasGeral(@PathVariable("id-questao") Long idQuestao) {
         return calcularNotaMediaGeralTecnicaService.calcular(idQuestao);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @GetMapping("{id-questao}/media-geral-dissertativa")
     public double mediaDeNotaDasQuestoesDissertativasGeral(@PathVariable("id-questao") Long idQuestao) {
         return calcularNotaMediaGeralDissertativaService.calcular(idQuestao);

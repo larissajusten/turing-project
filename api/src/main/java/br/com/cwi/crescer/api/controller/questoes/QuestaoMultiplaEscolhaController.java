@@ -5,7 +5,6 @@ import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoMultiplaEscolh
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
-import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaQuestaoMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.*;
@@ -17,7 +16,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 
 @RestController
@@ -33,9 +31,6 @@ public class QuestaoMultiplaEscolhaController {
     @Autowired
     private BuscarAlternativaQuestaoMultiplaEscolhaService buscarAlternativaQuestaoMultiplaEscolhaService;
 
-//    @Autowired
-//    private BuscarQuestoesMultiplaEscolhaFiltradasService buscarQuestoesMultiplaEscolhaFiltradasService;
-
     @Autowired
     private ListarQuestoesMultiplaEscolhaFiltradasService listarQuestoesMultiplaEscolhaFiltradasService;
 
@@ -44,21 +39,19 @@ public class QuestaoMultiplaEscolhaController {
 
     @Autowired
     private BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadePaginadoService buscarPaginado;
-    //@RolesAllowed("Administrator")
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public QuestaoMultiplaEscolha adicionarQuestaoMultiplaEscolha(@Valid @RequestBody QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
         return adicionarQuestaoMultiplaEscolha.adicionar(questaoMultiplaEscolhaRequest);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/buscar-todas")
     public Page<QuestaoMultiplaEscolhaResponse> buscarQuestoesMultiplaEscolha(@PageableDefault Pageable pageable) {
         return buscarQuestoesMultiplaEscolha.buscarTodasQuestoes(pageable);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/buscar-questoes-filtrado")
     public Page<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesRequest request) {
@@ -66,7 +59,6 @@ public class QuestaoMultiplaEscolhaController {
     }
 
 
-    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/todas-questoes-filtradas/{especificidade}/{nivel}")
     public Page<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@PageableDefault Pageable pageable,
@@ -74,12 +66,4 @@ public class QuestaoMultiplaEscolhaController {
                                                                               @PathVariable("nivel") NivelDeDificuldade nivelDeDificuldade) {
         return buscarPaginado.buscarQuestoes(pageable, especificidade, nivelDeDificuldade);
     }
-
-//    //@RolesAllowed("Administrator", "Entrevistador")
-//    @ResponseStatus(HttpStatus.OK)
-//    @GetMapping("/{id-questao}/buscar-alternativas")
-//    public List<AlternativaMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PathVariable("id-questao") Long idQuestao) {
-//        return buscarAlternativaQuestaoMultiplaEscolhaService.buscar(idQuestao);
-//    }
-
 }
