@@ -6,12 +6,9 @@ import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaComResp
 import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaComRespostaResponse;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
-import br.com.cwi.crescer.api.exception.prova.ProvaNaoEncontradaException;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
+import br.com.cwi.crescer.api.validator.ProvasVaziaValidador;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -32,14 +29,15 @@ public class BuscarProvasCorrigidasComNotaService {
     @Autowired
     private RetornarQuestaoMultiplaEscolhaComRespostaResponseService retornarQuestaoMultiplaEscolhaComRespostaResponseService;
 
+    @Autowired
+    private ProvasVaziaValidador validator;
+
     public List<ProvaCorrigidaResponse> buscar(String nomeOuEmail) {
 
         List<Prova> provas = repository.findPorNomeUsuarioCorrigida(nomeOuEmail, StatusProva.CORRIGIDA);
         List<ProvaCorrigidaResponse> listaDasProvas = new ArrayList<>();
 
-        if(provas.isEmpty()) {
-            throw new ProvaNaoEncontradaException("Nenhuma prova corrigida foi encontrada");
-        }
+        validator.validar(provas);
 
         provas.forEach(prova -> {
             List<QuestaoTecnicaComRespostaResponse> questoesTecnicas = retornarQuestaoTecnicaComRespostaResponseService.buscar(prova);

@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.services.usuario;
 
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
-import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
 import br.com.cwi.crescer.api.exception.usuario.UsuarioNaoEncontradoException;
 import br.com.cwi.crescer.api.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
