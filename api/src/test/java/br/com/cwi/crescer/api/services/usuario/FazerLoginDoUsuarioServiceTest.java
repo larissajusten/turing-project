@@ -12,24 +12,40 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.modelmapper.ModelMapper;
 
+import java.util.Optional;
+
 @RunWith(MockitoJUnitRunner.class)
 public class FazerLoginDoUsuarioServiceTest {
 
     @InjectMocks
     FazerLoginDoUsuarioService fazerLoginDoUsuarioService;
 
-
     @Mock
     BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
 
 
     @Test
-    public void deveRetornarUmUsuarioQuandoAdicionarNovoUsuarioServiceForChamado() {
+    public void deveRetornarUmUsuarioQuandoFazerLoginDoUsuarioServiceForChamado() {
 
         UsuarioRequest request = new UsuarioRequest();
-
         Usuario usuario = new Usuario();
-        
-        Assert.assertEquals(request.getEmail(), usuario.getEmail());
+
+        Mockito.when(buscarUsuarioPeloEmailService.buscar(request.getEmail())).thenReturn(usuario);
+
+        Assert.assertEquals(usuario, fazerLoginDoUsuarioService.verificar(request));
     }
+
+    @Test
+    public void deveChamarBuscarUsuarioPeloEmailServiceQuandoFazerLoginDoUsuarioServiceForChamado() {
+
+        UsuarioRequest request = new UsuarioRequest();
+        Usuario usuario = new Usuario();
+
+        Mockito.when(buscarUsuarioPeloEmailService.buscar(request.getEmail())).thenReturn(usuario);
+
+        fazerLoginDoUsuarioService.verificar(request);
+
+        Mockito.verify(buscarUsuarioPeloEmailService).buscar(request.getEmail());
+    }
+
 }
