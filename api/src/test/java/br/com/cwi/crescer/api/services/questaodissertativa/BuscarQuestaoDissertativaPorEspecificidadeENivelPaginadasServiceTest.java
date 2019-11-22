@@ -4,6 +4,7 @@ import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.repository.questao.QuestaoDissertativaRepository;
+import br.com.cwi.crescer.api.validator.PageDeQuestoesValidator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +27,9 @@ public class BuscarQuestaoDissertativaPorEspecificidadeENivelPaginadasServiceTes
 
     @Mock
     QuestaoDissertativaRepository repository;
+
+    @Mock
+    PageDeQuestoesValidator validator;
 
     @Test
     public void deveRetornarUmaPageDeQuestaoDissertativaQuandoBuscarQuestaoDissertativaPorEspecificidadeENivelPaginadasServiceForChamado() {

@@ -4,6 +4,7 @@ import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
+import br.com.cwi.crescer.api.validator.PageDeQuestoesValidator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +27,9 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadePaginadoServiceT
 
     @Mock
     QuestaoMultiplaEscolhaRepository respository;
+
+    @Mock
+    PageDeQuestoesValidator validator;
 
     @Test
     public void deveChamarQuestaoMultiplaEscolhaRepositoryQuandoBuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadePaginadoServiceForChamado() {
