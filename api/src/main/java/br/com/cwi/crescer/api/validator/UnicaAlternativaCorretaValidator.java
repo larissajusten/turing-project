@@ -38,6 +38,5 @@ public class UnicaAlternativaCorretaValidator {
         if (!temCorreta || quantidadeDeCorretas > 1){
             throw new MultiplaEscolhaException("Deve ter UMA alternativa correta");
         }
-
     }
 }
