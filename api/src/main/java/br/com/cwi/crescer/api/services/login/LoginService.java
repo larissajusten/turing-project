@@ -35,9 +35,11 @@ public class LoginService {
 
     public String logar(LoginRequest loginRequest) {
         String token = getAccessToken(loginRequest.getLogin(), loginRequest.getSenha());
-        LoggedUserDTO usuario = decodificacaoToken(token);
 
-        return mapper.map(usuario, UsuarioLogadoDTO.class).getToken();
+        LoggedUserDTO usuario = decodificacaoToken(token);
+        usuario.setToken(token);
+
+        return usuario.getToken();
 
     }
 
