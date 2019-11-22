@@ -1,11 +1,18 @@
 package br.com.cwi.crescer.api.services.login;
 
-import br.com.cwi.crescer.api.config.RestTemplateConfig;
+import br.com.cwi.crescer.api.controller.requests.login.LoginRequest;
+import br.com.cwi.crescer.api.controller.requests.login.UsuarioLogadoDTO;
 import br.com.cwi.crescer.api.domain.login.AccessTokenDto;
+import br.com.cwi.crescer.api.domain.usuario.LoggedUserDTO;
+import br.com.cwi.crescer.api.repository.UsuarioRepository;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.security.jwt.JwtHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -15,7 +22,24 @@ import org.springframework.web.client.RestTemplate;
 public class LoginService {
 
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
+
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
+    private ModelMapper mapper;
+
+    public String logar(LoginRequest loginRequest) {
+        String token = getAccessToken(loginRequest.getLogin(), loginRequest.getSenha());
+        LoggedUserDTO usuario = decodificacaoToken(token);
+
+        return mapper.map(usuario, UsuarioLogadoDTO.class).getToken();
+
+    }
 
     private String getAccessToken(String login, String senha) {
         HttpHeaders header = new HttpHeaders();
@@ -34,5 +58,24 @@ public class LoginService {
         AccessTokenDto accessTokenDto = restTemplate.postForObject(url, request, AccessTokenDto.class);
         return accessTokenDto.getAccesToken();
     }
+
+    private LoggedUserDTO decodificacaoToken(String token) {
+        LoggedUserDTO usuarioLogado = new LoggedUserDTO();
+        String decoded = JwtHelper.decode(token).getClaims();
+        try {
+            JsonNode jsonNode = objectMapper.readTree(decoded);
+            usuarioLogado
+                    .setIdentifier(jsonNode
+                            .get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").asText());
+            usuarioLogado
+                    .setNome(jsonNode
+                            .get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").asText());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return usuarioLogado;
+    }
+
+
 
 }
