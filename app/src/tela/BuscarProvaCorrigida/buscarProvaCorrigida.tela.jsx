@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { retornaProvasCorrigidas } from '../../services/index'
 import { CardProva, Input, BotaoPrincipal } from '../../component/index'
 import './buscarProvaCorrigida.style.css'
@@ -26,6 +27,13 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
     })
   }
 
+  handleClickGerarPDFProva = (event, idProva) => {
+    localStorage.setItem('idParaPDF', idProva )
+    this.setState({
+      deveRedirecionarParaProva: true
+    })
+  }
+
   renderCardsProvas(){
     return(
       <>
@@ -37,7 +45,7 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
                   informacaoUm={item.nomeCandidato}
                   informacaoDois={item.emailCandidato}
                   informacaoTres={item.tempoDeDuracaoDaProva}
-                  onClick={this.handleClickCorrigirProva}/>
+                  onClick={this.handleClickGerarPDFProva}/>
         })
       }
       </>
@@ -97,6 +105,9 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
   }
 
   render(){
+    if(this.state.deveRedirecionarParaProva){
+      return <Redirect to="/prova-PDF"/>
+    }
     return(
       <div className="container-tela">
         {this.renderPesquisar()}
