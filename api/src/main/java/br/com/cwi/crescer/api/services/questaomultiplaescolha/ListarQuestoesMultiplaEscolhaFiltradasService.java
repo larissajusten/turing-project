@@ -61,8 +61,6 @@ public class ListarQuestoesMultiplaEscolhaFiltradasService {
             cont++;
         }
 
-        Page<QuestaoMultiplaEscolha> lista = new PageImpl<>(listaFinal, pageable, listaFinal.size());
-
-        return lista;
+        return new PageImpl<>(listaFinal, pageable, listaFinal.size());
     }
 }

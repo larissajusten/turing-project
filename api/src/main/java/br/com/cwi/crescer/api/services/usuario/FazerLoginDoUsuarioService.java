@@ -12,9 +12,7 @@ public class FazerLoginDoUsuarioService {
     private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
 
     public Usuario verificar(UsuarioRequest request) {
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar(request.getEmail());
-
-        return usuario;
+        return buscarUsuarioPeloEmailService.buscar(request.getEmail());
     }
 
 }
