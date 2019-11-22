@@ -114,7 +114,6 @@ export class ResolverProvaScreen extends Component {
 
   handleClickEnviarProva = async(event) => {
     event.preventDefault()
-    console.log(this.state.arrayRespostas)
     this.setState({
       iniciarProva: false,
       modalFinalizarProva: true,

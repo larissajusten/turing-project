@@ -16,7 +16,8 @@ export class Input extends Component {
 					min={this.props.minNum}
 					max={this.props.maxNum}
 					value={this.props.value}
-					onChange={this.props.cadastro ? (event) => this.props.onChange(event, this.props.index) : this.props.onChange}
+					onChange={this.props.cadastro ? (event) => this.props.onChange(event, this.props.index) : 
+										(this.props.comIndex ? (event) => this.props.onChange(event, this.props.index, this.props.idQuestao, this.props.tipo) : this.props.onChange)}
 					required
 				/>
 			</div>
