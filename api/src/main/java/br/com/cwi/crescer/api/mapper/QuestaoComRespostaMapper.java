@@ -23,6 +23,7 @@ public class QuestaoComRespostaMapper {
 
         questaoDissertativaComRespostaResponse.setIdQuestao(questao.getQuestaoDissertativa().getId());
         questaoDissertativaComRespostaResponse.setNota(questao.getNota());
+        questaoDissertativaComRespostaResponse.setComentario(questao.getComentario());
         questaoDissertativaComRespostaResponse.setQuestao(questao.getQuestaoDissertativa().getQuestao());
         questaoDissertativaComRespostaResponse.setResposta(questao.getResposta());
 
@@ -51,6 +52,7 @@ public class QuestaoComRespostaMapper {
 
         questaoTecnicaComRespostaResponse.setIdQuestao(questao.getQuestaoTecnica().getId());
         questaoTecnicaComRespostaResponse.setNota(questao.getNota());
+        questaoTecnicaComRespostaResponse.setComentario(questao.getComentario());
         questaoTecnicaComRespostaResponse.setQuestao(questao.getQuestaoTecnica().getQuestao());
         questaoTecnicaComRespostaResponse.setResposta(questao.getResposta());
 

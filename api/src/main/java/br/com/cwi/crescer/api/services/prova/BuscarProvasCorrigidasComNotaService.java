@@ -7,19 +7,21 @@ import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaComRespostaResp
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
+import br.com.cwi.crescer.api.exception.prova.ProvaNaoEncontradaException;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class BuscarProvasCorrigidasComNotaService {
 
     @Autowired
-    private ProvaRepository provaRepository;
+    private ProvaRepository repository;
 
     @Autowired
     private RetornarQuestaoTecnicaComRespostaResponseService retornarQuestaoTecnicaComRespostaResponseService;
@@ -30,31 +32,42 @@ public class BuscarProvasCorrigidasComNotaService {
     @Autowired
     private RetornarQuestaoMultiplaEscolhaComRespostaResponseService retornarQuestaoMultiplaEscolhaComRespostaResponseService;
 
-    public Page<ProvaCorrigidaResponse> buscar(Pageable pageable) {
+    public List<ProvaCorrigidaResponse> buscar(String nomeOuEmail) {
 
-        Page<Prova> provas = provaRepository.findAllByStatusEquals(pageable, StatusProva.CORRIGIDA);
+        List<Prova> provas = repository.findPorNomeUsuarioCorrigida(nomeOuEmail, StatusProva.CORRIGIDA);
+        List<ProvaCorrigidaResponse> listaDasProvas = new ArrayList<>();
 
         if(provas.isEmpty()) {
-            throw new ValidacaoDeAplicacaoException("Nenhuma prova corrigida foi encontrada");
+            throw new ProvaNaoEncontradaException("Nenhuma prova corrigida foi encontrada");
         }
 
-        Page<ProvaCorrigidaResponse> provaCorrigidaResponse = provas.map(prova -> {
-
+        provas.forEach(prova -> {
             List<QuestaoTecnicaComRespostaResponse> questoesTecnicas = retornarQuestaoTecnicaComRespostaResponseService.buscar(prova);
             List<QuestaoDissertativaComRespostaResponse> questaoDissertativa = retornarQuestaoDissertativaComRespostaResponseService.buscar(prova);
             List<QuestaoMultiplaEscolhaComRespostaResponse> questaoMultiplaEscolha = retornarQuestaoMultiplaEscolhaComRespostaResponseService.buscar(prova);
 
             ProvaCorrigidaResponse provaResponse = new ProvaCorrigidaResponse();
             provaResponse.setId(prova.getId());
-            provaResponse.setNomeCandidato(prova.getNomeCandidato());
+            provaResponse.setIdCriador(prova.getCriador().getId());
+
+            provaResponse.setStatusProva(prova.getStatus());
             provaResponse.setNota(prova.getNota());
+
+            provaResponse.setEmailCandidato(prova.getEmailCandidato());
+            provaResponse.setNomeCandidato(prova.getNomeCandidato());
+
+            provaResponse.setDataInicio(prova.getDataInicio());
+            provaResponse.setDataCriacao(prova.getDataCriacao());
+            provaResponse.setTempoDeDuracaoDaProva(prova.getTempoDeDuracaoDaProva());
+            provaResponse.setTempoParaInicioProva(prova.getTempoParaInicioProva());
+
             provaResponse.setQuestoesMultiplaEscolha(questaoMultiplaEscolha);
             provaResponse.setQuestoesDissertativas(questaoDissertativa);
             provaResponse.setQuestoesTecnicas(questoesTecnicas);
 
-            return provaResponse;
+            listaDasProvas.add(provaResponse);
         });
 
-        return provaCorrigidaResponse;
+        return listaDasProvas;
     }
 }

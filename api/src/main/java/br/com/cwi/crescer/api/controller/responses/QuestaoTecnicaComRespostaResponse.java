@@ -17,4 +17,6 @@ public class QuestaoTecnicaComRespostaResponse {
 
     private double nota;
 
+    private String comentario;
+
 }

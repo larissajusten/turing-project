@@ -13,6 +13,8 @@ public class QuestaoDissertativaComRespostaResponse {
 
     private String resposta;
 
+    private String comentario;
+
     private String questao;
 
     private double nota;
