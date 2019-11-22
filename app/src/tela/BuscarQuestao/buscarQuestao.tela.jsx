@@ -162,7 +162,7 @@ export class BuscarQuestaoScreen extends Component {
   }
 
   renderBuscar() {
-    if (this.state.especificidades && this.state.niveis) {
+    if (this.state.especificidades && this.state.niveis ) {
       return (
         <>
           <div className="container-titulo">

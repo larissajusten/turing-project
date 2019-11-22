@@ -7,6 +7,7 @@ export const adicionarQuestaoTecnica = async (questao) => {
 }
 
 export const retornarQuestoesTecnicasFiltradas = async (paginaAtual, especificidade, nivel) => {
-  const response = await Axios.get(`${baseUrl}/questao-tecnica/todas-questoes-filtradas/${especificidade}/${nivel}?page=${paginaAtual}`)
+  const response = await Axios.get(`${baseUrl}/questao-tecnica/todas-questoes-filtradas?page=${paginaAtual}`, 
+    { params: {especificidade: especificidade, nivel: nivel} })
   return [response.data.content, response.data.totalElements, response.data.numberOfElements, response.data.number]
 }

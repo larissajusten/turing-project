@@ -29,6 +29,7 @@ function App() {
 					<Route path="/buscar-provas" component={BuscarProvaParaCorrigirScreen}/>
 					<Route path="/corrigir-prova" component={CorrigirProvaScreen}/>
 					<Route path="/provas-corrigidas" component={BuscarProvaJaCorrigidaScreen}/>
+					<Route path="/prova-PDF" component={ProvaPDFScreen}/>
 				</Switch>
 
 				<Footer/>

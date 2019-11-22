@@ -50,10 +50,10 @@ public class QuestaoTecnicaController {
 
     //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/todas-questoes-filtradas/{especificidade}/{nivel}")
+    @GetMapping("/todas-questoes-filtradas")
     public Page<QuestaoTecnica> buscarTodasQuestoesTecnicasFiltradas(@PageableDefault Pageable pageable,
-                                                                     @PathVariable("especificidade") Especificidade especificidade,
-                                                                     @PathVariable("nivel") NivelDeDificuldade nivelDeDificuldade) {
+                                                                     @RequestParam("especificidade") Especificidade especificidade,
+                                                                     @RequestParam("nivel") NivelDeDificuldade nivelDeDificuldade) {
         return buscarPaginado.buscar(pageable, especificidade, nivelDeDificuldade);
     }
 
