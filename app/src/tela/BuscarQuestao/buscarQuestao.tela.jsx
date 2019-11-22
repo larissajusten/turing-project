@@ -44,69 +44,53 @@ export class BuscarQuestaoScreen extends Component {
     })
   }
 
+  salvaResponseENotificaSucesso(dadosDaResponse) {
+    Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+    this.setState({
+      questoes: dadosDaResponse[0],
+      totalPaginas: dadosDaResponse[1],
+      per_page: dadosDaResponse[2],
+      current_page: dadosDaResponse[3],
+    })
+  }
+
+  catchErrorENotifica(error){
+    if (error.response.data.errors) {
+      error.response.data.errors.map(message => {
+        return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+      })
+    } else {
+      Notificacao('Falha', `${error.response.data.message}`, 'danger')
+    }
+  }
+
   retornarQuestoesDissertativasFiltradas = async (especificidade, nivelDeDificuldade) => {
     try {
       let dadosDaResponse = await retornarQuestoesDissertativasFiltradas(this.state.current_page, especificidade, nivelDeDificuldade)
-      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
-      this.setState({
-        questoes: dadosDaResponse[0],
-        totalPaginas: dadosDaResponse[1],
-        per_page: dadosDaResponse[2],
-        current_page: dadosDaResponse[3],
-      })
+      this.salvaResponseENotificaSucesso(dadosDaResponse)
     }
     catch (error) {
-      if (error.response.data.errors) {
-        error.response.data.errors.map(message => {
-          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-        })
-      } else {
-        Notificacao('Falha', `${error.response.data.message}`, 'danger')
-      }
+      this.catchErrorENotifica(error)
     }
   }
 
   retornarQuestoesMultiplasEscolhasFiltradas = async (especificidade, nivelDeDificuldade) => {
     try {
       let dadosDaResponse = await retornarQuestoesMultiplasEscolhasFiltradas(this.state.current_page, especificidade, nivelDeDificuldade)
-      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
-      this.setState({
-        questoes: dadosDaResponse[0],
-        totalPaginas: dadosDaResponse[1],
-        per_page: dadosDaResponse[2],
-        current_page: dadosDaResponse[3],
-      })
+      this.salvaResponseENotificaSucesso(dadosDaResponse)
     }
     catch (error) {
-      if (error.response.data.errors) {
-        error.response.data.errors.map(message => {
-          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-        })
-      } else {
-        Notificacao('Falha', `${error.response.data.message}`, 'danger')
-      }
+      this.catchErrorENotifica(error)
     }
   }
 
   retornarQuestoesTecnicasFiltradas = async (especificidade, nivelDeDificuldade) => {
     try {
       let dadosDaResponse = await retornarQuestoesTecnicasFiltradas(this.state.current_page,  especificidade, nivelDeDificuldade)
-      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
-      this.setState({
-        questoes: dadosDaResponse[0],
-        totalPaginas: dadosDaResponse[1],
-        per_page: dadosDaResponse[2],
-        current_page: dadosDaResponse[3],
-      })
+      this.salvaResponseENotificaSucesso(dadosDaResponse)
     }
     catch (error) {
-      if (error.response.data.errors) {
-        error.response.data.errors.map(message => {
-          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-        })
-      } else {
-        Notificacao('Falha', `${error.response.data.message}`, 'danger')
-      }
+      this.catchErrorENotifica(error)
     }
   }
 

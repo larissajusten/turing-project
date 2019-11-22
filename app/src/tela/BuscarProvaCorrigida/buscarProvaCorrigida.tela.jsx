@@ -49,7 +49,7 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
     , 20000)
   }
 
-  buscaPagina = async pageNumber => {
+  buscaPagina = async (pageNumber) => {
     let dadosDaResponse = await retornaProvasCorrigidas(pageNumber)
 
     this.setState({
@@ -96,13 +96,30 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
     )
   }
 
+  verificaSeExisteProvas() {
+    return(
+      <>
+      {
+        this.state.provas ? this.renderProvas()
+        :
+        <>
+        <h1>Não há provas para serem corrigidas</h1>
+        <div className="container-botao">
+          <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarPesquisa} />
+        </div>
+        </>
+      }
+      </>
+    )
+  }
+
   renderPesquisar(){
     return(
       <>
       <div className="container-titulo">
         <span className="titulo-crie">Busque o candidato</span>
       </div>
-      
+
       <Input
         name="pesquisa"
         value={this.state.pesquisa}
@@ -112,15 +129,8 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
         type="text"
         label=""
         placeholder="Digite o nome ou email do candidato"/>
-      
-      {
-        this.state.provas ? 
-          this.renderProvas()
-        :
-        <div className="container-botao">
-          <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarPesquisa} />
-        </div>
-      }
+
+      {this.verificaSeExisteProvas()}
       </>
     )
   }
