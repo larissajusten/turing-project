@@ -9,7 +9,8 @@ import { CadastrarQuestaoScreen,
 				ResolverProvaScreen,
 				BuscarProvaParaCorrigirScreen,
 				CorrigirProvaScreen,
-				BuscarProvaJaCorrigidaScreen } from './tela/index';
+				BuscarProvaJaCorrigidaScreen,
+				ProvaPDFScreen } from './tela/index';
 import { Header, Footer } from './component/index'
 
 function App() {
