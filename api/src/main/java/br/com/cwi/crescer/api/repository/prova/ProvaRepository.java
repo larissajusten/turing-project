@@ -17,5 +17,8 @@ public interface ProvaRepository extends JpaRepository<Prova, Long> {
     boolean existsByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva ativa);
 
     Page<Prova> findAllByStatusEquals(Pageable pageable, StatusProva status);
+
+    Prova findByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva status);
+
 }
 
