@@ -29,6 +29,7 @@ export class ResolverProvaScreen extends Component {
   }
 
   componentDidMount = async () => {
+    localStorage.setItem('accessToken', this.state.token)
     this.setState({
       prova: await retornaProva(this.state.idProva),
       tiposDeQuestoes: await retornarTipoDeQuestao()
