@@ -28,6 +28,7 @@ export { enviarRespostasDaProva } from './prova/prova.service'
 export { retornaProvasParaCorrecao } from './prova/prova.service'
 export { retornaProvasCorrigidas } from './prova/prova.service'
 export { retornarProvaComRespostas } from './prova/prova.service'
+export { retornaProvaParaPDF } from './prova/prova.service'
 
 /* Prova */ //incluir questão
 export { incluirDissertativas } from './prova/prova.service'

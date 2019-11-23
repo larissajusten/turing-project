@@ -39,7 +39,8 @@ export default
       "idUsuario": 50,
       "nivelDeDificuldade": "FACIL",
       "questao": "O que é js?",
-      "alternativaMultiplaEscolha": 1
+      "alternativaMultiplaEscolha": 1,
+      "comentario": "Otima resposta"
     }
   ],
   "questoesDissertativas": [

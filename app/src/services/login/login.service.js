@@ -9,6 +9,6 @@ export const login = async (user) => {
 }
 
 export const retornaPerfil = async (perfil) => {
-  const response = await Axios.get(`${baseUrl}/login/${perfil}`, { headers: { Authorization: token }})
+  const response = await Axios.get(`${baseUrl}/usuario/${perfil}`, { headers: { Authorization: token }})
   return response.data
 }
