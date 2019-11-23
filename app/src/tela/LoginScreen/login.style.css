@@ -31,7 +31,7 @@
   line-height: 23px;
 }
 
-.container-inputs-login {
+.container-input-login {
   height: 70%;
   width: 100%;
   display: flex;
@@ -41,6 +41,11 @@
 }
 
 .div-input {
+  height: 40%;
+  justify-content: flex-end;
+}
+
+.class-input {
   background-color: #F6F5F5;
   border-radius: var(--border-radius);
 }

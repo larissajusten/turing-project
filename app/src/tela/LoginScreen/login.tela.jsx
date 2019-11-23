@@ -29,8 +29,8 @@ export class LoginScreen extends Component {
     try{
       const data = await login(user)
       localStorage.setItem("accessToken", data.token)
-      // const perfil = await retornaPerfil(data.identifier)
-      // localStorage.setItem("perfilUsuario", perfil)
+      const perfil = await retornaPerfil(data.identifier)
+      localStorage.setItem("perfilUsuario", perfil)
       this.setState({
         deveRedirecionarParaHome: true
       })
@@ -50,9 +50,10 @@ export class LoginScreen extends Component {
     return(
       <div className="bloco-login">
         <div className="titulo-login">CWI Turing</div>
-        <div className="container-inputs-login">
+        <div className="container-input-login">
           <Input
-          className="div-input"
+          classNameDiv="div-input"
+          className="class-input"
           placeholder="Usuario"
           name="identifier"
           value={this.state.identifier}

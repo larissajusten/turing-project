@@ -7,7 +7,7 @@ export class Header extends Component {
 	constructor(props){
 		super(props)
 		this.state = {
-			perfil: localStorage.getItem('perfil')
+			perfil: localStorage.getItem('perfilUsuario')
 		}
 	}
 	render() {
@@ -18,7 +18,7 @@ export class Header extends Component {
 				<Menu width={'250px'}>
 					<Link to="/">Home</Link>
 					{
-						this.state.perfil !== 'ADMINISTRADOR' &&
+						this.state.perfil === 'ADMINISTRADOR' &&
 						<Link to={"/cadastrar-questao"}>Cadastrar questão</Link>
 					}
 					<Link to={"/buscar-questao"}>Visualizar questões</Link>
