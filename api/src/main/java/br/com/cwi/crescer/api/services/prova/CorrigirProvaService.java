@@ -37,9 +37,9 @@ public class CorrigirProvaService {
         Prova prova = buscarProvaPorIdService.buscar(idProva);
 
         for (CorrecaoProvaRequest request : listaDeCorrecoes) {
-            if(request.getTipoDeQuestao() == TipoDeQuestao.DISSERTATIVA){
+            if(request.getTipoDeQuestao().equals(TipoDeQuestao.DISSERTATIVA)){
                 corrigirQuestaoDissertativaService.corrigir(request.getIdResposta(), request);
-            } else if (request.getTipoDeQuestao() == TipoDeQuestao.TECNICA){
+            } else if (request.getTipoDeQuestao().equals(TipoDeQuestao.TECNICA)){
                 corrigirQuestaoTecnicaService.corrigir(request.getIdResposta(), request);
             }
         }

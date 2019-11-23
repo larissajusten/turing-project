@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 
@@ -74,6 +75,9 @@ public class ProvaController {
 
     @Autowired
     private BuscarProvaComRespostasDoUsuarioService buscarProvaComRespostasDoUsuario;
+
+    @Autowired
+    private BuscarProvaPorIdCompletaService buscarProvaPorIdCompletaService;
 
     @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.CREATED)
@@ -181,6 +185,12 @@ public class ProvaController {
     @GetMapping("/provas-corrigidas")
     public List<ProvaCorrigidaResponse> provaCompletaComRespostas(@RequestParam("pesquisa") String nomeOuEmail) {
         return buscarProvasCorrigidasComNotaService.buscar(nomeOuEmail);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("{id-prova}/prova-completa")
+    public ProvaCorrigidaResponse provaCompletaDoCandidatoComRespostas(@PathVariable("id-prova") Long idProva) {
+        return buscarProvaPorIdCompletaService.buscar(idProva);
     }
 
     @ResponseStatus(HttpStatus.OK)

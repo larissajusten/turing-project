@@ -39,6 +39,4 @@ public class EnviarEmailService {
         mailSender.send(mail);
 
     }
-
-
 }
