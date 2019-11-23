@@ -1,10 +1,9 @@
 package br.com.cwi.crescer.api.services.login;
 
 import br.com.cwi.crescer.api.controller.requests.login.LoginRequest;
-import br.com.cwi.crescer.api.controller.requests.login.UsuarioLogadoDTO;
 import br.com.cwi.crescer.api.domain.login.AccessTokenDto;
 import br.com.cwi.crescer.api.domain.usuario.LoggedUserDTO;
-import br.com.cwi.crescer.api.repository.UsuarioRepository;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.modelmapper.ModelMapper;
@@ -25,7 +24,7 @@ public class LoginService {
     private RestTemplate restTemplate;
 
     @Autowired
-    private UsuarioRepository usuarioRepository;
+    private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -37,13 +36,14 @@ public class LoginService {
         String token = getAccessToken(loginRequest.getLogin(), loginRequest.getSenha());
 
         LoggedUserDTO usuario = decodificacaoToken(token);
-        usuario.setToken(token);
+        usuario.setToken("Bearer " + token);
 
         return usuario.getToken();
 
     }
 
     private String getAccessToken(String login, String senha) {
+
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 

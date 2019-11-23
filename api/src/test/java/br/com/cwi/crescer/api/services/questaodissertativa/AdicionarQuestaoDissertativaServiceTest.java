@@ -7,6 +7,8 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoDissertativaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoDissertativaRepository;
+import br.com.cwi.crescer.api.security.LoggedUser;
+import br.com.cwi.crescer.api.services.autenticacao.VerificarPerfilUsuarioLogadoService;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +32,12 @@ public class AdicionarQuestaoDissertativaServiceTest {
     @Mock
     BuscarUsuarioPorIdService buscarUsuarioPorIdService;
 
+    @Mock
+    VerificarPerfilUsuarioLogadoService verificarPerfilUsuarioLogadoService;
+
+    @Mock
+    LoggedUser loggedUser;
+
     @Test
     public void deveChamarQuestaoDissertativaRepositoryQuandoAdicionarQuestaoDissertativaServiceForChamado() {
 
@@ -38,10 +46,8 @@ public class AdicionarQuestaoDissertativaServiceTest {
                 new QuestaoUnicaAlternativaRequest("O que é?", Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoDissertativa);
-        Mockito.when(repository.save(questaoDissertativa)).thenReturn(questaoDissertativa);
 
         Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
 
         adicionarQuestaoDissertativaService.adicionar(questaoUnicaAlternativaRequest);
 

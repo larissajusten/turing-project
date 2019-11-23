@@ -16,6 +16,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -35,21 +36,19 @@ public class QuestaoDissertativaController {
     @Autowired
     private BuscarQuestaoDissertativaPorEspecificidadeENivelPaginadasService buscarPaginado;
 
-    //@RolesAllowed("Administrator")
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void adicionarQuestaoDissertativa(@Valid @RequestBody QuestaoUnicaAlternativaRequest request) {
+
         adicionarQuestaoDissertativaService.adicionar(request);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
     public List<QuestaoDissertativa> listarQuestoesDissertativasFiltradas(@Valid @RequestBody BuscaQuestoesRequest request) {
         return listarQuestoesDissertativasFiltradas.listar(request);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/todas-questoes-filtradas")
     public Page<QuestaoDissertativa> listarTodasQuestoesDissertativas(@PageableDefault(size=5) Pageable pageable,

@@ -9,7 +9,9 @@ import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.AlternativaMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
+import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.AdicionarAlternativaMultiplaEscolhaService;
+import br.com.cwi.crescer.api.services.autenticacao.VerificarPerfilUsuarioLogadoService;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import br.com.cwi.crescer.api.validator.UnicaAlternativaCorretaValidator;
 import org.junit.Test;
@@ -43,6 +45,13 @@ public class AdicionarQuestaoMultiplaEscolhaServiceTest {
     @Mock
     BuscarUsuarioPorIdService buscarUsuarioPorIdService;
 
+    @Mock
+    VerificarPerfilUsuarioLogadoService verificarPerfilUsuarioLogadoService;
+
+    @Mock
+    LoggedUser loggedUser;
+
+
     @Test
     public void deveChamarAdicionarAlternativaMultiplaEscolhaServiceQuandoAdicionarQuestaoMultiplaEscolhaServiceForChamado() {
         QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
@@ -58,6 +67,7 @@ public class AdicionarQuestaoMultiplaEscolhaServiceTest {
         Mockito.doNothing().when(unicaAlternativaCorretaValidator).validar(questaoMultiplaEscolhaRequest);
         Mockito.when(repository.save(questaoMultiplaEscolha)).thenReturn(questaoMultiplaEscolha);
         Mockito.when(mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest)).thenReturn(questaoMultiplaEscolha);
+        Mockito.doNothing().when(verificarPerfilUsuarioLogadoService).verificar(loggedUser);
 
         Usuario usuario = new Usuario();
         Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);

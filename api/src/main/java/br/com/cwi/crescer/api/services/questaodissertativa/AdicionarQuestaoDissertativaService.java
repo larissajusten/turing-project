@@ -5,6 +5,8 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoDissertativaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoDissertativaRepository;
+import br.com.cwi.crescer.api.security.LoggedUser;
+import br.com.cwi.crescer.api.services.autenticacao.VerificarPerfilUsuarioLogadoService;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,15 +25,26 @@ public class AdicionarQuestaoDissertativaService {
     @Autowired
     private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
 
+    @Autowired
+    VerificarPerfilUsuarioLogadoService verificarPerfilUsuarioLogadoService;
+
+    @Autowired
+    LoggedUser loggedUser;
+
     public QuestaoDissertativa adicionar(QuestaoUnicaAlternativaRequest request) {
+
+        verificarPerfilUsuarioLogadoService.verificar(loggedUser);
+
         QuestaoDissertativa questaoDissertativa = mapper.transformar(request);
 
         questaoDissertativa.setDataCriacao(LocalDate.now());
 
         //TODO mudar quando tiver o usuário real
-        Usuario usuario = buscarUsuarioPorIdService.buscar(1L);
+        Usuario usuario = buscarUsuarioPorIdService.buscar(2L);
         questaoDissertativa.setUsuario(usuario);
 
-        return repository.save(questaoDissertativa);
+        repository.save(questaoDissertativa);
+
+        return questaoDissertativa;
     }
 }

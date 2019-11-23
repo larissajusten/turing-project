@@ -7,6 +7,9 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoTecnicaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoTecnicaRepository;
+import br.com.cwi.crescer.api.security.LoggedUser;
+import br.com.cwi.crescer.api.services.autenticacao.VerificarPerfilUsuarioLogadoService;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +31,13 @@ public class AdicionarQuestaoTecnicaServiceTest {
     QuestaoTecnicaMapper mapper;
 
     @Mock
-    BuscarUsuarioPorIdService buscarUsuarioPorIdService;
+    BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
+
+    @Mock
+    VerificarPerfilUsuarioLogadoService verificarPerfilUsuarioLogadoService;
+
+    @Mock
+    LoggedUser loggedUser;
 
     @Test
     public void deveChamarQuestaoTecnicaRepositorySaveQuandoAdicionarQuestaoTecnicaServiceForChamada() {
@@ -43,7 +52,7 @@ public class AdicionarQuestaoTecnicaServiceTest {
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
 
         Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+        Mockito.when(buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin())).thenReturn(usuario);
 
         adicionarQuestaoTecnicaService.adicionar(questaoUnicaAlternativaRequest);
 
@@ -62,7 +71,7 @@ public class AdicionarQuestaoTecnicaServiceTest {
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
         Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
+        Mockito.when(buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin())).thenReturn(usuario);
 
         adicionarQuestaoTecnicaService.adicionar(questaoUnicaAlternativaRequest);
 

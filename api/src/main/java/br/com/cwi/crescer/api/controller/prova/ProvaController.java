@@ -18,6 +18,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -74,21 +75,21 @@ public class ProvaController {
     @Autowired
     private BuscarProvaComRespostasDoUsuarioService buscarProvaComRespostasDoUsuario;
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Long criarProvaERetornarID(@Valid @RequestBody ProvaRequest request) {
         return criarProvaService.criar(request);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-dissertativa")
     public List<QuestaoDissertativa> incluirDissertativas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         return incluirQuestoesDissertativasService.incluir(idProva, buscaQuestoesRequest);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id-prova}/excluir-dissertativa/{id-questao-prova}")
     public void excluirDissertativa(@PathVariable("id-prova") Long idProva,
@@ -96,14 +97,14 @@ public class ProvaController {
         excluirQuestaoDissertativaService.excluir(idQuestaoProva, idProva);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+   @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-tecnica")
     public void incluirTecnicas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         incluirQuestoesTecnicasService.incluir(idProva, buscaQuestoesRequest);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id-prova}/excluir-tecnica/{id-questao-prova}")
     public void excluirTecnicaProva(@PathVariable("id-prova") Long idProva,
@@ -111,14 +112,14 @@ public class ProvaController {
         excluirQuestaoTecnicaService.excluir(idQuestaoProva, idProva);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/incluir-multipla-escolha")
     public void incluirMultiplasEscolhas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         incluirQuestoesMultiplaEscolhaService.incluir(idProva, buscaQuestoesRequest);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id-prova}/excluir-multipla-escolha/{id-questao-prova}")
     public void excluirMultiplaEscolha(@PathVariable("id-prova") Long idProva,
@@ -126,14 +127,14 @@ public class ProvaController {
         excluirQuestaoMultiplaEscolhaService.excluir(idQuestaoProva, idProva);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/buscar-prova")
     public ProvaResponse buscarProva(@PathVariable("id-prova") Long idProva) {
         return buscarProvaComQuestoesService.buscar(idProva);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/duracao")
     public int retornaDuracaoDaProva(@PathVariable("id-prova") Long idProva) {
@@ -155,7 +156,7 @@ public class ProvaController {
         return finalizarProvaService.finalizar(idProva, provaRespondida);
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
+    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/consultar-status-prova")
     public StatusProva consultarStatusDaProva(@PathVariable("id-prova") Long idProva) {
