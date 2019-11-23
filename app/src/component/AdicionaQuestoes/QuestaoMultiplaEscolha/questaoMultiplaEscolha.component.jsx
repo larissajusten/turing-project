@@ -173,7 +173,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 				</div>
 
 				<div className="container-botao">
-					<BotaoPrincipal nome="Enviar" onClick={this.handleClickSalvarQuestao}/>
+					<BotaoPrincipal nome="ENVIAR" onClick={this.handleClickSalvarQuestao}/>
 				</div>
 			</>
 		);

@@ -41,4 +41,5 @@
 
 .container-botao {
 	margin: 20px 0;
+	align-self: flex-end;
 }

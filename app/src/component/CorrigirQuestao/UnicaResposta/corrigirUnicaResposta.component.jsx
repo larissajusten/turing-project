@@ -13,7 +13,7 @@ export class CorrigirUnicaResposta extends Component {
         <BlocoQuestao
           questaoNome="Resposta"
           questao={this.props.resposta}/>
-    
+
         <div className="comentario-nota">
           <div className="comentario">
             <Textarea

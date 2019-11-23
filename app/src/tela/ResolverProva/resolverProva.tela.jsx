@@ -198,7 +198,7 @@ export class ResolverProvaScreen extends Component {
           {this.renderQuestoesTecnicas()}
 
           <div className="container-botao">
-            <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarProva} />
+            <BotaoPrincipal nome="ENVIAR" onClick={this.handleClickEnviarProva} />
           </div>
         </div>
       }
@@ -211,7 +211,7 @@ export class ResolverProvaScreen extends Component {
       <>
       <ProvaModal
         titulo="Clique em iniciar para realizar sua prova"
-        nomeBotao="Começar"
+        nomeBotao="COMEÇAR"
         comBotao={true}
         onClick={this.handleClickIniciarProva}/>
       </>

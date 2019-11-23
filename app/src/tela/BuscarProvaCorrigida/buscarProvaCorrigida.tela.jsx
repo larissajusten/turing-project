@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { retornaProvasCorrigidas } from '../../services/index'
-import { CardProva, Input, BotaoPrincipal } from '../../component/index'
+import { CardProva, Input, BotaoPrincipal, Notificacao } from '../../component/index'
 import './buscarProvaCorrigida.style.css'
 
 export class BuscarProvaJaCorrigidaScreen extends Component {
@@ -14,6 +14,13 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
     }
   }
 
+  componentDidMount() {
+    const token = localStorage.getItem('token')
+		if(!token){
+      this.setState({ deveRedirecionarParaLogin: true })
+    }
+  }
+
   handleChange = (event) => {
     const { name, value } = event.target
     this.setState({
@@ -22,9 +29,22 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
   }
 
   handleClickEnviarPesquisa = async () => {
-    this.setState({
-      provas: await retornaProvasCorrigidas(this.state.pesquisa)
-    })
+    try{
+      let provasResponse = await retornaProvasCorrigidas(this.state.pesquisa)
+      console.log("Response " + provasResponse)
+      Notificacao('Sucesso', '', 'success')
+      this.setState({
+        provas: provasResponse
+      })
+    } catch(error){
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
   }
 
   handleClickGerarPDFProva = (event, idProva) => {
@@ -90,7 +110,6 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
         name="pesquisa"
         value={this.state.pesquisa}
         onChange={this.handleChange}
-        classNameDiv="div-input-busca-usuario"
         maxTam="300"
         type="text"
         label=""
@@ -98,18 +117,23 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
 
       {this.verificaSeExisteProvas()}
       <div className="container-botao">
-        <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarPesquisa} />
+        <BotaoPrincipal nome="ENVIAR" onClick={this.handleClickEnviarPesquisa} />
       </div>
       </>
     )
   }
 
   render(){
+    if(this.state.deveRedirecionarParaLogin){
+			return <Redirect to="/login"/>
+    }
+
     if(this.state.deveRedirecionarParaProva){
       return <Redirect to="/prova-PDF"/>
     }
+
     return(
-      <div className="container-tela">
+      <div className="container-tela tela-prova-corrigida">
         {this.renderPesquisar()}
       </div>
     )

@@ -1,5 +1,6 @@
-.prova {
-  width: 40%;
+.cadastro-prova-container {
+  padding-left: 30%;
+  padding-right: 30%;
 }
 
 .input-quantidade {
@@ -11,4 +12,8 @@
   flex-direction: row;
   justify-content: center;
   width: 100%;
+}
+
+.cadastro-prova-botao {
+  padding: 10px 35px;
 }

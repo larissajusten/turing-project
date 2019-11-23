@@ -2,7 +2,7 @@
 	width: 100%;
   height: 40px;
 	position: fixed;
-	background-color: var(--bg-blue-color);
+	background-color: var(--bg-black-color);
 	z-index: 1;
 	display: flex;
 	align-items: center;
@@ -12,18 +12,20 @@
 
 .menu-header {
   margin-left: 45px;
-	color: white;
-	font-size: 1.3em;
+  color: var(--font-color);
+  font-weight: 500;
+  font-size: 1.125em;
+  line-height: 17px;
 }
 
 /* menu */
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
-  width: 30px;
-  height: 20px;
-  left: 20px;
-  top: 12px;
+  width: 25px;
+  height: 15px;
+  left: 30px;
+  top: 13px;
 }
 
 .menu-item {
@@ -34,7 +36,7 @@
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: var(--orange-color);
+  background: var(--font-color);
 }
 
 /* Color/shape of burger icon bars on hover*/
@@ -46,11 +48,17 @@
 .bm-cross-button {
   height: 24px;
   width: 24px;
+  outline: none;
+}
+
+.bm-cross-button button{
+  outline: none;
 }
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: #bdc3c7;
+  background: var(--orange-color);
+  outline: none;
 }
 
 /*
@@ -62,14 +70,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
 	height: 100%;
 	left: 0;
   margin-top: 20px;
-
 }
 
 /* General sidebar styles */
 .bm-menu {
-  background: var(--bg-blue-color);
+  background: var(--bg-black-color);
   padding: 2.5em 1.5em 0;
-  font-size: 1.1em;
+  font-size: 1.125em;
+  text-align: start;
 }
 
 /* Morph shape necessary with bubble or elastic */
@@ -87,6 +95,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-item {
   display: inline-block;
   color: var(--font-color);
+  text-decoration: none;
+  outline: none;
+  margin-bottom: 4px;
+}
+
+.bm-item:hover {
+  color: var(--orange-color);
 }
 
 /* Styling of overlay */

@@ -1,3 +1,5 @@
+export { LoginScreen } from './LoginScreen/login.tela.jsx'
+
 /* Questão */
 export { CadastrarQuestaoScreen } from './CadastroQuestao/cadastroQuestao.tela.jsx'
 export { BuscarQuestaoScreen } from './BuscarQuestao/buscarQuestao.tela.jsx'

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import './buscarQuestao.style.css'
 import { BotaoPrincipal, CardBuscarQuestao, BuscarQuestao, Notificacao, Paginacao } from '../../component/index'
 import { retornarEspecificidades,
@@ -24,17 +25,23 @@ export class BuscarQuestaoScreen extends Component {
       questoes: null,
       totalPaginas: null,
       per_page: null,
+      deveRedirecionarParaLogin: false,
       current_page: 0
     }
     this.busca = {}
   }
 
   async componentDidMount() {
-    this.setState({
-      tipos: await retornarTipoDeQuestao(),
-      especificidades: await retornarEspecificidades(),
-      niveis: await retornarNiveisDeDificuldade()
-    })
+    const token = localStorage.getItem('token')
+		if(!token){
+      this.setState({ deveRedirecionarParaLogin: true })
+    }else{
+      this.setState({
+        tipos: await retornarTipoDeQuestao(),
+        especificidades: await retornarEspecificidades(),
+        niveis: await retornarNiveisDeDificuldade()
+      })
+    }
   }
 
   handleChange = (event) => {
@@ -185,7 +192,7 @@ export class BuscarQuestaoScreen extends Component {
           }
 
           <div className="container-botao">
-            <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarPesquisa} />
+            <BotaoPrincipal nome="ENVIAR" onClick={this.handleClickEnviarPesquisa} />
           </div>
         </>
       )
@@ -195,6 +202,10 @@ export class BuscarQuestaoScreen extends Component {
   }
 
   render() {
+    if(this.state.deveRedirecionarParaLogin){
+			return <Redirect to="/login"/>
+    }
+
     return (
       <div className="container-tela">
         {this.renderBuscar()}
