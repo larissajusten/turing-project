@@ -8,7 +8,7 @@ export class CorrigirProvaScreen extends Component {
   constructor(props){
     super(props)
     this.state = {
-      idProva: 73,//localStorage.getItem('idProvaParaCorrigir'),
+      idProva: localStorage.getItem('idProvaParaCorrigir'),
       prova: null,
       tiposDeQuestoes: [],
       arrayCorrecoes: [objetoCorrecaoProva]
@@ -126,7 +126,7 @@ export class CorrigirProvaScreen extends Component {
           {this.renderQuestoesTecnicas()}
 
           <div className="container-botao">
-            <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarCorrecao} />
+            <BotaoPrincipal nome="ENVIAR" onClick={this.handleClickEnviarCorrecao} />
           </div>
           </>
       }

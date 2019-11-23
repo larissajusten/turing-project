@@ -9,6 +9,10 @@
 	align-self: flex-start;
 	padding-left: 10px;
 	margin-bottom: 8px;
+	font-size: 1.125em;
+	font-weight: 500;
+	line-height: 17px;
+	color: var(--dark-gray-color);
 }
 
 .input {

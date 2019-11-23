@@ -12,21 +12,27 @@ export class BuscarProvaParaCorrigirScreen extends Component{
       totalPaginas: null,
       per_page: null,
       current_page: 0,
-      deveRedirecionarParaCorrecao: false
+      deveRedirecionarParaCorrecao: false,
+      deveRedirecionarParaLogin: false
     }
   }
 
-  // async componentDidMount() {
-  //   let dadosDaResponse = await retornaProvasParaCorrecao(this.state.current_page)
-  //   this.setState({
-  //     provas: dadosDaResponse[0],
-  //     totalPaginas: dadosDaResponse[1],
-  //     per_page: dadosDaResponse[2],
-  //     current_page: dadosDaResponse[3]
-  //   }, () => {
-  //     this.buscarProvas()
-  //   })
-  // }
+  async componentDidMount() {
+    const token = localStorage.getItem('token')
+		if(!token){
+			this.setState({ deveRedirecionarParaLogin: true })
+		}else{
+      let dadosDaResponse = await retornaProvasParaCorrecao(this.state.current_page)
+      this.setState({
+        provas: dadosDaResponse[0],
+        totalPaginas: dadosDaResponse[1],
+        per_page: dadosDaResponse[2],
+        current_page: dadosDaResponse[3]
+      }, () => {
+        this.buscarProvas()
+      })
+    }
+  }
 
   buscarProvas = async () => {
     setTimeout(
@@ -98,6 +104,10 @@ export class BuscarProvaParaCorrigirScreen extends Component{
   }
 
   render() {
+    if(this.state.deveRedirecionarParaLogin){
+			return <Redirect to="/login"/>
+    }
+
     if(this.state.deveRedirecionarParaCorrecao){
       return <Redirect to="/corrigir-prova"/>
     }

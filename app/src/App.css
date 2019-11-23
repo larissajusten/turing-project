@@ -4,9 +4,13 @@
 
 :root {
 	--red-color: #FE5F5F;
-	--orange-color: #f8b03f;
-	--bg-blue-color: #33223f;
-	--font-color: white;
+	--orange-color: #FBB041;
+	--font-color: #F9F3F3;
+	--light-gray-color: #C6C6C6;
+	--medium-gray-color: #828282;
+	--dark-gray-color: #4E4E4E;
+	--bg-black-color: #333333;
+	--border-radius: 5px;
 }
 
 body {

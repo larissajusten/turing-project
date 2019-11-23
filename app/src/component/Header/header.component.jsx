@@ -4,7 +4,12 @@ import { Link } from 'react-router-dom';
 import './header.style.css';
 
 export class Header extends Component {
-
+	constructor(props){
+		super(props)
+		this.state = {
+			perfil: localStorage.getItem('perfil')
+		}
+	}
 	render() {
 
 		return (
@@ -12,7 +17,10 @@ export class Header extends Component {
 				<span className="menu-header" onClick={this.handleClickShowMenu}>MENU</span>
 				<Menu width={'250px'}>
 					<Link to="/">Home</Link>
-					<Link to={"/cadastrar-questao"}>Cadastrar questão</Link>
+					{
+						this.state.perfil !== 'ADMINISTRADOR' &&
+						<Link to={"/cadastrar-questao"}>Cadastrar questão</Link>
+					}
 					<Link to={"/buscar-questao"}>Visualizar questões</Link>
 					<Link to={"/cadastrar-prova"}>Cadastrar prova</Link>
 					<Link to={"/visualizar-prova"}>Visualizar prova</Link>

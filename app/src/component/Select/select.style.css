@@ -8,11 +8,11 @@ select {
 	margin-top: 1%;
 	margin-bottom: 25px;
 	padding: 0.1% 0.2%;
-	border: 1px solid rgba(224, 213, 213, 0.81);
-	background-color: rgba(247, 245, 245, 0.6);
+	border: 1px solid var(--light-gray-color);
+	background-color:  rgba(196, 196, 196, 0.24);
 	box-sizing: border-box;
 	backdrop-filter: blur(4px);
-	border-radius: 10px;
+	border-radius: var(--border-radius);
 	cursor: auto;
 }
 

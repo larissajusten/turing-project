@@ -27,15 +27,21 @@ export class CadastrarProvaScreen extends Component {
       idProva: null,
       deveRenderizarQuestoes: false,
       deveRedirecionarParaVisualizarProva: false,
+      deveRedirecionarParaLogin: false,
       arrayStates: [objeto]
     }
   }
 
   async componentDidMount() {
-    this.setState({
-      especificidades: await retornarEspecificidades(),
-      niveis: await retornarNiveisDeDificuldade()
-    })
+    const token = localStorage.getItem('token')
+		if(!token){
+      this.setState({ deveRedirecionarParaLogin: true })
+    }else{
+      this.setState({
+        especificidades: await retornarEspecificidades(),
+        niveis: await retornarNiveisDeDificuldade()
+      })
+    }
   }
 
   handleChange = (event) => {
@@ -220,7 +226,7 @@ export class CadastrarProvaScreen extends Component {
           <span className="titulo-crie">Crie sua prova</span>
         </div>
 
-        <div className="container-questao prova">
+        <div className="container-questao">
           <Input
             name="nome"
             value={this.state.nomeDoCandidato}
@@ -259,20 +265,23 @@ export class CadastrarProvaScreen extends Component {
         </div>
 
         <div className="container-botao">
-          <BotaoPrincipal nome="Adicionar questões" onClick={this.handleClickEnviarBaseProva} />
+          <BotaoPrincipal classe="cadastro-prova-botao" nome="ADICIONAR QUESTÕES" onClick={this.handleClickEnviarBaseProva} />
         </div>
       </>
     )
   }
 
   render() {
+    if(this.state.deveRedirecionarParaLogin){
+			return <Redirect to="/login"/>
+    }
 
     if (this.state.deveRedirecionarParaVisualizarProva) {
       return <Redirect to="/visualizar-prova" />
     }
 
     return (
-      <div className="container-tela">
+      <div className="container-tela cadastro-prova-container">
         {
           this.state.deveRenderizarQuestoes
             ?

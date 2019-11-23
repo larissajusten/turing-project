@@ -67,7 +67,7 @@ export class QuestaoUnica extends PureComponent {
           }
 
           <div className="container-botao">
-            <BotaoPrincipal nome="Enviar" onClick={this.props.handleClickSalvarQuestao}/>
+            <BotaoPrincipal nome="ENVIAR" onClick={this.props.handleClickSalvarQuestao}/>
           </div>
       </div>
       </>

@@ -3,25 +3,6 @@ import { Document, Page, Text, View, StyleSheet, PDFViewer } from '@react-pdf/re
 import './visualizarProvaPDF.style.css'
 import ProvaTeste from './provaTeste'
 
-export class ProvaPDFScreen extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      prova: ProvaTeste
-    }
-  }
-
-  render() {
-    return(
-      <div className="container-pdf">
-      <PDFViewer width="100%" height="540">
-        <MyDocument prova={this.state.prova} />
-      </PDFViewer>
-      </div>
-    )
-  }
-}
-
 const styles = StyleSheet.create({
   page: {
     flexDirection: 'row',
@@ -45,3 +26,22 @@ const MyDocument = (props) => (
     </Page>
   </Document>
 );
+
+export class ProvaPDFScreen extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      prova: ProvaTeste
+    }
+  }
+
+  render() {
+    return(
+      <div className="container-pdf">
+      <PDFViewer width="100%" height="540">
+        <MyDocument prova={this.state.prova} />
+      </PDFViewer>
+      </div>
+    )
+  }
+}
