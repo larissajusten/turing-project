@@ -2,6 +2,7 @@ package br.com.cwi.crescer.api.controller.questoes;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoTecnicaRequest;
+import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaCompletaResponse;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
@@ -9,6 +10,7 @@ import br.com.cwi.crescer.api.services.questaotecnica.AdicionarQuestaoTecnicaSer
 import br.com.cwi.crescer.api.services.questaotecnica.BuscarQuestoesTecnicasFiltradasPaginadoService;
 import br.com.cwi.crescer.api.services.questaotecnica.BuscarQuestoesTecnicasFiltradasService;
 import br.com.cwi.crescer.api.services.questaotecnica.ListarQuestoesTecnicasFiltradasService;
+import br.com.cwi.crescer.api.services.respostaprova.BuscarQuestoesTecnicasCompletaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,8 +18,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -36,7 +38,9 @@ public class QuestaoTecnicaController {
     @Autowired
     private BuscarQuestoesTecnicasFiltradasPaginadoService buscarPaginado;
 
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
+    @Autowired
+    private BuscarQuestoesTecnicasCompletaService buscarQuestoesTecnicasCompletaService;
+
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
     public List<QuestaoTecnica> buscarQuestoesTecnicas(@Valid @RequestBody BuscaQuestoesRequest request) {
@@ -51,7 +55,6 @@ public class QuestaoTecnicaController {
         adicionarQuestaoTecnica.adicionar(request);
     }
 
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/todas-questoes-filtradas")
     public Page<QuestaoTecnica> buscarTodasQuestoesTecnicasFiltradas(@PageableDefault Pageable pageable,
@@ -60,4 +63,10 @@ public class QuestaoTecnicaController {
         return buscarPaginado.buscar(pageable, especificidade, nivelDeDificuldade);
     }
 
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id-resposta}")
+    public QuestaoTecnicaCompletaResponse buscarQuestaoTecnicaParaBaixar(@PathVariable("id-resposta") Long idResposta) {
+        return buscarQuestoesTecnicasCompletaService.buscar(idResposta);
+    }
 }
