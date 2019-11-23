@@ -12,6 +12,7 @@ import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepositor
 import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.AdicionarAlternativaMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.autenticacao.VerificarPerfilUsuarioLogadoService;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import br.com.cwi.crescer.api.validator.UnicaAlternativaCorretaValidator;
 import org.junit.Test;
@@ -49,6 +50,9 @@ public class AdicionarQuestaoMultiplaEscolhaServiceTest {
     VerificarPerfilUsuarioLogadoService verificarPerfilUsuarioLogadoService;
 
     @Mock
+    BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
+
+    @Mock
     LoggedUser loggedUser;
 
 
@@ -68,9 +72,6 @@ public class AdicionarQuestaoMultiplaEscolhaServiceTest {
         Mockito.when(repository.save(questaoMultiplaEscolha)).thenReturn(questaoMultiplaEscolha);
         Mockito.when(mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest)).thenReturn(questaoMultiplaEscolha);
         Mockito.doNothing().when(verificarPerfilUsuarioLogadoService).verificar(loggedUser);
-
-        Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
 
         adicionarQuestaoMultiplaEscolhaService.adicionar(questaoMultiplaEscolhaRequest);
 

@@ -2,13 +2,10 @@ package br.com.cwi.crescer.api.controller.email;
 
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.security.JwtTokenProvider;
-import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.security.jwt.JwtHelper;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;

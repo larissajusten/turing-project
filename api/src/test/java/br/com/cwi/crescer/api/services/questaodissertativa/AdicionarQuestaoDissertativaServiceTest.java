@@ -9,6 +9,7 @@ import br.com.cwi.crescer.api.mapper.QuestaoDissertativaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoDissertativaRepository;
 import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.autenticacao.VerificarPerfilUsuarioLogadoService;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,6 +37,9 @@ public class AdicionarQuestaoDissertativaServiceTest {
     VerificarPerfilUsuarioLogadoService verificarPerfilUsuarioLogadoService;
 
     @Mock
+    BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
+
+    @Mock
     LoggedUser loggedUser;
 
     @Test
@@ -46,8 +50,6 @@ public class AdicionarQuestaoDissertativaServiceTest {
                 new QuestaoUnicaAlternativaRequest("O que é?", Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoDissertativa);
-
-        Usuario usuario = new Usuario();
 
         adicionarQuestaoDissertativaService.adicionar(questaoUnicaAlternativaRequest);
 
