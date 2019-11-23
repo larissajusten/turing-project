@@ -26,10 +26,10 @@ public class AdicionarQuestaoDissertativaService {
     private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
 
     @Autowired
-    VerificarPerfilUsuarioLogadoService verificarPerfilUsuarioLogadoService;
+    private VerificarPerfilUsuarioLogadoService verificarPerfilUsuarioLogadoService;
 
     @Autowired
-    LoggedUser loggedUser;
+    private LoggedUser loggedUser;
 
     public QuestaoDissertativa adicionar(QuestaoUnicaAlternativaRequest request) {
 
