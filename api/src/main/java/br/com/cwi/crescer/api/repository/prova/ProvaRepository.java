@@ -20,5 +20,6 @@ public interface ProvaRepository extends JpaRepository<Prova, Long> {
 
     Prova findByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva status);
 
+    Page<Prova> findAllByOrderByNotaDesc(Pageable pageable);
 }
 
