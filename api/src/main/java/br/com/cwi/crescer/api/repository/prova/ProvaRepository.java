@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ProvaRepository extends JpaRepository<Prova, Long> {
 
@@ -16,10 +17,9 @@ public interface ProvaRepository extends JpaRepository<Prova, Long> {
 
     Page<Prova> findAllByStatusEquals(Pageable pageable, StatusProva status);
 
-    Prova findByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva status);
+    Optional<Prova> findByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva status);
 
     Page<Prova> findAllByOrderByNotaDesc(Pageable pageable);
 
-    //TODO usar optional
 }
 

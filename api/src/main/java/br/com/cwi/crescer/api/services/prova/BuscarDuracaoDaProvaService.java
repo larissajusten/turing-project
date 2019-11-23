@@ -11,8 +11,10 @@ public class BuscarDuracaoDaProvaService {
     private BuscarProvaPorIdService buscarProvaPorIdService;
 
     public int buscar(Long id) {
+
         Prova prova = buscarProvaPorIdService.buscar(id);
 
         return prova.getTempoDeDuracaoDaProva();
     }
+
 }

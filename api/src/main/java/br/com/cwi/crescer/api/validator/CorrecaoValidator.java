@@ -14,12 +14,13 @@ import java.util.List;
 public class CorrecaoValidator {
 
     @Autowired
-    RespostasDissertativaRepository respostasDissertativaRepository;
+    private RespostasDissertativaRepository respostasDissertativaRepository;
 
     @Autowired
-    RespostasTecnicaRepository respostasTecnicaRepository;
+    private RespostasTecnicaRepository respostasTecnicaRepository;
 
     public void validar(Long idProva){
+
         boolean todasCorrigidas = true;
         List<RespostasTecnicaProva> listaTecnicas = respostasTecnicaRepository.findAllByProvaIdEquals(idProva);
         List<RespostasDissertativaProva> listaDissertativas = respostasDissertativaRepository.findAllByProvaIdEquals(idProva);
@@ -42,6 +43,6 @@ public class CorrecaoValidator {
             throw new CorrecaoNaoCompletadaException("Correções feitas salvas, porém nem todas as questões" +
                     "dessa prova foram corrigidas.");
         }
-
     }
+    
 }

@@ -13,14 +13,16 @@ public class CalcularNotaMediaGeralDissertativaService {
     @Autowired
     private RespostasDissertativaRepository repository;
 
-    public double calcular(Long idQuestao){
-        double media = 0;
+    public double calcular(Long idQuestao) {
+
         List<RespostasDissertativaProva> listaRespostas = repository.findAllByQuestaoDissertativaIdEquals(idQuestao);
+        double media = 0;
 
         for (RespostasDissertativaProva respostasDissertativaProva : listaRespostas) {
             media += respostasDissertativaProva.getNota();
         }
 
-        return media/listaRespostas.size();
+        return media / listaRespostas.size();
     }
+
 }

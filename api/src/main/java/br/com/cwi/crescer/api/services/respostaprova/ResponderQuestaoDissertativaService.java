@@ -25,19 +25,16 @@ public class ResponderQuestaoDissertativaService {
     @Autowired
     private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
 
-
     public RespostasDissertativaProva responder(Prova prova, Long idQuestao, String resposta) {
 
-        RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
-        respostasDissertativaProva.setResposta(resposta);
-
-        respostasDissertativaProva.setProva(prova);
-
         QuestaoDissertativa questaoDissertativa = buscarQuestaoDissertativaPorIdService.buscar(idQuestao);
+
+        RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
         respostasDissertativaProva.setQuestaoDissertativa(questaoDissertativa);
-
-
+        respostasDissertativaProva.setResposta(resposta);
+        respostasDissertativaProva.setProva(prova);
 
         return repository.save(respostasDissertativaProva);
     }
+
 }

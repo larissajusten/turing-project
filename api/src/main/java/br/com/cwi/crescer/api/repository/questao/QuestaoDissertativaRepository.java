@@ -15,18 +15,10 @@ public interface QuestaoDissertativaRepository extends JpaRepository<QuestaoDiss
 
     List<QuestaoDissertativa> findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade, Pageable page);
 
-    @Query("SELECT q FROM QuestaoDissertativa q WHERE q.especificidade = :especificidade" +
-            " AND q.nivelDeDificuldade = :nivelDeDificuldade")
+    @Query("SELECT q FROM QuestaoDissertativa q " +
+            "WHERE q.especificidade = :especificidade " +
+            "AND q.nivelDeDificuldade = :nivelDeDificuldade")
     Page<QuestaoDissertativa> acharPorNivelEEspecificidadePaginado(Pageable pageable, @Param("especificidade") Especificidade especificidade,
                                                                    @Param("nivelDeDificuldade") NivelDeDificuldade nivelDeDificuldade);
-
-    @Query("SELECT " +
-            "   q " +
-            "FROM QuestaoDissertativa q " +
-            "   WHERE q.especificidade = :especificidade" +
-            "   AND q.nivelDeDificuldade = :nivelDeDificuldade")
-    List<QuestaoDissertativa> acharPorNivelEEspecificidadeLista(@Param("especificidade") Especificidade especificidade,
-                                                                @Param("nivelDeDificuldade") NivelDeDificuldade nivelDeDificuldade);
-
 
 }

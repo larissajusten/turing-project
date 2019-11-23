@@ -16,8 +16,8 @@ public class FinalizarTempoDaProvaService {
     private ProvaRepository repository;
 
     public StatusProva finalizar(Long idProva) {
-        Prova prova = buscarProvaPorIdService.buscar(idProva);
 
+        Prova prova = buscarProvaPorIdService.buscar(idProva);
         prova.setStatus(StatusProva.AGUARDANDO_CORRECAO);
 
         repository.save(prova);

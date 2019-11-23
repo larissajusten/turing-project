@@ -14,6 +14,8 @@ public class ListarQuestoesDissertativasDaProvaService {
     private ProvaQuestaoDissertativaRepository repository;
 
     public List<ProvaQuestaoDissertativa> listar(Long idProva) {
+
         return repository.findAllByProvaIdEquals(idProva);
     }
+
 }

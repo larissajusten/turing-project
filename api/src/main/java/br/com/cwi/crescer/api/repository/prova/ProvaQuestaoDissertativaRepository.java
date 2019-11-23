@@ -10,4 +10,5 @@ public interface ProvaQuestaoDissertativaRepository extends JpaRepository<ProvaQ
     List<ProvaQuestaoDissertativa> findAllByProvaIdEquals(Long id);
 
     void deleteByQuestaoIdAndProvaId(Long idQuestao, Long idPRova);
+
 }

@@ -13,6 +13,8 @@ public class QuestaoTecnicaMapper {
     private ModelMapper mapper;
 
     public QuestaoTecnica transformar(QuestaoTecnicaRequest request) {
+
         return mapper.map(request, QuestaoTecnica.class);
     }
+    
 }

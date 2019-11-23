@@ -17,6 +17,7 @@ public class IniciarTempoDaProvaService {
     private ProvaRepository repository;
 
     public void iniciar(Long idProva) {
+
         Prova prova = buscarProvaPorIdService.buscar(idProva);
         prova.setDataInicio(LocalDateTime.now());
 

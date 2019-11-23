@@ -14,6 +14,8 @@ public class ListarQuestoesMultiplaEscolhaDaProvaService {
     private ProvaQuestaoMultiplaEscolhaRepository repository;
 
     public List<ProvaQuestaoMultiplaEscolha> listar(Long idProva) {
+
         return repository.findAllByProvaIdEquals(idProva);
     }
+
 }

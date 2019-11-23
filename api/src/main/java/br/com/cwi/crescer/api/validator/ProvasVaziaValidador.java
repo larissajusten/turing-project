@@ -5,12 +5,15 @@ import br.com.cwi.crescer.api.exception.prova.ProvaNaoEncontradaException;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 @Component
 public class ProvasVaziaValidador {
 
-    public void validar(List<Prova> provas){
-        if(provas.isEmpty()) {
+    public void validar(List<Prova> provas) {
+
+        if (provas.isEmpty()) {
             throw new ProvaNaoEncontradaException("Nenhuma prova corrigida foi encontrada");
         }
     }
+
 }

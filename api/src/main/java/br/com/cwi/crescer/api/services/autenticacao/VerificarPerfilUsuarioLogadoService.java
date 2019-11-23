@@ -2,7 +2,7 @@ package br.com.cwi.crescer.api.services.autenticacao;
 
 import br.com.cwi.crescer.api.domain.enums.Perfil;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
-import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
+import br.com.cwi.crescer.api.exception.usuario.UsuarioNaoAutorizadoException;
 import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,8 @@ public class VerificarPerfilUsuarioLogadoService {
         Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin());
 
         if (usuario.getPerfil().equals(Perfil.ENTREVISTADOR)) {
-            throw new ValidacaoDeAplicacaoException("Usuário não autorizado");
+            throw new UsuarioNaoAutorizadoException("Usuário não autorizado");
         }
     }
+
 }

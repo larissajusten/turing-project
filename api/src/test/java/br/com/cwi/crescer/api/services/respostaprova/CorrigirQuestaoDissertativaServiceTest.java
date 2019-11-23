@@ -37,7 +37,7 @@ public class CorrigirQuestaoDissertativaServiceTest {
 
         Mockito.when(buscarRespostaDissertativaPorIDService.buscar(resposta.getId())).thenReturn(resposta);
         Mockito.when(repository.save(resposta)).thenReturn(resposta);
-        Mockito.doNothing().when(notaValidator).verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
+        Mockito.doNothing().when(notaValidator).validar(correcao.getNota());
 
 
         corrigirQuestaoDissertativaService.corrigir(resposta.getId(), correcao);
@@ -53,7 +53,7 @@ public class CorrigirQuestaoDissertativaServiceTest {
 
         Mockito.when(buscarRespostaDissertativaPorIDService.buscar(resposta.getId())).thenReturn(resposta);
         Mockito.when(repository.save(resposta)).thenReturn(resposta);
-        Mockito.doNothing().when(notaValidator).verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
+        Mockito.doNothing().when(notaValidator).validar(correcao.getNota());
 
         corrigirQuestaoDissertativaService.corrigir(resposta.getId(), correcao);
 

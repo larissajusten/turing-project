@@ -34,7 +34,7 @@ public class CorrigirQuestaoTecnicaServiceTest {
         CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(1L, 1L, TipoDeQuestao.TECNICA, 10, "oi");
 
         Mockito.when(buscarRespostaTecnicaPorIDService.buscar(resposta.getId())).thenReturn(resposta);
-        Mockito.doNothing().when(notaValidator).verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
+        Mockito.doNothing().when(notaValidator).validar(correcao.getNota());
         corrigirQuestaoTecnicaService.corrigir(resposta.getId(), correcao);
 
         Mockito.verify(buscarRespostaTecnicaPorIDService).buscar(resposta.getId());
@@ -47,7 +47,7 @@ public class CorrigirQuestaoTecnicaServiceTest {
         CorrecaoProvaRequest correcao = new CorrecaoProvaRequest(1L, 1L, TipoDeQuestao.TECNICA, 10, "oi");
 
         Mockito.when(buscarRespostaTecnicaPorIDService.buscar(resposta.getId())).thenReturn(resposta);
-        Mockito.doNothing().when(notaValidator).verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
+        Mockito.doNothing().when(notaValidator).validar(correcao.getNota());
         corrigirQuestaoTecnicaService.corrigir(resposta.getId(), correcao);
 
         Mockito.verify(repository).save(resposta);

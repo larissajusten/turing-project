@@ -4,7 +4,6 @@ import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
-import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
 import br.com.cwi.crescer.api.repository.questao.QuestaoDissertativaRepository;
 import br.com.cwi.crescer.api.validator.QuestaoValidator;
 import org.junit.Assert;
@@ -14,9 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +27,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
     ListarQuestoesDissertativasFiltradasService listarQuestoesDissertativasFiltradasService;
 
     @Mock
-    BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
+    BuscarQuestoesDissertativasFiltradasListaService buscarQuestoesDissertativasFiltradasListaService;
 
     @Mock
     QuestaoValidator validator;
@@ -46,7 +43,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
         List<QuestaoDissertativa> listaQueAtendeRequisitos = new ArrayList<>();
         listaQueAtendeRequisitos.add(new QuestaoDissertativa());
 
-        Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
+        Mockito.when(buscarQuestoesDissertativasFiltradasListaService
                 .buscar(buscaQuestoesRequest.getEspecificidade(),
                         buscaQuestoesRequest.getNivelDeDificuldade(),1))
                 .thenReturn(listaQueAtendeRequisitos);
@@ -65,7 +62,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
         List<QuestaoDissertativa> listaQueAtendeRequisitos = new ArrayList<>();
         listaQueAtendeRequisitos.add(new QuestaoDissertativa());
 
-        Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
+        Mockito.when(buscarQuestoesDissertativasFiltradasListaService
                 .buscar(buscaQuestoesRequest.getEspecificidade(),
                         buscaQuestoesRequest.getNivelDeDificuldade(), 1))
                 .thenReturn(listaQueAtendeRequisitos);
@@ -73,7 +70,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
 
         listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest);
 
-        Mockito.verify(buscarQuestaoDissertativaPorEspecificidadeENivelService).buscar(buscaQuestoesRequest.getEspecificidade(),
+        Mockito.verify(buscarQuestoesDissertativasFiltradasListaService).buscar(buscaQuestoesRequest.getEspecificidade(),
         buscaQuestoesRequest.getNivelDeDificuldade(),1);
     }
 
@@ -85,7 +82,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
 
         List<QuestaoDissertativa> listaQueAtendeRequisitos = new ArrayList<>();
         listaQueAtendeRequisitos.add(new QuestaoDissertativa());
-        Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
+        Mockito.when(buscarQuestoesDissertativasFiltradasListaService
                 .buscar(buscaQuestoesRequest.getEspecificidade(),
                         buscaQuestoesRequest.getNivelDeDificuldade(), 1))
                 .thenReturn(listaQueAtendeRequisitos);
@@ -108,7 +105,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
 
         PageRequest page = PageRequest.of(0, 1);
 
-        Mockito.when(buscarQuestaoDissertativaPorEspecificidadeENivelService
+        Mockito.when(buscarQuestoesDissertativasFiltradasListaService
                 .buscar(buscaQuestoesRequest.getEspecificidade(),
                         buscaQuestoesRequest.getNivelDeDificuldade(),1))
                 .thenReturn(listaQueAtendeRequisitos);

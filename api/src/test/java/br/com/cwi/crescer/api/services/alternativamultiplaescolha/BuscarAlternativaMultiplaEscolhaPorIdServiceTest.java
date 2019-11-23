@@ -1,7 +1,7 @@
 package br.com.cwi.crescer.api.services.alternativamultiplaescolha;
 
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
-import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
+import br.com.cwi.crescer.api.exception.questoes.MultiplaEscolhaException;
 import br.com.cwi.crescer.api.repository.questao.AlternativaMultiplaEscolhaRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,7 +35,7 @@ public class BuscarAlternativaMultiplaEscolhaPorIdServiceTest {
         Mockito.verify(repository).findById(alternativaMultiplaEscolha.getId());
     }
 
-    @Test(expected = ValidacaoDeAplicacaoException.class)
+    @Test(expected = MultiplaEscolhaException.class)
     public void deveDispararUmaExceptionQuandoBuscarAlternativaMultiplaEscolhaPorIdServiceForChamadoENaoAcharUmaAlternativa() {
 
         AlternativaMultiplaEscolha alternativaMultiplaEscolha = new AlternativaMultiplaEscolha();

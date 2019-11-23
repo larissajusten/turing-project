@@ -22,4 +22,5 @@ public class VerificarSeProvaEstaDentroDoPrazoParaIniciarService {
 
         return Duration.between(criacao, agora).toHours() <= horasParaIniciar;
     }
+
 }

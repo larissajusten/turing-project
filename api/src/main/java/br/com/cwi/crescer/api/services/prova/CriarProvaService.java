@@ -21,11 +21,13 @@ public class CriarProvaService {
     private ProvaValidator provaValidator;
 
     public Long criar(ProvaRequest request) {
-        provaValidator.verificarSeEmailDoCandidatoTemProvaEmAbertoNoSistema(request.getEmail());
+
+        provaValidator.validar(request.getEmail());
 
         Prova prova = mapper.transformar(request);
         Prova provaSalva = repository.save(prova);
 
         return provaSalva.getId();
     }
+
 }

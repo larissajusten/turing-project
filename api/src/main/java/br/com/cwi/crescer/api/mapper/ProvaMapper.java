@@ -29,16 +29,16 @@ public class ProvaMapper {
     private LoggedUser loggedUser;
 
     public Prova transformar(ProvaRequest request) {
-        Prova prova = mapper.map(request, Prova.class);
-
-        prova.setDataCriacao(LocalDateTime.now());
-        prova.setEmailCandidato(request.getEmail());
 
         Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin());
 
+        Prova prova = mapper.map(request, Prova.class);
+        prova.setDataCriacao(LocalDateTime.now());
+        prova.setEmailCandidato(request.getEmail());
         prova.setCriador(usuario);
         prova.setStatus(StatusProva.ATIVA);
 
         return prova;
     }
+
 }

@@ -17,7 +17,6 @@ import static java.util.Optional.ofNullable;
 @Component
 public class JwtTokenProvider {
 
-
     private String jwtSecret = "cwi-turing";
 
     // cria token a partir de um usuário autenticado
@@ -46,6 +45,7 @@ public class JwtTokenProvider {
 
     // obtém id do usuário a partir de um token
     public Optional<Long> getUserId(String jwt) {
+
         try {
             Claims claims = parse(jwt).getBody();
 
@@ -56,6 +56,8 @@ public class JwtTokenProvider {
     }
 
     private Jws<Claims> parse(String jwt) {
+
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(jwt);
     }
+
 }

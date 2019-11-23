@@ -18,6 +18,7 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService {
     private QuestaoMultiplaEscolhaRepository repository;
 
     public List<QuestaoMultiplaEscolha> buscar(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade, int quantidade){
+
         Pageable quantos = PageRequest.of(0, quantidade);
         return repository.findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(especificidade, nivelDeDificuldade, quantos);
     }

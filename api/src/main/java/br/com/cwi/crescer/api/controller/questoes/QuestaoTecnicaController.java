@@ -10,7 +10,7 @@ import br.com.cwi.crescer.api.services.questaotecnica.AdicionarQuestaoTecnicaSer
 import br.com.cwi.crescer.api.services.questaotecnica.BuscarQuestoesTecnicasFiltradasPaginadoService;
 import br.com.cwi.crescer.api.services.questaotecnica.BuscarQuestoesTecnicasFiltradasService;
 import br.com.cwi.crescer.api.services.questaotecnica.ListarQuestoesTecnicasFiltradasService;
-import br.com.cwi.crescer.api.services.respostaprova.BuscarQuestoesTecnicasCompletaService;
+import br.com.cwi.crescer.api.services.respostaprova.BuscarQuestaoTecnicaCompletaParaDownloadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +19,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
@@ -39,7 +38,7 @@ public class QuestaoTecnicaController {
     private BuscarQuestoesTecnicasFiltradasPaginadoService buscarPaginado;
 
     @Autowired
-    private BuscarQuestoesTecnicasCompletaService buscarQuestoesTecnicasCompletaService;
+    private BuscarQuestaoTecnicaCompletaParaDownloadService buscarQuestaoTecnicaCompletaParaDownloadService;
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping
@@ -67,6 +66,6 @@ public class QuestaoTecnicaController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-resposta}")
     public QuestaoTecnicaCompletaResponse buscarQuestaoTecnicaParaBaixar(@PathVariable("id-resposta") Long idResposta) {
-        return buscarQuestoesTecnicasCompletaService.buscar(idResposta);
+        return buscarQuestaoTecnicaCompletaParaDownloadService.buscar(idResposta);
     }
 }

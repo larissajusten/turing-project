@@ -27,7 +27,7 @@ public class ProvaValidatorTest {
         Mockito.when(provaRepository.existsByEmailCandidatoEqualsAndStatusEquals("email@aqui.com", StatusProva.ATIVA))
                 .thenReturn(false);
 
-        provaValidator.verificarSeEmailDoCandidatoTemProvaEmAbertoNoSistema("email@aqui.com");
+        provaValidator.validar("email@aqui.com");
 
         Mockito.verify(provaRepository).existsByEmailCandidatoEqualsAndStatusEquals("email@aqui.com", StatusProva.ATIVA);
     }
@@ -38,7 +38,7 @@ public class ProvaValidatorTest {
         Mockito.when(provaRepository.existsByEmailCandidatoEqualsAndStatusEquals("email@aqui.com", StatusProva.ATIVA))
                 .thenReturn(true);
 
-        provaValidator.verificarSeEmailDoCandidatoTemProvaEmAbertoNoSistema("email@aqui.com");
+        provaValidator.validar("email@aqui.com");
 
     }
 }

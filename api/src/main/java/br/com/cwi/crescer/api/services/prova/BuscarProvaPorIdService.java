@@ -13,6 +13,9 @@ public class BuscarProvaPorIdService {
     private ProvaRepository repository;
 
     public Prova buscar(Long id) {
-        return repository.findById(id).orElseThrow(() -> new ProvaNaoEncontradaException("Prova não foi encontrada"));
+
+        return repository.findById(id)
+                .orElseThrow(() -> new ProvaNaoEncontradaException("Prova não foi encontrada"));
     }
+    
 }

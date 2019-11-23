@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.domain.resposta.RespostasMultiplaEscolhaProva;
 import br.com.cwi.crescer.api.mapper.QuestaoComRespostaMapper;
 import br.com.cwi.crescer.api.repository.resposta.RespostaMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.RetornarNotaDaQuestaoMultiplaEscolhaService;
+import br.com.cwi.crescer.api.services.respostaprova.RetornarQuestaoMultiplaEscolhaComRespostaResponseService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

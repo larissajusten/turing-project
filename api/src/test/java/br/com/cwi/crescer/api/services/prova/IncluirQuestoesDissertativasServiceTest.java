@@ -7,7 +7,8 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoDissertativa;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoDissertativaRepository;
-import br.com.cwi.crescer.api.services.questaodissertativa.AcrescentarQuantiaDeVezesUsadaQuestaoDissertativaService;
+import br.com.cwi.crescer.api.services.questaodissertativa.AcrescentarQuantasVezesUsadaQuestaoDissertativaService;
+import br.com.cwi.crescer.api.services.questaodissertativa.IncluirQuestoesDissertativasService;
 import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +36,7 @@ public class IncluirQuestoesDissertativasServiceTest {
     ProvaQuestaoDissertativaRepository provaQuestaoDissertativaRepository;
 
     @Mock
-    AcrescentarQuantiaDeVezesUsadaQuestaoDissertativaService acrescentarQuantiaDeVezesUsadaQuestaoDissertativaService;
+    AcrescentarQuantasVezesUsadaQuestaoDissertativaService acrescentarQuantasVezesUsadaQuestaoDissertativaService;
 
     @Test
     public void deveChamarListarQuestoesDissertativasFiltradasQuandoIncluirQuestoesDissertativasServiceForChamado() {
@@ -125,8 +126,8 @@ public class IncluirQuestoesDissertativasServiceTest {
 
         incluirQuestoesDissertativasService.incluir(prova.getId(), buscaQuestoesRequest);
 
-        Mockito.verify(acrescentarQuantiaDeVezesUsadaQuestaoDissertativaService,
-                Mockito.times(1)).addVezesQuestaoDissertativa(lista);
+        Mockito.verify(acrescentarQuantasVezesUsadaQuestaoDissertativaService,
+                Mockito.times(1)).acrescentar(lista);
 
     }
 }

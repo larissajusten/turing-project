@@ -12,8 +12,10 @@ public class BuscarRespostaTecnicaPorIDService {
     @Autowired
     private RespostasTecnicaRepository repository;
 
-    public RespostasTecnicaProva buscar(Long id){
+    public RespostasTecnicaProva buscar(Long id) {
+
         return repository.findById(id).orElseThrow(() -> new
                 RespostaNaoEncontradaException("Resposta técnica não encontrada por esse ID"));
     }
+
 }

@@ -31,6 +31,7 @@ public class FinalizarProvaService {
     private ResponderQuestaoMultiplaEscolhaService responderQuestaoMultiplaEscolhaService;
 
     public StatusProva finalizar(Long idProva, List<ProvaRespondidaRequest> request) {
+
         Prova prova = buscarProvaPorIdService.buscar(idProva);
 
         for (ProvaRespondidaRequest resposta : request) {

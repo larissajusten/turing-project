@@ -20,13 +20,14 @@ public class CorrigirQuestaoTecnicaService {
     private NotaValidator notaValidator;
 
     public void corrigir(Long idResposta, CorrecaoProvaRequest correcao) {
-        RespostasTecnicaProva resposta = buscarRespostaTecnicaPorIDService.buscar(idResposta);
 
-        notaValidator.verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
+        notaValidator.validar(correcao.getNota());
+        RespostasTecnicaProva resposta = buscarRespostaTecnicaPorIDService.buscar(idResposta);
 
         resposta.setNota(correcao.getNota());
         resposta.setComentario(correcao.getComentario());
 
         repository.save(resposta);
     }
+
 }

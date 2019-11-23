@@ -13,14 +13,16 @@ public class CalcularNotaMediaGeralTecnicaService {
     @Autowired
     private RespostasTecnicaRepository repository;
 
-    public double calcular(Long idQuestao){
-        double media = 0;
+    public double calcular(Long idQuestao) {
+
         List<RespostasTecnicaProva> listaRespostas = repository.findAllByQuestaoTecnicaIdEquals(idQuestao);
+        double media = 0;
 
         for (RespostasTecnicaProva respostasTecnicaProva : listaRespostas) {
             media += respostasTecnicaProva.getNota();
         }
 
-        return media/listaRespostas.size();
+        return media / listaRespostas.size();
     }
+
 }

@@ -39,7 +39,6 @@ public class LoginService {
         usuario.setToken("Bearer " + token);
 
         return usuario;
-
     }
 
     private String getAccessToken(String login, String senha) {
@@ -77,7 +76,5 @@ public class LoginService {
         }
         return usuarioLogado;
     }
-
-
 
 }

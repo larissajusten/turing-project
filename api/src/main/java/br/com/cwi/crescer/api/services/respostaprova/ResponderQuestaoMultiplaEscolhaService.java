@@ -31,16 +31,16 @@ public class ResponderQuestaoMultiplaEscolhaService {
     private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
 
     public RespostasMultiplaEscolhaProva responder(Prova prova, Long idQuestao, Long idAlternativa) {
-        RespostasMultiplaEscolhaProva respostasMultiplaEscolhaProva = new RespostasMultiplaEscolhaProva();
 
         AlternativaMultiplaEscolha alternativaMultiplaEscolha = buscarAlternativaMultiplaEscolhaPorIdService.buscar(idAlternativa);
-        respostasMultiplaEscolhaProva.setAlternativaMultiplaEscolha(alternativaMultiplaEscolha);
-
-        respostasMultiplaEscolhaProva.setProva(prova);
-
         QuestaoMultiplaEscolha questaoMultiplaEscolha = buscarQuestaoMultiplaEscolhaPorIdService.buscar(idQuestao);
+
+        RespostasMultiplaEscolhaProva respostasMultiplaEscolhaProva = new RespostasMultiplaEscolhaProva();
+        respostasMultiplaEscolhaProva.setAlternativaMultiplaEscolha(alternativaMultiplaEscolha);
         respostasMultiplaEscolhaProva.setQuestaoMultiplaEscolha(questaoMultiplaEscolha);
+        respostasMultiplaEscolhaProva.setProva(prova);
 
         return repository.save(respostasMultiplaEscolhaProva);
     }
+
 }
