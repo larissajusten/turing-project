@@ -11,6 +11,8 @@ public class VerificarNumeroTotalDeQuestoesMultiplaEscolhaService {
     private ProvaQuestaoMultiplaEscolhaRepository repository;
 
     public int verificar(Long idProva) {
-       return repository.findAllByProvaIdEquals(idProva).size();
+
+        return repository.findAllByProvaIdEquals(idProva).size();
     }
+
 }

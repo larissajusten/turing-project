@@ -23,8 +23,8 @@ public class GerarNotaDaProvaComDiferencialDePesoDasQuestoesService {
     private double nota = 0;
     private int divisor = 0;
 
+    //TODO VER SE NÃO DÁ PRA QUEBRAR EM 3 MÉTODOS: CADA UM RETORNA UMA NOTA
     public double gerarNotaDaProva(Prova prova) {
-
 
         respostasDissertativaProva.findAllByProvaIdEquals(prova.getId())
                 .forEach(questao -> {

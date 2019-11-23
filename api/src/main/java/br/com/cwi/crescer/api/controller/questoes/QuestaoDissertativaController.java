@@ -6,8 +6,8 @@ import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.services.questaodissertativa.AdicionarQuestaoDissertativaService;
-import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorEspecificidadeENivelPaginadasService;
-import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorEspecificidadeENivelService;
+import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestoesDissertativasFiltradasPaginadasService;
+import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestoesDissertativasFiltradasListaService;
 import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,10 +30,10 @@ public class QuestaoDissertativaController {
     private ListarQuestoesDissertativasFiltradasService listarQuestoesDissertativasFiltradas;
 
     @Autowired
-    private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
+    private BuscarQuestoesDissertativasFiltradasListaService buscarQuestoesDissertativasFiltradasListaService;
 
     @Autowired
-    private BuscarQuestaoDissertativaPorEspecificidadeENivelPaginadasService buscarPaginado;
+    private BuscarQuestoesDissertativasFiltradasPaginadasService buscarPaginado;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping

@@ -1,6 +1,6 @@
 package br.com.cwi.crescer.api.validator;
 
-import br.com.cwi.crescer.api.exception.ValidacaoDeAplicacaoException;
+import br.com.cwi.crescer.api.exception.prova.NotaException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -12,10 +12,10 @@ public class NotaValidatorTest {
     @InjectMocks
     NotaValidator notaValidator;
 
-    @Test(expected = ValidacaoDeAplicacaoException.class)
+    @Test(expected = NotaException.class)
     public void deveDispararUmaValidacaoDeAplicacaoExceptionQuandoNotaForInferiorANotaMinimaOuSuperiorANotaMaxima() {
 
-        notaValidator.verificarSeNotaEMaiorQue0EMenorQueDez(11);
+        notaValidator.validar(11);
 
     }
 

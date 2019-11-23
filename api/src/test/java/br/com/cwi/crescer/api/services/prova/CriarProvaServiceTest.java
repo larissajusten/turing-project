@@ -36,7 +36,7 @@ public class CriarProvaServiceTest {
 
         Mockito.when(mapper.transformar(provaRequest)).thenReturn(prova);
         Mockito.when(repository.save(prova)).thenReturn(prova);
-        Mockito.doNothing().when(provaValidator).verificarSeEmailDoCandidatoTemProvaEmAbertoNoSistema(provaRequest.getEmail());
+        Mockito.doNothing().when(provaValidator).validar(provaRequest.getEmail());
         criarProvaService.criar(provaRequest);
 
         Mockito.verify(repository).save(prova);
@@ -51,7 +51,7 @@ public class CriarProvaServiceTest {
 
         Mockito.when(mapper.transformar(provaRequest)).thenReturn(prova);
         Mockito.when(repository.save(prova)).thenReturn(prova);
-        Mockito.doNothing().when(provaValidator).verificarSeEmailDoCandidatoTemProvaEmAbertoNoSistema(provaRequest.getEmail());
+        Mockito.doNothing().when(provaValidator).validar(provaRequest.getEmail());
 
         criarProvaService.criar(provaRequest);
 

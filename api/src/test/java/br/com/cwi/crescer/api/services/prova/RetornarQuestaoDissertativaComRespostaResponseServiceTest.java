@@ -5,6 +5,7 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
 import br.com.cwi.crescer.api.mapper.QuestaoComRespostaMapper;
 import br.com.cwi.crescer.api.repository.resposta.RespostasDissertativaRepository;
+import br.com.cwi.crescer.api.services.respostaprova.RetornarQuestaoDissertativaComRespostaResponseService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

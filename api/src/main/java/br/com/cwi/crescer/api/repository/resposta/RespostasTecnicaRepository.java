@@ -6,7 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface RespostasTecnicaRepository extends JpaRepository<RespostasTecnicaProva, Long> {
+
     List<RespostasTecnicaProva> findAllByProvaIdEquals(Long id);
 
     List<RespostasTecnicaProva> findAllByQuestaoTecnicaIdEquals(Long id);
+
 }

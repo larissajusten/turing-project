@@ -11,6 +11,8 @@ public class RetornarAlternativaCertaService {
     private AlternativaMultiplaEscolhaRepository repository;
 
     public boolean retornar(Long idAlternativa) {
+
         return repository.isAlternativaCerta(idAlternativa);
     }
+
 }

@@ -16,6 +16,7 @@ public class ConsultarStatusDaProvaService {
     private ProvaRepository repository;
 
     public StatusProva consultar(Long idProva) {
+
         Prova prova = buscarProvaPorIdService.buscar(idProva);
         return prova.getStatus();
     }

@@ -41,8 +41,8 @@ public class BuscarQuestoesMultiplaEscolhaService {
         validator.validar(questoes.getSize(), pageable.getPageSize());
 
         return questoes.map(questao -> {
-            List<AlternativaMultiplaEscolhaResponse> alternativasResponse = new ArrayList<>();
 
+            List<AlternativaMultiplaEscolhaResponse> alternativasResponse = new ArrayList<>();
             buscarAlternativaQuestaoMultiplaEscolha.buscar(questao.getId())
                     .forEach(item -> alternativasResponse.add(alternativaMapper.transformarEmResponse(item))
                     );
@@ -51,4 +51,5 @@ public class BuscarQuestoesMultiplaEscolhaService {
         });
 
     }
+
 }

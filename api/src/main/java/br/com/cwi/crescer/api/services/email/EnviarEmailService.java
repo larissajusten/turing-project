@@ -37,6 +37,6 @@ public class EnviarEmailService {
         helper.setText("<a href='http://localhost:8100/cwi-turing/email/prova?token=" + token + "'>Acesse sua prova aqui</a>", true);
 
         mailSender.send(mail);
-
     }
+
 }

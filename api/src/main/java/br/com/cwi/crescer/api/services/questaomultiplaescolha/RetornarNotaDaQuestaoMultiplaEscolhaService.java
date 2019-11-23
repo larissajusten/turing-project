@@ -10,14 +10,11 @@ public class RetornarNotaDaQuestaoMultiplaEscolhaService {
 
         if(nivelDeDificuldade.equals(NivelDeDificuldade.FACIL)) {
             return 10;
-        }
-
-        else if(nivelDeDificuldade.equals(NivelDeDificuldade.MEDIO)) {
+        } else if(nivelDeDificuldade.equals(NivelDeDificuldade.MEDIO)) {
             return 20;
-        }
-
-        else {
+        } else {
             return 30;
         }
     }
+
 }

@@ -17,4 +17,5 @@ public class BuscarQuestaoDissertativaPorIdService {
                 .orElseThrow(() -> new QuestaoNaoEncontradaException("Questão dissertativa não encontrada."));
 
     }
+
 }

@@ -7,7 +7,8 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoTecnica;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoTecnicaRepository;
-import br.com.cwi.crescer.api.services.questaotecnica.AcrescentarQuantiaDeVezesUsadaQuestaoTecnicaService;
+import br.com.cwi.crescer.api.services.questaotecnica.AcrescentarQuantasVezesUsadaQuestaoTecnicaService;
+import br.com.cwi.crescer.api.services.questaotecnica.IncluirQuestoesTecnicasService;
 import br.com.cwi.crescer.api.services.questaotecnica.ListarQuestoesTecnicasFiltradasService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +36,7 @@ public class IncluirQuestoesTecnicasServiceTest {
     ProvaQuestaoTecnicaRepository repository;
 
     @Mock
-    AcrescentarQuantiaDeVezesUsadaQuestaoTecnicaService acrescentarQuantiaDeVezesUsadaQuestaoTecnicaService;
+    AcrescentarQuantasVezesUsadaQuestaoTecnicaService acrescentarQuantasVezesUsadaQuestaoTecnicaService;
 
     @Test
     public void deveChamarListarQuestoesTecnicasFiltradasServiceQuandoIncluirQuestoesTecnicasServiceForChamado() {
@@ -121,7 +122,7 @@ public class IncluirQuestoesTecnicasServiceTest {
 
         incluirQuestoesTecnicasService.incluir(prova.getId(), buscaQuestoesRequest);
 
-        Mockito.verify(acrescentarQuantiaDeVezesUsadaQuestaoTecnicaService).addVezesQuestaoTecnica(lista);
+        Mockito.verify(acrescentarQuantasVezesUsadaQuestaoTecnicaService).acrescentar(lista);
 
     }
 

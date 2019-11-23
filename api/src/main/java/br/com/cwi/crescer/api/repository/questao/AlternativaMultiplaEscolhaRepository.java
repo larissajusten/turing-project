@@ -10,6 +10,9 @@ public interface AlternativaMultiplaEscolhaRepository extends JpaRepository<Alte
 
     List<AlternativaMultiplaEscolha> findAllByQuestaoMultiplaEscolhaIdEquals(Long id);
 
-    @Query("Select a from AlternativaMultiplaEscolha a where a.respostaCorreta = TRUE AND a.id = ?1")
+    @Query("SELECT a FROM AlternativaMultiplaEscolha a " +
+            "WHERE a.respostaCorreta = TRUE " +
+            "AND a.id = ?1")
     boolean isAlternativaCerta(Long idAlternativa);
+
 }

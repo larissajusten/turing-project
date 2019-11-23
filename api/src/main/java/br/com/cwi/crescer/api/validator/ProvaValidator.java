@@ -13,10 +13,11 @@ public class ProvaValidator {
     @Autowired
     private ProvaRepository provaRepository;
 
-    public void verificarSeEmailDoCandidatoTemProvaEmAbertoNoSistema(String email) {
+    public void validar(String email) {
 
         if (provaRepository.existsByEmailCandidatoEqualsAndStatusEquals(email, StatusProva.ATIVA)) {
             throw new UsuariojaTemProvaEmVigorException("Usuário já possui uma prova ativa.");
         }
     }
+
 }

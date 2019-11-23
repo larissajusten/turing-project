@@ -13,7 +13,9 @@ public class BuscarRespostaDissertativaPorIDService {
     private RespostasDissertativaRepository repository;
 
     public RespostasDissertativaProva buscar(Long id) {
+
         return repository.findById(id).orElseThrow(() -> new
                 RespostaNaoEncontradaException("Resposta dissertativa não encontrada por esse ID"));
     }
+
 }

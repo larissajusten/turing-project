@@ -22,14 +22,15 @@ public class ResponderQuestaoTecnicaService {
     private BuscarQuestaoTecnicaPorIdService buscarQuestaoTecnicaPorIdService;
 
     public RespostasTecnicaProva responder(Prova prova, Long idQuestao, String resposta) {
-        RespostasTecnicaProva respostasTecnicaProva = new RespostasTecnicaProva();
-        respostasTecnicaProva.setResposta(resposta);
-
-        respostasTecnicaProva.setProva(prova);
 
         QuestaoTecnica questaoTecnica = buscarQuestaoTecnicaPorIdService.buscar(idQuestao);
+
+        RespostasTecnicaProva respostasTecnicaProva = new RespostasTecnicaProva();
         respostasTecnicaProva.setQuestaoTecnica(questaoTecnica);
+        respostasTecnicaProva.setResposta(resposta);
+        respostasTecnicaProva.setProva(prova);
 
         return repository.save(respostasTecnicaProva);
     }
+
 }

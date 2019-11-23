@@ -30,4 +30,5 @@ public class CalcularNumeroDeAcertosMultiplaEscolhaService {
 
         return corretas;
     }
+
 }

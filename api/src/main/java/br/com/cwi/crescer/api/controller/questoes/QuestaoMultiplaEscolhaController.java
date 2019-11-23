@@ -38,7 +38,7 @@ public class QuestaoMultiplaEscolhaController {
     private BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService;
 
     @Autowired
-    private BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadePaginadoService buscarPaginado;
+    private BuscarQuestoesMultiplaEscolhasFiltradasPaginadoService buscarPaginado;
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
@@ -64,6 +64,6 @@ public class QuestaoMultiplaEscolhaController {
     public Page<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@PageableDefault Pageable pageable,
                                                                               @RequestParam("especificidade") Especificidade especificidade,
                                                                               @RequestParam("nivel") NivelDeDificuldade nivelDeDificuldade) {
-        return buscarPaginado.buscarQuestoes(pageable, especificidade, nivelDeDificuldade);
+        return buscarPaginado.buscar(pageable, especificidade, nivelDeDificuldade);
     }
 }

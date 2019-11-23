@@ -32,23 +32,23 @@ public class CorrigirProvaService {
     private ProvaRepository repository;
 
 
-    public StatusProva corrigir(Long idProva,
-                                List<CorrecaoProvaRequest> listaDeCorrecoes){
+    public StatusProva corrigir(Long idProva, List<CorrecaoProvaRequest> listaDeCorrecoes) {
+
         Prova prova = buscarProvaPorIdService.buscar(idProva);
 
         for (CorrecaoProvaRequest request : listaDeCorrecoes) {
-            if(request.getTipoDeQuestao().equals(TipoDeQuestao.DISSERTATIVA)){
+            if (request.getTipoDeQuestao().equals(TipoDeQuestao.DISSERTATIVA)) {
                 corrigirQuestaoDissertativaService.corrigir(request.getIdResposta(), request);
-            } else if (request.getTipoDeQuestao().equals(TipoDeQuestao.TECNICA)){
+            } else if (request.getTipoDeQuestao().equals(TipoDeQuestao.TECNICA)) {
                 corrigirQuestaoTecnicaService.corrigir(request.getIdResposta(), request);
             }
         }
 
         validator.validar(idProva);
         prova.setStatus(StatusProva.CORRIGIDA);
-
         repository.save(prova);
 
         return prova.getStatus();
     }
+
 }

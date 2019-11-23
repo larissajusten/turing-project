@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoDissertativaRepository;
+import br.com.cwi.crescer.api.services.provaquestao.BuscarQuestoesDissertativasDeUmaProvaPorIdService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

@@ -15,7 +15,6 @@ public class RolesExtractor implements AuthoritiesExtractor {
     @Autowired
     private BuscarUsuarioPeloEmailService buscarColaboradorPorLoginService;
 
-
     @Override
     public List<GrantedAuthority> extractAuthorities(Map<String, Object> map) {
         String login = (String) map.get(ClaimTypes.NAMEIDENTIFIER.toString());

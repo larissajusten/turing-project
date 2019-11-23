@@ -14,9 +14,9 @@ public class CalcularNotaMediaTecnicaService {
     private RespostasTecnicaRepository repository;
 
     public double calcular(Long idProva) {
-        double media = 0;
 
         List<RespostasTecnicaProva> listaRespostas = repository.findAllByProvaIdEquals(idProva);
+        double media = 0;
 
         for (RespostasTecnicaProva respostasTecnicaProva : listaRespostas) {
             media += respostasTecnicaProva.getNota();
@@ -24,4 +24,5 @@ public class CalcularNotaMediaTecnicaService {
 
         return media/listaRespostas.size();
     }
+
 }

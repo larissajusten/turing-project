@@ -7,7 +7,8 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoMultiplaEscolhaRepository;
-import br.com.cwi.crescer.api.services.questaomultiplaescolha.AcrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService;
+import br.com.cwi.crescer.api.services.questaomultiplaescolha.AcrescentarQuantasVezesUsadaQuestaoMultiplaEscolhaService;
+import br.com.cwi.crescer.api.services.questaomultiplaescolha.IncluirQuestoesMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.ListarQuestoesMultiplaEscolhaFiltradasService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,7 +36,7 @@ public class IncluirQuestoesMultiplaEscolhaServiceTest {
     BuscarProvaPorIdService buscarProvaPorId;
 
     @Mock
-    AcrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService acrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService;
+    AcrescentarQuantasVezesUsadaQuestaoMultiplaEscolhaService acrescentarQuantasVezesUsadaQuestaoMultiplaEscolhaService;
 
     @Test
     public void deveChamarListarQuestoesMultiplaEscolhaFiltradasServiceQuandoIncluirQuestoesMultiplaEscolhaService() {
@@ -122,6 +123,6 @@ public class IncluirQuestoesMultiplaEscolhaServiceTest {
 
         incluirQuestoesMultiplaEscolhaService.incluir(prova.getId(), buscaQuestoesRequest);
 
-        Mockito.verify(acrescentarQuantiaDeVezesUsadaQuestaoMultiplaEscolhaService).addVezesQuestaoMultiplaEscolha(lista);
+        Mockito.verify(acrescentarQuantasVezesUsadaQuestaoMultiplaEscolhaService).acrescentar(lista);
     }
 }

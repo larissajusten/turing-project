@@ -17,6 +17,7 @@ public class QuestaoMultiplaEscolhaMapper {
     private ModelMapper mapper;
 
     public QuestaoMultiplaEscolha transformarParaQuestao(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
+
         return mapper.map(questaoMultiplaEscolhaRequest, QuestaoMultiplaEscolha.class);
     }
 
@@ -32,4 +33,5 @@ public class QuestaoMultiplaEscolhaMapper {
 
         return questaoResponse;
     }
+
 }

@@ -15,15 +15,16 @@ public class ListarQuestoesDissertativasFiltradasService {
     private QuestaoValidator validator;
 
     @Autowired
-    private BuscarQuestaoDissertativaPorEspecificidadeENivelService buscarQuestaoDissertativaPorEspecificidadeENivelService;
+    private BuscarQuestoesDissertativasFiltradasListaService buscarQuestoesDissertativasFiltradasListaService;
 
     public List<QuestaoDissertativa> listar(BuscaQuestoesRequest request) {
 
-        List<QuestaoDissertativa> listaQueAtendeRequisitos = buscarQuestaoDissertativaPorEspecificidadeENivelService
+        List<QuestaoDissertativa> listaQueAtendeRequisitos = buscarQuestoesDissertativasFiltradasListaService
                 .buscar(request.getEspecificidade(), request.getNivelDeDificuldade(), request.getQuantidadeDeQuestoes());
 
         validator.validar(listaQueAtendeRequisitos.size(), request.getQuantidadeDeQuestoes());
 
         return listaQueAtendeRequisitos;
     }
+
 }

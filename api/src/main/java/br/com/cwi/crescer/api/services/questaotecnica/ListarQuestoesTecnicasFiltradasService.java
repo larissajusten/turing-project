@@ -27,6 +27,7 @@ public class ListarQuestoesTecnicasFiltradasService {
 
         validator.validar(listaQueAtendeRequisitos.size(), request.getQuantidadeDeQuestoes());
 
-       return listaQueAtendeRequisitos;
+        return listaQueAtendeRequisitos;
     }
+
 }

@@ -10,4 +10,5 @@ public interface ProvaQuestaoMultiplaEscolhaRepository extends JpaRepository<Pro
     List<ProvaQuestaoMultiplaEscolha> findAllByProvaIdEquals(Long id);
 
     void deleteByQuestaoIdAndProvaId(Long idQuestao, Long idPRova);
+
 }

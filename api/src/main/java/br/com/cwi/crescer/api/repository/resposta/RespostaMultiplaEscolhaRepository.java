@@ -8,4 +8,5 @@ import java.util.List;
 public interface RespostaMultiplaEscolhaRepository extends JpaRepository<RespostasMultiplaEscolhaProva, Long> {
 
     List<RespostasMultiplaEscolhaProva> findAllByProvaIdEquals(Long id);
+
 }

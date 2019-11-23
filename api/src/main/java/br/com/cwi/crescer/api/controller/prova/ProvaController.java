@@ -11,6 +11,12 @@ import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.services.prova.*;
+import br.com.cwi.crescer.api.services.questaodissertativa.ExcluirQuestaoDissertativaService;
+import br.com.cwi.crescer.api.services.questaodissertativa.IncluirQuestoesDissertativasService;
+import br.com.cwi.crescer.api.services.questaomultiplaescolha.ExcluirQuestaoMultiplaEscolhaService;
+import br.com.cwi.crescer.api.services.questaomultiplaescolha.IncluirQuestoesMultiplaEscolhaService;
+import br.com.cwi.crescer.api.services.questaotecnica.ExcluirQuestaoTecnicaService;
+import br.com.cwi.crescer.api.services.questaotecnica.IncluirQuestoesTecnicasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +26,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
-import javax.websocket.server.PathParam;
 import java.util.List;
 
 
@@ -41,7 +46,7 @@ public class ProvaController {
     private IncluirQuestoesMultiplaEscolhaService incluirQuestoesMultiplaEscolhaService;
 
     @Autowired
-    private BuscarProvaComQuestoesService buscarProvaComQuestoesService;
+    private BuscarProvaPorIdComQuestoesService buscarProvaPorIdComQuestoesService;
 
     @Autowired
     private BuscarDuracaoDaProvaService buscarDuracaoDaProvaService;
@@ -71,13 +76,13 @@ public class ProvaController {
     private CorrigirProvaService corrigirProvaService;
 
     @Autowired
-    private BuscarProvasCorrigidasComNotaService buscarProvasCorrigidasComNotaService;
+    private BuscarProvasPorNomeOuEmailCorrigidasComNotaService buscarProvasPorNomeOuEmailCorrigidasComNotaService;
 
     @Autowired
-    private BuscarProvaComRespostasDoUsuarioService buscarProvaComRespostasDoUsuario;
+    private BuscarProvaPorIdParaCorrecaoService buscarProvaComRespostasDoUsuario;
 
     @Autowired
-    private BuscarProvaPorIdCompletaService buscarProvaPorIdCompletaService;
+    private BuscarProvaPorIdCorrigidaService buscarProvaPorIdCorrigidaService;
 
     @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.CREATED)
@@ -135,7 +140,7 @@ public class ProvaController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/buscar-prova")
     public ProvaResponse buscarProva(@PathVariable("id-prova") Long idProva) {
-        return buscarProvaComQuestoesService.buscar(idProva);
+        return buscarProvaPorIdComQuestoesService.buscar(idProva);
     }
 
     @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
@@ -184,13 +189,13 @@ public class ProvaController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/provas-corrigidas")
     public List<ProvaCorrigidaResponse> provaCompletaComRespostas(@RequestParam("pesquisa") String nomeOuEmail) {
-        return buscarProvasCorrigidasComNotaService.buscar(nomeOuEmail);
+        return buscarProvasPorNomeOuEmailCorrigidasComNotaService.buscar(nomeOuEmail);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("{id-prova}/prova-completa")
     public ProvaCorrigidaResponse provaCompletaDoCandidatoComRespostas(@PathVariable("id-prova") Long idProva) {
-        return buscarProvaPorIdCompletaService.buscar(idProva);
+        return buscarProvaPorIdCorrigidaService.buscar(idProva);
     }
 
     @ResponseStatus(HttpStatus.OK)

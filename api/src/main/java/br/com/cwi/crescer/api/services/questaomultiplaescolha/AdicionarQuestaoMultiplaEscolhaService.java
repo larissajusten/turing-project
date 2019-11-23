@@ -46,7 +46,6 @@ public class AdicionarQuestaoMultiplaEscolhaService {
     public QuestaoMultiplaEscolha adicionar(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
 
         verificarPerfilUsuarioLogadoService.verificar(loggedUser);
-
         unicaAlternativaCorretaValidator.validar(questaoMultiplaEscolhaRequest);
 
         QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest);
@@ -70,4 +69,5 @@ public class AdicionarQuestaoMultiplaEscolhaService {
 
         return questaoSalva;
     }
+
 }

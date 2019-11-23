@@ -20,13 +20,14 @@ public class CorrigirQuestaoDissertativaService {
     private NotaValidator notaValidator;
 
     public void corrigir(Long idResposta, CorrecaoProvaRequest correcao) {
-        RespostasDissertativaProva resposta = buscarRespostaDissertativaPorIDService.buscar(idResposta);
 
-        notaValidator.verificarSeNotaEMaiorQue0EMenorQueDez(correcao.getNota());
+        notaValidator.validar(correcao.getNota());
+        RespostasDissertativaProva resposta = buscarRespostaDissertativaPorIDService.buscar(idResposta);
 
         resposta.setNota(correcao.getNota());
         resposta.setComentario(correcao.getComentario());
 
         repository.save(resposta);
     }
+
 }

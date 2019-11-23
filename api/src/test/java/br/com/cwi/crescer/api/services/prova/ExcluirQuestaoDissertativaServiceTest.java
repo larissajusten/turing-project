@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.services.prova;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoDissertativaRepository;
+import br.com.cwi.crescer.api.services.questaodissertativa.ExcluirQuestaoDissertativaService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;

@@ -15,18 +15,11 @@ public interface QuestaoTecnicaRepository extends JpaRepository<QuestaoTecnica, 
 
     List<QuestaoTecnica> findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade, Pageable page);
     
-    @Query("SELECT q FROM QuestaoTecnica q WHERE q.especificidade = :especificidade" +
-            " AND q.nivelDeDificuldade = :nivelDeDificuldade")
+    @Query("SELECT q FROM QuestaoTecnica q " +
+            "WHERE q.especificidade = :especificidade " +
+            "AND q.nivelDeDificuldade = :nivelDeDificuldade")
     Page<QuestaoTecnica> acharPorNivelEEspecificidadePaginado(Pageable pageable, @Param("especificidade")Especificidade especificidade,
                                                       @Param("nivelDeDificuldade")NivelDeDificuldade nivelDeDificuldade);
-
-
-    @Query("SELECT q FROM QuestaoTecnica q WHERE q.especificidade = :especificidade" +
-            " AND q.nivelDeDificuldade = :nivelDeDificuldade")
-    List<QuestaoTecnica> acharPorNivelEEspecificidadeLista(@Param("especificidade")Especificidade especificidade,
-                                                      @Param("nivelDeDificuldade")NivelDeDificuldade nivelDeDificuldade);
-
-
 
 }
 

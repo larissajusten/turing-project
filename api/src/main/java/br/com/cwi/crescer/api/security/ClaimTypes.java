@@ -17,4 +17,5 @@ public enum ClaimTypes {
     public String toString() {
         return text;
     }
+
 }
