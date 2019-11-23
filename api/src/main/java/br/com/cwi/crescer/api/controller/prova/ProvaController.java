@@ -37,18 +37,6 @@ public class ProvaController {
     private CriarProvaService criarProvaService;
 
     @Autowired
-    private IncluirQuestoesDissertativasService incluirQuestoesDissertativasService;
-
-    @Autowired
-    private IncluirQuestoesTecnicasService incluirQuestoesTecnicasService;
-
-    @Autowired
-    private IncluirQuestoesMultiplaEscolhaService incluirQuestoesMultiplaEscolhaService;
-
-    @Autowired
-    private BuscarProvaPorIdComQuestoesService buscarProvaPorIdComQuestoesService;
-
-    @Autowired
     private BuscarDuracaoDaProvaService buscarDuracaoDaProvaService;
 
     @Autowired
@@ -61,103 +49,26 @@ public class ProvaController {
     private ConsultarStatusDaProvaService consultarStatusDaProvaService;
 
     @Autowired
-    private ExcluirQuestaoDissertativaService excluirQuestaoDissertativaService;
-
-    @Autowired
-    private ExcluirQuestaoMultiplaEscolhaService excluirQuestaoMultiplaEscolhaService;
-
-    @Autowired
-    private ExcluirQuestaoTecnicaService excluirQuestaoTecnicaService;
-
-    @Autowired
-    private BuscarProvasParaCorrecaoService buscarProvasParaCorrecaoService;
-
-    @Autowired
     private CorrigirProvaService corrigirProvaService;
 
-    @Autowired
-    private BuscarProvasPorNomeOuEmailCorrigidasComNotaService buscarProvasPorNomeOuEmailCorrigidasComNotaService;
-
-    @Autowired
-    private BuscarProvaPorIdParaCorrecaoService buscarProvaComRespostasDoUsuario;
-
-    @Autowired
-    private BuscarProvaPorIdCorrigidaService buscarProvaPorIdCorrigidaService;
-
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Long criarProvaERetornarID(@Valid @RequestBody ProvaRequest request) {
         return criarProvaService.criar(request);
     }
 
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/incluir-dissertativa")
-    public List<QuestaoDissertativa> incluirDissertativas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
-        return incluirQuestoesDissertativasService.incluir(idProva, buscaQuestoesRequest);
-    }
-
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
-    @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/{id-prova}/excluir-dissertativa/{id-questao-prova}")
-    public void excluirDissertativa(@PathVariable("id-prova") Long idProva,
-                                    @PathVariable("id-questao-prova") Long idQuestaoProva) {
-        excluirQuestaoDissertativaService.excluir(idQuestaoProva, idProva);
-    }
-
-   @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/incluir-tecnica")
-    public void incluirTecnicas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
-        incluirQuestoesTecnicasService.incluir(idProva, buscaQuestoesRequest);
-    }
-
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
-    @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/{id-prova}/excluir-tecnica/{id-questao-prova}")
-    public void excluirTecnicaProva(@PathVariable("id-prova") Long idProva,
-                                    @PathVariable("id-questao-prova") Long idQuestaoProva) {
-        excluirQuestaoTecnicaService.excluir(idQuestaoProva, idProva);
-    }
-
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/incluir-multipla-escolha")
-    public void incluirMultiplasEscolhas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
-        incluirQuestoesMultiplaEscolhaService.incluir(idProva, buscaQuestoesRequest);
-    }
-
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
-    @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/{id-prova}/excluir-multipla-escolha/{id-questao-prova}")
-    public void excluirMultiplaEscolha(@PathVariable("id-prova") Long idProva,
-                                       @PathVariable("id-questao-prova") Long idQuestaoProva) {
-        excluirQuestaoMultiplaEscolhaService.excluir(idQuestaoProva, idProva);
-    }
-
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id-prova}/buscar-prova")
-    public ProvaResponse buscarProva(@PathVariable("id-prova") Long idProva) {
-        return buscarProvaPorIdComQuestoesService.buscar(idProva);
-    }
-
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/duracao")
     public int retornaDuracaoDaProva(@PathVariable("id-prova") Long idProva) {
         return buscarDuracaoDaProvaService.buscar(idProva);
     }
 
-    //@RolesAllowed("Usuario")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/iniciar-prova")
     public void iniciarTempoDaProva(@PathVariable("id-prova") Long idProva) {
         iniciarTempoDaProvaService.iniciar(idProva);
     }
 
-    //@RolesAllowed("Usuario")
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/finalizar-prova")
     public StatusProva finalizarProva(@PathVariable("id-prova") Long idProva,
@@ -165,7 +76,6 @@ public class ProvaController {
         return finalizarProvaService.finalizar(idProva, provaRespondida);
     }
 
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/consultar-status-prova")
     public StatusProva consultarStatusDaProva(@PathVariable("id-prova") Long idProva) {
@@ -173,35 +83,10 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/para-correcao")
-    public Page<ProvaParaCorrecaoResponse> buscarProvasParaCorrcao(@PageableDefault Pageable pageable) {
-        return buscarProvasParaCorrecaoService.buscar(pageable);
-    }
-
-
-    @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}-corrigir")
     public StatusProva corrigirProva(@PathVariable("id-prova") Long idProva, @Valid @RequestBody
                                      List<CorrecaoProvaRequest> listaDeCorrecoes){
         return corrigirProvaService.corrigir(idProva, listaDeCorrecoes);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/provas-corrigidas")
-    public List<ProvaCorrigidaResponse> provaCompletaComRespostas(@RequestParam("pesquisa") String nomeOuEmail) {
-        return buscarProvasPorNomeOuEmailCorrigidasComNotaService.buscar(nomeOuEmail);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("{id-prova}/prova-completa")
-    public ProvaCorrigidaResponse provaCompletaDoCandidatoComRespostas(@PathVariable("id-prova") Long idProva) {
-        return buscarProvaPorIdCorrigidaService.buscar(idProva);
-    }
-
-    @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id-prova}-respostas")
-    public ProvaComRespostasResponse provaComRespostas(@PathVariable("id-prova") Long idProva) {
-        return buscarProvaComRespostasDoUsuario.buscar(idProva);
     }
 
 }

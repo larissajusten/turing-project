@@ -17,7 +17,6 @@ public class ProvaQuestaoMultiplaEscolhaController {
     @Autowired
     private ListarQuestoesMultiplaEscolhaDaProvaService listarQuestoesMultiplaEscolhaDaProvaService;
 
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}")
     public List<ProvaQuestaoMultiplaEscolha> listarQuestoesMultiplaEscolhaDaProva(@PathVariable("id-prova") Long idProva) {

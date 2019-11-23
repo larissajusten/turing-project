@@ -17,7 +17,6 @@ public class ProvaQuestaoTecnicaController {
     @Autowired
     private ListarQuestoesTecnicasDaProvaService listarQuestoesTecnicasDaProvaService;
 
-    @RolesAllowed({"ROLE_ADMIN", "ROLE_ENTREVISTADOR"})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}")
     public List<ProvaQuestaoTecnica> listarQuestoesDissertativasDaProva(@PathVariable("id-prova") Long idProva) {
