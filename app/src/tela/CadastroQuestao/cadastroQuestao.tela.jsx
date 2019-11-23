@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom'
 import './cadastroQuestao.style.css';
 import { CadastroMultiplaQuestao, CadastroDissertativa, CadastroTecnica, Select } from '../../component/index'
 import { retornarEspecificidades, retornarNiveisDeDificuldade, retornarTipoDeQuestao } from '../../services/index'
@@ -17,16 +16,11 @@ export class CadastrarQuestaoScreen extends Component {
 	}
 
 	async componentDidMount() {
-		const token = localStorage.getItem('token')
-		if(!token){
-			this.setState({ deveRedirecionarParaLogin: true })
-		}else{
-			this.setState({
-				questoes: await retornarTipoDeQuestao(),
-				especificidades: await retornarEspecificidades(),
-				niveis: await retornarNiveisDeDificuldade()
-			})
-		}
+		this.setState({
+			questoes: await retornarTipoDeQuestao(),
+			especificidades: await retornarEspecificidades(),
+			niveis: await retornarNiveisDeDificuldade()
+		})
 	}
 
 	handleChange = (event) => {
@@ -91,10 +85,6 @@ export class CadastrarQuestaoScreen extends Component {
 	}
 
 	render() {
-		if(this.state.deveRedirecionarParaLogin){
-			return <Redirect to="/login"/>
-		}
-
 		return (
 			<div className="container-tela">
 				{this.renderContainerComponent()}

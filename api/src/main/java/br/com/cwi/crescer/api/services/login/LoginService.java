@@ -32,13 +32,13 @@ public class LoginService {
     @Autowired
     private ModelMapper mapper;
 
-    public String logar(LoginRequest loginRequest) {
+    public LoggedUserDTO logar(LoginRequest loginRequest) {
         String token = getAccessToken(loginRequest.getLogin(), loginRequest.getSenha());
 
         LoggedUserDTO usuario = decodificacaoToken(token);
         usuario.setToken("Bearer " + token);
 
-        return usuario.getToken();
+        return usuario;
 
     }
 

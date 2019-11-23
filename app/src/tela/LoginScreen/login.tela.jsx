@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import { Input, BotaoPrincipal, Notificacao } from '../../component/index'
+import { login, retornaPerfil } from '../../services/index'
 import './login.style.css'
 
 export class LoginScreen extends Component {
   constructor(props){
     super(props)
     this.state = {
-      email: '',
-      senha: '',
+      identifier: '',
       deveRedirecionarParaHome: false
     }
   }
@@ -22,13 +23,14 @@ export class LoginScreen extends Component {
   handleClickFazerLogin = async(event) => {
     event.preventDefault()
     const user = {
-      "email": this.state.email,
-      "senha": this.state.senha
+      "login": this.state.identifier,
+      "senha": 0
     }
     try{
-      const data = 0//await login(user)
-      localStorage.setItem("accessToken", data.accessToken)
-      localStorage.setItem("perfil", data.perfil)
+      const data = await login(user)
+      localStorage.setItem("accessToken", data.token)
+      // const perfil = await retornaPerfil(data.identifier)
+      // localStorage.setItem("perfilUsuario", perfil)
       this.setState({
         deveRedirecionarParaHome: true
       })
@@ -51,21 +53,13 @@ export class LoginScreen extends Component {
         <div className="container-inputs-login">
           <Input
           className="div-input"
-          placeholder="Email"
-          name="email"
-          value={this.state.email}
-					onChange={this.handleChange}/>
-
-          <Input
-          className="div-input"
-          placeholder="Senha"
-          type="password"
-          name="senha"
-          value={this.state.senha}
+          placeholder="Usuario"
+          name="identifier"
+          value={this.state.identifier}
 					onChange={this.handleChange}/>
 
           <div className="container-botao">
-					  <BotaoPrincipal classe="botao-input" nome="Entrar" onClick={this.handleClickSalvarQuestao}/>
+					  <BotaoPrincipal classe="botao-input" nome="Entrar" onClick={this.handleClickFazerLogin}/>
 				  </div>
         </div>
       </div>
@@ -73,6 +67,9 @@ export class LoginScreen extends Component {
   }
 
   render() {
+    if(this.state.deveRedirecionarParaHome){
+      return <Redirect to="/"/>
+    }
     return(
       <>
       <div className="container-login">
