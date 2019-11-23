@@ -71,7 +71,6 @@ export class ProvaPDFScreen extends Component {
   }
 
   render() {
-    console.log(this.state.prova)
     return(
       <div className="container-pdf">
       <PDFViewer width="100%" height="100vh">

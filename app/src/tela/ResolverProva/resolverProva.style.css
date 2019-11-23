@@ -2,3 +2,27 @@
   display: flex;
 }
 
+.content-titulo{
+  width: 100%;
+  position: relative;
+}
+
+.tempo {
+  height: 60px;
+  width: 60px;
+  font-size: 1.6em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid var(--orange-color);
+  border-radius: 50px;
+  padding: 0 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.tempo span{
+  font-size: 0.5em;
+}

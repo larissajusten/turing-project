@@ -6,7 +6,7 @@ export class MostrarMultiplasRespostas extends Component {
 
   render() {
     return (
-      <div className="container-questao-multipla">
+      <div className="container-questao-multipla-escolha">
 
         <div className="primeira-div">
 
@@ -33,7 +33,7 @@ export class MostrarMultiplasRespostas extends Component {
             <BlocoVisualizar
               classe="mult"
               nome="Alternativa B"
-              resposconteudota={this.props.alternativaB} />
+              conteudo={this.props.alternativaB} />
 
             <BlocoVisualizar
               classe="mult"

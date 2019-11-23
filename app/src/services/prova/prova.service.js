@@ -24,32 +24,32 @@ export const incluirMultiplaEscolha = async (idProva, questao) => {
 }
 
 export const retornaProva = async (idProva) => {
-  const response = await Axios.get(`${baseUrl}/prova/${idProva}/buscar-prova`)
+  const response = await Axios.get(`${baseUrl}/prova/${idProva}/buscar-prova`, { headers: { Authorization: token }})
   return response.data
 }
 
 export const removerQuestaoDissertativa = async (idProva, idQuestao) => {
-  const response = await Axios.delete(`${baseUrl}/prova/${idProva}/excluir-dissertativa/${idQuestao}`)
+  const response = await Axios.delete(`${baseUrl}/prova/${idProva}/excluir-dissertativa/${idQuestao}`, { headers: { Authorization: token }})
   return response.data
 }
 
 export const removerQuestaoTecnica = async (idProva, idQuestao) => {
-  const response = await Axios.delete(`${baseUrl}/prova/${idProva}/excluir-tecnica/${idQuestao}`)
+  const response = await Axios.delete(`${baseUrl}/prova/${idProva}/excluir-tecnica/${idQuestao}`, { headers: { Authorization: token }})
   return response.data
 }
 
 export const removerQuestaoMultiplaEscolha = async (idProva, idQuestao) => {
-  const response = await Axios.delete(`${baseUrl}/prova/${idProva}/excluir-multipla-escolha/${idQuestao}`)
+  const response = await Axios.delete(`${baseUrl}/prova/${idProva}/excluir-multipla-escolha/${idQuestao}`, { headers: { Authorization: token }})
   return response.data
 }
 
 export const iniciarProva = async (idProva) => {
-  const response = await Axios.put(`${baseUrl}/prova/${idProva}/iniciar-prova`)
+  const response = await Axios.put(`${baseUrl}/prova/${idProva}/iniciar-prova`, { headers: { Authorization: token }})
   return response.data
 }
 
 export const enviarRespostasDaProva = async (idProva, respostas) => {
-  const response = await Axios.put(`${baseUrl}/prova/${idProva}/finalizar-prova`, respostas)
+  const response = await Axios.put(`${baseUrl}/prova/${idProva}/finalizar-prova`, respostas, { headers: { Authorization: token }})
   return response.data
 }
 
