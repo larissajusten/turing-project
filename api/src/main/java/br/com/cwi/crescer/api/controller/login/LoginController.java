@@ -21,7 +21,6 @@ public class LoginController {
 
     @PostMapping
     public String efetuarLogin(@RequestBody LoginRequest loginRequest) {
-
         return loginService.logar(loginRequest);
     }
 }
