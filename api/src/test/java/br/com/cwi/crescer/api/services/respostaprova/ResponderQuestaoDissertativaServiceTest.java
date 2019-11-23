@@ -42,11 +42,6 @@ public class ResponderQuestaoDissertativaServiceTest {
         Prova prova = new Prova();
         RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
 
-
-        Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
-
-
         Mockito.when(buscarQuestaoDissertativaPorIdService.buscar(questaoDissertativa.getId())).thenReturn(questaoDissertativa);
 
         responderQuestaoDissertativaService.responder(prova, questaoDissertativa.getId(), "Resposta");
@@ -63,11 +58,7 @@ public class ResponderQuestaoDissertativaServiceTest {
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
         RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
 
-        Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
-
         respostasDissertativaProva.setQuestaoDissertativa(questaoDissertativa);
-        respostasDissertativaProva.setUsuario(usuario);
         respostasDissertativaProva.setProva(prova);
 
         Mockito.when(buscarQuestaoDissertativaPorIdService.buscar(questaoDissertativa.getId())).thenReturn(questaoDissertativa);
@@ -83,15 +74,10 @@ public class ResponderQuestaoDissertativaServiceTest {
     @Test
     public void deveRetornarRespostasDissertativaProvaQuandoResponderQuestaoDissertativaServiceForChamado() {
 
-
-        Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
-
         Prova prova = new Prova();
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
         RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
         respostasDissertativaProva.setQuestaoDissertativa(questaoDissertativa);
-        respostasDissertativaProva.setUsuario(usuario);
         respostasDissertativaProva.setProva(prova);
 
 

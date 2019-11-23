@@ -39,18 +39,13 @@ public class ResponderQuestaoTecnicaServiceTest {
         String resposta = "resposta";
         RespostasTecnicaProva respostasTecnicaProva = new RespostasTecnicaProva();
         respostasTecnicaProva.setResposta(resposta);
+
         Prova prova = new Prova();
         respostasTecnicaProva.setProva(prova);
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
         respostasTecnicaProva.setQuestaoTecnica(questaoTecnica);
 
-        Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
-        respostasTecnicaProva.setUsuario(usuario);
-
-
         Mockito.when(buscarQuestaoTecnicaPorIdService.buscar(questaoTecnica.getId())).thenReturn(questaoTecnica);
-
         responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta);
 
         Mockito.verify(buscarQuestaoTecnicaPorIdService).buscar(questaoTecnica.getId());
@@ -62,18 +57,13 @@ public class ResponderQuestaoTecnicaServiceTest {
         String resposta = "resposta";
         RespostasTecnicaProva respostasTecnicaProva = new RespostasTecnicaProva();
         respostasTecnicaProva.setResposta(resposta);
+
         Prova prova = new Prova();
         respostasTecnicaProva.setProva(prova);
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
         respostasTecnicaProva.setQuestaoTecnica(questaoTecnica);
 
-        Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
-        respostasTecnicaProva.setUsuario(usuario);
-
-
         Mockito.when(buscarQuestaoTecnicaPorIdService.buscar(questaoTecnica.getId())).thenReturn(questaoTecnica);
-
         responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta);
 
         buscarQuestaoTecnicaPorIdService.buscar(null);
@@ -86,17 +76,12 @@ public class ResponderQuestaoTecnicaServiceTest {
         String resposta = "resposta";
         RespostasTecnicaProva respostasTecnicaProva = new RespostasTecnicaProva();
         respostasTecnicaProva.setResposta(resposta);
+
         Prova prova = new Prova();
         respostasTecnicaProva.setProva(prova);
         QuestaoTecnica questaoTecnica = new QuestaoTecnica();
         respostasTecnicaProva.setQuestaoTecnica(questaoTecnica);
 
-        Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPorIdService.buscar(1L)).thenReturn(usuario);
-
-        respostasTecnicaProva.setUsuario(usuario);
-
-       
         Mockito.when(buscarQuestaoTecnicaPorIdService.buscar(questaoTecnica.getId())).thenReturn(questaoTecnica);
         Mockito.when(repository.save(respostasTecnicaProva)).thenReturn(respostasTecnicaProva);
         responderQuestaoTecnicaService.responder(prova, questaoTecnica.getId(), resposta);

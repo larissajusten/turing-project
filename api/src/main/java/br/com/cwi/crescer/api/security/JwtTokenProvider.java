@@ -7,10 +7,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
 
-import javax.xml.crypto.Data;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -35,7 +31,7 @@ public class JwtTokenProvider {
     public static String generate(final Long provaId, final String jwtSecret, final Prova prova) {
 
         Long nowMili = System.currentTimeMillis();
-        Long provaExpiration = Long.valueOf((prova.getTempoParaInicioProva() * 3600) * 1000);
+        Long provaExpiration = (long) ((prova.getTempoParaInicioProva() * 3600) * 1000);
         Date expiryDate = new Date(nowMili + provaExpiration);
         Date now = new Date();
 

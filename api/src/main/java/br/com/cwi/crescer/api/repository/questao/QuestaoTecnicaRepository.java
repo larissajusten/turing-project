@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface QuestaoTecnicaRepository extends JpaRepository<QuestaoTecnica, Long> {
 
-    List<QuestaoTecnica> findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade, Pageable page);
+    List<QuestaoTecnica> findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(Especificidade especificidade, NivelDeDificuldade nivelDeDificuldade, Pageable page);
     
     @Query("SELECT q FROM QuestaoTecnica q WHERE q.especificidade = :especificidade" +
             " AND q.nivelDeDificuldade = :nivelDeDificuldade")
