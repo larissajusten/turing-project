@@ -17,9 +17,9 @@ public class AdicionarAlternativaMultiplaEscolhaService {
     @Autowired
     private AlternativaMultiplaEscolhaMapper mapper;
 
-    public void adicionar(AlternativaMultiplaEscolhaRequest alternativarRequest, QuestaoMultiplaEscolha questao) {
+    public void adicionar(AlternativaMultiplaEscolhaRequest request, QuestaoMultiplaEscolha questao) {
 
-        AlternativaMultiplaEscolha alternativa = mapper.transformar(alternativarRequest, questao);
+        AlternativaMultiplaEscolha alternativa = mapper.transformar(request, questao);
 
         repository.save(alternativa);
     }

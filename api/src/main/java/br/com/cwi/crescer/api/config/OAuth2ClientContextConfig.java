@@ -18,7 +18,7 @@ import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.context.request.RequestContextListener;
 
-@Slf4j
+@Slf4j //TODO Vanessa Schenkel 23/11/2019 - Pesquisar sobre slf4j
 @Configuration
 public class OAuth2ClientContextConfig {
 

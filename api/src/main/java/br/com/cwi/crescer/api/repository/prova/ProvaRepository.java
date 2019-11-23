@@ -10,8 +10,6 @@ import java.util.List;
 
 public interface ProvaRepository extends JpaRepository<Prova, Long> {
 
-    Prova findAllByCriadorIdEquals(Long id);
-
     List<Prova> findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals(String email, String nome, StatusProva statusProva);
 
     boolean existsByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva ativa);
@@ -21,5 +19,7 @@ public interface ProvaRepository extends JpaRepository<Prova, Long> {
     Prova findByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva status);
 
     Page<Prova> findAllByOrderByNotaDesc(Pageable pageable);
+
+    //TODO usar optional
 }
 

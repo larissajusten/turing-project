@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @SequenceGenerator(name = "seq", sequenceName = "SEQ_ALTERNATIVAS", allocationSize = 1)
 @Table(name = "ALTERNATIVAS_MULTIPLA_ESCOLHA")
 public class AlternativaMultiplaEscolha {
