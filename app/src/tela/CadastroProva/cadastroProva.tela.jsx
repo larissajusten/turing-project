@@ -5,7 +5,8 @@ import { adicionarProva,
         incluirMultiplaEscolha,
         incluirTecnicas,
         retornarEspecificidades,
-        retornarNiveisDeDificuldade } from '../../services/index'
+        retornarNiveisDeDificuldade,
+        retornarTipoDeQuestao } from '../../services/index'
 import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
 
@@ -17,34 +18,30 @@ export class CadastrarProvaScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      tipos: ['Dissertativa', 'Múltipla Escolha', 'Técnica'],
+      tipos: [],
       especificidades: [],
       niveis: [],
       nomeDoCandidato: '',
       emailDoCandidato: '',
       duracaoDaProva: '',
       tempoParaIniciarProva: '',
-      idProva: null,
+      idProva: '',
       deveRenderizarQuestoes: false,
       deveRedirecionarParaVisualizarProva: false,
-      deveRedirecionarParaLogin: false,
       arrayStates: [objeto]
     }
   }
 
   async componentDidMount() {
-    const token = localStorage.getItem('token')
-		if(!token){
-      this.setState({ deveRedirecionarParaLogin: true })
-    }else{
-      this.setState({
-        especificidades: await retornarEspecificidades(),
-        niveis: await retornarNiveisDeDificuldade()
-      })
-    }
+    this.setState({
+      tipos: await retornarTipoDeQuestao(),
+      especificidades: await retornarEspecificidades(),
+      niveis: await retornarNiveisDeDificuldade()
+    })
   }
 
   handleChange = (event) => {
+    console.log(event.target.value)
     const { name, value } = event.target
     this.setState({
       [name]: value
@@ -73,8 +70,8 @@ export class CadastrarProvaScreen extends Component {
     event.preventDefault()
 
     const prova = {
-      "nome": this.state.nomeDoCandidato,
       "email": this.state.emailDoCandidato,
+      "nomeCandidato": this.state.nomeDoCandidato,
       "tempoDeDuracaoDaProva": this.state.duracaoDaProva,
       "tempoParaInicioProva": this.state.tempoParaIniciarProva
     }
@@ -228,7 +225,7 @@ export class CadastrarProvaScreen extends Component {
 
         <div className="container-questao">
           <Input
-            name="nome"
+            name="nomeDoCandidato"
             value={this.state.nomeDoCandidato}
             onChange={this.handleChange}
             maxTam="50"
@@ -237,7 +234,7 @@ export class CadastrarProvaScreen extends Component {
             placeholder="" />
 
           <Input
-            name="email"
+            name="emailDoCandidato"
             value={this.state.emailDoCandidato}
             onChange={this.handleChange}
             maxTam="50"
@@ -246,7 +243,7 @@ export class CadastrarProvaScreen extends Component {
             placeholder="" />
 
           <Input
-            name="duracao"
+            name="duracaoDaProva"
             value={this.state.duracaoDaProva}
             onChange={this.handleChange}
             maxNum="10"
@@ -272,10 +269,6 @@ export class CadastrarProvaScreen extends Component {
   }
 
   render() {
-    if(this.state.deveRedirecionarParaLogin){
-			return <Redirect to="/login"/>
-    }
-
     if (this.state.deveRedirecionarParaVisualizarProva) {
       return <Redirect to="/visualizar-prova" />
     }

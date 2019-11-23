@@ -9,15 +9,7 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
     super(props)
     this.state = {
       pesquisa: '',
-      provas: null,
-      deveRedirecionarParaProva: false
-    }
-  }
-
-  componentDidMount() {
-    const token = localStorage.getItem('token')
-		if(!token){
-      this.setState({ deveRedirecionarParaLogin: true })
+      provas: null
     }
   }
 
@@ -31,7 +23,6 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
   handleClickEnviarPesquisa = async () => {
     try{
       let provasResponse = await retornaProvasCorrigidas(this.state.pesquisa)
-      console.log("Response " + provasResponse)
       Notificacao('Sucesso', '', 'success')
       this.setState({
         provas: provasResponse
@@ -124,10 +115,6 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
   }
 
   render(){
-    if(this.state.deveRedirecionarParaLogin){
-			return <Redirect to="/login"/>
-    }
-
     if(this.state.deveRedirecionarParaProva){
       return <Redirect to="/prova-PDF"/>
     }

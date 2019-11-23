@@ -1,23 +1,25 @@
 import Axios from 'axios'
 import { baseUrl } from '../baseUrl'
 
+let token = localStorage.getItem('accessToken')
+
 export const adicionarProva = async (prova) => {
-  const response = await Axios.post(`${baseUrl}/prova`, prova)
+  const response = await Axios.post(`${baseUrl}/prova`, prova, { headers: { Authorization: token }})
   return response.data
 }
 
 export const incluirDissertativas = async (idProva, questao) => {
-  const response = await Axios.put(`${baseUrl}/prova/${idProva}/incluir-dissertativa`, questao)
+  const response = await Axios.put(`${baseUrl}/prova/${idProva}/incluir-dissertativa`, questao, { headers: { Authorization: token }})
   return response.data
 }
 
 export const incluirTecnicas = async (idProva, questao) => {
-  const response = await Axios.put(`${baseUrl}/prova/${idProva}/incluir-tecnica`, questao)
+  const response = await Axios.put(`${baseUrl}/prova/${idProva}/incluir-tecnica`, questao, { headers: { Authorization: token }})
   return response.data
 }
 
 export const incluirMultiplaEscolha = async (idProva, questao) => {
-  const response = await Axios.put(`${baseUrl}/prova/${idProva}/incluir-multipla-escolha`, questao)
+  const response = await Axios.put(`${baseUrl}/prova/${idProva}/incluir-multipla-escolha`, questao, { headers: { Authorization: token }})
   return response.data
 }
 
