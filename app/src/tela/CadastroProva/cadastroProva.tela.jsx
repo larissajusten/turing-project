@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, BotaoAdicionar, Notificacao } from '../../component/index'
+import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, Notificacao } from '../../component/index'
 import { adicionarProva,
         incluirDissertativas,
         incluirMultiplaEscolha,
@@ -11,7 +11,7 @@ import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
 
 const mensagemSucessoNotificacao = 'Questões adicionadas com sucesso'
-const objeto = { tipo: null, especificidade: null, nivel: null, quantidade: null }
+const objeto = { tipo: '', especificidade: '', nivel: '', quantidade: '' }
 
 export class CadastrarProvaScreen extends Component {
 
@@ -37,11 +37,14 @@ export class CadastrarProvaScreen extends Component {
       tipos: await retornarTipoDeQuestao(),
       especificidades: await retornarEspecificidades(),
       niveis: await retornarNiveisDeDificuldade()
+    }, () => {
+      const arr = Array.from({length:(this.state.arrayStates.length+2)}, () => ({ }))
+      let arrayStates = arr.map(() => ({ ...objeto }))
+      this.setState ({ arrayStates })
     })
   }
 
   handleChange = (event) => {
-    console.log(event.target.value)
     const { name, value } = event.target
     this.setState({
       [name]: value
@@ -56,13 +59,6 @@ export class CadastrarProvaScreen extends Component {
 
     this.setState({
       arrayStates: array
-    })
-  }
-
-  handleClickAdicionarQuestao = (event) => {
-    event.preventDefault()
-    this.setState({
-      arrayStates: [...this.state.arrayStates, objeto]
     })
   }
 
@@ -207,10 +203,9 @@ export class CadastrarProvaScreen extends Component {
           this.renderArrayQuestoes()
         }
 
-        <div className="container-botao">
-          <BotaoAdicionar className="botao-adicionar" nome="Adicionar mais questões" adicionar={true} onClick={this.handleClickAdicionarQuestao} />
-          <BotaoPrincipal nome="Visualizar" onClick={this.handleClickEnviarProva} />
-          <BotaoPrincipal nome="Voltar" onClick={this.handleClickVoltarProva} />
+        <div className="container-botao container-botao-prova">
+          <BotaoPrincipal nome="Visualizar" onClick={this.handleClickEnviarProva}/>
+          <BotaoPrincipal nome="Voltar" onClick={this.handleClickVoltarProva}/>
         </div>
       </>
     )
@@ -269,6 +264,7 @@ export class CadastrarProvaScreen extends Component {
   }
 
   render() {
+    console.log(this.state.arrayStates)
     if (this.state.deveRedirecionarParaVisualizarProva) {
       return <Redirect to="/visualizar-prova" />
     }

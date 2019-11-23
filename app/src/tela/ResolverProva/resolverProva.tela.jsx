@@ -15,8 +15,8 @@ export class ResolverProvaScreen extends Component {
       modalIniciarProva: true,
       renderProva: false,
       modalFinalizarProva: false,
-      count: 5000,
-      idProva: 72, //localStorage.getItem('idProva'),
+      count: 0,
+      idProva: 78, //localStorage.getItem('idProva'),
       prova: null,
       tiposDeQuestoes: [],
       resposta: null,
@@ -63,7 +63,7 @@ export class ResolverProvaScreen extends Component {
         })
         clearInterval(this.interval)
       }
-    }, 1000 )
+    }, 60000 )
   }
 
   adicionaObjetoResposta = () => {
@@ -106,7 +106,7 @@ export class ResolverProvaScreen extends Component {
       iniciarProva: true
     })
     this.contador()
-    await iniciarProva(this.state.idProva)
+    //await iniciarProva(this.state.idProva)
   }
 
   handleClickFinalizarProva = () => {
@@ -189,8 +189,10 @@ export class ResolverProvaScreen extends Component {
         this.state.prova &&
         <div className="container-tela">
           <div className="container-titulo">
-            <span className="titulo-crie">Boa prova {this.state.prova.nomeCandidato}</span>
-            <span> {this.state.count} </span>
+            <div className="content-titulo">
+              <span className="titulo-crie">Boa prova {this.state.prova.nomeCandidato}</span>
+              <div className="tempo"> {this.state.count} <span>Minutos</span></div>
+            </div>
           </div>
 
           {this.renderQuestoesMultiplasEscolhas()}

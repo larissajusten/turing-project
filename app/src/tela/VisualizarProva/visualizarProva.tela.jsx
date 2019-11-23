@@ -70,7 +70,7 @@ export class VisualizarProvaScreen extends Component {
           return <MostrarMultiplasRespostas
             key={key}
             id={item.id}
-            questaoNome="Questão técnica"
+            questaoNome="Questão multipla escolha"
             questao={item.questao}
             nivel={item.nivelDeDificuldade}
             especificidade={item.especificidade}
@@ -127,6 +127,7 @@ export class VisualizarProvaScreen extends Component {
   }
 
   render() {
+    console.log(this.state.prova)
     if (this.state.prova){
       return (
         <div className="container-tela">

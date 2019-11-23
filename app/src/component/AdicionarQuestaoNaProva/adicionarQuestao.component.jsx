@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Input, BotaoAdicionar, BuscarQuestao } from '../index'
 import {retornarEspecificidades,
-        retornarNiveisDeDificuldade} from '../../services/index'
+        retornarNiveisDeDificuldade,
+        retornarTipoDeQuestao} from '../../services/index'
 
 export class AdicionarQuestaoNaProva extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      tipos: ['Dissertativa', 'Múltipla Escolha', 'Técnica'],
+      tipos: [],
       especificidades: [],
       niveis: []
     }
@@ -16,6 +17,7 @@ export class AdicionarQuestaoNaProva extends Component {
 
   async componentDidMount() {
     this.setState({
+      tipos: await retornarTipoDeQuestao(),
       especificidades: await retornarEspecificidades(),
       niveis: await retornarNiveisDeDificuldade()
     })
@@ -47,7 +49,7 @@ export class AdicionarQuestaoNaProva extends Component {
           placeholder="" />
 
         <div className="container-botao-adicionar">
-          <BotaoAdicionar className="botao-adicionar" id={this.props.id} nome="+" onClick={this.props.onClick} />
+          <BotaoAdicionar className="botao-adicionar" id={this.props.index} nome="+" onClick={this.props.onClick} />
         </div>
 
       </div>

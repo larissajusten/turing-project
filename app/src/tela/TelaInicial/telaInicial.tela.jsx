@@ -11,7 +11,6 @@ export class TelaInicialScreen extends Component {
 
   componentDidMount() {
     let token = localStorage.getItem('accessToken')
-    console.log(token)
     if(!token){
       this.setState({
         deveRenderizarLogin: true
