@@ -11,7 +11,10 @@ import lombok.NoArgsConstructor;
 public class UsuarioLogadoDTO {
 
     private String email;
+
     private String nome;
+
     private Perfil perfilAcesso;
+
     private String token;
 }

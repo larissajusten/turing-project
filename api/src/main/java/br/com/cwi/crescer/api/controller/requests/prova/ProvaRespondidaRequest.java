@@ -9,7 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProvaRespondidaRequest {
+
     private TipoDeQuestao tipoDeQuestao;
+
     private Long idQuestao;
+
     private String resposta;
 }

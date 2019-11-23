@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.api.controller;
+package br.com.cwi.crescer.api.controller.prova;
 
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
@@ -16,21 +16,18 @@ import java.util.List;
 @RequestMapping("/dominio")
 public class DominioController {
 
-    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/especificidades")
     public List<Especificidade> especificidades() {
         return Arrays.asList(Especificidade.values());
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/niveis-dificuldade")
     public List<NivelDeDificuldade> nivelDeDificuldades() {
         return Arrays.asList(NivelDeDificuldade.values());
     }
 
-    //@RolesAllowed("Administrator", "Entrevistador", "Usuario")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/tipo-de-questao")
     public List<TipoDeQuestao> tipoDeQuestao() {
