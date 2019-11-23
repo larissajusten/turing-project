@@ -12,11 +12,12 @@ export class ResolverProvaScreen extends Component {
   constructor(props){
     super(props)
     this.state = {
+      token: props.match.param.token,
       modalIniciarProva: true,
       renderProva: false,
       modalFinalizarProva: false,
       count: 0,
-      idProva: 78, //localStorage.getItem('idProva'),
+      idProva: 0, //localStorage.getItem('idProva'),
       prova: null,
       tiposDeQuestoes: [],
       resposta: null,
@@ -106,7 +107,7 @@ export class ResolverProvaScreen extends Component {
       iniciarProva: true
     })
     this.contador()
-    //await iniciarProva(this.state.idProva)
+    await iniciarProva(this.state.idProva)
   }
 
   handleClickFinalizarProva = () => {
@@ -174,6 +175,11 @@ export class ResolverProvaScreen extends Component {
                   index={key}
                   tipo={this.state.tiposDeQuestoes}
                   idQuestao={item.id}
+                  conteudoAlternativaA={item.alternativaA}
+                  conteudoAlternativaB={item.alternativaB}
+                  conteudoAlternativaC={item.alternativaC}
+                  conteudoAlternativaD={item.alternativaD}
+                  conteudoAlternativaE={item.alternativaE}
                   questao={item.questao}
                   onClick={this.handleClickResponderQuestoesMultiplasRespostas}/>
         })
@@ -233,6 +239,7 @@ export class ResolverProvaScreen extends Component {
   }
 
   render() {
+    console.log(this.state.prova)
     return(
       <>
       { this.state.modalIniciarProva && this.renderModalIniciar() }
