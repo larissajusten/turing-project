@@ -37,11 +37,11 @@ public class BuscarQuestaoDissertativaPorEspecificidadeENivelServiceTest {
 
         Pageable quantos = PageRequest.of(0, 10);
         Mockito.when(repository
-                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos)).thenReturn(listaDeQuestoes);
+                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos)).thenReturn(listaDeQuestoes);
 
         buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 10);
 
-        Mockito.verify(repository).findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos);
+        Mockito.verify(repository).findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class BuscarQuestaoDissertativaPorEspecificidadeENivelServiceTest {
 
         Pageable quantos = PageRequest.of(0, 10);
         Mockito.when(repository
-                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos)).thenReturn(listaDeQuestoes);
+                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos)).thenReturn(listaDeQuestoes);
 
         buscarQuestaoDissertativaPorEspecificidadeENivelService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 10);
 

@@ -3,11 +3,10 @@ package br.com.cwi.crescer.api.services.respostaprova;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.repository.resposta.RespostasDissertativaRepository;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
 import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorIdService;
-import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
+import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,17 +23,13 @@ public class ResponderQuestaoDissertativaService {
     private BuscarQuestaoDissertativaPorIdService buscarQuestaoDissertativaPorIdService;
 
     @Autowired
-    private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
+    private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
+
 
     public RespostasDissertativaProva responder(Prova prova, Long idQuestao, String resposta) {
 
-
         RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
         respostasDissertativaProva.setResposta(resposta);
-
-        //TODO mudar quando tiver usuário
-        Usuario usuario = buscarUsuarioPorIdService.buscar(1L);
-        respostasDissertativaProva.setUsuario(usuario);
 
         respostasDissertativaProva.setProva(prova);
 

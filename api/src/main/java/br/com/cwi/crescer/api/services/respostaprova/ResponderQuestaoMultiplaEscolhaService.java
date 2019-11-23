@@ -4,7 +4,6 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.resposta.RespostasMultiplaEscolhaProva;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.repository.resposta.RespostaMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaMultiplaEscolhaPorIdService;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
@@ -41,10 +40,6 @@ public class ResponderQuestaoMultiplaEscolhaService {
 
         QuestaoMultiplaEscolha questaoMultiplaEscolha = buscarQuestaoMultiplaEscolhaPorIdService.buscar(idQuestao);
         respostasMultiplaEscolhaProva.setQuestaoMultiplaEscolha(questaoMultiplaEscolha);
-
-        //TODO mudar quando tiver usuário
-        Usuario usuario = buscarUsuarioPorIdService.buscar(1L);
-        respostasMultiplaEscolhaProva.setUsuario(usuario);
 
         return repository.save(respostasMultiplaEscolhaProva);
     }

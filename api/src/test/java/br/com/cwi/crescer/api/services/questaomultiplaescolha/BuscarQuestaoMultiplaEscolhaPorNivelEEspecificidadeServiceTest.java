@@ -34,12 +34,12 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeServiceTest {
 
         Pageable quantos = PageRequest.of(0, 10);
         Mockito.when(repository
-                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos)).thenReturn(listaDeQuestoes);
+                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos)).thenReturn(listaDeQuestoes);
 
         buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService
                 .buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 10);
 
-        Mockito.verify(repository, Mockito.times(1)).findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT,
+        Mockito.verify(repository, Mockito.times(1)).findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(Especificidade.JAVASCRIPT,
                 NivelDeDificuldade.FACIL, quantos);
 
     }
@@ -53,7 +53,7 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeServiceTest {
 
         Pageable quantos = PageRequest.of(0, 10);
         Mockito.when(repository
-                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos)).thenReturn(listaDeQuestoes);
+                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos)).thenReturn(listaDeQuestoes);
 
         buscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService
                 .buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 10);

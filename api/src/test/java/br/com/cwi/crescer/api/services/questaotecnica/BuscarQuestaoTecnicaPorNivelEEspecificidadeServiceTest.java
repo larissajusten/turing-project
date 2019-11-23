@@ -37,12 +37,12 @@ public class BuscarQuestaoTecnicaPorNivelEEspecificidadeServiceTest {
 
         Pageable quantos = PageRequest.of(0, 10);
         Mockito.when(repository
-                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos))
+                .findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos))
                 .thenReturn(questoesTecnicas);
 
         buscarQuestaoTecnicaPorNivelEEspecificidadeService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 10);
 
-        Mockito.verify(repository, Mockito.times(1)).findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaDesc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos);
+        Mockito.verify(repository, Mockito.times(1)).findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, quantos);
     }
 
 

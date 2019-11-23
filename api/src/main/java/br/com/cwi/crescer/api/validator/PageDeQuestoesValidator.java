@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.validator;
 
 import br.com.cwi.crescer.api.exception.questoes.QuestaoNaoEncontradaException;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 @Component

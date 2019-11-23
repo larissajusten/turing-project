@@ -35,14 +35,12 @@ public class BuscarProvaPorIdServiceTest {
 
     @Test(expected = ProvaNaoEncontradaException.class)
     public void deveLancarUmaExceptionQuandoBuscarProvaPorIdServiceNaoRetornarUmaProva() {
-        //TODO ver teste
         Prova prova = new Prova();
         Mockito.when(repository.findById(prova.getId())).thenReturn(Optional.ofNullable(null));
 
         buscarProvaPorIdService.buscar(prova.getId());
 
         Mockito.verify(repository).findById(prova.getId());
-
     }
 
 }
