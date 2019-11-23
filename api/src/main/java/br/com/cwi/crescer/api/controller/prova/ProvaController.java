@@ -1,12 +1,12 @@
 package br.com.cwi.crescer.api.controller.prova;
 
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
+import br.com.cwi.crescer.api.controller.requests.prova.ProvaRespondidaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
 import br.com.cwi.crescer.api.controller.responses.ProvaComRespostasResponse;
 import br.com.cwi.crescer.api.controller.responses.ProvaCorrigidaResponse;
 import br.com.cwi.crescer.api.controller.responses.ProvaParaCorrecaoResponse;
-import br.com.cwi.crescer.api.controller.requests.prova.ProvaRespondidaRequest;
 import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
