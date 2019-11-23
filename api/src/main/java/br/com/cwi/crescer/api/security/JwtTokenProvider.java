@@ -45,9 +45,6 @@ public class JwtTokenProvider {
                 .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
 
-                // TODO: adicionar demais dados do usuário
-                //.claim("banana", "sim")
-
                 .compact();
     }
 
@@ -55,9 +52,6 @@ public class JwtTokenProvider {
     public Optional<Long> getUserId(String jwt) {
         try {
             Claims claims = parse(jwt).getBody();
-
-            // TODO: obter demais dados do usuário
-            // claims.get(key, class)
 
             return ofNullable(parseLong(claims.getSubject()));
         } catch (Exception ex) {

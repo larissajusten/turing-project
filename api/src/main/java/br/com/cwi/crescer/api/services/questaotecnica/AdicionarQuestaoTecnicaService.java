@@ -39,7 +39,6 @@ public class AdicionarQuestaoTecnicaService {
         QuestaoTecnica questaoTecnica = mapper.transformar(request);
         questaoTecnica.setDataCriacao(LocalDate.now());
 
-        //TODO mudar quando tiver o usuário real
         Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin());
 
         questaoTecnica.setUsuario(usuario);
