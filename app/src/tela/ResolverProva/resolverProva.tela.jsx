@@ -15,7 +15,7 @@ export class ResolverProvaScreen extends Component {
   constructor(props){
     super(props)
     this.state = {
-      token: props.match.param.token,
+      token: this.props.match.param.token,
       modalIniciarProva: true,
       renderProva: false,
       modalFinalizarProva: false,
@@ -32,6 +32,8 @@ export class ResolverProvaScreen extends Component {
   }
 
   componentDidMount = async () => {
+    console.log(this.state.token);
+    
     localStorage.setItem('accessToken', this.state.token)
     this.setState({
       prova: await retornaProvaPorToken(this.state.token),
