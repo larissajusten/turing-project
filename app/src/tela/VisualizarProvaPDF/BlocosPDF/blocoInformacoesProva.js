@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const Informacoes = (props) => (
+export const Informacoes = (props) => (
   <View style={styles.infosContainer}>
     <View style={styles.infosLinha}>
       <View>
@@ -56,5 +56,3 @@ const Informacoes = (props) => (
     </View>
   </View>
 );
-
-export default Informacoes;

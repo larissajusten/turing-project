@@ -9,6 +9,7 @@ export { Paginacao } from './Paginacao/paginacao.component.jsx'
 /* Botões */
 export { BotaoPrincipal } from './BotaoPrincipal/botaoPrincipal.component.jsx'
 export { BotaoAdicionar } from './BotaoAdicionar/botaoAdicionar.component.jsx'
+export { BotaoAlternativa } from './BotaoAlternativa/botaoAlternativa.component.jsx'
 
 /* Blocos uteis */
 export { BlocoVisualizar } from './BlocoVisualizar/blocoVisualizar.component.jsx'

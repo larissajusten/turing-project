@@ -20,23 +20,25 @@ export { adicionarQuestaoDissertativa } from './questoes/questao-dissertativa.se
 export { retornarQuestoesDissertativasFiltradas } from './questoes/questao-dissertativa.service'
 
 /* Prova */
-export { adicionarProva } from './prova/prova.service'
-export { retornaProva } from './prova/prova.service'
+export { criarProva } from './prova/prova.service'
 export { iniciarProva } from './prova/prova.service'
-export { corrigirProva } from './prova/prova.service'
 export { enviarRespostasDaProva } from './prova/prova.service'
-export { retornaProvasParaCorrecao } from './prova/prova.service'
-export { retornaProvasCorrigidas } from './prova/prova.service'
-export { retornarProvaComRespostas } from './prova/prova.service'
-export { retornaProvaParaPDF } from './prova/prova.service'
-export { retornaProvaPorToken } from './prova/prova.service'
+export { corrigirProva } from './prova/prova.service'
+
+/* Prova */ //buscar prova
+export { retornaProva } from './prova/bucarProva.service'
+export { retornaProvaPorToken } from './prova/bucarProva.service'
+export { retornaProvasParaCorrecao } from './prova/bucarProva.service'
+export { retornarProvaParaCorrigir } from './prova/bucarProva.service'
+export { retornaProvasCorrigidas } from './prova/bucarProva.service'
+export { retornaProvaCorrigidaParaPDF } from './prova/bucarProva.service'
 
 /* Prova */ //incluir questão
-export { incluirDissertativas } from './prova/prova.service'
-export { incluirTecnicas } from './prova/prova.service'
-export { incluirMultiplaEscolha } from './prova/prova.service'
+export { incluirDissertativas } from './prova/incluirQuestoesProva.service'
+export { incluirTecnicas } from './prova/incluirQuestoesProva.service'
+export { incluirMultiplaEscolha } from './prova/incluirQuestoesProva.service'
 
 /* Prova */ //excluir questão
-export { removerQuestaoDissertativa } from './prova/prova.service'
-export { removerQuestaoTecnica } from './prova/prova.service'
-export { removerQuestaoMultiplaEscolha } from './prova/prova.service'
+export { removerQuestaoDissertativa } from './prova/excluirQuestaoProva.service'
+export { removerQuestaoTecnica } from './prova/excluirQuestaoProva.service'
+export { removerQuestaoMultiplaEscolha } from './prova/excluirQuestaoProva.service'

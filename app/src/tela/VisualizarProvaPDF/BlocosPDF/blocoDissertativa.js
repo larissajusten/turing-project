@@ -4,16 +4,6 @@ import { Text, View, StyleSheet } from '@react-pdf/renderer';
 const borderRadiusBloquinhos = 2;
 const borderRadiusBlocosGandes = 5;
 
-// const colorNivel = (tipo) => {
-//   if(tipo = 'FACIL'){
-//     return '#25E015'
-//   }else if(tipo = 'MEDIO'){
-//     return '#E0D815'
-//   }else{
-//     return '#E01515'
-//   }
-// } 
-
 const styles = StyleSheet.create({
   container: {
     alignSelf: "flex-start",
@@ -141,7 +131,7 @@ const styles = StyleSheet.create({
   }
 })
 
-const BlocoQuestaoDissertativa = (props) => (
+export const BlocoQuestaoDissertativa = (props) => (
   props.questoes.map((item, key) => {
     return <View style={styles.container} key={key}>
             <View style={styles.containerEspecificidade}>
@@ -171,5 +161,3 @@ const BlocoQuestaoDissertativa = (props) => (
           </View>
   })
 );
-
-export default BlocoQuestaoDissertativa;

@@ -1,0 +1,5 @@
+export { Informacoes } from './blocoInformacoesProva'
+export { BlocoQuestaoDissertativa } from './blocoDissertativa'
+export { BlocoQuestaoMultiplaEscolha } from './blocoMultiplaEscolha'
+export { BlocoQuestaoTecnica } from './blocoTecnica'
+export { MyDocument } from './pdf'

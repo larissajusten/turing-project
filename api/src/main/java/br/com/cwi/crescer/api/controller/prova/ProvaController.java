@@ -83,7 +83,7 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}-corrigir")
+    @PutMapping("/{id-prova}/corrigir-prova")
     public StatusProva corrigirProva(@PathVariable("id-prova") Long idProva, @Valid @RequestBody
                                      List<CorrecaoProvaRequest> listaDeCorrecoes){
         return corrigirProvaService.corrigir(idProva, listaDeCorrecoes);

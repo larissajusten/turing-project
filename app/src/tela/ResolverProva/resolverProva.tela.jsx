@@ -3,7 +3,7 @@ import './resolverProva.style.css';
 import { retornaProvaPorToken,
           iniciarProva,
           enviarRespostasDaProva,
-          retornarTipoDeQuestao, retornaProva} from '../../services/index'
+          retornarTipoDeQuestao} from '../../services/index'
 import { ProvaModal,
         RespondeQuestaoUnicaResposta,
         RespondeQuestaoMultiplasRespostas,
@@ -102,7 +102,7 @@ export class ResolverProvaScreen extends Component {
 
     this.setState({
       arrayRespostas: array
-    }, () => { this.adicionaObjetoResposta() })
+    })
   }
 
   handleClickIniciarProva = async(event) => {
@@ -137,8 +137,8 @@ export class ResolverProvaScreen extends Component {
         this.state.prova.questoesTecnicas.map((item, key) => {
           return <RespondeQuestaoUnicaResposta
                     key={key}
-                    index={key}
-                    tipo={this.state.tiposDeQuestoes}
+                    index={key+this.lengthMultiplasEscolhas+this.lengthDissertativas}
+                    tipo={this.state.tiposDeQuestoes[2]}
                     idQuestao={item.id}
                     questao={item.questao}
                     resposta={this.state.arrayRespostas[key+this.lengthMultiplasEscolhas+this.lengthDissertativas].resposta}
@@ -157,8 +157,8 @@ export class ResolverProvaScreen extends Component {
         this.state.prova.questoesDissertativas.map((item, key) => {
           return <RespondeQuestaoUnicaResposta
                     key={key}
-                    index={key}
-                    tipo={this.state.tiposDeQuestoes}
+                    index={key+this.lengthMultiplasEscolhas}
+                    tipo={this.state.tiposDeQuestoes[0]}
                     idQuestao={item.id}
                     questao={item.questao}
                     resposta={this.state.arrayRespostas[key+this.lengthMultiplasEscolhas].resposta}
@@ -178,13 +178,13 @@ export class ResolverProvaScreen extends Component {
           return <RespondeQuestaoMultiplasRespostas
                   key={key}
                   index={key}
-                  tipo={this.state.tiposDeQuestoes}
+                  tipo={this.state.tiposDeQuestoes[1]}
                   idQuestao={item.id}
-                  conteudoAlternativaA={item.alternativaA.resposta}
-                  conteudoAlternativaB={item.alternativaB.resposta}
-                  conteudoAlternativaC={item.alternativaC.resposta}
-                  conteudoAlternativaD={item.alternativaD.resposta}
-                  conteudoAlternativaE={item.alternativaE.resposta}
+                  alternativaA={item.alternativaA}
+                  alternativaB={item.alternativaB}
+                  alternativaC={item.alternativaC}
+                  alternativaD={item.alternativaD}
+                  alternativaE={item.alternativaE}
                   questao={item.questao}
                   onClick={this.handleClickResponderQuestoesMultiplasRespostas}/>
         })
@@ -244,7 +244,6 @@ export class ResolverProvaScreen extends Component {
   }
 
   render() {
-    console.log(this.state.arrayRespostas)
     return(
       <>
       { this.state.modalIniciarProva && this.renderModalIniciar() }

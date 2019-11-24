@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, Notificacao } from '../../component/index'
-import { adicionarProva,
+import { criarProva,
         incluirDissertativas,
         incluirMultiplaEscolha,
         incluirTecnicas,
@@ -73,7 +73,7 @@ export class CadastrarProvaScreen extends Component {
     }
 
     try {
-      let idProvaSalva = await adicionarProva(prova)
+      let idProvaSalva = await criarProva(prova)
       this.setState({
         idProva: idProvaSalva,
         deveRenderizarQuestoes: true

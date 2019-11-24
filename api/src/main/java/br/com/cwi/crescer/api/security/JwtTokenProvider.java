@@ -19,7 +19,6 @@ public class JwtTokenProvider {
 
     private String jwtSecret = "cwi-turing";
 
-    // cria token a partir de um usuário autenticado
     public String generateToken(Prova prova) {
 
         Long provaId = prova.getId();
