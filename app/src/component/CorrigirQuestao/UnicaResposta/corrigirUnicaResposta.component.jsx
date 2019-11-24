@@ -20,8 +20,9 @@ export class CorrigirUnicaResposta extends Component {
               classe="width-comentario"
               label="Comentário"
               name="comentario"
-              comIndex={true}
+              comIdResposta={true}
               index={this.props.index}
+              idResposta={this.props.idResposta}
               idQuestao={this.props.idQuestao}
               tipo={this.props.tipo}
               value={this.props.comentario}
@@ -34,8 +35,9 @@ export class CorrigirUnicaResposta extends Component {
             name="nota"
             type="number"
             maxNum="10"
-            comIndex={true}
+            comIdResposta={true}
             index={this.props.index}
+            idResposta={this.props.idResposta}
             idQuestao={this.props.idQuestao}
             tipo={this.props.tipo}
             value={this.props.nota}

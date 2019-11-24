@@ -26,12 +26,12 @@ export { enviarRespostasDaProva } from './prova/prova.service'
 export { corrigirProva } from './prova/prova.service'
 
 /* Prova */ //buscar prova
-export { retornaProva } from './prova/bucarProva.service'
-export { retornaProvaPorToken } from './prova/bucarProva.service'
-export { retornaProvasParaCorrecao } from './prova/bucarProva.service'
-export { retornarProvaParaCorrigir } from './prova/bucarProva.service'
-export { retornaProvasCorrigidas } from './prova/bucarProva.service'
-export { retornaProvaCorrigidaParaPDF } from './prova/bucarProva.service'
+export { retornaProva } from './prova/buscarProva.service'
+export { retornaProvaPorToken } from './prova/buscarProva.service'
+export { retornaProvasParaCorrecao } from './prova/buscarProva.service'
+export { retornarProvaParaCorrigir } from './prova/buscarProva.service'
+export { retornaProvasCorrigidas } from './prova/buscarProva.service'
+export { retornaProvaCorrigidaParaPDF } from './prova/buscarProva.service'
 
 /* Prova */ //incluir questão
 export { incluirDissertativas } from './prova/incluirQuestoesProva.service'
