@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AlternativaMultiplaEscolhaResponse {
 
+    private Long idAlternativa;
+
     private Long idQuestao;
 
     private String resposta;

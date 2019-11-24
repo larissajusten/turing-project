@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './responderMultiplasRespostas.style.css'
-import { BlocoQuestao, BlocoVisualizar } from '../../index'
+import { BlocoQuestao, BotaoAlternativa } from '../../index'
 
 export class RespondeQuestaoMultiplasRespostas extends Component {
   render() {
@@ -10,57 +10,57 @@ export class RespondeQuestaoMultiplasRespostas extends Component {
           questaoNome="Questão"
           questao={this.props.questao}/>
 
-        <BlocoVisualizar
+        <BotaoAlternativa
           nome="A"
-          conteudo={this.props.conteudoAlternativaA}
+          conteudo={this.props.alternativaA.resposta}
           comId={true}
           tipo={this.props.tipo}
           idQuestao={this.props.idQuestao}
-          idAlternativa={this.props.idAlternativa}
+          idAlternativa={this.props.alternativaA.idAlternativa}
           index={this.props.index}
           onClick={this.props.onClick}
           classeConteudo="selecionar-alternativa"/>
 
-        <BlocoVisualizar
+        <BotaoAlternativa
           nome="B"
-          conteudo={this.props.conteudoAlternativaB}
+          conteudo={this.props.alternativaB.resposta}
           comId={true}
           tipo={this.props.tipo}
           idQuestao={this.props.idQuestao}
-          idAlternativa={this.props.idAlternativa}
+          idAlternativa={this.props.alternativaB.idAlternativa}
           index={this.props.index}
           onClick={this.props.onClick}
           classeConteudo="selecionar-alternativa"/>
 
-        <BlocoVisualizar
+        <BotaoAlternativa
           nome="C"
-          conteudo={this.props.conteudoAlternativaC}
+          conteudo={this.props.alternativaC.resposta}
           comId={true}
           tipo={this.props.tipo}
           idQuestao={this.props.idQuestao}
-          idAlternativa={this.props.idAlternativa}
+          idAlternativa={this.props.alternativaC.idAlternativa}
           index={this.props.index}
           onClick={this.props.onClick}
           classeConteudo="selecionar-alternativa"/>
 
-        <BlocoVisualizar
+        <BotaoAlternativa
           nome="D"
-          conteudo={this.props.conteudoAlternativaD}
+          conteudo={this.props.alternativaD.resposta}
           comId={true}
           tipo={this.props.tipo}
           idQuestao={this.props.idQuestao}
-          idAlternativa={this.props.idAlternativa}
+          idAlternativa={this.props.alternativaD.idAlternativa}
           index={this.props.index}
           onClick={this.props.onClick}
           classeConteudo="selecionar-alternativa"/>
 
-        <BlocoVisualizar
+        <BotaoAlternativa
           nome="E"
-          conteudo={this.props.conteudoAlternativaE}
+          conteudo={this.props.alternativaE.resposta}
           comId={true}
           tipo={this.props.tipo}
           idQuestao={this.props.idQuestao}
-          idAlternativa={this.props.idAlternativa}
+          idAlternativa={this.props.alternativaE.idAlternativa}
           index={this.props.index}
           onClick={this.props.onClick}
           classeConteudo="selecionar-alternativa"/>

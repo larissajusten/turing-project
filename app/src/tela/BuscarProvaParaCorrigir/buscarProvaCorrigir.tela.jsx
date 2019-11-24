@@ -8,7 +8,7 @@ export class BuscarProvaParaCorrigirScreen extends Component{
   constructor(props){
     super(props)
     this.state = {
-      provas: null,
+      provas: [],
       totalPaginas: null,
       per_page: null,
       current_page: 0,
@@ -105,7 +105,7 @@ export class BuscarProvaParaCorrigirScreen extends Component{
     return(
       <div className="container-tela">
       {
-        this.state.provas ? this.renderProvas() :
+        this.state.provas.length > 0 ? this.renderProvas() :
         <div className="container-titulo">
           <span className="titulo-crie">Não há provas para serem corrigidas</span>
         </div>

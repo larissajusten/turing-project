@@ -22,6 +22,7 @@ public class AlternativaMultiplaEscolhaMapper {
     public AlternativaMultiplaEscolhaResponse transformarEmResponse(AlternativaMultiplaEscolha alternativa) {
         AlternativaMultiplaEscolhaResponse alternativaResponse = new AlternativaMultiplaEscolhaResponse();
 
+        alternativaResponse.setIdAlternativa(alternativa.getId());
         alternativaResponse.setIdQuestao(alternativa.getQuestaoMultiplaEscolha().getId());
         alternativaResponse.setResposta(alternativa.getResposta());
         alternativaResponse.setRespostaCorreta(alternativa.isRespostaCorreta());

@@ -36,7 +36,6 @@ public class BuscaProvaController {
     @Autowired
     private BuscarProvaPorTokenComQuestoesService buscarProvaPorTokenComQuestoesService;
 
-    //TODO mudou(/buscar-prova/${idProva})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}")
     public ProvaResponse buscarProva(@PathVariable("id-prova") Long idProva) {
@@ -49,30 +48,26 @@ public class BuscaProvaController {
         return buscarProvaPorTokenComQuestoesService.buscar(token);
     }
 
-    //TODO mudou(/buscar-prova/para-correcao)
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/para-correcao")
-    public Page<ProvaParaCorrecaoResponse> buscarProvasParaCorrcao(@PageableDefault Pageable pageable) {
+    public Page<ProvaParaCorrecaoResponse> buscarProvasParaCorrecao(@PageableDefault Pageable pageable) {
         return buscarProvasParaCorrecaoService.buscar(pageable);
     }
 
-    //TODO mudou(/buscar-prova/corrigidas)
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/corrigidas")
-    public List<ProvaCorrigidaResponse> provaCompletaComRespostas(@RequestParam("pesquisa") String nomeOuEmail) {
+    public List<ProvaCorrigidaResponse> buscarListaDeProvasCorrigidas(@RequestParam("pesquisa") String nomeOuEmail) {
         return buscarProvasPorNomeOuEmailCorrigidasComNotaService.buscar(nomeOuEmail);
     }
 
-    //TODO mudou(/buscar-prova/${idProva}/completa-corrigida)
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("{id-prova}/completa-corrigida")
-    public ProvaCorrigidaResponse provaCompletaDoCandidatoComRespostas(@PathVariable("id-prova") Long idProva) {
+    @GetMapping("{id-prova}/corrigida")
+    public ProvaCorrigidaResponse buscarProvaCorrigida(@PathVariable("id-prova") Long idProva) {
         return buscarProvaPorIdCorrigidaService.buscar(idProva);
     }
 
-    //TODO mudou(/buscar-prova/${idProva}/respostas)
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id-prova}-respostas")
+    @GetMapping("/{id-prova}/respostas")
     public ProvaComRespostasResponse provaComRespostas(@PathVariable("id-prova") Long idProva) {
         return buscarProvaComRespostasDoUsuario.buscar(idProva);
     }

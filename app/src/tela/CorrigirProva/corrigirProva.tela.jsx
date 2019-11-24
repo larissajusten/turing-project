@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { retornarTipoDeQuestao, retornarProvaComRespostas, corrigirProva} from '../../services/index'
+import { retornarTipoDeQuestao, retornarProvaParaCorrigir, corrigirProva} from '../../services/index'
 import { CorrigirUnicaResposta, BotaoPrincipal, Notificacao } from '../../component/index'
 import './corrigirProva.style.css'
 
@@ -20,7 +20,7 @@ export class CorrigirProvaScreen extends Component {
   componentDidMount = async () => {
     this.setState({
       tiposDeQuestoes: await retornarTipoDeQuestao(),
-      prova: await retornarProvaComRespostas(this.state.idProva)
+      prova: await retornarProvaParaCorrigir(this.state.idProva)
     }, () => {
       const quantidadeDeObjetos = (this.state.prova.questoesDissertativas.length + this.state.prova.questoesTecnicas.length)
 
