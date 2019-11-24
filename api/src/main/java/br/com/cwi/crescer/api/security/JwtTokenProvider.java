@@ -43,8 +43,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    // obtém id do usuário a partir de um token
-    public Optional<Long> getUserId(String jwt) {
+    public Optional<Long> getProvaId(String jwt) {
 
         try {
             Claims claims = parse(jwt).getBody();
