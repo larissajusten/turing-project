@@ -23,8 +23,8 @@ export class CorrigirUnicaResposta extends Component {
     const element = document.createElement("a");
     const file = new Blob([this.props.resposta], {type: 'text/plain'});
     element.href = URL.createObjectURL(file);
-    element.download = "myFile.txt";
-    document.body.appendChild(element); // Required for this to work in FireFox
+    element.download = `resposta${this.props.idResposta}.txt`;
+    document.body.appendChild(element);
     element.click();
   }
 
@@ -32,8 +32,8 @@ export class CorrigirUnicaResposta extends Component {
     const element = document.createElement("a");
     const file = new Blob([this.state.questaoDownload.testeBase], {type: 'text/plain'});
     element.href = URL.createObjectURL(file);
-    element.download = "myFile.txt";
-    document.body.appendChild(element); // Required for this to work in FireFox
+    element.download = `teste${this.props.idResposta}.txt`;
+    document.body.appendChild(element);
     element.click();
   }
 
@@ -41,13 +41,12 @@ export class CorrigirUnicaResposta extends Component {
     const element = document.createElement("a");
     const file = new Blob([this.state.questaoDownload.respostaBase], {type: 'text/plain'});
     element.href = URL.createObjectURL(file);
-    element.download = "myFile.txt";
-    document.body.appendChild(element); // Required for this to work in FireFox
+    element.download = `respostaBase${this.props.idResposta}.txt`;
+    document.body.appendChild(element);
     element.click();
   }
 
   render() {
-    console.log(this.state.questaoDownload)
     return(
       <div className="container-questoes-corrigir">
         <BlocoQuestao
