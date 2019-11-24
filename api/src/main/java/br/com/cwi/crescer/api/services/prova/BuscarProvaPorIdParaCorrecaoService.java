@@ -36,6 +36,7 @@ public class BuscarProvaPorIdParaCorrecaoService {
         respostasDissertativas.forEach(questao -> {
             QuestaoDissertativaParaCorrecaoResponse respostaResponse = new QuestaoDissertativaParaCorrecaoResponse();
             respostaResponse.setQuestao(questao.getQuestaoDissertativa().getQuestao());
+            respostaResponse.setIdResposta(questao.getId());
             respostaResponse.setIdQuestao(questao.getQuestaoDissertativa().getId());
             respostaResponse.setResposta(questao.getResposta());
             questoesDissertativas.add(respostaResponse);
@@ -48,10 +49,12 @@ public class BuscarProvaPorIdParaCorrecaoService {
             QuestaoTecnicaParaCorrecaoResponse respostaResponse = new QuestaoTecnicaParaCorrecaoResponse();
             respostaResponse.setQuestao(questao.getQuestaoTecnica().getQuestao());
             respostaResponse.setIdQuestao(questao.getQuestaoTecnica().getId());
+            respostaResponse.setIdResposta(questao.getId());
             respostaResponse.setResposta(questao.getResposta());
             questoesTecnicas.add(respostaResponse);
         });
 
+        response.setId(idProva);
         response.setQuestoesDissertativas(questoesDissertativas);
         response.setQuestoesTecnicas(questoesTecnicas);
         response.setNomeCandidato(prova.getNomeCandidato());
