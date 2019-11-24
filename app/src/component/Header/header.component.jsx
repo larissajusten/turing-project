@@ -23,7 +23,6 @@ export class Header extends Component {
 					}
 					<Link to={"/buscar-questao"}>Visualizar questões</Link>
 					<Link to={"/cadastrar-prova"}>Cadastrar prova</Link>
-					<Link to={"/resolver-prova"}>Resolver prova</Link>
 					<Link to={"/buscar-provas"}>Busca para correção</Link>
 					<Link to={"/provas-corrigidas"}>Provas corrigidas</Link>
 				</Menu>
