@@ -13,3 +13,8 @@ export const retornarQuestoesTecnicasFiltradas = async (paginaAtual, especificid
     { headers: { Authorization: token }, params: {especificidade: especificidade, nivel: nivel} })
   return [response.data.content, response.data.totalElements, response.data.numberOfElements, response.data.number]
 }
+
+export const retornaQuestaoTecnicaParaBaixar = async (idResposta) => {
+  const response = await Axios.get(`${baseUrl}/questao-tecnica/download/${idResposta}`, { headers: { Authorization: token }})
+  return response.data
+}
