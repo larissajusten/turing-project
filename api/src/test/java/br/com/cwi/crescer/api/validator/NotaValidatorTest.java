@@ -16,7 +16,11 @@ public class NotaValidatorTest {
     public void deveDispararUmaValidacaoDeAplicacaoExceptionQuandoNotaForInferiorANotaMinimaOuSuperiorANotaMaxima() {
 
         notaValidator.validar(11);
+    }
 
+    @Test
+    public void devePassarPeloMetodoSemLancarExceptionSeOValorDaNotaEstiverEntre10e0(){
+        notaValidator.validar(5);
     }
 
 }
