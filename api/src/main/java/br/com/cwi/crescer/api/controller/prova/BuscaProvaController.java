@@ -33,11 +33,20 @@ public class BuscaProvaController {
     @Autowired
     private BuscarProvaPorIdComQuestoesService buscarProvaPorIdComQuestoesService;
 
+    @Autowired
+    private BuscarProvaPorTokenComQuestoesService buscarProvaPorTokenComQuestoesService;
+
     //TODO mudou(/buscar-prova/${idProva})
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}")
     public ProvaResponse buscarProva(@PathVariable("id-prova") Long idProva) {
         return buscarProvaPorIdComQuestoesService.buscar(idProva);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{token}")
+    public ProvaResponse buscarProvaPeloToken(@PathVariable("token") String token) {
+        return buscarProvaPorTokenComQuestoesService.buscar(token);
     }
 
     //TODO mudou(/buscar-prova/para-correcao)
