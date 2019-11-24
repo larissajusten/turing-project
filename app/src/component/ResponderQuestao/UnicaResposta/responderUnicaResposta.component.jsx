@@ -21,7 +21,8 @@ export class RespondeQuestaoUnicaResposta extends Component {
             comIndex={true}
             index={this.props.index}
             tipo={this.props.tipo}
-            idQuestao={this.props.idQuestao}/>
+            idQuestao={this.props.idQuestao}
+            maxLength="500"/>
         </div>
       </div>
     )

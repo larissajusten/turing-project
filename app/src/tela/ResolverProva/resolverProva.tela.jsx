@@ -137,7 +137,7 @@ export class ResolverProvaScreen extends Component {
         this.state.prova.questoesTecnicas.map((item, key) => {
           return <RespondeQuestaoUnicaResposta
                     key={key}
-                    index={key}
+                    index={key+this.lengthMultiplasEscolhas+this.lengthDissertativas}
                     tipo={this.state.tiposDeQuestoes}
                     idQuestao={item.id}
                     questao={item.questao}
@@ -157,7 +157,7 @@ export class ResolverProvaScreen extends Component {
         this.state.prova.questoesDissertativas.map((item, key) => {
           return <RespondeQuestaoUnicaResposta
                     key={key}
-                    index={key}
+                    index={key+this.lengthMultiplasEscolhas}
                     tipo={this.state.tiposDeQuestoes}
                     idQuestao={item.id}
                     questao={item.questao}
@@ -245,6 +245,7 @@ export class ResolverProvaScreen extends Component {
 
   render() {
     console.log(this.state.arrayRespostas)
+    console.log(this.state.prova)
     return(
       <>
       { this.state.modalIniciarProva && this.renderModalIniciar() }

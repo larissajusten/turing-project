@@ -22,7 +22,7 @@ public class BuscarProvaPorTokenComQuestoesService {
 
     public ProvaResponse buscar(String token) {
 
-        Long idProva = JwtTokenProvider.getUserId(token).orElseThrow(()->
+        Long idProva = JwtTokenProvider.getProvaId(token).orElseThrow(()->
                 new ProvaNaoEncontradaException("Prova não encontrada"));
 
         return buscarProvaPorIdComQuestoesService.buscar(idProva);
