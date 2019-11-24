@@ -30,6 +30,7 @@ public class EnviarEmailService {
         String token = jwt.generateToken(prova);
 
         MimeMessage mail = mailSender.createMimeMessage();
+
         MimeMessageHelper helper = new MimeMessageHelper(mail);
 
         helper.setTo(emailCandidato);

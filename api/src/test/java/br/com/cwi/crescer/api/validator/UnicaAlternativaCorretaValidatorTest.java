@@ -62,4 +62,27 @@ public class UnicaAlternativaCorretaValidatorTest {
         unicaAlternativaCorretaValidator.validar(questaoMultiplaEscolhaRequest);
     }
 
+    @Test
+    public void devePassarPeloValidatorSemLancarExceptionQuandoSoHouverUmaQuestaoCerta() {
+
+        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaA = new AlternativaMultiplaEscolhaRequest("A", true);
+        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaB = new AlternativaMultiplaEscolhaRequest("B", false);
+        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaC = new AlternativaMultiplaEscolhaRequest("C", false);
+        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaD = new AlternativaMultiplaEscolhaRequest("D", false);
+        AlternativaMultiplaEscolhaRequest alternativaMultiplaEscolhaE = new AlternativaMultiplaEscolhaRequest("E", false);
+
+        QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest = new QuestaoMultiplaEscolhaRequest(
+                "Teste",
+                NivelDeDificuldade.DIFICIL,
+                Especificidade.JAVA,
+                alternativaMultiplaEscolhaA,
+                alternativaMultiplaEscolhaB,
+                alternativaMultiplaEscolhaC,
+                alternativaMultiplaEscolhaD,
+                alternativaMultiplaEscolhaE
+        );
+
+        unicaAlternativaCorretaValidator.validar(questaoMultiplaEscolhaRequest);
+    }
+
 }
