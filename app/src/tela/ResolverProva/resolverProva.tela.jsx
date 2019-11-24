@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import './resolverProva.style.css';
-import { retornaProva, iniciarProva, enviarRespostasDaProva, retornarTipoDeQuestao } from '../../services/index'
+import { retornaProvaPorToken,
+          iniciarProva,
+          enviarRespostasDaProva,
+          retornarTipoDeQuestao } from '../../services/index'
 import { ProvaModal,
         RespondeQuestaoUnicaResposta,
         RespondeQuestaoMultiplasRespostas,
@@ -17,7 +20,7 @@ export class ResolverProvaScreen extends Component {
       renderProva: false,
       modalFinalizarProva: false,
       count: 0,
-      idProva: 0, //localStorage.getItem('idProva'),
+      idProva: 0,
       prova: null,
       tiposDeQuestoes: [],
       resposta: null,
@@ -31,7 +34,7 @@ export class ResolverProvaScreen extends Component {
   componentDidMount = async () => {
     localStorage.setItem('accessToken', this.state.token)
     this.setState({
-      prova: await retornaProva(this.state.idProva),
+      prova: await retornaProvaPorToken(this.state.token),
       tiposDeQuestoes: await retornarTipoDeQuestao()
     }, () => {
       const quantidadeObjetos = (this.state.prova.questoesDeMultiplaEscolha.length +
@@ -176,11 +179,11 @@ export class ResolverProvaScreen extends Component {
                   index={key}
                   tipo={this.state.tiposDeQuestoes}
                   idQuestao={item.id}
-                  conteudoAlternativaA={item.alternativaA}
-                  conteudoAlternativaB={item.alternativaB}
-                  conteudoAlternativaC={item.alternativaC}
-                  conteudoAlternativaD={item.alternativaD}
-                  conteudoAlternativaE={item.alternativaE}
+                  conteudoAlternativaA={item.alternativaA.resposta}
+                  conteudoAlternativaB={item.alternativaB.resposta}
+                  conteudoAlternativaC={item.alternativaC.resposta}
+                  conteudoAlternativaD={item.alternativaD.resposta}
+                  conteudoAlternativaE={item.alternativaE.resposta}
                   questao={item.questao}
                   onClick={this.handleClickResponderQuestoesMultiplasRespostas}/>
         })

@@ -29,7 +29,7 @@ function App() {
 					<Route path="/buscar-questao" component={BuscarQuestaoScreen}/>
 					<Route path="/cadastrar-prova" component={CadastrarProvaScreen}/>
 					<Route path="/visualizar-prova" component={VisualizarProvaScreen}/>
-					<Route path="/resolver-prova:token" component={ResolverProvaScreen}/>
+					<Route path="/resolver-prova?token=:token" component={ResolverProvaScreen}/>
 					<Route path="/buscar-provas" component={BuscarProvaParaCorrigirScreen}/>
 					<Route path="/corrigir-prova" component={CorrigirProvaScreen}/>
 					<Route path="/provas-corrigidas" component={BuscarProvaJaCorrigidaScreen}/>

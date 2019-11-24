@@ -77,3 +77,8 @@ export const retornaProvaParaPDF = async (idProva) => {
   const response = await Axios.get(`${baseUrl}/prova/${idProva}`)
   return response.data
 }
+
+export const retornaProvaPorToken = async (token) => {
+  const response = await Axios.get(`${baseUrl}/busca-prova/${token}`)
+  return response.data
+}
