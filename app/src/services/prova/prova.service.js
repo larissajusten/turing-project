@@ -24,7 +24,7 @@ export const incluirMultiplaEscolha = async (idProva, questao) => {
 }
 
 export const retornaProva = async (idProva) => {
-  const response = await Axios.get(`${baseUrl}/prova/${idProva}/buscar-prova`, { headers: { Authorization: token }})
+  const response = await Axios.get(`${baseUrl}/buscar-prova/${idProva}`, { headers: { Authorization: token }})
   return response.data
 }
 
@@ -79,6 +79,7 @@ export const retornaProvaParaPDF = async (idProva) => {
 }
 
 export const retornaProvaPorToken = async (token) => {
-  const response = await Axios.put(`${baseUrl}/busca-prova/${token}`)
+  const response = await Axios.get(`${baseUrl}/buscar-prova/token/${token}`)
+  console.log(response)
   return response.data
 }

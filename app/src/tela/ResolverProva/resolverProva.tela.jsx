@@ -3,7 +3,7 @@ import './resolverProva.style.css';
 import { retornaProvaPorToken,
           iniciarProva,
           enviarRespostasDaProva,
-          retornarTipoDeQuestao } from '../../services/index'
+          retornarTipoDeQuestao, retornaProva} from '../../services/index'
 import { ProvaModal,
         RespondeQuestaoUnicaResposta,
         RespondeQuestaoMultiplasRespostas,
@@ -15,12 +15,12 @@ export class ResolverProvaScreen extends Component {
   constructor(props){
     super(props)
     this.state = {
-      token: this.props.match.param.token,
+      token: this.props.match.params.token,
       modalIniciarProva: true,
       renderProva: false,
       modalFinalizarProva: false,
       count: 0,
-      idProva: 0,
+      idProva: 74,
       prova: null,
       tiposDeQuestoes: [],
       resposta: null,
@@ -31,12 +31,11 @@ export class ResolverProvaScreen extends Component {
     this.lengthTecnicas = 0
   }
 
-  componentDidMount = async () => {
-    console.log(this.state.token);
-    
+  async componentDidMount() {
     localStorage.setItem('accessToken', this.state.token)
+    let prova = await retornaProvaPorToken(this.state.token)
     this.setState({
-      prova: await retornaProvaPorToken(this.state.token),
+      prova: prova,
       tiposDeQuestoes: await retornarTipoDeQuestao()
     }, () => {
       const quantidadeObjetos = (this.state.prova.questoesDeMultiplaEscolha.length +
@@ -48,7 +47,7 @@ export class ResolverProvaScreen extends Component {
 
       this.setState({
         count: this.state.prova.tempoDeDuracaoDaProva,
-        arrayRespostas
+        arrayRespostas: arrayRespostas
       })
 
       this.lengthMultiplasEscolhas = this.state.prova.questoesDeMultiplaEscolha.length
@@ -245,7 +244,7 @@ export class ResolverProvaScreen extends Component {
   }
 
   render() {
-    console.log(this.state.prova)
+    console.log(this.state.arrayRespostas)
     return(
       <>
       { this.state.modalIniciarProva && this.renderModalIniciar() }
