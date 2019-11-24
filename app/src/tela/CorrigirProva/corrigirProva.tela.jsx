@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
 import { retornarTipoDeQuestao, retornarProvaParaCorrigir, corrigirProva} from '../../services/index'
 import { CorrigirUnicaResposta, BotaoPrincipal, Notificacao } from '../../component/index'
 import './corrigirProva.style.css'
 
-const objetoCorrecaoProva =  { idQuestao: '', idResposta: '', nota: '', comentario: '' }
+const objetoCorrecaoProva =  { idQuestao: '', idResposta: '', tipoDeQuestao: '', nota: '', comentario: '' }
 export class CorrigirProvaScreen extends Component {
   constructor(props){
     super(props)
@@ -11,7 +12,8 @@ export class CorrigirProvaScreen extends Component {
       idProva: localStorage.getItem('idProvaParaCorrigir'),
       prova: null,
       tiposDeQuestoes: [],
-      arrayCorrecoes: [objetoCorrecaoProva]
+      arrayCorrecoes: [objetoCorrecaoProva],
+      deveRedirecionarParaDashboard: false
     }
     this.lengthDissertativas = 0
     this.lengthTecnicas = 0
@@ -36,14 +38,15 @@ export class CorrigirProvaScreen extends Component {
     }) 
   }
 
-  handleClickResponderQuestoesUnicaResposta = (event, index, idQuestao, tipo) => {
+  handleClickResponderQuestoesUnicaResposta = (event, index, idQuestao, idResposta, tipo) => {
     const { name, value } = event.target
 
     const array = this.state.arrayCorrecoes
 
     array[index][name] = value;
     array[index].idQuestao = idQuestao;
-    array[index].tipo = tipo;
+    array[index].tipoDeQuestao = tipo;
+    array[index].idResposta = idResposta;
 
     this.setState({
       arrayCorrecoes: array
@@ -55,6 +58,7 @@ export class CorrigirProvaScreen extends Component {
     try{
       await corrigirProva(this.state.idProva, this.state.arrayCorrecoes)
       Notificacao('Sucesso', 'Prova salva', 'success')
+      this.setState({ deveRedirecionarParaDashboard: true })
     }
     catch (error) {
       if (error.response.data.errors) {
@@ -76,7 +80,8 @@ export class CorrigirProvaScreen extends Component {
           return <CorrigirUnicaResposta
                     key={key}
                     index={key+this.lengthDissertativas}
-                    idQuestao={item.id}
+                    idQuestao={item.idQuestao}
+                    idResposta={item.idResposta}
                     tipo={this.state.tiposDeQuestoes[2]}
                     questao={item.questao}
                     resposta={item.resposta}
@@ -99,6 +104,7 @@ export class CorrigirProvaScreen extends Component {
                   key={key}
                   index={key}
                   idQuestao={item.idQuestao}
+                  idResposta={item.idResposta}
                   tipo={this.state.tiposDeQuestoes[0]}
                   questao={item.questao}
                   resposta={item.resposta}
@@ -134,6 +140,9 @@ export class CorrigirProvaScreen extends Component {
   }
 
   render() {
+    if(this.state.deveRedirecionarParaDashboard){
+      return <Redirect to="/"/>
+    }
     return (
       <div className="container-tela">
         {this.renderProva()}

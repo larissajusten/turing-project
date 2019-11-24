@@ -9,7 +9,7 @@ import { ProvaModal,
         RespondeQuestaoMultiplasRespostas,
         BotaoPrincipal } from '../../component/index'
 
-const objetoResposta = { idQuestao: '', tipo: '', resposta: '' }
+const objetoResposta = { tipoDeQuestao: '', idQuestao: '', resposta: '' }
 
 export class ResolverProvaScreen extends Component {
   constructor(props){
@@ -20,7 +20,7 @@ export class ResolverProvaScreen extends Component {
       renderProva: false,
       modalFinalizarProva: false,
       count: 0,
-      idProva: 74,
+      idProva: 0,
       prova: null,
       tiposDeQuestoes: [],
       resposta: null,
@@ -46,6 +46,7 @@ export class ResolverProvaScreen extends Component {
       const arrayRespostas = newArray.map(() => ({ ...objetoResposta }))
 
       this.setState({
+        idProva: this.state.prova.id,
         count: this.state.prova.tempoDeDuracaoDaProva,
         arrayRespostas: arrayRespostas
       })
@@ -85,7 +86,7 @@ export class ResolverProvaScreen extends Component {
 
     array[index][name] = value;
     array[index].idQuestao = idQuestao;
-    array[index].tipo = tipo;
+    array[index].tipoDeQuestao = tipo;
 
     this.setState({
       arrayRespostas: array
@@ -98,7 +99,7 @@ export class ResolverProvaScreen extends Component {
 
     array[index].resposta = idAlternativa;
     array[index].idQuestao = idQuestao;
-    array[index].tipo = tipo;
+    array[index].tipoDeQuestao = tipo;
 
     this.setState({
       arrayRespostas: array
@@ -244,6 +245,7 @@ export class ResolverProvaScreen extends Component {
   }
 
   render() {
+    console.log(this.state.arrayRespostas)
     return(
       <>
       { this.state.modalIniciarProva && this.renderModalIniciar() }
