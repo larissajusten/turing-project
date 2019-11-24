@@ -44,7 +44,7 @@ public class BuscaProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{token}")
+    @GetMapping("/token/{token}")
     public ProvaResponse buscarProvaPeloToken(@PathVariable("token") String token) {
         return buscarProvaPorTokenComQuestoesService.buscar(token);
     }

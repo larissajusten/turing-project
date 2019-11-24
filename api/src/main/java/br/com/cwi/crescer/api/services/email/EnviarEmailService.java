@@ -34,7 +34,7 @@ public class EnviarEmailService {
 
         helper.setTo(emailCandidato);
         helper.setSubject("CWI TURING TEM UMA PROVA AGUARDANDO VOCÊ!");
-        helper.setText("<a href='http://localhost:3000/resolver-prova?token=" + token + "'>Acesse sua prova aqui</a>", true);
+        helper.setText("<a href='http://localhost:3000/resolver-prova/" + token + "'>Acesse sua prova aqui</a>", true);
 
         mailSender.send(mail);
     }
