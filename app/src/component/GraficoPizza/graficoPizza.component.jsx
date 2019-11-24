@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { PieChart, Pie, Sector } from 'recharts';
+import { retornarResultadosMultipla } from '../../services/prova/prova.service';
 
 const renderActiveShape = (props) => {
 	const RADIAN = Math.PI / 180;
@@ -57,8 +58,26 @@ export default class GraficoPizza extends Component {
 		super(props);
 		this.state = {
 			activeIndex: 0,
-			data: [ { name: 'Erraram', value: this.props.erraram }, { name: 'Acertaram', value: this.props.acertaram } ]
+			data: [ {}, {} ],
+			dados: ''
 		};
+	}
+
+	async componentDidMount() {
+		let dados = await retornarResultadosMultipla();
+		this.setState(
+			{
+				dados: dados
+			},
+			() => {
+				this.setState({
+					data: [
+						{ name: 'Erraram', value: this.state.dados[0] },
+						{ name: 'Acertaram', value: this.state.dados[1] }
+					]
+				});
+			}
+		);
 	}
 
 	onPieEnter = (data, index) => {
@@ -68,14 +87,14 @@ export default class GraficoPizza extends Component {
 	};
 
 	render() {
-		console.log(this.props.erraram);
+		console.log(this.state.dados);
 
 		return (
 			<PieChart width={400} height={400}>
 				<Pie
 					activeIndex={this.state.activeIndex}
 					activeShape={renderActiveShape}
-					data={this.data}
+					data={this.state.data}
 					cx={200}
 					cy={200}
 					innerRadius={60}

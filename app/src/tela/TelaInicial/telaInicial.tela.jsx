@@ -28,7 +28,7 @@ export class TelaInicialScreen extends Component {
 			<div className="container-tela">
 				<h1 className="titulo">Dashboard</h1>
 				oi
-				<GraficoPizza cor="#00C49F" erraram="212" acertaram="333" />
+				<GraficoPizza cor="#00C49F" />
 			</div>
 		);
 	}
