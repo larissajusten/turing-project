@@ -1,9 +1,16 @@
 import Axios from 'axios';
 import { baseUrl } from '../baseUrl';
 
-let token = localStorage.getItem('accessToken');
+let token;
+
+function carregarToken() {
+	if (!token) {
+		token = localStorage.getItem('accessToken');
+	}
+}
 
 export const criarProva = async (prova) => {
+	carregarToken();
 	const response = await Axios.post(`${baseUrl}/prova`, prova, { headers: { Authorization: token } });
 	return response.data;
 };
