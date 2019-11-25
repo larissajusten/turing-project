@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { PieChart, Pie, Sector } from 'recharts';
-import { retornarResultadosMultipla } from '../../services/prova/prova.service';
 
 const renderActiveShape = (props) => {
 	const RADIAN = Math.PI / 180;
@@ -47,7 +46,7 @@ const renderActiveShape = (props) => {
 				fill="#333"
 			>{`${value} candidatos`}</text>
 			<text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
-				{`(Porcentagem: ${(percent * 100).toFixed(2)}%)`}
+				{`${(percent * 100).toFixed(2)}%`}
 			</text>
 		</g>
 	);
