@@ -34,6 +34,7 @@ export class LoginScreen extends Component {
       this.setState({
         deveRedirecionarParaHome: true
       })
+      Notificacao('Sucesso', 'Login realizado com sucesso', 'success')
     }
     catch(error){
       if (error.response.data.errors) {
