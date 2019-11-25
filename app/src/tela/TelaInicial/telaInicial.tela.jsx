@@ -12,24 +12,30 @@ export class TelaInicialScreen extends Component {
 		super(props);
 		this.state = {
 			deveRenderizarLogin: false,
-			especificidades: []
+			especificidades: [],
+			especificidadeEscolhida: ''
 		};
 	}
 
-	//	componentDidMount() {
-	//		let token = localStorage.getItem('accessToken');
-	//		if (!token) {
-	//			this.setState({
-	//				deveRenderizarLogin: true
-	//			});
-	//		}
-	//  }
+	async componentDidMount() {
+		try {
+			let especificidades = await retornarEspecificidades()
+			this.salvaResponseENotificaSucesso(especificidades)
+		}
+		catch(error) {
+			this.catchErrorENotifica(error)
+		}
+			// let token = localStorage.getItem('accessToken');
+			// if (!token) {
+			// 	this.setState({
+			// 		deveRenderizarLogin: true
+			// 	});
+			// }
+	}
 
 	handleChange = (event) => {
 		const { name, value } = event.target;
-		this.setState({
-			[name]: value
-		});
+		this.setState({ [name]: value });
 	};
 
 	catchErrorENotifica(error) {
@@ -42,7 +48,8 @@ export class TelaInicialScreen extends Component {
 		}
 	}
 
-	salvaResponseENotificaSucesso() {
+	salvaResponseENotificaSucesso(especificidades) {
+		this.setState({ especificidades })
 		Notificacao('Sucesso', mensagemSucessoNotificacao, 'success');
 	}
 
@@ -52,8 +59,8 @@ export class TelaInicialScreen extends Component {
 				<div className="input-principal">
 					<Select
 						questoesWidth="width-select"
-						name="especificidade"
-						value={this.state.especificidades}
+						name="especificidadeEscolhida"
+						value={this.state.especificidadeEscolhida}
 						onChange={this.handleChange}
 						object={this.state.especificidades}
 						placeholder="Selecione a especificidade"
@@ -61,26 +68,28 @@ export class TelaInicialScreen extends Component {
 				</div>
 			);
 		}
+		else {
+			return <span className="titulo-crie"> Não há especificidades para gerar gráficos </span>
+		}
 	}
 
 	render() {
 		//if (this.state.deveRenderizarLogin) {
 		//	return <Redirect to="/login" />;
 		//}
-
     return (
       <>
-		<div className="container-tela">
+			<div className="container-tela">
 			<h1 className="titulo">Dashboard</h1>
         {this.renderContainerComponent()}
         
-        <h1>Multipla escolha</h1>
-        <div className="graficos">
-			<GraficoMultipla />	
-			<GraficoNota />
-        </div>
-        </div>
-        </>
+        <h1 className="titulo-crie">Multipla escolha</h1>
+				<div className="graficos">
+					<GraficoMultipla />	
+					<GraficoNota />
+				</div>
+      </div>
+      </>
 		);
 	}
 }
