@@ -11,6 +11,8 @@ public class QuestaoDissertativaParaCorrecaoResponse {
 
     private Long idQuestao;
 
+    private Long idResposta;
+
     private String resposta;
 
     private String questao;

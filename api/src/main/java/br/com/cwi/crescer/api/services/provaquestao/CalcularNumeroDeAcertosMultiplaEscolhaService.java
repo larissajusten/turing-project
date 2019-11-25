@@ -15,11 +15,9 @@ public class CalcularNumeroDeAcertosMultiplaEscolhaService {
     private RespostaMultiplaEscolhaRepository repository;
 
 
-    public int calcular(Long idProva) {
+    public int calcular(List<RespostasMultiplaEscolhaProva> listaRespostas) {
+
         int corretas = 0;
-
-        List<RespostasMultiplaEscolhaProva> listaRespostas = repository.findAllByProvaIdEquals(idProva);
-
         for (RespostasMultiplaEscolhaProva respostasMultiplaEscolhaProva : listaRespostas) {
             AlternativaMultiplaEscolha alternativaEscolhida = respostasMultiplaEscolhaProva.getAlternativaMultiplaEscolha();
 
