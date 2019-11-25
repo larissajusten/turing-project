@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { GraficoPizza } from '../GraficoPizza/graficoPizza.component';
+import { GraficoPizza } from '../GraficoPizza/graficoPizza.component'
 
-export class GraficoNotaTecnica extends Component {
+export class GraficoNotaDissertativa extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -13,26 +13,26 @@ export class GraficoNotaTecnica extends Component {
     }
     
 	async componentDidMount() {
-        const f = this.state.notas
+		const f = this.state.notas
             .filter(n => n.nivelDeDificuldade === 'FACIL')
-            .map(nota => ({ name: nota.notaQuestao, value: nota.totalDePessoas }))
+            .map(nota => ({ name: nota.notaQuestao, value: nota.totalDePessoas }));
 
         const m = this.state.notas
             .filter(n => n.nivelDeDificuldade === 'MEDIO')
-            .map(nota => ({ name: nota.notaQuestao, value: nota.totalDePessoas }))
+            .map(nota => ({ name: nota.notaQuestao, value: nota.totalDePessoas }));
 
         const d = this.state.notas
             .filter(n => n.nivelDeDificuldade === 'DIFICIL')
-            .map(nota => ({ name: nota.notaQuestao, value: nota.totalDePessoas }))
-
+            .map(nota => ({ name: nota.notaQuestao, value: nota.totalDePessoas }));
+    
         this.setState({
             dataFacil: f,
             dataMedio: m,
             dataDificil: d
         })
-	}
+    }
 
-	render() {
+    render() {
     return (
       <> 
 		<GraficoPizza cor="#00C49F" data={this.state.dataFacil} nome="Fácil"/>
