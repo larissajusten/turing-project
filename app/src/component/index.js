@@ -44,3 +44,4 @@ export { ProvaModal } from './ModalProva/provaModal.component.jsx'
 /* Mostrar Graficos */
 export { GraficoMultipla } from './GraficoMultipla/GraficoMultipla.component'
 export { GraficoNota } from './GraficoNota/GraficoNota.component'
+export { GraficoNotaTecnica } from './GraficoNota/GraficoNotaTecnica.component'

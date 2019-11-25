@@ -10,9 +10,6 @@ security:
       jwt:
         secret: "cwi-turing"
 
-prova:
-  nota-maxima: ${PROVA_NOTA_MAXIMA:10}
-
 spring:
   jpa:
     database-platform: org.hibernate.dialect.Oracle10gDialect

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { retornarTipoDeQuestao, retornarProvaParaCorrigir, corrigirProva} from '../../services/index'
 import { CorrigirUnicaResposta, BotaoPrincipal, Notificacao } from '../../component/index'
-import './corrigirProva.style.css'
 
 const objetoCorrecaoProva =  { idQuestao: '', idResposta: '', tipoDeQuestao: '', nota: '', comentario: '' }
 export class CorrigirProvaScreen extends Component {
@@ -18,7 +17,7 @@ export class CorrigirProvaScreen extends Component {
     this.lengthDissertativas = 0
     this.lengthTecnicas = 0
   }
-  
+
   componentDidMount = async () => {
     this.setState({
       tiposDeQuestoes: await retornarTipoDeQuestao(),
@@ -35,7 +34,7 @@ export class CorrigirProvaScreen extends Component {
 
       this.lengthDissertativas = this.state.prova.questoesDissertativas.length
       this.lengthTecnicas = this.state.prova.questoesTecnicas.length
-    }) 
+    })
   }
 
   handleClickResponderQuestoesUnicaResposta = (event, index, idQuestao, idResposta, tipo) => {

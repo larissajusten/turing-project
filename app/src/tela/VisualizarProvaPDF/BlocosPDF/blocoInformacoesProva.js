@@ -1,34 +1,6 @@
 import React from 'react';
-import { Text, View, StyleSheet } from '@react-pdf/renderer';
-
-const styles = StyleSheet.create({
-  infosContainer: {
-    flexDirection: "column",
-    justifyContent: "flex-start",
-    width: 600,
-    marginTop: 15,
-    borderLeftColor: '#FBB041',
-    borderLeftStyle: "solid",
-    borderLeftWidth: 1,
-    paddingLeft: 10
-  },
-  infosLinha: {
-    flexDirection: "row",
-    paddingBottom: 2,
-    fontSize: 14
-  },
-  infosNome: {
-    fontWeight: 'black',
-    color: 'black',
-    textDecoration: 'none',
-    opacity: 50
-  },
-  infosConteudo: {
-    fontWeight: 'normal',
-    color: 'gray',
-    marginLeft: 5
-  }
-})
+import { Text, View } from '@react-pdf/renderer';
+import { styles } from './index'
 
 export const Informacoes = (props) => (
   <View style={styles.infosContainer}>

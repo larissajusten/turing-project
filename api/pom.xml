@@ -23,6 +23,7 @@
 		<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 		<sonar.language>java</sonar.language>
 		<sonar.coverage.exclusions>
+		    src/main/java/br/com/cwi/crescer/api/security/**/*.java,
 			src/main/java/br/com/cwi/crescer/api/config/**/*.java,
 			src/main/java/br/com/cwi/crescer/api/controller/**/*.java,
 			src/main/java/br/com/cwi/crescer/api/domain/**/*.java,

@@ -56,7 +56,7 @@ public class ProvaController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/finalizar-prova")
     public StatusProva finalizarProva(@PathVariable("id-prova") Long idProva,
-                                             @Valid @RequestBody List<ProvaRespondidaRequest> provaRespondida) {
+                                      @Valid @RequestBody List<ProvaRespondidaRequest> provaRespondida) {
         return finalizarProvaService.finalizar(idProva, provaRespondida);
     }
 
@@ -69,7 +69,7 @@ public class ProvaController {
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/corrigir-prova")
     public StatusProva corrigirProva(@PathVariable("id-prova") Long idProva, @Valid @RequestBody
-                                     List<CorrecaoProvaRequest> listaDeCorrecoes){
+            List<CorrecaoProvaRequest> listaDeCorrecoes) {
         return corrigirProvaService.corrigir(idProva, listaDeCorrecoes);
     }
 

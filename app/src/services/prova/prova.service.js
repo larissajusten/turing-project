@@ -9,7 +9,6 @@ function carregarToken() {
 	}
 }
 
-//adicionarProva
 export const criarProva = async (prova) => {
 	carregarToken();
 	const response = await Axios.post(`${baseUrl}/prova`, prova, { headers: { Authorization: token } });

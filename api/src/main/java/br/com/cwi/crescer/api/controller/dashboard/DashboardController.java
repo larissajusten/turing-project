@@ -2,10 +2,15 @@ package br.com.cwi.crescer.api.controller.dashboard;
 
 import br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
+import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.services.dashboard.BuscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService;
 import br.com.cwi.crescer.api.services.dashboard.BuscarQuestoesTecnicasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService;
+import br.com.cwi.crescer.api.services.prova.BuscarProvasRanqueadasService;
 import br.com.cwi.crescer.api.services.respostaprova.RetornaErrosEAcertosMultiplaEscolhaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +28,9 @@ public class DashboardController {
 
     @Autowired
     private RetornaErrosEAcertosMultiplaEscolhaService retornaErrosEAcertosMultiplaEscolhaService;
+
+    @Autowired
+    private BuscarProvasRanqueadasService buscarProvasRanqueadasService;
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{especificidade}/dissertativas")
@@ -43,4 +51,9 @@ public class DashboardController {
         return retornaErrosEAcertosMultiplaEscolhaService.retornar(especificidade);
     }
 
+    @GetMapping("/raking/notas-provas")
+    public Page<Prova> rankingDeProvas(@PageableDefault Pageable pageable) {
+
+        return buscarProvasRanqueadasService.buscar(pageable);
+    }
 }
