@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { GraficoPizza } from '../GraficoPizza/graficoPizza.component';
-import { retornarResultadosDissertativa } from '../../services/prova/prova.service';
+import { retornarResultadosTecnica } from '../../services/prova/prova.service';
 import { retornarEspecificidades } from '../../services/index';
 
-export class GraficoNota extends Component {
+export class GraficoNotaTecnica extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -17,7 +17,7 @@ export class GraficoNota extends Component {
     
 	async componentDidMount() {
 		this.setState({
-			 notas: await retornarResultadosDissertativa('JAVASCRIPT')
+			 notas: await retornarResultadosTecnica('JAVASCRIPT')
 			},
 			() => {
                 const f = this.state.notas

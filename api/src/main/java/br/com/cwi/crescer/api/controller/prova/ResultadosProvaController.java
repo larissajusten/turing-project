@@ -38,8 +38,6 @@ public class ResultadosProvaController {
     @Autowired
     private CalcularNotaMediaGeralDissertativaService calcularNotaMediaGeralDissertativaService;
 
-    @Autowired
-    private BuscarProvasRanqueadasService buscarProvasRanqueadasService;
 
 
 
@@ -64,11 +62,7 @@ public class ResultadosProvaController {
         return calcularNotaMediaGeralDissertativaService.calcular(idQuestao);
     }
 
-    @GetMapping("/raking/notas-provas")
-    public Page<Prova> rankingDeProvas(@PageableDefault Pageable pageable) {
 
-        return buscarProvasRanqueadasService.buscar(pageable);
-    }
 
 
 
