@@ -1,6 +1,5 @@
 package br.com.cwi.crescer.api.repository.resposta;
 
-import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.resposta.RespostasMultiplaEscolhaProva;
 import org.springframework.data.jpa.repository.JpaRepository;
 

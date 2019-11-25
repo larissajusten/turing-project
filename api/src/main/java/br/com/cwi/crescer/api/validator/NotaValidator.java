@@ -7,9 +7,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class NotaValidator {
 
-//    @Value(value = "${prova.nota-maxima}")
-//    private int notaMaxima;
-
     public void validar(double nota) {
 
         if (nota < 0 || nota > 10) {

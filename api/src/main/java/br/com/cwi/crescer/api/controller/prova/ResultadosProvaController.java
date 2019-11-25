@@ -1,19 +1,21 @@
 package br.com.cwi.crescer.api.controller.prova;
 
-import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.services.prova.BuscarProvasRanqueadasService;
 import br.com.cwi.crescer.api.services.provaquestao.CalcularNumeroDeAcertosMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.provaquestao.VerificarNumeroTotalDeQuestoesMultiplaEscolhaService;
-import br.com.cwi.crescer.api.services.respostaprova.*;
+import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaDissertativaService;
+import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaGeralDissertativaService;
+import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaGeralTecnicaService;
+import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaTecnicaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
