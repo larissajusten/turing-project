@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import './input.style.css';
 
 export class Input extends Component {
+	escolherOnChange(){
+		if(this.props.cadastro) {
+			return (event) => this.props.onChange(event, this.props.index)
+		}else if(this.props.comIndex) {
+			return (event) => this.props.onChange(event, this.props.index, this.props.idQuestao, this.props.tipo)
+		}else if(this.props.comIdResposta) {
+			return (event) => this.props.onChange(event, this.props.index, this.props.idQuestao, this.props.idResposta, this.props.tipo)
+		}else {
+			return this.props.onChange
+		}
+	}
+
 	render() {
 		return (
 			<div className={`input-principal ${this.props.classNameDiv}`}>
@@ -16,10 +28,7 @@ export class Input extends Component {
 					min={this.props.minNum}
 					max={this.props.maxNum}
 					value={this.props.value}
-					onChange={this.props.cadastro ? (event) => this.props.onChange(event, this.props.index) : 
-										(this.props.comIndex ? (event) => this.props.onChange(event, this.props.index, this.props.idQuestao, this.props.tipo) : 
-										(this.props.comIdResposta ? (event) => this.props.onChange(event, this.props.index, this.props.idQuestao, this.props.idResposta, this.props.tipo)
-										: this.props.onChange ))}
+					onChange={this.escolherOnChange()}
 					required
 				/>
 			</div>

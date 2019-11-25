@@ -11,7 +11,7 @@ import { LoginScreen,
 				BuscarProvaParaCorrigirScreen,
 				CorrigirProvaScreen,
 				BuscarProvaJaCorrigidaScreen,
-				ProvaPDFScreen, 
+				ProvaPDFScreen,
 				TelaInicialScreen } from './tela/index';
 import { Header, Footer } from './component/index'
 

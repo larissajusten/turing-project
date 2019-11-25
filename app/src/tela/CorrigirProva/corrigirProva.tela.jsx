@@ -18,7 +18,7 @@ export class CorrigirProvaScreen extends Component {
     this.lengthDissertativas = 0
     this.lengthTecnicas = 0
   }
-  
+
   componentDidMount = async () => {
     this.setState({
       tiposDeQuestoes: await retornarTipoDeQuestao(),
@@ -35,7 +35,7 @@ export class CorrigirProvaScreen extends Component {
 
       this.lengthDissertativas = this.state.prova.questoesDissertativas.length
       this.lengthTecnicas = this.state.prova.questoesTecnicas.length
-    }) 
+    })
   }
 
   handleClickResponderQuestoesUnicaResposta = (event, index, idQuestao, idResposta, tipo) => {

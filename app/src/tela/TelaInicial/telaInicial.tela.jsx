@@ -9,20 +9,32 @@ export class TelaInicialScreen extends Component {
 		super(props);
 		this.state = {
 			deveRenderizarLogin: false,
+<<<<<<< HEAD
+			especificidades: [],
+			especificidadeEscolhida: ''
+=======
 			especificidades: [], 
 			notasDissertativas: [],
 			notasTecnicas: []
+>>>>>>> master
 		};
 	}
 
-	//	componentDidMount() {
-	//		let token = localStorage.getItem('accessToken');
-	//		if (!token) {
-	//			this.setState({
-	//				deveRenderizarLogin: true
-	//			});
-	//		}
-	//  }
+	async componentDidMount() {
+		try {
+			let especificidades = await retornarEspecificidades()
+			this.salvaResponseENotificaSucesso(especificidades)
+		}
+		catch(error) {
+			this.catchErrorENotifica(error)
+		}
+			// let token = localStorage.getItem('accessToken');
+			// if (!token) {
+			// 	this.setState({
+			// 		deveRenderizarLogin: true
+			// 	});
+			// }
+	}
 
 	async componentDidMount() {
 		this.setState({
@@ -34,9 +46,7 @@ export class TelaInicialScreen extends Component {
 
 	handleChange = (event) => {
 		const { name, value } = event.target;
-		this.setState({
-			[name]: value
-		});
+		this.setState({ [name]: value });
 	};
 
 	catchErrorENotifica(error) {
@@ -49,7 +59,8 @@ export class TelaInicialScreen extends Component {
 		}
 	}
 
-	salvaResponseENotificaSucesso() {
+	salvaResponseENotificaSucesso(especificidades) {
+		this.setState({ especificidades })
 		Notificacao('Sucesso', mensagemSucessoNotificacao, 'success');
 	}
 
@@ -59,8 +70,8 @@ export class TelaInicialScreen extends Component {
 				<div className="input-principal">
 					<Select
 						questoesWidth="width-select"
-						name="especificidade"
-						value={this.state.especificidades}
+						name="especificidadeEscolhida"
+						value={this.state.especificidadeEscolhida}
 						onChange={this.handleChange}
 						object={this.state.especificidades}
 						placeholder="Selecione a especificidade"
@@ -68,35 +79,36 @@ export class TelaInicialScreen extends Component {
 				</div>
 			);
 		}
+		else {
+			return <span className="titulo-crie"> Não há especificidades para gerar gráficos </span>
+		}
 	}
 
 	render() {
 		//if (this.state.deveRenderizarLogin) {
 		//	return <Redirect to="/login" />;
 		//}
-
 		console.log(this.state.notasDissertativas);
-		
     return (
       <>
-		<div className="container-tela">
-			<h1 className="titulo">Dashboard</h1>
-        {this.renderContainerComponent()}
-       
-        <h1>Multiplas escolhas</h1>
-        <div className="graficos">
-			<GraficoMultipla />	
-        </div>
-		<h1>Dissertativas</h1>
-        <div className="graficos">
-			<GraficoNota notas={this.state.notasDissertativas}/>	
-        </div>
-		<h1>Técnicas</h1>
-        <div className="graficos">
-			<GraficoNotaTecnica notas={this.state.notasTecnicas}/>	
-        </div>
-        </div>
-        </>
+			<div className="container-tela">
+				<h1 className="titulo">Dashboard</h1>
+				{this.renderContainerComponent()}
+				
+				<h1 className="titulo-crie">Multiplas escolhas</h1>
+				<div className="graficos">
+					<GraficoMultipla />	
+				</div>
+				<h1 className="titulo-crie">Dissertativas</h1>
+				<div className="graficos">
+					<GraficoNota notas={this.state.notasDissertativas}/>	
+				</div>
+				<h1 className="titulo-crie">Técnicas</h1>
+				<div className="graficos">
+					<GraficoNotaTecnica notas={this.state.notasTecnicas}/>	
+				</div>
+      </div>
+      </>
 		);
 	}
 }

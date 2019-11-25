@@ -9,7 +9,7 @@ export const adicionarQuestaoDissertativa = async (questao) => {
 }
 
 export const retornarQuestoesDissertativasFiltradas = async (paginaAtual, especificidade, nivel) => {
-  const response = await Axios.get(`${baseUrl}/questao-dissertativa/todas-questoes-filtradas?page=${paginaAtual}`, 
+  const response = await Axios.get(`${baseUrl}/questao-dissertativa/todas-questoes-filtradas?page=${paginaAtual}`,
     { headers: { Authorization: token }, params: {especificidade: especificidade, nivel: nivel} })
   return [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
 }
