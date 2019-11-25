@@ -78,5 +78,4 @@ public class ResultadosProvaController {
 
         return buscarProvasRanqueadasService.buscar(pageable);
     }
-
 }

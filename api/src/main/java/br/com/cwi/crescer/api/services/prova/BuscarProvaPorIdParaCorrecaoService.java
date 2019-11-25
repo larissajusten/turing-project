@@ -34,6 +34,7 @@ public class BuscarProvaPorIdParaCorrecaoService {
         List<QuestaoDissertativaParaCorrecaoResponse> questoesDissertativas = new ArrayList<>();
 
         respostasDissertativas.forEach(questao -> {
+
             QuestaoDissertativaParaCorrecaoResponse respostaResponse = new QuestaoDissertativaParaCorrecaoResponse();
             respostaResponse.setQuestao(questao.getQuestaoDissertativa().getQuestao());
             respostaResponse.setIdQuestao(questao.getQuestaoDissertativa().getId());

@@ -1,7 +1,10 @@
 package br.com.cwi.crescer.api.repository.resposta;
 
+import br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse;
+import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.resposta.RespostasTecnicaProva;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -11,4 +14,9 @@ public interface RespostasTecnicaRepository extends JpaRepository<RespostasTecni
 
     List<RespostasTecnicaProva> findAllByQuestaoTecnicaIdEquals(Long id);
 
+    @Query("Select new br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse(r.questaoTecnica.nivelDeDificuldade, r.nota, count(*)) " +
+            "FROM RespostasTecnicaProva r " +
+            "WHERE r.questaoTecnica.especificidade = ?1" +
+            " GROUP BY r.nota, r.questaoTecnica.nivelDeDificuldade")
+    List<RespostaParaDashboardResponse> buscarQuestoesTecnicasAgrupadasPorNotaENivelDeDificuldade(Especificidade especificidade);
 }
