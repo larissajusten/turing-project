@@ -64,7 +64,7 @@ export class CadastrarQuestaoScreen extends Component {
 			return (
 				<>
 					<div className="container-titulo">
-						<span className="titulo-crie">Crie sua Questao </span>
+						<span className="titulo-crie">Crie sua Questão </span>
 						<Select
 							questoesWidth="width-questoes"
 							placeholder="Selecione"

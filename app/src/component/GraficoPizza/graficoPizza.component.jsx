@@ -46,18 +46,17 @@ const renderActiveShape = (props) => {
 				fill="#333"
 			>{`${value} candidatos`}</text>
 			<text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
-				{`(Porcentagem: ${(percent * 100).toFixed(2)}%)`}
+				{`${(percent * 100).toFixed(2)}%`}
 			</text>
 		</g>
 	);
 };
 
-export default class GraficoPizza extends Component {
+export class GraficoPizza extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeIndex: 0,
-			data: [ { name: 'Erraram', value: this.props.erraram }, { name: 'Acertaram', value: this.props.acertaram } ]
+			activeIndex: 0
 		};
 	}
 
@@ -68,14 +67,12 @@ export default class GraficoPizza extends Component {
 	};
 
 	render() {
-		console.log(this.props.erraram);
-
 		return (
 			<PieChart width={400} height={400}>
 				<Pie
 					activeIndex={this.state.activeIndex}
 					activeShape={renderActiveShape}
-					data={this.data}
+					data={this.props.data}
 					cx={200}
 					cy={200}
 					innerRadius={60}
