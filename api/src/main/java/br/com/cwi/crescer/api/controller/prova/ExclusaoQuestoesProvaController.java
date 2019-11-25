@@ -20,7 +20,6 @@ public class ExclusaoQuestoesProvaController {
     @Autowired
     private ExcluirQuestaoTecnicaService excluirQuestaoTecnicaService;
 
-    //TODO mudou(/excluir/${idProva}/dissertativa/${idQuestaoProva})
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id-prova}/dissertativa/{id-questao-prova}")
     public void excluirDissertativa(@PathVariable("id-prova") Long idProva,
@@ -28,7 +27,6 @@ public class ExclusaoQuestoesProvaController {
         excluirQuestaoDissertativaService.excluir(idQuestaoProva, idProva);
     }
 
-    //TODO mudou(/excluir/${idProva}/tecnica/${idQuestaoProva})
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id-prova}/tecnica/{id-questao-prova}")
     public void excluirTecnicaProva(@PathVariable("id-prova") Long idProva,
@@ -36,7 +34,6 @@ public class ExclusaoQuestoesProvaController {
         excluirQuestaoTecnicaService.excluir(idQuestaoProva, idProva);
     }
 
-    //TODO mudou(/excluir/${idProva}/multipla-escolha/${idQuestaoProva})
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id-prova}/multipla-escolha/{id-questao-prova}")
     public void excluirMultiplaEscolha(@PathVariable("id-prova") Long idProva,
