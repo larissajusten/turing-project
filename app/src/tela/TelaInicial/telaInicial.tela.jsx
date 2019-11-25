@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { GraficoPizza } from '../../component/GraficoPizza/graficoPizza.component';
 import { retornarResultadosMultipla } from '../../services/prova/prova.service';
-import { Notificacao, Select } from '../../component/index';
+import { Notificacao, Select, GraficoMultipla, GraficoNota } from '../../component/index';
 import { retornarEspecificidades } from '../../services/index';
 import './telaInicial.style.css';
 
@@ -12,12 +12,7 @@ export class TelaInicialScreen extends Component {
 		super(props);
 		this.state = {
 			deveRenderizarLogin: false,
-			especificidades: [],
-			errosEAcertos: [],
-			busca: 'JAVASCRIPT',
-			dataFacil: [ {}, {} ],
-			dataMedio: [ {}, {} ],
-			dataDificil: [ {}, {} ]
+			especificidades: []
 		};
 	}
 
@@ -29,31 +24,6 @@ export class TelaInicialScreen extends Component {
 	//			});
 	//		}
 	//  }
-
-	async componentDidMount() {
-		this.setState(
-			{
-				especificidades: await retornarEspecificidades(),
-				errosEAcertos: await retornarResultadosMultipla('JAVASCRIPT')
-			},
-			() => {
-				this.setState({
-					dataFacil: [
-						{ name: 'Acertaram', value: this.state.errosEAcertos[0] },
-						{ name: 'Erraram', value: this.state.errosEAcertos[1] }
-					],
-					dataMedio: [
-						{ name: 'Acertaram', value: this.state.errosEAcertos[2] },
-						{ name: 'Erraram', value: this.state.errosEAcertos[3] }
-					],
-					dataDificil: [
-						{ name: 'Acertaram', value: this.state.errosEAcertos[4] },
-						{ name: 'Erraram', value: this.state.errosEAcertos[5] }
-					]
-				});
-			}
-		);
-	}
 
 	handleChange = (event) => {
 		const { name, value } = event.target;
@@ -100,17 +70,16 @@ export class TelaInicialScreen extends Component {
 
     return (
       <>
-			<div className="container-tela">
-				<h1 className="titulo">Dashboard</h1>
+		<div className="container-tela">
+			<h1 className="titulo">Dashboard</h1>
         {this.renderContainerComponent()}
         
         <h1>Multipla escolha</h1>
         <div className="graficos">
-					<GraficoPizza cor="#00C49F" data={this.state.dataFacil} />
-					<GraficoPizza cor="#FFBB28" data={this.state.dataMedio} />
-					<GraficoPizza cor="#FF8042" data={this.state.dataDificil} />
-          </div>
-          </div>
+			<GraficoMultipla />	
+			<GraficoNota />
+        </div>
+        </div>
         </>
 		);
 	}

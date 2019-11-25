@@ -41,8 +41,7 @@ public class ResultadosProvaController {
     @Autowired
     private BuscarProvasRanqueadasService buscarProvasRanqueadasService;
 
-    @Autowired
-    private RetornaErrosEAcertosMultiplaEscolhaService retornaErrosEAcertosMultiplaEscolhaService;
+
 
 
     @GetMapping("/{id-prova}/media-do-candidato-dissertativa")
@@ -71,11 +70,7 @@ public class ResultadosProvaController {
         return buscarProvasRanqueadasService.buscar(pageable);
     }
 
-    @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{especificidade}/multipla-facil")
-    public List<Integer> retornaErrosEAcertosMultiplaEscolha(@PathVariable("especificidade")Especificidade especificidade){
-        return retornaErrosEAcertosMultiplaEscolhaService.retornar(especificidade);
-    }
+
 
 
 }

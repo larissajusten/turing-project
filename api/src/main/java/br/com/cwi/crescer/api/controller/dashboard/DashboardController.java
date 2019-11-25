@@ -4,7 +4,9 @@ import br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.services.dashboard.BuscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService;
 import br.com.cwi.crescer.api.services.dashboard.BuscarQuestoesTecnicasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService;
+import br.com.cwi.crescer.api.services.respostaprova.RetornaErrosEAcertosMultiplaEscolhaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +20,27 @@ public class DashboardController {
 
     @Autowired
     private BuscarQuestoesTecnicasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService buscarQuestoesTecnicas;
-    @PutMapping("/dissertativas")
-    public List<RespostaParaDashboardResponse> discursivas(@RequestBody Especificidade especificidade) {
+
+    @Autowired
+    private RetornaErrosEAcertosMultiplaEscolhaService retornaErrosEAcertosMultiplaEscolhaService;
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{especificidade}/dissertativas")
+    public List<RespostaParaDashboardResponse> discursivas(@PathVariable("especificidade") Especificidade especificidade) {
         return  buscarQuestoesDissertativas.buscar(especificidade);
     }
 
-    @PutMapping("/tecnicas")
-    public List<RespostaParaDashboardResponse> tecnicas(@RequestBody Especificidade especificidade) {
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{especificidade}/tecnicas")
+    public List<RespostaParaDashboardResponse> tecnicas(@PathVariable("especificidade") Especificidade especificidade) {
         return  buscarQuestoesTecnicas.buscar(especificidade);
+    }
+
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{especificidade}/multiplas")
+    public List<Integer> retornaErrosEAcertosMultiplaEscolha(@PathVariable("especificidade")Especificidade especificidade){
+        return retornaErrosEAcertosMultiplaEscolhaService.retornar(especificidade);
     }
 
 }
