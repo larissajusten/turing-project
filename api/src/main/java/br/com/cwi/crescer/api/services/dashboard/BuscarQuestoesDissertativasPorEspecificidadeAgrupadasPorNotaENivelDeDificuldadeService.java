@@ -14,11 +14,8 @@ public class BuscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelD
     @Autowired
     private RespostasDissertativaRepository repository;
 
-
     public List<RespostaParaDashboardResponse> buscar(Especificidade especificidade) {
 
         return repository.findAllByGroupByNotaWhereQuestaoDissertativaEspecificidadeEquals(especificidade);
     }
-
-
 }

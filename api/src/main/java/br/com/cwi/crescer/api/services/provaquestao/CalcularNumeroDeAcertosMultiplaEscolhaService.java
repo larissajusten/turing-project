@@ -14,7 +14,6 @@ public class CalcularNumeroDeAcertosMultiplaEscolhaService {
     @Autowired
     private RespostaMultiplaEscolhaRepository repository;
 
-
     public int calcular(List<RespostasMultiplaEscolhaProva> listaRespostas) {
 
         int corretas = 0;

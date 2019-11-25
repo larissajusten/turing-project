@@ -2,7 +2,6 @@ package br.com.cwi.crescer.api.services.dashboard;
 
 import br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
-import br.com.cwi.crescer.api.domain.resposta.RespostasTecnicaProva;
 import br.com.cwi.crescer.api.repository.resposta.RespostasTecnicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
