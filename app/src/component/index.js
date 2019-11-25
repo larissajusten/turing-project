@@ -42,6 +42,6 @@ export { AdicionarQuestaoNaProva } from './AdicionarQuestaoNaProva/adicionarQues
 export { ProvaModal } from './ModalProva/provaModal.component.jsx'
 
 /* Mostrar Graficos */
-export { GraficoMultipla } from './GraficoMultipla/GraficoMultipla.component'
-export { GraficoNota } from './GraficoNota/GraficoNota.component'
-export { GraficoNotaTecnica } from './GraficoNota/GraficoNotaTecnica.component'
+export { GraficoMultipla } from './GraficoMultipla/GraficoMultipla.component.jsx'
+export { GraficoNotaDissertativa } from './GraficoNota/GraficoNotaDissertativa.component.jsx'
+export { GraficoNotaTecnica } from './GraficoNota/GraficoNotaTecnica.component.jsx'

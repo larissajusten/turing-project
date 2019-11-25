@@ -25,9 +25,6 @@ export { criarProva } from './prova/prova.service'
 export { iniciarProva } from './prova/prova.service'
 export { enviarRespostasDaProva } from './prova/prova.service'
 export { corrigirProva } from './prova/prova.service'
-export { retornarResultadosMultipla } from './prova/prova.service'
-export { retornarResultadosDissertativa } from './prova/prova.service'
-export { retornarResultadosTecnica } from './prova/prova.service'
 
 /* Prova */ //buscar prova
 export { retornaProva } from './prova/buscarProva.service'
@@ -46,3 +43,8 @@ export { incluirMultiplaEscolha } from './prova/incluirQuestoesProva.service'
 export { removerQuestaoDissertativa } from './prova/excluirQuestaoProva.service'
 export { removerQuestaoTecnica } from './prova/excluirQuestaoProva.service'
 export { removerQuestaoMultiplaEscolha } from './prova/excluirQuestaoProva.service'
+
+/* Graficos */
+export { retornarResultadosMultipla } from './prova/prova.service'
+export { retornarResultadosDissertativa } from './prova/prova.service'
+export { retornarResultadosTecnica } from './prova/prova.service'

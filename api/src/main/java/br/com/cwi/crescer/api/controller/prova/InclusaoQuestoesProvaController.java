@@ -25,7 +25,6 @@ public class InclusaoQuestoesProvaController {
     @Autowired
     private IncluirQuestoesMultiplaEscolhaService incluirQuestoesMultiplaEscolhaService;
 
-    //TODO mudou(/incluir/${idProva}/dissertativa)
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/dissertativa")
@@ -33,14 +32,12 @@ public class InclusaoQuestoesProvaController {
         return incluirQuestoesDissertativasService.incluir(idProva, buscaQuestoesRequest);
     }
 
-    //TODO mudou(/incluir/${idProva}/tecnica)
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/tecnica")
     public void incluirTecnicas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         incluirQuestoesTecnicasService.incluir(idProva, buscaQuestoesRequest);
     }
 
-    //TODO mudou(/incluir/${idProva}/multipla-escolha)
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id-prova}/multipla-escolha")
     public void incluirMultiplasEscolhas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {

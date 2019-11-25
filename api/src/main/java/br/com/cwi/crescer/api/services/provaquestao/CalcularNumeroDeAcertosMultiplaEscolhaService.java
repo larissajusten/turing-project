@@ -11,8 +11,8 @@ import java.util.List;
 @Service
 public class CalcularNumeroDeAcertosMultiplaEscolhaService {
 
-    @Autowired
-    private RespostaMultiplaEscolhaRepository repository;
+//    @Autowired
+//    private RespostaMultiplaEscolhaRepository repository;
 
     public int calcular(List<RespostasMultiplaEscolhaProva> listaRespostas) {
 
@@ -24,7 +24,6 @@ public class CalcularNumeroDeAcertosMultiplaEscolhaService {
                 corretas++;
             }
         }
-
         return corretas;
     }
 
