@@ -9,6 +9,7 @@ export const login = async (user) => {
 }
 
 export const retornaPerfil = async (perfil) => {
+  console.log(token)
   const response = await Axios.get(`${baseUrl}/usuario/${perfil}`, { headers: { Authorization: token }})
   return response.data
 }

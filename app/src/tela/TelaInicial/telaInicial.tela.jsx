@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
-import { retornarResultadosDissertativa, retornarResultadosTecnica, retornarEspecificidades } from '../../services/index';
-import { Notificacao, Select, GraficoMultipla, GraficoNota, GraficoNotaTecnica } from '../../component/index';
+import { Redirect } from 'react-router-dom'
+import { retornarResultadosMultipla,
+				retornarResultadosDissertativa,
+				retornarResultadosTecnica,
+				retornarEspecificidades } from '../../services/index';
+import { Notificacao, Select, GraficoMultipla, GraficoNotaDissertativa, GraficoNotaTecnica } from '../../component/index';
 import './telaInicial.style.css';
 
 const mensagemSucessoNotificacao = 'Busca bem sucedida';
@@ -9,7 +13,8 @@ export class TelaInicialScreen extends Component {
 		super(props);
 		this.state = {
 			deveRenderizarLogin: false,
-			especificidades: [], 
+			especificidades: [],
+			especificidadeEscolhida: '',
 			notasDissertativas: [],
 			notasTecnicas: []
 		};
@@ -17,22 +22,28 @@ export class TelaInicialScreen extends Component {
 
 	async componentDidMount() {
 		this.setState({
-			notasDissertativas: await retornarResultadosDissertativa('JAVASCRIPT'),
-			notasTecnicas: await retornarResultadosTecnica('JAVASCRIPT'),
 			especificidades: await retornarEspecificidades()
 		})
-			// let token = localStorage.getItem('accessToken');
-			// if (!token) {
-			// 	this.setState({
-			// 		deveRenderizarLogin: true
-			// 	});
-			// }
+		let token = localStorage.getItem('accessToken');
+		if (!token) {
+			this.setState({
+				deveRenderizarLogin: true
+			});
+		}
 	}	
 
-	handleChange = (event) => {
+	handleChange = async (event) => {
 		const { name, value } = event.target;
-		this.setState({ [name]: value });
-	};
+		this.setState({ 
+			[name]: value
+		}, async () => {
+			this.setState({
+				dataMultipla: await retornarResultadosMultipla(this.state.especificidadeEscolhida),
+				notasDissertativas: await retornarResultadosDissertativa(this.state.especificidadeEscolhida),
+				notasTecnicas: await retornarResultadosTecnica(this.state.especificidadeEscolhida)
+			})
+		});
+	}
 
 	catchErrorENotifica(error) {
 		if (error.response.data.errors) {
@@ -70,10 +81,14 @@ export class TelaInicialScreen extends Component {
 	}
 
 	render() {
-		//if (this.state.deveRenderizarLogin) {
-		//	return <Redirect to="/login" />;
-		//}
-		console.log(this.state.notasDissertativas);
+		console.log(this.state.dataMultipla)
+		console.log(this.state.dataMultipla)
+		console.log(this.state.notasDissertativas)
+		console.log(this.state.notasTecnicas)
+		if (this.state.deveRenderizarLogin) {
+			return <Redirect to="/login" />;
+		}
+
     return (
       <>
 			<div className="container-tela">
@@ -82,11 +97,11 @@ export class TelaInicialScreen extends Component {
 				
 				<h1 className="titulo-crie">Multiplas escolhas</h1>
 				<div className="graficos">
-					<GraficoMultipla />	
+					<GraficoMultipla notas={this.state.notasDissertativas}/>	
 				</div>
 				<h1 className="titulo-crie">Dissertativas</h1>
 				<div className="graficos">
-					<GraficoNota notas={this.state.notasDissertativas}/>	
+					<GraficoNotaDissertativa notas={this.state.notasDissertativas}/>	
 				</div>
 				<h1 className="titulo-crie">Técnicas</h1>
 				<div className="graficos">

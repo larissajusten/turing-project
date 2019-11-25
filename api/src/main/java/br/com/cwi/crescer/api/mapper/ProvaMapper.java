@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.mapper;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
+import br.com.cwi.crescer.api.domain.usuario.LoggedUserDTO;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
@@ -30,7 +31,7 @@ public class ProvaMapper {
 
     public Prova transformar(ProvaRequest request) {
 
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin());
+        Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getEmail());
 
         Prova prova = mapper.map(request, Prova.class);
         prova.setDataCriacao(LocalDateTime.now());
