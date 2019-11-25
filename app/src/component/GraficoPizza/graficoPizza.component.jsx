@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { PieChart, Pie, Sector } from 'recharts';
 
+
 const renderActiveShape = (props) => {
 	const RADIAN = Math.PI / 180;
 	const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props;
@@ -68,6 +69,7 @@ export class GraficoPizza extends Component {
 
 	render() {
 		return (
+			<div className="grafico">
 			<PieChart width={400} height={400}>
 				<Pie
 					activeIndex={this.state.activeIndex}
@@ -82,6 +84,8 @@ export class GraficoPizza extends Component {
 					onMouseEnter={this.onPieEnter}
 				/>
 			</PieChart>
+			<h3>{this.props.nome}</h3>
+			</div>
 		);
 	}
 }

@@ -29,6 +29,17 @@ export const corrigirProva = async (idProva, body) => {
 };
 
 export const retornarResultadosMultipla = async (especificidade) => {
-	const response = await Axios.put(`${baseUrl}/resultadoprova/${especificidade}/multipla-facil`);
+	const response = await Axios.put(`${baseUrl}/dashboard/${especificidade}/multiplas`);
 	return response.data;
 };
+
+export const retornarResultadosDissertativa = async (especificidade) => {
+	const response = await Axios.put(`${baseUrl}/dashboard/${especificidade}/dissertativas`);
+	return response.data;
+};
+
+export const retornarResultadosTecnica = async (especificidade) => {
+	const response = await Axios.put(`${baseUrl}/dashboard/${especificidade}/tecnicas`);
+	return response.data;
+};
+
