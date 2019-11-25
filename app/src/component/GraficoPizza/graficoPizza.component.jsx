@@ -53,31 +53,12 @@ const renderActiveShape = (props) => {
 	);
 };
 
-export default class GraficoPizza extends Component {
+export class GraficoPizza extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			activeIndex: 0,
-			data: [ {}, {} ],
-			dados: ''
+			activeIndex: 0
 		};
-	}
-
-	async componentDidMount() {
-		let dados = await retornarResultadosMultipla();
-		this.setState(
-			{
-				dados: dados
-			},
-			() => {
-				this.setState({
-					data: [
-						{ name: 'Erraram', value: this.state.dados[0] },
-						{ name: 'Acertaram', value: this.state.dados[1] }
-					]
-				});
-			}
-		);
 	}
 
 	onPieEnter = (data, index) => {
@@ -87,14 +68,12 @@ export default class GraficoPizza extends Component {
 	};
 
 	render() {
-		console.log(this.state.dados);
-
 		return (
 			<PieChart width={400} height={400}>
 				<Pie
 					activeIndex={this.state.activeIndex}
 					activeShape={renderActiveShape}
-					data={this.state.data}
+					data={this.props.data}
 					cx={200}
 					cy={200}
 					innerRadius={60}

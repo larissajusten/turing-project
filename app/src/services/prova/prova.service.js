@@ -28,7 +28,7 @@ export const corrigirProva = async (idProva, body) => {
 	return response.data;
 };
 
-export const retornarResultadosMultipla = async () => {
-	const response = await Axios.get(`${baseUrl}/resultadoprova/multipla-facil`);
+export const retornarResultadosMultipla = async (especificidade) => {
+	const response = await Axios.put(`${baseUrl}/resultadoprova/${especificidade}/multipla-facil`);
 	return response.data;
 };

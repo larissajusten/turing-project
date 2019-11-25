@@ -1,21 +1,19 @@
 package br.com.cwi.crescer.api.controller.prova;
 
+import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.services.prova.BuscarProvasRanqueadasService;
 import br.com.cwi.crescer.api.services.provaquestao.CalcularNumeroDeAcertosMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.provaquestao.VerificarNumeroTotalDeQuestoesMultiplaEscolhaService;
-import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaDissertativaService;
-import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaGeralDissertativaService;
-import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaGeralTecnicaService;
-import br.com.cwi.crescer.api.services.respostaprova.CalcularNotaMediaTecnicaService;
+import br.com.cwi.crescer.api.services.respostaprova.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -43,15 +41,9 @@ public class ResultadosProvaController {
     @Autowired
     private BuscarProvasRanqueadasService buscarProvasRanqueadasService;
 
-    @GetMapping("/{id-prova}/numero-acertos-multipla-escolha")
-    public int numeroDeAcertosDasQuestoesMultiplaEscolha(@PathVariable("id-prova") Long idProva) {
-        return calcularNumeroDeAcertosMultiplaEscolhaService.calcular(idProva);
-    }
+    @Autowired
+    private RetornaErrosEAcertosMultiplaEscolhaService retornaErrosEAcertosMultiplaEscolhaService;
 
-    @GetMapping("/{id-prova}/numero-total-de-multipla-escolha")
-    public int numeroTotalDeQuestoesMultiplaEscolhaDeUmaProva(@PathVariable("id-prova") Long idProva) {
-        return verificarNumeroTotalDeQuestoesMultiplaEscolhaService.verificar(idProva);
-    }
 
     @GetMapping("/{id-prova}/media-do-candidato-dissertativa")
     public double mediaDeNotaDasQuestoesDissertativa(@PathVariable("id-prova") Long idProva) {
@@ -78,5 +70,12 @@ public class ResultadosProvaController {
 
         return buscarProvasRanqueadasService.buscar(pageable);
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{especificidade}/multipla-facil")
+    public List<Integer> retornaErrosEAcertosMultiplaEscolha(@PathVariable("especificidade")Especificidade especificidade){
+        return retornaErrosEAcertosMultiplaEscolhaService.retornar(especificidade);
+    }
+
 
 }
