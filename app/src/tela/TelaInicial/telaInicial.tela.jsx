@@ -16,28 +16,18 @@ export class TelaInicialScreen extends Component {
 	}
 
 	async componentDidMount() {
-		try {
-			let especificidades = await retornarEspecificidades()
-			this.salvaResponseENotificaSucesso(especificidades)
-		}
-		catch(error) {
-			this.catchErrorENotifica(error)
-		}
+		this.setState({
+			notasDissertativas: await retornarResultadosDissertativa('JAVASCRIPT'),
+			notasTecnicas: await retornarResultadosTecnica('JAVASCRIPT'),
+			especificidades: await retornarEspecificidades()
+		})
 			// let token = localStorage.getItem('accessToken');
 			// if (!token) {
 			// 	this.setState({
 			// 		deveRenderizarLogin: true
 			// 	});
 			// }
-	}
-
-	async componentDidMount() {
-		this.setState({
-		notasDissertativas: await retornarResultadosDissertativa('JAVASCRIPT'),
-		notasTecnicas: await retornarResultadosTecnica('JAVASCRIPT')
-		})
-	}
-		
+	}	
 
 	handleChange = (event) => {
 		const { name, value } = event.target;
