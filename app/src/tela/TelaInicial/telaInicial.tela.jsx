@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { GraficoPizza } from '../../component/GraficoPizza/graficoPizza.component';
-import { retornarResultadosMultipla } from '../../services/prova/prova.service';
-import { Notificacao, Select, GraficoMultipla, GraficoNota } from '../../component/index';
-import { retornarEspecificidades } from '../../services/index';
+import { retornarResultadosDissertativa, retornarResultadosTecnica } from '../../services/prova/prova.service';
+import { Notificacao, Select, GraficoMultipla, GraficoNota, GraficoNotaTecnica } from '../../component/index';
 import './telaInicial.style.css';
 
 const mensagemSucessoNotificacao = 'Busca bem sucedida';
@@ -12,8 +9,14 @@ export class TelaInicialScreen extends Component {
 		super(props);
 		this.state = {
 			deveRenderizarLogin: false,
+<<<<<<< HEAD
 			especificidades: [],
 			especificidadeEscolhida: ''
+=======
+			especificidades: [], 
+			notasDissertativas: [],
+			notasTecnicas: []
+>>>>>>> master
 		};
 	}
 
@@ -32,6 +35,14 @@ export class TelaInicialScreen extends Component {
 			// 	});
 			// }
 	}
+
+	async componentDidMount() {
+		this.setState({
+		notasDissertativas: await retornarResultadosDissertativa('JAVASCRIPT'),
+		notasTecnicas: await retornarResultadosTecnica('JAVASCRIPT')
+		})
+	}
+		
 
 	handleChange = (event) => {
 		const { name, value } = event.target;
@@ -77,16 +88,24 @@ export class TelaInicialScreen extends Component {
 		//if (this.state.deveRenderizarLogin) {
 		//	return <Redirect to="/login" />;
 		//}
+		console.log(this.state.notasDissertativas);
     return (
       <>
 			<div className="container-tela">
 				<h1 className="titulo">Dashboard</h1>
 				{this.renderContainerComponent()}
-        
-        <h1 className="titulo-crie">Multipla escolha</h1>
+				
+				<h1 className="titulo-crie">Multiplas escolhas</h1>
 				<div className="graficos">
-					<GraficoMultipla />
-					<GraficoNota />
+					<GraficoMultipla />	
+				</div>
+				<h1 className="titulo-crie">Dissertativas</h1>
+				<div className="graficos">
+					<GraficoNota notas={this.state.notasDissertativas}/>	
+				</div>
+				<h1 className="titulo-crie">Técnicas</h1>
+				<div className="graficos">
+					<GraficoNotaTecnica notas={this.state.notasTecnicas}/>	
 				</div>
       </div>
       </>
