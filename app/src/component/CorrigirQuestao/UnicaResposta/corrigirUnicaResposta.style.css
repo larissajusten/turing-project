@@ -1,3 +1,7 @@
+.container-questoes-corrigir {
+  width: 100%;
+}
+
 .questao-resposta {
   width: 60%;
 }
@@ -16,5 +20,42 @@
 }
 
 .width-nota {
+  width: 100%;
+}
+
+.container-nota-download{
   width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-download {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.botao-download {
+  font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 0.9em;
+  font-weight: bold;
+  text-align: center;
+	line-height: 17px;
+	color: var(--font-color);
+	background-color: var(--orange-color);
+	border: 1px;
+	border-radius: var(--border-radius);
+  transition: all 0.5s;
+  padding: 0;
+  margin: 1px 1px;
+	cursor: pointer;
+  outline: none;
+  height: 20px;
+  width: 60px;
+}
+
+.resposta-base {
+  width: 80px;
 }

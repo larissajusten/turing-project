@@ -18,7 +18,7 @@ export class CorrigirProvaScreen extends Component {
     this.lengthDissertativas = 0
     this.lengthTecnicas = 0
   }
-
+  
   componentDidMount = async () => {
     this.setState({
       tiposDeQuestoes: await retornarTipoDeQuestao(),

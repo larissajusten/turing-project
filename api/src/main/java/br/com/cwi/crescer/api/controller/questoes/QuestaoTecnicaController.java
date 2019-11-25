@@ -46,7 +46,6 @@ public class QuestaoTecnicaController {
         return buscarQuestoesTecnicas.listar(request);
     }
 
-
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void adicionarQuestaoTecnica(@Valid @RequestBody QuestaoTecnicaRequest request) {
@@ -62,9 +61,8 @@ public class QuestaoTecnicaController {
         return buscarPaginado.buscar(pageable, especificidade, nivelDeDificuldade);
     }
 
-
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-resposta}")
+    @GetMapping("/download/{id-resposta}")
     public QuestaoTecnicaCompletaResponse buscarQuestaoTecnicaParaBaixar(@PathVariable("id-resposta") Long idResposta) {
         return buscarQuestaoTecnicaCompletaParaDownloadService.buscar(idResposta);
     }
