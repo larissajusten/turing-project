@@ -185,5 +185,18 @@ export const styles = StyleSheet.create({
     color: '#25E015',
     textDecoration: 'none',
     marginBottom: 5,
+  },
+  titulo: {
+    color: '#FBB041'
+  },
+  page: {
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF'
+  },
+  section: {
+    alignItems: 'center',
+    margin: 10,
+    padding: 10,
+    flexGrow: 1
   }
 })

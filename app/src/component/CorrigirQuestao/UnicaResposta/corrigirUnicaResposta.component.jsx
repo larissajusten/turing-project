@@ -18,7 +18,7 @@ export class CorrigirUnicaResposta extends Component {
       })
     }
   }
-  
+
   downloadRespostaFile = () => {
     const element = document.createElement("a");
     const file = new Blob([this.props.resposta], {type: 'text/plain'});

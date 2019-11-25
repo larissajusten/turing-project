@@ -1,25 +1,9 @@
 import React from 'react';
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
-import { Informacoes, 
-  BlocoQuestaoTecnica, 
-  BlocoQuestaoDissertativa, 
-  BlocoQuestaoMultiplaEscolha } from './index'
-
-const styles = StyleSheet.create({
-  titulo: {
-    color: '#FBB041'
-  },
-  page: {
-    flexDirection: 'row',
-    backgroundColor: '#FFFFFF'
-  },
-  section: {
-    alignItems: 'center',
-    margin: 10,
-    padding: 10,
-    flexGrow: 1
-  }
-});
+import { Document, Page, Text, View } from '@react-pdf/renderer';
+import { Informacoes,
+  BlocoQuestaoTecnica,
+  BlocoQuestaoDissertativa,
+  BlocoQuestaoMultiplaEscolha, styles } from './index'
 
 export const MyDocument = (props) => (
   <Document title={`Relatório da prova ${props.prova.nomeCandidato}`} >

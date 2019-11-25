@@ -80,12 +80,12 @@ export class TelaInicialScreen extends Component {
     return (
       <>
 			<div className="container-tela">
-			<h1 className="titulo">Dashboard</h1>
-        {this.renderContainerComponent()}
+				<h1 className="titulo">Dashboard</h1>
+				{this.renderContainerComponent()}
         
         <h1 className="titulo-crie">Multipla escolha</h1>
 				<div className="graficos">
-					<GraficoMultipla />	
+					<GraficoMultipla />
 					<GraficoNota />
 				</div>
       </div>

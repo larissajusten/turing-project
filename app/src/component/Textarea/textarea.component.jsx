@@ -1,6 +1,16 @@
 import React, { PureComponent } from 'react';
 
 export class Textarea extends PureComponent {
+  escolherOnChange() {
+    if(this.props.comIndex) {
+      return (event) => this.props.handleChange(event, this.props.index, this.props.idQuestao, this.props.tipo)
+    }else if(this.props.comIdResposta) {
+      return (event) => this.props.handleChange(event, this.props.index, this.props.idQuestao, this.props.idResposta, this.props.tipo)
+    }else {
+      return this.props.handleChange
+    }
+  }
+
   render() {
     return(
       <>
@@ -9,9 +19,7 @@ export class Textarea extends PureComponent {
           className={`questao ${this.props.classe}`}
           name={this.props.name}
           value={this.props.value}
-          onChange={this.props.comIndex ? (event) => this.props.handleChange(event, this.props.index, this.props.idQuestao, this.props.tipo) 
-                  : ( this.props.comIdResposta ? (event) => this.props.handleChange(event, this.props.index, this.props.idQuestao, this.props.idResposta, this.props.tipo) 
-                    : this.props.handleChange)}
+          onChange={this.escolherOnChange()}
           maxLength="500"
           type="textarea"
           label={this.props.labeltextarea}
