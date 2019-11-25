@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { GraficoPizza } from '../../component/GraficoPizza/graficoPizza.component';
-import { retornarResultadosMultipla } from '../../services/prova/prova.service';
-import { Notificacao, Select, GraficoMultipla, GraficoNota } from '../../component/index';
-import { retornarEspecificidades } from '../../services/index';
+import { retornarResultadosDissertativa, retornarResultadosTecnica } from '../../services/prova/prova.service';
+import { Notificacao, Select, GraficoMultipla, GraficoNota, GraficoNotaTecnica } from '../../component/index';
 import './telaInicial.style.css';
 
 const mensagemSucessoNotificacao = 'Busca bem sucedida';
@@ -12,7 +9,9 @@ export class TelaInicialScreen extends Component {
 		super(props);
 		this.state = {
 			deveRenderizarLogin: false,
-			especificidades: []
+			especificidades: [], 
+			notasDissertativas: [],
+			notasTecnicas: []
 		};
 	}
 
@@ -24,6 +23,14 @@ export class TelaInicialScreen extends Component {
 	//			});
 	//		}
 	//  }
+
+	async componentDidMount() {
+		this.setState({
+		notasDissertativas: await retornarResultadosDissertativa('JAVASCRIPT'),
+		notasTecnicas: await retornarResultadosTecnica('JAVASCRIPT')
+		})
+	}
+		
 
 	handleChange = (event) => {
 		const { name, value } = event.target;
@@ -68,16 +75,25 @@ export class TelaInicialScreen extends Component {
 		//	return <Redirect to="/login" />;
 		//}
 
+		console.log(this.state.notasDissertativas);
+		
     return (
       <>
 		<div className="container-tela">
 			<h1 className="titulo">Dashboard</h1>
         {this.renderContainerComponent()}
-        
-        <h1>Multipla escolha</h1>
+       
+        <h1>Multiplas escolhas</h1>
         <div className="graficos">
 			<GraficoMultipla />	
-			<GraficoNota />
+        </div>
+		<h1>Dissertativas</h1>
+        <div className="graficos">
+			<GraficoNota notas={this.state.notasDissertativas}/>	
+        </div>
+		<h1>Técnicas</h1>
+        <div className="graficos">
+			<GraficoNotaTecnica notas={this.state.notasTecnicas}/>	
         </div>
         </div>
         </>
