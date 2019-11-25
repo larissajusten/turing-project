@@ -6,10 +6,10 @@
 	--red-color: #FE5F5F;
 	--orange-color: #FBB041;
 	--font-color: #F9F3F3;
-	--light-gray-color: #C6C6C6;
-	--medium-gray-color: #828282;
-	--dark-gray-color: #4E4E4E;
-	--bg-black-color: #333333;
+	--light-gray-color: rgb(153, 151, 151);
+	--medium-gray-color: #706f6f;
+	--dark-gray-color: rgb(65, 63, 63);
+	--bg-black-color: #2c2c2c;
 	--border-radius: 5px;
 }
 

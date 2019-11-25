@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { BlocoQuestao, Textarea, Input } from '../../index'
 import { retornaQuestaoTecnicaParaBaixar } from '../../../services/index'
+import { Select } from '../../Select/select.component'
 import './corrigirUnicaResposta.style.css'
+import { BlocoResposta } from '../../BlocoResposta/blocoResposta.component'
 
 export class CorrigirUnicaResposta extends Component {
   constructor(props){
@@ -49,11 +51,12 @@ export class CorrigirUnicaResposta extends Component {
   render() {
     return(
       <div className="container-questoes-corrigir">
-        <BlocoQuestao
-          questaoNome="Questão"
+        <BlocoResposta
+          questaoNome={`Questão ${this.props.index+1}`}
+          tipo={this.props.tipo}
           questao={this.props.questao}/>
 
-        <BlocoQuestao
+        <BlocoResposta
           questaoNome="Resposta"
           questao={this.props.resposta}/>
 
@@ -86,16 +89,18 @@ export class CorrigirUnicaResposta extends Component {
               tipo={this.props.tipo}
               value={this.props.nota}
               onChange={this.props.handleChange}/>
-            {
+            
+          </div>
+          
+        </div>
+        {
               this.props.tipo === 'TECNICA' &&
               <div className="container-download">
-              <button className="botao-download" onClick={this.downloadRespostaFile}>Resposta</button>
-              <button className="botao-download" onClick={this.downloadTestesFile}>Testes</button>
-              <button className="botao-download resposta-base" onClick={this.downloadRespostaBaseFile}>Resposta Base</button>
+              <button className="botao-download" onClick={this.downloadRespostaFile}> Resposta<i class="fa fa-download"></i></button>
+              <button className="botao-download" onClick={this.downloadTestesFile}>Testes<i class="fa fa-download"></i></button>
+              <button className="botao-download resposta-base" onClick={this.downloadRespostaBaseFile}>Resposta Base<i class="fa fa-download"></i></button>
               </div>
             }
-          </div>
-        </div>
       </div>
     )
   }

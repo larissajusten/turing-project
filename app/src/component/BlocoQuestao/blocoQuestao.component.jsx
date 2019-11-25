@@ -7,7 +7,7 @@ export class BlocoQuestao extends Component {
       <div className={`container-pergunta ${this.props.widthpergunta}`}>
         <label className="label">{this.props.questaoNome}</label>
         <div className="questao">
-          {this.props.questao}
+         {this.props.questao}
         </div>
       </div>
     )
