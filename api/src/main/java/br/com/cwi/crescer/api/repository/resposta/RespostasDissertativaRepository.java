@@ -1,7 +1,10 @@
 package br.com.cwi.crescer.api.repository.resposta;
 
+import br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse;
+import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -11,4 +14,9 @@ public interface RespostasDissertativaRepository extends JpaRepository<Respostas
 
     List<RespostasDissertativaProva> findAllByQuestaoDissertativaIdEquals(Long id);
 
+    @Query("Select new br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse(r.questaoDissertativa.nivelDeDificuldade, r.nota, count(*)) " +
+            "FROM RespostasDissertativaProva r " +
+            "WHERE r.questaoDissertativa.especificidade = ?1" +
+            " GROUP BY r.nota, r.questaoDissertativa.nivelDeDificuldade" )
+    List<RespostaParaDashboardResponse> findAllByGroupByNotaWhereQuestaoDissertativaEspecificidadeEquals(Especificidade especificidade);
 }
