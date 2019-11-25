@@ -30,7 +30,10 @@ public class ProvaMapper {
 
     public Prova transformar(ProvaRequest request) {
 
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin());
+        //Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin());
+
+        Usuario usuario = new Usuario();
+        usuario.setId(1L);
 
         Prova prova = mapper.map(request, Prova.class);
         prova.setDataCriacao(LocalDateTime.now());

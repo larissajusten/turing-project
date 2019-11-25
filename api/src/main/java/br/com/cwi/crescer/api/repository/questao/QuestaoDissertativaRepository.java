@@ -21,4 +21,5 @@ public interface QuestaoDissertativaRepository extends JpaRepository<QuestaoDiss
     Page<QuestaoDissertativa> acharPorNivelEEspecificidadePaginado(Pageable pageable, @Param("especificidade") Especificidade especificidade,
                                                                    @Param("nivelDeDificuldade") NivelDeDificuldade nivelDeDificuldade);
 
+    List<QuestaoDissertativa> findByEspecificidade(Especificidade especificidade);
 }

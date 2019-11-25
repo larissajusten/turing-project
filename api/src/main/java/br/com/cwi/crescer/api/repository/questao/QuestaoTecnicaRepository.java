@@ -21,5 +21,6 @@ public interface QuestaoTecnicaRepository extends JpaRepository<QuestaoTecnica, 
     Page<QuestaoTecnica> acharPorNivelEEspecificidadePaginado(Pageable pageable, @Param("especificidade")Especificidade especificidade,
                                                       @Param("nivelDeDificuldade")NivelDeDificuldade nivelDeDificuldade);
 
+    List<QuestaoTecnica> findByEspecificidade(Especificidade especificidade);
 }
 
