@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { retornarResultadosDissertativa, retornarResultadosTecnica } from '../../services/prova/prova.service';
+import { retornarResultadosDissertativa, retornarResultadosTecnica, retornarEspecificidades } from '../../services/index';
 import { Notificacao, Select, GraficoMultipla, GraficoNota, GraficoNotaTecnica } from '../../component/index';
 import './telaInicial.style.css';
 
@@ -9,14 +9,9 @@ export class TelaInicialScreen extends Component {
 		super(props);
 		this.state = {
 			deveRenderizarLogin: false,
-<<<<<<< HEAD
-			especificidades: [],
-			especificidadeEscolhida: ''
-=======
 			especificidades: [], 
 			notasDissertativas: [],
 			notasTecnicas: []
->>>>>>> master
 		};
 	}
 
