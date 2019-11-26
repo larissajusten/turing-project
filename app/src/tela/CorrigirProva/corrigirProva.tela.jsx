@@ -18,7 +18,8 @@ export class CorrigirProvaScreen extends Component {
     this.lengthTecnicas = 0
   }
 
-  componentDidMount = async () => {
+  async componentDidMount() {
+    localStorage.removeItem('idProvaParaCorrigir')
     this.setState({
       tiposDeQuestoes: await retornarTipoDeQuestao(),
       prova: await retornarProvaParaCorrigir(this.state.idProva)

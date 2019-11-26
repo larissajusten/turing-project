@@ -1,3 +1,63 @@
 .graficos {
 	display: flex;
 }
+
+.container-select {
+	display: flex;
+	align-items: center;
+	width: 80%;
+	height: 70px;
+}
+
+.width-select{
+	margin: 0;
+}
+
+.container-nivel {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 80%;
+	height: 50px;
+}
+
+.container-nivel h6 {
+	margin-left: 10px;
+	margin-bottom: 0;
+	margin-top: 0;
+	text-decoration-line: underline;
+	font-weight: normal;
+}
+
+.nivel {
+	font-weight: bold;
+	font-size: 1.125em;
+}
+
+.facil {
+	color: #00C49F;
+	text-decoration: 2px;
+	text-decoration-color: #00C49F;
+	text-decoration-style: double;
+}
+
+.medio {
+	color: #FFBB28;
+	text-decoration: 2px;
+	text-decoration-color: #FFBB28;
+	text-decoration-style: double;
+}
+
+.dificil {
+	color: #FF8042;
+	text-decoration: 2px;
+	text-decoration-color: #FF8042;
+	text-decoration-style: double;
+}
+
+.subtitulo-especificidade {
+	font-weight: bold;
+	font-size: 1.25em;
+	line-height: 23px;
+	color: var(--orange-color);
+}

@@ -13,7 +13,7 @@ export class GraficoNotaDissertativa extends Component {
     }
     
 	async componentDidMount() {
-		const f = this.state.notas
+        const f = this.state.notas
             .filter(n => n.nivelDeDificuldade === 'FACIL')
             .map(nota => ({ name: nota.notaQuestao, value: nota.totalDePessoas }));
 
@@ -32,12 +32,39 @@ export class GraficoNotaDissertativa extends Component {
         })
     }
 
+    componentDidUpdate(){
+		if(this.state.notas !== this.props.notas){
+			this.setState({
+				notas: this.props.notas
+			})
+		}
+	}
+
+    renderGraficoPizzaFacil() {
+		if(this.state.dataFacil.length > 0) {
+			return <GraficoPizza cor="#00C49F" data={this.state.dataFacil}/>
+		} 
+	}
+
+	renderGraficoPizzaMedio() {
+		if(this.state.dataMedio.length > 0) {
+			return <GraficoPizza cor="#FFBB28" data={this.state.dataMedio}/>
+		} 
+	}
+
+	renderGraficoPizzaDificil() {
+		if(this.state.dataDificil.length > 0) {
+			return <GraficoPizza cor="#FF8042" data={this.state.dataDificil}/>
+		} 
+	}
+
+
     render() {
     return (
       <> 
-		<GraficoPizza cor="#00C49F" data={this.state.dataFacil} nome="Fácil"/>
-		<GraficoPizza cor="#FFBB28" data={this.state.dataMedio} nome="Médio"/>
-		<GraficoPizza cor="#FF8042" data={this.state.dataDificil} nome="Difícil"/>
+        {this.renderGraficoPizzaFacil()}
+        {this.renderGraficoPizzaMedio()}
+        {this.renderGraficoPizzaDificil()}
       </>
 	);
 	}

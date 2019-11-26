@@ -264,7 +264,6 @@ export class CadastrarProvaScreen extends Component {
   }
 
   render() {
-    console.log(this.state.arrayStates)
     if (this.state.deveRedirecionarParaVisualizarProva) {
       return <Redirect to="/visualizar-prova" />
     }

@@ -15,6 +15,7 @@ export class ProvaPDFScreen extends Component {
   }
 
   async componentDidMount(){
+    localStorage.removeItem('idParaPDF')
     try{
       const response = await retornaProvaCorrigidaParaPDF(this.state.idProva)
       this.setState({ prova: response })
@@ -30,7 +31,6 @@ export class ProvaPDFScreen extends Component {
   }
 
   render() {
-    console.log(this.state.prova)
     return(
       <>
       {

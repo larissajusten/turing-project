@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
-import { retornarResultadosMultipla,
-				retornarResultadosDissertativa,
-				retornarResultadosTecnica,
-				retornarEspecificidades } from '../../services/index';
+import { retornarEspecificidades,	
+					retornarResultadosMultipla,
+					retornarResultadosDissertativa,
+					retornarResultadosTecnica } from '../../services/index';
 import { Notificacao, Select, GraficoMultipla, GraficoNotaDissertativa, GraficoNotaTecnica } from '../../component/index';
 import './telaInicial.style.css';
 
@@ -16,33 +16,33 @@ export class TelaInicialScreen extends Component {
 			especificidades: [],
 			especificidadeEscolhida: '',
 			notasDissertativas: [],
-			notasTecnicas: []
+			notasTecnicas: [],
+			notasMultipla: []
 		};
 	}
 
 	async componentDidMount() {
-		this.setState({
-			especificidades: await retornarEspecificidades()
-		})
 		let token = localStorage.getItem('accessToken');
 		if (!token) {
 			this.setState({
 				deveRenderizarLogin: true
 			});
+		}else{
+			this.setState({
+				especificidades: await retornarEspecificidades()
+			})
 		}
 	}	
 
 	handleChange = async (event) => {
 		const { name, value } = event.target;
-		this.setState({ 
-			[name]: value
-		}, async () => {
+		this.setState({ [name]: value }, async() => {
 			this.setState({
-				dataMultipla: await retornarResultadosMultipla(this.state.especificidadeEscolhida),
+				notasMultipla: await retornarResultadosMultipla(this.state.especificidadeEscolhida),
 				notasDissertativas: await retornarResultadosDissertativa(this.state.especificidadeEscolhida),
 				notasTecnicas: await retornarResultadosTecnica(this.state.especificidadeEscolhida)
 			})
-		});
+		})
 	}
 
 	catchErrorENotifica(error) {
@@ -63,7 +63,9 @@ export class TelaInicialScreen extends Component {
 	renderContainerComponent() {
 		if (this.state.especificidades) {
 			return (
-				<div className="input-principal">
+				<div className="container-select">
+					<h1 className="subtitulo-especificidade">Para qual especificidade deseja visualizar as estatisticas?</h1>
+					<div className="input-principal">
 					<Select
 						questoesWidth="width-select"
 						name="especificidadeEscolhida"
@@ -73,6 +75,7 @@ export class TelaInicialScreen extends Component {
 						placeholder="Selecione a especificidade"
 					/>
 				</div>
+			</div>
 			);
 		}
 		else {
@@ -80,33 +83,65 @@ export class TelaInicialScreen extends Component {
 		}
 	}
 
+	renderMultiplasEscolhas() {
+		if(this.state.notasMultipla.length > 0){
+			return <GraficoMultipla notas={this.state.notasMultipla}/>
+		}else{
+			return <h1 className="titulo-crie">Não há questões</h1>
+		}
+	}
+
+	renderDissertativas() {
+		if(this.state.notasDissertativas.length > 0){
+			return <GraficoNotaDissertativa notas={this.state.notasDissertativas}/>
+		}else{
+			return <h1 className="titulo-crie">Não há questões</h1>
+		}
+	}
+
+	renderTecnicas() {
+		if(this.state.notasTecnicas.length > 0){
+			return <GraficoNotaTecnica notas={this.state.notasTecnicas}/>
+		}else{
+			return <h1 className="titulo-crie">Não há questões</h1>
+		}
+	}
+
+	renderGraficos() {
+		return(
+			<>
+			<div className="container-nivel">
+				<h6 className="nivel facil">Fácil</h6>
+				<h6 className="nivel medio">Medio</h6>
+				<h6 className="nivel dificil">Difícil</h6>
+			</div>
+			<h1 className="titulo-crie">Multiplas escolhas</h1>
+			<div className="graficos">
+				{this.renderMultiplasEscolhas()}
+			</div>
+			<h1 className="titulo-crie">Dissertativas</h1>
+			<div className="graficos">
+				{this.renderDissertativas()}
+			</div>
+			<h1 className="titulo-crie">Técnicas</h1>
+			<div className="graficos">
+				{this.renderTecnicas()}
+			</div>
+			</>
+		)
+	}
+
 	render() {
-		console.log(this.state.dataMultipla)
-		console.log(this.state.dataMultipla)
-		console.log(this.state.notasDissertativas)
-		console.log(this.state.notasTecnicas)
 		if (this.state.deveRenderizarLogin) {
 			return <Redirect to="/login" />;
 		}
-
     return (
       <>
 			<div className="container-tela">
 				<h1 className="titulo">Dashboard</h1>
 				{this.renderContainerComponent()}
 				
-				<h1 className="titulo-crie">Multiplas escolhas</h1>
-				<div className="graficos">
-					<GraficoMultipla notas={this.state.notasDissertativas}/>	
-				</div>
-				<h1 className="titulo-crie">Dissertativas</h1>
-				<div className="graficos">
-					<GraficoNotaDissertativa notas={this.state.notasDissertativas}/>	
-				</div>
-				<h1 className="titulo-crie">Técnicas</h1>
-				<div className="graficos">
-					<GraficoNotaTecnica notas={this.state.notasTecnicas}/>	
-				</div>
+				{this.state.especificidadeEscolhida && this.renderGraficos()}
       </div>
       </>
 		);
