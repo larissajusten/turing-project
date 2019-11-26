@@ -65,12 +65,12 @@ export const styles = StyleSheet.create({
     color: '#25E015'
   },
   containerQuestao: {
-    height: 60,
+    height: 80,
     width: 400
   },
   questao: {
     fontWeight: 'black',
-    fontSize: 14,
+    fontSize: 10,
     color: 'black',
     textDecoration: 'none'
   },
@@ -86,6 +86,11 @@ export const styles = StyleSheet.create({
     fontWeight: 'black',
     fontSize: 12,
     color: 'black',
+    paddingLeft: 3,
+    borderLeft: 1,
+    borderLeftWidth: 1,
+    borderLeftStyle: 'solid',
+    borderLeftColor: '#fbb041',
     textDecoration: 'none'
   },
   resposta: {
@@ -103,13 +108,18 @@ export const styles = StyleSheet.create({
     marginBottom: 5
   },
   containerComentario: {
-    height: 60,
+    height: 40,
     width: 400
   },
   comentarioTxt: {
     fontWeight: 'black',
     fontSize: 12,
     color: 'black',
+    paddingLeft: 3,
+    borderLeft: 1,
+    borderLeftWidth: 1,
+    borderLeftStyle: 'solid',
+    borderLeftColor: '#fbb041',
     textDecoration: 'none'
   },
   comentario: {
@@ -166,12 +176,12 @@ export const styles = StyleSheet.create({
   containerTipo: {
     position: 'absolute',
     top: 8,
-    right: 130,
+    right: 10,
     borderColor: 'black',
     borderStyle: "solid",
     borderWidth: 1,
     borderRadius: borderRadiusBloquinhos,
-    width: 105,
+    width: 90,
     alignItems: 'center',
     justifyContent: 'center'
   },
