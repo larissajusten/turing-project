@@ -272,7 +272,7 @@ export class CadastrarProvaScreen extends Component {
     }
 
     if (this.state.deveRedirecionarParaDashboard) {
-      return <Redirect to="/dashboard" />
+      return <Redirect to="/" />
     }
 
     return (

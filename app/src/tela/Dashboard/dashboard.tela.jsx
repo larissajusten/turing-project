@@ -142,8 +142,9 @@ export class DashboardScreen extends Component {
 					{this.renderGraficoTecnologias()}
 					{this.renderContainerComponent()}
 
-					{this.state.especificidadeEscolhida && this.renderGraficos()}
+					
 				</div>
+				{this.state.especificidadeEscolhida && this.renderGraficos()}
 			</div>
 		);
 	}
