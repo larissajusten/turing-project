@@ -31,6 +31,9 @@ public class CorrigirProvaService {
     @Autowired
     private ProvaRepository repository;
 
+    @Autowired
+    private GerarNotaDaProvaComDiferencialDePesoDasQuestoesService gerarNotaDaProvaComDiferencialDePesoDasQuestoesService;
+
 
     public StatusProva corrigir(Long idProva, List<CorrecaoProvaRequest> listaDeCorrecoes) {
 
@@ -46,6 +49,8 @@ public class CorrigirProvaService {
 
         validator.validar(idProva);
         prova.setStatus(StatusProva.CORRIGIDA);
+        double nota = gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerarNotaDaProva(prova);
+        prova.setNota(nota);
         repository.save(prova);
 
         return prova.getStatus();
