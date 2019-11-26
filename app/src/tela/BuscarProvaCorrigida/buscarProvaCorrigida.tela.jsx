@@ -5,7 +5,7 @@ import { CardProva, Input, BotaoPrincipal, Notificacao } from '../../component/i
 import './buscarProvaCorrigida.style.css'
 
 export class BuscarProvaJaCorrigidaScreen extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       pesquisa: '',
@@ -22,13 +22,13 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
 
   handleClickEnviarPesquisa = async (event) => {
     event.preventDefault()
-    try{
+    try {
       let provasResponse = await retornaProvasCorrigidas(this.state.pesquisa)
       Notificacao('Sucesso', 'Provas encontradas', 'success')
       this.setState({
         provas: provasResponse
       })
-    } catch(error){
+    } catch (error) {
       if (error.response.data.errors) {
         error.response.data.errors.map(message => {
           return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
@@ -40,32 +40,32 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
   }
 
   handleClickGerarPDFProva = (event, idProva) => {
-    localStorage.setItem('idParaPDF', idProva )
+    localStorage.setItem('idParaPDF', idProva)
     this.setState({
       deveRedirecionarParaProva: true
     })
   }
 
-  renderCardsProvas(){
-    return(
+  renderCardsProvas() {
+    return (
       <>
-      {
-        this.state.provas.map((item, key) => {
-          return <CardProva
-                  key={key}
-                  id={item.id}
-                  informacaoUm={item.nomeCandidato}
-                  informacaoDois={item.emailCandidato}
-                  informacaoTres={item.tempoDeDuracaoDaProva}
-                  onClick={this.handleClickGerarPDFProva}/>
-        })
-      }
+        {
+          this.state.provas.map((item, key) => {
+            return <CardProva
+              key={key}
+              id={item.id}
+              informacaoUm={item.nomeCandidato}
+              informacaoDois={item.emailCandidato}
+              informacaoTres={item.tempoDeDuracaoDaProva}
+              onClick={this.handleClickGerarPDFProva} />
+          })
+        }
       </>
     )
   }
 
-  renderProvas(){
-    return(
+  renderProvas() {
+    return (
       <>
         <div className="container-titulo">
           <span className="titulo-crie">Provas corrigidas</span>
@@ -77,36 +77,36 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
     )
   }
 
-  renderPesquisar(){
-    return(
+  renderPesquisar() {
+    return (
       <>
-      <div className="container-titulo">
-        <span className="titulo-crie">Busque o candidato</span>
-      </div>
+        <div className="container-titulo">
+          <span className="titulo-crie">Busque o candidato</span>
+        </div>
 
-      <Input
-        name="pesquisa"
-        value={this.state.pesquisa}
-        onChange={this.handleChange}
-        maxTam="300"
-        type="text"
-        label=""
-        placeholder="Digite o nome ou email do candidato"/>
+        <Input
+          name="pesquisa"
+          value={this.state.pesquisa}
+          onChange={this.handleChange}
+          maxTam="300"
+          type="text"
+          label=""
+          placeholder="Digite o nome ou email do candidato" />
 
-      {this.state.provas.length > 0 && this.renderProvas()}
-      <div className="container-botao">
-        <BotaoPrincipal nome="ENVIAR" onClick={this.handleClickEnviarPesquisa} />
-      </div>
+        <div className="container-botao">
+          <BotaoPrincipal nome="ENVIAR" onClick={this.handleClickEnviarPesquisa} />
+        </div>
+        {this.state.provas.length > 0 && this.renderProvas()}
       </>
     )
   }
 
-  render(){
-    if(this.state.deveRedirecionarParaProva){
-      return <Redirect to="/prova-PDF"/>
+  render() {
+    if (this.state.deveRedirecionarParaProva) {
+      return <Redirect to="/prova-PDF" />
     }
 
-    return(
+    return (
       <div className="container-tela tela-prova-corrigida">
         {this.renderPesquisar()}
       </div>
