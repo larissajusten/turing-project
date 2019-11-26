@@ -61,7 +61,7 @@ export class QuestaoUnica extends PureComponent {
                 label="Testes base"
                 name="testeBase"
                 value={this.props.testes}
-                onChange={this.props.handleChange}/>
+                handleChange={this.props.handleChange}/>
             </div>
             </>
           }

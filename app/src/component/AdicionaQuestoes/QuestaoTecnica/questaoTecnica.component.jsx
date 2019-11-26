@@ -19,6 +19,7 @@ export class CadastroTecnica extends PureComponent {
 
   handleChange = (event) => {
     const { name, value } = event.target
+
     this.setState({
         [name]: value
     })
@@ -51,6 +52,7 @@ export class CadastroTecnica extends PureComponent {
   }
 
   render() {
+    console.log(this.state.respostaBase)
     return(
       <>
       <QuestaoUnica
