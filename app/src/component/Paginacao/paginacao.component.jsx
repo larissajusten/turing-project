@@ -12,7 +12,7 @@ export class Paginacao extends PureComponent {
                             : undefined }>
           <span>&laquo;</span>
         </div>
-        <div className="bloco-paginacao">
+        <div className="bloco-paginacao bloco-laranja">
           <span>{this.props.paginaAtual+1}</span>
         </div>
         <div className="bloco-paginacao" onClick={

@@ -22,6 +22,10 @@
 	margin: 5px;
 }
 
+.bloco-laranja{
+	background-color: var(--light-gray-color);
+}
+
 .bloco-paginacao span {
 	cursor: pointer;
 	display: inline-block;
