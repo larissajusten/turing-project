@@ -1,6 +1,5 @@
 package br.com.cwi.crescer.api.services.login;
 
-
 import br.com.cwi.crescer.api.domain.login.AccessTokenDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;

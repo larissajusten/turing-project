@@ -3,7 +3,7 @@ package br.com.cwi.crescer.api.services.prova;
 import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.exception.prova.ProvaNaoEncontradaException;
-import br.com.cwi.crescer.api.security.JwtTokenProvider;
+import br.com.cwi.crescer.api.services.email.JwtTokenProvider;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -4,11 +4,13 @@ import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRespondidaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
+import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.prova.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -16,6 +18,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/prova")
 public class ProvaController {
+
+    @Autowired
+    private LoggedUser loggedUser;
 
     @Autowired
     private CriarProvaService criarProvaService;
@@ -61,8 +66,10 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @RolesAllowed({"ROLE_ADMIN"})
     @GetMapping("/{id-prova}/consultar-status-prova")
     public StatusProva consultarStatusDaProva(@PathVariable("id-prova") Long idProva) {
+
         return consultarStatusDaProvaService.consultar(idProva);
     }
 

@@ -5,11 +5,11 @@ import br.com.cwi.crescer.api.domain.usuario.LoggedUserDTO;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
-
 
     @Autowired
     private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
@@ -22,6 +22,7 @@ public class LoginService {
 
     @Autowired
     private PegarTokenDeAcessoService pegarToken;
+
 
     public LoggedUserDTO logar(LoginRequest loginRequest) {
         String token = pegarToken.getAccessToken(loginRequest.getLogin(), loginRequest.getSenha());

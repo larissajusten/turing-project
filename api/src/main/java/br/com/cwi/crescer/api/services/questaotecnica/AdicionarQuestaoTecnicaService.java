@@ -34,7 +34,7 @@ public class AdicionarQuestaoTecnicaService {
     public void adicionar(QuestaoTecnicaRequest request) {
 
         verificarPerfilUsuarioLogadoService.verificar(loggedUser);
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin());
+        Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getEmail());
 
         QuestaoTecnica questaoTecnica = mapper.transformar(request);
         questaoTecnica.setDataCriacao(LocalDate.now());

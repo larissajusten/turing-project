@@ -19,7 +19,7 @@ public class VerificarPerfilUsuarioLogadoService {
 
     public void verificar(LoggedUser loggedUser) {
 
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin());
+        Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getEmail());
 
         if (usuario.getPerfil().equals(Perfil.ENTREVISTADOR)) {
             throw new UsuarioNaoAutorizadoException("Usuário não autorizado");

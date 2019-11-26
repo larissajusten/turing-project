@@ -13,6 +13,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class LoggedUserDTO implements Serializable {
 
+    private Long id;
+
     private String matricula;
 
     private String identifier;

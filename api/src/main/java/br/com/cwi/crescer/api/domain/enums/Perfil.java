@@ -9,7 +9,8 @@ import lombok.RequiredArgsConstructor;
 public enum Perfil {
 
     ADMINISTRADOR("ROLE_ADMIN"),
-    ENTREVISTADOR("ROLE_ENTREVISTADOR");
+    ENTREVISTADOR("ROLE_ENTREVISTADOR"),
+    USUARIO("ROLE_USUARIO");
 
     private final String role;
 }
