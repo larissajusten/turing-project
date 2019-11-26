@@ -2,6 +2,9 @@
 export { login } from './login/login.service'
 export { retornaPerfil } from './login/login.service'
 
+/* Email */
+export { enviarEmail } from './email/email.service'
+
 /* Dominio Service */
 export { retornarEspecificidades } from './dominio/dominio.service'
 export { retornarNiveisDeDificuldade } from './dominio/dominio.service'
