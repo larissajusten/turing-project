@@ -8,7 +8,7 @@ export class CorrigirProvaScreen extends Component {
   constructor(props){
     super(props)
     this.state = {
-      idProva: localStorage.getItem('idProvaParaCorrigir'),
+      idProva: 0,
       prova: null,
       tiposDeQuestoes: [],
       arrayCorrecoes: [objetoCorrecaoProva],
@@ -19,22 +19,25 @@ export class CorrigirProvaScreen extends Component {
   }
 
   async componentDidMount() {
-    localStorage.removeItem('idProvaParaCorrigir')
     this.setState({
-      tiposDeQuestoes: await retornarTipoDeQuestao(),
-      prova: await retornarProvaParaCorrigir(this.state.idProva)
-    }, () => {
-      const quantidadeDeObjetos = (this.state.prova.questoesDissertativas.length + this.state.prova.questoesTecnicas.length)
-
-      const newArray = [...new Array(quantidadeDeObjetos)]
-      const arrayCorrecoes = newArray.map(() => ({ ...objetoCorrecaoProva }))
-
+      idProva: this.props.match.params.idProva
+    }, async() => {
       this.setState({
-        arrayCorrecoes
+        tiposDeQuestoes: await retornarTipoDeQuestao(),
+        prova: await retornarProvaParaCorrigir(this.state.idProva)
+      }, () => {
+        const quantidadeDeObjetos = (this.state.prova.questoesDissertativas.length + this.state.prova.questoesTecnicas.length)
+  
+        const newArray = [...new Array(quantidadeDeObjetos)]
+        const arrayCorrecoes = newArray.map(() => ({ ...objetoCorrecaoProva }))
+  
+        this.setState({
+          arrayCorrecoes
+        })
+  
+        this.lengthDissertativas = this.state.prova.questoesDissertativas.length
+        this.lengthTecnicas = this.state.prova.questoesTecnicas.length
       })
-
-      this.lengthDissertativas = this.state.prova.questoesDissertativas.length
-      this.lengthTecnicas = this.state.prova.questoesTecnicas.length
     })
   }
 
