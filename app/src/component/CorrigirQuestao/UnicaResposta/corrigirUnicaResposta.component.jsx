@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { BlocoQuestao, Textarea, Input } from '../../index'
+import { Textarea, Input } from '../../index'
 import { retornaQuestaoTecnicaParaBaixar } from '../../../services/index'
-import { Select } from '../../Select/select.component'
 import './corrigirUnicaResposta.style.css'
 import { BlocoResposta } from '../../BlocoResposta/blocoResposta.component'
 

@@ -12,7 +12,7 @@ import { LoginScreen,
 				CorrigirProvaScreen,
 				BuscarProvaJaCorrigidaScreen,
 				ProvaPDFScreen,
-				TelaInicialScreen } from './tela/index';
+				DashboardScreen } from './tela/index';
 import { Header, Footer } from './component/index'
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
 					<div className="principal">
 					<ReactNotifications/>
 					<Header/>
-					<Route path="/" component={TelaInicialScreen} exact/>
+					<Route path="/dashboard" component={DashboardScreen} exact/>
 					<Route path="/cadastrar-questao" component={CadastrarQuestaoScreen}/>
 					<Route path="/buscar-questao" component={BuscarQuestaoScreen}/>
 					<Route path="/cadastrar-prova" component={CadastrarProvaScreen}/>

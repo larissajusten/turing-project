@@ -1,5 +1,5 @@
 export { LoginScreen } from './LoginScreen/login.tela.jsx'
-export { TelaInicialScreen } from './TelaInicial/telaInicial.tela.jsx'
+export { DashboardScreen } from './Dashboard/dashboard.tela.jsx'
 
 /* Questão */
 export { CadastrarQuestaoScreen } from './CadastroQuestao/cadastroQuestao.tela.jsx'

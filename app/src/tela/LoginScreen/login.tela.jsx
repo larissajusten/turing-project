@@ -26,25 +26,25 @@ export class LoginScreen extends Component {
       "login": this.state.identifier,
       "senha": this.state.senha
     }
-    try{
-      let data = await login(user)
-      localStorage.setItem('accessToken', data.token)
-      let perfil = await retornaPerfil(data.identifier)
-      localStorage.setItem('perfilUsuario', perfil)
-      Notificacao('Sucesso', 'Login realizado com sucesso', 'success')
-      this.setState({
-        deveRedirecionarParaHome: true
-      })
-    }
-    catch(error){
-      if (error.response.data.errors) {
-        error.response.data.errors.map(message => {
-					return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-        })
-      } else {
-				Notificacao('Falha', `${error.response.data.message}`, 'danger')
-      }
-    }
+    Notificacao('Sucesso', 'Login realizado com sucesso', 'success')
+    this.setState({
+      deveRedirecionarParaHome: true
+    })
+    // try{
+    //   let data = await login(user)
+    //   localStorage.setItem('accessToken', data.token)
+    //   let perfil = await retornaPerfil(data.identifier)
+    //   localStorage.setItem('perfilUsuario', perfil)
+    // }
+    // catch(error){
+    //   if (error.response.data.errors) {
+    //     error.response.data.errors.map(message => {
+		// 			return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+    //     })
+    //   } else {
+		// 		Notificacao('Falha', `${error.response.data.message}`, 'danger')
+    //   }
+    // }
   }
 
   renderBlocoLogin() {
@@ -79,7 +79,7 @@ export class LoginScreen extends Component {
 
   render() {
     if(this.state.deveRedirecionarParaHome){
-      return <Redirect to="/"/>
+      return <Redirect to="/dashboard"/>
     }
     return(
       <>

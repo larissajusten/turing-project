@@ -21,11 +21,8 @@ export class Header extends Component {
 			<div className="header">
 				<span className="menu-header" onClick={this.handleClickShowMenu}>MENU</span>
 				<Menu width={'250px'}>
-					<Link to="/">Home</Link>
-					{
-						this.state.perfil === 'ADMINISTRADOR' &&
-						<Link to={"/cadastrar-questao"}>Cadastrar questão</Link>
-					}
+					<Link to={"/dashboard"}>Home</Link>
+					<Link to={"/cadastrar-questao"}>Cadastrar questão</Link>
 					<Link to={"/buscar-questao"}>Visualizar questões</Link>
 					<Link to={"/cadastrar-prova"}>Cadastrar prova</Link>
 					<Link to={"/buscar-provas"}>Busca para correção</Link>

@@ -6,7 +6,8 @@ import { criarProva,
         incluirTecnicas,
         retornarEspecificidades,
         retornarNiveisDeDificuldade,
-        retornarTipoDeQuestao } from '../../services/index'
+        retornarTipoDeQuestao,
+        enviarEmail } from '../../services/index'
 import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
 
@@ -28,7 +29,8 @@ export class CadastrarProvaScreen extends Component {
       idProva: '',
       deveRenderizarQuestoes: false,
       deveRedirecionarParaVisualizarProva: false,
-      arrayStates: [objeto]
+      arrayStates: [objeto],
+      deveRedirecionarParaDashboard: false
     }
   }
 
@@ -91,18 +93,19 @@ export class CadastrarProvaScreen extends Component {
     }
   }
 
-  handleClickVoltarProva = (event) => {
-    event.preventDefault()
-    this.setState({
-      deveRenderizarQuestoes: false
-    })
-  }
-
-  handleClickEnviarProva = (event) => {
+  handleClickEnviarProva = async (event) => {
     event.preventDefault()
 
     localStorage.setItem('idProva', this.state.idProva)
+    await enviarEmail(this.state.emailDoCandidato)
+    this.setState({
+      deveRedirecionarParaDashboard: true
+    })
+  }
 
+  handleClickVisualizarProva = (event) => {
+    event.preventDefault()
+    localStorage.setItem('idProva', this.state.idProva)
     this.setState({
       deveRedirecionarParaVisualizarProva: true
     })
@@ -204,8 +207,8 @@ export class CadastrarProvaScreen extends Component {
         }
 
         <div className="container-botao container-botao-prova">
-          <BotaoPrincipal nome="Visualizar" onClick={this.handleClickEnviarProva}/>
-          <BotaoPrincipal nome="Voltar" onClick={this.handleClickVoltarProva}/>
+          <BotaoPrincipal nome="Visualizar" onClick={this.handleClickVisualizarProva}/>
+          <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarProva}/>
         </div>
       </>
     )
@@ -266,6 +269,10 @@ export class CadastrarProvaScreen extends Component {
   render() {
     if (this.state.deveRedirecionarParaVisualizarProva) {
       return <Redirect to="/visualizar-prova" />
+    }
+
+    if (this.state.deveRedirecionarParaDashboard) {
+      return <Redirect to="/dashboard" />
     }
 
     return (

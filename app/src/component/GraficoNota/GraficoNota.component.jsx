@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { GraficoPizza } from '../GraficoPizza/graficoPizza.component'
 
-export class GraficoNotaTecnica extends Component {
+export class GraficoNota extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			notas: props.notas,
-            dataFacil: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ],
-            dataMedio: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ],
-            dataDificil: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ]
+			dataFacil: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ],
+			dataMedio: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ],
+			dataDificil: [ {}, {}, {}, {}, {}, {}, {}, {}, {}, {} ]
 		};
-    }
+	}
     
 	async componentDidMount() {
         const f = this.state.notas

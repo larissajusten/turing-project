@@ -1,26 +1,19 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import {
-	retornarEspecificidades,
-	retornarResultadosMultipla,
-	retornarResultadosDissertativa,
-	retornarResultadosTecnica
-} from '../../services/index';
-import {
-	Notificacao,
-	Select,
-	GraficoMultipla,
-	GraficoNotaDissertativa,
-	GraficoNotaTecnica
-} from '../../component/index';
-import './telaInicial.style.css';
+import { retornarEspecificidades,
+				retornarResultadosMultipla,
+				retornarResultadosDissertativa,
+				retornarResultadosTecnica } from '../../services/index';
+import { Notificacao,
+					Select,
+					GraficoMultipla,
+					GraficoNota } from '../../component/index';
+import './dashboard.style.css';
 
 const mensagemSucessoNotificacao = 'Busca bem sucedida';
-export class TelaInicialScreen extends Component {
+export class DashboardScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			deveRenderizarLogin: false,
 			especificidades: [],
 			especificidadeEscolhida: '',
 			notasDissertativas: [],
@@ -30,16 +23,9 @@ export class TelaInicialScreen extends Component {
 	}
 
 	async componentDidMount() {
-		//let token = localStorage.getItem('accessToken');
-		//if (!token) {
-		//	this.setState({
-		//			deveRenderizarLogin: true
-		//		});
-		//	}else{
 		this.setState({
 			especificidades: await retornarEspecificidades()
 		});
-		//	}
 	}
 
 	handleChange = async (event) => {
@@ -102,7 +88,7 @@ export class TelaInicialScreen extends Component {
 
 	renderDissertativas() {
 		if (this.state.notasDissertativas.length > 0) {
-			return <GraficoNotaDissertativa notas={this.state.notasDissertativas} />;
+			return <GraficoNota notas={this.state.notasDissertativas} />;
 		} else {
 			return <h1 className="titulo-crie">Não há questões</h1>;
 		}
@@ -110,7 +96,7 @@ export class TelaInicialScreen extends Component {
 
 	renderTecnicas() {
 		if (this.state.notasTecnicas.length > 0) {
-			return <GraficoNotaTecnica notas={this.state.notasTecnicas} />;
+			return <GraficoNota notas={this.state.notasTecnicas} />;
 		} else {
 			return <h1 className="titulo-crie">Não há questões</h1>;
 		}
@@ -135,9 +121,6 @@ export class TelaInicialScreen extends Component {
 	}
 
 	render() {
-		if (this.state.deveRenderizarLogin) {
-			return <Redirect to="/login" />;
-		}
 		return (
 			<div>
 				<div className="container-tela">
