@@ -25,7 +25,7 @@ function App() {
 					<div className="principal">
 					<ReactNotifications/>
 					<Header/>
-					<Route path="/dashboard" component={DashboardScreen} exact/>
+					<Route path="/" component={DashboardScreen} exact/>
 					<Route path="/cadastrar-questao" component={CadastrarQuestaoScreen}/>
 					<Route path="/buscar-questao" component={BuscarQuestaoScreen}/>
 					<Route path="/cadastrar-prova" component={CadastrarProvaScreen}/>

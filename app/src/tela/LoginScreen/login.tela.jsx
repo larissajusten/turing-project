@@ -79,7 +79,7 @@ export class LoginScreen extends Component {
 
   render() {
     if(this.state.deveRedirecionarParaHome){
-      return <Redirect to="/dashboard"/>
+      return <Redirect to="/"/>
     }
     return(
       <>

@@ -29,6 +29,7 @@
 	resize: none;
 	padding: 10px;
 	height: 100px;
+	overflow: auto;
 }
 
 .questao:focus {
