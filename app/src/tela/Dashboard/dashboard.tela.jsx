@@ -31,10 +31,13 @@ export class DashboardScreen extends Component {
 	handleChange = async (event) => {
 		const { name, value } = event.target;
 		this.setState({ [name]: value }, async () => {
+			let notasMultiplas = await retornarResultadosMultipla(this.state.especificidadeEscolhida)
+			let notasDissertativas = await retornarResultadosDissertativa(this.state.especificidadeEscolhida)
+			let notasTecnicas = await retornarResultadosTecnica(this.state.especificidadeEscolhida)
 			this.setState({
-				notasMultipla: await retornarResultadosMultipla(this.state.especificidadeEscolhida),
-				notasDissertativas: await retornarResultadosDissertativa(this.state.especificidadeEscolhida),
-				notasTecnicas: await retornarResultadosTecnica(this.state.especificidadeEscolhida)
+				notasMultipla: notasMultiplas,
+				notasDissertativas: notasDissertativas,
+				notasTecnicas: notasTecnicas
 			});
 		});
 	};
@@ -82,7 +85,7 @@ export class DashboardScreen extends Component {
 		if (this.state.notasMultipla.length > 0) {
 			return <GraficoMultipla notas={this.state.notasMultipla} />;
 		} else {
-			return <h1 className="titulo-crie">Não há questões</h1>;
+			return <h1 className="titulo-nao-tem-questao">Não há questões de múltipla escolha!</h1>;
 		}
 	}
 
@@ -90,7 +93,7 @@ export class DashboardScreen extends Component {
 		if (this.state.notasDissertativas.length > 0) {
 			return <GraficoNota notas={this.state.notasDissertativas} />;
 		} else {
-			return <h1 className="titulo-crie">Não há questões</h1>;
+			return <h1 className="titulo-nao-tem-questao">Não há questões dissertativas!</h1>;
 		}
 	}
 
@@ -98,7 +101,7 @@ export class DashboardScreen extends Component {
 		if (this.state.notasTecnicas.length > 0) {
 			return <GraficoNota notas={this.state.notasTecnicas} />;
 		} else {
-			return <h1 className="titulo-crie">Não há questões</h1>;
+			return <h1 className="titulo-nao-tem-questao">Não há questões técnicas!</h1>;
 		}
 	}
 
@@ -121,6 +124,9 @@ export class DashboardScreen extends Component {
 	}
 
 	render() {
+		console.log(this.state.notasMultipla)
+		// console.log(this.state.notasDissertativas)
+		// console.log(this.state.notasTecnicas)
 		return (
 			<div>
 				<div className="container-tela">
