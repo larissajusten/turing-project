@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.services.email;
 
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.security.JwtTokenProvider;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaAtivaPorEmailDoCandidatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;

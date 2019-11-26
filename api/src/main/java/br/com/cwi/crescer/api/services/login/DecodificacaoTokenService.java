@@ -17,6 +17,7 @@ public class DecodificacaoTokenService {
     public LoggedUserDTO decodificacaoToken(String token) {
         LoggedUserDTO usuarioLogado = new LoggedUserDTO();
         String decoded = JwtHelper.decode(token).getClaims();
+
         try {
             JsonNode jsonNode = objectMapper.readTree(decoded);
             usuarioLogado
@@ -25,6 +26,7 @@ public class DecodificacaoTokenService {
             usuarioLogado
                     .setNome(jsonNode
                             .get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").asText());
+
         } catch (Exception e) {
            throw new UsuarioNaoEncontradoException("Decodificação do token falhou");
         }

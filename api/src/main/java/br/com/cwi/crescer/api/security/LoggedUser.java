@@ -4,13 +4,16 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class LoggedUser implements Serializable {
+
+    private Long id;
 
     private String matricula;
 
@@ -20,7 +23,6 @@ public class LoggedUser implements Serializable {
 
     private String email;
 
-    private HashSet<String> roles;
-
+//    private Set roles;
 }
 

@@ -11,6 +11,8 @@ import lombok.Setter;
 @NoArgsConstructor
 public class LoggedUserDTO {
 
+    private Long id;
+
     private String matricula;
 
     private String identifier;

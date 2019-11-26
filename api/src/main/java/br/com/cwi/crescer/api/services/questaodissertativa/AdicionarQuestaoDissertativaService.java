@@ -42,7 +42,7 @@ public class AdicionarQuestaoDissertativaService {
         QuestaoDissertativa questaoDissertativa = mapper.transformar(request);
         questaoDissertativa.setDataCriacao(LocalDate.now());
 
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin());
+        Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getEmail());
         questaoDissertativa.setUsuario(usuario);
 
         repository.save(questaoDissertativa);

@@ -1,4 +1,4 @@
-package br.com.cwi.crescer.api.security;
+package br.com.cwi.crescer.api.services.email;
 
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import io.jsonwebtoken.Claims;
@@ -38,7 +38,7 @@ public class JwtTokenProvider {
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
-
+                .claim("role", "USUARIO")
                 .compact();
     }
 
