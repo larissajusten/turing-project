@@ -61,7 +61,7 @@ public class QuestaoMultiplaEscolhaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/todas-questoes-filtradas")
-    public Page<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@PageableDefault Pageable pageable,
+    public Page<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@PageableDefault(size=5) Pageable pageable,
                                                                               @RequestParam("especificidade") Especificidade especificidade,
                                                                               @RequestParam("nivel") NivelDeDificuldade nivelDeDificuldade) {
         return buscarPaginado.buscar(pageable, especificidade, nivelDeDificuldade);

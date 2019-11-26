@@ -10,6 +10,11 @@ export class Header extends Component {
 			perfil: localStorage.getItem('perfilUsuario')
 		}
 	}
+
+	componentDidMount(){
+		localStorage.removeItem('perfilUsuario')
+	}
+
 	render() {
 
 		return (

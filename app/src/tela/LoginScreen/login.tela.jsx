@@ -24,17 +24,17 @@ export class LoginScreen extends Component {
     event.preventDefault()
     const user = {
       "login": this.state.identifier,
-      "senha": 0
+      "senha": this.state.senha
     }
     try{
-      const data = await login(user)
-      localStorage.setItem("accessToken", data.token)
-      const perfil = await retornaPerfil(data.identifier)
-      localStorage.setItem("perfilUsuario", perfil)
+      let data = await login(user)
+      localStorage.setItem('accessToken', data.token)
+      let perfil = await retornaPerfil(data.identifier)
+      localStorage.setItem('perfilUsuario', perfil)
+      Notificacao('Sucesso', 'Login realizado com sucesso', 'success')
       this.setState({
         deveRedirecionarParaHome: true
       })
-      Notificacao('Sucesso', 'Login realizado com sucesso', 'success')
     }
     catch(error){
       if (error.response.data.errors) {
@@ -53,12 +53,21 @@ export class LoginScreen extends Component {
         <div className="titulo-login">CWI Turing</div>
         <div className="container-input-login">
           <Input
-          classNameDiv="div-input"
-          className="class-input"
-          placeholder="Usuario"
-          name="identifier"
-          value={this.state.identifier}
-					onChange={this.handleChange}/>
+            classNameDiv="div-input"
+            className="class-input"
+            placeholder="Usuario"
+            name="identifier"
+            value={this.state.identifier}
+            onChange={this.handleChange}/>
+
+          <Input
+            classNameDiv="div-input"
+            className="class-input"
+            placeholder="Senha"
+            name="senha"
+            type="password"
+            value={this.state.senha}
+            onChange={this.handleChange}/>
 
           <div className="container-botao">
 					  <BotaoPrincipal classe="botao-input" nome="Entrar" onClick={this.handleClickFazerLogin}/>

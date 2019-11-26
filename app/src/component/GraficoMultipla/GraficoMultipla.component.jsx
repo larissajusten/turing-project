@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GraficoPizza } from '../GraficoPizza/graficoPizza.component';
+import { GraficoPizza } from '../GraficoPizza/graficoPizza.component'
 
 export class GraficoMultipla extends Component {
 	constructor(props) {
@@ -12,7 +12,7 @@ export class GraficoMultipla extends Component {
 		};
     }
     
-	async componentDidMount() {
+	componentDidMount() {
 		this.setState({
 			dataFacil: [
 				{ name: 'Acertaram', value: this.state.errosEAcertos[0] },
@@ -29,13 +29,39 @@ export class GraficoMultipla extends Component {
 		})
 	}
 
+	componentDidUpdate(){
+		if(this.state.errosEAcertos !== this.props.notas){
+			this.setState({
+				errosEAcertos: this.props.notas
+			})
+		}
+	}
+
+	renderGraficoPizzaFacil() {
+		if(this.state.dataFacil.length > 0) {
+			return <GraficoPizza cor="#00C49F" data={this.state.dataFacil}/>
+		} 
+	}
+
+	renderGraficoPizzaMedio() {
+		if(this.state.dataMedio.length > 0) {
+			return <GraficoPizza cor="#FFBB28" data={this.state.dataMedio}/>
+		} 
+	}
+
+	renderGraficoPizzaDificil() {
+		if(this.state.dataDificil.length > 0) {
+			return <GraficoPizza cor="#FF8042" data={this.state.dataDificil}/>
+		} 
+	}
+
 	render() {
     return (
       <> 
-		<GraficoPizza cor="#00C49F" data={this.state.dataFacil} nome="Fácil"/>
-		<GraficoPizza cor="#FFBB28" data={this.state.dataMedio} nome="Médio"/>
-		<GraficoPizza cor="#FF8042" data={this.state.dataDificil} nome="Difícil"/>
-        </>
+			{this.renderGraficoPizzaFacil()}
+			{this.renderGraficoPizzaMedio()}
+			{this.renderGraficoPizzaDificil()}
+      </>
 		);
 	}
 }

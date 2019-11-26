@@ -84,7 +84,6 @@ export class GraficoPizza extends Component {
 					onMouseEnter={this.onPieEnter}
 				/>
 			</PieChart>
-			<h3>{this.props.nome}</h3>
 			</div>
 		);
 	}

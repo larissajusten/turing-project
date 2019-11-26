@@ -47,7 +47,7 @@ public class DashboardController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{especificidade}/multiplas")
-    public List<Integer> retornaErrosEAcertosMultiplaEscolha(@PathVariable("especificidade")Especificidade especificidade){
+    public List<Integer> retornaErrosEAcertosMultiplaEscolha(@PathVariable("especificidade") Especificidade especificidade){
         return retornaErrosEAcertosMultiplaEscolhaService.retornar(especificidade);
     }
 

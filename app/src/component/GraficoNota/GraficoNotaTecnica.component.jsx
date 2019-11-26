@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { GraficoPizza } from '../GraficoPizza/graficoPizza.component';
+import { GraficoPizza } from '../GraficoPizza/graficoPizza.component'
 
 export class GraficoNotaTecnica extends Component {
 	constructor(props) {
@@ -30,14 +30,40 @@ export class GraficoNotaTecnica extends Component {
             dataMedio: m,
             dataDificil: d
         })
+    }
+
+    componentDidUpdate(){
+		if(this.state.notas !== this.props.notas){
+			this.setState({
+				notas: this.props.notas
+			})
+		}
+	}
+
+    renderGraficoPizzaFacil() {
+		if(this.state.dataFacil.length > 0) {
+			return <GraficoPizza cor="#00C49F" data={this.state.dataFacil}/>
+		} 
+	}
+
+	renderGraficoPizzaMedio() {
+		if(this.state.dataMedio.length > 0) {
+			return <GraficoPizza cor="#FFBB28" data={this.state.dataMedio}/>
+		} 
+	}
+
+	renderGraficoPizzaDificil() {
+		if(this.state.dataDificil.length > 0) {
+			return <GraficoPizza cor="#FF8042" data={this.state.dataDificil}/>
+		} 
 	}
 
 	render() {
     return (
       <> 
-		<GraficoPizza cor="#00C49F" data={this.state.dataFacil} nome="Fácil"/>
-		<GraficoPizza cor="#FFBB28" data={this.state.dataMedio} nome="Médio"/>
-		<GraficoPizza cor="#FF8042" data={this.state.dataDificil} nome="Difícil"/>
+        {this.renderGraficoPizzaFacil()}
+        {this.renderGraficoPizzaMedio()}
+        {this.renderGraficoPizzaDificil()}
       </>
 	);
 	}

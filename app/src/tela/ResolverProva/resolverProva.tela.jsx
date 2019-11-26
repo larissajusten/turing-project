@@ -245,7 +245,6 @@ export class ResolverProvaScreen extends Component {
   }
 
   render() {
-    console.log(this.state.arrayRespostas)
     return(
       <>
       { this.state.modalIniciarProva && this.renderModalIniciar() }

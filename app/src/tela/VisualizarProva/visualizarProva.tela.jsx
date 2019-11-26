@@ -20,6 +20,7 @@ export class VisualizarProvaScreen extends Component {
   }
 
   async componentDidMount() {
+    localStorage.removeItem('idProva')
     this.setState({
       prova: await retornaProva(this.state.idProva)
     })
@@ -127,7 +128,6 @@ export class VisualizarProvaScreen extends Component {
   }
 
   render() {
-    console.log(this.state.prova)
     if (this.state.prova){
       return (
         <div className="container-tela">
