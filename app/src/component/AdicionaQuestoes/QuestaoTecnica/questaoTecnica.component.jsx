@@ -51,6 +51,8 @@ export class CadastroTecnica extends PureComponent {
   }
 
   render() {
+    console.log(this.state.testeBase);
+    
     return(
       <>
       <QuestaoUnica

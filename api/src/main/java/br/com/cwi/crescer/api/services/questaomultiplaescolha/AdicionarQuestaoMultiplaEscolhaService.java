@@ -40,18 +40,17 @@ public class AdicionarQuestaoMultiplaEscolhaService {
     @Autowired
     private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
 
-    @Autowired
-    private LoggedUser loggedUser;
 
     public QuestaoMultiplaEscolha adicionar(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
 
-        verificarPerfilUsuarioLogadoService.verificar(loggedUser);
+        //verificarPerfilUsuarioLogadoService.verificar(loggedUser);
         unicaAlternativaCorretaValidator.validar(questaoMultiplaEscolhaRequest);
 
         QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest);
         questaoMultiplaEscolha.setDataCriacao(LocalDate.now());
 
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getEmail());
+        //Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getEmail());
+        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva@cwi.com.br");
         questaoMultiplaEscolha.setUsuario(usuario);
 
         QuestaoMultiplaEscolha questaoSalva = repository.save(questaoMultiplaEscolha);
