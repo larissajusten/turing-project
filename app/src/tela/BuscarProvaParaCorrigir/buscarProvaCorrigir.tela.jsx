@@ -62,6 +62,8 @@ export class BuscarProvaParaCorrigirScreen extends Component{
   }
 
   renderCardsProvas(){
+    console.log(this.state.provas);
+    
     return(
       <>
       {
