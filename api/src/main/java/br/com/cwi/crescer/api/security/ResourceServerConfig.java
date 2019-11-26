@@ -59,7 +59,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 //                .hasAnyRole("USUARIO", "ADMIN", "ENTREVISTADOR")
 
                 .anyRequest()
-                .authenticated();
+                .permitAll();
     }
 
 }

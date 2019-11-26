@@ -19,8 +19,8 @@ import java.util.List;
 @RequestMapping("/prova")
 public class ProvaController {
 
-    @Autowired
-    private LoggedUser loggedUser;
+//    @Autowired
+//    private LoggedUser loggedUser;
 
     @Autowired
     private CriarProvaService criarProvaService;
