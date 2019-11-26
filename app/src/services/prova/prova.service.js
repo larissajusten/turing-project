@@ -35,25 +35,3 @@ export const corrigirProva = async (idProva, body) => {
 	{ headers: { Authorization: token } });
 	return response.data;
 };
-
-export const retornarResultadosMultipla = async (especificidade) => {
-	carregarToken();
-	const response = await Axios.put(`${baseUrl}/dashboard/${especificidade}/multiplas`,
-	{ headers: { Authorization: token } });
-	return response.data;
-};
-
-export const retornarResultadosDissertativa = async (especificidade) => {
-	carregarToken();
-	const response = await Axios.put(`${baseUrl}/dashboard/${especificidade}/dissertativas`,
-	{ headers: { Authorization: token } });
-	return response.data;
-};
-
-export const retornarResultadosTecnica = async (especificidade) => {
-	carregarToken();
-	const response = await Axios.put(`${baseUrl}/dashboard/${especificidade}/tecnicas`,
-	{ headers: { Authorization: token } });
-	return response.data;
-};
-
