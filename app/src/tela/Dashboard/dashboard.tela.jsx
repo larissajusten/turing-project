@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { retornarEspecificidades,
 				retornarResultadosMultipla,
 				retornarResultadosDissertativa,
-				retornarResultadosTecnica } from '../../services/index';
+				retornarResultadosTecnica,
+				retornaTecnologias } from '../../services/index';
 import { Notificacao,
 					Select,
 					GraficoMultipla,
-					GraficoNota } from '../../component/index';
+					GraficoNota,
+					GraficoTecnologias } from '../../component/index';
 import './dashboard.style.css';
 
 const mensagemSucessoNotificacao = 'Busca bem sucedida';
@@ -24,7 +26,8 @@ export class DashboardScreen extends Component {
 
 	async componentDidMount() {
 		this.setState({
-			especificidades: await retornarEspecificidades()
+			especificidades: await retornarEspecificidades(),
+			tecnologias: await retornaTecnologias()
 		});
 	}
 
@@ -40,7 +43,7 @@ export class DashboardScreen extends Component {
 				notasTecnicas: notasTecnicas
 			});
 		});
-	};
+	}
 
 	catchErrorENotifica(error) {
 		if (error.response.data.errors) {
@@ -55,6 +58,14 @@ export class DashboardScreen extends Component {
 	salvaResponseENotificaSucesso(especificidades) {
 		this.setState({ especificidades });
 		Notificacao('Sucesso', mensagemSucessoNotificacao, 'success');
+	}
+
+	renderGraficoTecnologias() {
+		if(this.state.tecnologias) {
+			return <GraficoTecnologias tecnologias={this.state.tecnologias} />
+		} else {
+			return <h1 className="titulo-nao-tem-questao">Não há questões de múltipla escolha!</h1>;
+		}
 	}
 
 	renderContainerComponent() {
@@ -124,13 +135,11 @@ export class DashboardScreen extends Component {
 	}
 
 	render() {
-		console.log(this.state.notasMultipla)
-		// console.log(this.state.notasDissertativas)
-		// console.log(this.state.notasTecnicas)
 		return (
 			<div>
 				<div className="container-tela">
 					<h1 className="titulo">Dashboard</h1>
+					{this.renderGraficoTecnologias()}
 					{this.renderContainerComponent()}
 
 					{this.state.especificidadeEscolhida && this.renderGraficos()}

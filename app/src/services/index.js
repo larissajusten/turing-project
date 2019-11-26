@@ -47,7 +47,8 @@ export { removerQuestaoDissertativa } from './prova/excluirQuestaoProva.service'
 export { removerQuestaoTecnica } from './prova/excluirQuestaoProva.service'
 export { removerQuestaoMultiplaEscolha } from './prova/excluirQuestaoProva.service'
 
-/* Graficos */
-export { retornarResultadosMultipla } from './prova/prova.service'
-export { retornarResultadosDissertativa } from './prova/prova.service'
-export { retornarResultadosTecnica } from './prova/prova.service'
+/* Dashboard */
+export { retornaTecnologias } from './dashboard/dashboard.service'
+export { retornarResultadosMultipla } from './dashboard/dashboard.service'
+export { retornarResultadosDissertativa } from './dashboard/dashboard.service'
+export { retornarResultadosTecnica } from './dashboard/dashboard.service'
