@@ -40,30 +40,20 @@ export class GraficoNota extends Component {
 		}
 	}
 
-	renderGraficoPizzaFacil() {
-		if (this.state.dataFacil.length > 0) {
-			return <GraficoPizza cor="#00C49F" data={this.state.dataFacil} />
-		}
-	}
-
-	renderGraficoPizzaMedio() {
-		if (this.state.dataMedio.length > 0) {
-			return <GraficoPizza cor="#FFBB28" data={this.state.dataMedio} />
-		}
-	}
-
-	renderGraficoPizzaDificil() {
-		if (this.state.dataDificil.length > 0) {
-			return <GraficoPizza cor="#FF8042" data={this.state.dataDificil} />
+	verificaTamanhoParaRenderizar(color, array) {
+		if(array.length > 0) {
+			return <GraficoPizza cor={color} data={array}/>
+		}else {
+			return <h1 className="titulo-crie"> Não há questões para visualizar </h1>
 		}
 	}
 
 	render() {
 		return (
 			<>
-				{this.renderGraficoPizzaFacil()}
-				{this.renderGraficoPizzaMedio()}
-				{this.renderGraficoPizzaDificil()}
+				{this.verificaTamanhoParaRenderizar("#00C49F", this.state.dataFacil)}
+				{this.verificaTamanhoParaRenderizar("#FFBB28", this.state.dataMedio)}
+				{this.verificaTamanhoParaRenderizar("#FF8042", this.state.dataDificil)}
 			</>
 		);
 	}
