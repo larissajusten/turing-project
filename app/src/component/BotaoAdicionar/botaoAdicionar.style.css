@@ -30,7 +30,7 @@
 	cursor: pointer;
 	margin: 5px;
 	position: absolute;
-	right: 0;
+	right: -80px;
 	bottom: 20%;
 	outline: none;
 }

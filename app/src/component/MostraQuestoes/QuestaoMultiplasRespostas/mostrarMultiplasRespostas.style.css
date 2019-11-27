@@ -1,6 +1,6 @@
 .primeira-div {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   position: relative;
   height: 40%;
   width: 100%;
@@ -15,6 +15,8 @@
   justify-content: space-between;
   height: 60%;
   width: 100%;
+  padding-top: 3%;
+  padding-bottom: 7%;
 }
 
 .coluna {
@@ -36,9 +38,11 @@
   flex-direction: column;
   width: 48%;
   align-items: flex-start;
+  padding: 5%;
 }
 
 .mult {
   width: 100%;
   text-align: start;
+  padding-bottom: 65px;
 }

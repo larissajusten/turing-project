@@ -7,8 +7,8 @@
 }
 
 .bloco-conteudo {
-  background: rgba(247, 245, 245, 0.6);
-  border: 1px solid rgba(249, 243, 243, 0.92);
+  background: rgba(247, 245, 245, 0.041);
+  border: 1px solid rgba(249, 243, 243, 0.562);
   box-sizing: border-box;
   backdrop-filter: blur(4px);
   border-radius: var(--border-radius);

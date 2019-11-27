@@ -121,10 +121,11 @@ export class CorrigirProvaScreen extends Component {
   }
 
   renderProva() {
+    console.log(this.state.prova, this.state.arrayCorrecoes)
     return(
       <>
       {
-        this.state.prova && this.state.arrayCorrecoes.length > 1 &&
+        this.state.prova && this.state.arrayCorrecoes.length >= 1 &&
           <>
           <div className="container-titulo">
             <span className="titulo-crie">Correção da prova de {this.state.prova.nomeCandidato}</span>

@@ -25,6 +25,7 @@ export { retornarQuestoesDissertativasFiltradas } from './questoes/questao-disse
 
 /* Prova */
 export { criarProva } from './prova/prova.service'
+export { cancelarProva } from './prova/prova.service'
 export { iniciarProva } from './prova/prova.service'
 export { enviarRespostasDaProva } from './prova/prova.service'
 export { corrigirProva } from './prova/prova.service'
