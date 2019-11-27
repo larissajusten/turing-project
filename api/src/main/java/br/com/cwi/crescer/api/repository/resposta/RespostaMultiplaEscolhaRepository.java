@@ -1,7 +1,10 @@
 package br.com.cwi.crescer.api.repository.resposta;
 
+import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
+import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.resposta.RespostasMultiplaEscolhaProva;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -10,5 +13,9 @@ public interface RespostaMultiplaEscolhaRepository extends JpaRepository<Respost
     List<RespostasMultiplaEscolhaProva> findAllByProvaIdEquals(Long id);
 
     List<RespostasMultiplaEscolhaProva> findAllByQuestaoMultiplaEscolhaIdEquals(Long id);
+
+    @Query("Select count(*) FROM RespostasMultiplaEscolhaProva r " +
+            "WHERE r.prova = ?1 AND r.questaoMultiplaEscolha.nivelDeDificuldade = ?2 AND r.alternativaMultiplaEscolha.respostaCorreta = True GROUP BY r.prova.id")
+    int buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(Prova prova, NivelDeDificuldade nivelDeDificuldade);
 
 }

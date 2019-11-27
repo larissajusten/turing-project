@@ -1,12 +1,10 @@
 package br.com.cwi.crescer.api.domain.questao;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-
 
 @Entity
 @Data

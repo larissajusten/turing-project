@@ -5,7 +5,6 @@ import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoMultiplaEscolh
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.AlternativaMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
@@ -71,7 +70,6 @@ public class AdicionarQuestaoMultiplaEscolhaServiceTest {
         Mockito.doNothing().when(unicaAlternativaCorretaValidator).validar(questaoMultiplaEscolhaRequest);
         Mockito.when(repository.save(questaoMultiplaEscolha)).thenReturn(questaoMultiplaEscolha);
         Mockito.when(mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest)).thenReturn(questaoMultiplaEscolha);
-        Mockito.doNothing().when(verificarPerfilUsuarioLogadoService).verificar(loggedUser);
 
         adicionarQuestaoMultiplaEscolhaService.adicionar(questaoMultiplaEscolhaRequest);
 
