@@ -33,5 +33,3 @@ export class CardBuscarQuestao extends PureComponent {
     )
   }
 }
-
-//`../../assets/images-questoes/${this.props.imagem}.png`

@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import './visualizarProva.style.css'
 import { MostrarQuestaoUnica,
-        MostrarMultiplasRespostas, 
-        BlocoVisualizar, 
+        MostrarMultiplasRespostas,
+        BlocoVisualizar,
         Notificacao,
         BotaoPrincipal } from '../../component/index'
 import { retornaProva,
           removerQuestaoDissertativa,
           removerQuestaoTecnica,
-          removerQuestaoMultiplaEscolha,
-          enviarEmail } from '../../services/index'
+          removerQuestaoMultiplaEscolha } from '../../services/index'
 
 const mensagemSucessoNotificacao = 'Questão removida com sucesso'
 

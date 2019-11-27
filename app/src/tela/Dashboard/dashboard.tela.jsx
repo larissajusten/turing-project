@@ -141,8 +141,6 @@ export class DashboardScreen extends Component {
 					<h1 className="titulo">Dashboard</h1>
 					{this.renderGraficoTecnologias()}
 					{this.renderContainerComponent()}
-
-					
 				</div>
 				{this.state.especificidadeEscolhida && this.renderGraficos()}
 			</div>

@@ -1,5 +1,5 @@
 .imagem-linguagem {
-  height: 86%;
+  height: 100%;
   width: 15%;
   align-self: center;
 }
@@ -8,7 +8,8 @@
   display: flex;
   cursor: auto;
   width: 90%;
-  height: 100%;
+  height: 90%;
+  cursor: pointer;
 }
 
 .publicada {
@@ -40,9 +41,9 @@
 .infos-postagem {
   width: 15%;
   display: flex;
-  justify-content: space-evenly;
-  align-items: flex-start;
-  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: column;
   padding-left: 2%;
   font-size: 0.8em;
 }

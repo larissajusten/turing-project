@@ -8,6 +8,7 @@
 }
 
 .width-card-questao{
+    cursor: pointer;
     height: 110px;
     padding: 1.6% 2%;
     margin-bottom: 15px;

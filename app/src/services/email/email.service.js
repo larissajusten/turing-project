@@ -11,7 +11,7 @@ function carregarToken() {
 
 export const enviarEmail = async (emailCandidato) => {
 	carregarToken();
-	const response = await Axios.get(`${baseUrl}/email/${emailCandidato}/enviar`, 
+	const response = await Axios.get(`${baseUrl}/email/${emailCandidato}/enviar`,
 	{ headers: { Authorization: token } });
 	return response.data;
 }
