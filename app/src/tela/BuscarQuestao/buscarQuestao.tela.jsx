@@ -145,6 +145,8 @@ export class BuscarQuestaoScreen extends Component {
                   data={item.dataCriacao}
                   especificidade={item.especificidade}
                   nivel={item.nivelDeDificuldade}
+                  imagem={item.especificidade}
+                  niveis={this.state.niveis}
                 />
               )
             })
@@ -166,7 +168,7 @@ export class BuscarQuestaoScreen extends Component {
       return (
         <>
           <div className="container-titulo">
-            <span className="titulo-crie">Busque a questão que deseja</span>
+            <span className="titulo-crie">Busque a questão que deseja visualizar</span>
           </div>
           <div className="container-inputs">
             <BuscarQuestao

@@ -2,10 +2,11 @@ import { StyleSheet } from '@react-pdf/renderer';
 
 const borderRadiusBloquinhos = 2;
 const borderRadiusBlocosGandes = 5;
+const alignSelf = "flex-start";
 
 export const styles = StyleSheet.create({
   container: {
-    alignSelf: "flex-start",
+    alignSelf: alignSelf,
     flexDirection: "column",
     width: 550,
     height: 250,
@@ -19,7 +20,7 @@ export const styles = StyleSheet.create({
     position: 'relative'
   },
   containerUnicaResposta: {
-    alignSelf: "flex-start",
+    alignSelf: alignSelf,
     flexDirection: "column",
     width: 550,
     height: 200,
@@ -149,7 +150,7 @@ export const styles = StyleSheet.create({
   },
   infosContainer: {
     flexDirection: "column",
-    justifyContent: "flex-start",
+    justifyContent: alignSelf,
     width: 600,
     marginTop: 15,
     borderLeftColor: '#FBB041',

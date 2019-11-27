@@ -41,6 +41,9 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaServiceTest {
     RetornarQuestaoMultiplaEscolhaComRespostaResponseService retornarQuestaoMultiplaEscolhaComRespostaResponseService;
 
     @Mock
+    RetornarListaDeEspecifidadesDeUmaProvaService retornarListaDeEspecifidadesDeUmaProvaService;
+
+    @Mock
     private ProvasVaziaValidador validator;
 
 

@@ -4,6 +4,7 @@ import br.com.cwi.crescer.api.controller.responses.ProvaCorrigidaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoDissertativaComRespostaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaComRespostaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaComRespostaResponse;
+import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
@@ -33,6 +34,9 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaService {
     private RetornarQuestaoMultiplaEscolhaComRespostaResponseService retornarQuestaoMultiplaEscolhaComRespostaResponseService;
 
     @Autowired
+    private RetornarListaDeEspecifidadesDeUmaProvaService retornarListaDeEspecifidadesDeUmaProvaService;
+
+    @Autowired
     private ProvasVaziaValidador validator;
 
     public List<ProvaCorrigidaResponse> buscar(String nomeOuEmail) {
@@ -44,8 +48,11 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaService {
 
         provas.forEach(prova -> {
             List<QuestaoTecnicaComRespostaResponse> questoesTecnicas = retornarQuestaoTecnicaComRespostaResponseService.buscar(prova);
-            List<QuestaoDissertativaComRespostaResponse> questaoDissertativa = retornarQuestaoDissertativaComRespostaResponseService.buscar(prova);
-            List<QuestaoMultiplaEscolhaComRespostaResponse> questaoMultiplaEscolha = retornarQuestaoMultiplaEscolhaComRespostaResponseService.buscar(prova);
+            List<QuestaoDissertativaComRespostaResponse> questoesDissertativas = retornarQuestaoDissertativaComRespostaResponseService.buscar(prova);
+            List<QuestaoMultiplaEscolhaComRespostaResponse> questoesMultiplaEscolhas = retornarQuestaoMultiplaEscolhaComRespostaResponseService.buscar(prova);
+            List<Especificidade> especificidades = retornarListaDeEspecifidadesDeUmaProvaService.retornar(questoesTecnicas, questoesDissertativas, questoesMultiplaEscolhas);
+
+            int totalDeQuestoes = questoesTecnicas.size() + questoesDissertativas.size() + questoesMultiplaEscolhas.size();
 
             ProvaCorrigidaResponse provaResponse = new ProvaCorrigidaResponse();
             provaResponse.setId(prova.getId());
@@ -62,9 +69,12 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaService {
             provaResponse.setTempoDeDuracaoDaProva(prova.getTempoDeDuracaoDaProva());
             provaResponse.setTempoParaInicioProva(prova.getTempoParaInicioProva());
 
-            provaResponse.setQuestoesMultiplaEscolha(questaoMultiplaEscolha);
-            provaResponse.setQuestoesDissertativas(questaoDissertativa);
+            provaResponse.setQuestoesMultiplaEscolha(questoesMultiplaEscolhas);
+            provaResponse.setQuestoesDissertativas(questoesDissertativas);
             provaResponse.setQuestoesTecnicas(questoesTecnicas);
+
+            provaResponse.setNumeroDeQuestoes(totalDeQuestoes);
+            provaResponse.setEspecificidades(especificidades);
 
             listaDasProvas.add(provaResponse);
         });

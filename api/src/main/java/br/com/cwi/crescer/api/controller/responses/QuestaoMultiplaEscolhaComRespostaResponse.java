@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.controller.responses;
 
+import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +16,8 @@ public class QuestaoMultiplaEscolhaComRespostaResponse {
     private AlternativaMultiplaEscolha resposta;
 
     private String questao;
+
+    private Especificidade especificidade;
 
     private double nota;
 }

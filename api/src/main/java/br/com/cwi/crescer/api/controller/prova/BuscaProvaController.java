@@ -22,7 +22,7 @@ public class BuscaProvaController {
     private BuscarProvasPorNomeOuEmailCorrigidasComNotaService buscarProvasPorNomeOuEmailCorrigidasComNotaService;
 
     @Autowired
-    private BuscarProvaPorIdParaCorrecaoService buscarProvaComRespostasDoUsuario;
+    private BuscarProvaPorIdParaCorrecaoService buscarProvaPorIdParaCorrecaoService;
 
     @Autowired
     private BuscarProvaPorIdCorrigidaService buscarProvaPorIdCorrigidaService;
@@ -38,37 +38,37 @@ public class BuscaProvaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}")
-    public ProvaResponse buscarProva(@PathVariable("id-prova") Long idProva) {
+    public ProvaResponse buscarProvaPorId(@PathVariable("id-prova") Long idProva) {
         return buscarProvaPorIdComQuestoesService.buscar(idProva);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/token/{token}")
-    public ProvaResponse buscarProvaPeloToken(@PathVariable("token") String token) {
+    public ProvaResponse buscarProvaPorToken(@PathVariable("token") String token) {
         return buscarProvaPorTokenComQuestoesService.buscar(token);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/para-correcao")
-    public Page<ProvaParaCorrecaoResponse> buscarProvasParaCorrecao(@PageableDefault(size=3) Pageable pageable) {
+    public Page<ProvaParaCorrecaoResponse> buscarTodasAsProvasDisponiveisParaCorrecao(@PageableDefault(size=3) Pageable pageable) {
         return buscarProvasParaCorrecaoService.buscar(pageable);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/corrigidas")
-    public List<ProvaCorrigidaResponse> buscarListaDeProvasCorrigidas(@RequestParam("pesquisa") String nomeOuEmail) {
+    public List<ProvaCorrigidaResponse> buscarListaDeProvasCorrigidasPorNomeOuEmail(@RequestParam("pesquisa") String nomeOuEmail) {
         return buscarProvasPorNomeOuEmailCorrigidasComNotaService.buscar(nomeOuEmail);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("{id-prova}/corrigida")
-    public ProvaCorrigidaResponse buscarProvaCorrigida(@PathVariable("id-prova") Long idProva) {
+    public ProvaCorrigidaResponse buscarProvaPorIdCorrigida(@PathVariable("id-prova") Long idProva) {
         return buscarProvaPorIdCorrigidaService.buscar(idProva);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/respostas")
-    public ProvaComRespostasResponse provaComRespostas(@PathVariable("id-prova") Long idProva) {
-        return buscarProvaComRespostasDoUsuario.buscar(idProva);
+    public ProvaComRespostasResponse provaPorIdComRespostas(@PathVariable("id-prova") Long idProva) {
+        return buscarProvaPorIdParaCorrecaoService.buscar(idProva);
     }
 }

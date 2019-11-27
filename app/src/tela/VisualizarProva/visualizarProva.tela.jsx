@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import './visualizarProva.style.css'
 import { MostrarQuestaoUnica,
-        MostrarMultiplasRespostas, 
-        BlocoVisualizar, 
+        MostrarMultiplasRespostas,
+        BlocoVisualizar,
         Notificacao,
         BotaoPrincipal } from '../../component/index'
 import { retornaProva,
+          cancelarProva,
           removerQuestaoDissertativa,
           removerQuestaoTecnica,
           removerQuestaoMultiplaEscolha,
@@ -37,6 +38,46 @@ export class VisualizarProvaScreen extends Component {
     this.setState({
       deveRedirecionarParaDashboard: true
     })
+  }
+
+  handleClickEnviarProva = async (event) => {
+    event.preventDefault()
+    try {
+      await enviarEmail(this.state.prova.emailCandidato)
+      Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
+      this.setState({
+        deveRedirecionarParaDashboard: true
+      })
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
+  handleClickCancelarProva = async(event) => {
+    event.preventDefault()
+    try {
+      await cancelarProva(this.state.idProva)
+      Notificacao('Sucesso', 'Prova cancelada com sucesso', 'success')
+      this.setState({
+        deveRedirecionarParaDashboard: true
+      })
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
   }
 
   removerQuestaoDissertativa = async (idDaQuestao) => {
@@ -178,8 +219,10 @@ export class VisualizarProvaScreen extends Component {
           {this.renderQuestoesDissertativas()}
           {this.renderQuestoesTecnicas()}
           {this.renderMultiplasEscolhas()}
-          <div className="container-botao container-botao-prova">
-            <BotaoPrincipal nome="Voltar" onClick={this.handleClickVoltarProva}/>
+          <div className="container-botao container-botao-prova">          
+            <BotaoPrincipal nome="Enviar por e-mail" onClick={this.handleClickEnviarProva}/>
+            <BotaoPrincipal nome="Cancelar" onClick={this.handleClickCancelarProva} />
+            <BotaoPrincipal nome="Sair" onClick={this.handleClickVoltarProva}/>
           </div>
         </div>
       )

@@ -25,7 +25,7 @@ export class BuscarProvaParaCorrigirScreen extends Component{
       per_page: dadosDaResponse[2],
       current_page: dadosDaResponse[3]
     }, () => {
-      this.buscarProvas()
+      //this.buscarProvas()
     })
   }
 
@@ -72,7 +72,8 @@ export class BuscarProvaParaCorrigirScreen extends Component{
                 informacaoUm={item.nomeCandidato}
                 informacaoDois={item.emailCandidato}
                 informacaoTres={item.tempoDeDuracaoDaProva}
-                onClick={this.onClickCorrigirProva}/>
+                onClick={this.onClickCorrigirProva}
+                nomeBotao="CORRIGIR"/>
         })
       }
       </>

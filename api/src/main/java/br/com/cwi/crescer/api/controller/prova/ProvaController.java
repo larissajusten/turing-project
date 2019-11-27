@@ -40,6 +40,9 @@ public class ProvaController {
     @Autowired
     private CorrigirProvaService corrigirProvaService;
 
+    @Autowired
+    private CancelarProvaService cancelarProvaService;
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Long criarProvaERetornarID(@Valid @RequestBody ProvaRequest request) {
@@ -78,6 +81,12 @@ public class ProvaController {
     public StatusProva corrigirProva(@PathVariable("id-prova") Long idProva, @Valid @RequestBody
             List<CorrecaoProvaRequest> listaDeCorrecoes) {
         return corrigirProvaService.corrigir(idProva, listaDeCorrecoes);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id-prova}/cancelar-prova")
+    public StatusProva cancelarProva(@PathVariable("id-prova") Long idProva) {
+        return cancelarProvaService.cancelar(idProva);
     }
 
 }

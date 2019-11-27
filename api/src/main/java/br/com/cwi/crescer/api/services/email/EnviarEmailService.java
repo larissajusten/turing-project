@@ -5,10 +5,14 @@ import br.com.cwi.crescer.api.services.prova.BuscarProvaAtivaPorEmailDoCandidato
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.time.LocalDateTime;
 
 @Service
 public class EnviarEmailService {
@@ -17,26 +21,53 @@ public class EnviarEmailService {
     private JavaMailSender mailSender;
 
     @Autowired
+    private TemplateEngine templateEngine;
+
+    @Autowired
     private JwtTokenProvider jwt;
 
     @Autowired
     private BuscarProvaAtivaPorEmailDoCandidatoService buscarProvaPorEmail;
 
-    public void enviar(String emailCandidato) throws MessagingException {
+    public void enviar(String emailCandidato) {
 
         Prova prova = buscarProvaPorEmail.buscar(emailCandidato);
 
+        String processedHTMLTemplate = this.constructHTMLTemplate(prova);
+
+        MimeMessagePreparator preparator = message -> {
+            MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED, "UTF-8");
+            helper.setSubject("CWI TURING TEM UMA PROVA AGUARDANDO VOCÊ!");
+            helper.setTo(emailCandidato);
+            helper.setText(processedHTMLTemplate, true);
+
+        };
+
+        mailSender.send(preparator);
+    }
+
+    private String constructHTMLTemplate(Prova prova) {
+        Context context = new Context();
+
+        String nomeCandidato = prova.getNomeCandidato();
+        int tempoIniciar = prova.getTempoParaInicioProva();
+
+        LocalDateTime agora = LocalDateTime.now().plusHours(tempoIniciar);
+        String dia = agora.getDayOfMonth() + "/" + agora.getMonthValue() + "/" + agora.getYear();
+        String hora = agora.getHour() + ":" + agora.getMinute() + ":" + agora.getMinute();
+
+        int tempoDuracao = prova.getTempoDeDuracaoDaProva();
         String token = jwt.generateToken(prova);
 
-        MimeMessage mail = mailSender.createMimeMessage();
+        context.setVariable("nomeCandidato", nomeCandidato);
+        context.setVariable("tempoIniciar", tempoIniciar);
+        context.setVariable("tempoDuracao", tempoDuracao);
+        context.setVariable("dia", dia);
+        context.setVariable("hora", hora);
+        context.setVariable("token", token);
 
-        MimeMessageHelper helper = new MimeMessageHelper(mail);
-
-        helper.setTo(emailCandidato);
-        helper.setSubject("CWI TURING TEM UMA PROVA AGUARDANDO VOCÊ!");
-        helper.setText("<a href='http://localhost:3000/resolver-prova/" + token + "'>Acesse sua prova aqui</a>", true);
-
-        mailSender.send(mail);
+        return templateEngine.process("EmailHTML", context);
     }
+
 
 }

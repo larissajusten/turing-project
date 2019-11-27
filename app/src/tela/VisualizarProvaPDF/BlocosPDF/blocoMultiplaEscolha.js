@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import { styles } from './index'
+import { styles, BlocoComentario } from './index'
 
 export const BlocoQuestaoMultiplaEscolha = (props) => (
   props.questoes.map((item, key) => {
@@ -28,10 +28,7 @@ export const BlocoQuestaoMultiplaEscolha = (props) => (
                 {`1. ${item.alternativaE.resposta}`}
                 </Text>
             </View>
-            <View style={styles.containerComentario}>
-              <Text style={styles.comentarioTxt}>Comentário:</Text>
-              <Text style={styles.comentario}>{item.comentario}</Text>
-            </View>
+            <BlocoComentario comentario={item.comentario}/>
           </View>
   })
 );
