@@ -13,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,9 @@ public class CorrigirProvaServiceTest {
     CorrecaoValidator validator;
 
     @Mock
+    private GerarNotaDaProvaComDiferencialDePesoDasQuestoesService gerarNotaDaProvaComDiferencialDePesoDasQuestoesService;
+
+    @Mock
     ProvaRepository repository;
 
     @Test
@@ -59,7 +63,6 @@ public class CorrigirProvaServiceTest {
 
         Mockito.verify(corrigirQuestaoDissertativaService)
                 .corrigir(correcaoProvaRequest.getIdResposta(), correcaoProvaRequest);
-
     }
 
     @Test
@@ -81,7 +84,6 @@ public class CorrigirProvaServiceTest {
 
         Mockito.verify(corrigirQuestaoTecnicaService)
                 .corrigir(correcaoProvaRequest.getIdResposta(), correcaoProvaRequest);
-
     }
 
 

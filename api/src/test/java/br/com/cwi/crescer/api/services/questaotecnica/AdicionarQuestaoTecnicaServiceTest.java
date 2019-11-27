@@ -51,9 +51,6 @@ public class AdicionarQuestaoTecnicaServiceTest {
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
 
-        Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin())).thenReturn(usuario);
-
         adicionarQuestaoTecnicaService.adicionar(questaoUnicaAlternativaRequest);
 
         Mockito.verify(repository).save(questaoTecnica);
@@ -70,8 +67,6 @@ public class AdicionarQuestaoTecnicaServiceTest {
                         "hsauidhsaiud");
 
         Mockito.when(mapper.transformar(questaoUnicaAlternativaRequest)).thenReturn(questaoTecnica);
-        Usuario usuario = new Usuario();
-        Mockito.when(buscarUsuarioPeloEmailService.buscar(loggedUser.getLogin())).thenReturn(usuario);
 
         adicionarQuestaoTecnicaService.adicionar(questaoUnicaAlternativaRequest);
 

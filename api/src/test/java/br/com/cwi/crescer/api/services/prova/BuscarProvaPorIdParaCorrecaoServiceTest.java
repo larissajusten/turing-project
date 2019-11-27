@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaParaCorrecaoRes
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
 import br.com.cwi.crescer.api.domain.resposta.RespostasTecnicaProva;
+import br.com.cwi.crescer.api.repository.resposta.RespostaMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.repository.resposta.RespostasDissertativaRepository;
 import br.com.cwi.crescer.api.repository.resposta.RespostasTecnicaRepository;
 import org.junit.Test;
@@ -32,6 +33,9 @@ public class BuscarProvaPorIdParaCorrecaoServiceTest {
 
     @Mock
     RespostasTecnicaRepository respostasTecnicaRepository;
+
+    @Mock
+    RespostaMultiplaEscolhaRepository respostaMultiplaEscolhaRepository;
 
     @Test
     public void deveChamarbuscarProvaPorIdServiceQuandoBuscarProvaComRespostasDoUsuarioServiceForChamado() {

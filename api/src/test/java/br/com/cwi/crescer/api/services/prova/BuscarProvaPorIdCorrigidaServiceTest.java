@@ -42,6 +42,9 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
     RetornarQuestaoMultiplaEscolhaComRespostaResponseService retornarQuestaoMultiplaEscolhaComRespostaResponseService;
 
     @Mock
+    RetornarListaDeEspecifidadesDeUmaProvaService retornarListaDeEspecifidadesDeUmaProvaService;
+
+    @Mock
     ProvasVaziaValidador validator;
 
     @Test
@@ -131,6 +134,7 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
 
     @Test
     public void deveRetornarProvaCorrigidaResponseQuandoBuscarProvaPorIdCorrigidaServiceForChamado() {
+
         ProvaCorrigidaResponse provaCorrigidaResponse = new ProvaCorrigidaResponse();
         Prova prova = new Prova();
         prova.setStatus(StatusProva.CORRIGIDA);
@@ -157,6 +161,7 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
         provaCorrigidaResponse.setEmailCandidato(prova.getEmailCandidato());
         provaCorrigidaResponse.setStatusProva(prova.getStatus());
         provaCorrigidaResponse.setTempoParaInicioProva(prova.getTempoParaInicioProva());
+        provaCorrigidaResponse.setEspecificidades(new ArrayList<>());
 
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(retornarQuestaoTecnicaComRespostaResponseService.buscar(prova)).thenReturn(questoesTecnicas);
