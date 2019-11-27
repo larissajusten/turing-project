@@ -20,6 +20,5 @@ public class EmailController {
     public void enviarEmail(@PathVariable("email-candidato") String emailCandidato) throws MessagingException {
 
         enviarEmailService.enviar(emailCandidato);
-
     }
 }

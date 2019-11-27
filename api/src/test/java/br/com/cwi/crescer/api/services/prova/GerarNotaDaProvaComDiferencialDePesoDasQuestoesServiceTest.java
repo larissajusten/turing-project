@@ -42,7 +42,7 @@ public class GerarNotaDaProvaComDiferencialDePesoDasQuestoesServiceTest {
     public void deveChamarRespostasDissertativaRepositoryQuandoGerarNotaDaProvaComDiferencialDePesoDasQuestoesServiceForChamado() {
         Prova prova = new Prova();
 
-        gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerarNotaDaProva(prova);
+        gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerar(prova);
 
         Mockito.verify(respostasDissertativaProva).findAllByProvaIdEquals(prova.getId());
 
@@ -52,7 +52,7 @@ public class GerarNotaDaProvaComDiferencialDePesoDasQuestoesServiceTest {
     public void deveChamarRespostasTecnicaRepositoryQuandoGerarNotaDaProvaComDiferencialDePesoDasQuestoesServiceForChamado() {
         Prova prova = new Prova();
 
-        gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerarNotaDaProva(prova);
+        gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerar(prova);
 
         Mockito.verify(respostasTecnicaProva).findAllByProvaIdEquals(prova.getId());
 
@@ -62,7 +62,7 @@ public class GerarNotaDaProvaComDiferencialDePesoDasQuestoesServiceTest {
     public void deveChamarRespostaMultiplaEscolhaRepositoryQuandoGerarNotaDaProvaComDiferencialDePesoDasQuestoesServiceForChamado() {
         Prova prova = new Prova();
 
-        gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerarNotaDaProva(prova);
+        gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerar(prova);
 
         Mockito.verify(respostaMultiplaEscolhaRepository).findAllByProvaIdEquals(prova.getId());
 
@@ -167,10 +167,10 @@ public class GerarNotaDaProvaComDiferencialDePesoDasQuestoesServiceTest {
         Mockito.when(respostaMultiplaEscolhaRepository.findAllByProvaIdEquals(prova.getId()))
                 .thenReturn(listaMultiplaEscolha);
 
-        gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerarNotaDaProva(prova);
+        gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerar(prova);
 
 
-        Assert.assertEquals(10, gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerarNotaDaProva(prova), 0);
+        Assert.assertEquals(10, gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerar(prova), 0);
     }
 
 }
