@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, Notificacao } from '../../component/index'
 import { criarProva,
+        cancelarProva,
         incluirDissertativas,
         incluirMultiplaEscolha,
         incluirTecnicas,
@@ -121,6 +122,26 @@ export class CadastrarProvaScreen extends Component {
     })
   }
 
+  handleClickCancelarProva = async(event) => {
+    event.preventDefault()
+    try {
+      await cancelarProva(this.state.idProva)
+      Notificacao('Sucesso', 'Prova cancelada com sucesso', 'success')
+      this.setState({
+        deveRedirecionarParaDashboard: true
+      })
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
+  }
+
   enviarQuestaoDissertativa = async (questao) => {
     try {
       await incluirDissertativas(this.state.idProva, questao)
@@ -218,7 +239,8 @@ export class CadastrarProvaScreen extends Component {
 
         <div className="container-botao container-botao-prova">
           <BotaoPrincipal nome="Visualizar" onClick={this.handleClickVisualizarProva}/>
-          <BotaoPrincipal nome="Enviar" onClick={this.handleClickEnviarProva}/>
+          <BotaoPrincipal nome="Enviar por e-mail" onClick={this.handleClickEnviarProva}/>
+          <BotaoPrincipal nome="Cancelar" onClick={this.handleClickCancelarProva} />
         </div>
       </>
     )
@@ -282,7 +304,7 @@ export class CadastrarProvaScreen extends Component {
     }
 
     if (this.state.deveRedirecionarParaDashboard) {
-      return <Redirect to="/dashboard" />
+      return <Redirect to="/" />
     }
 
     return (

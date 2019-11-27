@@ -35,3 +35,10 @@ export const corrigirProva = async (idProva, body) => {
 	{ headers: { Authorization: token } });
 	return response.data;
 };
+
+export const cancelarProva = async (idProva) => {
+	carregarToken();
+	const response = await Axios.put(`${baseUrl}/prova/${idProva}/cancelar-prova`,
+	{ headers: { Authorization: token } });
+	return response.data;
+};

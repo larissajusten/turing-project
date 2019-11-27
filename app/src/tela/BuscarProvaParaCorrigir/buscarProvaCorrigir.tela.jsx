@@ -25,7 +25,7 @@ export class BuscarProvaParaCorrigirScreen extends Component{
       per_page: dadosDaResponse[2],
       current_page: dadosDaResponse[3]
     }, () => {
-      this.buscarProvas()
+      //this.buscarProvas()
     })
   }
 
