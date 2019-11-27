@@ -27,14 +27,14 @@ export class CorrigirProvaScreen extends Component {
         prova: await retornarProvaParaCorrigir(this.state.idProva)
       }, () => {
         const quantidadeDeObjetos = (this.state.prova.questoesDissertativas.length + this.state.prova.questoesTecnicas.length)
-  
+
         const newArray = [...new Array(quantidadeDeObjetos)]
         const arrayCorrecoes = newArray.map(() => ({ ...objetoCorrecaoProva }))
-  
+
         this.setState({
           arrayCorrecoes
         })
-  
+
         this.lengthDissertativas = this.state.prova.questoesDissertativas.length
         this.lengthTecnicas = this.state.prova.questoesTecnicas.length
       })

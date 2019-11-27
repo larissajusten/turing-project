@@ -4,6 +4,7 @@ import { retornaQuestaoTecnicaParaBaixar } from '../../../services/index'
 import './corrigirUnicaResposta.style.css'
 import { BlocoResposta } from '../../BlocoResposta/blocoResposta.component'
 
+const type = 'text/plain';
 export class CorrigirUnicaResposta extends Component {
   constructor(props){
     super(props)
@@ -22,7 +23,7 @@ export class CorrigirUnicaResposta extends Component {
 
   downloadRespostaFile = () => {
     const element = document.createElement("a");
-    const file = new Blob([this.props.resposta], {type: 'text/plain'});
+    const file = new Blob([this.props.resposta], {type: type});
     element.href = URL.createObjectURL(file);
     element.download = `resposta${this.props.idResposta}.txt`;
     document.body.appendChild(element);
@@ -31,7 +32,7 @@ export class CorrigirUnicaResposta extends Component {
 
   downloadTestesFile = () => {
     const element = document.createElement("a");
-    const file = new Blob([this.state.questaoDownload.testeBase], {type: 'text/plain'});
+    const file = new Blob([this.state.questaoDownload.testeBase], {type: type});
     element.href = URL.createObjectURL(file);
     element.download = `teste${this.props.idResposta}.txt`;
     document.body.appendChild(element);
@@ -40,7 +41,7 @@ export class CorrigirUnicaResposta extends Component {
 
   downloadRespostaBaseFile = () => {
     const element = document.createElement("a");
-    const file = new Blob([this.state.questaoDownload.respostaBase], {type: 'text/plain'});
+    const file = new Blob([this.state.questaoDownload.respostaBase], {type: type});
     element.href = URL.createObjectURL(file);
     element.download = `respostaBase${this.props.idResposta}.txt`;
     document.body.appendChild(element);
@@ -88,9 +89,8 @@ export class CorrigirUnicaResposta extends Component {
               tipo={this.props.tipo}
               value={this.props.nota}
               onChange={this.props.handleChange}/>
-            
           </div>
-          
+
         </div>
         {
               this.props.tipo === 'TECNICA' &&

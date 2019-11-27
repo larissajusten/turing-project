@@ -29,6 +29,8 @@ export class GraficoTecnologias extends Component {
   renderGraficoTecnologias() {
     if (this.state.dataTecnologias.length > 0) {
       return <GraficoPizza cor="#28a745" data={this.state.dataTecnologias} />
+    }else{
+      return <h1 className="titulo-crie"> Não há tecnologias cadastradas </h1>
     }
   }
 

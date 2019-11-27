@@ -7,7 +7,7 @@ export class BuscarQuestao extends Component {
   render() {
     return(
       <>
-        <div className="input-principal width-tipo">
+        <div className="input-principal width-select-container">
           <label className="label">Tipo</label>
           <Select
             name="tipo"
@@ -17,10 +17,10 @@ export class BuscarQuestao extends Component {
             onChange={this.props.handleChange}
             object={this.props.tipos}
             placeholder="Selecione o tipo"
-            questoesWidth="width-tipo"/>
+            questoesWidth="width-tipo-select"/>
       </div>
 
-      <div className="input-principal width-especificidade">
+      <div className="input-principal width-select-container especificidade">
         <label className="label">Especificidade</label>
         <Select
           name="especificidade"
@@ -30,10 +30,10 @@ export class BuscarQuestao extends Component {
           onChange={this.props.handleChange}
           object={this.props.especificidades}
           placeholder="Selecione a especificidade"
-          questoesWidth="width-especificidade"/>
+          questoesWidth="width-especificidade-select"/>
       </div>
 
-      <div className="input-principal width-nivel">
+      <div className="input-principal width-select-container">
         <label className="label">Nivel</label>
         <Select
           name="nivel"
@@ -43,7 +43,7 @@ export class BuscarQuestao extends Component {
           onChange={this.props.handleChange}
           object={this.props.niveis}
           placeholder="Selecione o nível"
-          questoesWidth="width-nivel"/>
+          questoesWidth="width-nivel-select"/>
       </div>
     </>
     )

@@ -4,16 +4,20 @@
   height: 100px;
   border: 1px solid rgba(249, 243, 243, 0.92);
   border-radius: var(--border-radius);
-  padding: 2% 10%;
+  padding: 1.6% 3%;
   display: flex;
   flex-direction: row;
   margin-bottom: 3%;
   background-color: rgba(247, 245, 245, 0.6);
-  cursor: pointer;
+}
+
+.container-card:focus {
+	border-bottom: 1px solid #d7d7d7;
+	outline: none;
 }
 
 .container-card:hover {
-  box-shadow: 0px 0px 5px 0px var(--orange-color);
+  border: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .content-card {
@@ -24,6 +28,19 @@
   text-align: start;
 }
 
-.content-card span{
-  margin-bottom: 2px;
+.content-card div{
+  display: flex;
+  align-items: center;
+}
+
+.content-card div span:first-child{
+  margin-right: 5px;
+  font-weight: 500;
+}
+
+.tamanho-botao {
+  align-self: center;
+  font-size: 0.8em;
+  line-height: 5px;
+  padding: 10px 10px;
 }

@@ -57,7 +57,8 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
               informacaoUm={item.nomeCandidato}
               informacaoDois={item.emailCandidato}
               informacaoTres={item.tempoDeDuracaoDaProva}
-              onClick={this.handleClickGerarPDFProva} />
+              onClick={this.handleClickGerarPDFProva}
+              nomeBotao="RELATÓRIO"/>
           })
         }
       </>

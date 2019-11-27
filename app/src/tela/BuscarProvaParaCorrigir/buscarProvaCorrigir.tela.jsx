@@ -72,7 +72,8 @@ export class BuscarProvaParaCorrigirScreen extends Component{
                 informacaoUm={item.nomeCandidato}
                 informacaoDois={item.emailCandidato}
                 informacaoTres={item.tempoDeDuracaoDaProva}
-                onClick={this.onClickCorrigirProva}/>
+                onClick={this.onClickCorrigirProva}
+                nomeBotao="CORRIGIR"/>
         })
       }
       </>

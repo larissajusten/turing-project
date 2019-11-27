@@ -10,8 +10,8 @@ export const MyDocument = (props) => (
     <Page size="A4" style={styles.page}>
       <View style={styles.section}>
         <Text style={styles.titulo}>Relatório da prova de {props.prova.nomeCandidato}</Text>
-        <Informacoes 
-          nomeCandidato={props.prova.nomeCandidato} 
+        <Informacoes
+          nomeCandidato={props.prova.nomeCandidato}
           emailCandidato={props.prova.emailCandidato}
           data={props.prova.dataCriacao}
           duracao={props.prova.tempoDeDuracaoDaProva}
