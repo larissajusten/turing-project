@@ -23,7 +23,7 @@ export class CardBuscarQuestao extends PureComponent {
                 </div>
 
                 <div className="infos-postagem">
-                    <span className="nivel-questao" style={{borderColor: this.returnColor()}}>{this.props.nivel}</span>
+                    <span className="nivel-questao" style={{borderColor: this.returnColor(), backgroundColor: this.returnColor() }}>{this.props.nivel}</span>
                     <span>{(new Date(this.props.data)).toLocaleString()}
                     </span>
                 </div>
