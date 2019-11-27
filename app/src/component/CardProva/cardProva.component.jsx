@@ -21,7 +21,7 @@ export class CardProva extends Component {
             <span>{this.props.informacaoTres}</span>
           </div>
         </div>
-        <BotaoPrincipal classe="tamanho-botao" nome="CORRIGIR" onClick={(event) => this.props.onClick(event, this.props.id)}/>
+        <BotaoPrincipal classe="tamanho-botao" nome={this.props.nomeBotao} onClick={(event) => this.props.onClick(event, this.props.id)}/>
       </div>
     )
   }
