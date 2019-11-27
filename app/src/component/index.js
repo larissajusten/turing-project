@@ -14,7 +14,7 @@ export { BotaoAlternativa } from './BotaoAlternativa/botaoAlternativa.component.
 /* Blocos uteis */
 export { BlocoVisualizar } from './BlocoVisualizar/blocoVisualizar.component.jsx'
 export { BlocoQuestao } from './BlocoQuestao/blocoQuestao.component.jsx'
-export { CardBuscarQuestao } from './CardQuestao/cardQuestao.component.jsx'
+export { CardBuscarQuestao } from './CardQuestao/CardQuestaoUnica/cardQuestao.component.jsx'
 export { CardProva } from './CardProva/cardProva.component.jsx'
 
 /* Blocos para renderizar varias vezes as questões */

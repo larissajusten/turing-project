@@ -5,23 +5,23 @@ export class Paginacao extends PureComponent {
   render(){
     return(
       <div className="container-paginacao">
-        <div className="bloco-paginacao" onClick={
+        <button className="draw" onClick={
                             this.props.paginaAtual > 0
                             ?
                             () => this.props.onClickVoltar(this.props.paginaAtual - 1)
                             : undefined }>
-          <span>&laquo;</span>
+          &laquo;
+        </button>
+        <div className="bloco-principal-paginacao">
+          {this.props.paginaAtual+1}
         </div>
-        <div className="bloco-paginacao bloco-laranja">
-          <span>{this.props.paginaAtual+1}</span>
-        </div>
-        <div className="bloco-paginacao" onClick={
+        <button className="draw" onClick={
                             this.props.totalPaginas > this.props.paginaAtual+1
                             ?
                             () => this.props.onClickVoltar(this.props.paginaAtual + 1)
                             : undefined }>
-          <span>&#187;</span>
-        </div>
+          <div>&#187;</div>
+        </button>
       </div>
     )
   }
