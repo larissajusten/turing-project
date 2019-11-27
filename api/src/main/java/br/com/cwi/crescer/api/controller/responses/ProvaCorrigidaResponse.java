@@ -1,6 +1,7 @@
 package br.com.cwi.crescer.api.controller.responses;
 
 
+import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,5 +40,9 @@ public class ProvaCorrigidaResponse {
     private List<QuestaoMultiplaEscolhaComRespostaResponse> questoesMultiplaEscolha;
 
     private List<QuestaoTecnicaComRespostaResponse> questoesTecnicas;
+
+    private List<Especificidade> especificidades;
+
+    private int numeroDeQuestoes;
 
 }

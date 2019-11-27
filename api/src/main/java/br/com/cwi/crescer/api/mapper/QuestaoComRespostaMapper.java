@@ -26,6 +26,7 @@ public class QuestaoComRespostaMapper {
         questaoDissertativaComRespostaResponse.setComentario(questao.getComentario());
         questaoDissertativaComRespostaResponse.setQuestao(questao.getQuestaoDissertativa().getQuestao());
         questaoDissertativaComRespostaResponse.setResposta(questao.getResposta());
+        questaoDissertativaComRespostaResponse.setEspecificidade(questao.getQuestaoDissertativa().getEspecificidade());
 
         return questaoDissertativaComRespostaResponse;
     }
@@ -35,11 +36,12 @@ public class QuestaoComRespostaMapper {
         QuestaoMultiplaEscolhaComRespostaResponse questaoMultiplaEscolhaComRespostaResponse =
                 new QuestaoMultiplaEscolhaComRespostaResponse();
 
-        questaoMultiplaEscolhaComRespostaResponse.setIdQuestao(questao.getQuestaoMultiplaEscolha().getId());
-        questaoMultiplaEscolhaComRespostaResponse.setQuestao(questao.getQuestaoMultiplaEscolha().getQuestao());
         questaoMultiplaEscolhaComRespostaResponse.setNota(retornarNotaDaQuestaoMultiplaEscolhaService
                 .notaQuestaoMultiplaEscolha(questao.getQuestaoMultiplaEscolha().getNivelDeDificuldade()));
+        questaoMultiplaEscolhaComRespostaResponse.setIdQuestao(questao.getQuestaoMultiplaEscolha().getId());
+        questaoMultiplaEscolhaComRespostaResponse.setQuestao(questao.getQuestaoMultiplaEscolha().getQuestao());
         questaoMultiplaEscolhaComRespostaResponse.setResposta(questao.getAlternativaMultiplaEscolha());
+        questaoMultiplaEscolhaComRespostaResponse.setEspecificidade(questao.getQuestaoMultiplaEscolha().getEspecificidade());
 
         return questaoMultiplaEscolhaComRespostaResponse;
 
@@ -55,6 +57,7 @@ public class QuestaoComRespostaMapper {
         questaoTecnicaComRespostaResponse.setComentario(questao.getComentario());
         questaoTecnicaComRespostaResponse.setQuestao(questao.getQuestaoTecnica().getQuestao());
         questaoTecnicaComRespostaResponse.setResposta(questao.getResposta());
+        questaoTecnicaComRespostaResponse.setEspecificidade(questao.getQuestaoTecnica().getEspecificidade());
 
         return questaoTecnicaComRespostaResponse;
     }
