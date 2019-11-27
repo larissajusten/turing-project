@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, Notificacao } from '../../component/index'
 import { criarProva,
         incluirDissertativas,
@@ -8,7 +9,6 @@ import { criarProva,
         retornarNiveisDeDificuldade,
         retornarTipoDeQuestao,
         enviarEmail } from '../../services/index'
-import { Redirect } from 'react-router-dom'
 import './cadastroProva.style.css'
 
 const mensagemSucessoNotificacao = 'Questões adicionadas com sucesso'
@@ -95,17 +95,26 @@ export class CadastrarProvaScreen extends Component {
 
   handleClickEnviarProva = async (event) => {
     event.preventDefault()
-
-    localStorage.setItem('idProva', this.state.idProva)
-    await enviarEmail(this.state.emailDoCandidato)
-    this.setState({
-      deveRedirecionarParaDashboard: true
-    })
+    try {
+      await enviarEmail(this.state.emailDoCandidato)
+      Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
+      this.setState({
+        deveRedirecionarParaDashboard: true
+      })
+    }
+    catch (error) {
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
   }
 
   handleClickVisualizarProva = (event) => {
     event.preventDefault()
-    localStorage.setItem('idProva', this.state.idProva)
     this.setState({
       deveRedirecionarParaVisualizarProva: true
     })
@@ -268,11 +277,11 @@ export class CadastrarProvaScreen extends Component {
 
   render() {
     if (this.state.deveRedirecionarParaVisualizarProva) {
-      return <Redirect to="/visualizar-prova" />
+      return <Redirect to={`/visualizar-prova/${this.state.idProva}`} />
     }
 
     if (this.state.deveRedirecionarParaDashboard) {
-      return <Redirect to="/" />
+      return <Redirect to="/dashboard" />
     }
 
     return (

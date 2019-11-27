@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom'
 import './visualizarProva.style.css'
-import { MostrarQuestaoUnica, MostrarMultiplasRespostas, BlocoVisualizar, Notificacao } from '../../component/index'
+import { MostrarQuestaoUnica,
+        MostrarMultiplasRespostas, 
+        BlocoVisualizar, 
+        Notificacao,
+        BotaoPrincipal } from '../../component/index'
 import { retornaProva,
           removerQuestaoDissertativa,
           removerQuestaoTecnica,
-          removerQuestaoMultiplaEscolha } from '../../services/index'
+          removerQuestaoMultiplaEscolha,
+          enviarEmail } from '../../services/index'
 
 const mensagemSucessoNotificacao = 'Questão removida com sucesso'
 
@@ -13,7 +19,7 @@ export class VisualizarProvaScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      idProva: localStorage.getItem('idProva'),
+      idProva: this.props.match.params.idProva,
       prova: null,
       semProvaParaMostrar: true
     }
@@ -23,6 +29,13 @@ export class VisualizarProvaScreen extends Component {
     localStorage.removeItem('idProva')
     this.setState({
       prova: await retornaProva(this.state.idProva)
+    })
+  }
+
+  handleClickVoltarProva = async (event) => {
+    event.preventDefault()
+    this.setState({
+      deveRedirecionarParaDashboard: true
     })
   }
 
@@ -128,6 +141,9 @@ export class VisualizarProvaScreen extends Component {
   }
 
   render() {
+    if (this.state.deveRedirecionarParaDashboard) {
+      return <Redirect to="/" />
+    }
     if (this.state.prova){
       return (
         <div className="container-tela">
@@ -162,6 +178,9 @@ export class VisualizarProvaScreen extends Component {
           {this.renderQuestoesDissertativas()}
           {this.renderQuestoesTecnicas()}
           {this.renderMultiplasEscolhas()}
+          <div className="container-botao container-botao-prova">
+            <BotaoPrincipal nome="Voltar" onClick={this.handleClickVoltarProva}/>
+          </div>
         </div>
       )
     }else{

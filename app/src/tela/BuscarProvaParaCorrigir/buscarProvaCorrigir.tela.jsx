@@ -12,6 +12,7 @@ export class BuscarProvaParaCorrigirScreen extends Component{
       totalPaginas: null,
       per_page: null,
       current_page: 0,
+      idProvaParaCorrigir: 0,
       deveRedirecionarParaCorrecao: false
     }
   }
@@ -44,17 +45,16 @@ export class BuscarProvaParaCorrigirScreen extends Component{
 
   onClickCorrigirProva = (event, idProva) => {
     event.preventDefault()
-    localStorage.setItem('idProvaParaCorrigir', idProva)
     this.setState({
-      deveRedirecionarParaCorrecao: true
-    })
+      idProvaParaCorrigir: idProva
+    }, () => { this.setState({ deveRedirecionarParaCorrecao: true }) })
   }
 
   buscaPagina = async pageNumber => {
     let dadosDaResponse = await retornaProvasParaCorrecao(pageNumber)
 
     this.setState({
-      questoes: dadosDaResponse[0],
+      provas: dadosDaResponse[0],
       total: dadosDaResponse[1],
       per_page: dadosDaResponse[2],
       current_page: dadosDaResponse[3],
@@ -67,12 +67,12 @@ export class BuscarProvaParaCorrigirScreen extends Component{
       {
         this.state.provas.map((item, key) => {
           return <CardProva
-                  key={key}
-                  id={item.id}
-                  informacaoUm={item.nomeCandidato}
-                  informacaoDois={item.emailCandidato}
-                  informacaoTres={item.tempoDeDuracaoDaProva}
-                  onClick={this.onClickCorrigirProva}/>
+                key={key}
+                id={item.id}
+                informacaoUm={item.nomeCandidato}
+                informacaoDois={item.emailCandidato}
+                informacaoTres={item.tempoDeDuracaoDaProva}
+                onClick={this.onClickCorrigirProva}/>
         })
       }
       </>
@@ -99,7 +99,7 @@ export class BuscarProvaParaCorrigirScreen extends Component{
 
   render() {
     if(this.state.deveRedirecionarParaCorrecao){
-      return <Redirect to="/corrigir-prova"/>
+      return <Redirect to={`/corrigir-prova/${this.state.idProvaParaCorrigir}`}/>
     }
 
     return(

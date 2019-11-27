@@ -29,9 +29,9 @@ function App() {
 					<Route path="/cadastrar-questao" component={CadastrarQuestaoScreen}/>
 					<Route path="/buscar-questao" component={BuscarQuestaoScreen}/>
 					<Route path="/cadastrar-prova" component={CadastrarProvaScreen}/>
-					<Route path="/visualizar-prova" component={VisualizarProvaScreen}/>
+					<Route path="/visualizar-prova/:idProva" component={VisualizarProvaScreen}/>
 					<Route path="/buscar-provas" component={BuscarProvaParaCorrigirScreen}/>
-					<Route path="/corrigir-prova" component={CorrigirProvaScreen}/>
+					<Route path="/corrigir-prova/:idProva" component={CorrigirProvaScreen}/>
 					<Route path="/provas-corrigidas" component={BuscarProvaJaCorrigidaScreen}/>
 					<Route path="/prova-PDF" component={ProvaPDFScreen}/>
 					<Footer/>

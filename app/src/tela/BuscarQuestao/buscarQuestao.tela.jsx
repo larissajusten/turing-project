@@ -179,14 +179,14 @@ export class BuscarQuestaoScreen extends Component {
               handleChange={this.handleChange} />
           </div>
 
+          <div className="container-botao">
+            <BotaoPrincipal nome="ENVIAR" onClick={this.handleClickEnviarPesquisa} />
+          </div>
+
           {
             this.state.questoes &&
               this.renderPesquisa()
           }
-
-          <div className="container-botao">
-            <BotaoPrincipal nome="ENVIAR" onClick={this.handleClickEnviarPesquisa} />
-          </div>
         </>
       )
     } else {
