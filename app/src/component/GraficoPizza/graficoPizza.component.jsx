@@ -69,8 +69,8 @@ export class GraficoPizza extends Component {
 
 	render() {
 		return (
-			<PieChart 
-				width={420} 
+			<PieChart
+				width={420}
 				height={300}
 				margin={{ top: 5, right: 5, left: 5, bottom: 30 }}>
 				<Pie

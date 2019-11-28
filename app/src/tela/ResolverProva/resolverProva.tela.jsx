@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react'
+import React, { Component } from 'react'
 import './resolverProva.style.css';
 import { retornaProvaPorToken,
           iniciarProva,
@@ -12,7 +12,8 @@ import { ProvaModal,
 const objetoResposta = { tipoDeQuestao: '', idQuestao: '', resposta: '' }
 let hidden = null;
 let visibilityChange = null;
-if (typeof document.hidden !== 'undefined') { // Opera 12.10 e Firefox 18 support 
+
+if (typeof document.hidden !== 'undefined') {
   hidden = 'hidden';
   visibilityChange = 'visibilitychange';
 } else if (typeof document.msHidden !== 'undefined') {
@@ -79,7 +80,7 @@ export class ResolverProvaScreen extends Component {
         modalFinalizarProva: true,
         count: 0
       })
-    } 
+    }
   }
 
   contador = async () => {

@@ -21,7 +21,7 @@
 }
 
 .content-card {
-  width: 100%;
+  width: 70%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -33,14 +33,31 @@
   align-items: center;
 }
 
+.content-card div div{
+  display: flex;
+  margin-left: 10px;
+}
+
 .content-card div span:first-child{
   margin-right: 5px;
   font-weight: 500;
 }
 
+.container-linguagens-card-prova {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-flow: row-reverse wrap;
+}
+
+.imagem-linguagem-card-prova {
+  height: 50%;
+}
+
 .tamanho-botao {
-  align-self: center;
+  align-self: initial;
   font-size: 0.8em;
   line-height: 5px;
   padding: 10px 10px;
 }
+

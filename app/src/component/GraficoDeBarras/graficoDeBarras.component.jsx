@@ -2,23 +2,9 @@ import React, { PureComponent } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 const label = (props) => {
-  if(props[0].especificidade){
-    return "javascript"
-  }else if(props[1].especificidade){
-    return "java"
-  }else if(props[2].especificidade){
-    return "c"
-  }else if(props[3].especificidade){
-    return "php"
-  }else if(props[4].especificidade){
-    return "python"
-  }else if(props[5].especificidade){
-    return "ruby"
-  }else if(props[6].especificidade){
-    return "typescript"
-  }else if(props[7].especificidade){
-    return "swift"
-  }
+  props.map((linguagem, key) => {
+    return linguagem
+  })
 }
 
 export class GraficoDeBarras extends PureComponent {
@@ -51,7 +37,7 @@ export class GraficoDeBarras extends PureComponent {
       },
       {
         name: this.props.tecnologias[5].especificidade.toLowerCase(),
-        candidatos: this.props.tecnologias[5].quantosUsuarios, 
+        candidatos: this.props.tecnologias[5].quantosUsuarios,
         amt: 2390
       },
       {
