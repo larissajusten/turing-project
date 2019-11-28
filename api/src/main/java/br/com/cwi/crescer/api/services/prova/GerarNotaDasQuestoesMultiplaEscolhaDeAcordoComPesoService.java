@@ -46,11 +46,7 @@ public class GerarNotaDasQuestoesMultiplaEscolhaDeAcordoComPesoService {
             divisor += mutiplicarODivisorPorNivelDeDificuldade(quantidadeQuestoesNivelDificil, NivelDeDificuldade.DIFICIL);
         }
 
-        if (nota != 0 && divisor != 0){
-            return nota / divisor;
-        } else {
-            return 0;
-        }
+        return (nota != 0 && divisor != 0) ? nota / divisor : 0;
     }
 
     private int mutiplicarODivisorPorNivelDeDificuldade(int divisor, NivelDeDificuldade nivelDeDificuldade) {

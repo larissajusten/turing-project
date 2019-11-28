@@ -39,13 +39,7 @@ public class GerarNotaDasQuestoesTecnicaDeAcordoComPesoService {
             divisor += mutiplicarODivisorPorNivelDeDificuldade(notaQuestoesDificeis.getQuantidadeDeQuestoes(), NivelDeDificuldade.DIFICIL);
         }
 
-        if(nota != 0 && divisor != 0){
-            return nota / divisor;
-        } else {
-            return 0;
-        }
-
-
+        return (nota != 0 && divisor != 0) ? nota / divisor : 0;
     }
 
     private double calcularNotaPorNivelDeDificuldade(double nota, NivelDeDificuldade nivelDeDificuldade) {
