@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect } from 'react'
 import './resolverProva.style.css';
 import { retornaProvaPorToken,
           iniciarProva,
@@ -10,7 +10,18 @@ import { ProvaModal,
         BotaoPrincipal } from '../../component/index'
 
 const objetoResposta = { tipoDeQuestao: '', idQuestao: '', resposta: '' }
-
+let hidden = null;
+let visibilityChange = null;
+if (typeof document.hidden !== 'undefined') { // Opera 12.10 e Firefox 18 support 
+  hidden = 'hidden';
+  visibilityChange = 'visibilitychange';
+} else if (typeof document.msHidden !== 'undefined') {
+  hidden = 'msHidden';
+  visibilityChange = 'msvisibilitychange';
+} else if (typeof document.webkitHidden !== 'undefined') {
+  hidden = 'webkitHidden';
+  visibilityChange = 'webkitvisibilitychange';
+}
 export class ResolverProvaScreen extends Component {
   constructor(props){
     super(props)
@@ -25,15 +36,19 @@ export class ResolverProvaScreen extends Component {
       tiposDeQuestoes: [],
       resposta: null,
       statusProva: null,
-      arrayRespostas: [objetoResposta]
+      arrayRespostas: [objetoResposta],
+      actions: []
     }
     this.lengthDissertativas = 0
     this.lengthTecnicas = 0
   }
 
+
+
   async componentDidMount() {
     localStorage.setItem('accessToken', this.state.token)
     let prova = await retornaProvaPorToken(this.state.token)
+    document.addEventListener(visibilityChange, this.handleVisibilityChange, false)
     this.setState({
       prova: prova,
       tiposDeQuestoes: await retornarTipoDeQuestao()
@@ -55,6 +70,16 @@ export class ResolverProvaScreen extends Component {
       this.lengthDissertativas = this.state.prova.questoesDissertativas.length
       this.lengthTecnicas = this.state.prova.questoesTecnicas.length
     })
+  }
+
+  handleVisibilityChange = () => {
+    if (document[hidden]) {
+      this.setState({
+        iniciarProva: false,
+        modalFinalizarProva: true,
+        count: 0
+      })
+    } 
   }
 
   contador = async () => {
