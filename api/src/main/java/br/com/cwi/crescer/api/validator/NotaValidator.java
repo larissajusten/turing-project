@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.validator;
 
 import br.com.cwi.crescer.api.exception.prova.NotaException;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component

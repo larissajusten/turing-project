@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import javax.mail.MessagingException;
-import javax.mail.internet.MimeMessage;
 import java.time.LocalDateTime;
 
 @Service
@@ -52,9 +50,9 @@ public class EnviarEmailService {
         String nomeCandidato = prova.getNomeCandidato();
         int tempoIniciar = prova.getTempoParaInicioProva();
 
-        LocalDateTime agora = LocalDateTime.now().plusHours(tempoIniciar);
-        String dia = agora.getDayOfMonth() + "/" + agora.getMonthValue() + "/" + agora.getYear();
-        String hora = agora.getHour() + ":" + agora.getMinute() + ":" + agora.getMinute();
+        LocalDateTime prazo = LocalDateTime.now().plusHours(tempoIniciar);
+        String dia = prazo.getDayOfMonth() + "/" + prazo.getMonthValue() + "/" + prazo.getYear();
+        String hora = prazo.getHour() + ":" + prazo.getMinute() + ":" + prazo.getMinute();
 
         int tempoDuracao = prova.getTempoDeDuracaoDaProva();
         String token = jwt.generateToken(prova);

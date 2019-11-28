@@ -79,7 +79,7 @@ public class OAuth2ClientContextConfig {
 //            Set authorities = new HashSet<>();
 //            authorities.add(new SimpleGrantedAuthority("ROLE_KKKKKKKKK"));
 
-            usuario = new LoggedUser(colaborador.getId(), matricula, login, nome, email);
+//            usuario = new LoggedUser(colaborador.getId(), matricula, login, nome, email);
 //            usuario = new LoggedUser(colaborador.getId(), matricula, login, nome, email, Sets.newHashSet(role));
         } catch (Exception e) {
             log.error("Erro no conversão", e);
