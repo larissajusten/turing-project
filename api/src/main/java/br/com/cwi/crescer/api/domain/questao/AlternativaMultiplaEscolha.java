@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.domain.questao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
@@ -23,6 +24,7 @@ public class AlternativaMultiplaEscolha {
     @Type(type = "yes_no")
     private boolean respostaCorreta = false;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "ID_QUESTAO", referencedColumnName = "id")
     private QuestaoMultiplaEscolha questaoMultiplaEscolha;
