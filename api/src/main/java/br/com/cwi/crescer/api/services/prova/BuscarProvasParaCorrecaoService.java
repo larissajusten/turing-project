@@ -2,6 +2,7 @@ package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.controller.responses.ProvaParaCorrecaoResponse;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
+import br.com.cwi.crescer.api.mapper.ProvaMapper;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,13 @@ public class BuscarProvasParaCorrecaoService {
     private ProvaRepository provaRepository;
 
     @Autowired
-    private ModelMapper mapper;
+    private ProvaMapper mapper;
+
+
 
     public Page<ProvaParaCorrecaoResponse> buscar(Pageable pageable) {
         return provaRepository.findAllByStatusEquals(pageable, StatusProva.AGUARDANDO_CORRECAO)
-                .map(prova -> mapper.map(prova, ProvaParaCorrecaoResponse.class));
+                .map(prova -> mapper.paraCorrigir(prova));
     }
 
 }
