@@ -43,8 +43,8 @@ export class VisualizarProvaScreen extends Component {
   handleClickEnviarProva = async (event) => {
     event.preventDefault()
     try {
-      await enviarEmail(this.state.prova.emailCandidato)
       Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
+      await enviarEmail(this.state.prova.emailCandidato)
       this.setState({
         deveRedirecionarParaDashboard: true
       })
@@ -63,8 +63,8 @@ export class VisualizarProvaScreen extends Component {
   handleClickCancelarProva = async(event) => {
     event.preventDefault()
     try {
-      await cancelarProva(this.state.idProva)
       Notificacao('Sucesso', 'Prova cancelada com sucesso', 'success')
+      await cancelarProva(this.state.idProva)
       this.setState({
         deveRedirecionarParaDashboard: true
       })
@@ -220,9 +220,9 @@ export class VisualizarProvaScreen extends Component {
           {this.renderQuestoesTecnicas()}
           {this.renderMultiplasEscolhas()}
           <div className="container-botao container-botao-prova">          
-            <BotaoPrincipal nome="Enviar por e-mail" onClick={this.handleClickEnviarProva}/>
-            <BotaoPrincipal nome="Cancelar" onClick={this.handleClickCancelarProva} />
-            <BotaoPrincipal nome="Sair" onClick={this.handleClickVoltarProva}/>
+            <BotaoPrincipal nome="ENVIAR POR E-MAIL" onClick={this.handleClickEnviarProva}/>
+            <BotaoPrincipal nome="CANCELAR" onClick={this.handleClickCancelarProva} />
+            <BotaoPrincipal nome="SAIR" onClick={this.handleClickVoltarProva}/>
           </div>
         </div>
       )

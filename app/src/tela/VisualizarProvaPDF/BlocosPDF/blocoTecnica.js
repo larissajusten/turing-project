@@ -5,6 +5,9 @@ import { styles, BlocoComentario, BlocoNota } from './index'
 export const BlocoQuestaoTecnica = (props) => (
   props.questoes.map((item, key) => {
     return <View style={styles.containerUnicaResposta} key={key}>
+            <View style={styles.containerEspecificidade}>
+              <Text style={styles.especificidade}>{item.especificidade}</Text>
+            </View>
             <View style={styles.containerTipo}>
               <Text style={styles.tipo}>TÉCNICA</Text>
             </View>

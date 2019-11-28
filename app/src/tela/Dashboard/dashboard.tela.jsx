@@ -9,6 +9,7 @@ import { Notificacao,
 					GraficoMultipla,
 					GraficoNota,
 					GraficoDeBarras } from '../../component/index';
+import { BubbleLoader } from 'react-css-loaders';
 import './dashboard.style.css';
 
 const mensagemSucessoNotificacao = 'Busca bem sucedida';
@@ -20,7 +21,8 @@ export class DashboardScreen extends Component {
 			especificidadeEscolhida: '',
 			notasDissertativas: [],
 			notasTecnicas: [],
-			notasMultipla: []
+			notasMultipla: [],
+			isLoading: false
 		};
 	}
 
@@ -33,14 +35,15 @@ export class DashboardScreen extends Component {
 
 	handleChange = async (event) => {
 		const { name, value } = event.target;
-		this.setState({ [name]: value }, async () => {
+		this.setState({ [name]: value, isLoading: true }, async () => {
 			let notasMultiplas = await retornarResultadosMultipla(this.state.especificidadeEscolhida)
 			let notasDissertativas = await retornarResultadosDissertativa(this.state.especificidadeEscolhida)
 			let notasTecnicas = await retornarResultadosTecnica(this.state.especificidadeEscolhida)
 			this.setState({
 				notasMultipla: notasMultiplas,
 				notasDissertativas: notasDissertativas,
-				notasTecnicas: notasTecnicas
+				notasTecnicas: notasTecnicas,
+				isLoading: false
 			});
 		});
 	}
@@ -77,21 +80,30 @@ export class DashboardScreen extends Component {
 	}
 
 	renderGraficos() {
-		return (
-			<div className="container-graficos-questoes">
-				<div className="container-nivel">
-					<h6 className="nivel facil">Fácil</h6>
-					<h6 className="nivel medio">Medio</h6>
-					<h6 className="nivel dificil">Difícil</h6>
+		return(
+			<>
+			{this.state.isLoading ? 
+				 <BubbleLoader color="#FBB041" size={5}/>
+					:
+				<div className="container-graficos-questoes">
+					<div className="container-nivel">
+						<h6 className="nivel facil">Fácil</h6>
+						<h6 className="nivel medio">Medio</h6>
+						<h6 className="nivel dificil">Difícil</h6>
+					</div>
+
+					<h1 className="titulo-grafico">Multiplas escolhas</h1>
+					<div className="graficos">{this.renderMultiplasEscolhas(this.state.notasMultipla)}</div>
+
+					<h1 className="titulo-grafico">Dissertativas</h1>
+					<div className="graficos">{this.renderTecnicasEDissertativas(this.state.notasDissertativas)}</div>
+
+					<h1 className="titulo-grafico">Técnicas</h1>
+					<div className="graficos">{this.renderTecnicasEDissertativas(this.state.notasTecnicas)}</div>
 				</div>
-				<h1 className="titulo-grafico">Multiplas escolhas</h1>
-				<div className="graficos">{this.renderMultiplasEscolhas(this.state.notasMultipla)}</div>
-				<h1 className="titulo-grafico">Dissertativas</h1>
-				<div className="graficos">{this.renderTecnicasEDissertativas(this.state.notasDissertativas)}</div>
-				<h1 className="titulo-grafico">Técnicas</h1>
-				<div className="graficos">{this.renderTecnicasEDissertativas(this.state.notasTecnicas)}</div>
-			</div>
-		);
+				}
+			</>
+		)
 	}
 
 	renderContainerComponent() {

@@ -4,7 +4,7 @@ import './blocoResposta.style.css'
 export class BlocoResposta extends Component {
   render() {
     return(
-        <div className="container-resposta">
+      <div className="container-resposta">
       <div className={`container-pergunta ${this.props.widthpergunta}`}>
         <label className="label">
             <h3><strong>{this.props.questaoNome}</strong></h3>

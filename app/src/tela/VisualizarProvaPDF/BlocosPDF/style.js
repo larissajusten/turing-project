@@ -176,13 +176,25 @@ export const styles = StyleSheet.create({
   },
   containerTipo: {
     position: 'absolute',
-    top: 8,
-    right: 130,
+    top: 25,
+    right: 8,
     borderColor: 'black',
     borderStyle: "solid",
     borderWidth: 1,
     borderRadius: borderRadiusBloquinhos,
     width: 90,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  containerTipoMultipla: {
+    position: 'absolute',
+    top: 25,
+    right: 8,
+    borderColor: 'black',
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderRadius: borderRadiusBloquinhos,
+    width: 105,
     alignItems: 'center',
     justifyContent: 'center'
   },

@@ -48,19 +48,19 @@ export class MostrarMultiplasRespostas extends Component {
             <div className="container-especificacoes">
               <div className="container-especificacao-mult">
                 <label className="especificacao-nome">Nivel</label>
-                <div className="especificacao mult">{this.props.nivel}</div>
+                <div className="especificacao">{this.props.nivel}</div>
               </div>
               </div>
 
           <div className="container-especificacoes">
               <div className="container-especificacao-mult">
                 <label className="especificacao-nome">Resposta correta</label>
-                <div className="especificacao mult">{this.props.respostaCorreta}</div>
+                <div className="especificacao">{this.props.respostaCorreta}</div>
               </div>
 
               <div className="container-especificacao-mult">
                 <label className="especificacao-nome">Especificidade</label>
-                <div className="especificacao mult">{this.props.especificidade}</div>
+                <div className="especificacao">{this.props.especificidade}</div>
               </div>
             </div>
         </div>

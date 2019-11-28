@@ -12,7 +12,7 @@ export class GraficoMultipla extends Component {
 		};
   }
 
-	componentDidMount() {
+	componentDidUpdate() {
 		if(this.state.errosEAcertos !== this.props.notas){
 			this.setState({
 				errosEAcertos: this.props.notas
