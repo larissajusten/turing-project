@@ -4,6 +4,7 @@ import { styles, BlocoComentario } from './index'
 
 export const BlocoQuestaoMultiplaEscolha = (props) => (
   props.questoes.map((item, key) => {
+    console.log(item)
     return <View style={styles.container} key={key}>
             <View style={styles.containerTipo}>
               <Text style={styles.tipo}>MULTIPLA ESCOLHA</Text>
@@ -12,20 +13,20 @@ export const BlocoQuestaoMultiplaEscolha = (props) => (
               <Text style={styles.questao}>{item.questao}</Text>
             </View>
             <View style={styles.containerRespostaMultiplaEscolha}>
-              <Text style={item.alternativaA.respostaCorreta ? styles.respostaCorreta : styles.respostaMultiplaEscolha}>
+              <Text style={item.resposta[0].respostaCorreta ? styles.respostaCorreta : styles.respostaMultiplaEscolha}>
                 {`1. ${item.alternativaA.resposta}`}
               </Text>
-              <Text style={item.alternativaB.respostaCorreta ? styles.respostaCorreta : styles.respostaMultiplaEscolha}>
-                {`1. ${item.alternativaB.resposta}`}
+              <Text style={item.resposta.respostaCorreta ? styles.respostaCorreta : styles.respostaMultiplaEscolha}>
+                {`2. ${item.alternativaB.resposta}`}
               </Text>
-              <Text style={item.alternativaC.respostaCorreta ? styles.respostaCorreta : styles.respostaMultiplaEscolha}>
-                {`1. ${item.alternativaC.resposta}`}
+              <Text style={item.resposta.respostaCorreta ? styles.respostaCorreta : styles.respostaMultiplaEscolha}>
+                {`3. ${item.alternativaC.resposta}`}
               </Text>
-              <Text style={item.alternativaD.respostaCorreta ? styles.respostaCorreta : styles.respostaMultiplaEscolha}>
-                {`1. ${item.alternativaD.resposta}`}
+              <Text style={item.resposta.respostaCorreta ? styles.respostaCorreta : styles.respostaMultiplaEscolha}>
+                {`4. ${item.alternativaD.resposta}`}
               </Text>
-              <Text style={item.alternativaE.respostaCorreta ? styles.respostaCorreta : styles.respostaMultiplaEscolha}>
-                {`1. ${item.alternativaE.resposta}`}
+              <Text style={item.resposta.respostaCorreta ? styles.respostaCorreta : styles.respostaMultiplaEscolha}>
+                {`5. ${item.alternativaE.resposta}`}
                 </Text>
             </View>
             <BlocoComentario comentario={item.comentario}/>
