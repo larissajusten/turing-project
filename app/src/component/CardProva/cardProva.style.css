@@ -33,6 +33,11 @@
   align-items: center;
 }
 
+.content-card div div{
+  display: flex;
+  margin-left: 10px;
+}
+
 .content-card div span:first-child{
   margin-right: 5px;
   font-weight: 500;
@@ -55,3 +60,4 @@
   line-height: 5px;
   padding: 10px 10px;
 }
+

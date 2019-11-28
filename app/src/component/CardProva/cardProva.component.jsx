@@ -3,6 +3,20 @@ import './cardProva.style.css'
 import { BotaoPrincipal } from '../index'
 
 export class CardProva extends Component {
+  renderLinguagens(){
+    return ( this.props.paraCorrigir &&
+            <>
+            <div className="container-linguagens-card-prova">
+              {
+                this.props.especificidades.map((item, key) => {
+                  const image = require(`../../assets/images-questoes/${item}.png`);
+                  return <img key={key} className="imagem-linguagem-card-prova" src={image} alt="linguagem"/>
+                })
+              }
+            </div>
+            </>
+    )
+  }
 
   render() {
     return (
@@ -19,23 +33,19 @@ export class CardProva extends Component {
           <div>
             <span>Duração:</span>
             <span>{this.props.informacaoTres}</span>
+            <div>Questões: </div>
+            <span>{this.props.quantidadeQuestoes}</span>
           </div>
         </div>
-        {
-            this.props.paraCorrigir &&
-            <>
-            <div className="container-linguagens-card-prova">
-              {
-                this.props.especificidades.map((item, key) => {
-                  const image = require(`../../assets/images-questoes/${item}.png`);
-                  return <img className="imagem-linguagem-card-prova" src={image} alt="linguagem"/>
-                })
-              }
-            </div>
-            </>
-          }
+        {this.renderLinguagens()}
         <BotaoPrincipal classe="tamanho-botao" nome={this.props.nomeBotao} onClick={(event) => this.props.onClick(event, this.props.id)}/>
       </div>
     )
   }
 }
+
+/*
+  <div className="quantidade-questoes">
+    {this.props.quantidadeQuestoes}
+  </div>
+*/
