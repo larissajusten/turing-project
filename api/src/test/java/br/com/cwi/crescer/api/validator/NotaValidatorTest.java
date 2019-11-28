@@ -21,6 +21,7 @@ public class NotaValidatorTest {
     @Test
     public void devePassarPeloMetodoSemLancarExceptionSeOValorDaNotaEstiverEntre10e0(){
         notaValidator.validar(5);
+
     }
 
 }

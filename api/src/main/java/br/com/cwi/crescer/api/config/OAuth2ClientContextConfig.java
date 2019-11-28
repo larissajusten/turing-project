@@ -6,25 +6,16 @@ import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.security.core.AuthenticatedPrincipal;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.jwt.JwtHelper;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.context.request.RequestContextListener;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 @Slf4j
  //TODO Vanessa Schenkel 23/11/2019 - Pesquisar sobre slf4j
