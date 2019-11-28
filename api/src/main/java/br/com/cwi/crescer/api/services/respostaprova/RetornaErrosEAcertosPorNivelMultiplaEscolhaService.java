@@ -27,7 +27,6 @@ public class RetornaErrosEAcertosPorNivelMultiplaEscolhaService {
         List<RespostasMultiplaEscolhaProva> lista = buscarListaDeRespostasFiltradaService.retornar(especificidade,
                 nivelDeDificuldade);
 
-
         int corretas = calcularNumeroDeAcertosMultiplaEscolhaService.calcular(lista);
         int erradas = lista.size() - corretas;
 
