@@ -39,11 +39,11 @@ public class GerarNotaDasQuestoesTecnicaDeAcordoComPesoServiceTest {
         notaQuestoesDificeis.setNota(20);
         notaQuestoesDificeis.setQuantidadeDeQuestoes(2L);
 
-        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.FACIL))
+        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.FACIL))
                 .thenReturn(notaQuestoesFaceis);
-        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.MEDIO))
+        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.MEDIO))
                 .thenReturn(notaQuestoesMedias);
-        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.DIFICIL))
+        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.DIFICIL))
                 .thenReturn(notaQuestoesDificeis);
 
         Assert.assertEquals(10, gerarNotaDasQuestoesTecnicaDeAcordoComPesoService.gerar(prova), 0);
@@ -67,21 +67,21 @@ public class GerarNotaDasQuestoesTecnicaDeAcordoComPesoServiceTest {
         notaQuestoesDificeis.setNota(20);
         notaQuestoesDificeis.setQuantidadeDeQuestoes(2L);
 
-        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.FACIL))
+        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.FACIL))
                 .thenReturn(notaQuestoesFaceis);
-        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.MEDIO))
+        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.MEDIO))
                 .thenReturn(notaQuestoesMedias);
-        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.DIFICIL))
+        Mockito.when(respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.DIFICIL))
                 .thenReturn(notaQuestoesDificeis);
 
         gerarNotaDasQuestoesTecnicaDeAcordoComPesoService.gerar(prova);
 
         Mockito.verify(respostasTecnicaProva)
-                .buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.FACIL);
+                .buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.FACIL);
         Mockito.verify(respostasTecnicaProva)
-                .buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.MEDIO);
+                .buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.MEDIO);
         Mockito.verify(respostasTecnicaProva)
-                .buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.DIFICIL);
+                .buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.DIFICIL);
 
     }
 }

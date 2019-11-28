@@ -19,7 +19,7 @@ public interface RespostasDissertativaRepository extends JpaRepository<Respostas
 
     @Query("Select new br.com.cwi.crescer.api.domain.dto.NotasDTO(SUM(r.nota), count(*)) FROM RespostasDissertativaProva r " +
             "WHERE r.prova.id = ?1 AND r.questaoDissertativa.nivelDeDificuldade = ?2 GROUP BY r.prova.id")
-    NotasDTO buscarQuestoesDissertativasDeNivelFacilPorProva(Prova prova, NivelDeDificuldade nivelDeDificuldade);
+    NotasDTO buscarQuestoesDissertativasDeNivelFacilPorProva(Long idProva, NivelDeDificuldade nivelDeDificuldade);
 
     @Query("Select new br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse(r.questaoDissertativa.nivelDeDificuldade, r.nota, count(*)) " +
             "FROM RespostasDissertativaProva r " +

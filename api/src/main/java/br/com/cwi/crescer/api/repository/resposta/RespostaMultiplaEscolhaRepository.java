@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RespostaMultiplaEscolhaRepository extends JpaRepository<RespostasMultiplaEscolhaProva, Long> {
 
@@ -15,7 +16,7 @@ public interface RespostaMultiplaEscolhaRepository extends JpaRepository<Respost
     List<RespostasMultiplaEscolhaProva> findAllByQuestaoMultiplaEscolhaIdEquals(Long id);
 
     @Query("Select count(*) FROM RespostasMultiplaEscolhaProva r " +
-            "WHERE r.prova = ?1 AND r.questaoMultiplaEscolha.nivelDeDificuldade = ?2 AND r.alternativaMultiplaEscolha.respostaCorreta = True GROUP BY r.prova.id")
-    int buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(Prova prova, NivelDeDificuldade nivelDeDificuldade);
+            "WHERE r.prova.id = ?1 AND r.questaoMultiplaEscolha.nivelDeDificuldade = ?2 AND r.alternativaMultiplaEscolha.respostaCorreta = True GROUP BY r.prova.id")
+    Integer buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(Long idProva, NivelDeDificuldade nivelDeDificuldade);
 
 }

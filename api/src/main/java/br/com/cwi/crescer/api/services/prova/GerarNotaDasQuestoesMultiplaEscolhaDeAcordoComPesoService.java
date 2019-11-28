@@ -24,23 +24,33 @@ public class GerarNotaDasQuestoesMultiplaEscolhaDeAcordoComPesoService {
 
     public double gerar(Prova prova) {
 
-        int quantidadeQuestoesNivelFacil = respostaMultiplaEscolhaRepository
-                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.FACIL);
-        int quantidadeQuestoesNivelMedio = respostaMultiplaEscolhaRepository
-                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.MEDIO);
-        int quantidadeQuestoesNivelDificil = respostaMultiplaEscolhaRepository
-                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.DIFICIL);
+        Integer quantidadeQuestoesNivelFacil = respostaMultiplaEscolhaRepository
+                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.FACIL);
+        if(quantidadeQuestoesNivelFacil != null){
+            nota += quantidadeQuestoesNivelFacil * NOTA_BASE_QUESTOES_NIVEL_FACIL;
+            divisor += quantidadeQuestoesNivelFacil;
+        }
 
-        nota += quantidadeQuestoesNivelFacil * NOTA_BASE_QUESTOES_NIVEL_FACIL;
-        divisor += quantidadeQuestoesNivelFacil;
+        Integer quantidadeQuestoesNivelMedio = respostaMultiplaEscolhaRepository
+                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.MEDIO);
 
-        nota += quantidadeQuestoesNivelMedio * NOTA_BASE_QUESTOES_NIVEL_MEDIO;
-        divisor += mutiplicarODivisorPorNivelDeDificuldade(quantidadeQuestoesNivelMedio, NivelDeDificuldade.MEDIO);
+        if(quantidadeQuestoesNivelMedio != null){
+            nota += quantidadeQuestoesNivelMedio * NOTA_BASE_QUESTOES_NIVEL_MEDIO;
+            divisor += mutiplicarODivisorPorNivelDeDificuldade(quantidadeQuestoesNivelMedio, NivelDeDificuldade.MEDIO);
+        }
 
-        nota += quantidadeQuestoesNivelDificil * NOTA_BASE_QUESTOES_NIVEL_DIFICIL;
-        divisor += mutiplicarODivisorPorNivelDeDificuldade(quantidadeQuestoesNivelDificil, NivelDeDificuldade.DIFICIL);
+        Integer quantidadeQuestoesNivelDificil = respostaMultiplaEscolhaRepository
+                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.DIFICIL);
+        if(quantidadeQuestoesNivelMedio != null){
+            nota += quantidadeQuestoesNivelDificil * NOTA_BASE_QUESTOES_NIVEL_DIFICIL;
+            divisor += mutiplicarODivisorPorNivelDeDificuldade(quantidadeQuestoesNivelDificil, NivelDeDificuldade.DIFICIL);
+        }
 
-        return nota / divisor;
+        if (nota != 0 && divisor != 0){
+            return nota / divisor;
+        } else {
+            return 0;
+        }
     }
 
     private int mutiplicarODivisorPorNivelDeDificuldade(int divisor, NivelDeDificuldade nivelDeDificuldade) {
