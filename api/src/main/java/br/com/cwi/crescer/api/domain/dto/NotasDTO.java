@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class NotasDTO {
 
-    private double nota;
+    private double nota = 0;
 
-    private Long quantidadeDeQuestoes;
+    private Long quantidadeDeQuestoes = 0L;
 
 }

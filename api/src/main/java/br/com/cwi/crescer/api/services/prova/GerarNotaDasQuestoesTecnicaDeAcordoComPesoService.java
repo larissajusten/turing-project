@@ -21,19 +21,31 @@ public class GerarNotaDasQuestoesTecnicaDeAcordoComPesoService {
         int divisor = 0;
         double nota = 0;
 
-        NotasDTO notaQuestoesFaceis = respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.FACIL);
-        nota += notaQuestoesFaceis.getNota();
-        divisor += notaQuestoesFaceis.getQuantidadeDeQuestoes();
+        NotasDTO notaQuestoesFaceis = respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.FACIL);
+        if (notaQuestoesFaceis != null){
+            nota += notaQuestoesFaceis.getNota();
+            divisor += notaQuestoesFaceis.getQuantidadeDeQuestoes();
+        }
 
-        NotasDTO notaQuestoesMedias = respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.MEDIO);
-        nota += calcularNotaPorNivelDeDificuldade(notaQuestoesMedias.getNota(), NivelDeDificuldade.MEDIO);
-        divisor += mutiplicarODivisorPorNivelDeDificuldade(notaQuestoesMedias.getQuantidadeDeQuestoes(), NivelDeDificuldade.MEDIO);
+        NotasDTO notaQuestoesMedias = respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.MEDIO);
+        if (notaQuestoesMedias != null) {
+            nota += calcularNotaPorNivelDeDificuldade(notaQuestoesMedias.getNota(), NivelDeDificuldade.MEDIO);
+            divisor += mutiplicarODivisorPorNivelDeDificuldade(notaQuestoesMedias.getQuantidadeDeQuestoes(), NivelDeDificuldade.MEDIO);
+        }
 
-        NotasDTO notaQuestoesDificeis = respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova, NivelDeDificuldade.DIFICIL);
-        nota += calcularNotaPorNivelDeDificuldade(notaQuestoesDificeis.getNota(), NivelDeDificuldade.DIFICIL);
-        divisor += mutiplicarODivisorPorNivelDeDificuldade(notaQuestoesDificeis.getQuantidadeDeQuestoes(), NivelDeDificuldade.DIFICIL);
+        NotasDTO notaQuestoesDificeis = respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.DIFICIL);
+        if (notaQuestoesDificeis != null) {
+            nota += calcularNotaPorNivelDeDificuldade(notaQuestoesDificeis.getNota(), NivelDeDificuldade.DIFICIL);
+            divisor += mutiplicarODivisorPorNivelDeDificuldade(notaQuestoesDificeis.getQuantidadeDeQuestoes(), NivelDeDificuldade.DIFICIL);
+        }
 
-        return nota / divisor;
+        if(nota != 0 && divisor != 0){
+            return nota / divisor;
+        } else {
+            return 0;
+        }
+
+
     }
 
     private double calcularNotaPorNivelDeDificuldade(double nota, NivelDeDificuldade nivelDeDificuldade) {

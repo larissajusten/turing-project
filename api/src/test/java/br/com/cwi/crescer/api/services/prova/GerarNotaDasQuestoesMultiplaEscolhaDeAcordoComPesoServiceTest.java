@@ -33,15 +33,15 @@ public class GerarNotaDasQuestoesMultiplaEscolhaDeAcordoComPesoServiceTest {
         int quantidadeQuestoesNivelDificil = 3;
 
         Mockito.when(respostaMultiplaEscolhaRepository
-                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.FACIL))
+                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.FACIL))
                 .thenReturn(quantidadeQuestoesNivelFacil);
 
         Mockito.when(respostaMultiplaEscolhaRepository
-                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.MEDIO))
+                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.MEDIO))
                 .thenReturn(quantidadeQuestoesNivelMedio);
 
         Mockito.when(respostaMultiplaEscolhaRepository
-                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.DIFICIL))
+                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.DIFICIL))
                 .thenReturn(quantidadeQuestoesNivelDificil);
 
         Assert.assertEquals(10, gerarNotaDasQuestoesMultiplaEscolhaDeAcordoComPesoService.gerar(prova), 0);
@@ -58,22 +58,22 @@ public class GerarNotaDasQuestoesMultiplaEscolhaDeAcordoComPesoServiceTest {
         int quantidadeQuestoesNivelDificil = 3;
 
         Mockito.when(respostaMultiplaEscolhaRepository
-                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.FACIL))
+                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.FACIL))
                 .thenReturn(quantidadeQuestoesNivelFacil);
 
         Mockito.when(respostaMultiplaEscolhaRepository
-                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.MEDIO))
+                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.MEDIO))
                 .thenReturn(quantidadeQuestoesNivelMedio);
 
         Mockito.when(respostaMultiplaEscolhaRepository
-                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.DIFICIL))
+                .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.DIFICIL))
                 .thenReturn(quantidadeQuestoesNivelDificil);
 
         gerarNotaDasQuestoesMultiplaEscolhaDeAcordoComPesoService.gerar(prova);
 
-        Mockito.verify(respostaMultiplaEscolhaRepository).buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.FACIL);
-        Mockito.verify(respostaMultiplaEscolhaRepository).buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.MEDIO);
-        Mockito.verify(respostaMultiplaEscolhaRepository).buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.DIFICIL);
+        Mockito.verify(respostaMultiplaEscolhaRepository).buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.FACIL);
+        Mockito.verify(respostaMultiplaEscolhaRepository).buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.MEDIO);
+        Mockito.verify(respostaMultiplaEscolhaRepository).buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.DIFICIL);
 
     }
 }
