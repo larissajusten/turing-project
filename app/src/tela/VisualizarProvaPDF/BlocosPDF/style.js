@@ -177,7 +177,7 @@ export const styles = StyleSheet.create({
   containerTipo: {
     position: 'absolute',
     top: 8,
-    right: 10,
+    right: 130,
     borderColor: 'black',
     borderStyle: "solid",
     borderWidth: 1,

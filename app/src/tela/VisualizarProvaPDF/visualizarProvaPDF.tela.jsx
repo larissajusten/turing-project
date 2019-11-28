@@ -30,7 +30,6 @@ export class ProvaPDFScreen extends Component {
   }
 
   render() {
-    console.log(this.state.prova)
     return(
       <>
       {
