@@ -121,7 +121,6 @@ export class CorrigirProvaScreen extends Component {
   }
 
   renderProva() {
-    console.log(this.state.prova, this.state.arrayCorrecoes)
     return(
       <>
       {

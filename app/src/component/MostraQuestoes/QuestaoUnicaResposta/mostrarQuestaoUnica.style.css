@@ -18,11 +18,11 @@
 .especificacao {
   background: rgba(247, 245, 245, 0.6);
   border: 1px solid rgba(249, 243, 243, 0.92);
-  box-sizing: border-box;
-  backdrop-filter: blur(4px);
   border-radius: var(--border-radius);
-  padding: 15px;
+  padding: 0 15px;
   height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .especificacao-nome {

@@ -81,7 +81,7 @@ export class CadastrarProvaScreen extends Component {
         idProva: idProvaSalva,
         deveRenderizarQuestoes: true
       })
-      Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
+      Notificacao('Sucesso', 'Prova registrada com sucesso', 'success')
     }
     catch (error) {
       if (error.response.data.errors) {
@@ -98,8 +98,8 @@ export class CadastrarProvaScreen extends Component {
   handleClickEnviarProva = async (event) => {
     event.preventDefault()
     try {
-      await enviarEmail(this.state.emailDoCandidato)
       Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
+      await enviarEmail(this.state.emailDoCandidato)
       this.setState({
         deveRedirecionarParaDashboard: true
       })
@@ -299,14 +299,12 @@ export class CadastrarProvaScreen extends Component {
   }
 
   render() {
-    if (this.state.deveRedirecionarParaVisualizarProva) {
-      return <Redirect to={`/visualizar-prova/${this.state.idProva}`} />
-    }
-
     if (this.state.deveRedirecionarParaDashboard) {
       return <Redirect to="/" />
     }
-
+    if (this.state.deveRedirecionarParaVisualizarProva) {
+      return <Redirect to={`/visualizar-prova/${this.state.idProva}`} />
+    }
     return (
       <div className="container-tela cadastro-prova-container">
         {

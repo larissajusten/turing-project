@@ -27,7 +27,6 @@ export const retornaProvasParaCorrecao = async (paginaAtual) => {
   carregarToken();
   const response = await Axios.get(`${baseUrl}/buscar-prova/para-correcao?page=${paginaAtual}`,
   { headers: { Authorization: token }})
-  console.log(response)
   return [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
 }
 
