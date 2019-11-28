@@ -70,9 +70,9 @@ export class GraficoPizza extends Component {
 	render() {
 		return (
 			<PieChart 
-				width={400} 
+				width={420} 
 				height={300}
-				margin={{ top: 5, right: 0, left: 0, bottom: 30 }}>
+				margin={{ top: 5, right: 5, left: 5, bottom: 30 }}>
 				<Pie
 					activeIndex={this.state.activeIndex}
 					activeShape={renderActiveShape}

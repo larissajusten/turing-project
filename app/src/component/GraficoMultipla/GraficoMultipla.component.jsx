@@ -10,7 +10,15 @@ export class GraficoMultipla extends Component {
 			dataMedio: [ {}, {} ],
 			dataDificil: [ {}, {} ]
 		};
-    }
+  }
+
+	componentDidMount() {
+		if(this.state.errosEAcertos !== this.props.notas){
+			this.setState({
+				errosEAcertos: this.props.notas
+			})
+		}
+	}
 
 	componentDidMount() {
 		this.setState({
@@ -27,14 +35,6 @@ export class GraficoMultipla extends Component {
 				{ name: 'Erraram', value: this.state.errosEAcertos[5] }
 			]
 		})
-	}
-
-	componentDidUpdate(){
-		if(this.state.errosEAcertos !== this.props.notas){
-			this.setState({
-				errosEAcertos: this.props.notas
-			})
-		}
 	}
 
 	verificaTamanhoParaRenderizar(color, array) {

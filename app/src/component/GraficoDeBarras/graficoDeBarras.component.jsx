@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 const label = (props) => {
   if(props[0].especificidade){
@@ -67,7 +67,6 @@ export class GraficoDeBarras extends PureComponent {
     ]
 
     const cores = ['#f7e018', '#0172b7', '#82ca9d', '#3873a3', '#950c10', '#950c10', '#0077c6', '#f42e23' ]
-    //width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px'}}
     return (
       <>
       <BarChart
@@ -77,7 +76,7 @@ export class GraficoDeBarras extends PureComponent {
         margin={{ top: 5, right: 60, left: 20, bottom: 30 }}>
         <CartesianGrid strokeDasharray="1"/>
         <XAxis dataKey="name" label={{ value: 'Linguagens',  position: 'bottom' }}/>
-        <YAxis label={{ value: 'Quantidade', angle: -90}} domain={[0, 'dataMax + 4']}/>
+        <YAxis label={{ value: 'Quantidade de candidatos', angle: -90 }} domain={[0, 'dataMax + 4']}/>
         <Tooltip/>
         <Bar barSize={22} dataKey="candidatos"  label={label(this.props.tecnologias)}>
           {

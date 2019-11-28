@@ -8,7 +8,6 @@ import { Notificacao,
 					Select,
 					GraficoMultipla,
 					GraficoNota,
-					GraficoTecnologias,
 					GraficoDeBarras } from '../../component/index';
 import './dashboard.style.css';
 
