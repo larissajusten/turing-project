@@ -26,6 +26,7 @@ public class GerarNotaDasQuestoesMultiplaEscolhaDeAcordoComPesoService {
 
         Integer quantidadeQuestoesNivelFacil = respostaMultiplaEscolhaRepository
                 .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.FACIL);
+
         if(quantidadeQuestoesNivelFacil != null){
             nota += quantidadeQuestoesNivelFacil * NOTA_BASE_QUESTOES_NIVEL_FACIL;
             divisor += quantidadeQuestoesNivelFacil;
