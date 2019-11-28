@@ -64,6 +64,9 @@ public class ProvaMapper {
         ProvaParaCorrecaoResponse provaParaCorrecaoResponse = new ProvaParaCorrecaoResponse();
         provaParaCorrecaoResponse.setDataCriacao(prova.getDataCriacao());
         provaParaCorrecaoResponse.setEmailCandidato(prova.getEmailCandidato());
+        provaParaCorrecaoResponse.setId(prova.getId());
+        provaParaCorrecaoResponse.setNomeCandidato(prova.getNomeCandidato());
+        provaParaCorrecaoResponse.setTempoDeDuracaoDaProva(prova.getTempoDeDuracaoDaProva());
 
         provaResponse.getQuestoesDeMultiplaEscolha().forEach(q -> {
             if(!especificidades.contains(q.getEspecificidade())) {
@@ -86,7 +89,6 @@ public class ProvaMapper {
                 provaResponse.getQuestoesDissertativas().size()
         );
         return provaParaCorrecaoResponse;
-
     }
 
 }
