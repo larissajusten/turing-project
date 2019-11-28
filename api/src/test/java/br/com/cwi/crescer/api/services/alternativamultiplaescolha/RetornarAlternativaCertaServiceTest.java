@@ -45,6 +45,7 @@ public class RetornarAlternativaCertaServiceTest {
         Assert.assertFalse(retornarAlternativaCertaService.retornar(alternativa.getId()));
 
     }
+
     @Test
     public void deveRetornarTrueQuandoAlternativaForACorreta() {
 
@@ -58,7 +59,6 @@ public class RetornarAlternativaCertaServiceTest {
         Assert.assertTrue(retornarAlternativaCertaService.retornar(alternativa.getId()));
 
     }
-
 
 
 }

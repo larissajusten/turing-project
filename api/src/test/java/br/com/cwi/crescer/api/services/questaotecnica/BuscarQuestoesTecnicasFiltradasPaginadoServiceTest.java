@@ -40,7 +40,7 @@ public class BuscarQuestoesTecnicasFiltradasPaginadoServiceTest {
         Page<QuestaoTecnica> questoesPaginadas = new PageImpl<>(questoesTecnicas, page, questoesTecnicas.size());
 
         Mockito.when(repository.acharPorNivelEEspecificidadePaginado(page, Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
-            .thenReturn(questoesPaginadas);
+                .thenReturn(questoesPaginadas);
 
         Assert.assertEquals(questoesPaginadas,
                 buscarQuestoesTecnicasFiltradasPaginadoService

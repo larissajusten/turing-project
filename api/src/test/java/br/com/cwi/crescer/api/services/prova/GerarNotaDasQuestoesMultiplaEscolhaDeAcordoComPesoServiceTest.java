@@ -76,4 +76,4 @@ public class GerarNotaDasQuestoesMultiplaEscolhaDeAcordoComPesoServiceTest {
         Mockito.verify(respostaMultiplaEscolhaRepository).buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova, NivelDeDificuldade.DIFICIL);
 
     }
- }
+}

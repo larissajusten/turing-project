@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -38,12 +37,10 @@ public class CalcularNumeroDeAcertosMultiplaEscolhaServiceTest {
         respostasMultiplaEscolhaProva.setAlternativaMultiplaEscolha(alternativaEscolhida);
         respostasMultiplaEscolhaProva2.setAlternativaMultiplaEscolha(alternativaEscolhida2);
 
-        Assert.assertEquals(1,calcularNumeroDeAcertosMultiplaEscolhaService.calcular(listaRespostas));
-
+        Assert.assertEquals(1, calcularNumeroDeAcertosMultiplaEscolhaService.calcular(listaRespostas));
 
 
     }
-
 
 
 }

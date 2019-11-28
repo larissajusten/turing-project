@@ -13,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,12 +36,10 @@ public class CorrigirProvaServiceTest {
 
     @Mock
     CorrecaoValidator validator;
-
-    @Mock
-    private GerarNotaDaProvaComDiferencialDePesoDasQuestoesService gerarNotaDaProvaComDiferencialDePesoDasQuestoesService;
-
     @Mock
     ProvaRepository repository;
+    @Mock
+    private GerarNotaDaProvaComDiferencialDePesoDasQuestoesService gerarNotaDaProvaComDiferencialDePesoDasQuestoesService;
 
     @Test
     public void deveChamarCorrigirQuestaoDissertativaServiceQuandoCorrigirProvaServiceForChamado() {
@@ -59,7 +56,7 @@ public class CorrigirProvaServiceTest {
         when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.doNothing().when(validator).validar(prova.getId());
 
-        corrigirProvaService.corrigir(prova.getId(),correcaoProvaRequests);
+        corrigirProvaService.corrigir(prova.getId(), correcaoProvaRequests);
 
         Mockito.verify(corrigirQuestaoDissertativaService)
                 .corrigir(correcaoProvaRequest.getIdResposta(), correcaoProvaRequest);
@@ -80,7 +77,7 @@ public class CorrigirProvaServiceTest {
         when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.doNothing().when(validator).validar(prova.getId());
 
-        corrigirProvaService.corrigir(prova.getId(),correcaoProvaRequests);
+        corrigirProvaService.corrigir(prova.getId(), correcaoProvaRequests);
 
         Mockito.verify(corrigirQuestaoTecnicaService)
                 .corrigir(correcaoProvaRequest.getIdResposta(), correcaoProvaRequest);

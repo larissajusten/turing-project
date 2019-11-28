@@ -40,7 +40,7 @@ public class BuscarQuestoesDissertativasFiltradasPaginadasServiceTest {
         Mockito.when(repository.acharPorNivelEEspecificidadePaginado(pageRequest, Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
                 .thenReturn(pagina);
 
-        Assert.assertEquals(pagina, buscarQuestoesDissertativasFiltradasPaginadasService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL,pageRequest));
+        Assert.assertEquals(pagina, buscarQuestoesDissertativasFiltradasPaginadasService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, pageRequest));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class BuscarQuestoesDissertativasFiltradasPaginadasServiceTest {
         Mockito.when(repository.acharPorNivelEEspecificidadePaginado(pageRequest, Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL))
                 .thenReturn(pagina);
 
-        buscarQuestoesDissertativasFiltradasPaginadasService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL,pageRequest);
+        buscarQuestoesDissertativasFiltradasPaginadasService.buscar(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, pageRequest);
 
         Mockito.verify(repository).acharPorNivelEEspecificidadePaginado(pageRequest, Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL);
     }

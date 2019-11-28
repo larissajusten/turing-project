@@ -21,7 +21,7 @@ public class ExcluirQuestaoTecnicaServiceTest {
     ProvaQuestaoTecnicaRepository repository;
 
     @Test
-    public void deveChamarProvaQuestaoTecnicaRepositoryQuandoExcluirQuestaoTecnicaServiceForChamado () {
+    public void deveChamarProvaQuestaoTecnicaRepositoryQuandoExcluirQuestaoTecnicaServiceForChamado() {
 
         ProvaQuestaoTecnica provaQuestaoTecnica = new ProvaQuestaoTecnica();
         Prova prova = new Prova();

@@ -75,7 +75,7 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaServiceTest {
 
         buscarProvasPorNomeOuEmailCorrigidasComNotaService.buscar("Va");
 
-        Mockito.verify(provaRepository).findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals("Va","Va", StatusProva.CORRIGIDA);
+        Mockito.verify(provaRepository).findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals("Va", "Va", StatusProva.CORRIGIDA);
     }
 
     @Test
@@ -104,7 +104,7 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaServiceTest {
         provaResponse.setQuestoesMultiplaEscolha(questaoMultiplaEscolha);
         provaResponse.setQuestoesTecnicas(questoesTecnicas);
 
-        Mockito.when(provaRepository.findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals("Va","Va", StatusProva.CORRIGIDA)).thenReturn(provasList);
+        Mockito.when(provaRepository.findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals("Va", "Va", StatusProva.CORRIGIDA)).thenReturn(provasList);
         Mockito.when(retornarQuestaoTecnicaComRespostaResponseService.buscar(prova)).thenReturn(questoesTecnicas);
         Mockito.when(retornarQuestaoDissertativaComRespostaResponseService.buscar(prova)).thenReturn(questaoDissertativa);
         Mockito.when(retornarQuestaoMultiplaEscolhaComRespostaResponseService.buscar(prova)).thenReturn(questaoMultiplaEscolha);
@@ -137,7 +137,7 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaServiceTest {
         provaResponse.setQuestoesMultiplaEscolha(questaoMultiplaEscolha);
         provaResponse.setQuestoesTecnicas(questoesTecnicas);
 
-        Mockito.when(provaRepository.findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals("Va","Va", StatusProva.CORRIGIDA)).thenReturn(provasList);
+        Mockito.when(provaRepository.findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals("Va", "Va", StatusProva.CORRIGIDA)).thenReturn(provasList);
         Mockito.when(retornarQuestaoTecnicaComRespostaResponseService.buscar(prova)).thenReturn(questoesTecnicas);
         Mockito.when(retornarQuestaoDissertativaComRespostaResponseService.buscar(prova)).thenReturn(questaoDissertativa);
         Mockito.when(retornarQuestaoMultiplaEscolhaComRespostaResponseService.buscar(prova)).thenReturn(questaoMultiplaEscolha);
@@ -182,8 +182,6 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaServiceTest {
 
         Mockito.verify(retornarQuestaoMultiplaEscolhaComRespostaResponseService).buscar(prova);
     }
-
-
 
 
 }

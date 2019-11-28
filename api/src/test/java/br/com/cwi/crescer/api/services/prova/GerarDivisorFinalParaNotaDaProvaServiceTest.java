@@ -61,6 +61,5 @@ public class GerarDivisorFinalParaNotaDaProvaServiceTest {
         Assert.assertEquals(3, gerarDivisorFinalParaNotaDaProvaService.retornarTotalDeQuestoesDaProva(prova));
 
 
-
     }
 }

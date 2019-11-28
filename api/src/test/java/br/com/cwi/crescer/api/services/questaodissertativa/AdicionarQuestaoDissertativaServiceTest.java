@@ -4,7 +4,6 @@ import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternati
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoDissertativaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoDissertativaRepository;
 import br.com.cwi.crescer.api.security.LoggedUser;
@@ -53,7 +52,7 @@ public class AdicionarQuestaoDissertativaServiceTest {
 
         adicionarQuestaoDissertativaService.adicionar(questaoUnicaAlternativaRequest);
 
-       Mockito.verify(repository).save(questaoDissertativa);
+        Mockito.verify(repository).save(questaoDissertativa);
 
     }
 }

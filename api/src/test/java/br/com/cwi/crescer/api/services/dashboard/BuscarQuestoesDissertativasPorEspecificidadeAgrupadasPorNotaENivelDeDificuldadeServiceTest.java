@@ -18,7 +18,6 @@ import java.util.List;
 @RunWith(MockitoJUnitRunner.class)
 public class BuscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeServiceTest {
 
-
     @InjectMocks
     BuscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService buscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService;
 
@@ -33,7 +32,7 @@ public class BuscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelD
         Mockito.when(repository.findAllByGroupByNotaWhereQuestaoDissertativaEspecificidadeEquals(Especificidade.JAVASCRIPT))
                 .thenReturn(listaResponse);
 
-        Assert.assertEquals(listaResponse,buscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService
+        Assert.assertEquals(listaResponse, buscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService
                 .buscar(Especificidade.JAVASCRIPT));
     }
 

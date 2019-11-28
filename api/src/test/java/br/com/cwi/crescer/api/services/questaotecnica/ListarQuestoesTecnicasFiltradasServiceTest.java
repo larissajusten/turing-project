@@ -36,11 +36,11 @@ public class ListarQuestoesTecnicasFiltradasServiceTest {
         List<QuestaoTecnica> lista = new ArrayList<>();
         List<QuestaoTecnica> listaQueAtendeRequisitos = new ArrayList<>();
         listaQueAtendeRequisitos.add(new QuestaoTecnica());
-        Mockito.when(buscarQuestoesTecnicasFiltradasService.buscar(buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade(),1)).thenReturn(listaQueAtendeRequisitos);
+        Mockito.when(buscarQuestoesTecnicasFiltradasService.buscar(buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade(), 1)).thenReturn(listaQueAtendeRequisitos);
 
         listarQuestoesTecnicasFiltradasService.listar(buscaQuestoesRequest);
 
-       Assert.assertEquals(listarQuestoesTecnicasFiltradasService.listar(buscaQuestoesRequest), listaQueAtendeRequisitos);
+        Assert.assertEquals(listarQuestoesTecnicasFiltradasService.listar(buscaQuestoesRequest), listaQueAtendeRequisitos);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class ListarQuestoesTecnicasFiltradasServiceTest {
         listaQueAtendeRequisitos.add(new QuestaoTecnica());
         Mockito.when(buscarQuestoesTecnicasFiltradasService.buscar(buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade(), 1)).thenReturn(listaQueAtendeRequisitos);
 
-       listarQuestoesTecnicasFiltradasService.listar(buscaQuestoesRequest);
+        listarQuestoesTecnicasFiltradasService.listar(buscaQuestoesRequest);
 
         Mockito.verify(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
     }
