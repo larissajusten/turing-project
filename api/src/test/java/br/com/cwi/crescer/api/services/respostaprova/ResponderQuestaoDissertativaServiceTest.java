@@ -3,7 +3,6 @@ package br.com.cwi.crescer.api.services.respostaprova;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.repository.resposta.RespostasDissertativaRepository;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
 import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestaoDissertativaPorIdService;

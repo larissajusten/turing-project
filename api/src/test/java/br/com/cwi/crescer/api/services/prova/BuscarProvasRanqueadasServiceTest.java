@@ -16,8 +16,6 @@ import org.springframework.data.domain.PageRequest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
-
 
 @RunWith(MockitoJUnitRunner.class)
 public class BuscarProvasRanqueadasServiceTest {

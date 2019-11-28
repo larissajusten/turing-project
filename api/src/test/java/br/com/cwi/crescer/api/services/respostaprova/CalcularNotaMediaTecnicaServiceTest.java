@@ -59,6 +59,5 @@ public class CalcularNotaMediaTecnicaServiceTest {
         Assert.assertEquals(5, calcularNotaMediaTecnicaService.calcular(prova.getId()), 0);
 
 
-
     }
 }

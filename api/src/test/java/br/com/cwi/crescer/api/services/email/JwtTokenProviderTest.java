@@ -9,7 +9,6 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.Optional;
 
 public class JwtTokenProviderTest {
     private JwtTokenProvider jwtTokenProvider = new JwtTokenProvider();

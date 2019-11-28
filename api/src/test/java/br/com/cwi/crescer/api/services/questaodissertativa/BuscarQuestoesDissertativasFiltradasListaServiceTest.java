@@ -61,7 +61,7 @@ public class BuscarQuestoesDissertativasFiltradasListaServiceTest {
 
         Assert.assertEquals(buscarQuestoesDissertativasFiltradasListaService
                 .buscar(Especificidade.JAVASCRIPT,
-                NivelDeDificuldade.FACIL, 10).size(), listaDeQuestoes.size());
+                        NivelDeDificuldade.FACIL, 10).size(), listaDeQuestoes.size());
 
     }
 }

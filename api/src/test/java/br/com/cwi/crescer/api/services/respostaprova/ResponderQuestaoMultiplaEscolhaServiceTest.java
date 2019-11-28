@@ -4,7 +4,6 @@ import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.resposta.RespostasMultiplaEscolhaProva;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.repository.resposta.RespostaMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaMultiplaEscolhaPorIdService;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;

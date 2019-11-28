@@ -44,7 +44,6 @@ public class BuscarQuestaoMultiplaEscolhaPorIdServiceTest {
         buscarQuestaoMultiplaEscolhaPorIdService.buscar(questao.getId());
 
 
-
     }
 
 }

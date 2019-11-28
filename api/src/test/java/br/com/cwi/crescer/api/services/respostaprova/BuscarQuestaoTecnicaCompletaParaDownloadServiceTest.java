@@ -24,9 +24,9 @@ public class BuscarQuestaoTecnicaCompletaParaDownloadServiceTest {
     @Test
     public void deveRetornarQuestaoTecnicaCompletaResponseQuandoBuscarQuestaoTecnicaCompletaParaDownloadServiceForChamado() {
 
-    QuestaoTecnicaCompletaResponse response = new QuestaoTecnicaCompletaResponse();
+        QuestaoTecnicaCompletaResponse response = new QuestaoTecnicaCompletaResponse();
 
-    RespostasTecnicaProva respostaTecnica = new RespostasTecnicaProva();
+        RespostasTecnicaProva respostaTecnica = new RespostasTecnicaProva();
 
         respostaTecnica.setResposta("Teste");
         respostaTecnica.setComentario("Comentario");
@@ -66,7 +66,6 @@ public class BuscarQuestaoTecnicaCompletaParaDownloadServiceTest {
 
         Mockito.verify(buscarRespostaTecnicaPorIDService).buscar(respostaTecnica.getId());
     }
-
 
 
 }

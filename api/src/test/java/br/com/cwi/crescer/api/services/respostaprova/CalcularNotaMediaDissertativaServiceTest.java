@@ -24,7 +24,7 @@ public class CalcularNotaMediaDissertativaServiceTest {
     RespostasDissertativaRepository repository;
 
     @Test
-    public void deveChamarRespostasDissertativaRepositoryQuandoCalcularNotaMediaDissertativaServiceForChamado(){
+    public void deveChamarRespostasDissertativaRepositoryQuandoCalcularNotaMediaDissertativaServiceForChamado() {
 
         Prova prova = new Prova();
         List<RespostasDissertativaProva> listaRespostas = new ArrayList<>();
@@ -40,7 +40,7 @@ public class CalcularNotaMediaDissertativaServiceTest {
     }
 
     @Test
-    public void deveRetornarUmDoubleQuandoCalcularNotaMediaDissertativaServiceForChamado(){
+    public void deveRetornarUmDoubleQuandoCalcularNotaMediaDissertativaServiceForChamado() {
 
         Prova prova = new Prova();
         List<RespostasDissertativaProva> listaRespostas = new ArrayList<>();

@@ -40,7 +40,7 @@ public class BuscarProvasParaCorrecaoServiceTest {
         PageRequest page = PageRequest.of(1, 10);
 
         List<Prova> listaProvasParaCorrecao = new ArrayList<>();
-        listaProvasParaCorrecao.add(prova) ;
+        listaProvasParaCorrecao.add(prova);
         List<ProvaParaCorrecaoResponse> listaProvaCorrecaoResponse = new ArrayList<>();
         listaProvaCorrecaoResponse.add(provaParaCorrecaoResponseProva);
 

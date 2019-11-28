@@ -57,5 +57,5 @@ public class CriarProvaServiceTest {
 
         Mockito.verify(mapper).transformar(provaRequest);
     }
-    
+
 }

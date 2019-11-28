@@ -34,6 +34,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
 
     @Mock
     QuestaoDissertativaRepository repository;
+
     @Test
     public void deveRetornarUmaListaComOTamanhoDoNumeroDeQuestoesQueForamSolicitadasQuandoListarQuestoesDissertativasFiltradasServiceForChamada() {
 
@@ -45,12 +46,12 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
 
         Mockito.when(buscarQuestoesDissertativasFiltradasListaService
                 .buscar(buscaQuestoesRequest.getEspecificidade(),
-                        buscaQuestoesRequest.getNivelDeDificuldade(),1))
+                        buscaQuestoesRequest.getNivelDeDificuldade(), 1))
                 .thenReturn(listaQueAtendeRequisitos);
         Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(), buscaQuestoesRequest.getQuantidadeDeQuestoes());
         listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest);
 
-     Assert.assertEquals(VALOR_ESPERADO_DE_RETORNO_DO_SIZE_DA_LISTA_DE_FILTRADAS,listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest).size());
+        Assert.assertEquals(VALOR_ESPERADO_DE_RETORNO_DO_SIZE_DA_LISTA_DE_FILTRADAS, listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest).size());
     }
 
     @Test
@@ -71,7 +72,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
         listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest);
 
         Mockito.verify(buscarQuestoesDissertativasFiltradasListaService).buscar(buscaQuestoesRequest.getEspecificidade(),
-        buscaQuestoesRequest.getNivelDeDificuldade(),1);
+                buscaQuestoesRequest.getNivelDeDificuldade(), 1);
     }
 
     @Test
@@ -107,7 +108,7 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
 
         Mockito.when(buscarQuestoesDissertativasFiltradasListaService
                 .buscar(buscaQuestoesRequest.getEspecificidade(),
-                        buscaQuestoesRequest.getNivelDeDificuldade(),1))
+                        buscaQuestoesRequest.getNivelDeDificuldade(), 1))
                 .thenReturn(listaQueAtendeRequisitos);
 
         Mockito.doNothing().when(validator).validar(listaQueAtendeRequisitos.size(),
@@ -115,9 +116,8 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
 
         listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest);
 
-       Assert.assertEquals(listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest), listaQueAtendeRequisitos);
+        Assert.assertEquals(listarQuestoesDissertativasFiltradasService.listar(buscaQuestoesRequest), listaQueAtendeRequisitos);
     }
-
 
 
 }

@@ -26,23 +26,18 @@ import java.util.List;
 @RunWith(MockitoJUnitRunner.class)
 public class BuscarQuestoesMultiplaEscolhaServiceTest {
 
-    @InjectMocks
-    private BuscarQuestoesMultiplaEscolhaService buscarQuestoesMultiplaEscolhaService;
-
     @Mock
     QuestaoMultiplaEscolhaMapper mapper;
-
     @Mock
     BuscarAlternativaQuestaoMultiplaEscolhaService buscarAlternativaQuestaoMultiplaEscolhaService;
-
     @Mock
     QuestaoMultiplaEscolhaRepository repository;
-
     @Mock
     AlternativaMultiplaEscolhaMapper mapperAlternativa;
-
     @Mock
     QuestaoValidator validator;
+    @InjectMocks
+    private BuscarQuestoesMultiplaEscolhaService buscarQuestoesMultiplaEscolhaService;
 
     @Test
     public void deveChamarRepositoryQuandoBuscarQuestoesMultiplaEscolhaForChamada() {
