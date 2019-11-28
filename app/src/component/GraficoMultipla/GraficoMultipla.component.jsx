@@ -41,7 +41,7 @@ export class GraficoMultipla extends Component {
 		if(array.length > 0) {
 			return <GraficoPizza cor={color} data={array}/>
 		}else {
-			return <h1 className="titulo-crie"> Não há questões para visualizar </h1>
+			return null
 		}
 	}
 

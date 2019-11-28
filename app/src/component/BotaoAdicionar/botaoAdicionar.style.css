@@ -6,8 +6,8 @@
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: large;
 	font-weight: bold;
-	color: var(--font-color);
-	background-color: var(--orange-color);
+	color: var(--fonte-cor);
+	background-color: var(--laranja-cor);
 	border: 1px;
 	border-radius: var(--border-radius);
 	padding: 10px 20px;
@@ -21,8 +21,8 @@
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-size: large;
 	font-weight: bold;
-	color: var(--font-color);
-	background-color: var(--red-color);
+	color: var(--fonte-cor);
+	background-color: var(--vermelho-cor);
 	border: 1px;
 	border-radius: var(--border-radius);
 	padding: 10px 20px;

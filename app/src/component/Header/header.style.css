@@ -2,7 +2,7 @@
 	width: 100%;
   height: 40px;
 	position: fixed;
-	background-color: var(--bg-black-color);
+	background-color: var(--cinza-cor);
 	z-index: 1;
 	display: flex;
 	align-items: center;
@@ -12,7 +12,7 @@
 
 .menu-header {
   margin-left: 45px;
-  color: var(--font-color);
+  color: var(--fonte-cor);
   font-weight: 500;
   font-size: 1.125em;
   line-height: 17px;
@@ -30,18 +30,18 @@
 
 .menu-item {
   display: block;
-  color: var(--font-color);
+  color: var(--fonte-cor);
   cursor: pointer;
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: var(--font-color);
+  background: var(--fonte-cor);
 }
 
 /* Color/shape of burger icon bars on hover*/
 .bm-burger-bars-hover {
-  background: var(--orange-color);
+  background: var(--laranja-cor);
 }
 
 /* Position and sizing of clickable cross button */
@@ -57,7 +57,7 @@
 
 /* Color/shape of close button cross */
 .bm-cross {
-  background: var(--orange-color);
+  background: var(--laranja-cor);
   outline: none;
 }
 
@@ -74,7 +74,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 /* General sidebar styles */
 .bm-menu {
-  background: var(--bg-black-color);
+  background: var(--cinza-cor);
   padding: 2.5em 1.5em 0;
   font-size: 1.125em;
   text-align: start;
@@ -94,14 +94,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* Individual item */
 .bm-item {
   display: inline-block;
-  color: var(--font-color);
+  color: var(--fonte-cor);
   text-decoration: none;
   outline: none;
   margin-bottom: 4px;
 }
 
 .bm-item:hover {
-  color: var(--orange-color);
+  color: var(--laranja-cor);
 }
 
 /* Styling of overlay */
