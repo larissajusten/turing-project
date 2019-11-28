@@ -21,6 +21,19 @@ export class CardProva extends Component {
             <span>{this.props.informacaoTres}</span>
           </div>
         </div>
+        {
+            this.props.paraCorrigir &&
+            <>
+            <div className="container-linguagens-card-prova">
+              {
+                this.props.especificidades.map((item, key) => {
+                  const image = require(`../../assets/images-questoes/${item}.png`);
+                  return <img className="imagem-linguagem-card-prova" src={image} alt="linguagem"/>
+                })
+              }
+            </div>
+            </>
+          }
         <BotaoPrincipal classe="tamanho-botao" nome={this.props.nomeBotao} onClick={(event) => this.props.onClick(event, this.props.id)}/>
       </div>
     )

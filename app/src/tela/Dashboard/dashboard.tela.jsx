@@ -82,7 +82,7 @@ export class DashboardScreen extends Component {
 	renderGraficos() {
 		return(
 			<>
-			{this.state.isLoading ? 
+			{this.state.isLoading ?
 				 <BubbleLoader color="#FBB041" size={5}/>
 					:
 				<div className="container-graficos-questoes">

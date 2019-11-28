@@ -33,7 +33,7 @@ export class MostrarMultiplasRespostas extends Component {
               classe="mult"
               nome="Alternativa C"
               conteudo={this.props.alternativaC} />
-          
+
             <BlocoVisualizar
               classe="mult"
               nome="Alternativa D"
@@ -50,9 +50,9 @@ export class MostrarMultiplasRespostas extends Component {
                 <label className="especificacao-nome">Nivel</label>
                 <div className="especificacao">{this.props.nivel}</div>
               </div>
-              </div>
+            </div>
 
-          <div className="container-especificacoes">
+            <div className="container-especificacoes">
               <div className="container-especificacao-mult">
                 <label className="especificacao-nome">Resposta correta</label>
                 <div className="especificacao">{this.props.respostaCorreta}</div>
@@ -63,10 +63,8 @@ export class MostrarMultiplasRespostas extends Component {
                 <div className="especificacao">{this.props.especificidade}</div>
               </div>
             </div>
-        </div>
           </div>
-
-          
+        </div>
       </div>
     )
   }

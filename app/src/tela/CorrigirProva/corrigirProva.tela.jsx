@@ -57,8 +57,6 @@ export class CorrigirProvaScreen extends Component {
   }
 
   handleClickEnviarCorrecao = async(event) => {
-    console.log(this.state.prova, this.state.idProva, this.state.arrayCorrecoes)
-    
     event.preventDefault()
     try{
       await corrigirProva(this.state.idProva, this.state.arrayCorrecoes)

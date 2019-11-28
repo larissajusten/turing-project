@@ -219,7 +219,7 @@ export class VisualizarProvaScreen extends Component {
           {this.renderQuestoesDissertativas()}
           {this.renderQuestoesTecnicas()}
           {this.renderMultiplasEscolhas()}
-          <div className="container-botao container-botao-prova">          
+          <div className="container-botao container-botao-prova">
             <BotaoPrincipal nome="ENVIAR POR E-MAIL" onClick={this.handleClickEnviarProva}/>
             <BotaoPrincipal nome="CANCELAR" onClick={this.handleClickCancelarProva} />
             <BotaoPrincipal nome="SAIR" onClick={this.handleClickVoltarProva}/>

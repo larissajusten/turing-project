@@ -66,6 +66,7 @@ export class BuscarProvaParaCorrigirScreen extends Component{
       <>
       {
         this.state.provas.map((item, key) => {
+          console.log(item)
           return <CardProva
                 key={key}
                 id={item.id}
@@ -73,7 +74,9 @@ export class BuscarProvaParaCorrigirScreen extends Component{
                 informacaoDois={item.emailCandidato}
                 informacaoTres={item.tempoDeDuracaoDaProva}
                 onClick={this.onClickCorrigirProva}
-                nomeBotao="CORRIGIR"/>
+                nomeBotao="CORRIGIR"
+                especificidades={item.especificidades}
+                paraCorrigir={true}/>
         })
       }
       </>

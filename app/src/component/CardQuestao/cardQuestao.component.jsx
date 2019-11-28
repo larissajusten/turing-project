@@ -16,7 +16,7 @@ export class CardBuscarQuestao extends PureComponent {
     const image = require(`../../assets/images-questoes/${this.props.imagem}.png`);
     return (
         <div className={`container-card ${this.props.widthcardquestao}`}>
-            <img className="imagem-linguagem" src={image} alt="linguagem"></img>
+            <img className="imagem-linguagem" src={image} alt="linguagem"/>
             <div className="content-postagem">
                 <div className="publicada">
                     {this.props.questao}
