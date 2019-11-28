@@ -14,7 +14,6 @@ public class BuscarNumeroDeVezesQuestoesMultiplaPorEspecificidadeService {
     @Autowired
     private QuestaoMultiplaEscolhaRepository repository;
 
-
     public int buscar(Especificidade especificidade) {
         List<QuestaoMultiplaEscolha> lista = repository.findByEspecificidade(especificidade);
 
@@ -24,7 +23,6 @@ public class BuscarNumeroDeVezesQuestoesMultiplaPorEspecificidadeService {
                 vezes++;
             }
         }
-
         return vezes;
     }
 
