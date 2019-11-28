@@ -49,6 +49,7 @@ public class CorrigirProvaService {
 
         validator.validar(idProva);
         prova.setStatus(StatusProva.CORRIGIDA);
+
         double nota = gerarNotaDaProvaComDiferencialDePesoDasQuestoesService.gerarNotaDaProva(prova);
         prova.setNota(nota);
         repository.save(prova);

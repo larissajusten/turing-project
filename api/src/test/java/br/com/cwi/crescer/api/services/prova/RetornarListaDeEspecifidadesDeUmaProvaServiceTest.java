@@ -20,13 +20,15 @@ public class RetornarListaDeEspecifidadesDeUmaProvaServiceTest {
         List<Especificidade> especificidades = new ArrayList<>();
         especificidades.add(Especificidade.JAVASCRIPT);
 
+        List<AlternativaMultiplaEscolha> alternativaMultiplaEscolhas = new ArrayList<>();
+
         List<QuestaoTecnicaComRespostaResponse> questoesTecnicas = new ArrayList<>();
         questoesTecnicas.add(new QuestaoTecnicaComRespostaResponse(Especificidade.JAVASCRIPT, Long.valueOf(1), "resposta",
                 "questao", "comentario", 0d));
 
         List<QuestaoMultiplaEscolhaComRespostaResponse> questoesMultipla = new ArrayList<>();
         questoesMultipla.add(new QuestaoMultiplaEscolhaComRespostaResponse(Long.valueOf(1), new AlternativaMultiplaEscolha(),
-                "questao", Especificidade.JAVASCRIPT, 0d));
+                "questao", Especificidade.JAVASCRIPT, 0d, alternativaMultiplaEscolhas));
 
         List<QuestaoDissertativaComRespostaResponse> questoesDissertativa = new ArrayList<>();
         questoesDissertativa.add(new QuestaoDissertativaComRespostaResponse(Long.valueOf(1), "resposta",

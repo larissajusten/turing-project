@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaComRespostaResp
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
 import br.com.cwi.crescer.api.domain.resposta.RespostasMultiplaEscolhaProva;
 import br.com.cwi.crescer.api.domain.resposta.RespostasTecnicaProva;
+import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaQuestaoMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.RetornarNotaDaQuestaoMultiplaEscolhaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,9 @@ public class QuestaoComRespostaMapper {
 
     @Autowired
     private RetornarNotaDaQuestaoMultiplaEscolhaService retornarNotaDaQuestaoMultiplaEscolhaService;
+
+    @Autowired
+    private BuscarAlternativaQuestaoMultiplaEscolhaService buscarAlternativaQuestaoMultiplaEscolhaService;
 
     public QuestaoDissertativaComRespostaResponse questaoDissertativa(RespostasDissertativaProva questao) {
 
@@ -42,6 +46,8 @@ public class QuestaoComRespostaMapper {
         questaoMultiplaEscolhaComRespostaResponse.setQuestao(questao.getQuestaoMultiplaEscolha().getQuestao());
         questaoMultiplaEscolhaComRespostaResponse.setResposta(questao.getAlternativaMultiplaEscolha());
         questaoMultiplaEscolhaComRespostaResponse.setEspecificidade(questao.getQuestaoMultiplaEscolha().getEspecificidade());
+        questaoMultiplaEscolhaComRespostaResponse.setAlternativasMultiplaEscolhas(buscarAlternativaQuestaoMultiplaEscolhaService
+                .buscar(questao.getQuestaoMultiplaEscolha().getId()));
 
         return questaoMultiplaEscolhaComRespostaResponse;
 
