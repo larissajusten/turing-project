@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.mail.MessagingException;
-
 @RestController
 @RequestMapping("/email")
 public class EmailController {
@@ -17,7 +15,7 @@ public class EmailController {
     private EnviarEmailService enviarEmailService;
 
     @GetMapping("{email-candidato}/enviar")
-    public void enviarEmail(@PathVariable("email-candidato") String emailCandidato) throws MessagingException {
+    public void enviarEmail(@PathVariable("email-candidato") String emailCandidato) {
 
         enviarEmailService.enviar(emailCandidato);
     }

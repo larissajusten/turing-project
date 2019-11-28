@@ -28,12 +28,8 @@ public class AdicionarQuestaoTecnicaService {
     @Autowired
     private VerificarPerfilUsuarioLogadoService verificarPerfilUsuarioLogadoService;
 
-//    @Autowired
-//    private LoggedUser loggedUser;
-
     public void adicionar(QuestaoTecnicaRequest request) {
 
-        //verificarPerfilUsuarioLogadoService.verificar(loggedUser);
         Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva@cwi.com.br");
 
         QuestaoTecnica questaoTecnica = mapper.transformar(request);

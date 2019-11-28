@@ -5,7 +5,6 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
-import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.AdicionarAlternativaMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.autenticacao.VerificarPerfilUsuarioLogadoService;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
@@ -43,13 +42,11 @@ public class AdicionarQuestaoMultiplaEscolhaService {
 
     public QuestaoMultiplaEscolha adicionar(QuestaoMultiplaEscolhaRequest questaoMultiplaEscolhaRequest) {
 
-        //verificarPerfilUsuarioLogadoService.verificar(loggedUser);
         unicaAlternativaCorretaValidator.validar(questaoMultiplaEscolhaRequest);
 
         QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest);
         questaoMultiplaEscolha.setDataCriacao(LocalDate.now());
 
-        //Usuario usuario = buscarUsuarioPeloEmailService.buscar(loggedUser.getEmail());
         Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva@cwi.com.br");
         questaoMultiplaEscolha.setUsuario(usuario);
 

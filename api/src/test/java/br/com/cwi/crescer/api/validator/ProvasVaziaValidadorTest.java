@@ -5,6 +5,7 @@ import br.com.cwi.crescer.api.exception.prova.ProvaNaoEncontradaException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.ArrayList;
@@ -32,7 +33,6 @@ public class ProvasVaziaValidadorTest {
         provas.add(new Prova());
 
         provasVaziaValidador.validar(provas);
-
     }
 
 

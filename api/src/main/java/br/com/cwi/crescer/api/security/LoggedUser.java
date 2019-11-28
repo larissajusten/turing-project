@@ -1,10 +1,11 @@
 package br.com.cwi.crescer.api.security;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -23,6 +24,6 @@ public class LoggedUser implements Serializable {
 
     private String email;
 
-//    private Set roles;
+    private Set roles;
 }
 

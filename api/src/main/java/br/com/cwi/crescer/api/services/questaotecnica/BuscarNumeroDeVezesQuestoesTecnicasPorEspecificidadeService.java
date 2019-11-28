@@ -1,9 +1,7 @@
 package br.com.cwi.crescer.api.services.questaotecnica;
 
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
-import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
-import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.repository.questao.QuestaoTecnicaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,12 +15,12 @@ public class BuscarNumeroDeVezesQuestoesTecnicasPorEspecificidadeService {
     private QuestaoTecnicaRepository repository;
 
 
-    public int buscar(Especificidade especificidade){
-        List<QuestaoTecnica> lista =  repository.findByEspecificidade(especificidade);
+    public int buscar(Especificidade especificidade) {
+        List<QuestaoTecnica> lista = repository.findByEspecificidade(especificidade);
 
         int vezes = 0;
         for (QuestaoTecnica questaoTecnica : lista) {
-            if(questaoTecnica.getVezesUsada() > 0){
+            if (questaoTecnica.getVezesUsada() > 0) {
                 vezes++;
             }
         }
