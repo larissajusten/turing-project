@@ -69,14 +69,14 @@ export class GraficoPizza extends Component {
 
 	render() {
 		return (
-			<div className="grafico">
-			<PieChart width={400} height={400}>
+			<PieChart 
+				width={420} 
+				height={300}
+				margin={{ top: 5, right: 5, left: 5, bottom: 30 }}>
 				<Pie
 					activeIndex={this.state.activeIndex}
 					activeShape={renderActiveShape}
 					data={this.props.data}
-					cx={200}
-					cy={200}
 					innerRadius={60}
 					outerRadius={80}
 					fill={this.props.cor}
@@ -84,7 +84,6 @@ export class GraficoPizza extends Component {
 					onMouseEnter={this.onPieEnter}
 				/>
 			</PieChart>
-			</div>
 		);
 	}
 }

@@ -6,15 +6,15 @@ import { BlocoResposta } from '../../BlocoResposta/blocoResposta.component'
 
 const type = 'text/plain';
 export class CorrigirUnicaResposta extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       questaoDownload: ''
     }
   }
 
-  async componentDidMount(){
-    if(this.props.tipo === 'TECNICA'){
+  async componentDidMount() {
+    if (this.props.tipo === 'TECNICA') {
       this.setState({
         questaoDownload: await retornaQuestaoTecnicaParaBaixar(this.props.idResposta)
       })
@@ -23,7 +23,7 @@ export class CorrigirUnicaResposta extends Component {
 
   downloadRespostaFile = () => {
     const element = document.createElement("a");
-    const file = new Blob([this.props.resposta], {type: type});
+    const file = new Blob([this.props.resposta], { type: type });
     element.href = URL.createObjectURL(file);
     element.download = `resposta${this.props.idResposta}.txt`;
     document.body.appendChild(element);
@@ -32,7 +32,7 @@ export class CorrigirUnicaResposta extends Component {
 
   downloadTestesFile = () => {
     const element = document.createElement("a");
-    const file = new Blob([this.state.questaoDownload.testeBase], {type: type});
+    const file = new Blob([this.state.questaoDownload.testeBase], { type: type });
     element.href = URL.createObjectURL(file);
     element.download = `teste${this.props.idResposta}.txt`;
     document.body.appendChild(element);
@@ -41,7 +41,7 @@ export class CorrigirUnicaResposta extends Component {
 
   downloadRespostaBaseFile = () => {
     const element = document.createElement("a");
-    const file = new Blob([this.state.questaoDownload.respostaBase], {type: type});
+    const file = new Blob([this.state.questaoDownload.respostaBase], { type: type });
     element.href = URL.createObjectURL(file);
     element.download = `respostaBase${this.props.idResposta}.txt`;
     document.body.appendChild(element);
@@ -49,16 +49,16 @@ export class CorrigirUnicaResposta extends Component {
   }
 
   render() {
-    return(
+    return (
       <div className="container-questoes-corrigir">
         <BlocoResposta
-          questaoNome={`Questão ${this.props.index+1}`}
+          questaoNome={`Questão ${this.props.index + 1}`}
           tipo={this.props.tipo}
-          questao={this.props.questao}/>
+          questao={this.props.questao} />
 
         <BlocoResposta
           questaoNome="Resposta"
-          questao={this.props.resposta}/>
+          questao={this.props.resposta} />
 
         <div className="comentario-nota">
           <div className="comentario">
@@ -73,7 +73,7 @@ export class CorrigirUnicaResposta extends Component {
               tipo={this.props.tipo}
               value={this.props.comentario}
               handleChange={this.props.handleChange}
-              maxLength="500"/>
+              maxLength="500" />
           </div>
           <div className="container-nota-download">
             <Input
@@ -88,18 +88,18 @@ export class CorrigirUnicaResposta extends Component {
               idQuestao={this.props.idQuestao}
               tipo={this.props.tipo}
               value={this.props.nota}
-              onChange={this.props.handleChange}/>
+              onChange={this.props.handleChange} />
           </div>
 
         </div>
         {
-              this.props.tipo === 'TECNICA' &&
-              <div className="container-download">
-              <button className="botao-download" onClick={this.downloadRespostaFile}> Resposta<i class="fa fa-download"></i></button>
-              <button className="botao-download" onClick={this.downloadTestesFile}>Testes<i class="fa fa-download"></i></button>
-              <button className="botao-download resposta-base" onClick={this.downloadRespostaBaseFile}>Resposta Base<i class="fa fa-download"></i></button>
-              </div>
-            }
+          this.props.tipo === 'TECNICA' &&
+          <div className="container-download">
+            <button className="botao-download" onClick={this.downloadRespostaFile}> Resposta<i class="fa fa-download"></i></button>
+            <button className="botao-download" onClick={this.downloadTestesFile}>Testes<i class="fa fa-download"></i></button>
+            <button className="botao-download resposta-base" onClick={this.downloadRespostaBaseFile}>Resposta Base<i class="fa fa-download"></i></button>
+          </div>
+        }
       </div>
     )
   }

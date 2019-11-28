@@ -10,7 +10,15 @@ export class GraficoMultipla extends Component {
 			dataMedio: [ {}, {} ],
 			dataDificil: [ {}, {} ]
 		};
-    }
+  }
+
+	componentDidMount() {
+		if(this.state.errosEAcertos !== this.props.notas){
+			this.setState({
+				errosEAcertos: this.props.notas
+			})
+		}
+	}
 
 	componentDidMount() {
 		this.setState({
@@ -29,19 +37,11 @@ export class GraficoMultipla extends Component {
 		})
 	}
 
-	componentDidUpdate(){
-		if(this.state.errosEAcertos !== this.props.notas){
-			this.setState({
-				errosEAcertos: this.props.notas
-			})
-		}
-	}
-
 	verificaTamanhoParaRenderizar(color, array) {
 		if(array.length > 0) {
 			return <GraficoPizza cor={color} data={array}/>
 		}else {
-			return <h1 className="titulo-crie"> Não há questões para visualizar </h1>
+			return null
 		}
 	}
 

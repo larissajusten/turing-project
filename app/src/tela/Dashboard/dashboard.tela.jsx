@@ -8,7 +8,7 @@ import { Notificacao,
 					Select,
 					GraficoMultipla,
 					GraficoNota,
-					GraficoTecnologias } from '../../component/index';
+					GraficoDeBarras } from '../../component/index';
 import './dashboard.style.css';
 
 const mensagemSucessoNotificacao = 'Busca bem sucedida';
@@ -60,12 +60,38 @@ export class DashboardScreen extends Component {
 		Notificacao('Sucesso', mensagemSucessoNotificacao, 'success');
 	}
 
-	renderGraficoTecnologias() {
-		if(this.state.tecnologias) {
-			return <GraficoTecnologias tecnologias={this.state.tecnologias} />
+	renderMultiplasEscolhas(array) {
+		if (array.length > 0) {
+			return <GraficoMultipla notas={array} />;
 		} else {
-			return <h1 className="titulo-nao-tem-questao">Não há questões de múltipla escolha!</h1>;
+			return <h1 className="titulo-nao-tem-questao">Não há questões!</h1>;
 		}
+	}
+
+	renderTecnicasEDissertativas(array) {
+		if (array.length > 0) {
+			return <GraficoNota notas={array} />;
+		} else {
+			return <h1 className="titulo-nao-tem-questao">Não há questões!</h1>;
+		}
+	}
+
+	renderGraficos() {
+		return (
+			<div className="container-graficos-questoes">
+				<div className="container-nivel">
+					<h6 className="nivel facil">Fácil</h6>
+					<h6 className="nivel medio">Medio</h6>
+					<h6 className="nivel dificil">Difícil</h6>
+				</div>
+				<h1 className="titulo-grafico">Multiplas escolhas</h1>
+				<div className="graficos">{this.renderMultiplasEscolhas(this.state.notasMultipla)}</div>
+				<h1 className="titulo-grafico">Dissertativas</h1>
+				<div className="graficos">{this.renderTecnicasEDissertativas(this.state.notasDissertativas)}</div>
+				<h1 className="titulo-grafico">Técnicas</h1>
+				<div className="graficos">{this.renderTecnicasEDissertativas(this.state.notasTecnicas)}</div>
+			</div>
+		);
 	}
 
 	renderContainerComponent() {
@@ -92,56 +118,20 @@ export class DashboardScreen extends Component {
 		}
 	}
 
-	renderMultiplasEscolhas() {
-		if (this.state.notasMultipla.length > 0) {
-			return <GraficoMultipla notas={this.state.notasMultipla} />;
+	renderGraficoTecnologias() {
+		if(this.state.tecnologias) {
+			return <GraficoDeBarras tecnologias={this.state.tecnologias} />
 		} else {
-			return <h1 className="titulo-nao-tem-questao">Não há questões de múltipla escolha!</h1>;
+			return <h1 className="titulo-nao-tem-questao">Não há tecnologias cadastradas!</h1>;
 		}
-	}
-
-	renderDissertativas() {
-		if (this.state.notasDissertativas.length > 0) {
-			return <GraficoNota notas={this.state.notasDissertativas} />;
-		} else {
-			return <h1 className="titulo-nao-tem-questao">Não há questões dissertativas!</h1>;
-		}
-	}
-
-	renderTecnicas() {
-		if (this.state.notasTecnicas.length > 0) {
-			return <GraficoNota notas={this.state.notasTecnicas} />;
-		} else {
-			return <h1 className="titulo-nao-tem-questao">Não há questões técnicas!</h1>;
-		}
-	}
-
-	renderGraficos() {
-		return (
-			<div>
-				<div className="container-nivel">
-					<h6 className="nivel facil">Fácil</h6>
-					<h6 className="nivel medio">Medio</h6>
-					<h6 className="nivel dificil">Difícil</h6>
-				</div>
-				<h1 className="titulo-crie">Multiplas escolhas</h1>
-				<div className="graficos">{this.renderMultiplasEscolhas()}</div>
-				<h1 className="titulo-crie">Dissertativas</h1>
-				<div className="graficos">{this.renderDissertativas()}</div>
-				<h1 className="titulo-crie">Técnicas</h1>
-				<div className="graficos">{this.renderTecnicas()}</div>
-			</div>
-		);
 	}
 
 	render() {
 		return (
-			<div>
-				<div className="container-tela">
-					<h1 className="titulo">Dashboard</h1>
-					{this.renderGraficoTecnologias()}
-					{this.renderContainerComponent()}
-				</div>
+			<div className="container-tela">
+				<h1 className="titulo">Dashboard</h1>
+				{this.renderGraficoTecnologias()}
+				{this.renderContainerComponent()}
 				{this.state.especificidadeEscolhida && this.renderGraficos()}
 			</div>
 		);

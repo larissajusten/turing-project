@@ -43,8 +43,8 @@
   font-weight: lighter;
   text-align: center;
 	line-height: 17px;
-	color: var(--font-color);
-	background-color: var(--bg-black-color);
+	color: var(--fonte-cor);
+	background-color: var(--cinza-cor);
 	border: 1px;
 	border-radius: var(--border-radius);
   transition: all 0.2s;
@@ -57,7 +57,7 @@
 }
 
 .botao-download:hover {
-  background-color: var(--orange-color);
+  background-color: var(--laranja-cor);
 }
 
 i {
