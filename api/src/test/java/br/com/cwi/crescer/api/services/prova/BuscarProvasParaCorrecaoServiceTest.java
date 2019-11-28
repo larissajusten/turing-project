@@ -3,6 +3,7 @@ package br.com.cwi.crescer.api.services.prova;
 import br.com.cwi.crescer.api.controller.responses.ProvaParaCorrecaoResponse;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
+import br.com.cwi.crescer.api.mapper.ProvaMapper;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
 import org.junit.Assert;
 import org.junit.Test;
@@ -11,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -29,7 +29,7 @@ public class BuscarProvasParaCorrecaoServiceTest {
     ProvaRepository provaRepository;
 
     @Mock
-    ModelMapper mapper;
+    ProvaMapper mapper;
 
     @Test
     public void deveRetornarUmaListaDeProvasComStatusAguardandoCorrecaoQuandoBuscarProvasParaCorrecaoServiceForChamado() {
@@ -48,7 +48,7 @@ public class BuscarProvasParaCorrecaoServiceTest {
         Page<ProvaParaCorrecaoResponse> provaParaCorrecaoResponse = new PageImpl<>(listaProvaCorrecaoResponse, page, listaProvaCorrecaoResponse.size());
 
         Mockito.when(provaRepository.findAllByStatusEquals(page, StatusProva.AGUARDANDO_CORRECAO)).thenReturn(pageProva);
-        Mockito.when(mapper.map(prova, ProvaParaCorrecaoResponse.class)).thenReturn(provaParaCorrecaoResponseProva);
+        Mockito.when(mapper.paraCorrigir(prova)).thenReturn(provaParaCorrecaoResponseProva);
 
         buscarProvasParaCorrecaoService.buscar(page);
 
