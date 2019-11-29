@@ -22,14 +22,6 @@ public class QuestaoDissertativa {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     private Long id;
 
-    @Column(name = "DATA_CRIACAO")
-    private LocalDate dataCriacao;
-
-    private String questao;
-
-    @Enumerated(EnumType.STRING)
-    private Especificidade especificidade;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "NIVEL")
     private NivelDeDificuldade nivelDeDificuldade;
@@ -37,4 +29,11 @@ public class QuestaoDissertativa {
     @Column(name = "VEZES_USADA")
     private int vezesUsada;
 
+    @Column(name = "DATA_CRIACAO")
+    private LocalDate dataCriacao;
+
+    @Enumerated(EnumType.STRING)
+    private Especificidade especificidade;
+
+    private String questao;
 }
