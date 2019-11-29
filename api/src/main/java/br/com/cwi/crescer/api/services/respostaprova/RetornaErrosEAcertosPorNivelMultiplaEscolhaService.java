@@ -16,7 +16,6 @@ public class RetornaErrosEAcertosPorNivelMultiplaEscolhaService {
     @Autowired
     private CalcularNumeroDeAcertosMultiplaEscolhaService calcularNumeroDeAcertosMultiplaEscolhaService;
 
-
     @Autowired
     private BuscarListaDeRespostasFiltradaService buscarListaDeRespostasFiltradaService;
 
