@@ -1,9 +1,6 @@
 package br.com.cwi.crescer.api.services.prova;
 
-import br.com.cwi.crescer.api.controller.responses.ProvaCorrigidaResponse;
-import br.com.cwi.crescer.api.controller.responses.QuestaoDissertativaComRespostaResponse;
-import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaComRespostaResponse;
-import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaComRespostaResponse;
+import br.com.cwi.crescer.api.controller.responses.*;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
@@ -37,48 +34,24 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaService {
     private RetornarListaDeEspecifidadesDeUmaProvaService retornarListaDeEspecifidadesDeUmaProvaService;
 
     @Autowired
+    private BuscarProvaPorIdCorrigidaService buscarProvaPorIdCorrigidaService;
+
+    @Autowired
     private ProvasVaziaValidador validator;
 
     public List<ProvaCorrigidaResponse> buscar(String nomeOuEmail) {
 
-        List<Prova> provas = repository.findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals(nomeOuEmail, nomeOuEmail, StatusProva.CORRIGIDA);
+        List<Prova> provas = repository.findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals(nomeOuEmail,
+                nomeOuEmail, StatusProva.CORRIGIDA);
         List<ProvaCorrigidaResponse> listaDasProvas = new ArrayList<>();
 
         validator.validar(provas);
 
         provas.forEach(prova -> {
-            List<QuestaoTecnicaComRespostaResponse> questoesTecnicas = retornarQuestaoTecnicaComRespostaResponseService.buscar(prova);
-            List<QuestaoDissertativaComRespostaResponse> questoesDissertativas = retornarQuestaoDissertativaComRespostaResponseService.buscar(prova);
-            List<QuestaoMultiplaEscolhaComRespostaResponse> questoesMultiplaEscolhas = retornarQuestaoMultiplaEscolhaComRespostaResponseService.buscar(prova);
-            List<Especificidade> especificidades = retornarListaDeEspecifidadesDeUmaProvaService.retornar(questoesTecnicas, questoesDissertativas, questoesMultiplaEscolhas);
-
-            int totalDeQuestoes = questoesTecnicas.size() + questoesDissertativas.size() + questoesMultiplaEscolhas.size();
-
-            ProvaCorrigidaResponse provaResponse = new ProvaCorrigidaResponse();
-            provaResponse.setId(prova.getId());
-
-            provaResponse.setStatusProva(prova.getStatus());
-            provaResponse.setNota(prova.getNota());
-
-            provaResponse.setEmailCandidato(prova.getEmailCandidato());
-            provaResponse.setNomeCandidato(prova.getNomeCandidato());
-
-            provaResponse.setDataInicio(prova.getDataInicio());
-            provaResponse.setDataCriacao(prova.getDataCriacao());
-            provaResponse.setTempoDeDuracaoDaProva(prova.getTempoDeDuracaoDaProva());
-            provaResponse.setTempoParaInicioProva(prova.getTempoParaInicioProva());
-
-            provaResponse.setQuestoesMultiplaEscolha(questoesMultiplaEscolhas);
-            provaResponse.setQuestoesDissertativas(questoesDissertativas);
-            provaResponse.setQuestoesTecnicas(questoesTecnicas);
-
-            provaResponse.setNumeroDeQuestoes(totalDeQuestoes);
-            provaResponse.setEspecificidades(especificidades);
-
+            ProvaCorrigidaResponse provaResponse = buscarProvaPorIdCorrigidaService.buscar(prova.getId());
             listaDasProvas.add(provaResponse);
         });
 
         return listaDasProvas;
     }
-
 }
