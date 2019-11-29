@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { Input, BotaoPrincipal, Notificacao } from '../../component/index'
-import { login, retornaPerfil } from '../../services/index'
+import { login } from '../../services/index'
 import './login.style.css'
 
 export class LoginScreen extends Component {
@@ -26,15 +26,13 @@ export class LoginScreen extends Component {
       "login": this.state.identifier,
       "senha": this.state.senha
     }
-    Notificacao('Sucesso', 'Login realizado com sucesso', 'success')
-    this.setState({
-      deveRedirecionarParaHome: true
-    })
     try{
       let data = await login(user)
       localStorage.setItem('accessToken', data.token)
-      let perfil = await retornaPerfil(data.identifier)
-      localStorage.setItem('perfilUsuario', perfil)
+      Notificacao('Sucesso', 'Login realizado com sucesso', 'success')
+      this.setState({
+        deveRedirecionarParaHome: true
+      })
     }
     catch(error){
       if (error.response.data.errors) {

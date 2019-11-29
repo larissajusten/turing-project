@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { Redirect } from 'react-router-dom'
+import { BubbleLoader } from 'react-css-loaders'
 import { retornarEspecificidades,
 				retornarResultadosMultipla,
 				retornarResultadosDissertativa,
@@ -9,7 +11,6 @@ import { Notificacao,
 					GraficoMultipla,
 					GraficoNota,
 					GraficoDeBarras } from '../../component/index';
-import { BubbleLoader } from 'react-css-loaders';
 import './dashboard.style.css';
 
 const mensagemSucessoNotificacao = 'Busca bem sucedida';
@@ -22,15 +23,24 @@ export class DashboardScreen extends Component {
 			notasDissertativas: [],
 			notasTecnicas: [],
 			notasMultipla: [],
-			isLoading: false
+			isLoading: false,
+			deveRedirecionarParaLogin: false
 		};
 	}
 
 	async componentDidMount() {
-		this.setState({
-			especificidades: await retornarEspecificidades(),
-			tecnologias: await retornaTecnologias()
-		});
+		let token = localStorage.getItem('accessToken')
+		console.log(token)
+		if(!token){
+			this.setState({
+				deveRedirecionarParaLogin: true
+			})
+		}else{
+			this.setState({
+				especificidades: await retornarEspecificidades(),
+				tecnologias: await retornaTecnologias()
+			})
+		}
 	}
 
 	handleChange = async (event) => {
@@ -139,6 +149,9 @@ export class DashboardScreen extends Component {
 	}
 
 	render() {
+		if(this.state.deveRedirecionarParaLogin){
+			return <Redirect to="/login"/>
+		}
 		return (
 			<div className="container-tela">
 				<h1 className="titulo">Dashboard</h1>
