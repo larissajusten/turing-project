@@ -24,7 +24,8 @@ export const retornarNiveisDeDificuldade = async () => {
 }
 
 export const retornarTipoDeQuestao = async () => {
+	carregarToken();
 	const response = await Axios.get(`${baseUrl}/dominio/tipo-de-questao`,
-	{ headers: { Authorization: token } });
+	{ headers: { Authorization: token  } });
 	return response.data;
 }

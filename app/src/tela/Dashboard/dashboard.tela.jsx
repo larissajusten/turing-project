@@ -30,7 +30,6 @@ export class DashboardScreen extends Component {
 
 	async componentDidMount() {
 		let token = localStorage.getItem('accessToken')
-		console.log(token)
 		if(!token){
 			this.setState({
 				deveRedirecionarParaLogin: true
@@ -136,7 +135,7 @@ export class DashboardScreen extends Component {
 				</div>
 			);
 		} else {
-			return <span className="titulo-crie"> Não há especificidades para gerar gráficos </span>;
+			return <span className="titulo-crie"> Não há especificidades para gerar gráficos </span>
 		}
 	}
 

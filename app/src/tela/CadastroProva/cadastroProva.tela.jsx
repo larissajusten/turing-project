@@ -36,14 +36,16 @@ export class CadastrarProvaScreen extends Component {
   }
 
   async componentDidMount() {
+    let tipos = await retornarTipoDeQuestao()
+    let especificidades = await retornarEspecificidades()
+    let niveis = await retornarNiveisDeDificuldade()
+    let arr = Array.from({length:(this.state.arrayStates.length+2)}, () => ({ }))
+    let arrayStates = arr.map(() => ({ ...objeto }))
     this.setState({
-      tipos: await retornarTipoDeQuestao(),
-      especificidades: await retornarEspecificidades(),
-      niveis: await retornarNiveisDeDificuldade()
-    }, () => {
-      const arr = Array.from({length:(this.state.arrayStates.length+2)}, () => ({ }))
-      let arrayStates = arr.map(() => ({ ...objeto }))
-      this.setState ({ arrayStates })
+      tipos,
+      especificidades,
+      arrayStates,
+      niveis
     })
   }
 
@@ -222,24 +224,24 @@ export class CadastrarProvaScreen extends Component {
     )
   }
 
-  renderInputsTeste() {
-    const arrayDeParamsDoInputs = [{ value: "nomeDoCandidato", name: "nomeDoCandidato", tam: "50", type: "text", label: "Digite o nome do candidato"}, 
+  renderInputs() {
+    const arrayDeParamsDoInputs = [{ value: "nomeDoCandidato", name: "nomeDoCandidato", tam: "50", type: "text", label: "Digite o nome do candidato"},
                 { value: "emailDoCandidato", name: "emailDoCandidato", tam: "50", type: "text", label: "Digite o email do candidato"},
                 { value: "duracaoDaProva", name: "duracaoDaProva", tam: "10", type: "number", label: "Tempo de duração da prova (minutos)"},
                 { value: "tempoParaIniciarProva", name: "tempoParaIniciarProva", tam: "8760", type: "number", label: "Tempo para iniciar a prova (horas)"}]
     return arrayDeParamsDoInputs.map((item, key) => {
-      return <Input key={key} name={item.name} value={this.state[item.value]} maxTam={item.tam} type={item.tam} label={item.label} 
+      return <Input key={key} name={item.name} value={this.state[item.value]} maxTam={item.tam} type={item.tam} label={item.label}
                   placeholder="" onChange={this.handleChange}/>
     })
   }
 
-  renderInputsProva2(){
+  renderInputsProva(){
     return (
       <>
         <div className="container-titulo">
           <span className="titulo-crie">Crie sua prova</span>
         </div>
-        {this.renderInputsTeste()}
+        {this.renderInputs()}
         <div className="container-botao">
           <BotaoPrincipal classe="cadastro-prova-botao" nome="ADICIONAR QUESTÕES" onClick={this.handleClickEnviarBaseProva}/>
         </div>
@@ -247,57 +249,6 @@ export class CadastrarProvaScreen extends Component {
     )
   }
 
-  renderInputsProva() {
-    return (
-      <>
-        <div className="container-titulo">
-          <span className="titulo-crie">Crie sua prova</span>
-        </div>
-
-        <div className="container-questao">
-          <Input
-            name="nomeDoCandidato"
-            value={this.state.nomeDoCandidato}
-            onChange={this.handleChange}
-            maxTam="50"
-            type="text"
-            label="Digite o nome do candidato"
-            placeholder="" />
-
-          <Input
-            name="emailDoCandidato"
-            value={this.state.emailDoCandidato}
-            onChange={this.handleChange}
-            maxTam="50"
-            type="text"
-            label="Digite o email do candidato"
-            placeholder="" />
-
-          <Input
-            name="duracaoDaProva"
-            value={this.state.duracaoDaProva}
-            onChange={this.handleChange}
-            maxNum="10"
-            type="number"
-            label="Tempo de duração da prova (minutos)"
-            placeholder="" />
-
-          <Input
-            name="tempoParaIniciarProva"
-            value={this.state.tempoParaIniciarProva}
-            onChange={this.handleChange}
-            maxNum="8760"
-            type="number"
-            label="Tempo para iniciar a prova (horas)"
-            placeholder="" />
-        </div>
-
-        <div className="container-botao">
-          <BotaoPrincipal classe="cadastro-prova-botao" nome="ADICIONAR QUESTÕES" onClick={this.handleClickEnviarBaseProva} />
-        </div>
-      </>
-    )
-  }
 
   render() {
     if (this.state.deveRedirecionarParaDashboard) {
@@ -313,7 +264,7 @@ export class CadastrarProvaScreen extends Component {
             ?
             this.renderEscolhaDeQuestoes()
             :
-            this.renderInputsProva2()
+            this.renderInputsProva()
         }
       </div>
     )
