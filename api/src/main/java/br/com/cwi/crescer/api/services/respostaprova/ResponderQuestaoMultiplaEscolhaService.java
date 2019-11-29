@@ -6,9 +6,7 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.resposta.RespostasMultiplaEscolhaProva;
 import br.com.cwi.crescer.api.repository.resposta.RespostaMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.BuscarAlternativaMultiplaEscolhaPorIdService;
-import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
 import br.com.cwi.crescer.api.services.questaomultiplaescolha.BuscarQuestaoMultiplaEscolhaPorIdService;
-import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +17,10 @@ public class ResponderQuestaoMultiplaEscolhaService {
     private RespostaMultiplaEscolhaRepository repository;
 
     @Autowired
-    private BuscarProvaPorIdService buscarProvaPorIdService;
-
-    @Autowired
     private BuscarQuestaoMultiplaEscolhaPorIdService buscarQuestaoMultiplaEscolhaPorIdService;
 
     @Autowired
     private BuscarAlternativaMultiplaEscolhaPorIdService buscarAlternativaMultiplaEscolhaPorIdService;
-
-    @Autowired
-    private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
 
     public RespostasMultiplaEscolhaProva responder(Prova prova, Long idQuestao, Long idAlternativa) {
 

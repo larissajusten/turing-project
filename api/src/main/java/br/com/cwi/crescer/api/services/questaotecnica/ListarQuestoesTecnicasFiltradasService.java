@@ -12,9 +12,6 @@ import java.util.List;
 public class ListarQuestoesTecnicasFiltradasService {
 
     @Autowired
-    private BuscarQuestaoTecnicaPorIdService buscarQuestaoTecnicaService;
-
-    @Autowired
     private QuestaoValidator validator;
 
     @Autowired

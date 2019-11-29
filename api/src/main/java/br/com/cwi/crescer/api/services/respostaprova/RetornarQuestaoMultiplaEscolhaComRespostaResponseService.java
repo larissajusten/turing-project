@@ -4,7 +4,6 @@ import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaComResp
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.mapper.QuestaoComRespostaMapper;
 import br.com.cwi.crescer.api.repository.resposta.RespostaMultiplaEscolhaRepository;
-import br.com.cwi.crescer.api.services.questaomultiplaescolha.RetornarNotaDaQuestaoMultiplaEscolhaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +15,6 @@ public class RetornarQuestaoMultiplaEscolhaComRespostaResponseService {
 
     @Autowired
     private RespostaMultiplaEscolhaRepository respostaMultiplaEscolhaRepository;
-
-    @Autowired
-    private RetornarNotaDaQuestaoMultiplaEscolhaService retornarNotaDaQuestaoMultiplaEscolhaService;
 
     @Autowired
     private QuestaoComRespostaMapper mapper;

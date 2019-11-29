@@ -4,9 +4,6 @@ import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoUnicaAlternati
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.mapper.QuestaoDissertativaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoDissertativaRepository;
-import br.com.cwi.crescer.api.services.autenticacao.VerificarPerfilUsuarioLogadoService;
-import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
-import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,15 +17,6 @@ public class AdicionarQuestaoDissertativaService {
 
     @Autowired
     private QuestaoDissertativaRepository repository;
-
-    @Autowired
-    private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
-
-    @Autowired
-    private VerificarPerfilUsuarioLogadoService verificarPerfilUsuarioLogadoService;
-
-    @Autowired
-    private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
 
     public QuestaoDissertativa adicionar(QuestaoUnicaAlternativaRequest request) {
 
