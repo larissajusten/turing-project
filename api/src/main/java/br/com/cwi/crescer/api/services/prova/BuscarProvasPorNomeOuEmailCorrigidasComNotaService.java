@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.services.prova;
 
-import br.com.cwi.crescer.api.controller.responses.*;
-import br.com.cwi.crescer.api.domain.enums.Especificidade;
+import br.com.cwi.crescer.api.controller.responses.ProvaCorrigidaResponse;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
