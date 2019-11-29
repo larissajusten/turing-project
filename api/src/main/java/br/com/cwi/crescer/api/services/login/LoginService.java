@@ -22,7 +22,6 @@ public class LoginService {
     @Autowired
     private PegarTokenDeAcessoService pegarToken;
 
-
     public LoggedUserDTO logar(LoginRequest loginRequest) {
         String token = pegarToken.getAccessToken(loginRequest.getLogin(), loginRequest.getSenha());
 
@@ -31,6 +30,5 @@ public class LoginService {
 
         return usuario;
     }
-
 
 }
