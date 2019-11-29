@@ -27,13 +27,6 @@ export class CadastroMultiplaQuestao extends PureComponent {
 		}
 	}
 
-	handleChange = (event) => {
-		const { name, value } = event.target
-		this.setState({
-			[name]: value
-		})
-	}
-
 	catchErrorENotifica(error) {
 		if (error.response.data.errors) {
 			error.response.data.errors.map(message => {
@@ -65,6 +58,13 @@ export class CadastroMultiplaQuestao extends PureComponent {
 		catch (error) {
 			this.catchErrorENotifica(error)
 		}
+	}
+
+	handleChange = (event) => {
+		const { name, value } = event.target
+		this.setState({
+			[name]: value
+		})
 	}
 
 	renderInputs() {

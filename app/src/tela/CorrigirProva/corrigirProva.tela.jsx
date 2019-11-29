@@ -27,7 +27,7 @@ export class CorrigirProvaScreen extends Component {
 
     const quantidadeDeObjetos = (this.lengthDissertativas + this.lengthTecnicas)
 
-    const newArray = [...new Array(quantidadeDeObjetos)]
+    const newArray = Array.from({length:(quantidadeDeObjetos)}, () => ({ }))
     const arrayCorrecoes = newArray.map(() => ({ ...objetoCorrecaoProva }))
 
     this.setState({

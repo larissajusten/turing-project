@@ -9,24 +9,9 @@ export class CadastroDissertativa extends PureComponent {
     this.state = {
       linguagens: props.linguagens,
       niveis: props.niveis,
-      especificidade: null,
-      nivel: null,
-      questao: null
-    }
-  }
-
-  handleChange = (event) => {
-    const { name, value } = event.target
-    this.setState({ [name]: value })
-  }
-
-  catchErrorENotifica(error){
-    if (error.response.data.errors) {
-      error.response.data.errors.map(message => {
-        return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-      })
-    } else {
-      Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      especificidade: '',
+      nivel: '',
+      questao: ''
     }
   }
 
@@ -45,6 +30,21 @@ export class CadastroDissertativa extends PureComponent {
     }
     catch (error) {
       this.catchErrorENotifica(error)
+    }
+  }
+
+  handleChange = (event) => {
+    const { name, value } = event.target
+    this.setState({ [name]: value })
+  }
+
+  catchErrorENotifica(error){
+    if (error.response.data.errors) {
+      error.response.data.errors.map(message => {
+        return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+      })
+    } else {
+      Notificacao('Falha', `${error.response.data.message}`, 'danger')
     }
   }
 

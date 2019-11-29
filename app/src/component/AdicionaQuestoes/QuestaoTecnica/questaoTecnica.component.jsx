@@ -9,11 +9,11 @@ export class CadastroTecnica extends PureComponent {
     this.state = {
       linguagens: props.linguagens,
       niveis: props.niveis,
-      especificidade: null,
-      nivel: null,
-      questao: null,
-      respostaBase: null,
-      testeBase: null
+      especificidade: '',
+      nivel: '',
+      questao: '',
+      respostaBase: '',
+      testeBase: ''
     }
   }
 
