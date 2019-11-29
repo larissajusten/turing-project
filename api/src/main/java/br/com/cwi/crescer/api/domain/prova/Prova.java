@@ -46,7 +46,4 @@ public class Prova {
     @Column(name = "NOME_CANDIDATO")
     private String nomeCandidato;
 
-    @ManyToOne
-    @JoinColumn(name = "ID_CRIADOR", referencedColumnName = "id")
-    private Usuario criador;
 }

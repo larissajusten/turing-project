@@ -32,17 +32,10 @@ public class AdicionarQuestaoDissertativaService {
     @Autowired
     private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
 
-//    @Autowired
-//    private LoggedUser loggedUser;
-
     public QuestaoDissertativa adicionar(QuestaoUnicaAlternativaRequest request) {
 
         QuestaoDissertativa questaoDissertativa = mapper.transformar(request);
         questaoDissertativa.setDataCriacao(LocalDate.now());
-
-//        loggedUser.getEmail();
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva");
-        questaoDissertativa.setUsuario(usuario);
 
         repository.save(questaoDissertativa);
 

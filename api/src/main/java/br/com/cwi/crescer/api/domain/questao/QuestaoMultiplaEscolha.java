@@ -36,9 +36,4 @@ public class QuestaoMultiplaEscolha {
 
     @Column(name = "VEZES_USADA")
     private int vezesUsada;
-
-    @ManyToOne
-    @JoinColumn(name = "ID_CRIADOR", referencedColumnName = "id")
-    private Usuario usuario;
-
 }

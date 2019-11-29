@@ -29,11 +29,8 @@ public class AdicionarQuestaoTecnicaService {
 
     public void adicionar(QuestaoTecnicaRequest request) {
 
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva");
-
         QuestaoTecnica questaoTecnica = mapper.transformar(request);
         questaoTecnica.setDataCriacao(LocalDate.now());
-        questaoTecnica.setUsuario(usuario);
 
         repository.save(questaoTecnica);
     }

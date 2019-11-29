@@ -54,7 +54,6 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
         prova.setStatus(StatusProva.CORRIGIDA);
         prova.setTempoDeDuracaoDaProva(2);
         prova.setDataInicio(LocalDateTime.now());
-        prova.setCriador(new Usuario());
         prova.setTempoParaInicioProva(1);
         prova.setEmailCandidato("Mail@mail.com");
         prova.setNomeCandidato("Ruberval");
@@ -82,7 +81,6 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
         prova.setStatus(StatusProva.CORRIGIDA);
         prova.setTempoDeDuracaoDaProva(2);
         prova.setDataInicio(LocalDateTime.now());
-        prova.setCriador(new Usuario());
         prova.setTempoParaInicioProva(1);
         prova.setEmailCandidato("Mail@mail.com");
         prova.setNomeCandidato("Ruberval");
@@ -110,7 +108,6 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
         prova.setStatus(StatusProva.CORRIGIDA);
         prova.setTempoDeDuracaoDaProva(2);
         prova.setDataInicio(LocalDateTime.now());
-        prova.setCriador(new Usuario());
         prova.setTempoParaInicioProva(1);
         prova.setEmailCandidato("Mail@mail.com");
         prova.setNomeCandidato("Ruberval");
@@ -140,7 +137,6 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
         prova.setStatus(StatusProva.CORRIGIDA);
         prova.setTempoDeDuracaoDaProva(2);
         prova.setDataInicio(LocalDateTime.now());
-        prova.setCriador(new Usuario());
         prova.setTempoParaInicioProva(1);
         prova.setEmailCandidato("Mail@mail.com");
         prova.setNomeCandidato("Ruberval");

@@ -56,7 +56,6 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaService {
 
             ProvaCorrigidaResponse provaResponse = new ProvaCorrigidaResponse();
             provaResponse.setId(prova.getId());
-            provaResponse.setIdCriador(prova.getCriador().getId());
 
             provaResponse.setStatusProva(prova.getStatus());
             provaResponse.setNota(prova.getNota());

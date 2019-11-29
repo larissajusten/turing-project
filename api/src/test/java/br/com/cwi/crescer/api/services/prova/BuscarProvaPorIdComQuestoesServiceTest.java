@@ -44,7 +44,6 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
     public void deveChamarBuscarProvaPorIdServiceQuandoBuscarProvaComQuestoesServiceForChamado() {
 
         Prova prova = new Prova();
-        prova.setCriador(new Usuario());
         ProvaResponse provaResponse = new ProvaResponse();
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
@@ -65,7 +64,6 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
     public void deveChamarBuscarQuestoesTecnicasDeUmaProvaPorIdServiceQuandoBuscarProvaComQuestoesServiceForChamado() {
 
         Prova prova = new Prova();
-        prova.setCriador(new Usuario());
         ProvaResponse provaResponse = new ProvaResponse();
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
@@ -86,7 +84,6 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
     public void deveChamarBuscarQuestoesDissertativasDeUmaProvaPorIdServiceQuandoBuscarProvaComQuestoesServiceForChamado() {
 
         Prova prova = new Prova();
-        prova.setCriador(new Usuario());
         ProvaResponse provaResponse = new ProvaResponse();
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
@@ -107,7 +104,6 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
     public void deveChamarBuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdServiceQuandoBuscarProvaComQuestoesServiceForChamado() {
 
         Prova prova = new Prova();
-        prova.setCriador(new Usuario());
         ProvaResponse provaResponse = new ProvaResponse();
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
