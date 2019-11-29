@@ -29,7 +29,6 @@ public class FinalizarTempoDaProvaServiceTest {
     @Test
     public void deveChamarProvaRepositoryQuandoFinalizarTempoDaProvaServiceForChamado() {
         Prova prova = new Prova();
-        LocalDateTime agora = LocalDateTime.now();
         prova.setDataInicio(LocalDateTime.now());
         prova.setTempoDeDuracaoDaProva(1);
 

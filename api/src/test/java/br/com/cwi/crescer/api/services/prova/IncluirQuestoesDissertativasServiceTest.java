@@ -47,8 +47,6 @@ public class IncluirQuestoesDissertativasServiceTest {
 
         BuscaQuestoesRequest buscaQuestoesRequest = new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 1);
 
-        ProvaQuestaoDissertativa provaQuestaoDissertativa = new ProvaQuestaoDissertativa();
-
         Mockito.when(listarQuestoesDissertativasFiltradas.listar(buscaQuestoesRequest)).thenReturn(lista);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
 
@@ -66,8 +64,6 @@ public class IncluirQuestoesDissertativasServiceTest {
         Prova prova = new Prova();
 
         BuscaQuestoesRequest buscaQuestoesRequest = new BuscaQuestoesRequest(Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 1);
-
-        ProvaQuestaoDissertativa provaQuestaoDissertativa = new ProvaQuestaoDissertativa();
 
         Mockito.when(listarQuestoesDissertativasFiltradas.listar(buscaQuestoesRequest)).thenReturn(lista);
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);

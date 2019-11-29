@@ -33,7 +33,6 @@ public class ListarQuestoesTecnicasFiltradasServiceTest {
         BuscaQuestoesRequest buscaQuestoesRequest =
                 new BuscaQuestoesRequest(Especificidade.JAVA, NivelDeDificuldade.DIFICIL, 1);
 
-        List<QuestaoTecnica> lista = new ArrayList<>();
         List<QuestaoTecnica> listaQueAtendeRequisitos = new ArrayList<>();
         listaQueAtendeRequisitos.add(new QuestaoTecnica());
         Mockito.when(buscarQuestoesTecnicasFiltradasService.buscar(buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade(), 1)).thenReturn(listaQueAtendeRequisitos);

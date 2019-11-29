@@ -23,7 +23,6 @@ public class AcrescentaNaListaLinguagensDoUsuarioServiceTest {
 
     @Test
     public void deveChamarRetornaTotalPorLinguagemServiceQuandoAcrescentaNaListaLinguagensDoUsuarioServiceForChamado() {
-        LinguagensResponse linguagensResponse = new LinguagensResponse();
         List<LinguagensResponse> lista = new ArrayList<>();
 
         Mockito.when(retornaTotalPorLinguagemService.retornar(Especificidade.JAVASCRIPT)).thenReturn(1);

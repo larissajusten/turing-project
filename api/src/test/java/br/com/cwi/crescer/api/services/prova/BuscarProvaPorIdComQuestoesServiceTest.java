@@ -1,6 +1,5 @@
 package br.com.cwi.crescer.api.services.prova;
 
-import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoDissertativaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaResponse;
@@ -45,7 +44,6 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
 
         Prova prova = new Prova();
         prova.setCriador(new Usuario());
-        ProvaResponse provaResponse = new ProvaResponse();
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
         List<QuestaoDissertativaResponse> questoesDissertativas = new ArrayList<>();
@@ -66,7 +64,6 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
 
         Prova prova = new Prova();
         prova.setCriador(new Usuario());
-        ProvaResponse provaResponse = new ProvaResponse();
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
         List<QuestaoDissertativaResponse> questoesDissertativas = new ArrayList<>();
@@ -87,7 +84,6 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
 
         Prova prova = new Prova();
         prova.setCriador(new Usuario());
-        ProvaResponse provaResponse = new ProvaResponse();
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
         List<QuestaoDissertativaResponse> questoesDissertativas = new ArrayList<>();
@@ -108,7 +104,6 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
 
         Prova prova = new Prova();
         prova.setCriador(new Usuario());
-        ProvaResponse provaResponse = new ProvaResponse();
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
         List<QuestaoDissertativaResponse> questoesDissertativas = new ArrayList<>();

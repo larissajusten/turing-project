@@ -49,7 +49,6 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
 
     @Test
     public void deveChamarRetornarQuestaoTecnicaComRespostaResponseServiceQuandoBuscarProvaPorIdCorrigidaServiceForChamado() {
-        ProvaCorrigidaResponse provaCorrigidaResponse = new ProvaCorrigidaResponse();
         Prova prova = new Prova();
         prova.setStatus(StatusProva.CORRIGIDA);
         prova.setTempoDeDuracaoDaProva(2);
@@ -77,7 +76,6 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
 
     @Test
     public void deveChamarRetornarQuestaoDissertativaComRespostaResponseServiceQuandoBuscarProvaPorIdCorrigidaServiceForChamado() {
-        ProvaCorrigidaResponse provaCorrigidaResponse = new ProvaCorrigidaResponse();
         Prova prova = new Prova();
         prova.setStatus(StatusProva.CORRIGIDA);
         prova.setTempoDeDuracaoDaProva(2);
@@ -105,7 +103,6 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
 
     @Test
     public void deveChamarRetornarQuestaoMultiplaEscolhaComRespostaResponseServiceQuandoBuscarProvaPorIdCorrigidaServiceForChamado() {
-        ProvaCorrigidaResponse provaCorrigidaResponse = new ProvaCorrigidaResponse();
         Prova prova = new Prova();
         prova.setStatus(StatusProva.CORRIGIDA);
         prova.setTempoDeDuracaoDaProva(2);
