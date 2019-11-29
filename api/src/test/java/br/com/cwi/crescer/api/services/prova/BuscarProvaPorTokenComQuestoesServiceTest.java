@@ -43,7 +43,6 @@ public class BuscarProvaPorTokenComQuestoesServiceTest {
 
     @Test(expected = ProvaNaoEncontradaException.class)
     public void deveDispararProvaNaoEncontradaExceptionQuandoBuscarProvaPorTokenComQuestoesServiceForChamadoENaoRetornarUmaProva() {
-        ProvaResponse provaResponse = new ProvaResponse();
         Prova prova = new Prova();
         prova.setId(1L);
         String token = "token";

@@ -33,11 +33,8 @@ public class BuscarQuestoesTecnicasDeUmaProvaPorIdServiceTest {
     @Test
     public void deveChamarProvaQuestaoTecnicaRepositoryQuandoBuscarQuestoesTecnicasDeUmaProvaPorIdServiceForChamado() {
         Prova prova = new Prova();
-        QuestaoTecnica questaoTecnica = new QuestaoTecnica();
-        QuestaoTecnicaResponse questaoTecnicaResponse = new QuestaoTecnicaResponse();
 
         List<ProvaQuestaoTecnica> provaQuestaoTecnicas = new ArrayList<>();
-        List<QuestaoTecnicaResponse> listaDeQuestoesTecnicasDaProva = new ArrayList<>();
 
         Mockito.when(repository.findAllByProvaIdEquals(prova.getId())).thenReturn(provaQuestaoTecnicas);
 
@@ -55,7 +52,6 @@ public class BuscarQuestoesTecnicasDeUmaProvaPorIdServiceTest {
         provaQuestaoTecnica.setQuestao(questaoTecnica);
         List<ProvaQuestaoTecnica> provaQuestaoTecnicas = new ArrayList<>();
         provaQuestaoTecnicas.add(provaQuestaoTecnica);
-        List<QuestaoTecnicaResponse> listaDeQuestoesTecnicasDaProva = new ArrayList<>();
 
         Mockito.when(repository.findAllByProvaIdEquals(prova.getId())).thenReturn(provaQuestaoTecnicas);
         Mockito.when(mapper.map(questaoTecnica, QuestaoTecnicaResponse.class)).thenReturn(questaoTecnicaResponse);

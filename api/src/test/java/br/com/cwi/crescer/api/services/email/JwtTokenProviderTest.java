@@ -15,14 +15,14 @@ public class JwtTokenProviderTest {
 
     @Test
     public void deveGerarToken() {
-        String resultado = jwtTokenProvider.generateToken(new Prova(Long.valueOf(1), LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), "emailCandidato", 0, 0, StatusProva.ATIVA, 0d, "nomeCandidato", new Usuario(Long.valueOf(1), "email", Perfil.ADMINISTRADOR)));
+        String resultado = jwtTokenProvider.generateToken(new Prova(1L, LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), "emailCandidato", 0, 0, StatusProva.ATIVA, 0d, "nomeCandidato", new Usuario(1L, "email", Perfil.ADMINISTRADOR)));
         Assert.assertNotEquals(null, resultado);
     }
 
     @Test
-    public void deveGerarTokensDiferentesComSecretESem() throws Exception {
-        String resultadoComJWTSecret = JwtTokenProvider.generate(Long.valueOf(1), "jwtSecret", new Prova(Long.valueOf(1), LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), "emailCandidato", 0, 0, StatusProva.ATIVA, 0d, "nomeCandidato", new Usuario(Long.valueOf(1), "email", Perfil.ADMINISTRADOR)));
-        String resultadoSemJWTSecret = jwtTokenProvider.generateToken(new Prova(Long.valueOf(1), LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), "emailCandidato", 0, 0, StatusProva.ATIVA, 0d, "nomeCandidato", new Usuario(Long.valueOf(1), "email", Perfil.ADMINISTRADOR)));
+    public void deveGerarTokensDiferentesComSecretESem() {
+        String resultadoComJWTSecret = JwtTokenProvider.generate(1L, "jwtSecret", new Prova(1L, LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), "emailCandidato", 0, 0, StatusProva.ATIVA, 0d, "nomeCandidato", new Usuario(1L, "email", Perfil.ADMINISTRADOR)));
+        String resultadoSemJWTSecret = jwtTokenProvider.generateToken(new Prova(1L, LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), LocalDateTime.of(2019, Month.NOVEMBER, 28, 10, 18, 7), "emailCandidato", 0, 0, StatusProva.ATIVA, 0d, "nomeCandidato", new Usuario(1L, "email", Perfil.ADMINISTRADOR)));
 
         Assert.assertNotEquals(resultadoSemJWTSecret, resultadoComJWTSecret);
     }

@@ -39,7 +39,6 @@ public class ResponderQuestaoDissertativaServiceTest {
 
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
         Prova prova = new Prova();
-        RespostasDissertativaProva respostasDissertativaProva = new RespostasDissertativaProva();
 
         Mockito.when(buscarQuestaoDissertativaPorIdService.buscar(questaoDissertativa.getId())).thenReturn(questaoDissertativa);
 

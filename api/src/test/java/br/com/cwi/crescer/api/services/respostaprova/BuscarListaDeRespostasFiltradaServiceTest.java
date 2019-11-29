@@ -41,20 +41,22 @@ public class BuscarListaDeRespostasFiltradaServiceTest {
     @Test
     public void testRetornar() {
 
-        Prova prova = new Prova(Long.valueOf(1), LocalDateTime.of(2019, Month.NOVEMBER, 28, 11,
+        String email = "email";
+
+        Prova prova = new Prova(1L, LocalDateTime.of(2019, Month.NOVEMBER, 28, 11,
                 16, 26), LocalDateTime.of(2019, Month.NOVEMBER, 28, 11, 16,
                 26), "emailCandidato", 0, 0, StatusProva.ATIVA,
-                0d, "nomeCandidato", new Usuario(Long.valueOf(1), "email", Perfil.ADMINISTRADOR));
+                0d, "nomeCandidato", new Usuario(1L, email, Perfil.ADMINISTRADOR));
 
-        RespostasMultiplaEscolhaProva respostasMultiplaEscolhaProva = new RespostasMultiplaEscolhaProva(Long.valueOf(1),
-                new AlternativaMultiplaEscolha(), new QuestaoMultiplaEscolha(Long.valueOf(1), LocalDate.of(2019, Month.NOVEMBER,
+        RespostasMultiplaEscolhaProva respostasMultiplaEscolhaProva = new RespostasMultiplaEscolhaProva(1L,
+                new AlternativaMultiplaEscolha(), new QuestaoMultiplaEscolha(1L, LocalDate.of(2019, Month.NOVEMBER,
                 28), "questao", Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 0,
-                new Usuario(Long.valueOf(1), "email", Perfil.ADMINISTRADOR)), prova);
+                new Usuario(1L, email, Perfil.ADMINISTRADOR)), prova);
 
 
         List<QuestaoMultiplaEscolha> questoes = new ArrayList<>();
-        questoes.add(new QuestaoMultiplaEscolha(Long.valueOf(1), LocalDate.of(2019, Month.NOVEMBER, 28),
-                "questao", Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 0, new Usuario(Long.valueOf(1), "email", Perfil.ADMINISTRADOR)));
+        questoes.add(new QuestaoMultiplaEscolha(1L, LocalDate.of(2019, Month.NOVEMBER, 28),
+                "questao", Especificidade.JAVASCRIPT, NivelDeDificuldade.FACIL, 0, new Usuario(1L, email, Perfil.ADMINISTRADOR)));
 
         List<RespostasMultiplaEscolhaProva> respostas = new ArrayList<>();
 

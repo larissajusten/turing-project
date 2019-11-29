@@ -4,7 +4,6 @@ import br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse
 import br.com.cwi.crescer.api.domain.dto.NotasDTO;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
-import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.resposta.RespostasTecnicaProva;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
