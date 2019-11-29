@@ -12,7 +12,7 @@ import { Notificacao,
 import { BubbleLoader } from 'react-css-loaders';
 import './dashboard.style.css';
 
-const mensagemSucessoNotificacao = 'Busca bem sucedida';
+const mensagemDeSucessoDaNotificacao = 'Busca bem sucedida';
 export class DashboardScreen extends Component {
 	constructor(props) {
 		super(props);
@@ -60,7 +60,7 @@ export class DashboardScreen extends Component {
 
 	salvaResponseENotificaSucesso(especificidades) {
 		this.setState({ especificidades });
-		Notificacao('Sucesso', mensagemSucessoNotificacao, 'success');
+		Notificacao('Sucesso', mensagemDeSucessoDaNotificacao, 'success');
 	}
 
 	renderMultiplasEscolhas(array) {

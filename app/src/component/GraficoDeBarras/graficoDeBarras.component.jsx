@@ -1,12 +1,6 @@
 import React, { PureComponent } from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
-const label = (props) => {
-  props.map((linguagem, key) => {
-    return linguagem
-  })
-}
-
 export class GraficoDeBarras extends PureComponent {
   render() {
     const data = [
@@ -64,7 +58,7 @@ export class GraficoDeBarras extends PureComponent {
         <XAxis dataKey="name" label={{ value: 'Linguagens',  position: 'bottom' }}/>
         <YAxis label={{ value: 'Quantidade de candidatos', angle: -90 }} domain={[0, 'dataMax + 4']}/>
         <Tooltip/>
-        <Bar barSize={22} dataKey="candidatos"  label={label(this.props.tecnologias)}>
+        <Bar barSize={22} dataKey="candidatos">
           {
           	data.map((item, index) => {
             	return <Cell fill={cores[index]}/>

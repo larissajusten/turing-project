@@ -29,7 +29,6 @@ export class Input extends Component {
 					max={this.props.maxNum}
 					value={this.props.value}
 					onChange={this.escolherOnChange()}
-					autocomplete="off"
 					required
 				/>
 			</div>

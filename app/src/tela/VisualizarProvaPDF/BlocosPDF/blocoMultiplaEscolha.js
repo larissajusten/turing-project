@@ -17,7 +17,7 @@ export const BlocoQuestaoMultiplaEscolha = (props) => (
             <View style={styles.containerRespostaMultiplaEscolha}>
               {
                   item.alternativasMultiplaEscolhas.map((resposta, key) => {
-                    return <Text key={key} 
+                    return <Text key={key}
                                   style={resposta.respostaCorreta ? styles.respostaCorreta : styles.respostaMultiplaEscolha}>
                               {`${key}. ${resposta.resposta}`}
                           </Text>

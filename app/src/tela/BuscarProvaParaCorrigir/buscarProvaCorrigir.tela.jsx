@@ -24,23 +24,7 @@ export class BuscarProvaParaCorrigirScreen extends Component{
       totalPaginas: dadosDaResponse[1],
       per_page: dadosDaResponse[2],
       current_page: dadosDaResponse[3]
-    }, () => {
-      //this.buscarProvas()
     })
-  }
-
-  buscarProvas = async () => {
-    setTimeout(
-      async () => {
-        let dadosDaResponse = await retornaProvasParaCorrecao(0)
-        this.setState({
-          provas: dadosDaResponse[0],
-          totalPaginas: dadosDaResponse[1],
-          per_page: dadosDaResponse[2],
-          current_page: dadosDaResponse[3]
-        }, () => { this.buscarProvas() })
-      }
-    , 20000)
   }
 
   onClickCorrigirProva = (event, idProva) => {
@@ -95,8 +79,7 @@ export class BuscarProvaParaCorrigirScreen extends Component{
         <Paginacao
           totalPaginas={this.state.totalPaginas}
           paginaAtual={this.state.current_page}
-          onClickVoltar={this.buscaPagina}
-          onClickProxima={this.buscaPagina}/>
+          onClick={this.buscaPagina}/>
       </>
     )
   }

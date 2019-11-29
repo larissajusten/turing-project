@@ -8,7 +8,7 @@
 }
 
 .container-paginacao button {
-	background: none;
+	background-color: none;
 	border: 0;
 	box-shadow: inset 0 0 0 2px var(--laranja-cor);
 	border-radius: var(--border-radius);
@@ -28,7 +28,8 @@
   height: 100%;
 }
 
-.draw {
+.botao-paginacao {
+	background-color: #FFFFFF;
 	font-family: 'Open Sans Condensed', sans-serif;
 	font-weight: bold;
 	border-radius: var(--border-radius);
@@ -37,7 +38,19 @@
 	margin: 5px;
 }
 
-.draw:hover {
+.botao-paginacao:hover {
+	background-color: var(--laranja-cor);
+	color: var(--fonte-cor);
+}
+
+.desabilitado {
+	visibility: hidden;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: bold;
+	border-radius: var(--border-radius);
+	height: 40px;
+	width: 50px;
+	margin: 5px;
 	background-color: var(--laranja-cor);
 	color: var(--fonte-cor);
 }

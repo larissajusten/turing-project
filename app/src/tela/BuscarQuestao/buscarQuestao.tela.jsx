@@ -156,8 +156,7 @@ export class BuscarQuestaoScreen extends Component {
           <Paginacao
             totalPaginas={this.state.totalPaginas}
             paginaAtual={this.state.current_page}
-            onClickVoltar={this.buscaPagina}
-            onClickProxima={this.buscaPagina}/>
+            onClick={this.buscaPagina}/>
         </div>
       </>
     )
