@@ -12,6 +12,21 @@ export class QuestaoUnica extends PureComponent {
     }
   }
 
+  renderTextAreaQuestaoTecnica() {
+		const arrayDeParamsDoTextArea =
+			[{ name: "respostaBase", value: "resposta", label:"Resposta base"},
+			{ name: "testeBase", value: "testes", label: "Testes base"}]
+		return arrayDeParamsDoTextArea.map((item, key) => {
+			return <div className="input-principal">
+              <Textarea
+                label={item.label}
+                name={item.name}
+                value={this.props[item.label]}
+                handleChange={this.props.handleChange}/>
+            </div>
+		})
+  }
+
   renderSelects() {
 		const arrayDeParamsDoSelect =
 			[{ name: "especificidade", label: "o", object: this.state.linguagens },
@@ -29,21 +44,6 @@ export class QuestaoUnica extends PureComponent {
 			</div>
 		})
 	}
-
-  renderTextAreaQuestaoTecnica() {
-		const arrayDeParamsDoTextArea =
-			[{ name: "respostaBase", value: "resposta", label:"Resposta base"},
-			{ name: "testeBase", value: "testes", label: "Testes base"}]
-		return arrayDeParamsDoTextArea.map((item, key) => {
-			return <div className="input-principal">
-              <Textarea
-                label={item.label}
-                name={item.name}
-                value={this.props[item.label]}
-                handleChange={this.props.handleChange}/>
-            </div>
-		})
-  }
 
   render() {
     return(
