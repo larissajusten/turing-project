@@ -19,16 +19,8 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.context.request.RequestContextListener;
 
 @Slf4j
-//TODO Vanessa Schenkel 23/11/2019 - Pesquisar sobre slf4j
 @Configuration
 public class OAuth2ClientContextConfig {
-
-    @Autowired
-    private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
-    @Autowired
-    private OAuth2ClientContext context;
-    @Autowired
-    private ObjectMapper mapper;
 
     @Bean
     public RequestContextListener requestContextListener() {
@@ -37,7 +29,9 @@ public class OAuth2ClientContextConfig {
 
     @Bean
     @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS, scopeName = "request")
-    public LoggedUser getUserFromJwt() {
+    public LoggedUser getUserFromJwt(@Autowired BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService,
+                                     @Autowired OAuth2ClientContext context,
+                                     @Autowired ObjectMapper mapper) {
 
         LoggedUser usuario = null;
 

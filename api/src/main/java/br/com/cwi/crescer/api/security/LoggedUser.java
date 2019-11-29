@@ -5,14 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.io.Serializable;
 import java.util.Set;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
-public class LoggedUser implements Serializable {
+public class LoggedUser {
 
     private Long id;
 
