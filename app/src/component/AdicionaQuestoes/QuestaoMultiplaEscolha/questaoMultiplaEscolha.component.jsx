@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
+import { Redirect } from 'react-router-dom'
 import { BotaoPrincipal, Input, Select, Notificacao, Textarea } from '../../index'
 import { adicionarQuestaoMultiplaEscolha } from '../../../services/index'
 import './questaoMultiplaEscolha.style.css'
@@ -23,7 +24,8 @@ export class CadastroMultiplaQuestao extends PureComponent {
 			resposta: '',
 			especificidade: null,
 			nivel: null,
-			questao: null
+			questao: null,
+			deveRedirecionarParaDashboard: false
 		}
 	}
 
@@ -54,6 +56,9 @@ export class CadastroMultiplaQuestao extends PureComponent {
 		try {
 			await adicionarQuestaoMultiplaEscolha(questao)
 			Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
+			this.setState({
+				deveRedirecionarParaDashboard: true
+			})
 		}
 		catch (error) {
 			this.catchErrorENotifica(error)
@@ -117,6 +122,9 @@ export class CadastroMultiplaQuestao extends PureComponent {
 	}
 
 	render() {
+		if (this.state.deveRedirecionarParaDashboard) {
+			return <Redirect to="/" />
+		}
 		return (
 			<>
 				<div className="container-questao">

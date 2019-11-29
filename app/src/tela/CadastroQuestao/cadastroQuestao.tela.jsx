@@ -10,8 +10,7 @@ export class CadastrarQuestaoScreen extends Component {
 			questoes: [],
 			especificidades: [],
 			niveis: [],
-			questao: '',
-			deveRedirecionarParaLogin: false
+			questao: ''
 		}
 	}
 

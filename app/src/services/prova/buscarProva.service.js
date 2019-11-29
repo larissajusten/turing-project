@@ -17,9 +17,7 @@ export const retornaProva = async (idProva) => {
 }
 
 export const retornaProvaPorToken = async (token) => {
-  carregarToken();
-  const response = await Axios.get(`${baseUrl}/buscar-prova/token/${token}`,
-  { headers: { Authorization: token }})
+  const response = await Axios.get(`${baseUrl}/buscar-prova/token/${token}`)
   return response.data
 }
 

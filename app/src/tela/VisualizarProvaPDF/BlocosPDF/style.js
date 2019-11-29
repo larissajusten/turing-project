@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     alignSelf: alignSelf,
     flexDirection: "column",
     width: 550,
-    height: 250,
+    height: 280,
     marginTop: 15,
     paddingTop: 8,
     paddingLeft: 15,
@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
     width: 400
   },
   containerRespostaMultiplaEscolha: {
-    height: 100,
+    height: 115,
     width: 500
   },
   tipoQuestao: {
@@ -103,7 +103,7 @@ export const styles = StyleSheet.create({
   },
   respostaMultiplaEscolha: {
     fontWeight: 'thin',
-    fontSize: 12,
+    fontSize: 10,
     color: 'black',
     textDecoration: 'none',
     marginBottom: 5
@@ -204,7 +204,7 @@ export const styles = StyleSheet.create({
   },
   respostaCorreta: {
     fontWeight: 'thin',
-    fontSize: 12,
+    fontSize: 10,
     color: '#25E015',
     textDecoration: 'none',
     marginBottom: 5,

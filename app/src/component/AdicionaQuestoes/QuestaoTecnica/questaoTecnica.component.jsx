@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent } from 'react'
+import { Redirect } from 'react-router-dom'
 import { QuestaoUnica, Notificacao } from '../../index'
 import { adicionarQuestaoTecnica } from '../../../services/index'
 
@@ -13,7 +14,8 @@ export class CadastroTecnica extends PureComponent {
       nivel: '',
       questao: '',
       respostaBase: '',
-      testeBase: ''
+      testeBase: '',
+      deveRedirecionarParaDashboard: false
     }
   }
 
@@ -46,6 +48,9 @@ export class CadastroTecnica extends PureComponent {
     try{
       await adicionarQuestaoTecnica(questaoTecnica)
       Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
+      this.setState({
+        deveRedirecionarParaDashboard: true
+      })
     }
     catch(error){
       this.catchErrorENotifica(error)
@@ -53,6 +58,9 @@ export class CadastroTecnica extends PureComponent {
   }
 
   render() {
+    if (this.state.deveRedirecionarParaDashboard) {
+			return <Redirect to="/" />
+		}
     return(
       <>
       <QuestaoUnica

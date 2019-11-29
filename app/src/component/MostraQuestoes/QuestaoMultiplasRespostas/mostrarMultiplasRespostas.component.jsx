@@ -20,27 +20,22 @@ export class MostrarMultiplasRespostas extends Component {
         <div className="container-alternativas">
           <div className="coluna">
             <BlocoVisualizar
-              classe="mult"
               nome="Alternativa A"
               conteudo={this.props.alternativaA} />
 
             <BlocoVisualizar
-              classe="mult"
               nome="Alternativa B"
               conteudo={this.props.alternativaB} />
 
             <BlocoVisualizar
-              classe="mult"
               nome="Alternativa C"
               conteudo={this.props.alternativaC} />
 
             <BlocoVisualizar
-              classe="mult"
               nome="Alternativa D"
               conteudo={this.props.alternativaD} />
 
             <BlocoVisualizar
-              classe="mult"
               nome="Alternativa E"
               conteudo={this.props.alternativaE} />
           </div>

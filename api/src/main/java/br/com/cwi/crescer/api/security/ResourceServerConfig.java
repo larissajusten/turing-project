@@ -45,11 +45,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .permitAll()
 
                 .antMatchers(
-                        "/prova/**",
                         "/dashboard/**",
                         "/email/**",
-                        "/buscar-prova/**",
-                        "/dominio/**",
                         "/excluir/**",
                         "/incluir/**",
                         "/prova-questao-dissertativa/**",
@@ -79,8 +76,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/usuario/**")
                 .hasAnyRole(ADMIN, ENTREVISTADOR)
 
-                .antMatchers(HttpMethod.PUT, "prova/{id-prova}/iniciar-prova")
-                .hasAnyRole("USUARIO", ADMIN, ENTREVISTADOR)
+                .antMatchers(HttpMethod.PUT, "/prova/**")
+                .permitAll()
+
+                .antMatchers(HttpMethod.GET, "/buscar-prova/**", "/dominio/**")
+                .permitAll()
 
                 .anyRequest()
                 .authenticated();

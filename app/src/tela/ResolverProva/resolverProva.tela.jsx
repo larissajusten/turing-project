@@ -7,7 +7,8 @@ import { retornaProvaPorToken,
 import { ProvaModal,
         RespondeQuestaoUnicaResposta,
         RespondeQuestaoMultiplasRespostas,
-        BotaoPrincipal } from '../../component/index'
+        BotaoPrincipal,
+        Notificacao } from '../../component/index'
 
 const objetoResposta = { tipoDeQuestao: '', idQuestao: '', resposta: '' }
 let hidden = null;
@@ -45,36 +46,52 @@ export class ResolverProvaScreen extends Component {
   }
 
   async componentDidMount() {
-    localStorage.setItem('accessToken', this.state.token)
-    let prova = await retornaProvaPorToken(this.state.token)
-    document.addEventListener(visibilityChange, this.handleVisibilityChange, false)
-    this.setState({
-      prova: prova,
-      tiposDeQuestoes: await retornarTipoDeQuestao()
-    }, () => {
-      const quantidadeObjetos = (this.state.prova.questoesDeMultiplaEscolha.length +
-                                  this.state.prova.questoesDissertativas.length +
-                                  this.state.prova.questoesTecnicas.length)
+    let prova;
+    try{
+      prova = await retornaProvaPorToken(this.state.token)
+      document.addEventListener(visibilityChange, this.handleVisibilityChange, false)
+        this.setState({
+          idProva: prova.id,
+          prova: prova,
+          tiposDeQuestoes: await retornarTipoDeQuestao()
+        }, () => {
+          const quantidadeObjetos = (this.state.prova.questoesDeMultiplaEscolha.length +
+                                      this.state.prova.questoesDissertativas.length +
+                                      this.state.prova.questoesTecnicas.length)
 
-      const newArray = Array.from({length:(quantidadeObjetos)}, () => ({ }))
-      const arrayRespostas = newArray.map(() => ({ ...objetoResposta }))
+          const newArray = Array.from({length:(quantidadeObjetos)}, () => ({ }))
+          const arrayRespostas = newArray.map(() => ({ ...objetoResposta }))
 
+          this.setState({
+            count: this.state.prova.tempoDeDuracaoDaProva,
+            arrayRespostas
+          })
+
+          this.lengthMultiplasEscolhas = this.state.prova.questoesDeMultiplaEscolha.length
+          this.lengthDissertativas = this.state.prova.questoesDissertativas.length
+          this.lengthTecnicas = this.state.prova.questoesTecnicas.length
+        })
+    }
+    catch(error){
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
       this.setState({
-        idProva: this.state.prova.id,
-        count: this.state.prova.tempoDeDuracaoDaProva,
-        arrayRespostas: arrayRespostas
+        modalIniciarProva: false,
+        modalFinalizarProva: true,
+        count: 0
       })
-
-      this.lengthMultiplasEscolhas = this.state.prova.questoesDeMultiplaEscolha.length
-      this.lengthDissertativas = this.state.prova.questoesDissertativas.length
-      this.lengthTecnicas = this.state.prova.questoesTecnicas.length
-    })
+    }
   }
 
   handleVisibilityChange = () => {
     if (document[hidden]) {
       this.setState({
-        iniciarProva: false,
+        modalIniciarProva: false,
         modalFinalizarProva: true,
         count: 0
       })
@@ -88,7 +105,7 @@ export class ResolverProvaScreen extends Component {
       })
       if(this.state.count <= 0){
         this.setState({
-          iniciarProva: false,
+          modalIniciarProva: false,
           modalFinalizarProva: true,
           count: 0,
         })
@@ -134,7 +151,7 @@ export class ResolverProvaScreen extends Component {
     event.preventDefault()
     this.setState({
       modalIniciarProva: false,
-      iniciarProva: true
+      renderProva: true
     })
     this.contador()
     await iniciarProva(this.state.idProva)
@@ -147,7 +164,7 @@ export class ResolverProvaScreen extends Component {
   handleClickEnviarProva = async(event) => {
     event.preventDefault()
     this.setState({
-      iniciarProva: false,
+      modalIniciarProva: false,
       renderProva: false,
       modalFinalizarProva: true,
       statusProva: await enviarRespostasDaProva(this.state.idProva, this.state.arrayRespostas)
@@ -269,10 +286,11 @@ export class ResolverProvaScreen extends Component {
   }
 
   render() {
+    console.log(this.state.idProva)
     return(
       <>
       { this.state.modalIniciarProva && this.renderModalIniciar() }
-      { this.state.iniciarProva && this.renderProva() }
+      { this.state.renderProva && this.renderProva() }
       { this.state.modalFinalizarProva && this.renderModalFinalizar() }
       </>
     )

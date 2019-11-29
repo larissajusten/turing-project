@@ -18,12 +18,12 @@ import { Header, Footer } from './component/index'
 function App() {
 	return (
 		<>
+		<ReactNotifications/>
 			<BrowserRouter>
 				<Switch>
 					<Route path="/resolver-prova/:token" component={ResolverProvaScreen}/>
 					<Route path="/login" component={LoginScreen} exact/>
 					<div className="principal">
-					<ReactNotifications/>
 					<Header/>
 					<Route path="/" component={DashboardScreen} exact/>
 					<Route path="/cadastrar-questao" component={CadastrarQuestaoScreen}/>
