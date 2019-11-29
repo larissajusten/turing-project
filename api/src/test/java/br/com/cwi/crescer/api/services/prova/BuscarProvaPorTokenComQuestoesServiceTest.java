@@ -1,6 +1,7 @@
 package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
+import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.exception.prova.ProvaNaoEncontradaException;
 import br.com.cwi.crescer.api.services.email.JwtTokenProvider;
@@ -32,8 +33,9 @@ public class BuscarProvaPorTokenComQuestoesServiceTest {
         ProvaResponse provaResponse = new ProvaResponse();
         Prova prova = new Prova();
         prova.setId(1L);
+        prova.setStatus(StatusProva.ATIVA);
         String token = "token";
-
+        provaResponse.setStatus(prova.getStatus());
         Mockito.when(jwtTokenProvider.getProvaId(token)).thenReturn(Optional.of(prova.getId()));
         Mockito.when(buscarProvaPorIdComQuestoesService.buscar(prova.getId())).thenReturn(provaResponse);
 
@@ -58,8 +60,9 @@ public class BuscarProvaPorTokenComQuestoesServiceTest {
         ProvaResponse provaResponse = new ProvaResponse();
         Prova prova = new Prova();
         prova.setId(1L);
+        prova.setStatus(StatusProva.ATIVA);
         String token = "token";
-
+        provaResponse.setStatus(prova.getStatus());
         Mockito.when(jwtTokenProvider.getProvaId(token)).thenReturn(Optional.of(prova.getId()));
         Mockito.when(buscarProvaPorIdComQuestoesService.buscar(prova.getId())).thenReturn(provaResponse);
 
@@ -74,8 +77,9 @@ public class BuscarProvaPorTokenComQuestoesServiceTest {
         ProvaResponse provaResponse = new ProvaResponse();
         Prova prova = new Prova();
         prova.setId(1L);
+        prova.setStatus(StatusProva.ATIVA);
         String token = "token";
-
+        provaResponse.setStatus(prova.getStatus());
         Mockito.when(jwtTokenProvider.getProvaId(token)).thenReturn(Optional.of(prova.getId()));
         Mockito.when(buscarProvaPorIdComQuestoesService.buscar(prova.getId())).thenReturn(provaResponse);
 
