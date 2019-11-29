@@ -16,8 +16,8 @@ public interface ProvaRepository extends JpaRepository<Prova, Long> {
     @Query("SELECT p from Prova p WHERE p.status = :status AND " +
             "(p.emailCandidato LIKE %:email% OR p.nomeCandidato LIKE %:nome%)")
     List<Prova> findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals(@Param("email") String email,
-                                                                                 @Param("nome") String nome,
-                                                                                 @Param("status") StatusProva status);
+                                                                                       @Param("nome") String nome,
+                                                                                       @Param("status") StatusProva status);
 
     boolean existsByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva ativa);
 

@@ -10,32 +10,30 @@ import org.springframework.stereotype.Service;
 @Service
 public class GerarNotaDasQuestoesDissertativaDeAcordoComPesoService {
 
+    private static final int MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_MEDIO = 2;
+    private static final int MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_DIFICIL = 3;
     @Autowired
     private RespostasDissertativaRepository respostasDissertativaProva;
-
     private double nota = 0;
     private int divisor = 0;
 
-    private static final int MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_MEDIO = 2;
-    private static final int MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_DIFICIL = 3;
-
-    public double  gerar(Prova prova) {
+    public double gerar(Prova prova) {
 
         NotasDTO notaQuestoesFaceis = respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.FACIL);
-        if(notaQuestoesFaceis != null){
-        nota += notaQuestoesFaceis.getNota();
-        divisor += notaQuestoesFaceis.getQuantidadeDeQuestoes();
+        if (notaQuestoesFaceis != null) {
+            nota += notaQuestoesFaceis.getNota();
+            divisor += notaQuestoesFaceis.getQuantidadeDeQuestoes();
         }
 
         NotasDTO notaQuestoesMedias = respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.MEDIO);
-        if(notaQuestoesMedias != null){
+        if (notaQuestoesMedias != null) {
             nota += calcularNotaPorNivelDeDificuldade(notaQuestoesMedias.getNota(), NivelDeDificuldade.MEDIO);
             divisor += mutiplicarODivisorPorNivelDeDificuldade(notaQuestoesMedias.getQuantidadeDeQuestoes(), NivelDeDificuldade.MEDIO);
         }
 
 
         NotasDTO notaQuestoesDificeis = respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.DIFICIL);
-        if(notaQuestoesDificeis != null) {
+        if (notaQuestoesDificeis != null) {
             nota += calcularNotaPorNivelDeDificuldade(notaQuestoesDificeis.getNota(), NivelDeDificuldade.DIFICIL);
             divisor += mutiplicarODivisorPorNivelDeDificuldade(notaQuestoesDificeis.getQuantidadeDeQuestoes(), NivelDeDificuldade.DIFICIL);
         }
@@ -47,7 +45,7 @@ public class GerarNotaDasQuestoesDissertativaDeAcordoComPesoService {
     private double calcularNotaPorNivelDeDificuldade(double nota, NivelDeDificuldade nivelDeDificuldade) {
 
 
-        if(nivelDeDificuldade.equals(NivelDeDificuldade.MEDIO)) {
+        if (nivelDeDificuldade.equals(NivelDeDificuldade.MEDIO)) {
             return nota * MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_MEDIO;
         }
         return nota * MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_DIFICIL;
@@ -55,12 +53,11 @@ public class GerarNotaDasQuestoesDissertativaDeAcordoComPesoService {
 
     private long mutiplicarODivisorPorNivelDeDificuldade(long divisor, NivelDeDificuldade nivelDeDificuldade) {
 
-        if(nivelDeDificuldade.equals(NivelDeDificuldade.MEDIO)) {
+        if (nivelDeDificuldade.equals(NivelDeDificuldade.MEDIO)) {
             return divisor * MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_MEDIO;
         }
         return divisor * MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_DIFICIL;
     }
-
 
 
 }

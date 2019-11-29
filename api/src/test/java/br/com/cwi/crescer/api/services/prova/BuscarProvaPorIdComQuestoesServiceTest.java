@@ -5,7 +5,6 @@ import br.com.cwi.crescer.api.controller.responses.QuestaoDissertativaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaResponse;
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.services.provaquestao.BuscarQuestoesDissertativasDeUmaProvaPorIdService;
 import br.com.cwi.crescer.api.services.provaquestao.BuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdService;
 import br.com.cwi.crescer.api.services.provaquestao.BuscarQuestoesTecnicasDeUmaProvaPorIdService;

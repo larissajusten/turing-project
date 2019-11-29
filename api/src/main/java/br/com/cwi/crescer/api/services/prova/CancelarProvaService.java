@@ -15,7 +15,7 @@ public class CancelarProvaService {
     @Autowired
     private ProvaRepository repository;
 
-    public StatusProva cancelar(Long idProva){
+    public StatusProva cancelar(Long idProva) {
 
         Prova prova = buscarProvaPorIdService.buscar(idProva);
         prova.setStatus(StatusProva.CANCELADA);

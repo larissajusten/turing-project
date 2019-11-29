@@ -32,7 +32,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                         "/swagger-resources/**",
                         "/configuration/security",
                         "/swagger-ui.html",
-                        "/webjars/**" ,
+                        "/webjars/**",
                         "http://localhost:8100/cwi-turing/swagger-ui.html#/").permitAll()
 
                 .antMatchers("/login")

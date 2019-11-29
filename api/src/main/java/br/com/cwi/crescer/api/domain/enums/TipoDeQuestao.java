@@ -1,6 +1,6 @@
 package br.com.cwi.crescer.api.domain.enums;
 
-public enum  TipoDeQuestao {
+public enum TipoDeQuestao {
     DISSERTATIVA,
     MULTIPLA,
     TECNICA

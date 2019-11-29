@@ -7,35 +7,35 @@ import org.springframework.stereotype.Component;
 @Component
 public class UnicaAlternativaCorretaValidator {
 
-    public void validar(QuestaoMultiplaEscolhaRequest request){
+    public void validar(QuestaoMultiplaEscolhaRequest request) {
         int quantidadeDeCorretas = 0;
         boolean temCorreta = false;
 
-        if(request.getAlternativaA().isRespostaCorreta()){
+        if (request.getAlternativaA().isRespostaCorreta()) {
             temCorreta = true;
             quantidadeDeCorretas++;
         }
 
-        if(request.getAlternativaB().isRespostaCorreta()){
+        if (request.getAlternativaB().isRespostaCorreta()) {
             temCorreta = true;
             quantidadeDeCorretas++;
         }
 
-        if(request.getAlternativaC().isRespostaCorreta()){
+        if (request.getAlternativaC().isRespostaCorreta()) {
             temCorreta = true;
             quantidadeDeCorretas++;
         }
 
-        if(request.getAlternativaD().isRespostaCorreta()){
+        if (request.getAlternativaD().isRespostaCorreta()) {
             temCorreta = true;
             quantidadeDeCorretas++;
         }
-        if(request.getAlternativaE().isRespostaCorreta()){
+        if (request.getAlternativaE().isRespostaCorreta()) {
             temCorreta = true;
             quantidadeDeCorretas++;
         }
 
-        if (!temCorreta || quantidadeDeCorretas > 1){
+        if (!temCorreta || quantidadeDeCorretas > 1) {
             throw new MultiplaEscolhaException("Deve ter UMA alternativa correta");
         }
     }

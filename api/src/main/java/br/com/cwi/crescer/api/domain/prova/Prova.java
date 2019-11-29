@@ -2,7 +2,6 @@ package br.com.cwi.crescer.api.domain.prova;
 
 
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -22,7 +22,7 @@ public class ProvaRequest {
     private int tempoDeDuracaoDaProva;
 
     @Positive
-    @Min(value = 0,  message = "Tempo de inicio da prova deve ser maior que 0")
+    @Min(value = 0, message = "Tempo de inicio da prova deve ser maior que 0")
     private int tempoParaInicioProva;
 
 }

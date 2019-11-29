@@ -8,9 +8,9 @@ public class RetornarNotaDaQuestaoMultiplaEscolhaService {
 
     public int notaQuestaoMultiplaEscolha(NivelDeDificuldade nivelDeDificuldade) {
 
-        if(nivelDeDificuldade.equals(NivelDeDificuldade.FACIL)) {
+        if (nivelDeDificuldade.equals(NivelDeDificuldade.FACIL)) {
             return 10;
-        } else if(nivelDeDificuldade.equals(NivelDeDificuldade.MEDIO)) {
+        } else if (nivelDeDificuldade.equals(NivelDeDificuldade.MEDIO)) {
             return 20;
         } else {
             return 30;

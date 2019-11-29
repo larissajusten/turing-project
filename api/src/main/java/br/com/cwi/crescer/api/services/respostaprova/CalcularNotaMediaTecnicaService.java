@@ -22,7 +22,7 @@ public class CalcularNotaMediaTecnicaService {
             media += respostasTecnicaProva.getNota();
         }
 
-        return media/listaRespostas.size();
+        return media / listaRespostas.size();
     }
 
 }

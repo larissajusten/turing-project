@@ -14,12 +14,12 @@ public class BuscarNumeroDeVezesQuestoesDissertativaPorEspecificidadeService {
     @Autowired
     private QuestaoDissertativaRepository repository;
 
-    public int buscar(Especificidade especificidade){
-        List<QuestaoDissertativa> lista =  repository.findByEspecificidade(especificidade);
+    public int buscar(Especificidade especificidade) {
+        List<QuestaoDissertativa> lista = repository.findByEspecificidade(especificidade);
 
         int vezes = 0;
         for (QuestaoDissertativa questaoDissertativa : lista) {
-            if(questaoDissertativa.getVezesUsada() > 0){
+            if (questaoDissertativa.getVezesUsada() > 0) {
                 vezes++;
             }
         }

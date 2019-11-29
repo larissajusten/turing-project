@@ -19,13 +19,6 @@ public class JwtTokenProvider {
 
     private String jwtSecret = "cwi-turing";
 
-    public String generateToken(Prova prova) {
-
-        Long provaId = prova.getId();
-
-        return generate(provaId, jwtSecret, prova);
-    }
-
     public static String generate(final Long provaId, final String jwtSecret, final Prova prova) {
 
         Long nowMili = System.currentTimeMillis();
@@ -40,6 +33,13 @@ public class JwtTokenProvider {
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .claim("role", "USUARIO")
                 .compact();
+    }
+
+    public String generateToken(Prova prova) {
+
+        Long provaId = prova.getId();
+
+        return generate(provaId, jwtSecret, prova);
     }
 
     public Optional<Long> getProvaId(String jwt) {

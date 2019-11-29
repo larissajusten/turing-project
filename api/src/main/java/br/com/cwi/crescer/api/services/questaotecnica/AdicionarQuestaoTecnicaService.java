@@ -2,7 +2,6 @@ package br.com.cwi.crescer.api.services.questaotecnica;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoTecnicaRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoTecnicaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoTecnicaRepository;
 import br.com.cwi.crescer.api.services.autenticacao.VerificarPerfilUsuarioLogadoService;

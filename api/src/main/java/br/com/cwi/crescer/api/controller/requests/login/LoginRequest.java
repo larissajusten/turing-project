@@ -12,7 +12,7 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 public class LoginRequest {
 
-    @NotEmpty (message = "O email não pode ser vazio")
+    @NotEmpty(message = "O email não pode ser vazio")
     private String login;
 
     private String senha;

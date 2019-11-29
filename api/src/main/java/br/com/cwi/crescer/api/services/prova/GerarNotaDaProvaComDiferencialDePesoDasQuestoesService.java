@@ -20,7 +20,6 @@ public class GerarNotaDaProvaComDiferencialDePesoDasQuestoesService {
     private GerarDivisorFinalParaNotaDaProvaService buscarQuantidadeDeQuestoes;
 
 
-
     public double gerarNotaDaProva(Prova prova) {
 
         double nota = 0;

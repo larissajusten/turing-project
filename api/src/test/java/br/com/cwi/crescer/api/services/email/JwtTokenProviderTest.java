@@ -1,9 +1,7 @@
 package br.com.cwi.crescer.api.services.email;
 
-import br.com.cwi.crescer.api.domain.enums.Perfil;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import org.junit.Assert;
 import org.junit.Test;
 
