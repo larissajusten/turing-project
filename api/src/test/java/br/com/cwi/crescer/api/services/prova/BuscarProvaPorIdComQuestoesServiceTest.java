@@ -1,6 +1,5 @@
 package br.com.cwi.crescer.api.services.prova;
 
-import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoDissertativaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaResponse;
@@ -43,7 +42,7 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
     public void deveChamarBuscarProvaPorIdServiceQuandoBuscarProvaComQuestoesServiceForChamado() {
 
         Prova prova = new Prova();
-        ProvaResponse provaResponse = new ProvaResponse();
+        prova.setCriador(new Usuario());
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
         List<QuestaoDissertativaResponse> questoesDissertativas = new ArrayList<>();
@@ -63,7 +62,7 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
     public void deveChamarBuscarQuestoesTecnicasDeUmaProvaPorIdServiceQuandoBuscarProvaComQuestoesServiceForChamado() {
 
         Prova prova = new Prova();
-        ProvaResponse provaResponse = new ProvaResponse();
+        prova.setCriador(new Usuario());
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
         List<QuestaoDissertativaResponse> questoesDissertativas = new ArrayList<>();
@@ -83,7 +82,7 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
     public void deveChamarBuscarQuestoesDissertativasDeUmaProvaPorIdServiceQuandoBuscarProvaComQuestoesServiceForChamado() {
 
         Prova prova = new Prova();
-        ProvaResponse provaResponse = new ProvaResponse();
+        prova.setCriador(new Usuario());
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
         List<QuestaoDissertativaResponse> questoesDissertativas = new ArrayList<>();
@@ -103,7 +102,7 @@ public class BuscarProvaPorIdComQuestoesServiceTest {
     public void deveChamarBuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdServiceQuandoBuscarProvaComQuestoesServiceForChamado() {
 
         Prova prova = new Prova();
-        ProvaResponse provaResponse = new ProvaResponse();
+        prova.setCriador(new Usuario());
         List<QuestaoMultiplaEscolhaResponse> questoesMultiplaEscolha = new ArrayList<>();
         List<QuestaoTecnicaResponse> questoesTecnicas = new ArrayList<>();
         List<QuestaoDissertativaResponse> questoesDissertativas = new ArrayList<>();

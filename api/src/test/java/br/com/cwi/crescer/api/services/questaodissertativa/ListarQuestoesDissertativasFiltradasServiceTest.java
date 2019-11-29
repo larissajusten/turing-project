@@ -13,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
-import org.springframework.data.domain.PageRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,8 +102,6 @@ public class ListarQuestoesDissertativasFiltradasServiceTest {
         List<QuestaoDissertativa> listaQueAtendeRequisitos = new ArrayList<>();
         QuestaoDissertativa questaoDissertativa = new QuestaoDissertativa();
         listaQueAtendeRequisitos.add(questaoDissertativa);
-
-        PageRequest page = PageRequest.of(0, 1);
 
         Mockito.when(buscarQuestoesDissertativasFiltradasListaService
                 .buscar(buscaQuestoesRequest.getEspecificidade(),

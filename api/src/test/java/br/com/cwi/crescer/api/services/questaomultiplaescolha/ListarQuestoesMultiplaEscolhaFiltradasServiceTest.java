@@ -92,8 +92,6 @@ public class ListarQuestoesMultiplaEscolhaFiltradasServiceTest {
         QuestaoMultiplaEscolha questao = new QuestaoMultiplaEscolha();
         questoes.add(questao);
 
-        Page<QuestaoMultiplaEscolha> questoesPaginadas = new PageImpl<>(questoes, page, questoes.size());
-
         Mockito.when(buscarQuestoesMultiplaEscolhaFiltradasService.buscar(
                 buscaQuestoesRequest.getEspecificidade(), buscaQuestoesRequest.getNivelDeDificuldade())).thenReturn(questoes);
 

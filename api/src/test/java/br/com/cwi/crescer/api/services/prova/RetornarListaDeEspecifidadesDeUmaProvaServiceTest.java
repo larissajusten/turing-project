@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RetornarListaDeEspecifidadesDeUmaProvaServiceTest {
+
     RetornarListaDeEspecifidadesDeUmaProvaService retornarListaDeEspecifidadesDeUmaProvaService =
             new RetornarListaDeEspecifidadesDeUmaProvaService();
 
@@ -23,15 +24,15 @@ public class RetornarListaDeEspecifidadesDeUmaProvaServiceTest {
         List<AlternativaMultiplaEscolha> alternativaMultiplaEscolhas = new ArrayList<>();
 
         List<QuestaoTecnicaComRespostaResponse> questoesTecnicas = new ArrayList<>();
-        questoesTecnicas.add(new QuestaoTecnicaComRespostaResponse(Especificidade.JAVASCRIPT, Long.valueOf(1), "resposta",
+        questoesTecnicas.add(new QuestaoTecnicaComRespostaResponse(Especificidade.JAVASCRIPT, 1L, "resposta",
                 "questao", "comentario", 0d));
 
         List<QuestaoMultiplaEscolhaComRespostaResponse> questoesMultipla = new ArrayList<>();
-        questoesMultipla.add(new QuestaoMultiplaEscolhaComRespostaResponse(Long.valueOf(1), new AlternativaMultiplaEscolha(),
+        questoesMultipla.add(new QuestaoMultiplaEscolhaComRespostaResponse(1L, new AlternativaMultiplaEscolha(),
                 "questao", Especificidade.JAVASCRIPT, 0d, alternativaMultiplaEscolhas));
 
         List<QuestaoDissertativaComRespostaResponse> questoesDissertativa = new ArrayList<>();
-        questoesDissertativa.add(new QuestaoDissertativaComRespostaResponse(Long.valueOf(1), "resposta",
+        questoesDissertativa.add(new QuestaoDissertativaComRespostaResponse(1L, "resposta",
                 "comentario", "questao", Especificidade.JAVASCRIPT, 0d));
 
         List<Especificidade> resultado = retornarListaDeEspecifidadesDeUmaProvaService.retornar(questoesTecnicas,

@@ -46,7 +46,6 @@ public class IncluirQuestoesMultiplaEscolhaServiceTest {
                         NivelDeDificuldade.FACIL, 1);
 
         Prova prova = new Prova();
-        ProvaQuestaoMultiplaEscolha provaQuestaoMultiplaEscolha = new ProvaQuestaoMultiplaEscolha();
         List<QuestaoMultiplaEscolha> lista = new ArrayList<>();
 
         Mockito.when(listarQuestoesMultiplaEscolhaFiltradasService.listar(buscaQuestoesRequest))
@@ -66,7 +65,6 @@ public class IncluirQuestoesMultiplaEscolhaServiceTest {
                         NivelDeDificuldade.FACIL, 1);
 
         Prova prova = new Prova();
-        ProvaQuestaoMultiplaEscolha provaQuestaoMultiplaEscolha = new ProvaQuestaoMultiplaEscolha();
         List<QuestaoMultiplaEscolha> lista = new ArrayList<>();
 
         Mockito.when(listarQuestoesMultiplaEscolhaFiltradasService.listar(buscaQuestoesRequest))
