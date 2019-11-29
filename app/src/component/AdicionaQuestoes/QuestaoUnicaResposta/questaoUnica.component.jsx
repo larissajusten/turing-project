@@ -12,6 +12,24 @@ export class QuestaoUnica extends PureComponent {
     }
   }
 
+  renderSelects() {
+		const arrayDeParamsDoSelect =
+			[{ name: "especificidade", value: "especificidade", label: "o", object: this.state.linguagens },
+			{ name: "nivel", value: "nivel", label: "a", object: this.state.niveis }]
+		return arrayDeParamsDoSelect.map((item, key) => {
+			return <div className="input-principal">
+				<Select
+					key={key}
+					questoesWidth="width-select"
+					name={item.name}
+					value={this.props[item.name]}
+					onChange={this.props.handleChange}
+					object={item.object}
+					placeholder={`Selecione ${item.label} ${item.name}`} />
+			</div>
+		})
+	}
+
   renderTextAreaQuestaoTecnica() {
 		const arrayDeParamsDoTextArea =
 			[{ name: "respostaBase", value: "resposta", label:"Resposta base"},
@@ -26,24 +44,6 @@ export class QuestaoUnica extends PureComponent {
             </div>
 		})
   }
-
-  renderSelects() {
-		const arrayDeParamsDoSelect =
-			[{ name: "especificidade", label: "o", object: this.state.linguagens },
-			{ name: "nivel", label: "a", object: this.state.niveis }]
-		return arrayDeParamsDoSelect.map((item, key) => {
-			return <div className="input-principal">
-				<Select
-					key={key}
-					questoesWidth="width-select"
-					name={item.name}
-					value={this.state[item.name]}
-					onChange={this.handleChange}
-					object={item.object}
-					placeholder={`Selecione ${item.label} ${item.name}`} />
-			</div>
-		})
-	}
 
   render() {
     return(
