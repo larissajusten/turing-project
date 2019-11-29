@@ -30,7 +30,7 @@ public class RetornaTotalPorLinguagemServiceTest {
 
 
     @Test
-    public void deveRetornarSomaDoNumeroDeVezesQueTodasQuestoesForemUsadas() throws Exception {
+    public void deveRetornarSomaDoNumeroDeVezesQueTodasQuestoesForemUsadas() {
         when(buscarNumeroDeVezesQuestoesDissertativaPorEspecificidadeService.buscar(any())).thenReturn(10);
         when(buscarNumeroDeVezesQuestoesMultiplaPorEspecificidadeService.buscar(any())).thenReturn(10);
         when(buscarNumeroDeVezesQuestoesTecnicasPorEspecificidadeService.buscar(any())).thenReturn(10);

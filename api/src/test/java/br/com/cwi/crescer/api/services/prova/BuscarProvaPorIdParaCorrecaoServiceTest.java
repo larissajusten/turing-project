@@ -1,8 +1,5 @@
 package br.com.cwi.crescer.api.services.prova;
 
-import br.com.cwi.crescer.api.controller.responses.ProvaComRespostasResponse;
-import br.com.cwi.crescer.api.controller.responses.QuestaoDissertativaParaCorrecaoResponse;
-import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaParaCorrecaoResponse;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.resposta.RespostasDissertativaProva;
 import br.com.cwi.crescer.api.domain.resposta.RespostasTecnicaProva;
@@ -40,14 +37,10 @@ public class BuscarProvaPorIdParaCorrecaoServiceTest {
     @Test
     public void deveChamarbuscarProvaPorIdServiceQuandoBuscarProvaComRespostasDoUsuarioServiceForChamado() {
         Prova prova = new Prova();
-        QuestaoDissertativaParaCorrecaoResponse respostaResponse = new QuestaoDissertativaParaCorrecaoResponse();
-        ProvaComRespostasResponse response = new ProvaComRespostasResponse();
+
 
         List<RespostasDissertativaProva> respostasDissertativas = new ArrayList<>();
-        List<QuestaoDissertativaParaCorrecaoResponse> questoesDissertativas = new ArrayList<>();
         List<RespostasTecnicaProva> respostasTecnicas = new ArrayList<>();
-        List<QuestaoTecnicaParaCorrecaoResponse> questoesTecnicas = new ArrayList<>();
-
 
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(respostasDissertativaRepository.findAllByProvaIdEquals(prova.getId()))
@@ -64,14 +57,9 @@ public class BuscarProvaPorIdParaCorrecaoServiceTest {
     @Test
     public void deveChamarRespostasDissertativaRepositoryQuandoBuscarProvaComRespostasDoUsuarioServiceForChamado() {
         Prova prova = new Prova();
-        QuestaoDissertativaParaCorrecaoResponse respostaResponse = new QuestaoDissertativaParaCorrecaoResponse();
-        ProvaComRespostasResponse response = new ProvaComRespostasResponse();
 
         List<RespostasDissertativaProva> respostasDissertativas = new ArrayList<>();
-        List<QuestaoDissertativaParaCorrecaoResponse> questoesDissertativas = new ArrayList<>();
         List<RespostasTecnicaProva> respostasTecnicas = new ArrayList<>();
-        List<QuestaoTecnicaParaCorrecaoResponse> questoesTecnicas = new ArrayList<>();
-
 
         Mockito.when(buscarProvaPorIdService.buscar(prova.getId())).thenReturn(prova);
         Mockito.when(respostasDissertativaRepository.findAllByProvaIdEquals(prova.getId()))

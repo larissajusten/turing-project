@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.services.questaomultiplaescolha;
 
 import br.com.cwi.crescer.api.controller.responses.AlternativaMultiplaEscolhaResponse;
-import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaResponse;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
 import br.com.cwi.crescer.api.mapper.AlternativaMultiplaEscolhaMapper;
@@ -45,16 +44,14 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
         PageRequest page = PageRequest.of(1, 10);
 
         QuestaoMultiplaEscolha questao = new QuestaoMultiplaEscolha();
-        QuestaoMultiplaEscolhaResponse questaoResponse = new QuestaoMultiplaEscolhaResponse();
         List<QuestaoMultiplaEscolha> questoesMultiplaEscolha = new ArrayList<>();
         questoesMultiplaEscolha.add(questao);
 
         AlternativaMultiplaEscolha alternativa = new AlternativaMultiplaEscolha();
         AlternativaMultiplaEscolhaResponse alternativaResponse = new AlternativaMultiplaEscolhaResponse();
-        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<QuestaoMultiplaEscolha>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
+        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
 
         List<AlternativaMultiplaEscolha> alternativas = new ArrayList<>();
-        List<AlternativaMultiplaEscolhaResponse> alternativasResponse = new ArrayList<>();
 
         alternativas.add(alternativa);
 
@@ -74,14 +71,10 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
         PageRequest page = PageRequest.of(1, 10);
 
         QuestaoMultiplaEscolha questao = new QuestaoMultiplaEscolha();
-        QuestaoMultiplaEscolhaResponse questaoResponse = new QuestaoMultiplaEscolhaResponse();
         List<QuestaoMultiplaEscolha> questoesMultiplaEscolha = new ArrayList<>();
         questoesMultiplaEscolha.add(questao);
 
-        AlternativaMultiplaEscolha alternativa = new AlternativaMultiplaEscolha();
-        AlternativaMultiplaEscolhaResponse alternativaResponse = new AlternativaMultiplaEscolhaResponse();
-
-        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<QuestaoMultiplaEscolha>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
+        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
 
         List<AlternativaMultiplaEscolha> alternativas = new ArrayList<>();
         List<AlternativaMultiplaEscolhaResponse> alternativasResponse = new ArrayList<>();
@@ -101,17 +94,15 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
         PageRequest page = PageRequest.of(1, 10);
 
         QuestaoMultiplaEscolha questao = new QuestaoMultiplaEscolha();
-        QuestaoMultiplaEscolhaResponse questaoResponse = new QuestaoMultiplaEscolhaResponse();
         List<QuestaoMultiplaEscolha> questoesMultiplaEscolha = new ArrayList<>();
         questoesMultiplaEscolha.add(questao);
 
         AlternativaMultiplaEscolha alternativa = new AlternativaMultiplaEscolha();
         AlternativaMultiplaEscolhaResponse alternativaResponse = new AlternativaMultiplaEscolhaResponse();
 
-        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<QuestaoMultiplaEscolha>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
+        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
 
         List<AlternativaMultiplaEscolha> alternativas = new ArrayList<>();
-        List<AlternativaMultiplaEscolhaResponse> alternativasResponse = new ArrayList<>();
 
         alternativas.add(alternativa);
 
@@ -130,16 +121,9 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
 
         PageRequest page = PageRequest.of(1, 10);
 
-        QuestaoMultiplaEscolha questao = new QuestaoMultiplaEscolha();
-        QuestaoMultiplaEscolhaResponse questaoResponse = new QuestaoMultiplaEscolhaResponse();
         List<QuestaoMultiplaEscolha> questoesMultiplaEscolha = new ArrayList<>();
 
-        AlternativaMultiplaEscolha alternativa = new AlternativaMultiplaEscolha();
-
-        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<QuestaoMultiplaEscolha>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
-
-        List<AlternativaMultiplaEscolha> alternativas = new ArrayList<>();
-        alternativas.add(alternativa);
+        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
 
         Mockito.when(repository.findAll(page)).thenReturn(questoes);
 
@@ -153,16 +137,10 @@ public class BuscarQuestoesMultiplaEscolhaServiceTest {
 
         PageRequest page = PageRequest.of(1, 10);
 
-        QuestaoMultiplaEscolha questao = new QuestaoMultiplaEscolha();
-        QuestaoMultiplaEscolhaResponse questaoResponse = new QuestaoMultiplaEscolhaResponse();
         List<QuestaoMultiplaEscolha> questoesMultiplaEscolha = new ArrayList<>();
 
-        AlternativaMultiplaEscolha alternativa = new AlternativaMultiplaEscolha();
 
-        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<QuestaoMultiplaEscolha>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
-
-        List<AlternativaMultiplaEscolha> alternativas = new ArrayList<>();
-        alternativas.add(alternativa);
+        Page<QuestaoMultiplaEscolha> questoes = new PageImpl<>(questoesMultiplaEscolha, page, questoesMultiplaEscolha.size());
 
         Mockito.when(repository.findAll(page)).thenReturn(questoes);
 

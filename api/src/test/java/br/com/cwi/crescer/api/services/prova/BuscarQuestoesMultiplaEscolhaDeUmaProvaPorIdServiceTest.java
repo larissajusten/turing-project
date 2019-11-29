@@ -43,16 +43,7 @@ public class BuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdServiceTest {
     public void deveChamarProvaQuestaoMultiplaEscolhaRepositoryQuandoBuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdServiceForChamado() {
 
         Prova prova = new Prova();
-        List<QuestaoMultiplaEscolhaResponse> questoes = new ArrayList<>();
         List<ProvaQuestaoMultiplaEscolha> provaQuestaoMultiplaEscolhas = new ArrayList<>();
-        List<AlternativaMultiplaEscolha> listaAlternativasMultiplaEscolha = new ArrayList<>();
-        List<AlternativaMultiplaEscolhaResponse> alternativaMultiplaEscolhaResponses = new ArrayList<>();
-        ProvaQuestaoMultiplaEscolha provaQuestaoMultiplaEscolha = new ProvaQuestaoMultiplaEscolha();
-        QuestaoMultiplaEscolha questaoMultiplaEscolha = new QuestaoMultiplaEscolha();
-        QuestaoMultiplaEscolhaResponse questaoMultiplaEscolhaResponse = new QuestaoMultiplaEscolhaResponse();
-        AlternativaMultiplaEscolha alternativaMultiplaEscolha = new AlternativaMultiplaEscolha();
-        AlternativaMultiplaEscolhaResponse alternativaMultiplaEscolhaResponse = new AlternativaMultiplaEscolhaResponse();
-
 
         Mockito.when(repository.findAllByProvaIdEquals(prova.getId())).thenReturn(provaQuestaoMultiplaEscolhas);
 
@@ -60,7 +51,6 @@ public class BuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdServiceTest {
 
         Mockito.verify(repository).findAllByProvaIdEquals(prova.getId());
     }
-
 
     @Test
     public void deveChamarBuscarAlternativaQuestaoMultiplaEscolhaServiceQuandoBuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdServiceForChamado() {
@@ -75,7 +65,6 @@ public class BuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdServiceTest {
         provaQuestaoMultiplaEscolha.setQuestao(questaoMultiplaEscolha);
         provaQuestaoMultiplaEscolha.setProva(prova);
 
-        List<QuestaoMultiplaEscolhaResponse> questoes = new ArrayList<>();
         List<ProvaQuestaoMultiplaEscolha> provaQuestaoMultiplaEscolhas = new ArrayList<>();
         provaQuestaoMultiplaEscolhas.add(provaQuestaoMultiplaEscolha);
         List<AlternativaMultiplaEscolha> listaAlternativasMultiplaEscolha = new ArrayList<>();
@@ -106,7 +95,6 @@ public class BuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdServiceTest {
         provaQuestaoMultiplaEscolha.setQuestao(questaoMultiplaEscolha);
         provaQuestaoMultiplaEscolha.setProva(prova);
 
-        List<QuestaoMultiplaEscolhaResponse> questoes = new ArrayList<>();
         List<ProvaQuestaoMultiplaEscolha> provaQuestaoMultiplaEscolhas = new ArrayList<>();
         provaQuestaoMultiplaEscolhas.add(provaQuestaoMultiplaEscolha);
         List<AlternativaMultiplaEscolha> listaAlternativasMultiplaEscolha = new ArrayList<>();
@@ -137,7 +125,6 @@ public class BuscarQuestoesMultiplaEscolhaDeUmaProvaPorIdServiceTest {
         provaQuestaoMultiplaEscolha.setQuestao(questaoMultiplaEscolha);
         provaQuestaoMultiplaEscolha.setProva(prova);
 
-        List<QuestaoMultiplaEscolhaResponse> questoes = new ArrayList<>();
         List<ProvaQuestaoMultiplaEscolha> provaQuestaoMultiplaEscolhas = new ArrayList<>();
         provaQuestaoMultiplaEscolhas.add(provaQuestaoMultiplaEscolha);
         List<AlternativaMultiplaEscolha> listaAlternativasMultiplaEscolha = new ArrayList<>();

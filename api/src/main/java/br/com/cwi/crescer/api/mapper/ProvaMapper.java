@@ -3,7 +3,6 @@ package br.com.cwi.crescer.api.mapper;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.responses.ProvaParaCorrecaoResponse;
 import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
-import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaComRespostaResponse;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;

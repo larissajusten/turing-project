@@ -33,8 +33,6 @@ public class RetornarQuestaoTecnicaComRespostaResponseServiceTest {
     public void deverRetornarUmaListaDeQuestaoTecnicaComRespostaResponseQuandoRetornarQuestaoTecnicaComRespostaResponseServiceForChamado() {
 
         Prova prova = new Prova();
-        RespostasTecnicaProva respostaTecnicaProva = new RespostasTecnicaProva();
-        QuestaoTecnicaComRespostaResponse questaoTecnicaComRespostaResponse = new QuestaoTecnicaComRespostaResponse();
         List<RespostasTecnicaProva> respostasTecnicaProva = new ArrayList<>();
         List<QuestaoTecnicaComRespostaResponse> listaQuestoesTecnicas = new ArrayList<>();
 
@@ -50,10 +48,7 @@ public class RetornarQuestaoTecnicaComRespostaResponseServiceTest {
     public void deverChamarRespostasTecnicaRepositoryQuandoRetornarQuestaoTecnicaComRespostaResponseServiceForChamado() {
 
         Prova prova = new Prova();
-        RespostasTecnicaProva respostaTecnicaProva = new RespostasTecnicaProva();
-        QuestaoTecnicaComRespostaResponse questaoTecnicaComRespostaResponse = new QuestaoTecnicaComRespostaResponse();
         List<RespostasTecnicaProva> respostasTecnicaProva = new ArrayList<>();
-        List<QuestaoTecnicaComRespostaResponse> listaQuestoesTecnicas = new ArrayList<>();
 
         Mockito.when(respostasTecnicaRepository.findAllByProvaIdEquals(prova.getId())).thenReturn(respostasTecnicaProva);
 

@@ -41,7 +41,9 @@ public class BuscarListaDeRespostasFiltradaServiceTest {
     @Test
     public void testRetornar() {
 
-        Prova prova = new Prova(Long.valueOf(1), LocalDateTime.of(2019, Month.NOVEMBER, 28, 11,
+        String email = "email";
+
+        Prova prova = new Prova(1L, LocalDateTime.of(2019, Month.NOVEMBER, 28, 11,
                 16, 26), LocalDateTime.of(2019, Month.NOVEMBER, 28, 11, 16,
                 26), "emailCandidato", 0, 0, StatusProva.ATIVA,
                 0d, "nomeCandidato");

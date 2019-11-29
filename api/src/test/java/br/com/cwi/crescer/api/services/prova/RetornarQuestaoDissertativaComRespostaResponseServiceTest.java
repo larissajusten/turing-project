@@ -32,10 +32,8 @@ public class RetornarQuestaoDissertativaComRespostaResponseServiceTest {
     @Test
     public void deveChamarRespostasDissertativaRepositoryQuandoRetornarQuestaoDissertativaComRespostaResponseService() {
 
-        List<QuestaoDissertativaComRespostaResponse> questoesDissertativa = new ArrayList<>();
         Prova prova = new Prova();
-        QuestaoDissertativaComRespostaResponse questaoDissertativaComRespostaResponse =
-                new QuestaoDissertativaComRespostaResponse();
+
         List<RespostasDissertativaProva> respostasDissertativaProva = new ArrayList<>();
 
         Mockito.when(respostasDissertativaRepository.findAllByProvaIdEquals(prova.getId())).thenReturn(respostasDissertativaProva);
@@ -48,14 +46,11 @@ public class RetornarQuestaoDissertativaComRespostaResponseServiceTest {
     @Test
     public void deveRetornarUmaListaDeQuestaoDissertativaComRespostaResponseQuandoRetornarQuestaoDissertativaComRespostaResponseService() {
 
-        QuestaoDissertativaComRespostaResponse questaoDissertativa = new QuestaoDissertativaComRespostaResponse();
-
         List<QuestaoDissertativaComRespostaResponse> questoesDissertativa = new ArrayList<>();
 
         Prova prova = new Prova();
 
         List<RespostasDissertativaProva> respostasDissertativaProva = new ArrayList<>();
-        RespostasDissertativaProva respostaDissertativaProva = new RespostasDissertativaProva();
 
         Mockito.when(respostasDissertativaRepository.findAllByProvaIdEquals(prova.getId())).thenReturn(respostasDissertativaProva);
 
