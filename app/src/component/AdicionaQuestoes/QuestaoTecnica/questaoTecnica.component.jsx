@@ -35,7 +35,7 @@ export class CadastroTecnica extends PureComponent {
   handleClickSalvarQuestao = async (event) => {
     event.preventDefault()
 
-    const questao = {
+    const questaoTecnica = {
       "questao": this.state.questao,
       "especificidade": this.state.especificidade,
       "nivelDeDificuldade": this.state.nivel,
@@ -44,7 +44,7 @@ export class CadastroTecnica extends PureComponent {
     }
 
     try{
-      await adicionarQuestaoTecnica(questao)
+      await adicionarQuestaoTecnica(questaoTecnica)
       Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
     }
     catch(error){

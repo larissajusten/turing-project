@@ -18,34 +18,30 @@ export class CadastroDissertativa extends PureComponent {
   handleClickSalvarQuestao = async (event) => {
     event.preventDefault()
 
-    const questao = {
+    const questaoDissertativa = {
       "questao": this.state.questao,
       "nivelDeDificuldade": this.state.nivel,
       "especificidade": this.state.especificidade
     }
 
     try {
-      await adicionarQuestaoDissertativa(questao)
+      await adicionarQuestaoDissertativa(questaoDissertativa)
       Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
     }
     catch (error) {
-      this.catchErrorENotifica(error)
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+        Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
     }
   }
 
   handleChange = (event) => {
     const { name, value } = event.target
     this.setState({ [name]: value })
-  }
-
-  catchErrorENotifica(error){
-    if (error.response.data.errors) {
-      error.response.data.errors.map(message => {
-        return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-      })
-    } else {
-      Notificacao('Falha', `${error.response.data.message}`, 'danger')
-    }
   }
 
   render() {
