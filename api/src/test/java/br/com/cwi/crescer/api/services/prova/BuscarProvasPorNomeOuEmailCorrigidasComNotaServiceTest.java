@@ -87,10 +87,6 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaServiceTest {
         prova.setId(1L);
         prova.setStatus(StatusProva.CORRIGIDA);
 
-        Usuario usuario = new Usuario();
-        usuario.setId(1L);
-        prova.setCriador(usuario);
-
         List<Prova> provasList = new ArrayList<>();
         provasList.add(prova);
 
@@ -118,11 +114,10 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaServiceTest {
     public void deveChamarRetornarQuestaoDissertativaComRespostaResponseServiceQuandoBuscarProvasCorrigidasComNotaServiceForChamado() {
 
         ProvaCorrigidaResponse provaResponse = new ProvaCorrigidaResponse();
-        Usuario usuario = new Usuario();
+
         Prova prova = new Prova();
         prova.setId(1L);
         prova.setStatus(StatusProva.CORRIGIDA);
-        prova.setCriador(usuario);
 
         List<Prova> provasList = new ArrayList<>();
         provasList.add(prova);
@@ -158,7 +153,6 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaServiceTest {
 
         Usuario usuario = new Usuario();
         usuario.setId(1L);
-        prova.setCriador(usuario);
 
         List<Prova> provasList = new ArrayList<>();
         provasList.add(prova);

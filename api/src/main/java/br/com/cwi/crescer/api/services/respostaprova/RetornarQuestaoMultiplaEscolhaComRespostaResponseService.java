@@ -29,7 +29,7 @@ public class RetornarQuestaoMultiplaEscolhaComRespostaResponseService {
 
         respostaMultiplaEscolhaRepository.findAllByProvaIdEquals(prova.getId())
                 .forEach(questao ->
-                    questaoMultiplaEscolha.add(mapper.questaoMultiplaEscolha(questao))
+                        questaoMultiplaEscolha.add(mapper.questaoMultiplaEscolha(questao))
                 );
 
         return questaoMultiplaEscolha;

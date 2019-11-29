@@ -6,7 +6,6 @@ import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdComQuestoesService;
 import br.com.cwi.crescer.api.services.prova.RetornarListaDeEspecifidadesDeUmaProvaService;
@@ -43,12 +42,9 @@ public class ProvaMapper {
 
     public Prova transformar(ProvaRequest request) {
 
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva@cwi.com.br");
-
         Prova prova = mapper.map(request, Prova.class);
         prova.setDataCriacao(LocalDateTime.now());
         prova.setEmailCandidato(request.getEmail());
-        prova.setCriador(usuario);
         prova.setStatus(StatusProva.ATIVA);
 
         return prova;
@@ -68,17 +64,17 @@ public class ProvaMapper {
         provaParaCorrecaoResponse.setTempoDeDuracaoDaProva(prova.getTempoDeDuracaoDaProva());
 
         provaResponse.getQuestoesDeMultiplaEscolha().forEach(q -> {
-            if(!especificidades.contains(q.getEspecificidade())) {
+            if (!especificidades.contains(q.getEspecificidade())) {
                 especificidades.add(q.getEspecificidade());
             }
         });
         provaResponse.getQuestoesDissertativas().forEach(q -> {
-            if(!especificidades.contains(q.getEspecificidade())) {
+            if (!especificidades.contains(q.getEspecificidade())) {
                 especificidades.add(q.getEspecificidade());
             }
         });
         provaResponse.getQuestoesTecnicas().forEach(q -> {
-            if(!especificidades.contains(q.getEspecificidade())) {
+            if (!especificidades.contains(q.getEspecificidade())) {
                 especificidades.add(q.getEspecificidade());
             }
         });

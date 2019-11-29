@@ -10,11 +10,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class GerarNotaDasQuestoesTecnicaDeAcordoComPesoService {
 
-    @Autowired
-    private RespostasTecnicaRepository respostasTecnicaProva;
-
     private static final int MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_MEDIO = 2;
     private static final int MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_DIFICIL = 3;
+    @Autowired
+    private RespostasTecnicaRepository respostasTecnicaProva;
 
     public double gerar(Prova prova) {
 
@@ -22,7 +21,7 @@ public class GerarNotaDasQuestoesTecnicaDeAcordoComPesoService {
         double nota = 0;
 
         NotasDTO notaQuestoesFaceis = respostasTecnicaProva.buscarQuestoesTecnicasFiltradasPorNivelEPorProva(prova.getId(), NivelDeDificuldade.FACIL);
-        if (notaQuestoesFaceis != null){
+        if (notaQuestoesFaceis != null) {
             nota += notaQuestoesFaceis.getNota();
             divisor += notaQuestoesFaceis.getQuantidadeDeQuestoes();
         }

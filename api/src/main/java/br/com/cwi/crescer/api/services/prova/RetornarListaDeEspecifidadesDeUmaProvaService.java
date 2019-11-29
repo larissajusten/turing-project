@@ -15,7 +15,7 @@ public class RetornarListaDeEspecifidadesDeUmaProvaService {
 
     public List<Especificidade> retornar(List<QuestaoTecnicaComRespostaResponse> questoesTecnicas,
                                          List<QuestaoDissertativaComRespostaResponse> questoesDissertativa,
-                                         List<QuestaoMultiplaEscolhaComRespostaResponse> questoesMultiplaEscolha){
+                                         List<QuestaoMultiplaEscolhaComRespostaResponse> questoesMultiplaEscolha) {
 
         List<Especificidade> especificidades = new ArrayList<>();
 

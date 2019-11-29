@@ -37,7 +37,6 @@ public class BuscarProvaPorIdComQuestoesService {
         provaResponse.setNomeCandidato(prova.getNomeCandidato());
         provaResponse.setDataCriacao(prova.getDataCriacao());
 
-        provaResponse.setIdCriador(prova.getCriador().getId());
         provaResponse.setStatus(prova.getStatus());
 
         provaResponse.setTempoDeDuracaoDaProva(prova.getTempoDeDuracaoDaProva());

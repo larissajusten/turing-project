@@ -3,7 +3,6 @@ package br.com.cwi.crescer.api.domain.questao;
 
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -38,7 +37,4 @@ public class QuestaoDissertativa {
     @Column(name = "VEZES_USADA")
     private int vezesUsada;
 
-    @ManyToOne
-    @JoinColumn(name = "ID_CRIADOR", referencedColumnName = "id")
-    private Usuario usuario;
 }

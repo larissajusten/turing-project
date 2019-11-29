@@ -6,7 +6,6 @@ import br.com.cwi.crescer.api.controller.responses.QuestaoMultiplaEscolhaComResp
 import br.com.cwi.crescer.api.controller.responses.QuestaoTecnicaComRespostaResponse;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.services.respostaprova.RetornarQuestaoDissertativaComRespostaResponseService;
 import br.com.cwi.crescer.api.services.respostaprova.RetornarQuestaoMultiplaEscolhaComRespostaResponseService;
 import br.com.cwi.crescer.api.services.respostaprova.RetornarQuestaoTecnicaComRespostaResponseService;
@@ -53,7 +52,6 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
         prova.setStatus(StatusProva.CORRIGIDA);
         prova.setTempoDeDuracaoDaProva(2);
         prova.setDataInicio(LocalDateTime.now());
-        prova.setCriador(new Usuario());
         prova.setTempoParaInicioProva(1);
         prova.setEmailCandidato("Mail@mail.com");
         prova.setNomeCandidato("Ruberval");
@@ -80,7 +78,6 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
         prova.setStatus(StatusProva.CORRIGIDA);
         prova.setTempoDeDuracaoDaProva(2);
         prova.setDataInicio(LocalDateTime.now());
-        prova.setCriador(new Usuario());
         prova.setTempoParaInicioProva(1);
         prova.setEmailCandidato("Mail@mail.com");
         prova.setNomeCandidato("Ruberval");
@@ -107,7 +104,6 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
         prova.setStatus(StatusProva.CORRIGIDA);
         prova.setTempoDeDuracaoDaProva(2);
         prova.setDataInicio(LocalDateTime.now());
-        prova.setCriador(new Usuario());
         prova.setTempoParaInicioProva(1);
         prova.setEmailCandidato("Mail@mail.com");
         prova.setNomeCandidato("Ruberval");
@@ -137,7 +133,6 @@ public class BuscarProvaPorIdCorrigidaServiceTest {
         prova.setStatus(StatusProva.CORRIGIDA);
         prova.setTempoDeDuracaoDaProva(2);
         prova.setDataInicio(LocalDateTime.now());
-        prova.setCriador(new Usuario());
         prova.setTempoParaInicioProva(1);
         prova.setEmailCandidato("Mail@mail.com");
         prova.setNomeCandidato("Ruberval");

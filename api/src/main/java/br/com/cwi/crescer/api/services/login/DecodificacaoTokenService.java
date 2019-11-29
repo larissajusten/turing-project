@@ -28,7 +28,7 @@ public class DecodificacaoTokenService {
                             .get("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").asText());
 
         } catch (Exception e) {
-           throw new UsuarioNaoEncontradoException("Decodificação do token falhou");
+            throw new UsuarioNaoEncontradoException("Decodificação do token falhou");
         }
         return usuarioLogado;
     }

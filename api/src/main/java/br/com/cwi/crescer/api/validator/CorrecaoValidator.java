@@ -19,7 +19,7 @@ public class CorrecaoValidator {
     @Autowired
     private RespostasTecnicaRepository respostasTecnicaRepository;
 
-    public void validar(Long idProva){
+    public void validar(Long idProva) {
 
         boolean todasCorrigidas = true;
         List<RespostasTecnicaProva> listaTecnicas = respostasTecnicaRepository.findAllByProvaIdEquals(idProva);
@@ -32,17 +32,17 @@ public class CorrecaoValidator {
             }
         }
 
-        for (RespostasDissertativaProva respostasDissertativaProva: listaDissertativas) {
+        for (RespostasDissertativaProva respostasDissertativaProva : listaDissertativas) {
             if (respostasDissertativaProva.getComentario() == null) {
                 todasCorrigidas = false;
                 break;
             }
         }
 
-        if (!todasCorrigidas){
+        if (!todasCorrigidas) {
             throw new CorrecaoNaoCompletadaException("Correções feitas salvas, porém nem todas as questões" +
                     "dessa prova foram corrigidas.");
         }
     }
-    
+
 }

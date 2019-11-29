@@ -49,7 +49,6 @@ public class BuscarProvaPorIdCorrigidaService {
         int totalDeQuestoes = questoesTecnicas.size() + questoesDissertativas.size() + questoesMultiplaEscolhas.size();
 
         provaCorrigidaResponse.setId(prova.getId());
-        provaCorrigidaResponse.setIdCriador(prova.getCriador().getId());
 
         provaCorrigidaResponse.setStatusProva(prova.getStatus());
         provaCorrigidaResponse.setNota(prova.getNota());

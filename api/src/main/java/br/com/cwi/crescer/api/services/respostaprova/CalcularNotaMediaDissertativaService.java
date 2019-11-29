@@ -22,7 +22,7 @@ public class CalcularNotaMediaDissertativaService {
             media += respostasDissertativaProva.getNota();
         }
 
-        return media/listaRespostas.size();
+        return media / listaRespostas.size();
     }
 
 }

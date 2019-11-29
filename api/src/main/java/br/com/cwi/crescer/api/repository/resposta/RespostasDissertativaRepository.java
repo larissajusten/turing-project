@@ -23,6 +23,6 @@ public interface RespostasDissertativaRepository extends JpaRepository<Respostas
     @Query("Select new br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse(r.questaoDissertativa.nivelDeDificuldade, r.nota, count(*)) " +
             "FROM RespostasDissertativaProva r " +
             "WHERE r.questaoDissertativa.especificidade = ?1" +
-            " GROUP BY r.nota, r.questaoDissertativa.nivelDeDificuldade" )
+            " GROUP BY r.nota, r.questaoDissertativa.nivelDeDificuldade")
     List<RespostaParaDashboardResponse> findAllByGroupByNotaWhereQuestaoDissertativaEspecificidadeEquals(Especificidade especificidade);
 }

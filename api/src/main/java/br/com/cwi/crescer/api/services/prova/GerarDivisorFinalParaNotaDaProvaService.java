@@ -23,15 +23,15 @@ public class GerarDivisorFinalParaNotaDaProvaService {
 
         int divisorFinal = 0;
 
-        if(!provaQuestaoDissertativaRepository.findAllByProvaIdEquals(prova.getId()).isEmpty()) {
+        if (!provaQuestaoDissertativaRepository.findAllByProvaIdEquals(prova.getId()).isEmpty()) {
             divisorFinal += 1;
         }
 
-        if(!provaQuestaoMultiplaEscolhaRepository.findAllByProvaIdEquals(prova.getId()).isEmpty()){
+        if (!provaQuestaoMultiplaEscolhaRepository.findAllByProvaIdEquals(prova.getId()).isEmpty()) {
             divisorFinal += 1;
         }
 
-        if(!provaQuestaoTecnicaRepository.findAllByProvaIdEquals(prova.getId()).isEmpty()) {
+        if (!provaQuestaoTecnicaRepository.findAllByProvaIdEquals(prova.getId()).isEmpty()) {
             divisorFinal += 1;
         }
 

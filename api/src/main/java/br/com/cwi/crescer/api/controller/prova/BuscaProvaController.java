@@ -50,7 +50,7 @@ public class BuscaProvaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/para-correcao")
-    public Page<ProvaParaCorrecaoResponse> buscarTodasAsProvasDisponiveisParaCorrecao(@PageableDefault(size=3) Pageable pageable) {
+    public Page<ProvaParaCorrecaoResponse> buscarTodasAsProvasDisponiveisParaCorrecao(@PageableDefault(size = 3) Pageable pageable) {
         return buscarProvasParaCorrecaoService.buscar(pageable);
     }
 

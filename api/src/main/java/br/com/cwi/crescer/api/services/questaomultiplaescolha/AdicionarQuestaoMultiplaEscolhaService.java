@@ -2,7 +2,6 @@ package br.com.cwi.crescer.api.services.questaomultiplaescolha;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.QuestaoMultiplaEscolhaRequest;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
-import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoMultiplaEscolhaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.alternativamultiplaescolha.AdicionarAlternativaMultiplaEscolhaService;
@@ -46,9 +45,6 @@ public class AdicionarQuestaoMultiplaEscolhaService {
 
         QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest);
         questaoMultiplaEscolha.setDataCriacao(LocalDate.now());
-
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva@cwi.com.br");
-        questaoMultiplaEscolha.setUsuario(usuario);
 
         QuestaoMultiplaEscolha questaoSalva = repository.save(questaoMultiplaEscolha);
 

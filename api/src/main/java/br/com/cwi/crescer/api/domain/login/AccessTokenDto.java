@@ -6,19 +6,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public class AccessTokenDto {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class AccessTokenDto {
 
-        @JsonProperty("access_token")
-        private String accesToken;
+    @JsonProperty("access_token")
+    private String accesToken;
 
-        @JsonProperty("token_type")
-        private String tokenType;
+    @JsonProperty("token_type")
+    private String tokenType;
 
-        @JsonProperty("expires_in")
-        private Long expiresIn;
+    @JsonProperty("expires_in")
+    private Long expiresIn;
 
 }

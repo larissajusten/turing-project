@@ -6,8 +6,8 @@ import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
 import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.services.questaodissertativa.AdicionarQuestaoDissertativaService;
-import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestoesDissertativasFiltradasPaginadasService;
 import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestoesDissertativasFiltradasListaService;
+import br.com.cwi.crescer.api.services.questaodissertativa.BuscarQuestoesDissertativasFiltradasPaginadasService;
 import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -50,7 +50,7 @@ public class QuestaoDissertativaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/todas-questoes-filtradas")
-    public Page<QuestaoDissertativa> listarTodasQuestoesDissertativas(@PageableDefault(size=5) Pageable pageable,
+    public Page<QuestaoDissertativa> listarTodasQuestoesDissertativas(@PageableDefault(size = 5) Pageable pageable,
                                                                       @RequestParam("especificidade") Especificidade especificidade,
                                                                       @RequestParam("nivel") NivelDeDificuldade nivelDeDificuldade) {
         return buscarPaginado.buscar(especificidade, nivelDeDificuldade, pageable);

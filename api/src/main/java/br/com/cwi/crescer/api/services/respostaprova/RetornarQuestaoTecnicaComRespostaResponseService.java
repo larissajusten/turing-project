@@ -26,7 +26,7 @@ public class RetornarQuestaoTecnicaComRespostaResponseService {
         respostasTecnicaRepository.findAllByProvaIdEquals(prova.getId())
                 .forEach(questao -> questoesTecnicas.add(mapper.questaoTecnica(questao)));
 
-        return  questoesTecnicas;
+        return questoesTecnicas;
     }
 
 }
