@@ -44,8 +44,6 @@ export class ResolverProvaScreen extends Component {
     this.lengthTecnicas = 0
   }
 
-
-
   async componentDidMount() {
     localStorage.setItem('accessToken', this.state.token)
     let prova = await retornaProvaPorToken(this.state.token)
@@ -58,7 +56,8 @@ export class ResolverProvaScreen extends Component {
                                   this.state.prova.questoesDissertativas.length +
                                   this.state.prova.questoesTecnicas.length)
 
-      const newArray = [...new Array(quantidadeObjetos)]
+      //const newArray = [...new Array(quantidadeObjetos)]
+      const newArray = Array.from({length:(quantidadeObjetos)}, () => ({ }))
       const arrayRespostas = newArray.map(() => ({ ...objetoResposta }))
 
       this.setState({

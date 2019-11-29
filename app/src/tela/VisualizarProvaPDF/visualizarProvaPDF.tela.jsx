@@ -14,18 +14,22 @@ export class ProvaPDFScreen extends Component {
     }
   }
 
+  catchErrorENotifica(error){
+    if (error.response.data.errors) {
+      error.response.data.errors.map(message => {
+        return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+      })
+    } else {
+      Notificacao('Falha', `${error.response.data.message}`, 'danger')
+    }
+  }
+
   async componentDidMount(){
     try{
       const response = await retornaProvaCorrigidaParaPDF(this.state.idProva)
       this.setState({ prova: response })
     } catch(error){
-      if (error.response.data.errors) {
-        error.response.data.errors.map(message => {
-          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-        })
-      } else {
-        Notificacao('Falha', `${error.response.data.message}`, 'danger')
-      }
+      this.catchErrorENotifica(error)
     }
   }
 
