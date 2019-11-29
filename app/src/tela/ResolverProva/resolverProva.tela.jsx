@@ -44,8 +44,6 @@ export class ResolverProvaScreen extends Component {
     this.lengthTecnicas = 0
   }
 
-
-
   async componentDidMount() {
     localStorage.setItem('accessToken', this.state.token)
     let prova = await retornaProvaPorToken(this.state.token)

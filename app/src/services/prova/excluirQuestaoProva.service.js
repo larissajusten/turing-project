@@ -8,6 +8,7 @@ function carregarToken() {
 		token = localStorage.getItem('accessToken');
 	}
 }
+
 export const removerQuestaoDissertativa = async (idProva, idQuestao) => {
   carregarToken();
   const response = await Axios.delete(`${baseUrl}/excluir/${idProva}/dissertativa/${idQuestao}`,

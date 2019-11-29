@@ -14,14 +14,14 @@ export const retornaTecnologias = async () => {
 	const response = await Axios.get(`${baseUrl}/dashboard`,
 	{ headers: { Authorization: token } });
 	return response.data;
-};
+}
 
 export const retornarResultadosMultipla = async (especificidade) => {
 	carregarToken();
 	const response = await Axios.put(`${baseUrl}/dashboard/${especificidade}/multiplas`,
 	{ headers: { Authorization: token } });
 	return response.data;
-};
+}
 
 export const retornarResultadosDissertativa = async (especificidade) => {
 	carregarToken();

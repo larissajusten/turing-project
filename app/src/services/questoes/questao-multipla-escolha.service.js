@@ -8,6 +8,7 @@ function carregarToken() {
 		token = localStorage.getItem('accessToken');
 	}
 }
+
 export const adicionarQuestaoMultiplaEscolha = async (questao) => {
   carregarToken();
   const response = await Axios.post(`${baseUrl}/questao-multipla-escolha`, questao,
