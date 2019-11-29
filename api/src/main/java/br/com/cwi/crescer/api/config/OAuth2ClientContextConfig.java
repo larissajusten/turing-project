@@ -6,6 +6,7 @@ import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Sets;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -65,13 +66,13 @@ public class OAuth2ClientContextConfig {
 //            String role = jsonNode.get(ClaimTypes.)
 
             Usuario colaborador = buscarUsuarioPeloEmailService.buscar(login);
-//            String role = colaborador.getPerfil().getRole();
+            String role = colaborador.getPerfil().getRole();
 
 //            Set authorities = new HashSet<>();
 //            authorities.add(new SimpleGrantedAuthority("ROLE_KKKKKKKKK"));
 
 //            usuario = new LoggedUser(colaborador.getId(), matricula, login, nome, email);
-//            usuario = new LoggedUser(colaborador.getId(), matricula, login, nome, email, Sets.newHashSet(role));
+            usuario = new LoggedUser(colaborador.getId(), matricula, login, nome, email, Sets.newHashSet(role));
         } catch (Exception e) {
             log.error("Erro no conversão", e);
         }

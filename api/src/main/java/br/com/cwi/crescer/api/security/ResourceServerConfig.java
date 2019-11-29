@@ -32,8 +32,12 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 //                        "/swagger-ui.html",
 //                        "/webjars/**").permitAll()
 //
-//                .antMatchers("/login")
-//                .permitAll()
+                .antMatchers("/login")
+                .permitAll()
+
+                //TODO teste da camila
+                .antMatchers("/prova-questao-dissertativa/**")
+                .hasAnyRole("ADMIN")
 //
 //                .antMatchers("/prova/**", "/dashboard/**", "/email/**","/buscar-prova/**", "/dominio/**",
 //                        "/excluir/**", "/incluir/**", "/prova-questao-dissertativa/**", "/prova-questao-multipla-escolha/**",
@@ -59,7 +63,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 //                .hasAnyRole("USUARIO", "ADMIN", "ENTREVISTADOR")
 
                 .anyRequest()
-                .permitAll();
+                .authenticated();
     }
 
 }
