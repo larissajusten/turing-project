@@ -13,6 +13,12 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 @EnableOAuth2Client
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
+    public static final String ADMIN = "ADMIN";
+    public static final String ENTREVISTADOR = "ENTREVISTADOR";
+    public static final String QUESTAO_DISSERTATIVA = "/questao-dissertativa/**";
+    public static final String QUESTAO_MULTIPLA_ESCOLHA = "/questao-multipla-escolha/**";
+    public static final String QUESTAO_TECNICA = "/questao-tecnica/**";
+
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
@@ -49,32 +55,32 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                         "/prova-questao-dissertativa/**",
                         "/prova-questao-multipla-escolha/**",
                         "/prova-questao-tecnica/**")
-                .hasAnyRole("ADMIN", "ENTREVISTADOR")
+                .hasAnyRole(ADMIN, ENTREVISTADOR)
 
                 .antMatchers(HttpMethod.POST,
-                        "/questao-dissertativa/**",
-                        "/questao-multipla-escolha/**",
-                        "/questao-tecnica/**")
-                .hasRole("ADMIN")
+                        QUESTAO_DISSERTATIVA,
+                        QUESTAO_MULTIPLA_ESCOLHA,
+                        QUESTAO_TECNICA)
+                .hasRole(ADMIN)
 
                 .antMatchers(HttpMethod.GET,
-                        "/questao-dissertativa/**",
+                        QUESTAO_DISSERTATIVA,
                         "/dashboard/**",
-                        "/questao-multipla-escolha/**",
-                        "/questao-tecnica/**")
-                .hasAnyRole("ADMIN", "ENTREVISTADOR")
+                        QUESTAO_MULTIPLA_ESCOLHA,
+                        QUESTAO_TECNICA)
+                .hasAnyRole(ADMIN, ENTREVISTADOR)
 
                 .antMatchers(HttpMethod.PUT,
-                        "/questao-dissertativa/**",
-                        "/questao-multipla-escolha/**",
-                        "/questao-tecnica/**")
-                .hasAnyRole("ADMIN", "ENTREVISTADOR")
+                        QUESTAO_DISSERTATIVA,
+                        QUESTAO_MULTIPLA_ESCOLHA,
+                        QUESTAO_TECNICA)
+                .hasAnyRole(ADMIN, ENTREVISTADOR)
 
                 .antMatchers("/usuario/**")
-                .hasAnyRole("ADMIN", "ENTREVISTADOR")
+                .hasAnyRole(ADMIN, ENTREVISTADOR)
 
                 .antMatchers(HttpMethod.PUT, "prova/{id-prova}/iniciar-prova")
-                .hasAnyRole("USUARIO", "ADMIN", "ENTREVISTADOR")
+                .hasAnyRole("USUARIO", ADMIN, ENTREVISTADOR)
 
                 .anyRequest()
                 .authenticated();
