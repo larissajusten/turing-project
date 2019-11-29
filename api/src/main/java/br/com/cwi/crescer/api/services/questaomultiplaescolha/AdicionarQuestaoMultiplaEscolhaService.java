@@ -47,7 +47,7 @@ public class AdicionarQuestaoMultiplaEscolhaService {
         QuestaoMultiplaEscolha questaoMultiplaEscolha = mapper.transformarParaQuestao(questaoMultiplaEscolhaRequest);
         questaoMultiplaEscolha.setDataCriacao(LocalDate.now());
 
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva@cwi.com.br");
+        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva");
         questaoMultiplaEscolha.setUsuario(usuario);
 
         QuestaoMultiplaEscolha questaoSalva = repository.save(questaoMultiplaEscolha);

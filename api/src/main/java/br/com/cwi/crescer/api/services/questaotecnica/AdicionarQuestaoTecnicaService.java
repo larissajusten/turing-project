@@ -29,7 +29,7 @@ public class AdicionarQuestaoTecnicaService {
 
     public void adicionar(QuestaoTecnicaRequest request) {
 
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva@cwi.com.br");
+        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva");
 
         QuestaoTecnica questaoTecnica = mapper.transformar(request);
         questaoTecnica.setDataCriacao(LocalDate.now());

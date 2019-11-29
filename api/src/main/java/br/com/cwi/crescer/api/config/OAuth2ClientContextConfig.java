@@ -19,32 +19,27 @@ import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.web.context.request.RequestContextListener;
 
 @Slf4j
- //TODO Vanessa Schenkel 23/11/2019 - Pesquisar sobre slf4j
+//TODO Vanessa Schenkel 23/11/2019 - Pesquisar sobre slf4j
 @Configuration
 public class OAuth2ClientContextConfig {
 
     @Autowired
     private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
+    @Autowired
+    private OAuth2ClientContext context;
+    @Autowired
+    private ObjectMapper mapper;
 
     @Bean
     public RequestContextListener requestContextListener() {
         return new RequestContextListener();
     }
 
-    @Autowired
-    private OAuth2ClientContext context;
-
-    @Autowired
-    private ObjectMapper mapper;
-
     @Bean
     @Scope(proxyMode = ScopedProxyMode.TARGET_CLASS, scopeName = "request")
     public LoggedUser getUserFromJwt() {
-        LoggedUser usuario = null;
 
-//        List<GrantedAuthority> authorities = user.getRoles().stream()
-//                .map(authority -> new SimpleGrantedAuthority(authority.getRole().authority()))
-//                .collect(Collectors.toList());
+        LoggedUser usuario = null;
 
         try {
             OAuth2AccessToken oAuth2AccessToken = context.getAccessToken();
@@ -52,26 +47,16 @@ public class OAuth2ClientContextConfig {
 
             String claims = JwtHelper.decode(token).getClaims();
 
-//            Claims claims2 = Jwts.claims().setSubject(username);
-//            claims.put("auth", roles.stream().map(s -> new SimpleGrantedAuthority(s.getAuthority())).filter(Objects::nonNull).collect(Collectors.toList()));
-
-//            SimpleGrantedAuthority auth = new SimpleGrantedAuthority("ROLE_" + role.getName());
-
             JsonNode jsonNode = mapper.readTree(claims);
 
             String matricula = jsonNode.get(ClaimTypes.MATRICULA.toString()).asText();
             String login = jsonNode.get(ClaimTypes.NAMEIDENTIFIER.toString()).asText();
             String nome = jsonNode.get(ClaimTypes.NAME.toString()).asText();
             String email = jsonNode.get(ClaimTypes.EMAILADDRESS.toString()).asText();
-//            String role = jsonNode.get(ClaimTypes.)
 
-            Usuario colaborador = buscarUsuarioPeloEmailService.buscar(login);
+            Usuario colaborador = buscarUsuarioPeloEmailService.buscar(email);
             String role = colaborador.getPerfil().getRole();
 
-//            Set authorities = new HashSet<>();
-//            authorities.add(new SimpleGrantedAuthority("ROLE_KKKKKKKKK"));
-
-//            usuario = new LoggedUser(colaborador.getId(), matricula, login, nome, email);
             usuario = new LoggedUser(colaborador.getId(), matricula, login, nome, email, Sets.newHashSet(role));
         } catch (Exception e) {
             log.error("Erro no conversão", e);
@@ -79,6 +64,4 @@ public class OAuth2ClientContextConfig {
 
         return usuario;
     }
-
-
 }

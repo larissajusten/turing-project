@@ -5,6 +5,7 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.usuario.Usuario;
 import br.com.cwi.crescer.api.mapper.QuestaoDissertativaMapper;
 import br.com.cwi.crescer.api.repository.questao.QuestaoDissertativaRepository;
+import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.autenticacao.VerificarPerfilUsuarioLogadoService;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
 import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
@@ -31,13 +32,16 @@ public class AdicionarQuestaoDissertativaService {
     @Autowired
     private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
 
+//    @Autowired
+//    private LoggedUser loggedUser;
 
     public QuestaoDissertativa adicionar(QuestaoUnicaAlternativaRequest request) {
 
         QuestaoDissertativa questaoDissertativa = mapper.transformar(request);
         questaoDissertativa.setDataCriacao(LocalDate.now());
 
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva@cwi.com.br");
+//        loggedUser.getEmail();
+        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva");
         questaoDissertativa.setUsuario(usuario);
 
         repository.save(questaoDissertativa);

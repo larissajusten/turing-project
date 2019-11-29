@@ -44,7 +44,7 @@ public class ProvaMapper {
 
     public Prova transformar(ProvaRequest request) {
 
-        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva@cwi.com.br");
+        Usuario usuario = buscarUsuarioPeloEmailService.buscar("vanessa.silva");
 
         Prova prova = mapper.map(request, Prova.class);
         prova.setDataCriacao(LocalDateTime.now());
