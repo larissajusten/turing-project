@@ -15,7 +15,7 @@ export const incluirDissertativas = async (idProva, questao) => {
 		headers: { Authorization: token }
 	});
 	return response.data;
-};
+}
 
 export const incluirTecnicas = async (idProva, questao) => {
 	carregarToken();
@@ -23,7 +23,7 @@ export const incluirTecnicas = async (idProva, questao) => {
 		headers: { Authorization: token }
 	});
 	return response.data;
-};
+}
 
 export const incluirMultiplaEscolha = async (idProva, questao) => {
 	carregarToken();
@@ -31,4 +31,4 @@ export const incluirMultiplaEscolha = async (idProva, questao) => {
 		headers: { Authorization: token }
 	});
 	return response.data;
-};
+}

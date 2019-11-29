@@ -132,6 +132,7 @@ export class CadastrarProvaScreen extends Component {
     catch (error) {
       this.catchErrorENotifica(error)
     }
+
   }
 
   enviarQuestaoDissertativa = async (questao) => {
@@ -200,21 +201,47 @@ export class CadastrarProvaScreen extends Component {
     )
   }
 
+  renderBotoesEscolhaDeQuestoes(){
+    return( <div className="container-botao container-botao-prova">
+              <BotaoPrincipal nome="Visualizar" onClick={this.handleClickVisualizarProva}/>
+              <BotaoPrincipal nome="Enviar por e-mail" onClick={this.handleClickEnviarProva}/>
+              <BotaoPrincipal nome="Cancelar" onClick={this.handleClickCancelarProva} />
+            </div>
+    )
+  }
+
   renderEscolhaDeQuestoes() {
     return (
       <>
         <div className="container-titulo">
           <span className="titulo-crie">Adicione questões a sua prova</span>
         </div>
+        {this.renderArrayQuestoes()}
+        {this.renderBotoesEscolhaDeQuestoes()}
+      </>
+    )
+  }
 
-        {
-          this.renderArrayQuestoes()
-        }
+  renderInputsTeste() {
+    const arrayDeParamsDoInputs = [{ value: "nomeDoCandidato", name: "nomeDoCandidato", tam: "50", type: "text", label: "Digite o nome do candidato"}, 
+                { value: "emailDoCandidato", name: "emailDoCandidato", tam: "50", type: "text", label: "Digite o email do candidato"},
+                { value: "duracaoDaProva", name: "duracaoDaProva", tam: "10", type: "number", label: "Tempo de duração da prova (minutos)"},
+                { value: "tempoParaIniciarProva", name: "tempoParaIniciarProva", tam: "8760", type: "number", label: "Tempo para iniciar a prova (horas)"}]
+    return arrayDeParamsDoInputs.map((item, key) => {
+      return <Input key={key} name={item.name} value={this.state[item.value]} maxTam={item.tam} type={item.tam} label={item.label} 
+                  placeholder="" onChange={this.handleChange}/>
+    })
+  }
 
-        <div className="container-botao container-botao-prova">
-          <BotaoPrincipal nome="Visualizar" onClick={this.handleClickVisualizarProva}/>
-          <BotaoPrincipal nome="Enviar por e-mail" onClick={this.handleClickEnviarProva}/>
-          <BotaoPrincipal nome="Cancelar" onClick={this.handleClickCancelarProva} />
+  renderInputsProva2(){
+    return (
+      <>
+        <div className="container-titulo">
+          <span className="titulo-crie">Crie sua prova</span>
+        </div>
+        {this.renderInputsTeste()}
+        <div className="container-botao">
+          <BotaoPrincipal classe="cadastro-prova-botao" nome="ADICIONAR QUESTÕES" onClick={this.handleClickEnviarBaseProva}/>
         </div>
       </>
     )
@@ -286,7 +313,7 @@ export class CadastrarProvaScreen extends Component {
             ?
             this.renderEscolhaDeQuestoes()
             :
-            this.renderInputsProva()
+            this.renderInputsProva2()
         }
       </div>
     )
