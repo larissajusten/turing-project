@@ -34,28 +34,26 @@ public class DashboardController {
     private RetornaLinguagensDoUsuarioService retornaLinguagensDoUsuarioService;
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{especificidade}/dissertativas")
-    public List<RespostaParaDashboardResponse> discursivas(@PathVariable("especificidade") Especificidade especificidade) {
+    @GetMapping("/{especificidade}/dissertativas")
+    public List<RespostaParaDashboardResponse> retornaDadosParaGraficoDeQuestoesDissertativas(@PathVariable("especificidade") Especificidade especificidade) {
         return buscarQuestoesDissertativas.buscar(especificidade);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{especificidade}/tecnicas")
-    public List<RespostaParaDashboardResponse> tecnicas(@PathVariable("especificidade") Especificidade especificidade) {
+    @GetMapping("/{especificidade}/tecnicas")
+    public List<RespostaParaDashboardResponse> retornaDadosParaGraficoDeQuestoesTecnicas(@PathVariable("especificidade") Especificidade especificidade) {
         return buscarQuestoesTecnicas.buscar(especificidade);
     }
 
-
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{especificidade}/multiplas")
-    public List<Integer> retornaErrosEAcertosMultiplaEscolha(@PathVariable("especificidade") Especificidade especificidade) {
+    @GetMapping("/{especificidade}/multiplas")
+    public List<Integer> retornaErrosEAcertosDasQuestoesDeMultiplasEscolhas(@PathVariable("especificidade") Especificidade especificidade) {
         return retornaErrosEAcertosMultiplaEscolhaService.retornar(especificidade);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
-    public List<LinguagensResponse> retornaLinguagensDosUsuarios() {
+    public List<LinguagensResponse> retornaUsuariosPorLinguagens() {
         return retornaLinguagensDoUsuarioService.retornar();
     }
-
 }

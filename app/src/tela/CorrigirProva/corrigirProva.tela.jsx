@@ -8,7 +8,7 @@ export class CorrigirProvaScreen extends Component {
   constructor(props){
     super(props)
     this.state = {
-      idProva: 0,
+      idProva: this.props.match.params.idProva,
       prova: null,
       tiposDeQuestoes: [],
       arrayCorrecoes: [objetoCorrecaoProva],
@@ -19,26 +19,21 @@ export class CorrigirProvaScreen extends Component {
   }
 
   async componentDidMount() {
+    let tiposDeQuestoes = await retornarTipoDeQuestao()
+    let prova = await retornarProvaParaCorrigir(this.state.idProva)
+
+    this.lengthDissertativas = prova.questoesDissertativas.length
+    this.lengthTecnicas = prova.questoesTecnicas.length
+
+    const quantidadeDeObjetos = (this.lengthDissertativas + this.lengthTecnicas)
+
+    const newArray = [...new Array(quantidadeDeObjetos)]
+    const arrayCorrecoes = newArray.map(() => ({ ...objetoCorrecaoProva }))
+
     this.setState({
-      idProva: this.props.match.params.idProva
-    }, async() => {
-      this.setState({
-        tiposDeQuestoes: await retornarTipoDeQuestao(),
-        prova: await retornarProvaParaCorrigir(this.state.idProva)
-      }, () => {
-        const quantidadeDeObjetos = (this.state.prova.questoesDissertativas.length + this.state.prova.questoesTecnicas.length)
-
-        //const newArray = [...new Array(quantidadeDeObjetos)]
-        const newArray = Array.from({length:(quantidadeDeObjetos)}, () => ({ }))
-        const arrayCorrecoes = newArray.map(() => ({ ...objetoCorrecaoProva }))
-
-        this.setState({
-          arrayCorrecoes
-        })
-
-        this.lengthDissertativas = this.state.prova.questoesDissertativas.length
-        this.lengthTecnicas = this.state.prova.questoesTecnicas.length
-      })
+      arrayCorrecoes,
+      tiposDeQuestoes,
+      prova
     })
   }
 
@@ -125,22 +120,36 @@ export class CorrigirProvaScreen extends Component {
     )
   }
 
+  renderQuestoes(){
+    return(
+      <>
+      {
+        this.state.arrayCorrecoes.length >= 1 ?
+        <>
+        {this.renderQuestoesDissertativas()}
+        {this.renderQuestoesTecnicas()}
+
+        <div className="container-botao">
+          <BotaoPrincipal nome="ENVIAR" onClick={this.handleClickEnviarCorrecao} />
+        </div>
+        </>
+        :
+        <span className="titulo-crie">Não há questões nessa prova</span>
+      }
+      </>
+    )
+  }
+
   renderProva() {
     return(
       <>
       {
-        this.state.prova && this.state.arrayCorrecoes.length >= 1 &&
+        this.state.prova &&
           <>
           <div className="container-titulo">
             <span className="titulo-crie">Correção da prova de {this.state.prova.nomeCandidato}</span>
           </div>
-
-          {this.renderQuestoesDissertativas()}
-          {this.renderQuestoesTecnicas()}
-
-          <div className="container-botao">
-            <BotaoPrincipal nome="ENVIAR" onClick={this.handleClickEnviarCorrecao} />
-          </div>
+          {this.renderQuestoes()}
           </>
       }
       </>

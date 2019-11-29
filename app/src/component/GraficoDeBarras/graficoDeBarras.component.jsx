@@ -61,7 +61,7 @@ export class GraficoDeBarras extends PureComponent {
         <Bar barSize={22} dataKey="candidatos">
           {
           	data.map((item, index) => {
-            	return <Cell fill={cores[index]}/>
+            	return <Cell index={index} fill={cores[index]}/>
             })
           }
         </Bar>

@@ -12,29 +12,46 @@ export class QuestaoUnica extends PureComponent {
     }
   }
 
+  renderSelects() {
+		const arrayDeParamsDoSelect =
+			[{ name: "especificidade", label: "o", object: this.state.linguagens },
+			{ name: "nivel", label: "a", object: this.state.niveis }]
+		return arrayDeParamsDoSelect.map((item, key) => {
+			return <div className="input-principal">
+				<Select
+					key={key}
+					questoesWidth="width-select"
+					name={item.name}
+					value={this.state[item.name]}
+					onChange={this.handleChange}
+					object={item.object}
+					placeholder={`Selecione ${item.label} ${item.name}`} />
+			</div>
+		})
+	}
+
+  renderTextAreaQuestaoTecnica() {
+		const arrayDeParamsDoTextArea =
+			[{ name: "respostaBase", value: "resposta", label:"Resposta base"},
+			{ name: "testeBase", value: "testes", label: "Testes base"}]
+		return arrayDeParamsDoTextArea.map((item, key) => {
+			return <div className="input-principal">
+              <Textarea
+                label={item.label}
+                name={item.name}
+                value={this.props[item.label]}
+                handleChange={this.props.handleChange}/>
+            </div>
+		})
+  }
+
   render() {
     return(
       <>
       <div className="container-questao">
 
         <div className="container-select">
-          <div className="input-principal">
-            <Select
-              name="especificidade"
-              value={this.props.especificidade}
-              onChange={this.props.handleChange}
-              object={this.state.linguagens}
-              placeholder="Selecione a especificidade"/>
-            </div>
-
-          <div className="input-principal">
-            <Select
-              name="nivel"
-              value={this.props.nivel}
-              onChange={this.props.handleChange}
-              object={this.state.niveis}
-              placeholder="Selecione o nível"/>
-          </div>
+          {this.renderSelects()}
         </div>
 
           <div className="input-principal">
@@ -48,21 +65,7 @@ export class QuestaoUnica extends PureComponent {
           {
             this.props.questaoTipoTecnica &&
             <>
-            <div className="input-principal">
-              <Textarea
-                label="Resposta base"
-                name="respostaBase"
-                value={this.props.resposta}
-                handleChange={this.props.handleChange}/>
-            </div>
-
-            <div className="input-principal">
-              <Textarea
-                label="Testes base"
-                name="testeBase"
-                value={this.props.testes}
-                handleChange={this.props.handleChange}/>
-            </div>
+            {this.renderTextAreaQuestaoTecnica()}
             </>
           }
 

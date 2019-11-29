@@ -17,9 +17,7 @@ export class CadastroDissertativa extends PureComponent {
 
   handleChange = (event) => {
     const { name, value } = event.target
-    this.setState({
-      [name]: value
-    })
+    this.setState({ [name]: value })
   }
 
   catchErrorENotifica(error){

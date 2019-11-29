@@ -18,21 +18,21 @@ export const retornaTecnologias = async () => {
 
 export const retornarResultadosMultipla = async (especificidade) => {
 	carregarToken();
-	const response = await Axios.put(`${baseUrl}/dashboard/${especificidade}/multiplas`,
+	const response = await Axios.get(`${baseUrl}/dashboard/${especificidade}/multiplas`,
 	{ headers: { Authorization: token } });
 	return response.data;
 }
 
 export const retornarResultadosDissertativa = async (especificidade) => {
 	carregarToken();
-	const response = await Axios.put(`${baseUrl}/dashboard/${especificidade}/dissertativas`,
+	const response = await Axios.get(`${baseUrl}/dashboard/${especificidade}/dissertativas`,
 	{ headers: { Authorization: token } });
 	return response.data;
 };
 
 export const retornarResultadosTecnica = async (especificidade) => {
 	carregarToken();
-	const response = await Axios.put(`${baseUrl}/dashboard/${especificidade}/tecnicas`,
+	const response = await Axios.get(`${baseUrl}/dashboard/${especificidade}/tecnicas`,
 	{ headers: { Authorization: token } });
 	return response.data;
 };
