@@ -43,8 +43,6 @@ export class CadastroTecnica extends PureComponent {
       "respostaBase": this.state.respostaBase
     }
 
-    console.log(questao)
-
     try{
       await adicionarQuestaoTecnica(questao)
       Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
