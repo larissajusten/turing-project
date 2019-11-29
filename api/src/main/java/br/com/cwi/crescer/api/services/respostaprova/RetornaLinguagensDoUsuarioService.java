@@ -29,5 +29,4 @@ public class RetornaLinguagensDoUsuarioService {
 
         return lista;
     }
-
 }

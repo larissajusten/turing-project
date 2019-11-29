@@ -43,6 +43,4 @@ public class InclusaoQuestoesProvaController {
     public void incluirMultiplasEscolhas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         incluirQuestoesMultiplaEscolhaService.incluir(idProva, buscaQuestoesRequest);
     }
-
-
 }

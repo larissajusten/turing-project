@@ -30,5 +30,4 @@ public class RetornaErrosEAcertosMultiplaEscolhaService {
 
         return erradasEAcertadasTotal;
     }
-
 }

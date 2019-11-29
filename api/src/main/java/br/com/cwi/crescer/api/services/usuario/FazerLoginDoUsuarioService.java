@@ -17,5 +17,4 @@ public class FazerLoginDoUsuarioService {
 
         return usuario.getPerfil();
     }
-
 }

@@ -17,5 +17,4 @@ public class BuscarAlternativaQuestaoMultiplaEscolhaService {
 
         return repository.findAllByQuestaoMultiplaEscolhaIdEquals(id);
     }
-
 }

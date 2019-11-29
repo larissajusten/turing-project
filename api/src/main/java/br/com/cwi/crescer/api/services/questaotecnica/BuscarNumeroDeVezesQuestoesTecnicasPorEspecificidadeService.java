@@ -16,6 +16,7 @@ public class BuscarNumeroDeVezesQuestoesTecnicasPorEspecificidadeService {
 
 
     public int buscar(Especificidade especificidade) {
+
         List<QuestaoTecnica> lista = repository.findByEspecificidade(especificidade);
 
         int vezes = 0;
@@ -27,5 +28,4 @@ public class BuscarNumeroDeVezesQuestoesTecnicasPorEspecificidadeService {
 
         return vezes;
     }
-
 }

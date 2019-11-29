@@ -17,5 +17,4 @@ public class BuscarAlternativaMultiplaEscolhaPorIdService {
         return repository.findById(id)
                 .orElseThrow(() -> new MultiplaEscolhaException("Alternativa não encontrada"));
     }
-
 }

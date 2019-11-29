@@ -32,5 +32,4 @@ public class DecodificacaoTokenService {
         }
         return usuarioLogado;
     }
-
 }

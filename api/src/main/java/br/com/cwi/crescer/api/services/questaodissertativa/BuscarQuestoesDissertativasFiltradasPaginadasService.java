@@ -28,5 +28,4 @@ public class BuscarQuestoesDissertativasFiltradasPaginadasService {
 
         return page;
     }
-
 }

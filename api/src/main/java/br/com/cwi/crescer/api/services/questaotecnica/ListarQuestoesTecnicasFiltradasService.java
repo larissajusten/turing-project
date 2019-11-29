@@ -26,5 +26,4 @@ public class ListarQuestoesTecnicasFiltradasService {
 
         return listaQueAtendeRequisitos;
     }
-
 }

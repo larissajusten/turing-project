@@ -22,5 +22,4 @@ public class LoginService {
 
         return usuario;
     }
-
 }

@@ -16,6 +16,4 @@ public class QuestaoTecnicaParaCorrecaoResponse {
     private String resposta;
 
     private String questao;
-
-
 }

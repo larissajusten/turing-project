@@ -22,5 +22,4 @@ public class BuscarQuestoesTecnicasFiltradasService {
         Pageable quantos = PageRequest.of(0, quantidade);
         return repository.findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(especificidade, nivelDeDificuldade, quantos);
     }
-
 }

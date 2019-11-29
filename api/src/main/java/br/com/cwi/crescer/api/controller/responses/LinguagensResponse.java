@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LinguagensResponse {
-    private Especificidade especificidade;
-    private int quantosUsuarios;
 
+    private Especificidade especificidade;
+
+    private int quantosUsuarios;
 }

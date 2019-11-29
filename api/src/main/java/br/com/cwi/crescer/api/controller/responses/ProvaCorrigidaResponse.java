@@ -44,5 +44,4 @@ public class ProvaCorrigidaResponse {
     private List<Especificidade> especificidades;
 
     private int numeroDeQuestoes;
-
 }

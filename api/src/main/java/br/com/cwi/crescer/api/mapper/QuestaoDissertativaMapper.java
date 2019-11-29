@@ -16,5 +16,4 @@ public class QuestaoDissertativaMapper {
 
         return mapper.map(request, QuestaoDissertativa.class);
     }
-
 }

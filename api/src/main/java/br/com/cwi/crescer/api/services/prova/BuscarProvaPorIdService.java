@@ -17,5 +17,4 @@ public class BuscarProvaPorIdService {
         return repository.findById(id)
                 .orElseThrow(() -> new ProvaNaoEncontradaException("Prova não foi encontrada"));
     }
-
 }

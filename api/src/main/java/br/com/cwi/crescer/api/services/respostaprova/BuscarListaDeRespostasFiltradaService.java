@@ -26,12 +26,11 @@ public class BuscarListaDeRespostasFiltradaService {
         List<QuestaoMultiplaEscolha> lista = questaoRepository.acharPorNivelEEspecificidadeListado(especificidade, nivelDeDificuldade);
         List<RespostasMultiplaEscolhaProva> listaResposta = new ArrayList<>();
 
-        for (int i = 0; i < lista.size(); i++) {
-            Long idQuestao = lista.get(i).getId();
+        for (QuestaoMultiplaEscolha questaoMultiplaEscolha : lista) {
+            Long idQuestao = questaoMultiplaEscolha.getId();
             List<RespostasMultiplaEscolhaProva> todasDessaQuestao = repository.findAllByQuestaoMultiplaEscolhaIdEquals(idQuestao);
             listaResposta.addAll(todasDessaQuestao);
         }
-
 
         return listaResposta;
     }

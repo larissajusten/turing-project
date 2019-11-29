@@ -28,5 +28,4 @@ public class ResponderQuestaoDissertativaService {
 
         return repository.save(respostasDissertativaProva);
     }
-
 }

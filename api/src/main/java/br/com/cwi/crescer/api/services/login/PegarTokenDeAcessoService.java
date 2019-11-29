@@ -34,5 +34,4 @@ public class PegarTokenDeAcessoService {
         AccessTokenDto accessTokenDto = restTemplate.postForObject(url, request, AccessTokenDto.class);
         return accessTokenDto.getAccesToken();
     }
-
 }

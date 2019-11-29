@@ -15,5 +15,4 @@ public class QuestaoMultiplaEscolhaParaCorrecaoResponse {
     private AlternativaMultiplaEscolha resposta;
 
     private String questao;
-
 }

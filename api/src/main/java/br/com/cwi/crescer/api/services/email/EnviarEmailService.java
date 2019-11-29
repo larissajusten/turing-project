@@ -66,6 +66,4 @@ public class EnviarEmailService {
 
         return templateEngine.process("EmailHTML", context);
     }
-
-
 }

@@ -56,5 +56,4 @@ public class GerarNotaDasQuestoesTecnicaDeAcordoComPesoService {
         }
         return divisor * MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_DIFICIL;
     }
-
 }

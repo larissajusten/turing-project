@@ -67,5 +67,4 @@ public class QuestaoComRespostaMapper {
 
         return questaoTecnicaComRespostaResponse;
     }
-
 }

@@ -56,5 +56,4 @@ public class CorrigirProvaService {
 
         return prova.getStatus();
     }
-
 }

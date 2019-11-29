@@ -23,5 +23,4 @@ public class ProvaQuestaoDissertativaController {
         return listarQuestoesDissertativasDaProvaService.listar(idProva);
 
     }
-
 }

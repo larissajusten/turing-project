@@ -17,5 +17,4 @@ public class BuscarQuestaoTecnicaPorIdService {
         return repository.findById(id)
                 .orElseThrow(() -> new QuestaoNaoEncontradaException("Questão técnica não foi encontrada por esse id"));
     }
-
 }

@@ -14,5 +14,4 @@ public class RetornarAlternativaCertaService {
 
         return repository.isAlternativaCerta(idAlternativa);
     }
-
 }

@@ -28,5 +28,4 @@ public class ResponderQuestaoTecnicaService {
 
         return repository.save(respostasTecnicaProva);
     }
-
 }

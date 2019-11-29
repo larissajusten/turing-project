@@ -15,5 +15,4 @@ public class ProvasVaziaValidador {
             throw new ProvaNaoEncontradaException("Nenhuma prova corrigida foi encontrada");
         }
     }
-
 }

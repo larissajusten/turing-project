@@ -39,5 +39,4 @@ public class UnicaAlternativaCorretaValidator {
             throw new MultiplaEscolhaException("Deve ter UMA alternativa correta");
         }
     }
-
 }

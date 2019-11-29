@@ -20,5 +20,4 @@ public class QuestaoUnicaAlternativaRequest {
 
     @NotNull(message = "Nível de dificuldade não pode ser nula")
     private NivelDeDificuldade nivelDeDificuldade;
-
 }

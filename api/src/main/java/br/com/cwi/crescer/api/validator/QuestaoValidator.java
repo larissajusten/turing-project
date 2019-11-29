@@ -16,5 +16,4 @@ public class QuestaoValidator {
                     "disponíveis com essa especificidade e nivel de dificuldade.");
         }
     }
-
 }

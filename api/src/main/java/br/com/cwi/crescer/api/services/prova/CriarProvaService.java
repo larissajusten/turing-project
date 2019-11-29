@@ -29,5 +29,4 @@ public class CriarProvaService {
 
         return provaSalva.getId();
     }
-
 }

@@ -16,5 +16,4 @@ public class AlternativaMultiplaEscolhaResponse {
     private String resposta;
 
     private boolean respostaCorreta;
-
 }

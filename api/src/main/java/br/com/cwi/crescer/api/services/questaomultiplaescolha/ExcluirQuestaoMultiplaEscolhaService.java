@@ -16,5 +16,4 @@ public class ExcluirQuestaoMultiplaEscolhaService {
     public void excluir(Long idQuestaoProva, Long idProva) {
         repository.deleteByQuestaoIdAndProvaId(idQuestaoProva, idProva);
     }
-
 }

@@ -19,5 +19,4 @@ public class ProvaValidator {
             throw new UsuariojaTemProvaEmVigorException("Usuário já possui uma prova ativa.");
         }
     }
-
 }

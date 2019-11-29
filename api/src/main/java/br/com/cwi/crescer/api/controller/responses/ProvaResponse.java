@@ -36,5 +36,4 @@ public class ProvaResponse {
     private List<QuestaoDissertativaResponse> questoesDissertativas;
 
     private List<QuestaoTecnicaResponse> questoesTecnicas;
-
 }

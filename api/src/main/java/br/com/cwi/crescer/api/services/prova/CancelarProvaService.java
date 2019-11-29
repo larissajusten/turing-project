@@ -24,5 +24,4 @@ public class CancelarProvaService {
 
         return prova.getStatus();
     }
-
 }

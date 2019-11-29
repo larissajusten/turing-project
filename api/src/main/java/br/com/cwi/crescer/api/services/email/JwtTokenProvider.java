@@ -57,5 +57,4 @@ public class JwtTokenProvider {
 
         return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(jwt);
     }
-
 }

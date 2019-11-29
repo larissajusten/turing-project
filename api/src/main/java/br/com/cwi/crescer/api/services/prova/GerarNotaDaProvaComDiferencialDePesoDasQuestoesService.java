@@ -28,5 +28,4 @@ public class GerarNotaDaProvaComDiferencialDePesoDasQuestoesService {
 
         return nota / buscarQuantidadeDeQuestoes.retornarTotalDeQuestoesDaProva(prova);
     }
-
 }

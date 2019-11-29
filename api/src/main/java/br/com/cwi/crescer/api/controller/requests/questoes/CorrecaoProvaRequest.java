@@ -24,5 +24,4 @@ public class CorrecaoProvaRequest {
 
     @NotEmpty(message = "O comentario não pode ser vazio")
     private String comentario;
-
 }

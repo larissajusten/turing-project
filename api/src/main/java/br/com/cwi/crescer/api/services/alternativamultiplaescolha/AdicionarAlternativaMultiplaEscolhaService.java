@@ -23,5 +23,4 @@ public class AdicionarAlternativaMultiplaEscolhaService {
 
         repository.save(alternativa);
     }
-
 }

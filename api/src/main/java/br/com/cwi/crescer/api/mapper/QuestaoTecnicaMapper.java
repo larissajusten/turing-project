@@ -16,5 +16,4 @@ public class QuestaoTecnicaMapper {
 
         return mapper.map(request, QuestaoTecnica.class);
     }
-
 }

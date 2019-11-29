@@ -17,5 +17,4 @@ public class ExcluirQuestaoTecnicaService {
 
         repository.deleteByQuestaoIdAndProvaId(idQuestaoProva, idProva);
     }
-
 }

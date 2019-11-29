@@ -17,5 +17,4 @@ public class ListarQuestoesDissertativasDaProvaService {
 
         return repository.findAllByProvaIdEquals(idProva);
     }
-
 }

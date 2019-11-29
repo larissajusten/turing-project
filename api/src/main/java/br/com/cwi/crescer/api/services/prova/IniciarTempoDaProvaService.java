@@ -23,5 +23,4 @@ public class IniciarTempoDaProvaService {
 
         repository.save(prova);
     }
-
 }

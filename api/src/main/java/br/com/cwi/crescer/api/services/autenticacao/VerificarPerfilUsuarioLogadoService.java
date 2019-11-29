@@ -25,5 +25,4 @@ public class VerificarPerfilUsuarioLogadoService {
             throw new UsuarioNaoAutorizadoException("Usuário não autorizado");
         }
     }
-
 }

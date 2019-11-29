@@ -19,7 +19,6 @@ public class RetornaTotalPorLinguagemService {
     @Autowired
     private BuscarNumeroDeVezesQuestoesTecnicasPorEspecificidadeService buscarNumeroDeVezesQuestoesTecnicasPorEspecificidadeService;
 
-
     public int retornar(Especificidade especificidade) {
         int numeroTotal = 0;
 
@@ -29,5 +28,4 @@ public class RetornaTotalPorLinguagemService {
 
         return numeroTotal;
     }
-
 }

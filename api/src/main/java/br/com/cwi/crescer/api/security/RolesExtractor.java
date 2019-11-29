@@ -27,5 +27,4 @@ public class RolesExtractor implements AuthoritiesExtractor {
 
         return AuthorityUtils.commaSeparatedStringToAuthorityList(role);
     }
-
 }

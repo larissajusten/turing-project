@@ -82,5 +82,4 @@ public class ProvaController {
     public StatusProva cancelarProva(@PathVariable("id-prova") Long idProva) {
         return cancelarProvaService.cancelar(idProva);
     }
-
 }

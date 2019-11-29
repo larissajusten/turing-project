@@ -24,5 +24,4 @@ public class FinalizarTempoDaProvaService {
 
         return prova.getStatus();
     }
-
 }

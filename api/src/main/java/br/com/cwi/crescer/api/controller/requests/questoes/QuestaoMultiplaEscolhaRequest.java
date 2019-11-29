@@ -36,5 +36,4 @@ public class QuestaoMultiplaEscolhaRequest {
 
     @Valid
     private AlternativaMultiplaEscolhaRequest alternativaE;
-
 }

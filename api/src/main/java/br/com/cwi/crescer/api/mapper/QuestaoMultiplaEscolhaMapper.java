@@ -33,5 +33,4 @@ public class QuestaoMultiplaEscolhaMapper {
 
         return questaoResponse;
     }
-
 }

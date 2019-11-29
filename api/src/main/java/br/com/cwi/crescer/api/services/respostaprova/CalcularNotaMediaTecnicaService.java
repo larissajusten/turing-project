@@ -24,5 +24,4 @@ public class CalcularNotaMediaTecnicaService {
 
         return media / listaRespostas.size();
     }
-
 }

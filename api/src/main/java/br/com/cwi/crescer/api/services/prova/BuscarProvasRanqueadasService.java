@@ -18,5 +18,4 @@ public class BuscarProvasRanqueadasService {
 
         return repository.findAllByOrderByNotaDesc(pageable);
     }
-
 }

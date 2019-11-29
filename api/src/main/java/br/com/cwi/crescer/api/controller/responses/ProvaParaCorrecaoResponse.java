@@ -29,5 +29,4 @@ public class ProvaParaCorrecaoResponse {
     private Integer numeroQuestoes;
 
     private StatusProva status;
-
 }

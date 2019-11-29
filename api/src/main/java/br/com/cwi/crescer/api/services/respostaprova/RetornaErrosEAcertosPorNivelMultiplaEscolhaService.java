@@ -34,5 +34,4 @@ public class RetornaErrosEAcertosPorNivelMultiplaEscolhaService {
 
         return erradasEAcertadas;
     }
-
 }

@@ -15,6 +15,7 @@ public class BuscarNumeroDeVezesQuestoesDissertativaPorEspecificidadeService {
     private QuestaoDissertativaRepository repository;
 
     public int buscar(Especificidade especificidade) {
+
         List<QuestaoDissertativa> lista = repository.findByEspecificidade(especificidade);
 
         int vezes = 0;
@@ -25,5 +26,4 @@ public class BuscarNumeroDeVezesQuestoesDissertativaPorEspecificidadeService {
         }
         return vezes;
     }
-
 }

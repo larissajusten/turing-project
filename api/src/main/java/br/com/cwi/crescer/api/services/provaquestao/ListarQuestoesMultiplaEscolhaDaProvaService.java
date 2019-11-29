@@ -17,5 +17,4 @@ public class ListarQuestoesMultiplaEscolhaDaProvaService {
 
         return repository.findAllByProvaIdEquals(idProva);
     }
-
 }

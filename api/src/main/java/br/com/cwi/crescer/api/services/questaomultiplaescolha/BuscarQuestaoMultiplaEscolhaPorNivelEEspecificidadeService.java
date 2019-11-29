@@ -22,5 +22,4 @@ public class BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService {
         Pageable quantos = PageRequest.of(0, quantidade);
         return repository.findByEspecificidadeAndNivelDeDificuldadeOrderByVezesUsadaAsc(especificidade, nivelDeDificuldade, quantos);
     }
-
 }

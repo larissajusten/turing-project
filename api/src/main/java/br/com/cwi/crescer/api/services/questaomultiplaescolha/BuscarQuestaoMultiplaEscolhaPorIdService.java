@@ -17,5 +17,4 @@ public class BuscarQuestaoMultiplaEscolhaPorIdService {
         return repository.findById(id)
                 .orElseThrow(() -> new QuestaoNaoEncontradaException("Questão multipla escolha não encontrada."));
     }
-
 }

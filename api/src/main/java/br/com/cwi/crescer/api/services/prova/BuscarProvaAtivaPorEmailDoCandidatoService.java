@@ -18,5 +18,4 @@ public class BuscarProvaAtivaPorEmailDoCandidatoService {
         return repository.findByEmailCandidatoEqualsAndStatusEquals(email, StatusProva.ATIVA)
                 .orElseThrow(() -> new ProvaNaoEncontradaException("Prova não foi encontrada por esse e-mail"));
     }
-
 }

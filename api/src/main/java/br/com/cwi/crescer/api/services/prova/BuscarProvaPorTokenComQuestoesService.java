@@ -22,5 +22,4 @@ public class BuscarProvaPorTokenComQuestoesService {
 
         return buscarProvaPorIdComQuestoesService.buscar(idProva);
     }
-
 }

@@ -16,5 +16,4 @@ public class ConsultarStatusDaProvaService {
         Prova prova = buscarProvaPorIdService.buscar(idProva);
         return prova.getStatus();
     }
-
 }

@@ -16,5 +16,4 @@ public class QuestaoDissertativaParaCorrecaoResponse {
     private String resposta;
 
     private String questao;
-
 }

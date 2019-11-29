@@ -26,5 +26,4 @@ public class BuscarQuestoesMultiplaEscolhasFiltradasPaginadoService {
 
         return page;
     }
-
 }

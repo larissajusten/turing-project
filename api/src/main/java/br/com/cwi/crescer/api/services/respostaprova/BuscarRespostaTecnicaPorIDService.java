@@ -17,5 +17,4 @@ public class BuscarRespostaTecnicaPorIDService {
         return repository.findById(id).orElseThrow(() -> new
                 RespostaNaoEncontradaException("Resposta técnica não encontrada por esse ID"));
     }
-
 }

@@ -23,5 +23,4 @@ public class BuscarProvasParaCorrecaoService {
         return provaRepository.findAllByStatusEquals(pageable, StatusProva.AGUARDANDO_CORRECAO)
                 .map(prova -> mapper.paraCorrigir(prova));
     }
-
 }

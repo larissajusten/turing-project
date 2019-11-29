@@ -29,5 +29,4 @@ public class CorrigirQuestaoTecnicaService {
 
         repository.save(resposta);
     }
-
 }

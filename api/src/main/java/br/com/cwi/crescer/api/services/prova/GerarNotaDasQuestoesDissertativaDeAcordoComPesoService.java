@@ -58,6 +58,4 @@ public class GerarNotaDasQuestoesDissertativaDeAcordoComPesoService {
         }
         return divisor * MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_DIFICIL;
     }
-
-
 }

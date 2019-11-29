@@ -16,5 +16,4 @@ public class BuscarUsuarioPorIdService {
 
         return repository.findById(id).orElseThrow(() -> new UsuarioNaoEncontradoException("Usuaurio nao encontrado"));
     }
-
 }

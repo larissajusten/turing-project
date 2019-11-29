@@ -27,8 +27,8 @@ public class ListarQuestoesMultiplaEscolhaFiltradasService {
     private BuscarQuestaoMultiplaEscolhaPorNivelEEspecificidadeService buscarQuestaoMultiplaEscolha;
 
     public List<QuestaoMultiplaEscolha> listar(BuscaQuestoesRequest request) {
-        List<QuestaoMultiplaEscolha> lista = new ArrayList<>();
 
+        List<QuestaoMultiplaEscolha> lista = new ArrayList<>();
         List<QuestaoMultiplaEscolha> listaQueAtendeRequisitos = buscarQuestaoMultiplaEscolha
                 .buscar(request.getEspecificidade(), request.getNivelDeDificuldade(), request.getQuantidadeDeQuestoes());
 
@@ -63,5 +63,4 @@ public class ListarQuestoesMultiplaEscolhaFiltradasService {
 
         return new PageImpl<>(listaFinal, pageable, listaFinal.size());
     }
-
 }

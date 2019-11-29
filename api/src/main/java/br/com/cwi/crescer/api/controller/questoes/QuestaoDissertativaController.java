@@ -55,5 +55,4 @@ public class QuestaoDissertativaController {
                                                                       @RequestParam("nivel") NivelDeDificuldade nivelDeDificuldade) {
         return buscarPaginado.buscar(especificidade, nivelDeDificuldade, pageable);
     }
-
 }

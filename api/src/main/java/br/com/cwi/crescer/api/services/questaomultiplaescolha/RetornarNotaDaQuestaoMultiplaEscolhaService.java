@@ -16,5 +16,4 @@ public class RetornarNotaDaQuestaoMultiplaEscolhaService {
             return 30;
         }
     }
-
 }

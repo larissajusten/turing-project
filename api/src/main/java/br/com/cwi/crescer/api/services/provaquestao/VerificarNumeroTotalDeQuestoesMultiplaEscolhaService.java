@@ -14,5 +14,4 @@ public class VerificarNumeroTotalDeQuestoesMultiplaEscolhaService {
 
         return repository.findAllByProvaIdEquals(idProva).size();
     }
-
 }

@@ -19,5 +19,4 @@ public class BuscarQuestoesMultiplaEscolhaFiltradasService {
 
         return repository.acharPorNivelEEspecificidadeListado(especificidade, nivelDeDificuldade);
     }
-
 }

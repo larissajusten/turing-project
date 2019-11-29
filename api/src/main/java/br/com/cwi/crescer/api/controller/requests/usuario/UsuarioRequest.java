@@ -15,5 +15,4 @@ public class UsuarioRequest {
 
     @NotNull(message = "O email do usuario não pode ser vazio")
     private String email;
-
 }

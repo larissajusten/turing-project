@@ -26,5 +26,4 @@ public class QuestaoTecnicaRequest {
 
     @NotEmpty(message = "Resposta base não pode estar vazio")
     private String respostaBase;
-
 }

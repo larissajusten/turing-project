@@ -34,5 +34,4 @@ public class ResponderQuestaoMultiplaEscolhaService {
 
         return repository.save(respostasMultiplaEscolhaProva);
     }
-
 }

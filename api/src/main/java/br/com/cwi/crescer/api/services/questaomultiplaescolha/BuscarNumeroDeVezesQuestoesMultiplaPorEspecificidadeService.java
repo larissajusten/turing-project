@@ -25,5 +25,4 @@ public class BuscarNumeroDeVezesQuestoesMultiplaPorEspecificidadeService {
         }
         return vezes;
     }
-
 }

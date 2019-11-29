@@ -22,5 +22,4 @@ public class BuscaQuestoesRequest {
     @Positive
     @Min(value = 0, message = "A quantidade de questões não pode ser vazia")
     private int quantidadeDeQuestoes;
-
 }

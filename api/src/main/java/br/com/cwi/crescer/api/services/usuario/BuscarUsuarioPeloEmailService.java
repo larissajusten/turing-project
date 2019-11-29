@@ -17,5 +17,4 @@ public class BuscarUsuarioPeloEmailService {
         return repository.findByEmailEquals(email).orElseThrow(() ->
                 new UsuarioNaoEncontradoException("Usuário não possui acesso à essa aplicação."));
     }
-
 }

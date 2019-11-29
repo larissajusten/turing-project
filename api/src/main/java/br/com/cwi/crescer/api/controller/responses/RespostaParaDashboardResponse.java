@@ -16,5 +16,4 @@ public class RespostaParaDashboardResponse {
     private double notaQuestao;
 
     private Long totalDePessoas;
-
 }
