@@ -56,7 +56,8 @@ export class ResolverProvaScreen extends Component {
                                   this.state.prova.questoesDissertativas.length +
                                   this.state.prova.questoesTecnicas.length)
 
-      const newArray = [...new Array(quantidadeObjetos)]
+      //const newArray = [...new Array(quantidadeObjetos)]
+      const newArray = Array.from({length:(quantidadeObjetos)}, () => ({ }))
       const arrayRespostas = newArray.map(() => ({ ...objetoResposta }))
 
       this.setState({

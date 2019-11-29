@@ -28,7 +28,8 @@ export class CorrigirProvaScreen extends Component {
       }, () => {
         const quantidadeDeObjetos = (this.state.prova.questoesDissertativas.length + this.state.prova.questoesTecnicas.length)
 
-        const newArray = [...new Array(quantidadeDeObjetos)]
+        //const newArray = [...new Array(quantidadeDeObjetos)]
+        const newArray = Array.from({length:(quantidadeDeObjetos)}, () => ({ }))
         const arrayCorrecoes = newArray.map(() => ({ ...objetoCorrecaoProva }))
 
         this.setState({
@@ -56,6 +57,16 @@ export class CorrigirProvaScreen extends Component {
     })
   }
 
+  catchErrorENotifica(error){
+    if (error.response.data.errors) {
+      error.response.data.errors.map(message => {
+        return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+      })
+    } else {
+      Notificacao('Falha', `${error.response.data.message}`, 'danger')
+    }
+  }
+
   handleClickEnviarCorrecao = async(event) => {
     event.preventDefault()
     try{
@@ -64,13 +75,7 @@ export class CorrigirProvaScreen extends Component {
       this.setState({ deveRedirecionarParaDashboard: true })
     }
     catch (error) {
-      if (error.response.data.errors) {
-        error.response.data.errors.map(message => {
-          return Notificacao('Falha', `${message.defaultMessage}`, 'danger')
-        })
-      } else {
-        Notificacao('Falha', `${error.response.data.message}`, 'danger')
-      }
+      this.catchErrorENotifica(error)
     }
   }
 

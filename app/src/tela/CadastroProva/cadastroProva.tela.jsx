@@ -65,7 +65,7 @@ export class CadastrarProvaScreen extends Component {
     })
   }
 
-  notificaError(error) {
+  catchErrorENotifica(error){
     if (error.response.data.errors) {
       error.response.data.errors.map(message => {
         return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
@@ -94,7 +94,7 @@ export class CadastrarProvaScreen extends Component {
       Notificacao('Sucesso', 'Prova registrada com sucesso', 'success')
     }
     catch (error) {
-      this.notificaError(error)
+      this.catchErrorENotifica(error)
     }
   }
 
@@ -109,7 +109,7 @@ export class CadastrarProvaScreen extends Component {
       })
     }
     catch (error) {
-      this.notificaError(error)
+      this.catchErrorENotifica(error)
     }
   }
 
@@ -130,7 +130,7 @@ export class CadastrarProvaScreen extends Component {
       })
     }
     catch (error) {
-      this.notificaError(error)
+      this.catchErrorENotifica(error)
     }
 
   }
@@ -141,7 +141,7 @@ export class CadastrarProvaScreen extends Component {
       Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     }
     catch (error) {
-      this.notificaError(error)
+      this.catchErrorENotifica(error)
     }
   }
 
@@ -151,7 +151,7 @@ export class CadastrarProvaScreen extends Component {
       Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     }
     catch (error) {
-      this.notificaError(error)
+      this.catchErrorENotifica(error)
     }
   }
 
@@ -161,7 +161,7 @@ export class CadastrarProvaScreen extends Component {
       Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     }
     catch (error) {
-      this.notificaError(error)
+      this.catchErrorENotifica(error)
     }
   }
 

@@ -25,6 +25,16 @@ export class CadastroTecnica extends PureComponent {
     })
   }
 
+  catchErrorENotifica(error){
+    if (error.response.data.errors) {
+      error.response.data.errors.map(message => {
+        return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+      })
+    } else {
+      Notificacao('Falha', `${error.response.data.message}`, 'danger')
+    }
+  }
+
   handleClickSalvarQuestao = async (event) => {
     event.preventDefault()
 
@@ -41,13 +51,7 @@ export class CadastroTecnica extends PureComponent {
       Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
     }
     catch(error){
-      if (error.response.data.errors) {
-        error.response.data.errors.map(message => {
-          return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-        })
-      }else {
-        Notificacao('Falha', `${error.response.data.message}`, 'danger')
-      }
+      this.catchErrorENotifica(error)
     }
   }
 
