@@ -30,21 +30,21 @@ export class LoginScreen extends Component {
     this.setState({
       deveRedirecionarParaHome: true
     })
-    // try{
-    //   let data = await login(user)
-    //   localStorage.setItem('accessToken', data.token)
-    //   let perfil = await retornaPerfil(data.identifier)
-    //   localStorage.setItem('perfilUsuario', perfil)
-    // }
-    // catch(error){
-    //   if (error.response.data.errors) {
-    //     error.response.data.errors.map(message => {
-		// 			return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-    //     })
-    //   } else {
-		// 		Notificacao('Falha', `${error.response.data.message}`, 'danger')
-    //   }
-    // }
+    try{
+      let data = await login(user)
+      localStorage.setItem('accessToken', data.token)
+      let perfil = await retornaPerfil(data.identifier)
+      localStorage.setItem('perfilUsuario', perfil)
+    }
+    catch(error){
+      if (error.response.data.errors) {
+        error.response.data.errors.map(message => {
+					return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
+        })
+      } else {
+				Notificacao('Falha', `${error.response.data.message}`, 'danger')
+      }
+    }
   }
 
   renderBlocoLogin() {
