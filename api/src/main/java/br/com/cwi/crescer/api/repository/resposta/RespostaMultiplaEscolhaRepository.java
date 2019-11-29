@@ -13,8 +13,11 @@ public interface RespostaMultiplaEscolhaRepository extends JpaRepository<Respost
 
     List<RespostasMultiplaEscolhaProva> findAllByQuestaoMultiplaEscolhaIdEquals(Long id);
 
-    @Query("Select count(*) FROM RespostasMultiplaEscolhaProva r " +
-            "WHERE r.prova.id = ?1 AND r.questaoMultiplaEscolha.nivelDeDificuldade = ?2 AND r.alternativaMultiplaEscolha.respostaCorreta = True GROUP BY r.prova.id")
+    @Query("SELECT count(*) FROM RespostasMultiplaEscolhaProva r " +
+            "WHERE r.prova.id = ?1 " +
+            "AND r.questaoMultiplaEscolha.nivelDeDificuldade = ?2 " +
+            "AND r.alternativaMultiplaEscolha.respostaCorreta = TRUE " +
+            "GROUP BY r.prova.id")
     Integer buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(Long idProva, NivelDeDificuldade nivelDeDificuldade);
 
 }

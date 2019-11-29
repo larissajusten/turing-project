@@ -16,13 +16,16 @@ public interface RespostasDissertativaRepository extends JpaRepository<Respostas
 
     List<RespostasDissertativaProva> findAllByQuestaoDissertativaIdEquals(Long id);
 
-    @Query("Select new br.com.cwi.crescer.api.domain.dto.NotasDTO(SUM(r.nota), count(*)) FROM RespostasDissertativaProva r " +
-            "WHERE r.prova.id = ?1 AND r.questaoDissertativa.nivelDeDificuldade = ?2 GROUP BY r.prova.id")
+    @Query("SELECT new br.com.cwi.crescer.api.domain.dto.NotasDTO(SUM(r.nota), count(*)) " +
+            "FROM RespostasDissertativaProva r " +
+            "WHERE r.prova.id = ?1 " +
+            "AND r.questaoDissertativa.nivelDeDificuldade = ?2 " +
+            "GROUP BY r.prova.id")
     NotasDTO buscarQuestoesDissertativasDeNivelFacilPorProva(Long idProva, NivelDeDificuldade nivelDeDificuldade);
 
-    @Query("Select new br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse(r.questaoDissertativa.nivelDeDificuldade, r.nota, count(*)) " +
+    @Query("SELECT new br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse(r.questaoDissertativa.nivelDeDificuldade, r.nota, count(*)) " +
             "FROM RespostasDissertativaProva r " +
-            "WHERE r.questaoDissertativa.especificidade = ?1" +
-            " GROUP BY r.nota, r.questaoDissertativa.nivelDeDificuldade")
+            "WHERE r.questaoDissertativa.especificidade = ?1 " +
+            "GROUP BY r.nota, r.questaoDissertativa.nivelDeDificuldade")
     List<RespostaParaDashboardResponse> findAllByGroupByNotaWhereQuestaoDissertativaEspecificidadeEquals(Especificidade especificidade);
 }
