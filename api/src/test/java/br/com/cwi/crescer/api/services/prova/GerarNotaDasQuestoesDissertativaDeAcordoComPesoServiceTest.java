@@ -39,11 +39,11 @@ public class GerarNotaDasQuestoesDissertativaDeAcordoComPesoServiceTest {
         notaQuestoesDificeis.setNota(20);
         notaQuestoesDificeis.setQuantidadeDeQuestoes(2L);
 
-        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.FACIL))
+        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.FACIL))
                 .thenReturn(notaQuestoesFaceis);
-        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.MEDIO))
+        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.MEDIO))
                 .thenReturn(notaQuestoesMedias);
-        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.DIFICIL))
+        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.DIFICIL))
                 .thenReturn(notaQuestoesDificeis);
 
         Assert.assertEquals(10, gerarNotaDasQuestoesDissertativaDeAcordoComPesoService.gerar(prova), 0);
@@ -67,21 +67,21 @@ public class GerarNotaDasQuestoesDissertativaDeAcordoComPesoServiceTest {
         notaQuestoesDificeis.setNota(20);
         notaQuestoesDificeis.setQuantidadeDeQuestoes(2L);
 
-        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.FACIL))
+        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.FACIL))
                 .thenReturn(notaQuestoesFaceis);
-        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.MEDIO))
+        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.MEDIO))
                 .thenReturn(notaQuestoesMedias);
-        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.DIFICIL))
+        Mockito.when(respostasDissertativaProva.buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.DIFICIL))
                 .thenReturn(notaQuestoesDificeis);
 
         gerarNotaDasQuestoesDissertativaDeAcordoComPesoService.gerar(prova);
 
         Mockito.verify(respostasDissertativaProva)
-                .buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.FACIL);
+                .buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.FACIL);
         Mockito.verify(respostasDissertativaProva)
-                .buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.MEDIO);
+                .buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.MEDIO);
         Mockito.verify(respostasDissertativaProva)
-                .buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.DIFICIL);
+                .buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.DIFICIL);
 
     }
 

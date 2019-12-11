@@ -24,7 +24,9 @@ public class GerarNotaDaProvaComDiferencialDePesoDasQuestoesService {
 
         double nota = 0;
 
-        nota = gerarNotasDissertativas.gerar(prova) + gerarNotasTecnicas.gerar(prova) + gerarNotasMutiplaEscolha.gerar(prova);
+        nota = gerarNotasDissertativas.gerar(prova) +
+                gerarNotasTecnicas.gerar(prova) +
+                gerarNotasMutiplaEscolha.gerar(prova);
 
         return nota / buscarQuantidadeDeQuestoes.retornarTotalDeQuestoesDaProva(prova);
     }
