@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
-import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, Notificacao } from '../../component/index'
+import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, Notificacao } from '../../component/'
 import { criarProva,
         cancelarProva,
         incluirDissertativas,
@@ -9,11 +9,16 @@ import { criarProva,
         retornarEspecificidades,
         retornarNiveisDeDificuldade,
         retornarTipoDeQuestao,
-        enviarEmail } from '../../services/index'
+        enviarEmail } from '../../services/'
 import './cadastroProva.style.css'
 
 const mensagemSucessoNotificacao = 'Questões adicionadas com sucesso'
 const objeto = { tipo: '', especificidade: '', nivel: '', quantidade: '' }
+
+const arrayDeParamsDoInputs = [{ value: "nomeDoCandidato", name: "nomeDoCandidato", tam: "50", type: "text", label: "Digite o nome do candidato"},
+  { value: "emailDoCandidato", name: "emailDoCandidato", tam: "50", type: "text", label: "Digite o email do candidato"},
+  { value: "duracaoDaProva", name: "duracaoDaProva", tam: "10", type: "number", label: "Tempo de duração da prova (minutos)"},
+  { value: "tempoParaIniciarProva", name: "tempoParaIniciarProva", tam: "8760", type: "number", label: "Tempo para iniciar a prova (horas)"}]
 
 export class CadastrarProvaScreen extends Component {
 
@@ -225,10 +230,6 @@ export class CadastrarProvaScreen extends Component {
   }
 
   renderInputs() {
-    const arrayDeParamsDoInputs = [{ value: "nomeDoCandidato", name: "nomeDoCandidato", tam: "50", type: "text", label: "Digite o nome do candidato"},
-                { value: "emailDoCandidato", name: "emailDoCandidato", tam: "50", type: "text", label: "Digite o email do candidato"},
-                { value: "duracaoDaProva", name: "duracaoDaProva", tam: "10", type: "number", label: "Tempo de duração da prova (minutos)"},
-                { value: "tempoParaIniciarProva", name: "tempoParaIniciarProva", tam: "8760", type: "number", label: "Tempo para iniciar a prova (horas)"}]
     return arrayDeParamsDoInputs.map((item, key) => {
       return <Input key={key} name={item.name} value={this.state[item.value]} maxTam={item.tam} type={item.tam} label={item.label}
                   placeholder="" onChange={this.handleChange}/>

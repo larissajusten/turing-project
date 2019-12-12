@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { retornaProvasCorrigidas } from '../../services/index'
-import { CardProva, Input, BotaoPrincipal, Notificacao } from '../../component/index'
+import { retornaProvasCorrigidas } from '../../services/'
+import { CardProva, Input, BotaoPrincipal, Notificacao } from '../../component/'
 import './buscarProvaCorrigida.style.css'
 
 export class BuscarProvaJaCorrigidaScreen extends Component {

@@ -5,12 +5,12 @@ import { retornarEspecificidades,
 				retornarResultadosMultipla,
 				retornarResultadosDissertativa,
 				retornarResultadosTecnica,
-				retornaTecnologias } from '../../services/index';
+				retornaTecnologias } from '../../services/';
 import { Notificacao,
 					Select,
 					GraficoMultipla,
 					GraficoNota,
-					GraficoDeBarras } from '../../component/index';
+					GraficoDeBarras } from '../../component/';
 import './dashboard.style.css';
 
 const mensagemDeSucessoDaNotificacao = 'Busca bem sucedida';

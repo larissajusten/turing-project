@@ -10,24 +10,38 @@ export class Paginacao extends Component {
     }
   }
 
+  verificaClasseDoBotao(variavelMaior, variavelMenor){
+    if(variavelMaior > variavelMenor){
+      return "botao-paginacao"
+    }else{
+      return this.state.desabilitado
+    }
+  }
+
+  verificaClickBotao(variavelMaior, variavelMenor, variavelOnClick){
+    if(variavelMaior > variavelMenor){
+      () => this.props.onClick(this.props.paginaAtual - 1)
+    }else{
+      undefined
+    }
+  }
+
   render(){
     return(
       <div className="container-paginacao">
-        <button className={`${this.props.paginaAtual > 0 ? "botao-paginacao" : this.state.desabilitado}`}
-          onClick={this.props.paginaAtual > 0 ? () => this.props.onClick(this.props.paginaAtual - 1) : undefined}>
-          &laquo;
-        </button>
+        <button 
+          className={this.verificaClasseDoBotao(this.props.paginaAtual, 0)} 
+          onClick={this.verificaClickBotao(this.props.paginaAtual, 0, this.props.paginaAtual - 1)}
+        > &laquo; </button>
+
         <div className="bloco-principal-paginacao">
           {this.props.paginaAtual+1}
         </div>
-        <button className={`${(this.props.totalPaginas > this.props.paginaAtual + 1) ? "botao-paginacao" : this.state.desabilitado}`} onClick={
-                            this.props.totalPaginas > this.props.paginaAtual + 1
-                            ?
-                            () => this.props.onClick(this.props.paginaAtual + 1)
-                            :
-                            undefined }>
-          <div>&#187;</div>
-        </button>
+
+        <button 
+          className={this.verificaClasseDoBotao(this.props.totalPaginas, this.props.paginaAtual + 1)} 
+          onClick={this.verificaClickBotao(this.props.totalPaginas, this.props.paginaAtual + 1, this.props.paginaAtual + 1)}
+        > &#187; </button>
       </div>
     )
   }

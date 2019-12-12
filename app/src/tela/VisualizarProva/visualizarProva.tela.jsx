@@ -5,13 +5,13 @@ import { MostrarQuestaoUnica,
         MostrarMultiplasRespostas,
         BlocoVisualizar,
         Notificacao,
-        BotaoPrincipal } from '../../component/index'
+        BotaoPrincipal } from '../../component/'
 import { retornaProva,
           cancelarProva,
           removerQuestaoDissertativa,
           removerQuestaoTecnica,
           removerQuestaoMultiplaEscolha,
-          enviarEmail } from '../../services/index'
+          enviarEmail } from '../../services/'
 
 const mensagemSucessoNotificacao = 'Questão removida com sucesso'
 

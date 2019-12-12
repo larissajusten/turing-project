@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './buscarQuestao.style.css'
-import { BotaoPrincipal, CardBuscarQuestao, BuscarQuestao, Notificacao, Paginacao } from '../../component/index'
+import { BotaoPrincipal, CardBuscarQuestao, BuscarQuestao, Notificacao, Paginacao } from '../../component/'
 import { retornarEspecificidades,
         retornarNiveisDeDificuldade,
         retornarQuestoesTecnicasFiltradas,
         retornarQuestoesDissertativasFiltradas,
         retornarQuestoesMultiplasEscolhasFiltradas,
-        retornarTipoDeQuestao} from '../../services/index'
+        retornarTipoDeQuestao} from '../../services/'
 
 const mensagemSucessoNotificacao = 'Busca bem sucedida'
 export class BuscarQuestaoScreen extends Component {

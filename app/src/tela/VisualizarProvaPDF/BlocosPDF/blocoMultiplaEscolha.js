@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import { styles, BlocoComentario } from './index'
+import { styles, BlocoComentario } from './'
 
 const verificarResposta = (resposta, respostaEscolhida) => {
   if((resposta.id === respostaEscolhida.id) && resposta.respostaCorreta){

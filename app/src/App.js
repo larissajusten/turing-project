@@ -12,8 +12,8 @@ import { LoginScreen,
 				CorrigirProvaScreen,
 				BuscarProvaJaCorrigidaScreen,
 				ProvaPDFScreen,
-				DashboardScreen } from './tela/index';
-import { Header, Footer } from './component/index'
+				DashboardScreen } from './tela';
+import { Header, Footer } from './component'
 
 function App() {
 	return (

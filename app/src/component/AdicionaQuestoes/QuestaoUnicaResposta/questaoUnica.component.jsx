@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Select, BotaoPrincipal, Textarea } from '../../index'
+import { Select, BotaoPrincipal, Textarea } from '../../'
 import './questaoUnica.style.css'
 
 export class QuestaoUnica extends PureComponent {

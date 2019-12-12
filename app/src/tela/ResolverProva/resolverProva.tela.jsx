@@ -3,28 +3,33 @@ import './resolverProva.style.css';
 import { retornaProvaPorToken,
           iniciarProva,
           enviarRespostasDaProva,
-          retornarTipoDeQuestao} from '../../services/index'
+          retornarTipoDeQuestao} from '../../services/'
 import { ProvaModal,
         RespondeQuestaoUnicaResposta,
         RespondeQuestaoMultiplasRespostas,
         BotaoPrincipal,
-        Notificacao } from '../../component/index'
+        Notificacao } from '../../component/'
 
 const objetoResposta = { tipoDeQuestao: '', idQuestao: '', resposta: '' }
 let hidden = null;
 let visibilityChange = null;
 
-if (typeof document.hidden !== 'undefined') {
-  hidden = 'hidden';
-  visibilityChange = 'visibilitychange';
-} else if (typeof document.msHidden !== 'undefined') {
-  hidden = 'msHidden';
-  visibilityChange = 'msvisibilitychange';
-} else if (typeof document.webkitHidden !== 'undefined') {
-  hidden = 'webkitHidden';
-  visibilityChange = 'webkitvisibilitychange';
+const terminarProvaNaMudançaDePagina = () =>{
+  if (typeof document.hidden !== 'undefined') {
+    hidden = 'hidden';
+    visibilityChange = 'visibilitychange';
+  } else if (typeof document.msHidden !== 'undefined') {
+    hidden = 'msHidden';
+    visibilityChange = 'msvisibilitychange';
+  } else if (typeof document.webkitHidden !== 'undefined') {
+    hidden = 'webkitHidden';
+    visibilityChange = 'webkitvisibilitychange';
+  }
 }
+
 export class ResolverProvaScreen extends Component {
+  terminarProvaNaMudançaDePagina()
+
   constructor(props){
     super(props)
     this.state = {
@@ -155,10 +160,6 @@ export class ResolverProvaScreen extends Component {
     })
     this.contador()
     await iniciarProva(this.state.idProva)
-  }
-
-  handleClickFinalizarProva = () => {
-    return null
   }
 
   handleClickEnviarProva = async(event) => {

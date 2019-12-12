@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import { styles } from './index'
+import { styles } from './'
 
 export const BlocoNota = (props) => {
   return <View style={styles.containerNota}>
