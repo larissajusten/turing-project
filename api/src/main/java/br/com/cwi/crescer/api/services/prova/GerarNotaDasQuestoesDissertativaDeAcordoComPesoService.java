@@ -14,25 +14,26 @@ public class GerarNotaDasQuestoesDissertativaDeAcordoComPesoService {
     private static final int MULTIPLICADOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_DIFICIL = 3;
     @Autowired
     private RespostasDissertativaRepository respostasDissertativaProva;
-    private double nota = 0;
-    private int divisor = 0;
 
     public double gerar(Prova prova) {
 
-        NotasDTO notaQuestoesFaceis = respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.FACIL);
+        int divisor = 0;
+        double nota = 0;
+
+        NotasDTO notaQuestoesFaceis = respostasDissertativaProva.buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.FACIL);
         if (notaQuestoesFaceis != null) {
             nota += notaQuestoesFaceis.getNota();
             divisor += notaQuestoesFaceis.getQuantidadeDeQuestoes();
         }
 
-        NotasDTO notaQuestoesMedias = respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.MEDIO);
+        NotasDTO notaQuestoesMedias = respostasDissertativaProva.buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.MEDIO);
         if (notaQuestoesMedias != null) {
             nota += calcularNotaPorNivelDeDificuldade(notaQuestoesMedias.getNota(), NivelDeDificuldade.MEDIO);
             divisor += mutiplicarODivisorPorNivelDeDificuldade(notaQuestoesMedias.getQuantidadeDeQuestoes(), NivelDeDificuldade.MEDIO);
         }
 
 
-        NotasDTO notaQuestoesDificeis = respostasDissertativaProva.buscarQuestoesDissertativasDeNivelFacilPorProva(prova.getId(), NivelDeDificuldade.DIFICIL);
+        NotasDTO notaQuestoesDificeis = respostasDissertativaProva.buscarQuestoesDissertativasPorProvaENivelDeDificuldade(prova.getId(), NivelDeDificuldade.DIFICIL);
         if (notaQuestoesDificeis != null) {
             nota += calcularNotaPorNivelDeDificuldade(notaQuestoesDificeis.getNota(), NivelDeDificuldade.DIFICIL);
             divisor += mutiplicarODivisorPorNivelDeDificuldade(notaQuestoesDificeis.getQuantidadeDeQuestoes(), NivelDeDificuldade.DIFICIL);

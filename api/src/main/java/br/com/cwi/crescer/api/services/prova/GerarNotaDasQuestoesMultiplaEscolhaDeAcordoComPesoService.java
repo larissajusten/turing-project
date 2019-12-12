@@ -14,12 +14,14 @@ public class GerarNotaDasQuestoesMultiplaEscolhaDeAcordoComPesoService {
     private static final int NOTA_BASE_QUESTOES_NIVEL_DIFICIL = 30;
     private static final int MULTIPLICADOR_DO_DIVISOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_MEDIO = 2;
     private static final int MULTIPLICADOR_DO_DIVISOR_DA_NOTA_POR_NIVEL_DE_DIFICULDADE_DIFICIL = 3;
+
     @Autowired
     private RespostaMultiplaEscolhaRepository respostaMultiplaEscolhaRepository;
-    private double nota = 0;
-    private int divisor = 0;
 
     public double gerar(Prova prova) {
+
+        double nota = 0;
+        int divisor = 0;
 
         Integer quantidadeQuestoesNivelFacil = respostaMultiplaEscolhaRepository
                 .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.FACIL);
@@ -39,7 +41,7 @@ public class GerarNotaDasQuestoesMultiplaEscolhaDeAcordoComPesoService {
 
         Integer quantidadeQuestoesNivelDificil = respostaMultiplaEscolhaRepository
                 .buscarQuestoesCorretasDeMultiplaEscolhaPorProvaFiltradasPorNivelDeDificuldade(prova.getId(), NivelDeDificuldade.DIFICIL);
-        if (quantidadeQuestoesNivelMedio != null) {
+        if (quantidadeQuestoesNivelDificil != null) {
             nota += quantidadeQuestoesNivelDificil * NOTA_BASE_QUESTOES_NIVEL_DIFICIL;
             divisor += mutiplicarODivisorPorNivelDeDificuldade(quantidadeQuestoesNivelDificil, NivelDeDificuldade.DIFICIL);
         }

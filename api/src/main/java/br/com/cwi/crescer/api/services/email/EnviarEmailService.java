@@ -38,7 +38,6 @@ public class EnviarEmailService {
             helper.setSubject("CWI TURING TEM UMA PROVA AGUARDANDO VOCÊ!");
             helper.setTo(emailCandidato);
             helper.setText(processedHTMLTemplate, true);
-
         };
 
         mailSender.send(preparator);
