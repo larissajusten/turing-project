@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/buscar-prova")
+@RequestMapping("/prova")
 public class BuscaProvaController {
 
     @Autowired
@@ -49,25 +49,25 @@ public class BuscaProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/para-correcao")
+    @GetMapping("/correcao")
     public Page<ProvaParaCorrecaoResponse> buscarTodasAsProvasDisponiveisParaCorrecao(@PageableDefault(size = 3) Pageable pageable) {
         return buscarProvasParaCorrecaoService.buscar(pageable);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/corrigidas")
+    @GetMapping("/corrigida")
     public List<ProvaCorrigidaResponse> buscarListaDeProvasCorrigidasPorNomeOuEmail(@RequestParam("pesquisa") String nomeOuEmail) {
         return buscarProvasPorNomeOuEmailCorrigidasComNotaService.buscar(nomeOuEmail);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("{id-prova}/corrigida")
+    @GetMapping("/{id-prova}/corrigida")
     public ProvaCorrigidaResponse buscarProvaPorIdCorrigida(@PathVariable("id-prova") Long idProva) {
         return buscarProvaPorIdCorrigidaService.buscar(idProva);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id-prova}/respostas")
+    @GetMapping("/{id-prova}/resposta")
     public ProvaComRespostasResponse provaPorIdComRespostas(@PathVariable("id-prova") Long idProva) {
         return buscarProvaPorIdParaCorrecaoService.buscar(idProva);
     }

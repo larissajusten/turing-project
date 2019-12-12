@@ -19,7 +19,7 @@ import javax.validation.Valid;
 
 
 @RestController
-@RequestMapping("/questao-multipla-escolha")
+@RequestMapping("/multipla")
 public class QuestaoMultiplaEscolhaController {
 
     @Autowired
@@ -47,20 +47,20 @@ public class QuestaoMultiplaEscolhaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/buscar-todas")
+    @GetMapping("/buscar")
     public Page<QuestaoMultiplaEscolhaResponse> buscarQuestoesMultiplaEscolha(@PageableDefault Pageable pageable) {
         return buscarQuestoesMultiplaEscolha.buscarTodasQuestoes(pageable);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/buscar-questoes-filtrado")
+    @PutMapping("/filtrar")
     public Page<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesRequest request) {
         return listarQuestoesMultiplaEscolhaFiltradasService.listarPaginado(request, pageable);
     }
 
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/todas-questoes-filtradas")
+    @GetMapping("/filtrar")
     public Page<QuestaoMultiplaEscolha> buscarTodasQuestoesMultiplasFiltradas(@PageableDefault(size = 5) Pageable pageable,
                                                                               @RequestParam("especificidade") Especificidade especificidade,
                                                                               @RequestParam("nivel") NivelDeDificuldade nivelDeDificuldade) {

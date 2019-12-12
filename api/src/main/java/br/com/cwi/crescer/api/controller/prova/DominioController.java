@@ -17,19 +17,19 @@ import java.util.List;
 public class DominioController {
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/especificidades")
+    @GetMapping("/especificidade")
     public List<Especificidade> especificidades() {
         return Arrays.asList(Especificidade.values());
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/niveis-dificuldade")
+    @GetMapping("/dificuldade")
     public List<NivelDeDificuldade> nivelDeDificuldades() {
         return Arrays.asList(NivelDeDificuldade.values());
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/tipo-de-questao")
+    @GetMapping("/tipo")
     public List<TipoDeQuestao> tipoDeQuestao() {
         return Arrays.asList(TipoDeQuestao.values());
     }

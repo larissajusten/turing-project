@@ -13,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/incluir")
+@RequestMapping("/prova")
 public class InclusaoQuestoesProvaController {
 
     @Autowired
@@ -39,7 +39,7 @@ public class InclusaoQuestoesProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/multipla-escolha")
+    @PutMapping("/{id-prova}/multipla")
     public void incluirMultiplasEscolhas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         incluirQuestoesMultiplaEscolhaService.incluir(idProva, buscaQuestoesRequest);
     }

@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/prova-questao-dissertativa")
+@RequestMapping("/prova")
 public class ProvaQuestaoDissertativaController {
 
     @Autowired
     private ListarQuestoesDissertativasDaProvaService listarQuestoesDissertativasDaProvaService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id-prova}")
+    @GetMapping("/{id-prova}/questao/dissertativa")
     public List<ProvaQuestaoDissertativa> listarQuestoesDissertativasDaProva(@PathVariable("id-prova") Long idProva) {
 
         return listarQuestoesDissertativasDaProvaService.listar(idProva);

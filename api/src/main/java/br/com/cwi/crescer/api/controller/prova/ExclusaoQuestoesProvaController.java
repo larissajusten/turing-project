@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/excluir")
+@RequestMapping("/prova")
 public class ExclusaoQuestoesProvaController {
 
     @Autowired
@@ -35,7 +35,7 @@ public class ExclusaoQuestoesProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @DeleteMapping("/{id-prova}/multipla-escolha/{id-questao-prova}")
+    @DeleteMapping("/{id-prova}/multipla/{id-questao-prova}")
     public void excluirMultiplaEscolha(@PathVariable("id-prova") Long idProva,
                                        @PathVariable("id-questao-prova") Long idQuestaoProva) {
         excluirQuestaoMultiplaEscolhaService.excluir(idQuestaoProva, idProva);

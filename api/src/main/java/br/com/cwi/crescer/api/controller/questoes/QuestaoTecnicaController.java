@@ -22,7 +22,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/questao-tecnica")
+@RequestMapping("/tecnica")
 public class QuestaoTecnicaController {
 
     @Autowired
@@ -54,7 +54,7 @@ public class QuestaoTecnicaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/todas-questoes-filtradas")
+    @GetMapping("/filtrar")
     public Page<QuestaoTecnica> buscarTodasQuestoesTecnicasFiltradas(@PageableDefault(size = 5) Pageable pageable,
                                                                      @RequestParam("especificidade") Especificidade especificidade,
                                                                      @RequestParam("nivel") NivelDeDificuldade nivelDeDificuldade) {
