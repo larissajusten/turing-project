@@ -51,34 +51,34 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/iniciar-prova")
+    @PutMapping("/{id-prova}/iniciar")
     public void iniciarTempoDaProva(@PathVariable("id-prova") Long idProva) {
         iniciarTempoDaProvaService.iniciar(idProva);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/finalizar-prova")
+    @PutMapping("/{id-prova}/finalizar")
     public StatusProva finalizarProva(@PathVariable("id-prova") Long idProva,
                                       @Valid @RequestBody List<ProvaRespondidaRequest> provaRespondida) {
         return finalizarProvaService.finalizar(idProva, provaRespondida);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id-prova}/consultar-status-prova")
+    @GetMapping("/{id-prova}/status")
     public StatusProva consultarStatusDaProva(@PathVariable("id-prova") Long idProva) {
 
         return consultarStatusDaProvaService.consultar(idProva);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/corrigir-prova")
+    @PutMapping("/{id-prova}/corrigir")
     public StatusProva corrigirProva(@PathVariable("id-prova") Long idProva, @Valid @RequestBody
             List<CorrecaoProvaRequest> listaDeCorrecoes) {
         return corrigirProvaService.corrigir(idProva, listaDeCorrecoes);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/cancelar-prova")
+    @PutMapping("/{id-prova}/cancelar")
     public StatusProva cancelarProva(@PathVariable("id-prova") Long idProva) {
         return cancelarProvaService.cancelar(idProva);
     }

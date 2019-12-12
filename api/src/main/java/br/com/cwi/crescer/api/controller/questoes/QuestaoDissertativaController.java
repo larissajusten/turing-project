@@ -20,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/questao-dissertativa")
+@RequestMapping("/dissertativa")
 public class QuestaoDissertativaController {
 
     @Autowired
@@ -49,7 +49,7 @@ public class QuestaoDissertativaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/todas-questoes-filtradas")
+    @GetMapping("/filtrada")
     public Page<QuestaoDissertativa> listarTodasQuestoesDissertativas(@PageableDefault(size = 5) Pageable pageable,
                                                                       @RequestParam("especificidade") Especificidade especificidade,
                                                                       @RequestParam("nivel") NivelDeDificuldade nivelDeDificuldade) {
