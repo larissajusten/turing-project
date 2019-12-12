@@ -101,13 +101,6 @@ export const styles = StyleSheet.create({
     textDecoration: 'none',
     paddingTop: 2
   },
-  respostaMultiplaEscolha: {
-    fontWeight: 'thin',
-    fontSize: 10,
-    color: 'black',
-    textDecoration: 'none',
-    marginBottom: 5
-  },
   containerComentario: {
     height: 40,
     width: 400
@@ -208,6 +201,20 @@ export const styles = StyleSheet.create({
     color: '#25E015',
     textDecoration: 'none',
     marginBottom: 5,
+  },
+  respostaErrada: {
+    fontWeight: 'thin',
+    fontSize: 10,
+    color: '#FE5F5F',
+    textDecoration: 'none',
+    marginBottom: 5,
+  },
+  respostaMultiplaEscolha: {
+    fontWeight: 'thin',
+    fontSize: 10,
+    color: 'black',
+    textDecoration: 'none',
+    marginBottom: 5
   },
   titulo: {
     color: '#FBB041'
