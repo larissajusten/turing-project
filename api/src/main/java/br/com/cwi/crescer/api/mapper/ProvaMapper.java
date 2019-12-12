@@ -6,11 +6,7 @@ import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.security.LoggedUser;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdComQuestoesService;
-import br.com.cwi.crescer.api.services.prova.RetornarListaDeEspecifidadesDeUmaProvaService;
-import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPeloEmailService;
-import br.com.cwi.crescer.api.services.usuario.BuscarUsuarioPorIdService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -24,18 +20,6 @@ public class ProvaMapper {
 
     @Autowired
     private ModelMapper mapper;
-
-    @Autowired
-    private BuscarUsuarioPorIdService buscarUsuarioPorIdService;
-
-    @Autowired
-    private BuscarUsuarioPeloEmailService buscarUsuarioPeloEmailService;
-
-    @Autowired
-    private LoggedUser loggedUser;
-
-    @Autowired
-    private RetornarListaDeEspecifidadesDeUmaProvaService retornarListaDeEspecifidadesDeUmaProvaService;
 
     @Autowired
     private BuscarProvaPorIdComQuestoesService buscarProvaPorIdComQuestoesService;
