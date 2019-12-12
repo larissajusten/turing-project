@@ -13,8 +13,6 @@ security:
 spring:
   jpa:
     database-platform: org.hibernate.dialect.Oracle10gDialect
-    #      hibernate:
-    #        ddl-auto: validate
     show-sql: true
     properties:
       hibernate:
@@ -37,7 +35,7 @@ spring:
     test-connection: true
 
   datasource:
-    url: jdbc:oracle:thin:@10.99.220.139:1521/XEPDB1
+    url: jdbc:oracle:thin:@10.99.220.141:1521/odev12c
     username: CRECWITURING
     password: CRECWITURING
 

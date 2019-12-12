@@ -9,7 +9,8 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
     super(props)
     this.state = {
       pesquisa: '',
-      provas: []
+      provas: [], 
+      idProva: ''
     }
   }
 
@@ -40,8 +41,8 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
   }
 
   handleClickGerarPDFProva = (event, idProva) => {
-    localStorage.setItem('idParaPDF', idProva)
     this.setState({
+      idProva,
       deveRedirecionarParaProva: true
     })
   }
@@ -104,7 +105,7 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
 
   render() {
     if (this.state.deveRedirecionarParaProva) {
-      return <Redirect to="/prova-PDF" />
+      return <Redirect to={`/prova-PDF/${this.state.idProva}`}/>
     }
 
     return (

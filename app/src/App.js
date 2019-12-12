@@ -33,7 +33,7 @@ function App() {
 					<Route path="/buscar-provas" component={BuscarProvaParaCorrigirScreen}/>
 					<Route path="/corrigir-prova/:idProva" component={CorrigirProvaScreen}/>
 					<Route path="/provas-corrigidas" component={BuscarProvaJaCorrigidaScreen}/>
-					<Route path="/prova-PDF" component={ProvaPDFScreen}/>
+					<Route path="/prova-PDF/:idProva" component={ProvaPDFScreen}/>
 					<Footer/>
 					</div>
 				</Switch>
