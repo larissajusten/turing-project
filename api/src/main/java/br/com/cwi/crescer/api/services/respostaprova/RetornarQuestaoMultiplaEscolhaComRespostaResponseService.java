@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RetornarQuestaoMultiplaEscolhaComRespostaResponseService {
@@ -24,8 +25,10 @@ public class RetornarQuestaoMultiplaEscolhaComRespostaResponseService {
         List<QuestaoMultiplaEscolhaComRespostaResponse> questaoMultiplaEscolha = new ArrayList<>();
 
         respostaMultiplaEscolhaRepository.findAllByProvaIdEquals(prova.getId())
-                .forEach(questao -> questaoMultiplaEscolha.add(mapper.questaoMultiplaEscolha(questao)));
-
+                .stream()
+                .map(questao -> questaoMultiplaEscolha.add(mapper.questaoMultiplaEscolha(questao)))
+                .collect(Collectors.toList());
+        
         return questaoMultiplaEscolha;
     }
 }
