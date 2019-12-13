@@ -11,14 +11,14 @@ function carregarToken() {
 
 export const adicionarQuestaoDissertativa = async (questao) => {
   carregarToken();
-  const response = await Axios.post(`${baseUrl}/questao-dissertativa`, questao,
+  const response = await Axios.post(`${baseUrl}/prova/questao/dissertativa`, questao,
   { headers: { Authorization: token }})
   return response.data
 }
 
 export const retornarQuestoesDissertativasFiltradas = async (paginaAtual, especificidade, nivel) => {
   carregarToken();
-  const response = await Axios.get(`${baseUrl}/questao-dissertativa/todas-questoes-filtradas?page=${paginaAtual}`,
+  const response = await Axios.get(`${baseUrl}/prova/dissertativa/filtrada?page=${paginaAtual}`,
   { headers: { Authorization: token }, params: {especificidade: especificidade, nivel: nivel} })
   return [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
 }
