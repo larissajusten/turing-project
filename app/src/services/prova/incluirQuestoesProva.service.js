@@ -11,7 +11,7 @@ function carregarToken() {
 
 export const incluirDissertativas = async (idProva, questao) => {
 	carregarToken();
-	const response = await Axios.put(`${baseUrl}/incluir/${idProva}/dissertativa`, questao, {
+	const response = await Axios.put(`${baseUrl}/prova/${idProva}/dissertativa`, questao, {
 		headers: { Authorization: token }
 	});
 	return response.data;
@@ -19,7 +19,7 @@ export const incluirDissertativas = async (idProva, questao) => {
 
 export const incluirTecnicas = async (idProva, questao) => {
 	carregarToken();
-	const response = await Axios.put(`${baseUrl}/incluir/${idProva}/tecnica`, questao, {
+	const response = await Axios.put(`${baseUrl}/prova/${idProva}/tecnica`, questao, {
 		headers: { Authorization: token }
 	});
 	return response.data;
@@ -27,7 +27,7 @@ export const incluirTecnicas = async (idProva, questao) => {
 
 export const incluirMultiplaEscolha = async (idProva, questao) => {
 	carregarToken();
-	const response = await Axios.put(`${baseUrl}/incluir/${idProva}/multipla-escolha`, questao, {
+	const response = await Axios.put(`${baseUrl}/prova/${idProva}/multipla`, questao, {
 		headers: { Authorization: token }
 	});
 	return response.data;
