@@ -1,22 +1,25 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import './visualizarProva.style.css'
-import { MostrarQuestaoUnica,
-        MostrarMultiplasRespostas,
-        BlocoVisualizar,
-        Notificacao,
-        BotaoPrincipal } from '../../component/'
-import { retornaProva,
-          cancelarProva,
-          removerQuestaoDissertativa,
-          removerQuestaoTecnica,
-          removerQuestaoMultiplaEscolha,
-          enviarEmail } from '../../services/'
+import {
+  MostrarQuestaoUnica,
+  MostrarMultiplasRespostas,
+  BlocoVisualizar,
+  Notificacao,
+  BotaoPrincipal
+} from '../../component/'
+import {
+  retornaProva,
+  cancelarProva,
+  removerQuestaoDissertativa,
+  removerQuestaoTecnica,
+  removerQuestaoMultiplaEscolha,
+  enviarEmail
+} from '../../services/'
 
 const mensagemSucessoNotificacao = 'Questão removida com sucesso'
 
 export class VisualizarProvaScreen extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
@@ -33,14 +36,14 @@ export class VisualizarProvaScreen extends Component {
     })
   }
 
-  handleClickVoltarProva = async (event) => {
+  handleClickVoltarProva = async event => {
     event.preventDefault()
     this.setState({
       deveRedirecionarParaDashboard: true
     })
   }
 
-  handleClickEnviarProva = async (event) => {
+  handleClickEnviarProva = async event => {
     event.preventDefault()
     try {
       Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
@@ -48,8 +51,7 @@ export class VisualizarProvaScreen extends Component {
       this.setState({
         deveRedirecionarParaDashboard: true
       })
-    }
-    catch (error) {
+    } catch (error) {
       if (error.response.data.errors) {
         error.response.data.errors.map(message => {
           return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
@@ -60,7 +62,7 @@ export class VisualizarProvaScreen extends Component {
     }
   }
 
-  handleClickCancelarProva = async(event) => {
+  handleClickCancelarProva = async event => {
     event.preventDefault()
     try {
       Notificacao('Sucesso', 'Prova cancelada com sucesso', 'success')
@@ -68,8 +70,7 @@ export class VisualizarProvaScreen extends Component {
       this.setState({
         deveRedirecionarParaDashboard: true
       })
-    }
-    catch (error) {
+    } catch (error) {
       if (error.response.data.errors) {
         error.response.data.errors.map(message => {
           return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
@@ -80,7 +81,7 @@ export class VisualizarProvaScreen extends Component {
     }
   }
 
-  removerQuestaoDissertativa = async (idDaQuestao) => {
+  removerQuestaoDissertativa = async idDaQuestao => {
     await removerQuestaoDissertativa(this.state.idProva, idDaQuestao)
     Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     this.setState({
@@ -88,7 +89,7 @@ export class VisualizarProvaScreen extends Component {
     })
   }
 
-  removerQuestaoTecnica = async (idDaQuestao) => {
+  removerQuestaoTecnica = async idDaQuestao => {
     await removerQuestaoTecnica(this.state.idProva, idDaQuestao)
     Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     this.setState({
@@ -96,7 +97,7 @@ export class VisualizarProvaScreen extends Component {
     })
   }
 
-  removerQuestaoMultiplaEscolha = async (idDaQuestao) => {
+  removerQuestaoMultiplaEscolha = async idDaQuestao => {
     await removerQuestaoMultiplaEscolha(this.state.idProva, idDaQuestao)
     Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     this.setState({
@@ -105,24 +106,20 @@ export class VisualizarProvaScreen extends Component {
   }
 
   verificaAlternativa(item) {
-    if (item.alternativaA.respostaCorreta === "Alternativa A"){
-      return "Alternativa A"
-    }else if (item.alternativaB.respostaCorreta === "Alternativa B"){
-      return "Alternativa B"
-    }else if (item.alternativaC.respostaCorreta === "Alternativa C"){
-      return "Alternativa C"
-    }else if (item.alternativaD.respostaCorreta === "Alternativa D"){
-      return "Alternativa D"
-    }else{
-      return "Alternativa E"
-    }
+    return (
+      item.alternativaA.respostaCorreta ||
+      item.alternativaB.respostaCorreta ||
+      item.alternativaC.respostaCorreta ||
+      item.alternativaD.respostaCorreta ||
+      item.alternativaE.respostaCorreta
+    )
   }
 
   renderMultiplasEscolhas() {
-    if(this.state.prova.questoesDeMultiplaEscolha){
-      return (
-        this.state.prova.questoesDeMultiplaEscolha.map((item, key) => {
-          return <MostrarMultiplasRespostas
+    if (this.state.prova.questoesDeMultiplaEscolha) {
+      return this.state.prova.questoesDeMultiplaEscolha.map((item, key) => {
+        return (
+          <MostrarMultiplasRespostas
             key={key}
             id={item.id}
             questaoNome="Questão multipla escolha"
@@ -135,48 +132,51 @@ export class VisualizarProvaScreen extends Component {
             alternativaD={item.alternativaD.resposta}
             alternativaE={item.alternativaE.resposta}
             respostaCorreta={this.verificaAlternativa(item)}
-            onClick={this.removerQuestaoMultiplaEscolha} />
-        })
-      )
-    }else{
+            onClick={this.removerQuestaoMultiplaEscolha}
+          />
+        )
+      })
+    } else {
       return null
     }
   }
 
   renderQuestoesTecnicas() {
-    if(this.state.prova.questoesTecnicas){
-      return (
-        this.state.prova.questoesTecnicas.map((item, key) => {
-          return <MostrarQuestaoUnica
+    if (this.state.prova.questoesTecnicas) {
+      return this.state.prova.questoesTecnicas.map((item, key) => {
+        return (
+          <MostrarQuestaoUnica
             key={key}
             id={item.id}
             questaoNome="Questão técnica"
             questao={item.questao}
             nivel={item.nivelDeDificuldade}
             especificidade={item.especificidade}
-            onClick={this.removerQuestaoTecnica} />
-        })
-      )
-    }else{
+            onClick={this.removerQuestaoTecnica}
+          />
+        )
+      })
+    } else {
       return null
     }
   }
 
   renderQuestoesDissertativas() {
-    if(this.state.prova.questoesDissertativas){
-      return (
-        this.state.prova.questoesDissertativas.map((item, key) => {
-          return <MostrarQuestaoUnica
+    if (this.state.prova.questoesDissertativas) {
+      return this.state.prova.questoesDissertativas.map((item, key) => {
+        return (
+          <MostrarQuestaoUnica
             key={key}
             id={item.id}
             questaoNome="Questão dissertativa"
             questao={item.questao}
             nivel={item.nivelDeDificuldade}
             especificidade={item.especificidade}
-            onClick={this.removerQuestaoDissertativa} />
-        })
-      )
-    }else{
+            onClick={this.removerQuestaoDissertativa}
+          />
+        )
+      })
+    } else {
       return null
     }
   }
@@ -185,7 +185,7 @@ export class VisualizarProvaScreen extends Component {
     if (this.state.deveRedirecionarParaDashboard) {
       return <Redirect to="/" />
     }
-    if (this.state.prova){
+    if (this.state.prova) {
       return (
         <div className="container-tela">
           <div className="container-titulo">
@@ -196,23 +196,27 @@ export class VisualizarProvaScreen extends Component {
             <BlocoVisualizar
               classe="blocoVisualizar-email"
               nome="Nome do candidato"
-              conteudo={this.state.prova.nomeCandidato}/>
+              conteudo={this.state.prova.nomeCandidato}
+            />
 
             <BlocoVisualizar
               classe="blocoVisualizar-email"
               nome="Email do candidato"
-              conteudo={this.state.prova.emailCandidato}/>
+              conteudo={this.state.prova.emailCandidato}
+            />
 
             <div className="container-infos-tempos">
               <BlocoVisualizar
                 classe="blocoVisualizar-tempo"
                 nome="Tempo de duração (minutos)"
-                conteudo={this.state.prova.tempoDeDuracaoDaProva}/>
+                conteudo={this.state.prova.tempoDeDuracaoDaProva}
+              />
 
               <BlocoVisualizar
                 classe="blocoVisualizar-tempo"
                 nome="Tempo para inicio (horas)"
-                conteudo={this.state.prova.tempoParaInicioProva}/>
+                conteudo={this.state.prova.tempoParaInicioProva}
+              />
             </div>
           </div>
 
@@ -220,17 +224,25 @@ export class VisualizarProvaScreen extends Component {
           {this.renderQuestoesTecnicas()}
           {this.renderMultiplasEscolhas()}
           <div className="container-botao container-botao-prova">
-            <BotaoPrincipal nome="ENVIAR POR E-MAIL" onClick={this.handleClickEnviarProva}/>
-            <BotaoPrincipal nome="CANCELAR" onClick={this.handleClickCancelarProva} />
-            <BotaoPrincipal nome="SAIR" onClick={this.handleClickVoltarProva}/>
+            <BotaoPrincipal
+              nome="ENVIAR POR E-MAIL"
+              onClick={this.handleClickEnviarProva}
+            />
+            <BotaoPrincipal
+              nome="CANCELAR"
+              onClick={this.handleClickCancelarProva}
+            />
+            <BotaoPrincipal nome="SAIR" onClick={this.handleClickVoltarProva} />
           </div>
         </div>
       )
-    }else{
+    } else {
       return (
         <div className="container-tela">
           <div className="container-titulo">
-            <span className="titulo-crie">Não há prova criada para visualizar</span>
+            <span className="titulo-crie">
+              Não há prova criada para visualizar
+            </span>
           </div>
         </div>
       )
