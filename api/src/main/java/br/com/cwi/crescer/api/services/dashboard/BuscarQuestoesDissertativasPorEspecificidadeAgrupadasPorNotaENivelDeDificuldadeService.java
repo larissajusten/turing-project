@@ -16,6 +16,6 @@ public class BuscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelD
 
     public List<RespostaParaDashboardResponse> buscar(Especificidade especificidade) {
 
-        return repository.findAllByGroupByNotaWhereQuestaoDissertativaEspecificidadeEquals(especificidade);
+        return repository.buscarQuestoesDissertativasAgrupadasPorNotaENivelDeDificuldade(especificidade);
     }
 }

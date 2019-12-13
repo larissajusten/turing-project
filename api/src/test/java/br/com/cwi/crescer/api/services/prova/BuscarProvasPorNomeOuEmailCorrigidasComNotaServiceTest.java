@@ -57,7 +57,7 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaServiceTest {
 
         List<Prova> listaDeProva = new ArrayList<>();
         listaDeProva.add(prova);
-        when(repository.findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals(anyString(), anyString(),
+        when(repository.acharPorNomeOuEmail(anyString(), anyString(),
                 any())).thenReturn(listaDeProva);
 
         ProvaCorrigidaResponse provaCorrigidaResponse = new ProvaCorrigidaResponse();
