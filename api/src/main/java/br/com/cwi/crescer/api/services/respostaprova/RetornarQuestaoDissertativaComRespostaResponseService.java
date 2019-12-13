@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RetornarQuestaoDissertativaComRespostaResponseService {
@@ -24,8 +25,10 @@ public class RetornarQuestaoDissertativaComRespostaResponseService {
         List<QuestaoDissertativaComRespostaResponse> questaoDissertativa = new ArrayList<>();
 
         respostasDissertativaRepository.findAllByProvaIdEquals(prova.getId())
-                .forEach(questao -> questaoDissertativa.add(mapper.questaoDissertativa(questao)));
-
+                .stream()
+                .map(questao -> questaoDissertativa.add(mapper.questaoDissertativa(questao)))
+                .collect(Collectors.toList());
+        
         return questaoDissertativa;
     }
 }
