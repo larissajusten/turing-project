@@ -53,7 +53,7 @@ public class QuestaoMultiplaEscolhaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/filtrar")
+    @GetMapping
     public Page<QuestaoMultiplaEscolha> buscarQuestoesMultiplasFiltradas(@PageableDefault Pageable pageable, @Valid @RequestBody BuscaQuestoesRequest request) {
         return listarQuestoesMultiplaEscolhaFiltradasService.listarPaginado(request, pageable);
     }

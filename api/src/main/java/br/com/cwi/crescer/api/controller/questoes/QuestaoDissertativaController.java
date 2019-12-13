@@ -43,7 +43,7 @@ public class QuestaoDissertativaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping
+    @GetMapping
     public List<QuestaoDissertativa> listarQuestoesDissertativasFiltradas(@Valid @RequestBody BuscaQuestoesRequest request) {
         return listarQuestoesDissertativasFiltradas.listar(request);
     }

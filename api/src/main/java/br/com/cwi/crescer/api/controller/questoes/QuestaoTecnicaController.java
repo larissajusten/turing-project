@@ -41,7 +41,7 @@ public class QuestaoTecnicaController {
     private BuscarQuestaoTecnicaCompletaParaDownloadService buscarQuestaoTecnicaCompletaParaDownloadService;
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping
+    @GetMapping
     public List<QuestaoTecnica> buscarQuestoesTecnicas(@Valid @RequestBody BuscaQuestoesRequest request) {
         return buscarQuestoesTecnicas.listar(request);
     }
