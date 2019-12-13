@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { PDFViewer } from '@react-pdf/renderer';
-import { MyDocument } from './BlocosPDF/index'
-import { Notificacao } from '../../component/index'
-import { retornaProvaCorrigidaParaPDF } from '../../services/index'
+import { MyDocument } from './BlocosPDF/'
+import { Notificacao } from '../../component/'
+import { retornaProvaCorrigidaParaPDF } from '../../services/'
 import './visualizarProvaPDF.style.css'
 
 export class ProvaPDFScreen extends Component {

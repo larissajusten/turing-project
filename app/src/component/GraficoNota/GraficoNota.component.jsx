@@ -13,22 +13,22 @@ export class GraficoNota extends Component {
 	}
 
 	async componentDidMount() {
-		const f = this.state.notas
+		const facil = this.state.notas
 			.filter(n => n.nivelDeDificuldade === 'FACIL')
 			.map(nota => ({ name: nota.notaQuestao, value: nota.totalDePessoas }))
 
-		const m = this.state.notas
+		const medio = this.state.notas
 			.filter(n => n.nivelDeDificuldade === 'MEDIO')
 			.map(nota => ({ name: nota.notaQuestao, value: nota.totalDePessoas }))
 
-		const d = this.state.notas
+		const dificil = this.state.notas
 			.filter(n => n.nivelDeDificuldade === 'DIFICIL')
 			.map(nota => ({ name: nota.notaQuestao, value: nota.totalDePessoas }))
 
 		this.setState({
-			dataFacil: f,
-			dataMedio: m,
-			dataDificil: d
+			dataFacil: facil,
+			dataMedio: medio,
+			dataDificil: dificil
 		})
 	}
 

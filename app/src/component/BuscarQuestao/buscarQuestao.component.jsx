@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './buscarQuestao.style.css'
-import { Select } from '../index'
+import { Select } from '../'
 
 export class BuscarQuestao extends Component {
 

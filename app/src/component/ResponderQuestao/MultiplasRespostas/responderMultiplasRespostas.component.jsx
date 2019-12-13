@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './responderMultiplasRespostas.style.css'
-import { BlocoQuestao, BotaoAlternativa } from '../../index'
+import { BlocoQuestao, BotaoAlternativa } from '../../'
 
 export class RespondeQuestaoMultiplasRespostas extends Component {
   render() {

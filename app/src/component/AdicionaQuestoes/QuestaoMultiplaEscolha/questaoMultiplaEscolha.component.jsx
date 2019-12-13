@@ -1,8 +1,18 @@
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
-import { BotaoPrincipal, Input, Select, Notificacao, Textarea } from '../../index'
-import { adicionarQuestaoMultiplaEscolha } from '../../../services/index'
+import { BotaoPrincipal, Input, Select, Notificacao, Textarea } from '../../'
+import { adicionarQuestaoMultiplaEscolha } from '../../../services'
 import './questaoMultiplaEscolha.style.css'
+
+const arrayDeParamsDoInputs = [{ name: "alternativaA", label: "A" }, { name: "alternativaB", label: "B" },
+	{ name: "alternativaC", label: "C" }, { name: "alternativaD", label: "D" },
+	{ name: "alternativaE", label: "E" }]
+
+const arrayDeParamsDoSelect = [{ name: "especificidade", label: "o", object: this.state.linguagens },
+	{ name: "nivel", label: "a", object: this.state.niveis }]
+
+const arrayDeParamsDosRadioButtons =
+	[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: "E" }]
 
 export class CadastroMultiplaQuestao extends PureComponent {
 
@@ -73,12 +83,6 @@ export class CadastroMultiplaQuestao extends PureComponent {
 	}
 
 	renderInputs() {
-		const arrayDeParamsDoInputs =
-			[{ name: "alternativaA", label: "A" },
-			{ name: "alternativaB", label: "B" },
-			{ name: "alternativaC", label: "C" },
-			{ name: "alternativaD", label: "D" },
-			{ name: "alternativaE", label: "E" }]
 		return arrayDeParamsDoInputs.map((item, key) => {
 			return <Input
 				key={key}
@@ -93,9 +97,6 @@ export class CadastroMultiplaQuestao extends PureComponent {
 	}
 
 	renderSelects() {
-		const arrayDeParamsDoSelect =
-			[{ name: "especificidade", label: "o", object: this.state.linguagens },
-			{ name: "nivel", label: "a", object: this.state.niveis }]
 		return arrayDeParamsDoSelect.map((item, key) => {
 			return <div className="input-principal">
 				<Select
@@ -111,8 +112,6 @@ export class CadastroMultiplaQuestao extends PureComponent {
 	}
 
 	renderRadioButtons() {
-		const arrayDeParamsDosRadioButtons =
-			[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: "E" }]
 		return arrayDeParamsDosRadioButtons.map((item, key) => {
 			return <div className="buttonRadio">
 				<input type="radio" name="resposta" value={item.value} onClick={this.handleChange} />

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
-import { QuestaoUnica, Notificacao } from '../../index'
-import { adicionarQuestaoDissertativa } from '../../../services/index'
+import { QuestaoUnica, Notificacao } from '../../'
+import { adicionarQuestaoDissertativa } from '../../../services'
 
 export class CadastroDissertativa extends PureComponent {
 

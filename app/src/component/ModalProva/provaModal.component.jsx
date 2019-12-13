@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './provaModal.style.css'
-import { BotaoPrincipal } from '../index'
+import { BotaoPrincipal } from '../'
 
 export class ProvaModal extends Component {
   render() {

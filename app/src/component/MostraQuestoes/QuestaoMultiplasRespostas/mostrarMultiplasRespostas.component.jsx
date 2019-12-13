@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './mostrarMultiplasRespostas.style.css'
-import { BotaoAdicionar, BlocoVisualizar, BlocoQuestao } from '../../index'
+import { BotaoAdicionar, BlocoVisualizar, BlocoQuestao } from '../../'
 
 export class MostrarMultiplasRespostas extends Component {
 

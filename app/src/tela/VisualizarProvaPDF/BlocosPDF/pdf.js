@@ -3,7 +3,7 @@ import { Document, Page, Text, View } from '@react-pdf/renderer';
 import { Informacoes,
   BlocoQuestaoTecnica,
   BlocoQuestaoDissertativa,
-  BlocoQuestaoMultiplaEscolha, styles } from './index'
+  BlocoQuestaoMultiplaEscolha, styles } from './'
 
 export const MyDocument = (props) => (
   <Document title={`Relatório da prova ${props.prova.nomeCandidato}`} >

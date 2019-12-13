@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './cardProva.style.css'
-import { BotaoPrincipal } from '../index'
+import { BotaoPrincipal } from '../'
 
 export class CardProva extends Component {
   renderLinguagens(){

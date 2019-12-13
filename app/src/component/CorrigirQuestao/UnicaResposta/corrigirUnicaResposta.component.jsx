@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { Textarea, Input } from '../../index'
-import { retornaQuestaoTecnicaParaBaixar } from '../../../services/index'
+import { Textarea, Input, BlocoResposta} from '../../'
+import { retornaQuestaoTecnicaParaBaixar } from '../../../services/'
 import './corrigirUnicaResposta.style.css'
-import { BlocoResposta } from '../../BlocoResposta/blocoResposta.component'
 
 const type = 'text/plain';
 export class CorrigirUnicaResposta extends Component {

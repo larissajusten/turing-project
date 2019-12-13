@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BlocoQuestao, Textarea } from '../../index'
+import { BlocoQuestao, Textarea } from '../../'
 import './responderUnicaResposta.style.css'
 
 

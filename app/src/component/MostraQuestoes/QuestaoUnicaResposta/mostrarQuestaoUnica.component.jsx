@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './mostrarQuestaoUnica.style.css'
-import { BotaoAdicionar, BlocoQuestao } from '../../index'
+import { BotaoAdicionar, BlocoQuestao } from '../../'
 
 export class MostrarQuestaoUnica extends Component {
   render() {

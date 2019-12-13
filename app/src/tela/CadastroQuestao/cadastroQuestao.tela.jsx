@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './cadastroQuestao.style.css';
-import { CadastroMultiplaQuestao, CadastroDissertativa, CadastroTecnica, Select } from '../../component/index'
-import { retornarEspecificidades, retornarNiveisDeDificuldade, retornarTipoDeQuestao } from '../../services/index'
+import { CadastroMultiplaQuestao, CadastroDissertativa, CadastroTecnica, Select } from '../../component/'
+import { retornarEspecificidades, retornarNiveisDeDificuldade, retornarTipoDeQuestao } from '../../services/'
 
 export class CadastrarQuestaoScreen extends Component {
 	constructor(props) {

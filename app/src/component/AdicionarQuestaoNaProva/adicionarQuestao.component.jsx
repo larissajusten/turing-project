@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Input, BotaoAdicionar, BuscarQuestao } from '../index'
+import { Input, BotaoAdicionar, BuscarQuestao } from '../'
 import {retornarEspecificidades,
         retornarNiveisDeDificuldade,
-        retornarTipoDeQuestao} from '../../services/index'
+        retornarTipoDeQuestao} from '../../services/'
 
 export class AdicionarQuestaoNaProva extends Component {
 

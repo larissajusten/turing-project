@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
-import { Input, BotaoPrincipal, Notificacao } from '../../component/index'
-import { login } from '../../services/index'
+import { Input, BotaoPrincipal, Notificacao } from '../../component/'
+import { login } from '../../services/'
 import './login.style.css'
 
 export class LoginScreen extends Component {

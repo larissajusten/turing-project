@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import { styles, BlocoComentario, BlocoNota } from './index'
+import { styles, BlocoComentario, BlocoNota } from './'
 
 export const BlocoQuestaoDissertativa = (props) => (
   props.questoes.map((item, key) => {
