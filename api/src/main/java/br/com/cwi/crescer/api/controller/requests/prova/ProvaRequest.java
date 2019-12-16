@@ -1,6 +1,6 @@
 package br.com.cwi.crescer.api.controller.requests.prova;
 
-import br.com.cwi.crescer.api.domain.enums.Tipo;
+import br.com.cwi.crescer.api.domain.enums.TipoDeProva;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -19,7 +19,7 @@ public class ProvaRequest {
     private String nomeCandidato;
 
     @NotEmpty(message = "O tipo de prova não pode ser vazio")
-    private Tipo tipo;
+    private TipoDeProva tipo;
 
     @Positive
     @Min(value = 0, message = "O tempo de duração da prova não pode ser vazio")

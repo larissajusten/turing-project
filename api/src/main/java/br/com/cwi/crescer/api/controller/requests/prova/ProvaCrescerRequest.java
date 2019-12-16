@@ -1,11 +1,10 @@
 package br.com.cwi.crescer.api.controller.requests.prova;
 
-import br.com.cwi.crescer.api.domain.enums.Tipo;
+import br.com.cwi.crescer.api.domain.enums.TipoDeProva;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Positive;
 
 @Data
@@ -16,7 +15,7 @@ public class ProvaCrescerRequest {
     @Min(value = 0, message = "Quantidade de provas não pode ser vazio")
     private int quantidade;
 
-    private Tipo tipo;
+    private TipoDeProva tipo;
 
     @Positive
     @Min(value = 0, message = "O tempo de duração da prova não pode ser vazio")
