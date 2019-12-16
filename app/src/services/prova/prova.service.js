@@ -11,8 +11,8 @@ export class ProvaService extends BaseService {
 		return response.data
 	}
 	
-	async enviarRespostasDaProva(idProva, respostas) {
-		const response =  await super.put(`prova/${idProva}/finalizar`, respostas)
+	async enviarRespostasDaProva(idProva, prova) {
+		const response =  await super.put(`prova/${idProva}/finalizar`, prova)
 		return response.data;
 	}
 	

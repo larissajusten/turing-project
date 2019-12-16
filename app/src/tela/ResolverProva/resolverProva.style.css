@@ -2,14 +2,14 @@
   display: flex;
 }
 
-.content-titulo{
+.content-titulo {
   width: 100%;
   position: relative;
 }
 
 .tempo {
-  height: 60px;
-  width: 60px;
+  height: 80px;
+  width: 80px;
   font-size: 1.6em;
   position: absolute;
   top: 0;
@@ -23,6 +23,37 @@
   justify-content: center;
 }
 
-.tempo span{
-  font-size: 0.5em;
+.tempo span {
+  font-size: 0.6em;
+}
+
+.titulo-e-linguagem {    
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+}
+
+.select-resolver-prova {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-top: double 1px var(--laranja-cor);
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+.select-resolver-prova span{
+  height: 100%;
+  width: 40%;
+  padding-top: 2px;
+  text-align: start;
+  font-size: 1.1em;
+}
+
+.width-resolver-prova {
+  width: 200px;
+  height: 35px;
+  margin-top: 2%;
+  margin-bottom: 0;
 }
