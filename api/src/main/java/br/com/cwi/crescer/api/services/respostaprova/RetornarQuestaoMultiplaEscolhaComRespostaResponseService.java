@@ -28,7 +28,7 @@ public class RetornarQuestaoMultiplaEscolhaComRespostaResponseService {
                 .stream()
                 .map(questao -> questaoMultiplaEscolha.add(mapper.questaoMultiplaEscolha(questao)))
                 .collect(Collectors.toList());
-        
+
         return questaoMultiplaEscolha;
     }
 }
