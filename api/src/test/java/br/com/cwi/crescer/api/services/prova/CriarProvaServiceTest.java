@@ -1,6 +1,7 @@
 package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
+import br.com.cwi.crescer.api.domain.enums.Tipo;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.mapper.ProvaMapper;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
@@ -31,7 +32,7 @@ public class CriarProvaServiceTest {
     public void deveChamarProvaRepositoryQuandoCriarProvaServiceForChamado() {
 
         ProvaRequest provaRequest =
-                new ProvaRequest("teste@mail.com", "Vanessa", 1, 5);
+                new ProvaRequest("teste@mail.com", "Vanessa", Tipo.OUTROS, 1, 5);
         Prova prova = new Prova();
 
         Mockito.when(mapper.transformar(provaRequest)).thenReturn(prova);
@@ -46,7 +47,7 @@ public class CriarProvaServiceTest {
     @Test
     public void deveChamarProvaMapperQuandoCriarProvaServiceForChamado() {
         ProvaRequest provaRequest =
-                new ProvaRequest("teste@mail.com", "Vanessa", 1, 5);
+                new ProvaRequest("teste@mail.com", "Vanessa" , Tipo.OUTROS, 1, 5);
         Prova prova = new Prova();
 
         Mockito.when(mapper.transformar(provaRequest)).thenReturn(prova);

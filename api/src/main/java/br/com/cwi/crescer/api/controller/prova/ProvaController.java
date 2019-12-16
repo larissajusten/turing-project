@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.controller.prova;
 
+import br.com.cwi.crescer.api.controller.requests.prova.ProvaCrescerRequest;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRespondidaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
@@ -19,6 +20,9 @@ public class ProvaController {
 
     @Autowired
     private CriarProvaService criarProvaService;
+
+    @Autowired
+    private CriarProvaParaCrescerService criarProvaParaCrescerService;
 
     @Autowired
     private BuscarDuracaoDaProvaService buscarDuracaoDaProvaService;
@@ -42,6 +46,12 @@ public class ProvaController {
     @PostMapping
     public Long criarProvaERetornarID(@Valid @RequestBody ProvaRequest request) {
         return criarProvaService.criar(request);
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/crescer")
+    public void criarProvaParaCrescerERetornarID(@Valid @RequestBody ProvaCrescerRequest request) {
+        criarProvaParaCrescerService.criar(request);
     }
 
     @ResponseStatus(HttpStatus.OK)
