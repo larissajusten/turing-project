@@ -1,9 +1,6 @@
 package br.com.cwi.crescer.api.services.respostaprova;
 
-import br.com.cwi.crescer.api.domain.enums.Especificidade;
-import br.com.cwi.crescer.api.domain.enums.NivelDeDificuldade;
-import br.com.cwi.crescer.api.domain.enums.StatusProva;
-import br.com.cwi.crescer.api.domain.enums.Tipo;
+import br.com.cwi.crescer.api.domain.enums.*;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.domain.questao.AlternativaMultiplaEscolha;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
@@ -45,7 +42,7 @@ public class BuscarListaDeRespostasFiltradaServiceTest {
         Prova prova = new Prova(1L, LocalDateTime.of(2019, Month.NOVEMBER, 28, 11,
                 16, 26), LocalDateTime.of(2019, Month.NOVEMBER, 28, 11, 16,
                 26), "emailCandidato", 0, 0, StatusProva.ATIVA,
-                0d, "nomeCandidato", Tipo.OUTROS);
+                0d, "nomeCandidato", TipoDeProva.OUTRO);
 
         RespostasMultiplaEscolhaProva respostasMultiplaEscolhaProva = new RespostasMultiplaEscolhaProva(Long.valueOf(1),
                 new AlternativaMultiplaEscolha(), new QuestaoMultiplaEscolha(Long.valueOf(1), LocalDate.of(2019, Month.NOVEMBER,

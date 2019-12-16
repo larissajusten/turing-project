@@ -2,7 +2,7 @@ package br.com.cwi.crescer.api.domain.prova;
 
 
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
-import br.com.cwi.crescer.api.domain.enums.Tipo;
+import br.com.cwi.crescer.api.domain.enums.TipoDeProva;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -46,7 +46,8 @@ public class Prova {
     @Column(name = "NOME_CANDIDATO")
     private String nomeCandidato;
 
+    @Enumerated(EnumType.STRING)
     @Column
-    private Tipo tipo;
+    private TipoDeProva tipo;
 
 }
