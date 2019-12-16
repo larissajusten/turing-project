@@ -15,7 +15,6 @@ import {
 } from '../../component/'
 
 const objetoResposta = { tipoDeQuestao: '', idQuestao: '', resposta: '' }
-
 /* Verificar visibilidade da aba */
 let hidden = null
 let visibilityChange = null
@@ -281,7 +280,6 @@ export class ResolverProvaScreen extends Component {
                   Boa prova {this.state.prova.nomeCandidato}
                 </span>
                 <div className="tempo">
-                  {' '}
                   {this.state.count} <span>Minutos</span>
                 </div>
               </div>
@@ -309,6 +307,9 @@ export class ResolverProvaScreen extends Component {
         <ProvaModal
           titulo="Clique em iniciar para realizar sua prova"
           nomeBotao="COMEÇAR"
+          subtitulo={`Lembre-se, é proibido sair da aba da prova depois do seu inicio, 
+          caso saia, o usuario sera desclassificado automaticamente.
+           Você possui ${this.state.prova.tempoDeDuracaoDaProva} minutos para fazer a prova.`}
           comBotao={true}
           onClick={this.handleClickIniciarProva}
         />
