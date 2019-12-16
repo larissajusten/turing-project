@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { retornaProvasCorrigidas } from '../../services/'
+import { BuscarProvaService } from '../../services/'
 import { CardProva, Input, BotaoPrincipal, Notificacao } from '../../component/'
 import './buscarProvaCorrigida.style.css'
 
@@ -12,6 +12,7 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
       provas: [], 
       idProva: ''
     }
+    this.buscarProvaService = new BuscarProvaService()
   }
 
   handleChange = (event) => {
@@ -24,7 +25,7 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
   handleClickEnviarPesquisa = async (event) => {
     event.preventDefault()
     try {
-      let provasResponse = await retornaProvasCorrigidas(this.state.pesquisa)
+      let provasResponse = await this.buscarProvaService.retornaProvasCorrigidas(this.state.pesquisa)
       Notificacao('Sucesso', 'Provas encontradas', 'success')
       this.setState({
         provas: provasResponse

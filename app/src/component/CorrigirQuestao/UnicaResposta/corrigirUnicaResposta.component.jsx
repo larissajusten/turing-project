@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Textarea, Input, BlocoResposta} from '../../'
-import { retornaQuestaoTecnicaParaBaixar } from '../../../services/'
+import { QuestaoTecnicaService } from '../../../services/'
 import './corrigirUnicaResposta.style.css'
 
 const type = 'text/plain';
@@ -10,12 +10,13 @@ export class CorrigirUnicaResposta extends Component {
     this.state = {
       questaoDownload: ''
     }
+    this.questaoTecnica = new QuestaoTecnicaService()
   }
 
   async componentDidMount() {
     if (this.props.tipo === 'TECNICA') {
       this.setState({
-        questaoDownload: await retornaQuestaoTecnicaParaBaixar(this.props.idResposta)
+        questaoDownload: await this.questaoTecnica.retornaQuestaoTecnicaParaBaixar(this.props.idResposta)
       })
     }
   }

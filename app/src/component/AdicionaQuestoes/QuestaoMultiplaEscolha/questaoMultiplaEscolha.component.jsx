@@ -1,15 +1,12 @@
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
 import { BotaoPrincipal, Input, Select, Notificacao, Textarea } from '../../'
-import { adicionarQuestaoMultiplaEscolha } from '../../../services'
+import { QuestaoMultiplaEscolhaService } from '../../../services'
 import './questaoMultiplaEscolha.style.css'
 
 const arrayDeParamsDoInputs = [{ name: "alternativaA", label: "A" }, { name: "alternativaB", label: "B" },
 	{ name: "alternativaC", label: "C" }, { name: "alternativaD", label: "D" },
 	{ name: "alternativaE", label: "E" }]
-
-const arrayDeParamsDoSelect = [{ name: "especificidade", label: "o", object: this.state.linguagens },
-	{ name: "nivel", label: "a", object: this.state.niveis }]
 
 const arrayDeParamsDosRadioButtons =
 	[{ value: "A" }, { value: "B" }, { value: "C" }, { value: "D" }, { value: "E" }]
@@ -37,6 +34,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 			questao: null,
 			deveRedirecionarParaDashboard: false
 		}
+		this.questaoMultiplaEscolhaService = new QuestaoMultiplaEscolhaService()
 	}
 
 	catchErrorENotifica(error) {
@@ -64,7 +62,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
 		}
 
 		try {
-			await adicionarQuestaoMultiplaEscolha(questao)
+			await this.questaoMultiplaEscolhaService.adicionarQuestaoMultiplaEscolha(questao)
 			Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
 			this.setState({
 				deveRedirecionarParaDashboard: true
@@ -97,6 +95,8 @@ export class CadastroMultiplaQuestao extends PureComponent {
 	}
 
 	renderSelects() {
+		const arrayDeParamsDoSelect = [{ name: "especificidade", label: "o", object: this.state.linguagens },
+	{ name: "nivel", label: "a", object: this.state.niveis }]
 		return arrayDeParamsDoSelect.map((item, key) => {
 			return <div className="input-principal">
 				<Select

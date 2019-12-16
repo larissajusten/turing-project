@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Input, BotaoAdicionar, BuscarQuestao } from '../'
-import {retornarEspecificidades,
-        retornarNiveisDeDificuldade,
-        retornarTipoDeQuestao} from '../../services/'
+import { DominioService } from '../../services/'
 
 export class AdicionarQuestaoNaProva extends Component {
 
@@ -13,13 +11,14 @@ export class AdicionarQuestaoNaProva extends Component {
       especificidades: [],
       niveis: []
     }
+    this.dominioService = new DominioService()
   }
 
   async componentDidMount() {
     this.setState({
-      tipos: await retornarTipoDeQuestao(),
-      especificidades: await retornarEspecificidades(),
-      niveis: await retornarNiveisDeDificuldade()
+      tipos: await this.dominioService.retornarTipoDeQuestao(),
+      especificidades: await this.dominioService.retornarEspecificidades(),
+      niveis: await this.dominioService.retornarNiveisDeDificuldade()
     })
   }
 

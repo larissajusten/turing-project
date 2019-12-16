@@ -1,50 +1,34 @@
-import Axios from 'axios'
-import { baseUrl } from '../baseUrl'
+import { BaseService } from '../_base/base.service'
 
-let token;
+export class BuscarProvaService extends BaseService {
+  async retornaProva(idProva) {
+		const response = await super.get(`prova/${idProva}`)
+		return response.data
+  }
 
-function carregarToken() {
-	if (!token) {
-		token = localStorage.getItem('accessToken');
-	}
-}
+  async retornaProvaPorToken(token) {
+		const response = await super.get(`prova/token/${token}`)
+		return response.data
+  }
 
-export const retornaProva = async (idProva) => {
-  carregarToken();
-  const response = await Axios.get(`${baseUrl}/buscar-prova/${idProva}`,
-  { headers: { Authorization: token }})
-  return response.data
-}
+  async retornaProvasParaCorrecao(paginaAtual) {
+    const response = await super.get(`prova/correcao?page=${paginaAtual}`)
+    return [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
+  }
 
-export const retornaProvaPorToken = async (token) => {
-  const response = await Axios.get(`${baseUrl}/buscar-prova/token/${token}`)
-  return response.data
-}
+  async retornarProvaParaCorrigir(idProva) {
+		const response = await super.get(`prova/${idProva}/corrigir`)
+		return response.data
+  }
 
-export const retornaProvasParaCorrecao = async (paginaAtual) => {
-  carregarToken();
-  const response = await Axios.get(`${baseUrl}/buscar-prova/para-correcao?page=${paginaAtual}`,
-  { headers: { Authorization: token }})
-  return [response.data.content, response.data.totalPages, response.data.numberOfElements, response.data.pageable.pageNumber]
-}
+  async retornaProvasCorrigidas(pesquisa) {
+    const response = await super.get(`prova/corrigida`,
+    { params: {pesquisa: pesquisa} })
+		return response.data
+  }
 
-export const retornarProvaParaCorrigir = async (idProva) => {
-  carregarToken();
-  const response = await Axios.get(`${baseUrl}/buscar-prova/${idProva}/respostas`,
-  { headers: { Authorization: token }})
-  return response.data
-}
-
-export const retornaProvasCorrigidas = async (pesquisa) => {
-  carregarToken();
-  const response = await Axios.get(`${baseUrl}/buscar-prova/corrigidas`,
-  { headers: {Authorization: token}, params: {pesquisa: pesquisa} } )
-  return response.data
-}
-
-export const retornaProvaCorrigidaParaPDF = async (idProva) => {
-  carregarToken();
-  const response = await Axios.get(`${baseUrl}/buscar-prova/${idProva}/corrigida`,
-  { headers: { Authorization: token }})
-  return response.data
+  async retornaProvaCorrigidaParaPDF(idProva) {
+    const response = await super.get(`prova/${idProva}/corrigida`)
+		return response.data
+  }
 }

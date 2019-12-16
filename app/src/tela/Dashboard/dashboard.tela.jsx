@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { BubbleLoader } from 'react-css-loaders'
-import { retornarEspecificidades,
-				retornarResultadosMultipla,
-				retornarResultadosDissertativa,
-				retornarResultadosTecnica,
-				retornaTecnologias } from '../../services/';
+import { DominioService, DashboardService } from '../../services/'
 import { Notificacao,
 					Select,
 					GraficoMultipla,
 					GraficoNota,
-					GraficoDeBarras } from '../../component/';
-import './dashboard.style.css';
+					GraficoDeBarras } from '../../component/'
+import './dashboard.style.css'
 
 const mensagemDeSucessoDaNotificacao = 'Busca bem sucedida';
 export class DashboardScreen extends Component {
@@ -26,7 +22,8 @@ export class DashboardScreen extends Component {
 			isLoading: false,
 			deveRedirecionarParaLogin: false
 		}
-		this.
+		this.dashboardService = new DashboardService()
+		this.dominioService = new DominioService()
 	}
 
 	async componentDidMount() {
@@ -36,26 +33,29 @@ export class DashboardScreen extends Component {
 				deveRedirecionarParaLogin: true
 			})
 		}else{
+			let especificidades = await this.dominioService.retornarEspecificidades()
+			let tecnologias = await this.dashboardService.retornaTecnologias()
 			this.setState({
-				especificidades: await retornarEspecificidades(),
-				tecnologias: await retornaTecnologias()
+				especificidades,
+				tecnologias: tecnologias
 			})
 		}
 	}
 
 	handleChange = async (event) => {
 		const { name, value } = event.target;
-		this.setState({ [name]: value, isLoading: true }, async () => {
-			let notasMultiplas = await retornarResultadosMultipla(this.state.especificidadeEscolhida)
-			let notasDissertativas = await retornarResultadosDissertativa(this.state.especificidadeEscolhida)
-			let notasTecnicas = await retornarResultadosTecnica(this.state.especificidadeEscolhida)
-			this.setState({
-				notasMultipla: notasMultiplas,
-				notasDissertativas: notasDissertativas,
-				notasTecnicas: notasTecnicas,
-				isLoading: false
+		this.setState({ [name]: value, isLoading: true }, 
+			async () => {
+				let notasMultiplas = await this.dashboardService.retornarResultadosMultipla(this.state.especificidadeEscolhida)
+				let notasDissertativas = await this.dashboardService.retornarResultadosDissertativa(this.state.especificidadeEscolhida)
+				let notasTecnicas = await this.dashboardService.retornarResultadosTecnica(this.state.especificidadeEscolhida)
+				this.setState({
+					notasMultipla: notasMultiplas,
+					notasDissertativas: notasDissertativas,
+					notasTecnicas: notasTecnicas,
+					isLoading: false
+				});
 			});
-		});
 	}
 
 	catchErrorENotifica(error) {
@@ -74,7 +74,7 @@ export class DashboardScreen extends Component {
 	}
 
 	renderMultiplasEscolhas(array) {
-		if (array.length > 0) {
+		if (array.every(item => item !== 0)) {
 			return <GraficoMultipla notas={array} />;
 		} else {
 			return <h1 className="titulo-nao-tem-questao">Não há questões!</h1>;
@@ -103,13 +103,19 @@ export class DashboardScreen extends Component {
 					</div>
 
 					<h1 className="titulo-grafico">Multiplas escolhas</h1>
-					<div className="graficos">{this.renderMultiplasEscolhas(this.state.notasMultipla)}</div>
+					<div className="graficos">
+						{this.renderMultiplasEscolhas(this.state.notasMultipla)}
+					</div>
 
 					<h1 className="titulo-grafico">Dissertativas</h1>
-					<div className="graficos">{this.renderTecnicasEDissertativas(this.state.notasDissertativas)}</div>
+					<div className="graficos">
+						{this.renderTecnicasEDissertativas(this.state.notasDissertativas)}
+					</div>
 
 					<h1 className="titulo-grafico">Técnicas</h1>
-					<div className="graficos">{this.renderTecnicasEDissertativas(this.state.notasTecnicas)}</div>
+					<div className="graficos">
+						{this.renderTecnicasEDissertativas(this.state.notasTecnicas)}
+					</div>
 				</div>
 				}
 			</>

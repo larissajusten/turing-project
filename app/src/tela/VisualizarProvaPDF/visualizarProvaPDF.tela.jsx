@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { PDFViewer } from '@react-pdf/renderer';
 import { MyDocument } from './BlocosPDF/'
 import { Notificacao } from '../../component/'
-import { retornaProvaCorrigidaParaPDF } from '../../services/'
+import { BuscarProvaService } from '../../services/'
 import './visualizarProvaPDF.style.css'
 
 export class ProvaPDFScreen extends Component {
@@ -12,6 +12,7 @@ export class ProvaPDFScreen extends Component {
       prova: null,
       idProva: localStorage.getItem('idParaPDF')
     }
+    this.buscarProvaService = new BuscarProvaService()
   }
 
   catchErrorENotifica(error){
@@ -26,7 +27,8 @@ export class ProvaPDFScreen extends Component {
 
   async componentDidMount(){
     try{
-      const response = await retornaProvaCorrigidaParaPDF(this.state.idProva)
+      const response = await this.buscarProvaService
+        .retornaProvaCorrigidaParaPDF(this.state.idProva)
       this.setState({ prova: response })
     } catch(error){
       this.catchErrorENotifica(error)

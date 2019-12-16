@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { baseUrl } from './baseUrl.js'
 
 const carregarToken = () => {
   let token
@@ -9,27 +8,33 @@ const carregarToken = () => {
   return token
 }
 
-const httpClient = () => axios.create({
+const httpClient = (baseUrl) => axios.create({
   timeout: 30000,
   headers: {
     'Content-type': 'application/json',
     Authorization: carregarToken()
   },
-  baseUrl
+  baseURL: baseUrl
 })
 
 export class BaseService {
   constructor() {
-    this.client = httpClient()
+    this.client = httpClient(`http://localhost:8100/cwi-turing`)
   }
 
-  async get(url) {
-    const result = await this.client.get(url)
-    return result.data
+  async get(url, config) {
+    return await this.client.get(url, config)
   }
 
-  async put(url) {
-    const result = await this.client.get(url)
-    return result.data
+  async post(url, body, config) {
+    return await this.client.post(url, body, config)
+  }
+
+  async put(url, body, config) {
+    return await this.client.put(url, body, config)
+  }
+
+  async delete(url, config) {
+    return await this.client.delete(url, config)
   }
 }

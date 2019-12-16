@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './cadastroQuestao.style.css';
 import { CadastroMultiplaQuestao, CadastroDissertativa, CadastroTecnica, Select } from '../../component/'
-import { retornarEspecificidades, retornarNiveisDeDificuldade, retornarTipoDeQuestao } from '../../services/'
+import { DominioService } from '../../services/'
 
 export class CadastrarQuestaoScreen extends Component {
 	constructor(props) {
@@ -12,13 +12,14 @@ export class CadastrarQuestaoScreen extends Component {
 			niveis: [],
 			questao: ''
 		}
+		this.dominioService = new DominioService()
 	}
 
 	async componentDidMount() {
 		this.setState({
-			questoes: await retornarTipoDeQuestao(),
-			especificidades: await retornarEspecificidades(),
-			niveis: await retornarNiveisDeDificuldade()
+			questoes: await this.dominioService.retornarTipoDeQuestao(),
+			especificidades: await this.dominioService.retornarEspecificidades(),
+			niveis: await this.dominioService.retornarNiveisDeDificuldade()
 		})
 	}
 

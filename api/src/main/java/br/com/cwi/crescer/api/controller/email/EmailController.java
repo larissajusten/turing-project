@@ -16,7 +16,6 @@ public class EmailController {
 
     @GetMapping("{email-candidato}/enviar")
     public void enviarEmail(@PathVariable("email-candidato") String emailCandidato) {
-
         enviarEmailService.enviar(emailCandidato);
     }
 }

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
 import { QuestaoUnica, Notificacao } from '../../'
-import { adicionarQuestaoTecnica } from '../../../services/'
+import { QuestaoTecnicaService } from '../../../services/'
 
 export class CadastroTecnica extends PureComponent {
 
@@ -17,6 +17,7 @@ export class CadastroTecnica extends PureComponent {
       testeBase: '',
       deveRedirecionarParaDashboard: false
     }
+    this.questaoTecnica = new QuestaoTecnicaService()
   }
 
   handleChange = (event) => {
@@ -46,7 +47,7 @@ export class CadastroTecnica extends PureComponent {
     }
 
     try{
-      await adicionarQuestaoTecnica(questaoTecnica)
+      await this.questaoTecnica.adicionarQuestaoTecnica(questaoTecnica)
       Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
       this.setState({
         deveRedirecionarParaDashboard: true

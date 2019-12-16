@@ -1,15 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, Notificacao } from '../../component/'
-import { criarProva,
-        cancelarProva,
-        incluirDissertativas,
-        incluirMultiplaEscolha,
-        incluirTecnicas,
-        retornarEspecificidades,
-        retornarNiveisDeDificuldade,
-        retornarTipoDeQuestao,
-        enviarEmail } from '../../services/'
+import { DominioService, ProvaService, IncluirQuestoesProvaService, EmailService } from '../../services/'
 import './cadastroProva.style.css'
 
 const mensagemSucessoNotificacao = 'Questões adicionadas com sucesso'
@@ -38,12 +30,16 @@ export class CadastrarProvaScreen extends Component {
       arrayStates: [objeto],
       deveRedirecionarParaDashboard: false
     }
+    this.dominioService = new DominioService()
+    this.provaService = new ProvaService()
+    this.incluirQuestoesProvaService = new IncluirQuestoesProvaService()
+    this.emailService = new EmailService()
   }
 
   async componentDidMount() {
-    let tipos = await retornarTipoDeQuestao()
-    let especificidades = await retornarEspecificidades()
-    let niveis = await retornarNiveisDeDificuldade()
+    let tipos = await this.dominioService.retornarTipoDeQuestao()
+    let especificidades = await this.dominioService.retornarEspecificidades()
+    let niveis = await this.dominioService.retornarNiveisDeDificuldade()
     let arr = Array.from({length:(this.state.arrayStates.length+2)}, () => ({ }))
     let arrayStates = arr.map(() => ({ ...objeto }))
     this.setState({
@@ -93,7 +89,7 @@ export class CadastrarProvaScreen extends Component {
     }
 
     try {
-      let idProvaSalva = await criarProva(prova)
+      let idProvaSalva = await this.provaService.criarProva(prova)
       this.setState({
         idProva: idProvaSalva,
         deveRenderizarQuestoes: true
@@ -110,7 +106,7 @@ export class CadastrarProvaScreen extends Component {
     event.preventDefault()
     try {
       Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
-      await enviarEmail(this.state.emailDoCandidato)
+      await this.emailService.enviarEmail(this.state.emailDoCandidato)
       this.setState({
         deveRedirecionarParaDashboard: true
       })
@@ -130,7 +126,7 @@ export class CadastrarProvaScreen extends Component {
   handleClickCancelarProva = async(event) => {
     event.preventDefault()
     try {
-      await cancelarProva(this.state.idProva)
+      await this.provaService.cancelarProva(this.state.idProva)
       Notificacao('Sucesso', 'Prova cancelada com sucesso', 'success')
       this.setState({
         deveRedirecionarParaDashboard: true
@@ -144,7 +140,7 @@ export class CadastrarProvaScreen extends Component {
 
   enviarQuestaoDissertativa = async (questao) => {
     try {
-      await incluirDissertativas(this.state.idProva, questao)
+      await this.incluirQuestoesProvaService.incluirDissertativas(this.state.idProva, questao)
       Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     }
     catch (error) {
@@ -154,7 +150,7 @@ export class CadastrarProvaScreen extends Component {
 
   enviarQuestaoMultiplaEscolha = async (questao) => {
     try {
-      await incluirMultiplaEscolha(this.state.idProva, questao)
+      await this.incluirQuestoesProvaService.incluirMultiplaEscolha(this.state.idProva, questao)
       Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     }
     catch (error) {
@@ -164,7 +160,7 @@ export class CadastrarProvaScreen extends Component {
 
   enviarQuestaoTecnica = async (questao) => {
     try {
-      await incluirTecnicas(this.state.idProva, questao)
+      await this.incluirQuestoesProvaService.incluirTecnicas(this.state.idProva, questao)
       Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     }
     catch (error) {

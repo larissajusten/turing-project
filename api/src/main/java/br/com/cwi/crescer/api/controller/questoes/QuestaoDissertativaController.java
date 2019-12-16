@@ -49,7 +49,7 @@ public class QuestaoDissertativaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/filtrada")
+    @GetMapping("/filtrar")
     public Page<QuestaoDissertativa> listarTodasQuestoesDissertativas(@PageableDefault(size = 5) Pageable pageable,
                                                                       @RequestParam("especificidade") Especificidade especificidade,
                                                                       @RequestParam("nivel") NivelDeDificuldade nivelDeDificuldade) {

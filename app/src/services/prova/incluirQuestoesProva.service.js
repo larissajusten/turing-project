@@ -1,34 +1,18 @@
-import Axios from 'axios';
-import { baseUrl } from '../baseUrl';
+import { BaseService } from '../_base/base.service'
 
-let token;
-
-function carregarToken() {
-	if (!token) {
-		token = localStorage.getItem('accessToken');
+export class IncluirQuestoesProvaService extends BaseService {
+  async incluirDissertativas(idProva, questao) {
+		const response = await super.post(`prova/${idProva}/dissertativa`, questao)
+		return response.data
 	}
-}
 
-export const incluirDissertativas = async (idProva, questao) => {
-	carregarToken();
-	const response = await Axios.put(`${baseUrl}/incluir/${idProva}/dissertativa`, questao, {
-		headers: { Authorization: token }
-	});
-	return response.data;
-}
+	async incluirTecnicas(idProva, questao) {
+		const response = await super.post(`prova/${idProva}/tecnica`, questao)
+		return response.data
+	}
 
-export const incluirTecnicas = async (idProva, questao) => {
-	carregarToken();
-	const response = await Axios.put(`${baseUrl}/incluir/${idProva}/tecnica`, questao, {
-		headers: { Authorization: token }
-	});
-	return response.data;
-}
-
-export const incluirMultiplaEscolha = async (idProva, questao) => {
-	carregarToken();
-	const response = await Axios.put(`${baseUrl}/incluir/${idProva}/multipla-escolha`, questao, {
-		headers: { Authorization: token }
-	});
-	return response.data;
+	async incluirMultiplaEscolha(idProva, questao) {
+		const response = await super.post(`prova/${idProva}/multipla`, questao)
+		return response.data
+	}
 }
