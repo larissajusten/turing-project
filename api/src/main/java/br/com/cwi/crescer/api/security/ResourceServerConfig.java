@@ -47,6 +47,18 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(
                         "/dashboard/**",
                         "/email/**",
+                        "/prova/**",
+                        "/excluir/**",
+                        "/incluir/**",
+                        "/prova-questao-dissertativa/**",
+                        "/prova-questao-multipla-escolha/**",
+                        "/prova-questao-tecnica/**")
+                .hasAnyRole(ADMIN, ENTREVISTADOR)
+
+                .antMatchers(HttpMethod.POST,
+                        "/dashboard/**",
+                        "/email/**",
+                        "/prova/**",
                         "/excluir/**",
                         "/incluir/**",
                         "/prova-questao-dissertativa/**",
@@ -77,6 +89,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .hasAnyRole(ADMIN, ENTREVISTADOR)
 
                 .antMatchers(HttpMethod.PUT, "/prova/**")
+                .permitAll()
+
+                .antMatchers(HttpMethod.POST, "/prova/**")
                 .permitAll()
 
                 .antMatchers(HttpMethod.GET, "/buscar-prova/**", "/dominio/**")

@@ -11,7 +11,7 @@ public class EmailController {
     @Autowired
     private EnviarEmailService enviarEmailService;
 
-    @PostMapping("{email-candidato}/enviar")
+    @PostMapping("/{email-candidato}")
     public void enviarEmail(@PathVariable("email-candidato") String emailCandidato) {
         enviarEmailService.enviar(emailCandidato);
     }
