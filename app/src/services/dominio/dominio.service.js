@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { baseUrl } from '../baseUrl';
+import { baseUrl } from '../_base/baseUrl';
 
 let token;
 

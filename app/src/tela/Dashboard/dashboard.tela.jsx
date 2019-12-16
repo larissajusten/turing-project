@@ -25,7 +25,8 @@ export class DashboardScreen extends Component {
 			notasMultipla: [],
 			isLoading: false,
 			deveRedirecionarParaLogin: false
-		};
+		}
+		this.
 	}
 
 	async componentDidMount() {

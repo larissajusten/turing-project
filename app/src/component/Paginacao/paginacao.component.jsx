@@ -20,9 +20,9 @@ export class Paginacao extends Component {
 
   verificaClickBotao(variavelMaior, variavelMenor, variavelOnClick){
     if(variavelMaior > variavelMenor){
-      () => this.props.onClick(this.props.paginaAtual - 1)
+      return () => this.props.onClick(this.props.paginaAtual - 1)
     }else{
-      undefined
+      return undefined
     }
   }
 

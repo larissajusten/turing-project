@@ -28,8 +28,6 @@ const terminarProvaNaMudançaDePagina = () =>{
 }
 
 export class ResolverProvaScreen extends Component {
-  terminarProvaNaMudançaDePagina()
-
   constructor(props){
     super(props)
     this.state = {
@@ -51,6 +49,7 @@ export class ResolverProvaScreen extends Component {
   }
 
   async componentDidMount() {
+    terminarProvaNaMudançaDePagina();
     let prova;
     try{
       prova = await retornaProvaPorToken(this.state.token)
