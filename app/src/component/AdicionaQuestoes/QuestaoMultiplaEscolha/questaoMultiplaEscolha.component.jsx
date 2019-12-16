@@ -46,6 +46,8 @@ export class CadastroMultiplaQuestao extends PureComponent {
       { value: 'D' },
       { value: 'E' }
     ]
+
+    this.questaoMultiplaEscolhaService = new QuestaoMultiplaEscolhaService()
   }
 
   catchErrorENotifica(error) {
@@ -88,7 +90,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
     }
 
     try {
-      await adicionarQuestaoMultiplaEscolha(questao)
+      await this.questaoMultiplaEscolhaService.adicionarQuestaoMultiplaEscolha(questao)
       Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
       this.setState({
         deveRedirecionarParaDashboard: true
