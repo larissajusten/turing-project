@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat&display=swap' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 48px;
+        }
+    </style>
+    <title>Você foi selecionado para realizar a prova da CWI</title>
+</head>
+<body style="margin: 0; padding: 0;">
+
+
+
+<table align="center" border="0" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse; border-radius">
+    <tr>
+        <td align="center" bgcolor="#FFFFFF" style="padding: 40px 0 30px 0;">
+            <img src="https://prime.cwi.com.br/images/logo-cwi.png" alt="CWI" style="width:400px;height:85px;display:block;"  />
+        </td>
+    </tr>
+    <tr>
+        <td bgcolor="#f0f0f0" style="padding: 40px 30px 40px 30px;font-family:Montserrat, sans-serif;">
+            <div th:text="'Parabéns, ' + ${nomeCandidato} + '!' " ></div>
+            <div th:text="'Você foi selecionado para realizar a prova do CWI Turing.' " ></div>
+            <br>
+            <div th:text="'Você tem ' + ${tempoIniciar} + ' horas para iniciar sua prova a partir de agora.' " ></div>
+            <br>
+            <div th:text="'Após esse tempo, a prova não será mais válida.' " ></div>
+            <br>
+            <div th:text="'Quando você clicar no botão para começar a sua prova, o tempo começará a ser contado. '" ></div>
+            <br>
+            <div th:text="'Você terá ' + ${tempoDuracao} + ' minutos para concluir sua prova. Não é possível trocar de aba nem fechar a prova.' " ></div>
+            <br>
+            <p th:text="'Prazo máximo para início da prova: ' + ${dia} + ' às ' + ${hora}"></p>
+            <p th:text="'Duração máxima da prova: ' + ${tempoDuracao} + ' minutos'"></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" bgcolor="#f8b03f" color="#FFFFFF" style="padding: 30px 30px 30px 30px;">
+            <a th:href="'http://localhost:3000/resolver-prova/' + ${token} ">Acesse sua prova aqui</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+<html>

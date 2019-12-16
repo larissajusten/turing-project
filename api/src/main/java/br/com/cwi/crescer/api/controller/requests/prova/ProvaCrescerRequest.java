@@ -10,15 +10,12 @@ import javax.validation.constraints.Positive;
 
 @Data
 @AllArgsConstructor
-public class ProvaRequest {
+public class ProvaCrescerRequest {
 
-    @NotEmpty(message = "O email do candidato não pode ser vazio")
-    private String email;
+    @Positive
+    @Min(value = 0, message = "Quantidade de provas não pode ser vazio")
+    private int quantidade;
 
-    @NotEmpty(message = "Deve ter o nome completo do candidato")
-    private String nomeCandidato;
-
-    @NotEmpty(message = "O tipo de prova não pode ser vazio")
     private Tipo tipo;
 
     @Positive

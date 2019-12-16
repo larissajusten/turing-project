@@ -8,6 +8,5 @@ public enum Especificidade {
     PHP,
     TYPESCRIPT,
     RUBY,
-    SWIFT,
-    CRESCER
+    SWIFT
 }

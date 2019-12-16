@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.mapper;
 
+import br.com.cwi.crescer.api.controller.requests.prova.ProvaCrescerRequest;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.responses.ProvaParaCorrecaoResponse;
 import br.com.cwi.crescer.api.controller.responses.ProvaResponse;
@@ -30,6 +31,16 @@ public class ProvaMapper {
         prova.setDataCriacao(LocalDateTime.now());
         prova.setEmailCandidato(request.getEmail());
         prova.setStatus(StatusProva.ATIVA);
+        prova.setTipo(request.getTipo());
+
+        return prova;
+    }
+
+    public Prova transformarParaCrescer(ProvaCrescerRequest request) {
+        Prova prova = mapper.map(request, Prova.class);
+        prova.setDataCriacao(LocalDateTime.now());
+        prova.setStatus(StatusProva.ATIVA);
+        prova.setTipo(request.getTipo());
 
         return prova;
     }
