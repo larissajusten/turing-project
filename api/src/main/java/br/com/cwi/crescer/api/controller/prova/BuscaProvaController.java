@@ -67,7 +67,7 @@ public class BuscaProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{id-prova}/resposta")
+    @GetMapping("/{id-prova}/corrigir")
     public ProvaComRespostasResponse provaPorIdComRespostas(@PathVariable("id-prova") Long idProva) {
         return buscarProvaPorIdParaCorrecaoService.buscar(idProva);
     }

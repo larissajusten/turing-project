@@ -1,17 +1,8 @@
-import Axios from 'axios'
-import { baseUrl } from '../baseUrl'
+import { BaseService } from '../_base/base.service'
 
-let token;
-
-function carregarToken() {
-	if (!token) {
-		token = localStorage.getItem('accessToken');
+export class EmailService extends BaseService {
+	async enviarEmail(emailCandidato){
+		const response = await super.get(`email/${emailCandidato}`)
+		return response.data;
 	}
-}
-
-export const enviarEmail = async (emailCandidato) => {
-	carregarToken();
-	const response = await Axios.post(`${baseUrl}/email/${emailCandidato}/enviar`,
-	{ headers: { Authorization: token } });
-	return response.data;
 }

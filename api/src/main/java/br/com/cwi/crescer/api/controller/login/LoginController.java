@@ -24,7 +24,6 @@ public class LoginController {
 
     @PostMapping
     public LoggedUserDTO efetuarLogin(@Valid @RequestBody LoginRequest loginRequest) {
-
         return loginService.logar(loginRequest);
     }
 }

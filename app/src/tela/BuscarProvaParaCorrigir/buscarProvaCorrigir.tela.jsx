@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import { CardProva, Paginacao } from '../../component/'
-import { retornaProvasParaCorrecao } from '../../services/'
+import { BuscarProvaService } from '../../services/'
 import './buscarProvaCorrigir.style.css'
 
 export class BuscarProvaParaCorrigirScreen extends Component{
@@ -15,10 +15,12 @@ export class BuscarProvaParaCorrigirScreen extends Component{
       idProvaParaCorrigir: 0,
       deveRedirecionarParaCorrecao: false
     }
+    this.buscarProvaService = new BuscarProvaService()
   }
 
   async componentDidMount() {
-    let dadosDaResponse = await retornaProvasParaCorrecao(this.state.current_page)
+    let dadosDaResponse = await this.buscarProvaService
+      .retornaProvasParaCorrecao(this.state.current_page)
     this.setState({
       provas: dadosDaResponse[0],
       totalPaginas: dadosDaResponse[1],
@@ -35,7 +37,7 @@ export class BuscarProvaParaCorrigirScreen extends Component{
   }
 
   buscaPagina = async pageNumber => {
-    let dadosDaResponse = await retornaProvasParaCorrecao(pageNumber)
+    let dadosDaResponse = await this.buscarProvaService.retornaProvasParaCorrecao(pageNumber)
 
     this.setState({
       provas: dadosDaResponse[0],

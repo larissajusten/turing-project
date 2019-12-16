@@ -1,18 +1,13 @@
 import React, { Component } from 'react'
-import './resolverProva.style.css'
-import {
-  retornaProvaPorToken,
-  iniciarProva,
-  enviarRespostasDaProva,
-  retornarTipoDeQuestao
-} from '../../services/'
-import {
-  ProvaModal,
-  RespondeQuestaoUnicaResposta,
-  RespondeQuestaoMultiplasRespostas,
-  BotaoPrincipal,
-  Notificacao
-} from '../../component/'
+import './resolverProva.style.css';
+import { BuscarProvaService,
+          ProvaService,
+          DominioService } from '../../services/'
+import { ProvaModal,
+        RespondeQuestaoUnicaResposta,
+        RespondeQuestaoMultiplasRespostas,
+        BotaoPrincipal,
+        Notificacao } from '../../component/'
 
 const objetoResposta = { tipoDeQuestao: '', idQuestao: '', resposta: '' }
 /* Verificar visibilidade da aba */
@@ -42,12 +37,15 @@ export class ResolverProvaScreen extends Component {
     }
     this.lengthDissertativas = 0
     this.lengthTecnicas = 0
+    this.dominioService = new DominioService()
+    this.provaService = new ProvaService()
+    this.buscarProvaService = new BuscarProvaService()
   }
 
   async componentDidMount() {
     let prova
     try {
-      prova = await retornaProvaPorToken(this.state.token)
+      prova = await this.buscarProvaService.retornaProvaPorToken(this.state.token)
       document.addEventListener(
         visibilityChange,
         this.handleVisibilityChange,
@@ -57,7 +55,7 @@ export class ResolverProvaScreen extends Component {
         {
           idProva: prova.id,
           prova: prova,
-          tiposDeQuestoes: await retornarTipoDeQuestao()
+          tiposDeQuestoes: await this.dominioService.retornarTipoDeQuestao()
         },
         () => {
           const quantidadeObjetos =
@@ -175,7 +173,7 @@ export class ResolverProvaScreen extends Component {
       renderProva: true
     })
     this.contador()
-    await iniciarProva(this.state.idProva)
+    await this.provaService.iniciarProva(this.state.idProva)
   }
 
   handleClickEnviarProva = async event => {
@@ -184,10 +182,8 @@ export class ResolverProvaScreen extends Component {
       modalIniciarProva: false,
       renderProva: false,
       modalFinalizarProva: true,
-      statusProva: await enviarRespostasDaProva(
-        this.state.idProva,
-        this.state.arrayRespostas
-      )
+      statusProva: await this.provaService
+        .enviarRespostasDaProva(this.state.idProva, this.state.arrayRespostas)
     })
   }
 

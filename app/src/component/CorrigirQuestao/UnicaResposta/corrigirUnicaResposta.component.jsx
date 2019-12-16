@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import { Textarea, Input, BlocoResposta} from '../../'
+import { QuestaoTecnicaService } from '../../../services/'
 import { saveAs } from 'file-saver'
-import { Textarea, Input, BlocoResposta } from '../../'
-import { retornaQuestaoTecnicaParaBaixar } from '../../../services/'
 import './corrigirUnicaResposta.style.css'
 
 export class CorrigirUnicaResposta extends Component {
@@ -10,15 +10,14 @@ export class CorrigirUnicaResposta extends Component {
     this.state = {
       questaoDownload: ''
     }
+    this.questaoTecnica = new QuestaoTecnicaService()
     this.typeFile = 'text/plain;charset=utf-8'
   }
 
   async componentDidMount() {
     if (this.props.tipo === 'TECNICA') {
       this.setState({
-        questaoDownload: await retornaQuestaoTecnicaParaBaixar(
-          this.props.idResposta
-        )
+        questaoDownload: await this.questaoTecnica.retornaQuestaoTecnicaParaBaixar(this.props.idResposta)
       })
     }
   }

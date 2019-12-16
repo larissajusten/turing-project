@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
-import { retornarTipoDeQuestao, retornarProvaParaCorrigir, corrigirProva} from '../../services/'
+import { DominioService, BuscarProvaService, ProvaService } from '../../services/'
 import { CorrigirUnicaResposta, BotaoPrincipal, Notificacao } from '../../component/'
 
 const objetoCorrecaoProva =  { idQuestao: '', idResposta: '', tipoDeQuestao: '', nota: '', comentario: '' }
@@ -16,11 +16,14 @@ export class CorrigirProvaScreen extends Component {
     }
     this.lengthDissertativas = 0
     this.lengthTecnicas = 0
+    this.dominioService = new DominioService()
+    this.provaService = new ProvaService()
+    this.buscarProvaService = new BuscarProvaService()
   }
 
   async componentDidMount() {
-    let tiposDeQuestoes = await retornarTipoDeQuestao()
-    let prova = await retornarProvaParaCorrigir(this.state.idProva)
+    let tiposDeQuestoes = await this.dominioService.retornarTipoDeQuestao()
+    let prova = await this.buscarProvaService.retornarProvaParaCorrigir(this.state.idProva)
 
     this.lengthDissertativas = prova.questoesDissertativas.length
     this.lengthTecnicas = prova.questoesTecnicas.length
@@ -65,7 +68,7 @@ export class CorrigirProvaScreen extends Component {
   handleClickEnviarCorrecao = async(event) => {
     event.preventDefault()
     try{
-      await corrigirProva(this.state.idProva, this.state.arrayCorrecoes)
+      await this.provaService.corrigirProva(this.state.idProva, this.state.arrayCorrecoes)
       Notificacao('Sucesso', 'Prova salva', 'success')
       this.setState({ deveRedirecionarParaDashboard: true })
     }

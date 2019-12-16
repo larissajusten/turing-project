@@ -1,21 +1,15 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import './visualizarProva.style.css'
-import {
-  MostrarQuestaoUnica,
-  MostrarMultiplasRespostas,
-  BlocoVisualizar,
-  Notificacao,
-  BotaoPrincipal
-} from '../../component/'
-import {
-  retornaProva,
-  cancelarProva,
-  removerQuestaoDissertativa,
-  removerQuestaoTecnica,
-  removerQuestaoMultiplaEscolha,
-  enviarEmail
-} from '../../services/'
+import { MostrarQuestaoUnica,
+        MostrarMultiplasRespostas,
+        BlocoVisualizar,
+        Notificacao,
+        BotaoPrincipal } from '../../component/'
+import { ProvaService, 
+        BuscarProvaService,
+        RemoverQuestaoProvaService, 
+        EmailService} from '../../services/'
 
 const mensagemSucessoNotificacao = 'Questão removida com sucesso'
 
@@ -27,12 +21,16 @@ export class VisualizarProvaScreen extends Component {
       prova: null,
       semProvaParaMostrar: true
     }
+    this.provaService = new ProvaService()
+    this.buscarProvaService = new BuscarProvaService()
+    this.removerQuestaoService = new RemoverQuestaoProvaService()
+    this.enviarEmail = new EmailService()
   }
 
   async componentDidMount() {
     localStorage.removeItem('idProva')
     this.setState({
-      prova: await retornaProva(this.state.idProva)
+      prova: await this.buscarProvaService.retornaProva(this.state.idProva)
     })
   }
 
@@ -47,7 +45,7 @@ export class VisualizarProvaScreen extends Component {
     event.preventDefault()
     try {
       Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
-      await enviarEmail(this.state.prova.emailCandidato)
+      await this.emailService.enviarEmail(this.state.prova.emailCandidato)
       this.setState({
         deveRedirecionarParaDashboard: true
       })
@@ -66,7 +64,7 @@ export class VisualizarProvaScreen extends Component {
     event.preventDefault()
     try {
       Notificacao('Sucesso', 'Prova cancelada com sucesso', 'success')
-      await cancelarProva(this.state.idProva)
+      await this.provaService.cancelarProva(this.state.idProva)
       this.setState({
         deveRedirecionarParaDashboard: true
       })
@@ -81,27 +79,27 @@ export class VisualizarProvaScreen extends Component {
     }
   }
 
-  removerQuestaoDissertativa = async idDaQuestao => {
-    await removerQuestaoDissertativa(this.state.idProva, idDaQuestao)
+  removerQuestaoDissertativa = async (idDaQuestao) => {
+    await this.removerQuestaoService.removerQuestaoDissertativa(this.state.idProva, idDaQuestao)
     Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     this.setState({
-      prova: await retornaProva(this.state.idProva)
+      prova: await this.buscarProvaService.retornaProva(this.state.idProva)
     })
   }
 
-  removerQuestaoTecnica = async idDaQuestao => {
-    await removerQuestaoTecnica(this.state.idProva, idDaQuestao)
+  removerQuestaoTecnica = async (idDaQuestao) => {
+    await this.removerQuestaoService.removerQuestaoTecnica(this.state.idProva, idDaQuestao)
     Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     this.setState({
-      prova: await retornaProva(this.state.idProva)
+      prova: await this.buscarProvaService.retornaProva(this.state.idProva)
     })
   }
 
-  removerQuestaoMultiplaEscolha = async idDaQuestao => {
-    await removerQuestaoMultiplaEscolha(this.state.idProva, idDaQuestao)
+  removerQuestaoMultiplaEscolha = async (idDaQuestao) => {
+    await this.removerQuestaoService.removerQuestaoMultiplaEscolha(this.state.idProva, idDaQuestao)
     Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
     this.setState({
-      prova: await retornaProva(this.state.idProva)
+      prova: await this.buscarProvaService.retornaProva(this.state.idProva)
     })
   }
 

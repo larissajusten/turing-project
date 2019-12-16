@@ -16,7 +16,7 @@ export { BlocoVisualizar } from './BlocoVisualizar/blocoVisualizar.component.jsx
 export { BlocoQuestao } from './BlocoQuestao/blocoQuestao.component.jsx'
 export { CardBuscarQuestao } from './CardQuestao/cardQuestao.component.jsx'
 export { CardProva } from './CardProva/cardProva.component.jsx'
-export { BlocoResposta } from './BlocoResposta/blocoResposta.component'
+export { BlocoResposta } from './BlocoResposta/blocoResposta.component.jsx'
 
 /* Blocos para renderizar varias vezes as questões */
 export { MostrarQuestaoUnica } from './MostraQuestoes/QuestaoUnicaResposta/mostrarQuestaoUnica.component.jsx'

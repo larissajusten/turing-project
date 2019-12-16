@@ -34,19 +34,19 @@ public class DashboardController {
     private RetornaLinguagensDoUsuarioService retornaLinguagensDoUsuarioService;
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{especificidade}/dissertativas")
+    @GetMapping("/{especificidade}/dissertativa")
     public List<RespostaParaDashboardResponse> retornaDadosParaGraficoDeQuestoesDissertativas(@PathVariable("especificidade") Especificidade especificidade) {
         return buscarQuestoesDissertativas.buscar(especificidade);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{especificidade}/tecnicas")
+    @GetMapping("/{especificidade}/tecnica")
     public List<RespostaParaDashboardResponse> retornaDadosParaGraficoDeQuestoesTecnicas(@PathVariable("especificidade") Especificidade especificidade) {
         return buscarQuestoesTecnicas.buscar(especificidade);
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/{especificidade}/multiplas")
+    @GetMapping("/{especificidade}/multipla")
     public List<Integer> retornaErrosEAcertosDasQuestoesDeMultiplasEscolhas(@PathVariable("especificidade") Especificidade especificidade) {
         return retornaErrosEAcertosMultiplaEscolhaService.retornar(especificidade);
     }

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import './buscarQuestao.style.css'
 import { BotaoPrincipal, CardBuscarQuestao, BuscarQuestao, Notificacao, Paginacao } from '../../component/'
-import { retornarEspecificidades,
-        retornarNiveisDeDificuldade,
-        retornarQuestoesTecnicasFiltradas,
-        retornarQuestoesDissertativasFiltradas,
-        retornarQuestoesMultiplasEscolhasFiltradas,
-        retornarTipoDeQuestao} from '../../services/'
+import { QuestaoDissertativaService,
+        QuestaoMultiplaEscolhaService,
+        QuestaoTecnicaService,
+        DominioService } from '../../services/'
 
 const mensagemSucessoNotificacao = 'Busca bem sucedida'
 export class BuscarQuestaoScreen extends Component {
@@ -27,13 +25,17 @@ export class BuscarQuestaoScreen extends Component {
       current_page: 0
     }
     this.busca = {}
+    this.dominioService = new DominioService()
+    this.questaoMultiplaEscolhaService = new QuestaoMultiplaEscolhaService()
+    this.questaoTecnicaService = new QuestaoTecnicaService()
+    this.questaoDissertativaService = new QuestaoDissertativaService()
   }
 
   async componentDidMount() {
     this.setState({
-      tipos: await retornarTipoDeQuestao(),
-      especificidades: await retornarEspecificidades(),
-      niveis: await retornarNiveisDeDificuldade()
+      tipos: await this.dominioService.retornarTipoDeQuestao(),
+      especificidades: await this.dominioService.retornarEspecificidades(),
+      niveis: await this.dominioService.retornarNiveisDeDificuldade()
     })
   }
 
@@ -66,7 +68,8 @@ export class BuscarQuestaoScreen extends Component {
 
   retornarQuestoesDissertativasFiltradas = async (especificidade, nivelDeDificuldade) => {
     try {
-      let dadosDaResponse = await retornarQuestoesDissertativasFiltradas(this.state.current_page, especificidade, nivelDeDificuldade)
+      let dadosDaResponse = await this.questaoDissertativaService
+        .retornarQuestoesDissertativasFiltradas(this.state.current_page, especificidade, nivelDeDificuldade)
       this.salvaResponseENotificaSucesso(dadosDaResponse)
     }
     catch (error) {
@@ -76,7 +79,8 @@ export class BuscarQuestaoScreen extends Component {
 
   retornarQuestoesMultiplasEscolhasFiltradas = async (especificidade, nivelDeDificuldade) => {
     try {
-      let dadosDaResponse = await retornarQuestoesMultiplasEscolhasFiltradas(this.state.current_page, especificidade, nivelDeDificuldade)
+      let dadosDaResponse = await this.questaoMultiplaEscolhaService
+          .retornarQuestoesMultiplasEscolhasFiltradas(this.state.current_page, especificidade, nivelDeDificuldade)
       this.salvaResponseENotificaSucesso(dadosDaResponse)
     }
     catch (error) {
@@ -86,7 +90,8 @@ export class BuscarQuestaoScreen extends Component {
 
   retornarQuestoesTecnicasFiltradas = async (especificidade, nivelDeDificuldade) => {
     try {
-      let dadosDaResponse = await retornarQuestoesTecnicasFiltradas(this.state.current_page,  especificidade, nivelDeDificuldade)
+      let dadosDaResponse = await this.questaoTecnicaService
+          .retornarQuestoesTecnicasFiltradas(this.state.current_page,  especificidade, nivelDeDificuldade)
       this.salvaResponseENotificaSucesso(dadosDaResponse)
     }
     catch (error) {
@@ -115,11 +120,14 @@ export class BuscarQuestaoScreen extends Component {
     let dadosDaResponse
 
     if (this.state.tipo === this.state.tipos[0]) {
-      dadosDaResponse = await retornarQuestoesDissertativasFiltradas(pageNumber, especificidade, nivelDeDificuldade)
+      dadosDaResponse = await this.questaoDissertativaService
+        .retornarQuestoesDissertativasFiltradas(pageNumber, especificidade, nivelDeDificuldade)
     } else if (this.state.tipo === this.state.tipos[1]) {
-      dadosDaResponse = await retornarQuestoesMultiplasEscolhasFiltradas(pageNumber, especificidade, nivelDeDificuldade)
+      dadosDaResponse = await this.questaoMultiplaEscolhaService
+        .retornarQuestoesMultiplasEscolhasFiltradas(pageNumber, especificidade, nivelDeDificuldade)
     } else {
-      dadosDaResponse = await retornarQuestoesTecnicasFiltradas(pageNumber, especificidade, nivelDeDificuldade)
+      dadosDaResponse = await this.questaoTecnicaService
+        .retornarQuestoesTecnicasFiltradas(pageNumber, especificidade, nivelDeDificuldade)
     }
 
     this.setState({

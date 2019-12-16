@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
 import { QuestaoUnica, Notificacao } from '../../'
-import { adicionarQuestaoDissertativa } from '../../../services'
+import { QuestaoDissertativaService } from '../../../services'
 
 export class CadastroDissertativa extends PureComponent {
 
@@ -15,6 +15,7 @@ export class CadastroDissertativa extends PureComponent {
       questao: '',
       deveRedirecionarParaDashboard: false
     }
+    this.questaoDissertativaService = new QuestaoDissertativaService()
   }
 
   handleClickSalvarQuestao = async (event) => {
@@ -27,7 +28,7 @@ export class CadastroDissertativa extends PureComponent {
     }
 
     try {
-      await adicionarQuestaoDissertativa(questaoDissertativa)
+      await this.questaoDissertativaService.adicionarQuestaoDissertativa(questaoDissertativa)
       Notificacao('Sucesso', 'Questão adicionada com sucesso', 'success')
       this.setState({
         deveRedirecionarParaDashboard: true

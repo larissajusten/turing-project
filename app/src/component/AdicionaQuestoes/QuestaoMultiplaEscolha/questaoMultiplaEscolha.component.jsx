@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Redirect } from 'react-router-dom'
 import { BotaoPrincipal, Input, Select, Notificacao, Textarea } from '../../'
-import { adicionarQuestaoMultiplaEscolha } from '../../../services'
+import { QuestaoMultiplaEscolhaService } from '../../../services'
 import './questaoMultiplaEscolha.style.css'
 
 export class CadastroMultiplaQuestao extends PureComponent {

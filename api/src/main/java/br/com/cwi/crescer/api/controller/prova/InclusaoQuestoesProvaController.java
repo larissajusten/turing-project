@@ -27,7 +27,7 @@ public class InclusaoQuestoesProvaController {
 
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/dissertativa")
+    @PostMapping("/{id-prova}/dissertativa")
     public List<QuestaoDissertativa> incluirDissertativas(@PathVariable("id-prova") Long idProva, @Valid @RequestBody BuscaQuestoesRequest buscaQuestoesRequest) {
         return incluirQuestoesDissertativasService.incluir(idProva, buscaQuestoesRequest);
     }

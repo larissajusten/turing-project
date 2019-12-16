@@ -18,9 +18,11 @@ export class Paginacao extends Component {
     }
   }
 
-  verificaClickBotao(variavelMaior, variavelMenor) {
-    if (variavelMaior > variavelMenor) {
-      this.props.onClick(this.props.paginaAtual - 1)
+  verificaClickBotao(variavelMaior, variavelMenor, variavelOnClick){
+    if(variavelMaior > variavelMenor){
+      return () => this.props.onClick(this.props.paginaAtual - 1)
+    }else{
+      return undefined
     }
   }
 

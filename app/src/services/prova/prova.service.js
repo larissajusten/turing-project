@@ -1,45 +1,28 @@
-import Axios from 'axios';
-import { baseUrl } from '../baseUrl';
+import { BaseService } from '../_base/base.service'
 
-let token;
-
-function carregarToken() {
-	if (!token) {
-		token = localStorage.getItem('accessToken');
+export class ProvaService extends BaseService {
+  async criarProva(prova) {
+		const response = await super.post(`prova`, prova)
+		return response.data
 	}
-}
+	
+	async iniciarProva(idProva) {
+		const response =  await super.put(`prova/${idProva}/iniciar`)
+		return response.data
+	}
+	
+	async enviarRespostasDaProva(idProva, respostas) {
+		const response =  await super.put(`prova/${idProva}/finalizar`, respostas)
+		return response.data;
+	}
+	
+	async corrigirProva(idProva, correcao) {
+		const response =  await super.put(`prova/${idProva}/corrigir`, correcao)
+		return response.data;
+	}
 
-export const criarProva = async (prova) => {
-	carregarToken();
-	const response = await Axios.post(`${baseUrl}/prova`, prova,
-	{ headers: { Authorization: token } });
-	return response.data;
-}
-
-export const iniciarProva = async (idProva) => {
-	carregarToken();
-	const response = await Axios.put(`${baseUrl}/prova/${idProva}/iniciar`,
-	{ headers: { Authorization: token } });
-	return response.data;
-}
-
-export const enviarRespostasDaProva = async (idProva, respostas) => {
-	carregarToken();
-	const response = await Axios.put(`${baseUrl}/prova/${idProva}/finalizar`, respostas,
-	{ headers: { Authorization: token }});
-	return response.data;
-}
-
-export const corrigirProva = async (idProva, body) => {
-	carregarToken();
-	const response = await Axios.put(`${baseUrl}/prova/${idProva}/corrigir`, body,
-	{ headers: { Authorization: token } });
-	return response.data;
-}
-
-export const cancelarProva = async (idProva) => {
-	carregarToken();
-	const response = await Axios.put(`${baseUrl}/prova/${idProva}/cancelar`,
-	{ headers: { Authorization: token } });
-	return response.data;
+	async cancelarProva(idProva, correcao) {
+		const response =  await super.put(`prova/${idProva}/cancelar`)
+		return response.data;
+	}
 }
