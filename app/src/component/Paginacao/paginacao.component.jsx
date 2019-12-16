@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './paginacao.style.css'
 
 export class Paginacao extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       desabilitado: 'desabilitado',
@@ -10,10 +10,10 @@ export class Paginacao extends Component {
     }
   }
 
-  verificaClasseDoBotao(variavelMaior, variavelMenor){
-    if(variavelMaior > variavelMenor){
-      return "botao-paginacao"
-    }else{
+  verificaClasseDoBotao(variavelMaior, variavelMenor) {
+    if (variavelMaior > variavelMenor) {
+      return 'botao-paginacao'
+    } else {
       return this.state.desabilitado
     }
   }
@@ -26,22 +26,37 @@ export class Paginacao extends Component {
     }
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="container-paginacao">
-        <button 
-          className={this.verificaClasseDoBotao(this.props.paginaAtual, 0)} 
-          onClick={this.verificaClickBotao(this.props.paginaAtual, 0, this.props.paginaAtual - 1)}
-        > &laquo; </button>
+        <button
+          className={this.verificaClasseDoBotao(this.props.paginaAtual, 0)}
+          onClick={this.verificaClickBotao(
+            this.props.paginaAtual,
+            0,
+            this.props.paginaAtual - 1
+          )}
+        >
+          &laquo;
+        </button>
 
         <div className="bloco-principal-paginacao">
-          {this.props.paginaAtual+1}
+          {this.props.paginaAtual + 1}
         </div>
 
-        <button 
-          className={this.verificaClasseDoBotao(this.props.totalPaginas, this.props.paginaAtual + 1)} 
-          onClick={this.verificaClickBotao(this.props.totalPaginas, this.props.paginaAtual + 1, this.props.paginaAtual + 1)}
-        > &#187; </button>
+        <button
+          className={this.verificaClasseDoBotao(
+            this.props.totalPaginas,
+            this.props.paginaAtual + 1
+          )}
+          onClick={this.verificaClickBotao(
+            this.props.totalPaginas,
+            this.props.paginaAtual + 1,
+            this.props.paginaAtual + 1
+          )}
+        >
+          &#187;
+        </button>
       </div>
     )
   }

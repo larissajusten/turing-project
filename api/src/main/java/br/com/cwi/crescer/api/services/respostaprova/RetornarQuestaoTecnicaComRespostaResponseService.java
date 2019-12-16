@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RetornarQuestaoTecnicaComRespostaResponseService {
@@ -24,7 +25,9 @@ public class RetornarQuestaoTecnicaComRespostaResponseService {
         List<QuestaoTecnicaComRespostaResponse> questoesTecnicas = new ArrayList<>();
 
         respostasTecnicaRepository.findAllByProvaIdEquals(prova.getId())
-                .forEach(questao -> questoesTecnicas.add(mapper.questaoTecnica(questao)));
+                .stream()
+                .map(questao -> questoesTecnicas.add(mapper.questaoTecnica(questao)))
+                .collect(Collectors.toList());
 
         return questoesTecnicas;
     }

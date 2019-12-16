@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Textarea, Input, BlocoResposta} from '../../'
 import { QuestaoTecnicaService } from '../../../services/'
+import { saveAs } from 'file-saver'
 import './corrigirUnicaResposta.style.css'
 
-const type = 'text/plain';
 export class CorrigirUnicaResposta extends Component {
   constructor(props) {
     super(props)
@@ -11,6 +11,7 @@ export class CorrigirUnicaResposta extends Component {
       questaoDownload: ''
     }
     this.questaoTecnica = new QuestaoTecnicaService()
+    this.typeFile = 'text/plain;charset=utf-8'
   }
 
   async componentDidMount() {
@@ -22,30 +23,22 @@ export class CorrigirUnicaResposta extends Component {
   }
 
   downloadRespostaFile = () => {
-    const element = document.createElement("a");
-    const file = new Blob([this.props.resposta], { type: type });
-    element.href = URL.createObjectURL(file);
-    element.download = `resposta${this.props.idResposta}.txt`;
-    document.body.appendChild(element);
-    element.click();
+    const file = new Blob([this.props.resposta], { type: this.typeFile })
+    saveAs(file, `resposta${this.props.idResposta}.txt`)
   }
 
   downloadTestesFile = () => {
-    const element = document.createElement("a");
-    const file = new Blob([this.state.questaoDownload.testeBase], { type: type });
-    element.href = URL.createObjectURL(file);
-    element.download = `teste${this.props.idResposta}.txt`;
-    document.body.appendChild(element);
-    element.click();
+    const file = new Blob([this.state.questaoDownload.testeBase], {
+      type: this.type
+    })
+    saveAs(file, `teste${this.props.idResposta}.txt`)
   }
 
   downloadRespostaBaseFile = () => {
-    const element = document.createElement("a");
-    const file = new Blob([this.state.questaoDownload.respostaBase], { type: type });
-    element.href = URL.createObjectURL(file);
-    element.download = `respostaBase${this.props.idResposta}.txt`;
-    document.body.appendChild(element);
-    element.click();
+    const file = new Blob([this.state.questaoDownload.respostaBase], {
+      type: this.type
+    })
+    saveAs(file, `respostaBase${this.props.idResposta}.txt`)
   }
 
   render() {
@@ -54,11 +47,10 @@ export class CorrigirUnicaResposta extends Component {
         <BlocoResposta
           questaoNome={`Questão ${this.props.index + 1}`}
           tipo={this.props.tipo}
-          questao={this.props.questao} />
+          questao={this.props.questao}
+        />
 
-        <BlocoResposta
-          questaoNome="Resposta"
-          questao={this.props.resposta} />
+        <BlocoResposta questaoNome="Resposta" questao={this.props.resposta} />
 
         <div className="comentario-nota">
           <div className="comentario">
@@ -73,7 +65,8 @@ export class CorrigirUnicaResposta extends Component {
               tipo={this.props.tipo}
               value={this.props.comentario}
               handleChange={this.props.handleChange}
-              maxLength="500" />
+              maxLength="500"
+            />
           </div>
           <div className="container-nota-download">
             <Input
@@ -88,18 +81,33 @@ export class CorrigirUnicaResposta extends Component {
               idQuestao={this.props.idQuestao}
               tipo={this.props.tipo}
               value={this.props.nota}
-              onChange={this.props.handleChange} />
+              onChange={this.props.handleChange}
+            />
           </div>
-
         </div>
-        {
-          this.props.tipo === 'TECNICA' &&
+        {this.props.tipo === 'TECNICA' && (
           <div className="container-download">
-            <button className="botao-download" onClick={this.downloadRespostaFile}> Resposta<i class="fa fa-download"></i></button>
-            <button className="botao-download" onClick={this.downloadTestesFile}>Testes<i class="fa fa-download"></i></button>
-            <button className="botao-download resposta-base" onClick={this.downloadRespostaBaseFile}>Resposta Base<i class="fa fa-download"></i></button>
+            <button
+              className="botao-download"
+              onClick={this.downloadRespostaFile}
+            >
+              {' '}
+              Resposta<i class="fa fa-download"></i>
+            </button>
+            <button
+              className="botao-download"
+              onClick={this.downloadTestesFile}
+            >
+              Testes<i class="fa fa-download"></i>
+            </button>
+            <button
+              className="botao-download resposta-base"
+              onClick={this.downloadRespostaBaseFile}
+            >
+              Resposta Base<i class="fa fa-download"></i>
+            </button>
           </div>
-        }
+        )}
       </div>
     )
   }

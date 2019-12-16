@@ -10,24 +10,16 @@ import { ProvaModal,
         Notificacao } from '../../component/'
 
 const objetoResposta = { tipoDeQuestao: '', idQuestao: '', resposta: '' }
-let hidden = null;
-let visibilityChange = null;
-
-const terminarProvaNaMudançaDePagina = () =>{
-  if (typeof document.hidden !== 'undefined') {
-    hidden = 'hidden';
-    visibilityChange = 'visibilitychange';
-  } else if (typeof document.msHidden !== 'undefined') {
-    hidden = 'msHidden';
-    visibilityChange = 'msvisibilitychange';
-  } else if (typeof document.webkitHidden !== 'undefined') {
-    hidden = 'webkitHidden';
-    visibilityChange = 'webkitvisibilitychange';
-  }
+/* Verificar visibilidade da aba */
+let hidden = null
+let visibilityChange = null
+if (typeof document.hidden !== 'undefined') {
+  hidden = 'hidden'
+  visibilityChange = 'visibilitychange'
 }
 
 export class ResolverProvaScreen extends Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       token: this.props.match.params.token,
@@ -51,21 +43,27 @@ export class ResolverProvaScreen extends Component {
   }
 
   async componentDidMount() {
-    terminarProvaNaMudançaDePagina();
-    let prova;
-    try{
+    let prova
+    try {
       prova = await this.buscarProvaService.retornaProvaPorToken(this.state.token)
-      document.addEventListener(visibilityChange, this.handleVisibilityChange, false)
-        this.setState({
+      document.addEventListener(
+        visibilityChange,
+        this.handleVisibilityChange,
+        false
+      )
+      this.setState(
+        {
           idProva: prova.id,
           prova: prova,
           tiposDeQuestoes: await this.dominioService.retornarTipoDeQuestao()
-        }, () => {
-          const quantidadeObjetos = (this.state.prova.questoesDeMultiplaEscolha.length +
-                                      this.state.prova.questoesDissertativas.length +
-                                      this.state.prova.questoesTecnicas.length)
+        },
+        () => {
+          const quantidadeObjetos =
+            this.state.prova.questoesDeMultiplaEscolha.length +
+            this.state.prova.questoesDissertativas.length +
+            this.state.prova.questoesTecnicas.length
 
-          const newArray = Array.from({length:(quantidadeObjetos)}, () => ({ }))
+          const newArray = Array.from({ length: quantidadeObjetos }, () => ({}))
           const arrayRespostas = newArray.map(() => ({ ...objetoResposta }))
 
           this.setState({
@@ -76,9 +74,9 @@ export class ResolverProvaScreen extends Component {
           this.lengthMultiplasEscolhas = this.state.prova.questoesDeMultiplaEscolha.length
           this.lengthDissertativas = this.state.prova.questoesDissertativas.length
           this.lengthTecnicas = this.state.prova.questoesTecnicas.length
-        })
-    }
-    catch(error){
+        }
+      )
+    } catch (error) {
       if (error.response.data.errors) {
         error.response.data.errors.map(message => {
           return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
@@ -94,6 +92,10 @@ export class ResolverProvaScreen extends Component {
     }
   }
 
+  componentWillMount() {
+    document.removeEventListener(visibilityChange, this.handleVisibilityChange)
+  }
+
   handleVisibilityChange = () => {
     if (document[hidden]) {
       this.setState({
@@ -105,19 +107,19 @@ export class ResolverProvaScreen extends Component {
   }
 
   contador = async () => {
-    this.interval = setInterval( async () => {
+    this.interval = setInterval(async () => {
       this.setState({
         count: this.state.count - 1
       })
-      if(this.state.count <= 0){
+      if (this.state.count <= 0) {
         this.setState({
           modalIniciarProva: false,
           modalFinalizarProva: true,
-          count: 0,
+          count: 0
         })
         clearInterval(this.interval)
       }
-    }, 60000 )
+    }, 60000)
   }
 
   adicionaObjetoResposta = () => {
@@ -126,34 +128,45 @@ export class ResolverProvaScreen extends Component {
     })
   }
 
-  handleClickResponderQuestoesUnicaResposta = (event, index, idQuestao, tipo) => {
+  handleClickResponderQuestoesUnicaResposta = (
+    event,
+    index,
+    idQuestao,
+    tipo
+  ) => {
     const { name, value } = event.target
 
     const array = this.state.arrayRespostas
 
-    array[index][name] = value;
-    array[index].idQuestao = idQuestao;
-    array[index].tipoDeQuestao = tipo;
+    array[index][name] = value
+    array[index].idQuestao = idQuestao
+    array[index].tipoDeQuestao = tipo
 
     this.setState({
       arrayRespostas: array
     })
   }
 
-  handleClickResponderQuestoesMultiplasRespostas = (event, index, idQuestao, idAlternativa, tipo) => {
+  handleClickResponderQuestoesMultiplasRespostas = (
+    event,
+    index,
+    idQuestao,
+    idAlternativa,
+    tipo
+  ) => {
     event.preventDefault()
     const array = [...this.state.arrayRespostas]
 
-    array[index].resposta = idAlternativa;
-    array[index].idQuestao = idQuestao;
-    array[index].tipoDeQuestao = tipo;
+    array[index].resposta = idAlternativa
+    array[index].idQuestao = idQuestao
+    array[index].tipoDeQuestao = tipo
 
     this.setState({
       arrayRespostas: array
     })
   }
 
-  handleClickIniciarProva = async(event) => {
+  handleClickIniciarProva = async event => {
     event.preventDefault()
     this.setState({
       modalIniciarProva: false,
@@ -163,7 +176,7 @@ export class ResolverProvaScreen extends Component {
     await this.provaService.iniciarProva(this.state.idProva)
   }
 
-  handleClickEnviarProva = async(event) => {
+  handleClickEnviarProva = async event => {
     event.preventDefault()
     this.setState({
       modalIniciarProva: false,
@@ -177,19 +190,28 @@ export class ResolverProvaScreen extends Component {
   renderQuestoesTecnicas() {
     return (
       <>
-      {
-        this.state.prova.questoesTecnicas &&
-        this.state.prova.questoesTecnicas.map((item, key) => {
-          return <RespondeQuestaoUnicaResposta
-                    key={key}
-                    index={key+this.lengthMultiplasEscolhas+this.lengthDissertativas}
-                    tipo={this.state.tiposDeQuestoes[2]}
-                    idQuestao={item.id}
-                    questao={item.questao}
-                    resposta={this.state.arrayRespostas[key+this.lengthMultiplasEscolhas+this.lengthDissertativas].resposta}
-                    handleChange={this.handleClickResponderQuestoesUnicaResposta}/>
-        })
-      }
+        {this.state.prova.questoesTecnicas &&
+          this.state.prova.questoesTecnicas.map((item, key) => {
+            return (
+              <RespondeQuestaoUnicaResposta
+                key={key}
+                index={
+                  key + this.lengthMultiplasEscolhas + this.lengthDissertativas
+                }
+                tipo={this.state.tiposDeQuestoes[2]}
+                idQuestao={item.id}
+                questao={item.questao}
+                resposta={
+                  this.state.arrayRespostas[
+                    key +
+                      this.lengthMultiplasEscolhas +
+                      this.lengthDissertativas
+                  ].resposta
+                }
+                handleChange={this.handleClickResponderQuestoesUnicaResposta}
+              />
+            )
+          })}
       </>
     )
   }
@@ -197,19 +219,23 @@ export class ResolverProvaScreen extends Component {
   renderQuestoesDissertativas() {
     return (
       <>
-      {
-        this.state.prova.questoesDissertativas &&
-        this.state.prova.questoesDissertativas.map((item, key) => {
-          return <RespondeQuestaoUnicaResposta
-                    key={key}
-                    index={key+this.lengthMultiplasEscolhas}
-                    tipo={this.state.tiposDeQuestoes[0]}
-                    idQuestao={item.id}
-                    questao={item.questao}
-                    resposta={this.state.arrayRespostas[key+this.lengthMultiplasEscolhas].resposta}
-                    handleChange={this.handleClickResponderQuestoesUnicaResposta}/>
-        })
-      }
+        {this.state.prova.questoesDissertativas &&
+          this.state.prova.questoesDissertativas.map((item, key) => {
+            return (
+              <RespondeQuestaoUnicaResposta
+                key={key}
+                index={key + this.lengthMultiplasEscolhas}
+                tipo={this.state.tiposDeQuestoes[0]}
+                idQuestao={item.id}
+                questao={item.questao}
+                resposta={
+                  this.state.arrayRespostas[key + this.lengthMultiplasEscolhas]
+                    .resposta
+                }
+                handleChange={this.handleClickResponderQuestoesUnicaResposta}
+              />
+            )
+          })}
       </>
     )
   }
@@ -217,83 +243,92 @@ export class ResolverProvaScreen extends Component {
   renderQuestoesMultiplasEscolhas() {
     return (
       <>
-      {
-        this.state.prova.questoesDeMultiplaEscolha &&
-        this.state.prova.questoesDeMultiplaEscolha.map((item, key) => {
-          return <RespondeQuestaoMultiplasRespostas
-                  key={key}
-                  index={key}
-                  tipo={this.state.tiposDeQuestoes[1]}
-                  idQuestao={item.id}
-                  alternativaA={item.alternativaA}
-                  alternativaB={item.alternativaB}
-                  alternativaC={item.alternativaC}
-                  alternativaD={item.alternativaD}
-                  alternativaE={item.alternativaE}
-                  questao={item.questao}
-                  onClick={this.handleClickResponderQuestoesMultiplasRespostas}/>
-        })
-      }
+        {this.state.prova.questoesDeMultiplaEscolha &&
+          this.state.prova.questoesDeMultiplaEscolha.map((item, key) => {
+            return (
+              <RespondeQuestaoMultiplasRespostas
+                key={key}
+                index={key}
+                tipo={this.state.tiposDeQuestoes[1]}
+                idQuestao={item.id}
+                alternativaA={item.alternativaA}
+                alternativaB={item.alternativaB}
+                alternativaC={item.alternativaC}
+                alternativaD={item.alternativaD}
+                alternativaE={item.alternativaE}
+                questao={item.questao}
+                onClick={this.handleClickResponderQuestoesMultiplasRespostas}
+              />
+            )
+          })}
       </>
     )
   }
 
   renderProva() {
-    return(
+    return (
       <>
-      {
-        this.state.prova &&
-        <div className="container-tela">
-          <div className="container-titulo">
-            <div className="content-titulo">
-              <span className="titulo-crie">Boa prova {this.state.prova.nomeCandidato}</span>
-              <div className="tempo"> {this.state.count} <span>Minutos</span></div>
+        {this.state.prova && (
+          <div className="container-tela">
+            <div className="container-titulo">
+              <div className="content-titulo">
+                <span className="titulo-crie">
+                  Boa prova {this.state.prova.nomeCandidato}
+                </span>
+                <div className="tempo">
+                  {this.state.count} <span>Minutos</span>
+                </div>
+              </div>
+            </div>
+
+            {this.renderQuestoesMultiplasEscolhas()}
+            {this.renderQuestoesDissertativas()}
+            {this.renderQuestoesTecnicas()}
+
+            <div className="container-botao">
+              <BotaoPrincipal
+                nome="ENVIAR"
+                onClick={this.handleClickEnviarProva}
+              />
             </div>
           </div>
-
-          {this.renderQuestoesMultiplasEscolhas()}
-          {this.renderQuestoesDissertativas()}
-          {this.renderQuestoesTecnicas()}
-
-          <div className="container-botao">
-            <BotaoPrincipal nome="ENVIAR" onClick={this.handleClickEnviarProva} />
-          </div>
-        </div>
-      }
+        )}
       </>
     )
   }
 
-  renderModalIniciar(){
-    return(
+  renderModalIniciar() {
+    return (
       <>
-      <ProvaModal
-        titulo="Clique em iniciar para realizar sua prova"
-        nomeBotao="COMEÇAR"
-        comBotao={true}
-        onClick={this.handleClickIniciarProva}/>
-      </>
-    )
-  }
-
-  renderModalFinalizar(){
-    return(
-      <>
-      {
-        this.state.modalFinalizarProva &&
         <ProvaModal
-          titulo="Sua prova terminou"/>
-      }
+          titulo="Clique em iniciar para realizar sua prova"
+          nomeBotao="COMEÇAR"
+          subtitulo={`Lembre-se, é proibido sair da aba da prova depois do seu inicio, 
+          caso saia, o usuario sera desclassificado automaticamente.
+           Você possui ${this.state.prova.tempoDeDuracaoDaProva} minutos para fazer a prova.`}
+          comBotao={true}
+          onClick={this.handleClickIniciarProva}
+        />
+      </>
+    )
+  }
+
+  renderModalFinalizar() {
+    return (
+      <>
+        {this.state.modalFinalizarProva && (
+          <ProvaModal titulo="Sua prova terminou" />
+        )}
       </>
     )
   }
 
   render() {
-    return(
+    return (
       <>
-      { this.state.modalIniciarProva && this.renderModalIniciar() }
-      { this.state.renderProva && this.renderProva() }
-      { this.state.modalFinalizarProva && this.renderModalFinalizar() }
+        {this.state.modalIniciarProva && this.renderModalIniciar()}
+        {this.state.renderProva && this.renderProva()}
+        {this.state.modalFinalizarProva && this.renderModalFinalizar()}
       </>
     )
   }

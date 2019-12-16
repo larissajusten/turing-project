@@ -29,7 +29,7 @@ public class BuscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelD
 
         List<RespostaParaDashboardResponse> listaResponse = new ArrayList<>();
 
-        Mockito.when(repository.findAllByGroupByNotaWhereQuestaoDissertativaEspecificidadeEquals(Especificidade.JAVASCRIPT))
+        Mockito.when(repository.buscarQuestoesDissertativasAgrupadasPorNotaENivelDeDificuldade(Especificidade.JAVASCRIPT))
                 .thenReturn(listaResponse);
 
         Assert.assertEquals(listaResponse, buscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService
@@ -41,13 +41,13 @@ public class BuscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelD
 
         List<RespostaParaDashboardResponse> listaResponse = new ArrayList<>();
 
-        Mockito.when(repository.findAllByGroupByNotaWhereQuestaoDissertativaEspecificidadeEquals(Especificidade.JAVASCRIPT))
+        Mockito.when(repository.buscarQuestoesDissertativasAgrupadasPorNotaENivelDeDificuldade(Especificidade.JAVASCRIPT))
                 .thenReturn(listaResponse);
 
         buscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService
                 .buscar(Especificidade.JAVASCRIPT);
 
-        Mockito.verify(repository).findAllByGroupByNotaWhereQuestaoDissertativaEspecificidadeEquals(Especificidade.JAVASCRIPT);
+        Mockito.verify(repository).buscarQuestoesDissertativasAgrupadasPorNotaENivelDeDificuldade(Especificidade.JAVASCRIPT);
     }
 
 }

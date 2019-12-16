@@ -27,5 +27,5 @@ public interface RespostasDissertativaRepository extends JpaRepository<Respostas
             "FROM RespostasDissertativaProva r " +
             "WHERE r.questaoDissertativa.especificidade = ?1 " +
             "GROUP BY r.nota, r.questaoDissertativa.nivelDeDificuldade")
-    List<RespostaParaDashboardResponse> findAllByGroupByNotaWhereQuestaoDissertativaEspecificidadeEquals(Especificidade especificidade);
+    List<RespostaParaDashboardResponse> buscarQuestoesDissertativasAgrupadasPorNotaENivelDeDificuldade(Especificidade especificidade);
 }

@@ -40,7 +40,7 @@ public class BuscarProvasPorNomeOuEmailCorrigidasComNotaService {
 
     public List<ProvaCorrigidaResponse> buscar(String nomeOuEmail) {
 
-        List<Prova> provas = repository.findByEmailCandidatoContainingOrNomeCandidatoContainingAndStatusEquals(nomeOuEmail,
+        List<Prova> provas = repository.acharPorNomeOuEmail(nomeOuEmail,
                 nomeOuEmail, StatusProva.CORRIGIDA);
         List<ProvaCorrigidaResponse> listaDasProvas = new ArrayList<>();
 
