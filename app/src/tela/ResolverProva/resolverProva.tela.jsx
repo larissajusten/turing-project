@@ -305,7 +305,7 @@ export class ResolverProvaScreen extends Component {
           nomeBotao="COMEÇAR"
           subtitulo={`Lembre-se, é proibido sair da aba da prova depois do seu inicio, 
           caso saia, o usuario sera desclassificado automaticamente.
-           Você possui ${this.state.prova.tempoDeDuracaoDaProva} minutos para fazer a prova.`}
+           Você possui minutos para fazer a prova.`}
           comBotao={true}
           onClick={this.handleClickIniciarProva}
         />

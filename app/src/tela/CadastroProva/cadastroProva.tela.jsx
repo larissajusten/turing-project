@@ -112,7 +112,9 @@ export class CadastrarProvaScreen extends Component {
       })
     }
     catch (error) {
-      this.catchErrorENotifica(error)
+      console.log(error);
+      
+      //this.catchErrorENotifica(error)
     }
   }
 

@@ -9,7 +9,7 @@ const carregarToken = () => {
 }
 
 const httpClient = (baseUrl) => axios.create({
-  timeout: 30000,
+  timeout: 30000000,
   headers: {
     'Content-type': 'application/json',
     Authorization: carregarToken()
