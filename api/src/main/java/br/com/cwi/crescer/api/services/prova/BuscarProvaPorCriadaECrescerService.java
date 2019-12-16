@@ -1,28 +1,23 @@
 package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
+import br.com.cwi.crescer.api.domain.enums.TipoDeProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
+import br.com.cwi.crescer.api.exception.prova.ProvaNaoEncontradaException;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
-public class IniciarTempoDaProvaService {
-
-    @Autowired
-    private BuscarProvaPorIdService buscarProvaPorIdService;
+public class BuscarProvaPorCriadaECrescerService {
 
     @Autowired
     private ProvaRepository repository;
 
-    public void iniciar(Long idProva) {
+    public List<Prova> buscar() {
 
-        Prova prova = buscarProvaPorIdService.buscar(idProva);
-        prova.setDataInicio(LocalDateTime.now());
-        prova.setStatus(StatusProva.ATIVA);
-
-        repository.save(prova);
+        return repository.encontrarPorCriadaECrescer(TipoDeProva.CRESCER, StatusProva.CRIADA);
     }
 }

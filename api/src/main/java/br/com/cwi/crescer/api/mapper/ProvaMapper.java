@@ -30,7 +30,7 @@ public class ProvaMapper {
         Prova prova = mapper.map(request, Prova.class);
         prova.setDataCriacao(LocalDateTime.now());
         prova.setEmailCandidato(request.getEmail());
-        prova.setStatus(StatusProva.ATIVA);
+        prova.setStatus(StatusProva.CRIADA);
         prova.setTipo(request.getTipo());
 
         return prova;
@@ -39,7 +39,7 @@ public class ProvaMapper {
     public Prova transformarParaCrescer(ProvaCrescerRequest request) {
         Prova prova = mapper.map(request, Prova.class);
         prova.setDataCriacao(LocalDateTime.now());
-        prova.setStatus(StatusProva.ATIVA);
+        prova.setStatus(StatusProva.CRIADA);
         prova.setTipo(request.getTipo());
 
         return prova;

@@ -1,6 +1,7 @@
 package br.com.cwi.crescer.api.repository.prova;
 
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
+import br.com.cwi.crescer.api.domain.enums.TipoDeProva;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,8 +17,14 @@ public interface ProvaRepository extends JpaRepository<Prova, Long> {
     @Query("SELECT p from Prova p WHERE p.status = :status AND " +
             "(p.emailCandidato LIKE %:email% OR p.nomeCandidato LIKE %:nome%)")
     List<Prova> acharPorNomeOuEmail(@Param("email") String email,
-                                                                                       @Param("nome") String nome,
-                                                                                       @Param("status") StatusProva status);
+                                    @Param("nome") String nome,
+                                    @Param("status") StatusProva status);
+
+    @Query("SELECT p from Prova p WHERE p.status = :status " +
+            "AND p.tipo = :tipo")
+    List<Prova> encontrarPorCriadaECrescer(
+                                           @Param("tipo")TipoDeProva tipo,
+                                           @Param("status")  StatusProva status);
 
     boolean existsByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva ativa);
 

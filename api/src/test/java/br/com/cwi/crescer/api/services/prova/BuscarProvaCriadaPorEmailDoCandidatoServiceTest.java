@@ -15,10 +15,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.Optional;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BuscarProvaAtivaPorEmailDoCandidatoServiceTest {
+public class BuscarProvaCriadaPorEmailDoCandidatoServiceTest {
 
     @InjectMocks
-    BuscarProvaAtivaPorEmailDoCandidatoService buscarProvaAtivaPorEmailDoCandidatoService;
+    BuscarProvaCriadaPorEmailDoCandidatoService buscarProvaCriadaPorEmailDoCandidatoService;
 
     @Mock
     ProvaRepository repository;
@@ -35,7 +35,7 @@ public class BuscarProvaAtivaPorEmailDoCandidatoServiceTest {
                 .thenReturn(Optional.of(prova));
 
 
-        Assert.assertEquals(prova, buscarProvaAtivaPorEmailDoCandidatoService.buscar(email));
+        Assert.assertEquals(prova, buscarProvaCriadaPorEmailDoCandidatoService.buscar(email));
 
     }
 
@@ -51,7 +51,7 @@ public class BuscarProvaAtivaPorEmailDoCandidatoServiceTest {
                 .thenReturn(Optional.empty());
 
 
-        buscarProvaAtivaPorEmailDoCandidatoService.buscar(email);
+        buscarProvaCriadaPorEmailDoCandidatoService.buscar(email);
 
     }
 }

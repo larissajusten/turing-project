@@ -8,14 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BuscarProvaAtivaPorEmailDoCandidatoService {
+public class BuscarProvaCriadaPorEmailDoCandidatoService {
 
     @Autowired
     private ProvaRepository repository;
 
     public Prova buscar(String email) {
 
-        return repository.findByEmailCandidatoEqualsAndStatusEquals(email, StatusProva.ATIVA)
+        return repository.findByEmailCandidatoEqualsAndStatusEquals(email, StatusProva.CRIADA)
                 .orElseThrow(() -> new ProvaNaoEncontradaException("Prova não foi encontrada por esse e-mail"));
     }
 }

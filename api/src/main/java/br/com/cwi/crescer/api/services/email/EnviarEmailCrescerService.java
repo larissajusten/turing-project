@@ -1,7 +1,7 @@
 package br.com.cwi.crescer.api.services.email;
 
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.services.prova.BuscarProvaAtivaPorEmailDoCandidatoService;
+import br.com.cwi.crescer.api.services.prova.BuscarProvaCriadaPorEmailDoCandidatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -25,7 +25,7 @@ public class EnviarEmailCrescerService {
     private JwtTokenProvider jwt;
 
     @Autowired
-    private BuscarProvaAtivaPorEmailDoCandidatoService buscarProvaPorEmail;
+    private BuscarProvaCriadaPorEmailDoCandidatoService buscarProvaPorEmail;
 
     public void enviar(String emailResponsavel,  int numeroDeProvas) {
 
