@@ -12,7 +12,12 @@ export class DominioService extends BaseService {
 	}
 
 	async retornarTipoDeQuestao() {
-		const response = await super.get(`dominio/tipo`)
+		const response = await super.get(`dominio/tipoDeQuestao`)
+		return response.data;
+	}
+
+	async retornarTipoDeProva() {
+		const response = await super.get(`dominio/tipoDeProva`)
 		return response.data;
 	}
 }

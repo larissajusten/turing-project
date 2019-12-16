@@ -7,9 +7,10 @@ import { ProvaModal,
         RespondeQuestaoUnicaResposta,
         RespondeQuestaoMultiplasRespostas,
         BotaoPrincipal,
-        Notificacao } from '../../component/'
+        Notificacao, Select } from '../../component/'
 
 const objetoResposta = { tipoDeQuestao: '', idQuestao: '', resposta: '' }
+
 /* Verificar visibilidade da aba */
 let hidden = null
 let visibilityChange = null
@@ -30,6 +31,7 @@ export class ResolverProvaScreen extends Component {
       idProva: 0,
       prova: null,
       tiposDeQuestoes: [],
+      especificidades: [],
       resposta: null,
       statusProva: null,
       arrayRespostas: [objetoResposta],
@@ -43,19 +45,16 @@ export class ResolverProvaScreen extends Component {
   }
 
   async componentDidMount() {
-    let prova
     try {
-      prova = await this.buscarProvaService.retornaProvaPorToken(this.state.token)
-      document.addEventListener(
-        visibilityChange,
-        this.handleVisibilityChange,
-        false
-      )
-      this.setState(
-        {
-          idProva: prova.id,
-          prova: prova,
-          tiposDeQuestoes: await this.dominioService.retornarTipoDeQuestao()
+      let prova = await this.buscarProvaService.retornaProvaPorToken(this.state.token)
+      let tiposDeQuestoes = await this.dominioService.retornarTipoDeQuestao()
+      let especificidades = await this.dominioService.retornarEspecificidades()
+      document.addEventListener(visibilityChange, this.handleVisibilityChange, false)
+      this.setState({
+        idProva: prova.id,
+        prova,
+        tiposDeQuestoes,
+        especificidades
         },
         () => {
           const quantidadeObjetos =
@@ -91,6 +90,13 @@ export class ResolverProvaScreen extends Component {
       })
     }
   }
+
+  handleChange = (event) => {
+		const { name, value } = event.target
+		this.setState({
+			[name]: value
+		})
+	}
 
   componentWillMount() {
     document.removeEventListener(visibilityChange, this.handleVisibilityChange)
@@ -135,13 +141,10 @@ export class ResolverProvaScreen extends Component {
     tipo
   ) => {
     const { name, value } = event.target
-
     const array = this.state.arrayRespostas
-
     array[index][name] = value
     array[index].idQuestao = idQuestao
     array[index].tipoDeQuestao = tipo
-
     this.setState({
       arrayRespostas: array
     })
@@ -156,11 +159,9 @@ export class ResolverProvaScreen extends Component {
   ) => {
     event.preventDefault()
     const array = [...this.state.arrayRespostas]
-
     array[index].resposta = idAlternativa
     array[index].idQuestao = idQuestao
     array[index].tipoDeQuestao = tipo
-
     this.setState({
       arrayRespostas: array
     })
@@ -178,12 +179,16 @@ export class ResolverProvaScreen extends Component {
 
   handleClickEnviarProva = async event => {
     event.preventDefault()
+    let prova = {
+      "arrayRespostas": this.state.arrayRespostas,
+      "linguagemProva": this.state.linguagemEscolhida
+    }
     this.setState({
       modalIniciarProva: false,
       renderProva: false,
       modalFinalizarProva: true,
       statusProva: await this.provaService
-        .enviarRespostasDaProva(this.state.idProva, this.state.arrayRespostas)
+        .enviarRespostasDaProva(this.state.idProva, prova)
     })
   }
 
@@ -272,9 +277,24 @@ export class ResolverProvaScreen extends Component {
           <div className="container-tela">
             <div className="container-titulo">
               <div className="content-titulo">
-                <span className="titulo-crie">
-                  Boa prova {this.state.prova.nomeCandidato}
-                </span>
+                <div className="titulo-e-linguagem">
+                  <span className="titulo-crie">
+                    Boa prova {this.state.prova.nomeCandidato}
+                  </span>
+                  <div className="select-resolver-prova">
+                    <span>
+                      Selecione a especificidade/linguagem que deseje fazer a prova
+                    </span>
+                    <Select
+                      questoesWidth="width-resolver-prova"
+                      placeholder="Selecione a linguagem"
+                      name="linguagemEscolhida"
+                      value={this.state.linguagemEscolhida}
+                      onChange={this.handleChange}
+                      object={this.state.especificidades}
+                    />
+                  </div>
+                </div>
                 <div className="tempo">
                   {this.state.count} <span>Minutos</span>
                 </div>
