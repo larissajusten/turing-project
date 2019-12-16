@@ -5,7 +5,6 @@ import br.com.cwi.crescer.api.controller.responses.RespostaParaDashboardResponse
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.services.dashboard.BuscarQuestoesDissertativasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService;
 import br.com.cwi.crescer.api.services.dashboard.BuscarQuestoesTecnicasPorEspecificidadeAgrupadasPorNotaENivelDeDificuldadeService;
-import br.com.cwi.crescer.api.services.prova.BuscarProvasRanqueadasService;
 import br.com.cwi.crescer.api.services.respostaprova.RetornaErrosEAcertosMultiplaEscolhaService;
 import br.com.cwi.crescer.api.services.respostaprova.RetornaLinguagensDoUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +25,6 @@ public class DashboardController {
 
     @Autowired
     private RetornaErrosEAcertosMultiplaEscolhaService retornaErrosEAcertosMultiplaEscolhaService;
-
-    @Autowired
-    private BuscarProvasRanqueadasService buscarProvasRanqueadasService;
 
     @Autowired
     private RetornaLinguagensDoUsuarioService retornaLinguagensDoUsuarioService;

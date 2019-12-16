@@ -1,5 +1,6 @@
 package br.com.cwi.crescer.api.controller.prova;
 
+import br.com.cwi.crescer.api.controller.requests.prova.CandidatoRequest;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaCrescerRequest;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRespondidaRequest;
@@ -29,6 +30,9 @@ public class ProvaController {
 
     @Autowired
     private IniciarTempoDaProvaService iniciarTempoDaProvaService;
+
+    @Autowired
+    private IniciarTempoDaProvaCrescerService iniciarTempoDaProvaCrescerService;
 
     @Autowired
     private FinalizarProvaService finalizarProvaService;
@@ -64,6 +68,12 @@ public class ProvaController {
     @PutMapping("/{id-prova}/iniciar")
     public void iniciarTempoDaProva(@PathVariable("id-prova") Long idProva) {
         iniciarTempoDaProvaService.iniciar(idProva);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id-prova}/iniciar-crescer")
+    public void iniciarTempoDaProva(@PathVariable("id-prova") Long idProva, @RequestBody CandidatoRequest request) {
+        iniciarTempoDaProvaCrescerService.iniciar(idProva, request);
     }
 
     @ResponseStatus(HttpStatus.OK)
