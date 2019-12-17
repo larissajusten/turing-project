@@ -20,8 +20,8 @@ public class EmailController {
         enviarEmailService.enviar(emailCandidato);
     }
 
-    @PostMapping("crescer/{email-responsavel}/{numero-de-provas}")
-    public void enviarEmailParaCrescer(@PathVariable("email-candidato") String emailResponsavel, @PathVariable("numero-de-provas") int numeroDeProvas) {
-        enviarEmailCrescerService.enviar(emailResponsavel, numeroDeProvas);
+    @PostMapping("crescer/{email-responsavel}")
+    public void enviarEmailParaCrescer(@PathVariable("email-responsavel") String emailResponsavel) {
+        enviarEmailCrescerService.enviar(emailResponsavel);
     }
 }
