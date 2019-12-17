@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
-import './resolverProva.style.css';
-import { BuscarProvaService,
-          ProvaService,
-          DominioService } from '../../services/'
-import { ProvaModal,
-        RespondeQuestaoUnicaResposta,
-        RespondeQuestaoMultiplasRespostas,
-        BotaoPrincipal,
-        Notificacao, Select } from '../../component/'
+import './resolverProva.style.css'
+import {
+  BuscarProvaService,
+  ProvaService,
+  DominioService
+} from '../../services/'
+import {
+  ProvaModal,
+  RespondeQuestaoUnicaResposta,
+  RespondeQuestaoMultiplasRespostas,
+  BotaoPrincipal,
+  Notificacao,
+  Select
+} from '../../component/'
 
 const objetoResposta = { tipoDeQuestao: '', idQuestao: '', resposta: '' }
 
@@ -46,15 +51,22 @@ export class ResolverProvaScreen extends Component {
 
   async componentDidMount() {
     try {
-      let prova = await this.buscarProvaService.retornaProvaPorToken(this.state.token)
+      let prova = await this.buscarProvaService.retornaProvaPorToken(
+        this.state.token
+      )
       let tiposDeQuestoes = await this.dominioService.retornarTipoDeQuestao()
       let especificidades = await this.dominioService.retornarEspecificidades()
-      document.addEventListener(visibilityChange, this.handleVisibilityChange, false)
-      this.setState({
-        idProva: prova.id,
-        prova,
-        tiposDeQuestoes,
-        especificidades
+      document.addEventListener(
+        visibilityChange,
+        this.handleVisibilityChange,
+        false
+      )
+      this.setState(
+        {
+          idProva: prova.id,
+          prova,
+          tiposDeQuestoes,
+          especificidades
         },
         () => {
           const quantidadeObjetos =
@@ -91,12 +103,12 @@ export class ResolverProvaScreen extends Component {
     }
   }
 
-  handleChange = (event) => {
-		const { name, value } = event.target
-		this.setState({
-			[name]: value
-		})
-	}
+  handleChange = event => {
+    const { name, value } = event.target
+    this.setState({
+      [name]: value
+    })
+  }
 
   componentWillMount() {
     document.removeEventListener(visibilityChange, this.handleVisibilityChange)
@@ -180,15 +192,17 @@ export class ResolverProvaScreen extends Component {
   handleClickEnviarProva = async event => {
     event.preventDefault()
     let prova = {
-      "arrayRespostas": this.state.arrayRespostas,
-      "linguagemProva": this.state.linguagemEscolhida
+      arrayRespostas: this.state.arrayRespostas,
+      linguagemProva: this.state.linguagemEscolhida
     }
     this.setState({
       modalIniciarProva: false,
       renderProva: false,
       modalFinalizarProva: true,
-      statusProva: await this.provaService
-        .enviarRespostasDaProva(this.state.idProva, prova)
+      statusProva: await this.provaService.enviarRespostasDaProva(
+        this.state.idProva,
+        prova
+      )
     })
   }
 
@@ -283,7 +297,8 @@ export class ResolverProvaScreen extends Component {
                   </span>
                   <div className="select-resolver-prova">
                     <span>
-                      Selecione a especificidade/linguagem que deseje fazer a prova
+                      Selecione a especificidade/linguagem que deseje fazer a
+                      prova
                     </span>
                     <Select
                       questoesWidth="width-resolver-prova"
@@ -317,7 +332,7 @@ export class ResolverProvaScreen extends Component {
     )
   }
 
-  renderModalIniciar() {
+  renderModalIniciar = () => {
     return (
       <>
         <ProvaModal
@@ -325,7 +340,7 @@ export class ResolverProvaScreen extends Component {
           nomeBotao="COMEÇAR"
           subtitulo={`Lembre-se, é proibido sair da aba da prova depois do seu inicio, 
           caso saia, o usuario sera desclassificado automaticamente.
-           Você possui minutos para fazer a prova.`}
+           Você possui ${this.state.count || '0'} minutos para fazer a prova.`}
           comBotao={true}
           onClick={this.handleClickIniciarProva}
         />
