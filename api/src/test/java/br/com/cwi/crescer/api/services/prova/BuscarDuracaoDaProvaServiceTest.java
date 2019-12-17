@@ -39,6 +39,6 @@ public class BuscarDuracaoDaProvaServiceTest {
 
         buscarDuracaoDaProvaService.buscar(prova.getId());
 
-        Assert.assertEquals(buscarDuracaoDaProvaService.buscar(prova.getId()), prova.getTempoDeDuracaoDaProva());
+        Assert.assertEquals(buscarDuracaoDaProvaService.buscar(prova.getId()), prova.getTempoDeDuracaoDaProva(), 0.1);
     }
 }
