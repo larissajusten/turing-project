@@ -1,4 +1,4 @@
-import { BaseService } from '../_base/base.service'
+import { BaseService } from '../../_base/base.service'
 
 export class IncluirQuestoesProvaCrescerService extends BaseService {
   async incluirDissertativas(questoesCrescer) {

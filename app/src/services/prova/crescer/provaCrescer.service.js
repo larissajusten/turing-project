@@ -1,4 +1,4 @@
-import { BaseService } from '../_base/base.service'
+import { BaseService } from '../../_base/base.service'
 
 export class ProvaCrescerService extends BaseService {
 	async criarProvaCrescer(provaCrescer) {
