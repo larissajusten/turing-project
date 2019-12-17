@@ -2,6 +2,7 @@ import { BaseService } from '../_base/base.service'
 
 export class ProvaService extends BaseService {
   async criarProva(prova) {
+		debugger
 		const response = await super.post(`prova`, prova)
 		return response.data
 	}

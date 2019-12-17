@@ -18,7 +18,7 @@ export class CadastrarProvaScreen extends Component {
       duracaoDaProva: '',
       tempoParaIniciarProva: '',
       idProva: '',
-      tipoProva: '',
+      tipoProvaEscolhida: '',
       deveRenderizarQuestoes: false,
       deveRedirecionarParaVisualizarProva: false,
       deveRedirecionarParaDashboard: false,
@@ -100,6 +100,7 @@ export class CadastrarProvaScreen extends Component {
     const prova = {
       "email": this.state.emailDoCandidato,
       "nomeCandidato": this.state.nomeDoCandidato,
+      "tipo": this.state.tipoProvaEscolhida,
       "tempoDeDuracaoDaProva": this.state.duracaoDaProva,
       "tempoParaInicioProva": this.state.tempoParaIniciarProva
     }
@@ -242,8 +243,14 @@ export class CadastrarProvaScreen extends Component {
 
   renderInputsCrescer() {
     return this.arrayDeParamsDosInputsCrescer.map((item, key) => {
-      return <Input key={key} name={item.name} value={this.state[item.value]} maxTam={item.tam} type={item.tam} label={item.label}
-                  placeholder="" onChange={this.handleChange}/>
+      return <Input key={key}
+                    name={item.name}
+                    value={this.state[item.value]}
+                    maxTam={item.tam}
+                    type={item.type}
+                    label={item.label}
+                    placeholder="" 
+                    onChange={this.handleChange}/>
     })
   }
 
@@ -270,8 +277,8 @@ export class CadastrarProvaScreen extends Component {
           <Select
 							questoesWidth="width-prova"
 							placeholder="Selecione o tipo de prova"
-							name="tipoProva"
-							value={this.state.tipoProva}
+							name="tipoProvaEscolhida"
+							value={this.state.tipoProvaEscolhida}
 							onChange={this.handleChange}
 							object={this.state.tiposDeProvas}
 						/>
