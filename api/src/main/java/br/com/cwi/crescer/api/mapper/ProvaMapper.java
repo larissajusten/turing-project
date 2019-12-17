@@ -55,6 +55,7 @@ public class ProvaMapper {
         provaParaCorrecaoResponse.setDataCriacao(prova.getDataCriacao());
         provaParaCorrecaoResponse.setEmailCandidato(prova.getEmailCandidato());
         provaParaCorrecaoResponse.setId(prova.getId());
+        provaParaCorrecaoResponse.setTipoDeProva(prova.getTipo());
         provaParaCorrecaoResponse.setNomeCandidato(prova.getNomeCandidato());
         provaParaCorrecaoResponse.setTempoDeDuracaoDaProva(prova.getTempoDeDuracaoDaProva());
 
