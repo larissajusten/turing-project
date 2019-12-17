@@ -28,7 +28,7 @@
             <div th:text="'Aqui estão as ' + ${quantidade} + ' provas que você gerou. Cada link representa uma prova para um candidato.' " ></div>
             <div th:if="${tokens != null}">
                 <br>
-                  <a th:each="token : ${tokens}" th:href="'http://localhost:3000/resolver-prova/' + ${token} ">Link da prova <br></a>
+                  <a th:each="token : ${tokens}" th:href="'http://localhost:3000/resolver-prova/' + ${token} "><span th:text="'Prova ' + ${tokenStat.index+1} + ': '"></span>Link da prova <br></a>
             </div>
         </td>
     </tr>

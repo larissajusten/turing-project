@@ -81,6 +81,7 @@ public class BuscarProvaPorIdParaCorrecaoService {
         response.setNomeCandidato(prova.getNomeCandidato());
         response.setNumeroDeQuestoes(quantasQuestoesParaCorrecao);
         response.setEspecificidades(especificidadeSemRepetidas);
+        response.setTipoDeProva(prova.getTipo());
 
         return response;
     }

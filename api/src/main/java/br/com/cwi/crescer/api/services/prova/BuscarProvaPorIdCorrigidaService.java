@@ -52,6 +52,7 @@ public class BuscarProvaPorIdCorrigidaService {
 
         provaCorrigidaResponse.setStatusProva(prova.getStatus());
         provaCorrigidaResponse.setNota(prova.getNota());
+        provaCorrigidaResponse.setTipoDeProva(prova.getTipo());
 
         provaCorrigidaResponse.setEmailCandidato(prova.getEmailCandidato());
         provaCorrigidaResponse.setNomeCandidato(prova.getNomeCandidato());

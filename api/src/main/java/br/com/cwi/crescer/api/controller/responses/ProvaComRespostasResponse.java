@@ -1,6 +1,7 @@
 package br.com.cwi.crescer.api.controller.responses;
 
 import br.com.cwi.crescer.api.domain.enums.Especificidade;
+import br.com.cwi.crescer.api.domain.enums.TipoDeProva;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,8 @@ public class ProvaComRespostasResponse {
     private Long id;
 
     private String nomeCandidato;
+
+    private TipoDeProva tipoDeProva;
 
     private List<QuestaoDissertativaParaCorrecaoResponse> questoesDissertativas;
 
