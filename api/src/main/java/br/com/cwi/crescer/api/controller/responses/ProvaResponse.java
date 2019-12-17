@@ -1,6 +1,7 @@
 package br.com.cwi.crescer.api.controller.responses;
 
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
+import br.com.cwi.crescer.api.domain.enums.TipoDeProva;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,6 +31,8 @@ public class ProvaResponse {
     private String emailCandidato;
 
     private StatusProva status;
+
+    private TipoDeProva tipo;
 
     private List<QuestaoMultiplaEscolhaResponse> questoesDeMultiplaEscolha;
 
