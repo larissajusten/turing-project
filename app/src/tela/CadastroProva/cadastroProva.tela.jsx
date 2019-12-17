@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, Notificacao, Select } from '../../component/'
-import { DominioService, ProvaService, IncluirQuestoesProvaService, EmailService } from '../../services/'
+import { DominioService,
+        ProvaService,
+        IncluirQuestoesProvaService,
+        EmailService,
+        ProvaCrescerService,
+        IncluirQuestoesProvaCrescerService } from '../../services/'
 import './cadastroProva.style.css'
 
 export class CadastrarProvaScreen extends Component {
@@ -46,7 +51,9 @@ export class CadastrarProvaScreen extends Component {
 
     this.dominioService = new DominioService()
     this.provaService = new ProvaService()
+    this.provaCrescerService = new ProvaCrescerService()
     this.incluirQuestoesProvaService = new IncluirQuestoesProvaService()
+    this.incluirQuestoesProvaCrescerService = new IncluirQuestoesProvaCrescerService()
     this.emailService = new EmailService()
   }
 
@@ -85,6 +92,7 @@ export class CadastrarProvaScreen extends Component {
       arrayStates: array
     })
   }
+
   catchErrorENotifica(error){
     if (error.response.data.errors) {
       error.response.data.errors.map(message => {
@@ -130,7 +138,7 @@ export class CadastrarProvaScreen extends Component {
     }
 
     try {
-      let idProvaSalva = await this.provaService.criarProvaCrescer(prova)
+      let idProvaSalva = await this.provaCrescerService.criarProvaCrescer(prova)
       this.setState({
         idProva: idProvaSalva,
         deveRenderizarQuestoes: true
@@ -144,6 +152,33 @@ export class CadastrarProvaScreen extends Component {
 
   handleClickEnviarProva = async (event) => {
     event.preventDefault()
+    try {
+      Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
+      await this.emailService.enviarEmail(this.state.emailDoCandidato)
+      this.setState({
+        deveRedirecionarParaDashboard: true
+      })
+    }
+    catch (error) {
+      this.catchErrorENotifica(error)
+    }
+  }
+
+  handleClickEnviarProvaCrescer = async (event) => {
+    event.preventDefault()
+    for(let i=0; i<this.state.numeroDeProvas; i++){
+      try {
+        Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
+        await this.emailService.enviarEmail(this.state.emailDoCriador)
+        i++
+        this.setState({
+          deveRedirecionarParaDashboard: true
+        })
+      }
+      catch (error) {
+        this.catchErrorENotifica(error)
+      }
+    }
     try {
       Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
       await this.emailService.enviarEmail(this.state.emailDoCandidato)
@@ -208,14 +243,37 @@ export class CadastrarProvaScreen extends Component {
     }
   }
 
-  handleClickEnviarQuestao = async (id) => {
-
-    const questao = {
-      "especificidade": this.state.arrayStates[id].especificidade,
-      "nivelDeDificuldade": this.state.arrayStates[id].nivel,
-      "quantidadeDeQuestoes": this.state.arrayStates[id].quantidade
+  enviarQuestaoMultiplaEscolhaCrescer = async (questao) => {
+    try {
+      await this.incluirQuestoesProvaCrescerService.incluirMultiplaEscolha(questao)
+      Notificacao('Sucesso', this.mensagemSucessoNotificacao, 'success')
     }
+    catch (error) {
+      this.catchErrorENotifica(error)
+    }
+  }
 
+  enviarQuestaoTecnicaCrescer = async (questao) => {
+    try {
+      await this.incluirQuestoesProvaCrescerService.incluirTecnicas(questao)
+      Notificacao('Sucesso', this.mensagemSucessoNotificacao, 'success')
+    }
+    catch (error) {
+      this.catchErrorENotifica(error)
+    }
+  }
+
+  enviarQuestaoDissertativaCrescer = async (questao) => {
+    try {
+      await this.incluirQuestoesProvaCrescerService.incluirDissertativas(questao)
+      Notificacao('Sucesso', this.mensagemSucessoNotificacao, 'success')
+    }
+    catch (error) {
+      this.catchErrorENotifica(error)
+    }
+  }
+
+  enviarQuestoesDaProva(id, questao) {
     if (this.state.arrayStates[id].tipo === this.state.tipos[0]) {
       this.enviarQuestaoDissertativa(questao)
     } else if (this.state.arrayStates[id].tipo === this.state.tipos[1]) {
@@ -224,6 +282,34 @@ export class CadastrarProvaScreen extends Component {
       this.enviarQuestaoTecnica(questao)
     } else {
       Notificacao('Falha', 'Tipo de questão não selecionado', 'warning')
+    }
+  }
+
+  enviarQuestoesDoCrescer(id, questao) {
+    if (this.state.arrayStates[id].tipo === this.state.tipos[0]) {
+      this.enviarQuestaoDissertativaCrescer(questao)
+    } else if (this.state.arrayStates[id].tipo === this.state.tipos[1]) {
+      this.enviarQuestaoMultiplaEscolhaCrescer(questao)
+    } else if (this.state.arrayStates[id].tipo === this.state.tipos[2]) {
+      this.enviarQuestaoTecnicaCrescer(questao)
+    } else {
+      Notificacao('Falha', 'Tipo de questão não selecionado', 'warning')
+    }
+  }
+
+  handleClickEnviarQuestao = async (id) => {
+
+    const questao = {
+      "especificidade": this.state.arrayStates[id].especificidade,
+      "nivelDeDificuldade": this.state.arrayStates[id].nivel,
+      "quantidadeDeQuestoes": this.state.arrayStates[id].quantidade
+    }
+
+    
+    if(this.state.tipoProvaEscolhida === this.state.tiposDeProvas[0]) {
+      this.enviarQuestoesDaProva(id, questao)
+    }else {
+      this.enviarQuestoesDoCrescer(id, questao)
     }
   }
 
@@ -253,6 +339,16 @@ export class CadastrarProvaScreen extends Component {
     )
   }
 
+  verificaTipoParaBotoes() {
+    if(this.state.tipoProvaEscolhida === this.state.tiposDeProvas[0]) {
+      return this.renderBotoesEscolhaDeQuestoes()
+    }else {
+      return <div className="container-botao container-botao-prova">
+              <BotaoPrincipal nome="Enviar por e-mail" onClick={this.handleClickEnviarProvaCrescer}/>
+            </div>
+    }
+  }
+
   renderEscolhaDeQuestoes() {
     return (
       <>
@@ -260,7 +356,7 @@ export class CadastrarProvaScreen extends Component {
           <span className="titulo-crie">Adicione questões a sua prova</span>
         </div>
         {this.renderArrayQuestoes()}
-        {this.renderBotoesEscolhaDeQuestoes()}
+        {this.verificaTipoParaBotoes()}
       </>
     )
   }
