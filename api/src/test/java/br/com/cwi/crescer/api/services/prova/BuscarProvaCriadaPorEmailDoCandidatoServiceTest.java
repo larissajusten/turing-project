@@ -29,11 +29,10 @@ public class BuscarProvaCriadaPorEmailDoCandidatoServiceTest {
         String email = "mail@mail.com";
 
         Prova prova = new Prova();
-        prova.setStatus(StatusProva.ATIVA);
+        prova.setStatus(StatusProva.CRIADA);
 
-        Mockito.when(repository.findByEmailCandidatoEqualsAndStatusEquals(email, StatusProva.ATIVA))
+        Mockito.when(repository.findByEmailCandidatoEqualsAndStatusEquals(email, StatusProva.CRIADA))
                 .thenReturn(Optional.of(prova));
-
 
         Assert.assertEquals(prova, buscarProvaCriadaPorEmailDoCandidatoService.buscar(email));
 
@@ -46,10 +45,6 @@ public class BuscarProvaCriadaPorEmailDoCandidatoServiceTest {
 
         Prova prova = new Prova();
         prova.setStatus(StatusProva.CORRIGIDA);
-
-        Mockito.when(repository.findByEmailCandidatoEqualsAndStatusEquals(email, StatusProva.ATIVA))
-                .thenReturn(Optional.empty());
-
 
         buscarProvaCriadaPorEmailDoCandidatoService.buscar(email);
 
