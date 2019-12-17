@@ -166,22 +166,9 @@ export class CadastrarProvaScreen extends Component {
 
   handleClickEnviarProvaCrescer = async (event) => {
     event.preventDefault()
-    for(let i=0; i<this.state.numeroDeProvas; i++){
-      try {
-        Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
-        await this.emailService.enviarEmail(this.state.emailDoCriador)
-        i++
-        this.setState({
-          deveRedirecionarParaDashboard: true
-        })
-      }
-      catch (error) {
-        this.catchErrorENotifica(error)
-      }
-    }
     try {
       Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
-      await this.emailService.enviarEmail(this.state.emailDoCandidato)
+      await this.emailService.enviarEmailCrescer(this.state.emailDoCriador)
       this.setState({
         deveRedirecionarParaDashboard: true
       })
