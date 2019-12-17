@@ -5,10 +5,17 @@ export class ProvaService extends BaseService {
 		const response = await super.post(`prova`, prova)
 		return response.data
 	}
+
+	async criarProvaCrescer(provaCrescer) {
+		await super.post(`prova/crescer`, provaCrescer)
+	}
 	
 	async iniciarProva(idProva) {
-		const response =  await super.put(`prova/${idProva}/iniciar`)
-		return response.data
+		await super.put(`prova/${idProva}/iniciar`)
+	}
+
+	async iniciarProvaCrescer(idProvaCrescer) {
+		await super.put(`prova/${idProvaCrescer}/crescer`)
 	}
 	
 	async enviarRespostasDaProva(idProva, prova) {

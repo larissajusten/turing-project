@@ -129,7 +129,6 @@ export class DashboardScreen extends Component {
 					<h1 className="subtitulo-especificidade">
 						Para qual especificidade deseja visualizar as estatisticas?
 					</h1>
-					<div className="input-principal">
 						<Select
 							questoesWidth="width-select"
 							name="especificidadeEscolhida"
@@ -138,7 +137,6 @@ export class DashboardScreen extends Component {
 							object={this.state.especificidades}
 							placeholder="Selecione a especificidade"
 						/>
-					</div>
 				</div>
 			);
 		} else {
@@ -160,7 +158,7 @@ export class DashboardScreen extends Component {
 		}
 		return (
 			<div className="container-tela">
-				<h1 className="titulo">Dashboard</h1>
+				<h1>Dashboard</h1>
 				{this.renderGraficoTecnologias()}
 				{this.renderContainerComponent()}
 				{this.state.especificidadeEscolhida && this.renderGraficos()}

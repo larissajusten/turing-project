@@ -18,7 +18,7 @@ public class ProvaParaCorrecaoResponse {
 
     private LocalDateTime dataCriacao;
 
-    private int tempoDeDuracaoDaProva;
+    private double tempoDeDuracaoDaProva;
 
     private String nomeCandidato;
 

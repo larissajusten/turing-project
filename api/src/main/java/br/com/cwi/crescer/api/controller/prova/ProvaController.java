@@ -60,7 +60,7 @@ public class ProvaController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id-prova}/duracao")
-    public int retornaDuracaoDaProva(@PathVariable("id-prova") Long idProva) {
+    public double retornaDuracaoDaProva(@PathVariable("id-prova") Long idProva) {
         return buscarDuracaoDaProvaService.buscar(idProva);
     }
 
@@ -71,7 +71,7 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/iniciar-crescer")
+    @PutMapping("/{id-prova}/crescer")
     public void iniciarTempoDaProva(@PathVariable("id-prova") Long idProva, @RequestBody CandidatoRequest request) {
         iniciarTempoDaProvaCrescerService.iniciar(idProva, request);
     }

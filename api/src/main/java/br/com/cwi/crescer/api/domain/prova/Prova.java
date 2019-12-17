@@ -31,11 +31,11 @@ public class Prova {
     @Column(name = "EMAIL_CANDIDATO")
     private String emailCandidato;
 
-    @Column(name = "DURACAO")
-    private int tempoDeDuracaoDaProva;
+    @Column(precision = 2, scale = 10, name = "DURACAO", columnDefinition = "NUMBER (2, 10)")
+    private double tempoDeDuracaoDaProva;
 
-    @Column(name = "TEMPO_INICIO")
-    private int tempoParaInicioProva;
+    @Column(precision = 2, scale = 10, name = "TEMPO_INICIO", columnDefinition = "NUMBER (2, 10)")
+    private double tempoParaInicioProva;
 
     @Enumerated(EnumType.STRING)
     private StatusProva status;

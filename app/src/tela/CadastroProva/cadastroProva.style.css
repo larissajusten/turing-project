@@ -18,6 +18,11 @@
   padding: 10px 35px;
 }
 
+.width-prova {
+  width: 32%;
+  margin-left: 1%;
+}
+
 .container-botao-prova {
   margin: 0;
   display: flex;

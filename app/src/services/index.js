@@ -18,3 +18,7 @@ export { ProvaService } from './prova/prova.service'
 export { BuscarProvaService } from './prova/buscarProva.service'
 export { IncluirQuestoesProvaService } from './prova/incluirQuestoesProva.service'
 export { RemoverQuestaoProvaService } from './prova/removerQuestaoProva.service'
+
+/* Crescer */
+export { ProvaCrescerService } from './prova/crescer/provaCrescer.service'
+export { IncluirQuestoesProvaCrescerService } from './prova/crescer/incluirQuestoesProvaCrescer.service'

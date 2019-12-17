@@ -118,8 +118,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
           maxTam="300"
           type="text"
           label={`Alternativa ${item.label}`}
-          placeholder=""
-        />
+          placeholder=""/>
       )
     })
   }
@@ -135,8 +134,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
             value={this.state[item.name]}
             onChange={this.handleChange}
             object={item.object}
-            placeholder={`Selecione ${item.label} ${item.name}`}
-          />
+            placeholder={`Selecione ${item.label} ${item.name}`}/>
         </div>
       )
     })
@@ -150,8 +148,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
             type="radio"
             name="resposta"
             value={item.value}
-            onClick={this.handleChange}
-          />
+            onClick={this.handleChange}/>
           {item.value}
         </div>
       )
@@ -173,8 +170,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
               name="questao"
               value={this.state.questao}
               handleChange={this.handleChange}
-              maxLength="500"
-            />
+              maxLength="500"/>
           </div>
 
           {this.renderInputs()}
@@ -190,8 +186,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
         <div className="container-botao">
           <BotaoPrincipal
             nome="ENVIAR"
-            onClick={this.handleClickSalvarQuestao}
-          />
+            onClick={this.handleClickSalvarQuestao}/>
         </div>
       </>
     )
