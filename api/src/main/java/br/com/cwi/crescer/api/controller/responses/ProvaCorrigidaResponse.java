@@ -25,9 +25,9 @@ public class ProvaCorrigidaResponse {
 
     private StatusProva statusProva;
 
-    private int tempoDeDuracaoDaProva;
+    private double tempoDeDuracaoDaProva;
 
-    private int tempoParaInicioProva;
+    private double tempoParaInicioProva;
 
     private LocalDateTime dataCriacao;
 

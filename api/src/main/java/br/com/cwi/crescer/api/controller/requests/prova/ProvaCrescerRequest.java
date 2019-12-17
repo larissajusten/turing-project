@@ -18,8 +18,6 @@ public class ProvaCrescerRequest {
 
     private TipoDeProva tipo;
 
-    private StatusProva statusProva;
-
     @Positive
     @Min(value = 0, message = "O tempo de duração da prova não pode ser vazio")
     private int tempoDeDuracaoDaProva;

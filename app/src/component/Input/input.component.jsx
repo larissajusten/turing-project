@@ -27,6 +27,7 @@ export class Input extends Component {
 					maxLength={this.props.maxTam}
 					min={this.props.minNum}
 					max={this.props.maxNum}
+					step={this.props.step}
 					value={this.props.value}
 					onChange={this.escolherOnChange()}
 					required

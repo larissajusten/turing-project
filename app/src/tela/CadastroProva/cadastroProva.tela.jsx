@@ -1,16 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
-import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, Notificacao } from '../../component/'
+import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, Notificacao, Select } from '../../component/'
 import { DominioService, ProvaService, IncluirQuestoesProvaService, EmailService } from '../../services/'
 import './cadastroProva.style.css'
-
-const mensagemSucessoNotificacao = 'Questões adicionadas com sucesso'
-const objeto = { tipo: '', especificidade: '', nivel: '', quantidade: '' }
-
-const arrayDeParamsDoInputs = [{ value: "nomeDoCandidato", name: "nomeDoCandidato", tam: "50", type: "text", label: "Digite o nome do candidato"},
-  { value: "emailDoCandidato", name: "emailDoCandidato", tam: "50", type: "text", label: "Digite o email do candidato"},
-  { value: "duracaoDaProva", name: "duracaoDaProva", tam: "10", type: "number", label: "Tempo de duração da prova (minutos)"},
-  { value: "tempoParaIniciarProva", name: "tempoParaIniciarProva", tam: "8760", type: "number", label: "Tempo para iniciar a prova (horas)"}]
 
 export class CadastrarProvaScreen extends Component {
 
@@ -20,16 +12,36 @@ export class CadastrarProvaScreen extends Component {
       tipos: [],
       especificidades: [],
       niveis: [],
+      tiposDeProvas: [],
       nomeDoCandidato: '',
       emailDoCandidato: '',
       duracaoDaProva: '',
       tempoParaIniciarProva: '',
       idProva: '',
+      tipoProva: '',
       deveRenderizarQuestoes: false,
       deveRedirecionarParaVisualizarProva: false,
-      arrayStates: [objeto],
-      deveRedirecionarParaDashboard: false
+      deveRedirecionarParaDashboard: false,
+      arrayStates: [this.objeto]
     }
+    this.mensagemSucessoNotificacao = 'Questões adicionadas com sucesso'
+
+    this.objeto = { tipo: '', especificidade: '', nivel: '', quantidade: '' }
+
+    this.arrayDeParamsDosInputs = [
+      { value: "nomeDoCandidato", name: "nomeDoCandidato", tam: "50", maxNum:"", float: "", type: "text", label: "Digite o nome do candidato"},
+      { value: "emailDoCandidato", name: "emailDoCandidato", tam: "50", maxNum:"", float: "", type: "text", label: "Digite o email do candidato"},
+      { value: "duracaoDaProva", name: "duracaoDaProva", tam: "6", maxNum:"12", float: "0.01", type: "number", label: "Tempo de duração da prova (minutos)"},
+      { value: "tempoParaIniciarProva", name: "tempoParaIniciarProva", tam: "6", maxNum:"8760", float: "0.01", type: "number", label: "Tempo para iniciar a prova (horas)"}
+    ]
+
+    this.arrayDeParamsDosInputsCrescer = [
+      { value: "emailDoCriador", name: "emailDoCriador", tam: "50", type: "text", label: "Digite o seu email"},
+      { value: "numeroDeProvas", name: "numeroDeProvas", tam: "2", type: "number", label: "Digite o email do candidato"},
+      { value: "duracaoDaProva", name: "duracaoDaProva", tam: "10", type: "number", label: "Tempo de duração da prova (minutos)"},
+      { value: "tempoParaIniciarProva", name: "tempoParaIniciarProva", tam: "8760", type: "number", label: "Tempo para iniciar a prova (horas)"}
+    ]
+
     this.dominioService = new DominioService()
     this.provaService = new ProvaService()
     this.incluirQuestoesProvaService = new IncluirQuestoesProvaService()
@@ -40,13 +52,17 @@ export class CadastrarProvaScreen extends Component {
     let tipos = await this.dominioService.retornarTipoDeQuestao()
     let especificidades = await this.dominioService.retornarEspecificidades()
     let niveis = await this.dominioService.retornarNiveisDeDificuldade()
+    let tiposDeProvas = await this.dominioService.retornarTipoDeProva()
+
     let arr = Array.from({length:(this.state.arrayStates.length+2)}, () => ({ }))
-    let arrayStates = arr.map(() => ({ ...objeto }))
+    let arrayStates = arr.map(() => ({ ...this.objeto }))
+
     this.setState({
       tipos,
       especificidades,
       arrayStates,
-      niveis
+      niveis,
+      tiposDeProvas
     })
   }
 
@@ -101,7 +117,6 @@ export class CadastrarProvaScreen extends Component {
     }
   }
 
-
   handleClickEnviarProva = async (event) => {
     event.preventDefault()
     try {
@@ -141,7 +156,7 @@ export class CadastrarProvaScreen extends Component {
   enviarQuestaoDissertativa = async (questao) => {
     try {
       await this.incluirQuestoesProvaService.incluirDissertativas(this.state.idProva, questao)
-      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+      Notificacao('Sucesso', this.mensagemSucessoNotificacao, 'success')
     }
     catch (error) {
       this.catchErrorENotifica(error)
@@ -151,7 +166,7 @@ export class CadastrarProvaScreen extends Component {
   enviarQuestaoMultiplaEscolha = async (questao) => {
     try {
       await this.incluirQuestoesProvaService.incluirMultiplaEscolha(this.state.idProva, questao)
-      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+      Notificacao('Sucesso', this.mensagemSucessoNotificacao, 'success')
     }
     catch (error) {
       this.catchErrorENotifica(error)
@@ -161,7 +176,7 @@ export class CadastrarProvaScreen extends Component {
   enviarQuestaoTecnica = async (questao) => {
     try {
       await this.incluirQuestoesProvaService.incluirTecnicas(this.state.idProva, questao)
-      Notificacao('Sucesso', mensagemSucessoNotificacao, 'success')
+      Notificacao('Sucesso', this.mensagemSucessoNotificacao, 'success')
     }
     catch (error) {
       this.catchErrorENotifica(error)
@@ -225,18 +240,41 @@ export class CadastrarProvaScreen extends Component {
     )
   }
 
-  renderInputs() {
-    return arrayDeParamsDoInputs.map((item, key) => {
+  renderInputsCrescer() {
+    return this.arrayDeParamsDosInputsCrescer.map((item, key) => {
       return <Input key={key} name={item.name} value={this.state[item.value]} maxTam={item.tam} type={item.tam} label={item.label}
                   placeholder="" onChange={this.handleChange}/>
     })
   }
 
-  renderInputsProva(){
+  renderInputs() {
+    return this.arrayDeParamsDosInputs.map((item, key) => {
+      return <Input key={key}
+                    name={item.name}
+                    value={this.state[item.value]}
+                    maxTam={item.tam}
+                    maxNum={item.maxNum}
+                    step={item.float}
+                    type={item.type}
+                    label={item.label}
+                    placeholder=""
+                    onChange={this.handleChange}/>
+    })
+  }
+
+  renderInputsBaseProva(){
     return (
       <>
-        <div className="container-titulo">
+        <div className="container-titulo titulo-prova">
           <span className="titulo-crie">Crie sua prova</span>
+          <Select
+							questoesWidth="width-prova"
+							placeholder="Selecione o tipo de prova"
+							name="tipoProva"
+							value={this.state.tipoProva}
+							onChange={this.handleChange}
+							object={this.state.tiposDeProvas}
+						/>
         </div>
         {this.renderInputs()}
         <div className="container-botao">
@@ -261,7 +299,7 @@ export class CadastrarProvaScreen extends Component {
             ?
             this.renderEscolhaDeQuestoes()
             :
-            this.renderInputsProva()
+            this.renderInputsBaseProva()
         }
       </div>
     )

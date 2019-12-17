@@ -47,13 +47,13 @@ public class EnviarEmailCrescerService {
         Context context = new Context();
 
         String nomeCandidato = prova.getNomeCandidato();
-        int tempoIniciar = prova.getTempoParaInicioProva();
+        double tempoIniciar = prova.getTempoParaInicioProva();
 
-        LocalDateTime prazo = LocalDateTime.now().plusHours(tempoIniciar);
+        LocalDateTime prazo = LocalDateTime.now().plusHours((int)tempoIniciar);
         String dia = prazo.getDayOfMonth() + "/" + prazo.getMonthValue() + "/" + prazo.getYear();
         String hora = prazo.getHour() + ":" + prazo.getMinute() + ":" + prazo.getMinute();
 
-        int tempoDuracao = prova.getTempoDeDuracaoDaProva();
+        double tempoDuracao = prova.getTempoDeDuracaoDaProva();
         String token = jwt.generateToken(prova);
 
         context.setVariable("nomeCandidato", nomeCandidato);

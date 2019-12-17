@@ -19,9 +19,9 @@ public class ProvaResponse {
 
     private LocalDateTime dataCriacao;
 
-    private int tempoDeDuracaoDaProva;
+    private double tempoDeDuracaoDaProva;
 
-    private int tempoParaInicioProva;
+    private double tempoParaInicioProva;
 
     private boolean podeIniciar;
 

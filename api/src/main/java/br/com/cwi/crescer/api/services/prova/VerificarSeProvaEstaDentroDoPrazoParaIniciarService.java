@@ -14,7 +14,7 @@ public class VerificarSeProvaEstaDentroDoPrazoParaIniciarService {
     public boolean verificar(Prova prova) {
         LocalDateTime agora = LocalDateTime.now();
         LocalDateTime criacao = prova.getDataCriacao();
-        int horasParaIniciar = prova.getTempoParaInicioProva();
+        double horasParaIniciar = prova.getTempoParaInicioProva();
 
         if (Duration.between(criacao, agora).toHours() > horasParaIniciar) {
             prova.setStatus(StatusProva.FORA_DO_PRAZO_PARA_REALIZAR_PROVA);
