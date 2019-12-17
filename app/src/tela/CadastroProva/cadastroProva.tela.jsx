@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { Input, BotaoPrincipal, AdicionarQuestaoNaProva, Notificacao, Select } from '../../component/'
-import { DominioService, ProvaService, IncluirQuestoesProvaService, EmailService } from '../../services/'
+import { DominioService,
+        ProvaService,
+        IncluirQuestoesProvaService,
+        EmailService,
+        ProvaCrescerService,
+        IncluirQuestoesProvaCrescerService } from '../../services/'
 import './cadastroProva.style.css'
 
 export class CadastrarProvaScreen extends Component {
@@ -17,6 +22,8 @@ export class CadastrarProvaScreen extends Component {
       emailDoCandidato: '',
       duracaoDaProva: '',
       tempoParaIniciarProva: '',
+      emailDoCriador: '',
+      numeroDeProvas: '',
       idProva: '',
       tipoProvaEscolhida: '',
       deveRenderizarQuestoes: false,
@@ -36,15 +43,17 @@ export class CadastrarProvaScreen extends Component {
     ]
 
     this.arrayDeParamsDosInputsCrescer = [
-      { value: "emailDoCriador", name: "emailDoCriador", tam: "50", type: "text", label: "Digite o seu email"},
-      { value: "numeroDeProvas", name: "numeroDeProvas", tam: "2", type: "number", label: "Digite o email do candidato"},
-      { value: "duracaoDaProva", name: "duracaoDaProva", tam: "10", type: "number", label: "Tempo de duração da prova (minutos)"},
-      { value: "tempoParaIniciarProva", name: "tempoParaIniciarProva", tam: "8760", type: "number", label: "Tempo para iniciar a prova (horas)"}
+      { value: "emailDoCriador", name: "emailDoCriador", tam: "50", maxNum:"", float: "", type: "text", label: "Digite o seu email"},
+      { value: "numeroDeProvas", name: "numeroDeProvas", tam: "8", maxNum:"10000000", float: "", type: "number", label: "Digite o número de provas"},
+      { value: "duracaoDaProva", name: "duracaoDaProva", tam: "6", maxNum:"12", float: "0.01", label: "Tempo de duração da prova (minutos)"},
+      { value: "tempoParaIniciarProva", name: "tempoParaIniciarProva", tam: "6", maxNum:"8760", float: "0.01", label: "Tempo para iniciar a prova (horas)"}
     ]
 
     this.dominioService = new DominioService()
     this.provaService = new ProvaService()
+    this.provaCrescerService = new ProvaCrescerService()
     this.incluirQuestoesProvaService = new IncluirQuestoesProvaService()
+    this.incluirQuestoesProvaCrescerService = new IncluirQuestoesProvaCrescerService()
     this.emailService = new EmailService()
   }
 
@@ -118,11 +127,48 @@ export class CadastrarProvaScreen extends Component {
     }
   }
 
+  handleClickEnviarBaseCrescerProva = async (event) => {
+    event.preventDefault()
+
+    const prova = {
+      "quantidade": this.state.numeroDeProvas,
+      "tipo": this.state.tipoProvaEscolhida,
+      "tempoDeDuracaoDaProva": this.state.duracaoDaProva,
+      "tempoParaInicioProva": this.state.tempoParaIniciarProva
+    }
+
+    try {
+      let idProvaSalva = await this.provaCrescerService.criarProvaCrescer(prova)
+      this.setState({
+        idProva: idProvaSalva,
+        deveRenderizarQuestoes: true
+      })
+      Notificacao('Sucesso', 'Prova registrada com sucesso', 'success')
+    }
+    catch (error) {
+      this.catchErrorENotifica(error)
+    }
+  }
+
   handleClickEnviarProva = async (event) => {
     event.preventDefault()
     try {
       Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
       await this.emailService.enviarEmail(this.state.emailDoCandidato)
+      this.setState({
+        deveRedirecionarParaDashboard: true
+      })
+    }
+    catch (error) {
+      this.catchErrorENotifica(error)
+    }
+  }
+
+  handleClickEnviarProvaCrescer = async (event) => {
+    event.preventDefault()
+    try {
+      Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
+      await this.emailService.enviarEmailCrescer(this.state.emailDoCriador)
       this.setState({
         deveRedirecionarParaDashboard: true
       })
@@ -184,14 +230,37 @@ export class CadastrarProvaScreen extends Component {
     }
   }
 
-  handleClickEnviarQuestao = async (id) => {
-
-    const questao = {
-      "especificidade": this.state.arrayStates[id].especificidade,
-      "nivelDeDificuldade": this.state.arrayStates[id].nivel,
-      "quantidadeDeQuestoes": this.state.arrayStates[id].quantidade
+  enviarQuestaoMultiplaEscolhaCrescer = async (questao) => {
+    try {
+      await this.incluirQuestoesProvaCrescerService.incluirMultiplaEscolha(questao)
+      Notificacao('Sucesso', this.mensagemSucessoNotificacao, 'success')
     }
+    catch (error) {
+      this.catchErrorENotifica(error)
+    }
+  }
 
+  enviarQuestaoTecnicaCrescer = async (questao) => {
+    try {
+      await this.incluirQuestoesProvaCrescerService.incluirTecnicas(questao)
+      Notificacao('Sucesso', this.mensagemSucessoNotificacao, 'success')
+    }
+    catch (error) {
+      this.catchErrorENotifica(error)
+    }
+  }
+
+  enviarQuestaoDissertativaCrescer = async (questao) => {
+    try {
+      await this.incluirQuestoesProvaCrescerService.incluirDissertativas(questao)
+      Notificacao('Sucesso', this.mensagemSucessoNotificacao, 'success')
+    }
+    catch (error) {
+      this.catchErrorENotifica(error)
+    }
+  }
+
+  enviarQuestoesDaProva(id, questao) {
     if (this.state.arrayStates[id].tipo === this.state.tipos[0]) {
       this.enviarQuestaoDissertativa(questao)
     } else if (this.state.arrayStates[id].tipo === this.state.tipos[1]) {
@@ -200,6 +269,34 @@ export class CadastrarProvaScreen extends Component {
       this.enviarQuestaoTecnica(questao)
     } else {
       Notificacao('Falha', 'Tipo de questão não selecionado', 'warning')
+    }
+  }
+
+  enviarQuestoesDoCrescer(id, questao) {
+    if (this.state.arrayStates[id].tipo === this.state.tipos[0]) {
+      this.enviarQuestaoDissertativaCrescer(questao)
+    } else if (this.state.arrayStates[id].tipo === this.state.tipos[1]) {
+      this.enviarQuestaoMultiplaEscolhaCrescer(questao)
+    } else if (this.state.arrayStates[id].tipo === this.state.tipos[2]) {
+      this.enviarQuestaoTecnicaCrescer(questao)
+    } else {
+      Notificacao('Falha', 'Tipo de questão não selecionado', 'warning')
+    }
+  }
+
+  handleClickEnviarQuestao = async (id) => {
+
+    const questao = {
+      "especificidade": this.state.arrayStates[id].especificidade,
+      "nivelDeDificuldade": this.state.arrayStates[id].nivel,
+      "quantidadeDeQuestoes": this.state.arrayStates[id].quantidade
+    }
+
+    
+    if(this.state.tipoProvaEscolhida === this.state.tiposDeProvas[0]) {
+      this.enviarQuestoesDaProva(id, questao)
+    }else {
+      this.enviarQuestoesDoCrescer(id, questao)
     }
   }
 
@@ -229,6 +326,16 @@ export class CadastrarProvaScreen extends Component {
     )
   }
 
+  verificaTipoParaBotoes() {
+    if(this.state.tipoProvaEscolhida === this.state.tiposDeProvas[0]) {
+      return this.renderBotoesEscolhaDeQuestoes()
+    }else {
+      return <div className="container-botao container-botao-prova">
+              <BotaoPrincipal nome="Enviar por e-mail" onClick={this.handleClickEnviarProvaCrescer}/>
+            </div>
+    }
+  }
+
   renderEscolhaDeQuestoes() {
     return (
       <>
@@ -236,7 +343,7 @@ export class CadastrarProvaScreen extends Component {
           <span className="titulo-crie">Adicione questões a sua prova</span>
         </div>
         {this.renderArrayQuestoes()}
-        {this.renderBotoesEscolhaDeQuestoes()}
+        {this.verificaTipoParaBotoes()}
       </>
     )
   }
@@ -247,6 +354,8 @@ export class CadastrarProvaScreen extends Component {
                     name={item.name}
                     value={this.state[item.value]}
                     maxTam={item.tam}
+                    maxNum={item.maxNum}
+                    step={item.float}
                     type={item.type}
                     label={item.label}
                     placeholder="" 
@@ -269,24 +378,40 @@ export class CadastrarProvaScreen extends Component {
     })
   }
 
+  verificaTipo() {
+    if(this.state.tipoProvaEscolhida === this.state.tiposDeProvas[0]) {
+      return <>
+            {this.renderInputs()}
+            <div className="container-botao">
+              <BotaoPrincipal classe="cadastro-prova-botao" nome="ADICIONAR QUESTÕES" onClick={this.handleClickEnviarBaseProva}/>
+            </div>
+            </>
+    }else if(this.state.tipoProvaEscolhida === this.state.tiposDeProvas[1]) {
+      return <>
+            {this.renderInputsCrescer()}
+            <div className="container-botao">
+              <BotaoPrincipal classe="cadastro-prova-botao" nome="ADICIONAR QUESTÕES" onClick={this.handleClickEnviarBaseCrescerProva}/>
+            </div>
+            </>
+    }else {
+      return <h1>Escolha um tipo</h1>
+    }
+  }
+
   renderInputsBaseProva(){
     return (
       <>
         <div className="container-titulo titulo-prova">
           <span className="titulo-crie">Crie sua prova</span>
           <Select
-							questoesWidth="width-prova"
-							placeholder="Selecione o tipo de prova"
-							name="tipoProvaEscolhida"
-							value={this.state.tipoProvaEscolhida}
-							onChange={this.handleChange}
-							object={this.state.tiposDeProvas}
-						/>
+            questoesWidth="width-prova"
+            placeholder="Selecione o tipo de prova"
+            name="tipoProvaEscolhida"
+            value={this.state.tipoProvaEscolhida}
+            onChange={this.handleChange}
+            object={this.state.tiposDeProvas}/>
         </div>
-        {this.renderInputs()}
-        <div className="container-botao">
-          <BotaoPrincipal classe="cadastro-prova-botao" nome="ADICIONAR QUESTÕES" onClick={this.handleClickEnviarBaseProva}/>
-        </div>
+        {this.verificaTipo()}
       </>
     )
   }
