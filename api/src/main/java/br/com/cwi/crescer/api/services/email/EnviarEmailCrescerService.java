@@ -2,6 +2,7 @@ package br.com.cwi.crescer.api.services.email;
 
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaCriadaPorEmailDoCandidatoService;
+import br.com.cwi.crescer.api.services.prova.BuscarProvaPorCriadaECrescerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -11,6 +12,8 @@ import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class EnviarEmailCrescerService {
@@ -25,13 +28,13 @@ public class EnviarEmailCrescerService {
     private JwtTokenProvider jwt;
 
     @Autowired
-    private BuscarProvaCriadaPorEmailDoCandidatoService buscarProvaPorEmail;
+    private BuscarProvaPorCriadaECrescerService buscarProvaPorCriadaECrescerService;
 
-    public void enviar(String emailResponsavel,  int numeroDeProvas) {
+    public void enviar(String emailResponsavel) {
 
-        Prova prova = buscarProvaPorEmail.buscar(emailResponsavel);
+        List<Prova> listaDeProvas = buscarProvaPorCriadaECrescerService.buscar();
 
-        String processedHTMLTemplate = this.constructHTMLTemplate(prova);
+        String processedHTMLTemplate = this.constructHTMLTemplate(listaDeProvas);
 
         MimeMessagePreparator preparator = message -> {
             MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED, "UTF-8");
@@ -43,26 +46,17 @@ public class EnviarEmailCrescerService {
         mailSender.send(preparator);
     }
 
-    private String constructHTMLTemplate(Prova prova) {
+    private String constructHTMLTemplate(List<Prova> listaDeProvas) {
         Context context = new Context();
+        List<String> tokens = new ArrayList<>();
 
-        String nomeCandidato = prova.getNomeCandidato();
-        double tempoIniciar = prova.getTempoParaInicioProva();
+        for (Prova prova: listaDeProvas) {
+           tokens.add(jwt.generateToken(prova));
+        }
+        int quantidade = listaDeProvas.size();
+        context.setVariable("quantidade", quantidade);
+        context.setVariable("tokens", tokens);
 
-        LocalDateTime prazo = LocalDateTime.now().plusHours((int)tempoIniciar);
-        String dia = prazo.getDayOfMonth() + "/" + prazo.getMonthValue() + "/" + prazo.getYear();
-        String hora = prazo.getHour() + ":" + prazo.getMinute() + ":" + prazo.getMinute();
-
-        double tempoDuracao = prova.getTempoDeDuracaoDaProva();
-        String token = jwt.generateToken(prova);
-
-        context.setVariable("nomeCandidato", nomeCandidato);
-        context.setVariable("tempoIniciar", tempoIniciar);
-        context.setVariable("tempoDuracao", tempoDuracao);
-        context.setVariable("dia", dia);
-        context.setVariable("hora", hora);
-        context.setVariable("token", token);
-
-        return templateEngine.process("EmailHTML", context);
+        return templateEngine.process("EmailCrescerHTML", context);
     }
 }

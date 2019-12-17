@@ -11,7 +11,7 @@
             font-size: 48px;
         }
     </style>
-    <title>Você foi selecionado para realizar a prova da CWI</title>
+    <title>Provas da CWI Crescer</title>
 </head>
 <body style="margin: 0; padding: 0;">
 
@@ -25,24 +25,11 @@
     </tr>
     <tr>
         <td bgcolor="#f0f0f0" style="padding: 40px 30px 40px 30px;font-family:Montserrat, sans-serif;">
-            <div th:text="'Parabéns, ' + ${nomeCandidato} + '!' " ></div>
-            <div th:text="'Você foi selecionado para realizar a prova do CWI Turing.' " ></div>
-            <br>
-            <div th:text="'Você tem ' + ${tempoIniciar} + ' horas para iniciar sua prova a partir de agora.' " ></div>
-            <br>
-            <div th:text="'Após esse tempo, a prova não será mais válida.' " ></div>
-            <br>
-            <div th:text="'Quando você clicar no botão para começar a sua prova, o tempo começará a ser contado. '" ></div>
-            <br>
-            <div th:text="'Você terá ' + ${tempoDuracao} + ' minutos para concluir sua prova. Não é possível trocar de aba nem fechar a prova.' " ></div>
-            <br>
-            <p th:text="'Prazo máximo para início da prova: ' + ${dia} + ' às ' + ${hora}"></p>
-            <p th:text="'Duração máxima da prova: ' + ${tempoDuracao} + ' minutos'"></p>
-        </td>
-    </tr>
-    <tr>
-        <td align="center" bgcolor="#f8b03f" color="#FFFFFF" style="padding: 30px 30px 30px 30px;">
-            <a th:href="'http://localhost:3000/resolver-prova/' + ${token} ">Acesse sua prova aqui</a>
+            <div th:text="'Aqui estão as ' + ${quantidade} + ' provas que você gerou. Cada link representa uma prova para um candidato.' " ></div>
+            <div th:if="${tokens != null}">
+                <br>
+                  <a th:each="token : ${tokens}" th:href="'http://localhost:3000/resolver-prova/' + ${token} ">Link da prova <br></a>
+            </div>
         </td>
     </tr>
 </table>
