@@ -10,7 +10,7 @@ export class ProvaPDFScreen extends Component {
     super(props)
     this.state = {
       prova: null,
-      idProva: localStorage.getItem('idParaPDF')
+      idProva: this.props.match.params.idProva
     }
     this.buscarProvaService = new BuscarProvaService()
   }
