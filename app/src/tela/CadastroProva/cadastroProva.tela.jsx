@@ -17,6 +17,8 @@ export class CadastrarProvaScreen extends Component {
       emailDoCandidato: '',
       duracaoDaProva: '',
       tempoParaIniciarProva: '',
+      emailDoCriador: '',
+      numeroDeProvas: '',
       idProva: '',
       tipoProvaEscolhida: '',
       deveRenderizarQuestoes: false,
@@ -36,10 +38,10 @@ export class CadastrarProvaScreen extends Component {
     ]
 
     this.arrayDeParamsDosInputsCrescer = [
-      { value: "emailDoCriador", name: "emailDoCriador", tam: "50", type: "text", label: "Digite o seu email"},
-      { value: "numeroDeProvas", name: "numeroDeProvas", tam: "2", type: "number", label: "Digite o email do candidato"},
-      { value: "duracaoDaProva", name: "duracaoDaProva", tam: "10", type: "number", label: "Tempo de duração da prova (minutos)"},
-      { value: "tempoParaIniciarProva", name: "tempoParaIniciarProva", tam: "8760", type: "number", label: "Tempo para iniciar a prova (horas)"}
+      { value: "emailDoCriador", name: "emailDoCriador", tam: "50", maxNum:"", float: "", type: "text", label: "Digite o seu email"},
+      { value: "numeroDeProvas", name: "numeroDeProvas", tam: "8", maxNum:"10000000", float: "", type: "number", label: "Digite o número de provas"},
+      { value: "duracaoDaProva", name: "duracaoDaProva", tam: "6", maxNum:"12", float: "0.01", label: "Tempo de duração da prova (minutos)"},
+      { value: "tempoParaIniciarProva", name: "tempoParaIniciarProva", tam: "6", maxNum:"8760", float: "0.01", label: "Tempo para iniciar a prova (horas)"}
     ]
 
     this.dominioService = new DominioService()
@@ -83,7 +85,6 @@ export class CadastrarProvaScreen extends Component {
       arrayStates: array
     })
   }
-
   catchErrorENotifica(error){
     if (error.response.data.errors) {
       error.response.data.errors.map(message => {
@@ -107,6 +108,29 @@ export class CadastrarProvaScreen extends Component {
 
     try {
       let idProvaSalva = await this.provaService.criarProva(prova)
+      this.setState({
+        idProva: idProvaSalva,
+        deveRenderizarQuestoes: true
+      })
+      Notificacao('Sucesso', 'Prova registrada com sucesso', 'success')
+    }
+    catch (error) {
+      this.catchErrorENotifica(error)
+    }
+  }
+
+  handleClickEnviarBaseCrescerProva = async (event) => {
+    event.preventDefault()
+
+    const prova = {
+      "quantidade": this.state.numeroDeProvas,
+      "tipo": this.state.tipoProvaEscolhida,
+      "tempoDeDuracaoDaProva": this.state.duracaoDaProva,
+      "tempoParaInicioProva": this.state.tempoParaIniciarProva
+    }
+
+    try {
+      let idProvaSalva = await this.provaService.criarProvaCrescer(prova)
       this.setState({
         idProva: idProvaSalva,
         deveRenderizarQuestoes: true
@@ -247,6 +271,8 @@ export class CadastrarProvaScreen extends Component {
                     name={item.name}
                     value={this.state[item.value]}
                     maxTam={item.tam}
+                    maxNum={item.maxNum}
+                    step={item.float}
                     type={item.type}
                     label={item.label}
                     placeholder="" 
@@ -269,24 +295,40 @@ export class CadastrarProvaScreen extends Component {
     })
   }
 
+  verificaTipo() {
+    if(this.state.tipoProvaEscolhida === this.state.tiposDeProvas[0]) {
+      return <>
+            {this.renderInputs()}
+            <div className="container-botao">
+              <BotaoPrincipal classe="cadastro-prova-botao" nome="ADICIONAR QUESTÕES" onClick={this.handleClickEnviarBaseProva}/>
+            </div>
+            </>
+    }else if(this.state.tipoProvaEscolhida === this.state.tiposDeProvas[1]) {
+      return <>
+            {this.renderInputsCrescer()}
+            <div className="container-botao">
+              <BotaoPrincipal classe="cadastro-prova-botao" nome="ADICIONAR QUESTÕES" onClick={this.handleClickEnviarBaseCrescerProva}/>
+            </div>
+            </>
+    }else {
+      return <h1>Escolha um tipo</h1>
+    }
+  }
+
   renderInputsBaseProva(){
     return (
       <>
         <div className="container-titulo titulo-prova">
           <span className="titulo-crie">Crie sua prova</span>
           <Select
-							questoesWidth="width-prova"
-							placeholder="Selecione o tipo de prova"
-							name="tipoProvaEscolhida"
-							value={this.state.tipoProvaEscolhida}
-							onChange={this.handleChange}
-							object={this.state.tiposDeProvas}
-						/>
+            questoesWidth="width-prova"
+            placeholder="Selecione o tipo de prova"
+            name="tipoProvaEscolhida"
+            value={this.state.tipoProvaEscolhida}
+            onChange={this.handleChange}
+            object={this.state.tiposDeProvas}/>
         </div>
-        {this.renderInputs()}
-        <div className="container-botao">
-          <BotaoPrincipal classe="cadastro-prova-botao" nome="ADICIONAR QUESTÕES" onClick={this.handleClickEnviarBaseProva}/>
-        </div>
+        {this.verificaTipo()}
       </>
     )
   }
