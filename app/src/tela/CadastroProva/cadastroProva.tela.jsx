@@ -112,9 +112,7 @@ export class CadastrarProvaScreen extends Component {
       })
     }
     catch (error) {
-      console.log(error);
-      
-      //this.catchErrorENotifica(error)
+      this.catchErrorENotifica(error)
     }
   }
 
@@ -201,7 +199,7 @@ export class CadastrarProvaScreen extends Component {
                 quantidade={item.quantidade}
                 handleChange={this.handleChangeArray}
                 onClick={this.handleClickEnviarQuestao}
-                idProva={this.state.idProva} />
+                idProva={this.state.idProva}/>
       })
     )
   }

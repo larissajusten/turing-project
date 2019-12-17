@@ -1,18 +1,15 @@
 import { BaseService } from '../_base/base.service'
 
 export class IncluirQuestoesProvaService extends BaseService {
-  async incluirDissertativas(idProva, questao) {
-		const response = await super.put(`prova/${idProva}/dissertativa`, questao)
-		return response.data
+  async incluirDissertativas(idProva, questoes) {
+		await super.put(`prova/${idProva}/dissertativa`, questoes)
 	}
 
-	async incluirTecnicas(idProva, questao) {
-		const response = await super.put(`prova/${idProva}/tecnica`, questao)
-		return response.data
+	async incluirTecnicas(idProva, questoes) {
+		await super.put(`prova/${idProva}/tecnica`, questoes)
 	}
 
-	async incluirMultiplaEscolha(idProva, questao) {
-		const response = await super.put(`prova/${idProva}/multipla`, questao)
-		return response.data
+	async incluirMultiplaEscolha(idProva, questoes) {
+		await super.put(`prova/${idProva}/multipla`, questoes)
 	}
 }

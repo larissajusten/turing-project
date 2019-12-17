@@ -16,8 +16,7 @@ export class Header extends Component {
       <div className="header">
         <span
           className="menu-header"
-          onClick={() => this.setState({ menuAberto: true })}
-        >
+          onClick={() => this.setState({ menuAberto: true })}>
           MENU
         </span>
 
@@ -25,32 +24,27 @@ export class Header extends Component {
           <Link to={'/'}>Home</Link>
           <Link
             onClick={() => this.setState({ menuAberto: false })}
-            to={'/cadastrar-questao'}
-          >
+            to={'/cadastrar-questao'}>
             Cadastrar questão
           </Link>
           <Link
             onClick={() => this.setState({ menuAberto: false })}
-            to={'/buscar-questao'}
-          >
+            to={'/buscar-questao'}>
             Visualizar questões
           </Link>
           <Link
             onClick={() => this.setState({ menuAberto: false })}
-            to={'/cadastrar-prova'}
-          >
+            to={'/cadastrar-prova'}>
             Cadastrar prova
           </Link>
           <Link
             onClick={() => this.setState({ menuAberto: false })}
-            to={'/buscar-provas'}
-          >
+            to={'/buscar-provas'}>
             Busca para correção
           </Link>
           <Link
             onClick={() => this.setState({ menuAberto: false })}
-            to={'/provas-corrigidas'}
-          >
+            to={'/provas-corrigidas'}>
             Provas corrigidas
           </Link>
         </Menu>
