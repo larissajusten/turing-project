@@ -1,12 +1,12 @@
 import axios from 'axios'
 
+let token
+
 const carregarToken = () => {
-  let token
 	if (!token) {
-		return localStorage.getItem('accessToken');
-  }else {
-    return token
+    token = localStorage.getItem('accessToken');
   }
+  return token
 }
 
 const httpClient = (baseUrl) => axios.create({
