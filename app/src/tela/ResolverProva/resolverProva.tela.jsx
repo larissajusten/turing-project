@@ -207,7 +207,8 @@ export class ResolverProvaScreen extends Component {
       renderProva: false,
       modalFinalizarProva: true,
       statusProva: await this.provaService.enviarRespostasDaProva(
-        this.state.idProva, this.state.arrayRespostas
+        this.state.idProva,
+        this.state.arrayRespostas
       )
     })
   }
@@ -218,11 +219,12 @@ export class ResolverProvaScreen extends Component {
       arrayRespostas: this.state.arrayRespostas,
       linguagemProva: this.state.linguagemEscolhida
     }
+
     this.setState({
       modalIniciarProva: false,
       renderProva: false,
       modalFinalizarProva: true,
-      statusProva: await this.provaService.enviarRespostasDaProva(
+      statusProva: await this.provaCrescerService.enviarRespostasDaProvaCrescer(
         this.state.idProva,
         prova
       )
@@ -318,20 +320,22 @@ export class ResolverProvaScreen extends Component {
                   <span className="titulo-crie">
                     Boa prova {this.state.prova.nomeCandidato}
                   </span>
-                  <div className="select-resolver-prova">
-                    <span>
-                      Selecione a especificidade/linguagem que deseje fazer a
-                      prova
-                    </span>
-                    <Select
-                      questoesWidth="width-resolver-prova"
-                      placeholder="Selecione a linguagem"
-                      name="linguagemEscolhida"
-                      value={this.state.linguagemEscolhida}
-                      onChange={this.handleChange}
-                      object={this.state.especificidades}
-                    />
-                  </div>
+                  {this.state.tipo === 'CRESCER' && (
+                    <div className="select-resolver-prova">
+                      <span>
+                        Selecione a especificidade/linguagem que deseje fazer a
+                        prova
+                      </span>
+                      <Select
+                        questoesWidth="width-resolver-prova"
+                        placeholder="Selecione a linguagem"
+                        name="linguagemEscolhida"
+                        value={this.state.linguagemEscolhida}
+                        onChange={this.handleChange}
+                        object={this.state.especificidades}
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="tempo">
                   {this.state.count} <span>Minutos</span>
@@ -346,7 +350,11 @@ export class ResolverProvaScreen extends Component {
             <div className="container-botao">
               <BotaoPrincipal
                 nome="ENVIAR"
-                onClick={this.handleClickEnviarProva}
+                onClick={
+                  this.state.tipo === 'CRESCER'
+                    ? this.handleClickEnviarProvaCrescer
+                    : this.handleClickEnviarProva
+                }
               />
             </div>
           </div>

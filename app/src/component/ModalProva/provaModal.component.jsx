@@ -20,12 +20,13 @@ export class ProvaModal extends Component {
           </div>
           {this.props.tipoProva === 'CRESCER' && (
             <>
-              <label htmlFor="nomeCandidato">Informe seu Nome:</label>
+              <label htmlFor="nomeCandidato">Informe seu nome:</label>
               <input
                 type="text"
                 name="nomeCandidato"
                 className="input-principal"
                 onChange={event => this.setState({ nome: event.target.value })}
+                placeholder="Ex. João da Silva"
               />
               <label htmlFor="emailCandidato">Informe seu email:</label>
               <input
@@ -33,6 +34,7 @@ export class ProvaModal extends Component {
                 name="emailCandidato"
                 className="input-principal"
                 onChange={event => this.setState({ email: event.target.value })}
+                placeholder="joao.silva@cwi.com.br"
               />
             </>
           )}
