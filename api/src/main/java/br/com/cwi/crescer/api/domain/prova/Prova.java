@@ -1,6 +1,7 @@
 package br.com.cwi.crescer.api.domain.prova;
 
 
+import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.enums.TipoDeProva;
 import lombok.AllArgsConstructor;
@@ -49,5 +50,10 @@ public class Prova {
     @Enumerated(EnumType.STRING)
     @Column
     private TipoDeProva tipo;
+
+
+    @Enumerated(EnumType.STRING)
+    @Column
+    private Especificidade especificidade;
 
 }

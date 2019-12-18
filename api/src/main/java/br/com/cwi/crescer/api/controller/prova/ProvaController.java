@@ -5,6 +5,7 @@ import br.com.cwi.crescer.api.controller.requests.prova.ProvaCrescerRequest;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaRespondidaRequest;
 import br.com.cwi.crescer.api.controller.requests.questoes.CorrecaoProvaRequest;
+import br.com.cwi.crescer.api.domain.enums.Especificidade;
 import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.services.prova.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class ProvaController {
 
     @Autowired
     private FinalizarProvaService finalizarProvaService;
+
+    @Autowired
+    private FinalizarProvaCrescerService finalizarProvaCrescerService;
 
     @Autowired
     private ConsultarStatusDaProvaService consultarStatusDaProvaService;
@@ -81,6 +85,14 @@ public class ProvaController {
     public StatusProva finalizarProva(@PathVariable("id-prova") Long idProva,
                                       @Valid @RequestBody List<ProvaRespondidaRequest> provaRespondida) {
         return finalizarProvaService.finalizar(idProva, provaRespondida);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id-prova}/finalizar/crescer")
+    public StatusProva finalizarProvaCrescer(@PathVariable("id-prova") Long idProva,
+                                             @Valid @RequestBody List<ProvaRespondidaRequest> provaRespondida,
+                                             @RequestBody Especificidade especificidade) {
+        return finalizarProvaCrescerService.finalizar(idProva, provaRespondida, especificidade);
     }
 
     @ResponseStatus(HttpStatus.OK)
