@@ -42,7 +42,7 @@ public class BuscarListaDeRespostasFiltradaServiceTest {
         Prova prova = new Prova(1L, LocalDateTime.of(2019, Month.NOVEMBER, 28, 11,
                 16, 26), LocalDateTime.of(2019, Month.NOVEMBER, 28, 11, 16,
                 26), "emailCandidato", 0, 0, StatusProva.ATIVA,
-                0d, "nomeCandidato", TipoDeProva.OUTRO);
+                0d, "nomeCandidato", TipoDeProva.OUTRO, Especificidade.JAVASCRIPT);
 
         RespostasMultiplaEscolhaProva respostasMultiplaEscolhaProva = new RespostasMultiplaEscolhaProva(Long.valueOf(1),
                 new AlternativaMultiplaEscolha(), new QuestaoMultiplaEscolha(Long.valueOf(1), LocalDate.of(2019, Month.NOVEMBER,
