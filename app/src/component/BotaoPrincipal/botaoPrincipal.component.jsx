@@ -7,9 +7,7 @@ export class BotaoPrincipal extends Component {
       <>
         <button
           className={`botao-principal ${this.props.classe}`}
-          onClick={() =>
-            this.props.onClick(this.props.nomeUsuario, this.props.emailUsuario)
-          }
+          onClick={(e) => this.props.onClick(e,this.props.nomeUsuario, this.props.emailUsuario)}
         >
           <span>{this.props.nome}</span>
         </button>
