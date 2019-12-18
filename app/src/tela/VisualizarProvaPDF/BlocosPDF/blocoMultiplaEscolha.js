@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import { styles, BlocoComentario } from './'
+import { styles, BlocoNota } from './'
 
 const verificarResposta = (resposta, respostaEscolhidaPeloUsuario) => {
   if((resposta.id === respostaEscolhidaPeloUsuario.id) && resposta.respostaCorreta){
@@ -36,7 +36,7 @@ export const BlocoQuestaoMultiplaEscolha = (props) => (
                 })
               }
             </View>
-            <BlocoComentario comentario={item.comentario}/>
+            <BlocoNota nota={item.nota}/>
           </View>
   })
 );
