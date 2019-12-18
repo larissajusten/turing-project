@@ -1,12 +1,14 @@
 import React from 'react';
 import { Text, View } from '@react-pdf/renderer';
-import { styles, BlocoComentario } from './'
+import { styles, BlocoNota } from './'
 
-const verificarResposta = (resposta, respostaEscolhida) => {
-  if((resposta.id === respostaEscolhida.id) && resposta.respostaCorreta){
+const verificarResposta = (resposta, respostaEscolhidaPeloUsuario) => {
+  if((resposta.id === respostaEscolhidaPeloUsuario.id) && resposta.respostaCorreta){
     return styles.respostaCorreta
-  }else if(resposta.id === respostaEscolhida.id){
+  }else if(resposta.id === respostaEscolhidaPeloUsuario.id){
     return styles.respostaErrada
+  }else if(resposta.respostaCorreta){
+    return styles.respostaCorreta
   }else{
     return styles.respostaMultiplaEscolha
   }
@@ -28,13 +30,13 @@ export const BlocoQuestaoMultiplaEscolha = (props) => (
               {
                 item.alternativasMultiplaEscolhas.map((resposta, key) => {
                   return <Text key={key}
-                                style={verificarResposta(resposta, item.respostaa)}>
+                                style={verificarResposta(resposta, item.resposta)}>
                             {`${key}. ${resposta.resposta}`}
                         </Text>
                 })
               }
             </View>
-            <BlocoComentario comentario={item.comentario}/>
+            <BlocoNota nota={item.nota}/>
           </View>
   })
 );

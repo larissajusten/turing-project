@@ -1,9 +1,10 @@
 import axios from 'axios'
 
+let token
+
 const carregarToken = () => {
-  let token
 	if (!token) {
-		token = localStorage.getItem('accessToken');
+    token = localStorage.getItem('accessToken');
   }
   return token
 }

@@ -202,15 +202,29 @@ export class ResolverProvaScreen extends Component {
 
   handleClickEnviarProva = async event => {
     event.preventDefault()
-    let prova = {
-      arrayRespostas: this.state.arrayRespostas,
-      linguagemProva: this.state.linguagemEscolhida
-    }
     this.setState({
       modalIniciarProva: false,
       renderProva: false,
       modalFinalizarProva: true,
       statusProva: await this.provaService.enviarRespostasDaProva(
+        this.state.idProva,
+        this.state.arrayRespostas
+      )
+    })
+  }
+
+  handleClickEnviarProvaCrescer = async event => {
+    event.preventDefault()
+    let prova = {
+      arrayRespostas: this.state.arrayRespostas,
+      linguagemProva: this.state.linguagemEscolhida
+    }
+
+    this.setState({
+      modalIniciarProva: false,
+      renderProva: false,
+      modalFinalizarProva: true,
+      statusProva: await this.provaCrescerService.enviarRespostasDaProvaCrescer(
         this.state.idProva,
         prova
       )
@@ -306,20 +320,22 @@ export class ResolverProvaScreen extends Component {
                   <span className="titulo-crie">
                     Boa prova {this.state.prova.nomeCandidato}
                   </span>
-                  <div className="select-resolver-prova">
-                    <span>
-                      Selecione a especificidade/linguagem que deseje fazer a
-                      prova
-                    </span>
-                    <Select
-                      questoesWidth="width-resolver-prova"
-                      placeholder="Selecione a linguagem"
-                      name="linguagemEscolhida"
-                      value={this.state.linguagemEscolhida}
-                      onChange={this.handleChange}
-                      object={this.state.especificidades}
-                    />
-                  </div>
+                  {this.state.tipo === 'CRESCER' && (
+                    <div className="select-resolver-prova">
+                      <span>
+                        Selecione a especificidade/linguagem que deseje fazer a
+                        prova
+                      </span>
+                      <Select
+                        questoesWidth="width-resolver-prova"
+                        placeholder="Selecione a linguagem"
+                        name="linguagemEscolhida"
+                        value={this.state.linguagemEscolhida}
+                        onChange={this.handleChange}
+                        object={this.state.especificidades}
+                      />
+                    </div>
+                  )}
                 </div>
                 <div className="tempo">
                   {this.state.count} <span>Minutos</span>
@@ -334,7 +350,11 @@ export class ResolverProvaScreen extends Component {
             <div className="container-botao">
               <BotaoPrincipal
                 nome="ENVIAR"
-                onClick={this.handleClickEnviarProva}
+                onClick={
+                  this.state.tipo === 'CRESCER'
+                    ? this.handleClickEnviarProvaCrescer
+                    : this.handleClickEnviarProva
+                }
               />
             </div>
           </div>
@@ -349,7 +369,7 @@ export class ResolverProvaScreen extends Component {
         <ProvaModal
           titulo="Clique em iniciar para realizar sua prova"
           nomeBotao="COMEÇAR"
-          subtitulo={`Lembre-se, é proibido sair da aba da prova depois do seu inicio, 
+          subtitulo={`Lembre-se, é proibido sair da aba da prova depois do seu inicio,
           caso saia, o usuario sera desclassificado automaticamente.
            Você possui minutos para fazer a prova.`}
           comBotao={true}
