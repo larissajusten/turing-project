@@ -99,6 +99,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/buscar-prova/**", "/dominio/**")
                 .permitAll()
 
+                .antMatchers("/resolver-prova/**")
+                .permitAll()
+
                 .anyRequest()
                 .authenticated();
     }

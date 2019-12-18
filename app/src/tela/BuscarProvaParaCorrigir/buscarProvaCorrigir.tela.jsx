@@ -30,7 +30,7 @@ export class BuscarProvaParaCorrigirScreen extends Component{
   }
 
   onClickCorrigirProva = (event, idProva) => {
-    event.preventDefault()
+    
     this.setState({
       idProvaParaCorrigir: idProva
     }, () => { this.setState({ deveRedirecionarParaCorrecao: true }) })

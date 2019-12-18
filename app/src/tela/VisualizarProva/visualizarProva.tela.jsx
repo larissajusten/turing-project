@@ -35,14 +35,14 @@ export class VisualizarProvaScreen extends Component {
   }
 
   handleClickVoltarProva = async event => {
-    event.preventDefault()
+    
     this.setState({
       deveRedirecionarParaDashboard: true
     })
   }
 
   handleClickEnviarProva = async event => {
-    event.preventDefault()
+    
     try {
       Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
       await this.emailService.enviarEmail(this.state.prova.emailCandidato)
@@ -61,7 +61,7 @@ export class VisualizarProvaScreen extends Component {
   }
 
   handleClickCancelarProva = async event => {
-    event.preventDefault()
+    
     try {
       Notificacao('Sucesso', 'Prova cancelada com sucesso', 'success')
       await this.provaService.cancelarProva(this.state.idProva)

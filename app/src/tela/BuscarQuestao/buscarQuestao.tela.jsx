@@ -100,7 +100,7 @@ export class BuscarQuestaoScreen extends Component {
   }
 
   handleClickEnviarPesquisa = async (event) => {
-    event.preventDefault()
+    
 
     const { especificidade, nivel: nivelDeDificuldade } = this.state
 

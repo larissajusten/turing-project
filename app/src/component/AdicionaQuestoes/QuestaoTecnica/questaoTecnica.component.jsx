@@ -36,7 +36,7 @@ export class CadastroTecnica extends PureComponent {
   }
 
   handleClickSalvarQuestao = async (event) => {
-    event.preventDefault()
+    
 
     const questaoTecnica = {
       "questao": this.state.questao,

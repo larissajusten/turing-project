@@ -61,7 +61,7 @@ export class CadastroMultiplaQuestao extends PureComponent {
   }
 
   handleClickSalvarQuestao = async event => {
-    event.preventDefault()
+    
 
     const questao = {
       questao: this.state.questao,

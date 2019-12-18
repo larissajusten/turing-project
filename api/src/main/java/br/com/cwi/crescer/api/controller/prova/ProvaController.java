@@ -88,10 +88,10 @@ public class ProvaController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/{id-prova}/finalizar/crescer")
-    public StatusProva finalizarProvaCrescer(@PathVariable("id-prova") Long idProva,
-                                             @Valid @RequestBody List<ProvaRespondidaRequest> provaRespondida,
-                                             @RequestBody Especificidade especificidade) {
+    @PutMapping("/{id-prova}/finalizar/crescer/{especificidade}")
+    public StatusProva finalizarProvaCrescer(@PathVariable("id-prova") Long idProva,@PathVariable("especificidade") Especificidade especificidade,
+                                             @Valid @RequestBody List<ProvaRespondidaRequest> provaRespondida
+                                             ) {
         return finalizarProvaCrescerService.finalizar(idProva, provaRespondida, especificidade);
     }
 

@@ -10,8 +10,8 @@ export class ProvaCrescerService extends BaseService {
     await super.put(`prova/${idProvaCrescer}/crescer`, body)
   }
 
-  async enviarRespostasDaProvaCrescer(idProvaCrescer, prova) {
-    const response = await super.put(`prova/${idProvaCrescer}/crescer`, prova)
+  async enviarRespostasDaProvaCrescer(idProvaCrescer, especificidade, prova) {
+    const response = await super.put(`prova/${idProvaCrescer}/finalizar/crescer/${especificidade}`, prova)
     return response.data
   }
 }

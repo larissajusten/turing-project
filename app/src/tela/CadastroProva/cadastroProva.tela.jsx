@@ -106,7 +106,7 @@ export class CadastrarProvaScreen extends Component {
   
   /* Crescer */
   handleClickEnviarBaseCrescerProva = async (event) => {
-    event.preventDefault()
+    
 
     const prova = {
       "quantidade": this.state.numeroDeProvas,
@@ -129,7 +129,7 @@ export class CadastrarProvaScreen extends Component {
   }
 
   handleClickEnviarProvaCrescer = async (event) => {
-    event.preventDefault()
+    
     try {
       Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
       await this.emailService.enviarEmailCrescer(this.state.emailDoCriador)
@@ -187,7 +187,7 @@ export class CadastrarProvaScreen extends Component {
 
   /* Normal */
   handleClickEnviarBaseProva = async (event) => {
-    event.preventDefault()
+    
 
     const prova = {
       "email": this.state.emailDoCandidato,
@@ -211,7 +211,7 @@ export class CadastrarProvaScreen extends Component {
   }
 
   handleClickEnviarProva = async (event) => {
-    event.preventDefault()
+    
     try {
       Notificacao('Sucesso', 'Prova enviada com sucesso', 'success')
       await this.emailService.enviarEmail(this.state.emailDoCandidato)
@@ -225,14 +225,14 @@ export class CadastrarProvaScreen extends Component {
   }
 
   handleClickVisualizarProva = (event) => {
-    event.preventDefault()
+    
     this.setState({
       deveRedirecionarParaVisualizarProva: true
     })
   }
 
   handleClickCancelarProva = async(event) => {
-    event.preventDefault()
+    
     try {
       await this.provaService.cancelarProva(this.state.idProva)
       Notificacao('Sucesso', 'Prova cancelada com sucesso', 'success')

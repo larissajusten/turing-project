@@ -21,7 +21,6 @@ export class LoginScreen extends Component {
   }
 
   handleClickFazerLogin = async(event) => {
-    event.preventDefault()
     const user = {
       "login": this.state.identifier,
       "senha": this.state.senha

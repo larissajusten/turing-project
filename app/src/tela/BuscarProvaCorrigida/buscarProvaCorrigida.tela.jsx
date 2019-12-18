@@ -23,7 +23,7 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
   }
 
   handleClickEnviarPesquisa = async (event) => {
-    event.preventDefault()
+    
     try {
       let provasResponse = await this.buscarProvaService.retornaProvasCorrigidas(this.state.pesquisa)
       Notificacao('Sucesso', 'Provas encontradas', 'success')

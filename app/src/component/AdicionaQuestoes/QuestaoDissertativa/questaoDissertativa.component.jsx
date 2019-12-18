@@ -19,7 +19,7 @@ export class CadastroDissertativa extends PureComponent {
   }
 
   handleClickSalvarQuestao = async (event) => {
-    event.preventDefault()
+    
 
     const questaoDissertativa = {
       "questao": this.state.questao,

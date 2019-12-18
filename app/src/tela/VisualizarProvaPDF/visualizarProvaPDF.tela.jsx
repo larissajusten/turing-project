@@ -15,17 +15,6 @@ export class ProvaPDFScreen extends Component {
     this.buscarProvaService = new BuscarProvaService()
   }
 
-  catchErrorENotifica(error){
-    console.log(error)
-    // if (error.response.data.errors) {
-    //   error.response.data.errors.map(message => {
-    //     return Notificacao('Falha', `${message.defaultMessage}`, 'warning')
-    //   })
-    // } else {
-    //   Notificacao('Falha', `${error.response.data.message}`, 'danger')
-    // }
-  }
-
   async componentDidMount(){
     try{
       const response = await this.buscarProvaService
@@ -37,7 +26,6 @@ export class ProvaPDFScreen extends Component {
   }
 
   render() {
-    console.log(this.state.prova)
     return(
       <>
       {

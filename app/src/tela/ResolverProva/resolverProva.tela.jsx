@@ -173,7 +173,7 @@ export class ResolverProvaScreen extends Component {
     idAlternativa,
     tipo
   ) => {
-    event.preventDefault()
+    
     const array = [...this.state.arrayRespostas]
     array[index].resposta = idAlternativa
     array[index].idQuestao = idQuestao
@@ -200,8 +200,7 @@ export class ResolverProvaScreen extends Component {
     }
   }
 
-  handleClickEnviarProva = async event => {
-    event.preventDefault()
+  handleClickEnviarProva = async () => {
     this.setState({
       modalIniciarProva: false,
       renderProva: false,
@@ -214,19 +213,15 @@ export class ResolverProvaScreen extends Component {
   }
 
   handleClickEnviarProvaCrescer = async event => {
-    event.preventDefault()
-    let prova = {
-      arrayRespostas: this.state.arrayRespostas,
-      linguagemProva: this.state.linguagemEscolhida
-    }
-
+    
     this.setState({
       modalIniciarProva: false,
       renderProva: false,
       modalFinalizarProva: true,
       statusProva: await this.provaCrescerService.enviarRespostasDaProvaCrescer(
         this.state.idProva,
-        prova
+        this.state.linguagemEscolhida,
+        JSON.stringify(this.state.arrayRespostas),
       )
     })
   }
@@ -371,7 +366,7 @@ export class ResolverProvaScreen extends Component {
           nomeBotao="COMEÇAR"
           subtitulo={`Lembre-se, é proibido sair da aba da prova depois do seu inicio,
           caso saia, o usuario sera desclassificado automaticamente.
-           Você possui minutos para fazer a prova.`}
+           Você possui ${this.state.prova && this.state.prova.tempoDeDuracaoDaProva} minutos para fazer a prova.`}
           comBotao={true}
           onClick={this.handleClickIniciarProva}
           tipoProva={this.state.tipo}

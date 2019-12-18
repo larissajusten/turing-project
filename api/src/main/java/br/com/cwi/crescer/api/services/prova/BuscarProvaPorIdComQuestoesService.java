@@ -36,7 +36,7 @@ public class BuscarProvaPorIdComQuestoesService {
         provaResponse.setEmailCandidato(prova.getEmailCandidato());
         provaResponse.setNomeCandidato(prova.getNomeCandidato());
         provaResponse.setDataCriacao(prova.getDataCriacao());
-
+        provaResponse.setTipo(prova.getTipo());
         provaResponse.setStatus(prova.getStatus());
 
         provaResponse.setTempoDeDuracaoDaProva(prova.getTempoDeDuracaoDaProva());
