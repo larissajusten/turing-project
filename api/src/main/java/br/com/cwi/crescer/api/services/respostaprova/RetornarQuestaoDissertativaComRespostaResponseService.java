@@ -28,7 +28,7 @@ public class RetornarQuestaoDissertativaComRespostaResponseService {
                 .stream()
                 .map(questao -> questaoDissertativa.add(mapper.questaoDissertativa(questao)))
                 .collect(Collectors.toList());
-        
+
         return questaoDissertativa;
     }
 }

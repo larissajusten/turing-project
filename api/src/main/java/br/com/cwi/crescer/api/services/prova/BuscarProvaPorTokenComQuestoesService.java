@@ -23,9 +23,9 @@ public class BuscarProvaPorTokenComQuestoesService {
                 new ProvaNaoEncontradaException("Prova não encontrada"));
 
 
-        ProvaResponse prova =  buscarProvaPorIdComQuestoesService.buscar(idProva);
+        ProvaResponse prova = buscarProvaPorIdComQuestoesService.buscar(idProva);
 
-        if(prova.getStatus().equals(StatusProva.AGUARDANDO_CORRECAO)){
+        if (prova.getStatus().equals(StatusProva.AGUARDANDO_CORRECAO)) {
             throw new ProvaNaoEncontradaException("Prova já foi realizada");
         }
 

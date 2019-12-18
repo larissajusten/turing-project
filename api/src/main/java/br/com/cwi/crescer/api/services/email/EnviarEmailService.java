@@ -49,7 +49,7 @@ public class EnviarEmailService {
         String nomeCandidato = prova.getNomeCandidato();
         double tempoIniciar = prova.getTempoParaInicioProva();
 
-        LocalDateTime prazo = LocalDateTime.now().plusHours((int)tempoIniciar);
+        LocalDateTime prazo = LocalDateTime.now().plusHours((int) tempoIniciar);
         String dia = prazo.getDayOfMonth() + "/" + prazo.getMonthValue() + "/" + prazo.getYear();
         String hora = prazo.getHour() + ":" + prazo.getMinute() + ":" + prazo.getMinute();
 

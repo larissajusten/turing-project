@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.services.prova;
 
 import br.com.cwi.crescer.api.controller.requests.prova.ProvaCrescerRequest;
-import br.com.cwi.crescer.api.controller.requests.prova.ProvaRequest;
 import br.com.cwi.crescer.api.domain.prova.Prova;
 import br.com.cwi.crescer.api.mapper.ProvaMapper;
 import br.com.cwi.crescer.api.repository.prova.ProvaRepository;

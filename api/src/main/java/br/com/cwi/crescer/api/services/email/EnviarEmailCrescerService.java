@@ -1,7 +1,6 @@
 package br.com.cwi.crescer.api.services.email;
 
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.services.prova.BuscarProvaCriadaPorEmailDoCandidatoService;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorCriadaECrescerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,8 +48,8 @@ public class EnviarEmailCrescerService {
         Context context = new Context();
         List<String> tokens = new ArrayList<>();
 
-        for (Prova prova: listaDeProvas) {
-           tokens.add(jwt.generateToken(prova));
+        for (Prova prova : listaDeProvas) {
+            tokens.add(jwt.generateToken(prova));
         }
         int quantidade = listaDeProvas.size();
         context.setVariable("quantidade", quantidade);
