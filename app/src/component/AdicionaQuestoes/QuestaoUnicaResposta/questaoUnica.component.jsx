@@ -10,17 +10,22 @@ export class QuestaoUnica extends PureComponent {
       linguagens: props.linguagens,
       niveis: props.niveis,
     }
+    this.arrayDeParamsDoSelect = [
+      { name: "especificidade", value: "especificidade", label: "o", object: this.state.linguagens },
+      { name: "nivel", value: "nivel", label: "a", object: this.state.niveis }
+    ]
+
+    this.arrayDeParamsDoTextArea = [
+      { name: "respostaBase", value: "resposta", label:"Resposta base"},
+      { name: "testeBase", value: "testes", label: "Testes base"}
+    ]
   }
 
   renderSelects() {
-		const arrayDeParamsDoSelect =
-			[{ name: "especificidade", value: "especificidade", label: "o", object: this.state.linguagens },
-			{ name: "nivel", value: "nivel", label: "a", object: this.state.niveis }]
-		return arrayDeParamsDoSelect.map((item, key) => {
-			return <div className="input-principal">
+		return this.arrayDeParamsDoSelect.map((item, key) => {
+			return <div className="input-principal cadastro-questao">
 				<Select
 					key={key}
-					questoesWidth="width-select"
 					name={item.name}
 					value={this.props[item.name]}
 					onChange={this.props.handleChange}
@@ -31,10 +36,7 @@ export class QuestaoUnica extends PureComponent {
 	}
 
   renderTextAreaQuestaoTecnica() {
-		const arrayDeParamsDoTextArea =
-			[{ name: "respostaBase", value: "resposta", label:"Resposta base"},
-			{ name: "testeBase", value: "testes", label: "Testes base"}]
-		return arrayDeParamsDoTextArea.map((item, key) => {
+		return this.arrayDeParamsDoTextArea.map((item, key) => {
 			return <div className="input-principal">
               <Textarea
                 label={item.label}

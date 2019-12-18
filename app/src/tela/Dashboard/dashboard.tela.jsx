@@ -130,7 +130,7 @@ export class DashboardScreen extends Component {
 						Para qual especificidade deseja visualizar as estatisticas?
 					</h1>
 						<Select
-							questoesWidth="width-select"
+							questoesWidth="width-select-dashboard"
 							name="especificidadeEscolhida"
 							value={this.state.especificidadeEscolhida}
 							onChange={this.handleChange}

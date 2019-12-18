@@ -126,10 +126,9 @@ export class CadastroMultiplaQuestao extends PureComponent {
   renderSelects() {
     return this.arrayDeParamsDoSelect.map((item, key) => {
       return (
-        <div className="input-principal">
+        <div className="input-principal  cadastro-questao">
           <Select
             key={key}
-            questoesWidth="width-select"
             name={item.name}
             value={this.state[item.name]}
             onChange={this.handleChange}
