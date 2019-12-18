@@ -202,6 +202,18 @@ export class ResolverProvaScreen extends Component {
 
   handleClickEnviarProva = async event => {
     event.preventDefault()
+    this.setState({
+      modalIniciarProva: false,
+      renderProva: false,
+      modalFinalizarProva: true,
+      statusProva: await this.provaService.enviarRespostasDaProva(
+        this.state.idProva, this.state.arrayRespostas
+      )
+    })
+  }
+
+  handleClickEnviarProvaCrescer = async event => {
+    event.preventDefault()
     let prova = {
       arrayRespostas: this.state.arrayRespostas,
       linguagemProva: this.state.linguagemEscolhida
@@ -349,7 +361,7 @@ export class ResolverProvaScreen extends Component {
         <ProvaModal
           titulo="Clique em iniciar para realizar sua prova"
           nomeBotao="COMEÇAR"
-          subtitulo={`Lembre-se, é proibido sair da aba da prova depois do seu inicio, 
+          subtitulo={`Lembre-se, é proibido sair da aba da prova depois do seu inicio,
           caso saia, o usuario sera desclassificado automaticamente.
            Você possui minutos para fazer a prova.`}
           comBotao={true}

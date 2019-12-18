@@ -18,8 +18,6 @@ public class ProvaCorrigidaResponse {
 
     private Long id;
 
-    private Long idCriador;
-
     private String nomeCandidato;
 
     private String emailCandidato;
