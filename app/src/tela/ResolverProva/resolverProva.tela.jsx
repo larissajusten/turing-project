@@ -3,7 +3,8 @@ import './resolverProva.style.css'
 import {
   BuscarProvaService,
   ProvaService,
-  DominioService
+  DominioService,
+  ProvaCrescerService
 } from '../../services/'
 import {
   ProvaModal,
@@ -40,13 +41,15 @@ export class ResolverProvaScreen extends Component {
       resposta: null,
       statusProva: null,
       arrayRespostas: [objetoResposta],
-      actions: []
+      actions: [],
+      tipo: false
     }
     this.lengthDissertativas = 0
     this.lengthTecnicas = 0
     this.dominioService = new DominioService()
     this.provaService = new ProvaService()
     this.buscarProvaService = new BuscarProvaService()
+    this.provaCrescerService = new ProvaCrescerService()
   }
 
   async componentDidMount() {
@@ -66,7 +69,8 @@ export class ResolverProvaScreen extends Component {
           idProva: prova.id,
           prova,
           tiposDeQuestoes,
-          especificidades
+          especificidades,
+          tipo: prova.tipo
         },
         () => {
           const quantidadeObjetos =
@@ -179,14 +183,21 @@ export class ResolverProvaScreen extends Component {
     })
   }
 
-  handleClickIniciarProva = async event => {
-    event.preventDefault()
+  handleClickIniciarProva = async (nome, email) => {
     this.setState({
       modalIniciarProva: false,
       renderProva: true
     })
     this.contador()
-    await this.provaService.iniciarProva(this.state.idProva)
+    if (this.state.tipo === 'CRESCER') {
+      await this.provaCrescerService.iniciarProvaCrescer(
+        this.state.idProva,
+        nome,
+        email
+      )
+    } else {
+      await this.provaService.iniciarProva(this.state.idProva)
+    }
   }
 
   handleClickEnviarProva = async event => {
@@ -332,7 +343,7 @@ export class ResolverProvaScreen extends Component {
     )
   }
 
-  renderModalIniciar = () => {
+  renderModalIniciar() {
     return (
       <>
         <ProvaModal
@@ -340,9 +351,10 @@ export class ResolverProvaScreen extends Component {
           nomeBotao="COMEÇAR"
           subtitulo={`Lembre-se, é proibido sair da aba da prova depois do seu inicio, 
           caso saia, o usuario sera desclassificado automaticamente.
-           Você possui ${this.state.count || '0'} minutos para fazer a prova.`}
+           Você possui minutos para fazer a prova.`}
           comBotao={true}
           onClick={this.handleClickIniciarProva}
+          tipoProva={this.state.tipo}
         />
       </>
     )
@@ -362,7 +374,9 @@ export class ResolverProvaScreen extends Component {
     return (
       <>
         {this.state.modalIniciarProva && this.renderModalIniciar()}
-        {this.state.renderProva && this.renderProva()}
+        {this.state.renderProva && !this.state.modalFinalizarProva
+          ? this.renderProva()
+          : ''}
         {this.state.modalFinalizarProva && this.renderModalFinalizar()}
       </>
     )
