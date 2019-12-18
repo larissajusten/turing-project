@@ -202,6 +202,18 @@ export class ResolverProvaScreen extends Component {
 
   handleClickEnviarProva = async event => {
     event.preventDefault()
+    this.setState({
+      modalIniciarProva: false,
+      renderProva: false,
+      modalFinalizarProva: true,
+      statusProva: await this.provaService.enviarRespostasDaProva(
+        this.state.idProva, this.state.arrayRespostas
+      )
+    })
+  }
+
+  handleClickEnviarProvaCrescer = async event => {
+    event.preventDefault()
     let prova = {
       arrayRespostas: this.state.arrayRespostas,
       linguagemProva: this.state.linguagemEscolhida

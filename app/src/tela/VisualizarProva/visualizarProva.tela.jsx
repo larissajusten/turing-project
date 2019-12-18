@@ -24,7 +24,7 @@ export class VisualizarProvaScreen extends Component {
     this.provaService = new ProvaService()
     this.buscarProvaService = new BuscarProvaService()
     this.removerQuestaoService = new RemoverQuestaoProvaService()
-    this.enviarEmail = new EmailService()
+    this.emailService = new EmailService()
   }
 
   async componentDidMount() {
