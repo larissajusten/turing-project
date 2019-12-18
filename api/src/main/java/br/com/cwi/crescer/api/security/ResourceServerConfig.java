@@ -18,6 +18,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     public static final String QUESTAO_DISSERTATIVA = "/questao-dissertativa/**";
     public static final String QUESTAO_MULTIPLA_ESCOLHA = "/questao-multipla-escolha/**";
     public static final String QUESTAO_TECNICA = "/questao-tecnica/**";
+    public static final String DASHBOARD = "/dashboard/**";
+    public static final String PROVA = "/prova/**";
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -45,9 +47,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .permitAll()
 
                 .antMatchers(
-                        "/dashboard/**",
+                        DASHBOARD,
                         "/email/**",
-                        "/prova/**",
+                        PROVA,
                         "/excluir/**",
                         "/incluir/**",
                         "/prova-questao-dissertativa/**",
@@ -56,9 +58,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .hasAnyRole(ADMIN, ENTREVISTADOR)
 
                 .antMatchers(HttpMethod.POST,
-                        "/dashboard/**",
+                        DASHBOARD,
                         "/email/**",
-                        "/prova/**",
+                        PROVA,
                         "/excluir/**",
                         "/incluir/**",
                         "/prova-questao-dissertativa/**",
@@ -74,7 +76,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
                 .antMatchers(HttpMethod.GET,
                         QUESTAO_DISSERTATIVA,
-                        "/dashboard/**",
+                        DASHBOARD,
                         QUESTAO_MULTIPLA_ESCOLHA,
                         QUESTAO_TECNICA)
                 .hasAnyRole(ADMIN, ENTREVISTADOR)
@@ -88,10 +90,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .antMatchers("/usuario/**")
                 .hasAnyRole(ADMIN, ENTREVISTADOR)
 
-                .antMatchers(HttpMethod.PUT, "/prova/**")
+                .antMatchers(HttpMethod.PUT, PROVA)
                 .permitAll()
 
-                .antMatchers(HttpMethod.POST, "/prova/**")
+                .antMatchers(HttpMethod.POST, PROVA)
                 .permitAll()
 
                 .antMatchers(HttpMethod.GET, "/buscar-prova/**", "/dominio/**")

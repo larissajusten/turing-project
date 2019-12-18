@@ -23,8 +23,8 @@ public interface ProvaRepository extends JpaRepository<Prova, Long> {
     @Query("SELECT p from Prova p WHERE p.status = :status " +
             "AND p.tipo = :tipo")
     List<Prova> encontrarPorCriadaECrescer(
-                                           @Param("tipo")TipoDeProva tipo,
-                                           @Param("status")  StatusProva status);
+            @Param("tipo") TipoDeProva tipo,
+            @Param("status") StatusProva status);
 
     boolean existsByEmailCandidatoEqualsAndStatusEquals(String email, StatusProva ativa);
 

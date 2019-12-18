@@ -1,6 +1,5 @@
 package br.com.cwi.crescer.api.controller.requests.prova;
 
-import br.com.cwi.crescer.api.domain.enums.StatusProva;
 import br.com.cwi.crescer.api.domain.enums.TipoDeProva;
 import lombok.AllArgsConstructor;
 import lombok.Data;

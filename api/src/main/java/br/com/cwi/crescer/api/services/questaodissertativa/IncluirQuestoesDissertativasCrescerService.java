@@ -6,7 +6,6 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoDissertativa;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoDissertativaRepository;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorCriadaECrescerService;
-import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +31,7 @@ public class IncluirQuestoesDissertativasCrescerService {
 
         List<Prova> listaDeProvas = buscarProvaPorCriadaECrescerService.buscar();
 
-        for (Prova prova: listaDeProvas) {
+        for (Prova prova : listaDeProvas) {
             for (QuestaoDissertativa questaoDissertativa : lista) {
                 ProvaQuestaoDissertativa provaQuestaoDissertativa = new ProvaQuestaoDissertativa();
                 provaQuestaoDissertativa.setProva(prova);

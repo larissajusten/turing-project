@@ -6,7 +6,6 @@ import br.com.cwi.crescer.api.domain.questao.QuestaoTecnica;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoTecnica;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoTecnicaRepository;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorCriadaECrescerService;
-import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

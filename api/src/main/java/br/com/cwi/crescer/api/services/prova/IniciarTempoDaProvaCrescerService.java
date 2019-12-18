@@ -18,7 +18,7 @@ public class IniciarTempoDaProvaCrescerService {
     @Autowired
     private ProvaRepository repository;
 
-    public void iniciar(Long idProva,  CandidatoRequest request) {
+    public void iniciar(Long idProva, CandidatoRequest request) {
 
         Prova prova = buscarProvaPorIdService.buscar(idProva);
         prova.setNomeCandidato(request.getNomeCandidato());

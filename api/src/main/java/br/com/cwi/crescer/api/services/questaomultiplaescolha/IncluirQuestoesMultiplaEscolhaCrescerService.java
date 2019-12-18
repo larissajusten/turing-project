@@ -2,17 +2,10 @@ package br.com.cwi.crescer.api.services.questaomultiplaescolha;
 
 import br.com.cwi.crescer.api.controller.requests.questoes.BuscaQuestoesRequest;
 import br.com.cwi.crescer.api.domain.prova.Prova;
-import br.com.cwi.crescer.api.domain.questao.QuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.questao.QuestaoMultiplaEscolha;
-import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoDissertativa;
 import br.com.cwi.crescer.api.domain.questaoprova.ProvaQuestaoMultiplaEscolha;
-import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoDissertativaRepository;
 import br.com.cwi.crescer.api.repository.prova.ProvaQuestaoMultiplaEscolhaRepository;
 import br.com.cwi.crescer.api.services.prova.BuscarProvaPorCriadaECrescerService;
-import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdComQuestoesService;
-import br.com.cwi.crescer.api.services.prova.BuscarProvaPorIdService;
-import br.com.cwi.crescer.api.services.questaodissertativa.AcrescentarQuantasVezesUsadaQuestaoDissertativaService;
-import br.com.cwi.crescer.api.services.questaodissertativa.ListarQuestoesDissertativasFiltradasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,7 +32,7 @@ public class IncluirQuestoesMultiplaEscolhaCrescerService {
 
         List<Prova> listaDeProvas = buscarProvaPorCriadaECrescerService.buscar();
 
-        for (Prova prova: listaDeProvas) {
+        for (Prova prova : listaDeProvas) {
             for (QuestaoMultiplaEscolha questaoMultiplaEscolha : lista) {
                 ProvaQuestaoMultiplaEscolha provaQuestaoMultiplaEscolha = new ProvaQuestaoMultiplaEscolha();
                 provaQuestaoMultiplaEscolha.setProva(prova);
