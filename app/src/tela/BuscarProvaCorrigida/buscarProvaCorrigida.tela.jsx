@@ -9,7 +9,7 @@ export class BuscarProvaJaCorrigidaScreen extends Component {
     super(props)
     this.state = {
       pesquisa: '',
-      provas: [], 
+      provas: [],
       idProva: ''
     }
     this.buscarProvaService = new BuscarProvaService()

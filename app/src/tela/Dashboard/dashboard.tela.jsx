@@ -44,7 +44,7 @@ export class DashboardScreen extends Component {
 
 	handleChange = async (event) => {
 		const { name, value } = event.target;
-		this.setState({ [name]: value, isLoading: true }, 
+		this.setState({ [name]: value, isLoading: true },
 			async () => {
 				let notasMultiplas = await this.dashboardService.retornarResultadosMultipla(this.state.especificidadeEscolhida)
 				let notasDissertativas = await this.dashboardService.retornarResultadosDissertativa(this.state.especificidadeEscolhida)

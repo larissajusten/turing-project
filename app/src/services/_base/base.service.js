@@ -3,9 +3,10 @@ import axios from 'axios'
 const carregarToken = () => {
   let token
 	if (!token) {
-		token = localStorage.getItem('accessToken');
+		return localStorage.getItem('accessToken');
+  }else {
+    return token
   }
-  return token
 }
 
 const httpClient = (baseUrl) => axios.create({

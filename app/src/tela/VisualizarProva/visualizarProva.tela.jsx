@@ -6,9 +6,9 @@ import { MostrarQuestaoUnica,
         BlocoVisualizar,
         Notificacao,
         BotaoPrincipal } from '../../component/'
-import { ProvaService, 
+import { ProvaService,
         BuscarProvaService,
-        RemoverQuestaoProvaService, 
+        RemoverQuestaoProvaService,
         EmailService} from '../../services/'
 
 const mensagemSucessoNotificacao = 'Questão removida com sucesso'
