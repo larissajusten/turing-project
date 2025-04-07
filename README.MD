@@ -36,7 +36,7 @@ Selecione o arquivo `pom.xml` e marque a opção
 ## Como usar
 
 ```bash
- » O que eu coloco aqui?
+wip
 ```
 
 ## Contribuições
@@ -53,13 +53,11 @@ Por favor atualize os testes conforme apropriado.
 ## Licença
 [CWI Software](https://cwi.com.br/)
 
--- Link da API de correção
-
+## Link da API de correção
 https://github.com/AntoniodaRosa/java_correcao_automatizada/blob/master/README.md
 
 
--- Configurando a API
-
+## Configurando a API
 o path do compilador JDK (javac) precisa ser adicionado às variáveis de ambiente do SO (adicionado à variavel "path")
 uma vez instalado, o javac pode ser encontrado neste path: "C:/Program Files/Java/jdk1.8.0_231/bin/"
 
@@ -68,10 +66,7 @@ pathServicesCorrecao = "src/main/java/com/api/api/service/";
 pathJDK = "C:/Program Files/Java/jdk1.8.0_231/bin/";
 pathMaquinaAteService = "C:/Users/Samuel Jansen/java_correcao_automatizada/src/main/java/com/api/api/service";
 
-
-
--- Descrição do funcionamento da API
-
+## Descrição do funcionamento da API
 Por enquanto, a api corrige questões em JAVA
 
 A API recebe do banco uma lista de questaoDTO da questões da prova, onde cada uma das DTOs contém:
@@ -82,6 +77,7 @@ A API recebe do banco uma lista de questaoDTO da questões da prova, onde cada u
 Essas três variáveis são strings; texto.
 Exemplo:
 
+```
 String listaInputs = "Integer[] param1 = {1, 5, 6, 73, 3, 1, 123, 1};\n" +
                 "        Integer[] param2 = {1234, 2, 4};\n" +
                 "        Integer[] param3 = {12, 2, 4, 7};\n" +
@@ -112,17 +108,18 @@ String solucao = "Integer saida = 0;\n" +
                 "            \n" +
                 "            }\n" +
                 "        }\n";
+```
 
-CorrigirQuestoesCrescerService.java é um método void que recebe por parâmetro a lista de questaoDTO do banco
+`CorrigirQuestoesCrescerService.java` é um método void que recebe por parâmetro a lista de questaoDTO do banco
 	- Esta Service itera sobre essa lista chamando CorrecaoAutomatizadaService.java passando por parâmetro uma única questaoDTO para cada chamada.
 
-CorrecaoAutomatizadaService.java efetua a correção automática de uma questão.
+`CorrecaoAutomatizadaService.java` efetua a correção automática de uma questão.
 	- Esta Service é void e recebe por parâmetro uma questaoDTO.
 	- Depois, esta Service chama um processo chamado "PythonEscreveSolucao.py" passando parâmetros via String[] args.
 		Este processo é responsável pelo seu próprio ciclo de vida, portando o Java não precisa monitorálo.
 	- Por fim, CorrecaoAutomatizadaService.java chama RegistrarNotaQuestaoService.java
 
-PythonEscreveSolucao.py é reponsável por testar a solução do candidato. Isto é feito em 6 etapas:
+`PythonEscreveSolucao.py` é reponsável por testar a solução do candidato. Isto é feito em 6 etapas:
 	- Escrita
 	- Compilação
 	- Execução
@@ -150,14 +147,12 @@ PythonEscreveSolucao.py é reponsável por testar a solução do candidato. Isto
 		Terminada a etapa Limpeza, o PythonEscreveSolucao.py prepara o arquivo "nota.txt" para a próxima correção de questão
 
 
-RegistrarNotaQuestaoService.java captura e armazena em "questao" a nota da questão
+`RegistrarNotaQuestaoService.java` captura e armazena em "questao" a nota da questão
 	-Enquanto o processo PythonEscreveSolucao.py nao finaliza, a api de correção está presa na leitura do arquivo "nota.txt".
  	-Quando a etapa Persistência do processo PythonEscreveSolucao.py encerra,
 		RegistrarNotaQuestaoService.java captura e armazena em "questao" a nota da questão
 
-Pronto :D
-
-- feedbacks e dúvidas da última reunião
+## Feedbacks e dúvidas da última reunião
 		feedback de finalização de um bloco de provas
 		criação de provas por bloco
 		substituir questões antes de criar a prova
